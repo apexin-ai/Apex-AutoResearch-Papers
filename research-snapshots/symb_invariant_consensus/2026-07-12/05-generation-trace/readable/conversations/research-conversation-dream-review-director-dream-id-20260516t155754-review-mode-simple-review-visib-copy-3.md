@@ -1,0 +1,1893 @@
+# Research conversation: [DREAM Review Director] dream_id=20260516T155754 | review_mode=simple | review_visible=True PDF: /home/ubuntu/.agent-ml-
+
+**Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 2
+- **Tool calls:** 5
+- **Original source:** `logs/chats/exported-trajectories/account-3/9a867ead-a281-4510-ad15-6b93104740f7.jsonl`
+- **Structured JSON:** [`eaef4050b5ac24cca7d9.json`](../../sessions/ea/eaef4050b5ac24cca7d9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T16:27:50.689Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T16:27:50.689Z",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "content": "[DREAM Review Director]\ndream_id=20260516T155754 | review_mode=simple | review_visible=True\nPDF: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_input_e90a5c14.pdf\n\n（内部编排信息：tier=median，仅用于 submit_dream_review_report 调用。\n你在向 Reviewer 发送审稿任务时，**严禁**提及档位名称 best/median/worst，\n也不要暗示论文结果的好坏。Reviewer 必须盲审。）\n\n任务：对上述 PDF 进行 simple 模式审稿。 使用 `dream-review-simple` skill 的 dispatch 模板（1 Reviewer 全面覆盖，跳过 Step 2 交叉分享 + Step 3 收敛）。\n\n## 审稿标准\n\n未指定目标 venue。请按 top ML venue 通用标准审稿（接受率 ~25%，6 分制：1=Strong Reject … 6=Strong Accept）。\n\n## 实验设计参考\n\n完整实验设计（含想象实验列表）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_context.yaml`\n论文可能未完整反映所有实验——参考此文件判断覆盖度。\n完成后必须调用 `submit_dream_review_report(report, project=\"symb_invariant_consensus\", tier=\"median\", dream_id=\"20260516T155754\", review_visible=True)` —— 报告会写入 dream_reports/dream_20260516T155754/median/review_report.md，编排进程通过 subprocess 退出读取它。\n不要调用 submit_review_report_to_research_director / update_review_issues / request_external_review —— 这些工具不在 Dream Review Director 白名单内。\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T16:27:50.692Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T16:27:50.692Z",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7"
+}
+```
+
+---
+
+## Round 1
+
+10 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T16:27:50.728Z_
+
+[DREAM Review Director]
+dream_id=20260516T155754 | review_mode=simple | review_visible=True
+PDF: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_input_e90a5c14.pdf
+
+（内部编排信息：tier=median，仅用于 submit_dream_review_report 调用。
+你在向 Reviewer 发送审稿任务时，**严禁**提及档位名称 best/median/worst，
+也不要暗示论文结果的好坏。Reviewer 必须盲审。）
+
+任务：对上述 PDF 进行 simple 模式审稿。 使用 `dream-review-simple` skill 的 dispatch 模板（1 Reviewer 全面覆盖，跳过 Step 2 交叉分享 + Step 3 收敛）。
+
+## 审稿标准
+
+未指定目标 venue。请按 top ML venue 通用标准审稿（接受率 ~25%，6 分制：1=Strong Reject … 6=Strong Accept）。
+
+## 实验设计参考
+
+完整实验设计（含想象实验列表）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_context.yaml`
+论文可能未完整反映所有实验——参考此文件判断覆盖度。
+完成后必须调用 `submit_dream_review_report(report, project="symb_invariant_consensus", tier="median", dream_id="20260516T155754", review_visible=True)` —— 报告会写入 dream_reports/dream_20260516T155754/median/review_report.md，编排进程通过 subprocess 退出读取它。
+不要调用 submit_review_report_to_research_director / update_review_issues / request_external_review —— 这些工具不在 Dream Review Director 白名单内。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9b19d13a-9729-4d4a-bbaf-1d022067c444",
+  "type": "user",
+  "uuid": "63aa2f02-08ab-4763-bafc-bcb90508cdef",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T16:27:50.727Z_
+
+```json
+{
+  "parentUuid": "63aa2f02-08ab-4763-bafc-bcb90508cdef",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "df1d14d4-60d1-414f-a572-fff6262d79fe",
+  "timestamp": "2026-05-16T16:27:50.727Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T16:27:50.727Z_
+
+```json
+{
+  "parentUuid": "df1d14d4-60d1-414f-a572-fff6262d79fe",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b3e6a050-346b-4491-be5b-30a0baf6d761",
+  "timestamp": "2026-05-16T16:27:50.727Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T16:27:50.727Z_
+
+```json
+{
+  "parentUuid": "b3e6a050-346b-4491-be5b-30a0baf6d761",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "deef047d-b8f3-4981-8fc0-8167c39abf87",
+  "timestamp": "2026-05-16T16:27:50.727Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review symbolic invariant consensus research paper",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T16:27:54.026Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to review a PDF paper using the "dream-review-simple" skill dispatch template. Let me first read the PDF and the review context YAML, then conduct a thorough review and submit it.
+
+Let me start by reading the PDF and the review context YAML file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "deef047d-b8f3-4981-8fc0-8167c39abf87",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZasVzFzAfnAzgZxC2R",
+  "type": "assistant",
+  "uuid": "6f8bf7b9-6822-4f91-9e6a-955ce1040ed3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012MQaxyQJ8AwKvtnxFraUBe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11069,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11069,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 292,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11069,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11069
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T16:27:54.513Z_
+
+I'll review this paper. Let me first read the PDF and the review context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f8bf7b9-6822-4f91-9e6a-955ce1040ed3",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZasVzFzAfnAzgZxC2R",
+  "type": "assistant",
+  "uuid": "16e7b7b6-f319-4fa2-879d-1a5aa8085b48",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012MQaxyQJ8AwKvtnxFraUBe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11069,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11069,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 292,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11069,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11069
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T16:27:55.501Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013K3aJ9QSJZhDMM1TCcSJaB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_input_e90a5c14.pdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16e7b7b6-f319-4fa2-879d-1a5aa8085b48",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZasVzFzAfnAzgZxC2R",
+  "type": "assistant",
+  "uuid": "422f6a1f-f554-4a33-9b46-4b647338a3cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012MQaxyQJ8AwKvtnxFraUBe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11069,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11069,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 292,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11069,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11069
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T16:27:55.904Z_
+
+<details><summary>↩ Tool result · `toolu_014BnTFUBs9hAhjDBnAzoraS`</summary>
+
+```text
+1	narrative_guidance: Claim 1 弱化为 'principled tiebreaking with interpretability advantage'——FOLIO
+2	  域显著但 PW 稀释，combined p marginal。Claim 2 (operating regime) 升为主贡献：C0 二分模式（>20% 有效
+3	  / <5% 退化）跨 3 家族 + 2 reasoning 架构成立，但连续预测能力有限。Claim 3 降级为 binary indicator。论文主线 pivot
+4	  到 'When does symbolic consensus help?'。FOLIO 作为 formal structure aligns with method
+5	  的典型域，PW 作为 restricted answer space 域，GSM8K 作为 model-too-strong 域。exp-013 消融结果迫使让步：MaxSAT
+6	  的 accuracy 优势 over counting 不显著，reframe 为 formal framework for interpretability。目标
+7	  EMNLP Main 但 Findings 是现实预期。
+8	imagined_experiments:
+9	- name: sica_expanded_14b
+10	  plan_id: exp-001
+11	  description: PW D5 600题 + FOLIO 204题 = 804题, K=12, T=0.7, Qwen2.5-14B-Instruct 全规模评估
+12	  expected_results:
+13	    n_total: 804
+14	    n_folio: 204
+15	    n_proofwriter: 600
+16	    folio_sica_accuracy: 0.794
+17	    folio_sc_accuracy: 0.755
+18	    folio_gap_pp: 3.9
+19	    folio_bootstrap_p: 0.038
+20	    folio_c0: 0.48
+21	    proofwriter_sica_accuracy: 0.718
+22	    proofwriter_sc_accuracy: 0.715
+23	    proofwriter_gap_pp: 0.3
+24	    proofwriter_bootstrap_p: 0.41
+25	    proofwriter_c0: 0.38
+26	    combined_sica_accuracy: 0.737
+27	    combined_sc_accuracy: 0.725
+28	    combined_gap_pp: 1.2
+29	    combined_bootstrap_p: 0.089
+30	    c0_multi_candidate_rate: 0.41
+31	    c1_extraction_rate: 0.97
+32	    maxsat_exclusion_rate: 0.031
+33	    total_constraints_unique: 58200
+34	    tiebreak_problems: 47
+35	    tiebreak_sica_win_rate: 0.68
+36	    wall_time_hours: 12.5
+37	  result_rationale: D012 的 FOLIO +6.7pp 基于 30 题，扩展到 204 题后因回归均值效应缩至 +3.9pp——D012 可能过采样了
+38	    high-C0 的 '难题'，204 题中约 52% 的 FOLIO 题 C0=0（模型已达共识），这些题 SICA≡SC，拉低整体 gap。PW 600
+39	    题近乎 null（+0.3pp）：PW 三分类答案空间 {True, False, Unknown} 使 K=12 投票几乎总有 clear majority，tie
+40	    率极低（<5%），SICA 无 tiebreaking 机会。合并后 PW 的 75% 权重（600/804）稀释 FOLIO 正向信号，combined
+41	    gap 降至 1.2pp，p=0.089 位于 marginal zone。C0=0.41 略低于 D016 precheck 的 0.46——precheck
+42	    的 26 题偏难，扩展后纳入更多简单题拉低多样性。提取率 0.97 反映约 3% 的 PW 长 trace 超出 token 限制导致 extraction
+43	    失败。
+44	  tables:
+45	  - 'T1: FOLIO 79.4% vs 75.5% (+3.9pp, p=0.038*), PW 71.8% vs 71.5% (+0.3pp, p=0.41),
+46	    Combined 73.7% vs 72.5% (+1.2pp, p=0.089)'
+47	  - 'T2: 47 ties — SICA win 32, SC win 15, win rate 68.1%'
+48	  figures_description:
+49	  - '并列柱状图: FOLIO vs PW 的 SICA/SC accuracy 对比，附 95% bootstrap CI error bars，突出 FOLIO
+50	    的正向 gap 与 PW 的 null'
+51	  analysis: FOLIO 单独显著（p=0.038）是 Claim 1 的核心支撑，但 combined p=0.089 超过 0.05 阈值。论文策略：不
+52	    claim blanket improvement，而是 domain-conditional 呈现——'SICA improves accuracy in
+53	    domains where formal logical structure aligns with the method's constraint extraction
+54	    capability'。PW null 结果解释为 answer space 受限导致 tie 稀少。这直接驱动 pivot 到 operating regime
+55	    叙事。
+56	- name: sica_k_ablation_14b
+57	  plan_id: exp-002
+58	  description: K=6,8,12,16,20 在 D012 60 题上的灵敏度分析，Qwen2.5-14B-Instruct
+59	  expected_results:
+60	    k6_sica_acc: 0.717
+61	    k6_sc_acc: 0.683
+62	    k6_gap_pp: 3.4
+63	    k6_c0: 0.55
+64	    k6_tie_rate: 0.28
+65	    k8_sica_acc: 0.733
+66	    k8_sc_acc: 0.7
+67	    k8_gap_pp: 3.3
+68	    k8_c0: 0.52
+69	    k8_tie_rate: 0.22
+70	    k12_sica_acc: 0.733
+71	    k12_sc_acc: 0.7
+72	    k12_gap_pp: 3.3
+73	    k12_c0: 0.53
+74	    k12_tie_rate: 0.17
+75	    k16_sica_acc: 0.717
+76	    k16_sc_acc: 0.7
+77	    k16_gap_pp: 1.7
+78	    k16_c0: 0.45
+79	    k16_tie_rate: 0.12
+80	    k20_sica_acc: 0.717
+81	    k20_sc_acc: 0.71
+82	    k20_gap_pp: 0.7
+83	    k20_c0: 0.4
+84	    k20_tie_rate: 0.08
+85	  result_rationale: K 增大时两个机制同时作用：(1) SC 多数票更稳定（tie 率从 K=6 的 28% 降至 K=20 的 8%），SICA
+86	    tiebreaking 机会减少；(2) 更多 trace 提供更多 constraint 但也引入更多噪声，边际信息增益递减。K=6 tie 率最高（偶数
+87	    K 天然更多 tie，且 6 票分布方差大），C0=0.55 也最高（6 条 trace 的采样方差大），但绝对 accuracy 略低于 K=12（样本太少
+88	    constraint 覆盖不足）。K=12 是 sweet spot——足够的 trace 保证 constraint 质量，tie 率仍可观（17%）。K=16/20
+89	    时 SC 趋于自足——更多投票使多数规则本身变强，SICA 的 marginal value 递减至 <2pp。Gap 与 tie rate 的正相关直接支撑
+90	    'SICA 本质是 principled tiebreaker' 的定位。
+91	  tables:
+92	  - 'T3: K | SICA% | SC% | Gap(pp) | C0 | Tie Rate — 5 行，展示 gap-tie_rate 正相关'
+93	  figures_description:
+94	  - 'F4: 双 Y 轴折线图，X=K，左 Y=SICA-SC gap(pp)，右 Y=tie rate(%)，两线正相关；K=12 标注为 recommended'
+95	  analysis: K sensitivity 证明 SICA 优势与 tie 频率系统性共变（非 K 的偶然产物），验证 principled tiebreaking
+96	    叙事。K=12 选择有充分依据：accuracy 与 gap 的最佳平衡点。论文中用 F4 作为 Claim 1 的 mechanistic evidence。
+97	- name: tiebreak_baseline_analysis
+98	  plan_id: exp-003
+99	  description: 在 exp-001 扩展数据 804 题上重新对比 SICA vs SC-random vs SC-alphabetical vs SC-first-seen
+100	    tiebreak
+101	  expected_results:
+102	    n_ties: 47
+103	    sica_tiebreak_accuracy: 0.681
+104	    sc_random_tiebreak_accuracy: 0.489
+105	    sc_alphabetical_accuracy: 0.532
+106	    sc_first_seen_accuracy: 0.447
+107	    sica_vs_random_binomial_p: 0.031
+108	    sica_win_rate_vs_random: 0.68
+109	  result_rationale: D012 的 5 个 tie 扩展到 47 个后，SICA win rate 从 80%（4/5）回落到 68%（32/47）——小样本的
+110	    upward bias 被校正。SC-random 在 47 次 tie 上接近理论 50%（实际 48.9%），符合 binomial 预期。SICA 仍系统性优于所有
+111	    baseline：MaxSAT constraint weighting 在 tie 时利用了 trace 内的逻辑结构信息来区分候选答案，而 SC 的 tiebreak
+112	    规则完全忽略 trace 内容。68% 而非更高，因为扩展数据中部分 tie 的 constraint extraction 质量差（尤其 PW 的 FOL
+113	    翻译在 ambiguous 题目上会出错），导致 MaxSAT 也选错。47 个 tie 上的 binomial test p=0.031 显著。
+114	  tables:
+115	  - 'T2: SICA 68.1% vs Random 48.9% vs Alphabetical 53.2% vs First-seen 44.7%, n=47,
+116	    p(SICA>Random)=0.031'
+117	  figures_description:
+118	  - '柱状图: 4 种 tiebreak 策略准确率对比，附 binomial 95% CI'
+119	  analysis: Tiebreak win rate 0.68 在 median 档范围内且统计显著（p=0.031）。这是 Claim 1 最直接的证据——在
+120	    tie 发生时 SICA 的 principled resolution 系统性优于任意规则。论文中应以 tiebreak analysis 而非 overall
+121	    accuracy 作为 Claim 1 的核心论据。
+122	- name: sica_7b_scaling
+123	  plan_id: exp-004
+124	  description: Qwen2.5-7B-Instruct 在 D012 60 题上，验证 weaker model → higher C0 → larger
+125	    gap
+126	  expected_results:
+127	    sica_accuracy: 0.65
+128	    sc_accuracy: 0.617
+129	    gap_pp: 3.3
+130	    c0_multi_candidate_rate: 0.65
+131	    folio_sica: 0.733
+132	    folio_sc: 0.667
+133	    folio_gap_pp: 6.6
+134	    proofwriter_sica: 0.583
+135	    proofwriter_sc: 0.583
+136	    proofwriter_gap_pp: 0.0
+137	    bootstrap_p: 0.19
+138	    c1_extraction_rate: 0.92
+139	    wall_time_hours: 1.8
+140	  result_rationale: 7B 基线更弱（SC 61.7% vs 14B 的 70%），模型在 NLI 推理上不够自信，输出多样性显著更高（C0=0.65
+141	    vs 14B 的 0.53）。更多题目有 multi-candidate（65% vs 53%），更多 tie 发生，SICA 有更多 tiebreaking
+142	    机会。FOLIO 上 gap 达 6.6pp——7B 在 FOLIO 上频繁犹豫于不同答案，SICA 的 constraint weighting 帮助选出正确的。PW
+143	    上仍然 0pp——三分类答案空间的 structural constraint 不变，即使 7B 也能在 PW 上形成 clear majority。Combined
+144	    gap 3.3pp 但 p=0.19（60 题不足以达显著）。Extraction rate 0.92 低于 14B（1.0），因为 7B 的推理 trace
+145	    格式不够规范，约 8% 的 trace 无法提取有效 FOL。C0=0.65 >> 14B 的 0.53，明确支撑 gradient 的前半段。
+146	  tables:
+147	  - 'T1 Qwen-7B 行: 65.0% vs 61.7%, +3.3pp, C0=0.65'
+148	  figures_description:
+149	  - 'F2 散点图: 7B 数据点位于右侧（高 C0=0.65, gap=3.3pp），与 14B（C0=0.53）形成 gradient'
+150	  analysis: 7B 确立了 C0 gradient 的关键一环：7B(0.65) >> 14B(0.53)。但 gap(3.3pp) 与 14B(3.3pp)
+151	    持平而非更大——因为 7B 的 constraint extraction 质量较低（rate=0.92），抵消了部分高 C0 带来的 tiebreaking
+152	    机会。这提示 C0 是必要条件但非充分条件：还需要足够的 constraint quality。
+153	- name: qwq_32b_operating_regime
+154	  plan_id: exp-005
+155	  description: QwQ-32B 已有 MVP 数据的 operating regime 格式化，无新 GPU
+156	  expected_results:
+157	    c0_combined: 0.036
+158	    c0_aime: 0.0
+159	    c0_folio: 0.0
+160	    c0_proofwriter: 0.1875
+161	    sica_sc_gap_all_domains: 0.0
+162	    n_aime: 22
+163	    n_folio: 10
+164	    n_proofwriter: 16
+165	    n_total: 48
+166	    regime_label: degenerate (C0<5%)
+167	  result_rationale: 直接复用 MVP 阶段数据。QwQ-32B 的 extended chain-of-thought 使 reasoning
+168	    chain 高度确定——即使在 T=0.7 下，thinking tokens 的序列长度和 internal consistency 压制了采样随机性，导致
+169	    K=12 条 trace 几乎总是收敛到同一答案。AIME/FOLIO 上 C0=0%（完全 unanimity），PW 上 18.75%（仅因三分类下偶尔在
+170	    True/Unknown 间犹豫）。SICA≡SC 是 structural 结果：无 tie 则无 tiebreaking 机会，MaxSAT 选择与 majority
+171	    vote 完全一致。
+172	  tables:
+173	  - 'T1 QwQ-32B 行: AIME/FOLIO/PW 全部 SICA≡SC, C0=3.6%'
+174	  figures_description:
+175	  - 'F2 散点图: QwQ-32B 聚集在原点附近 (C0≈0, gap=0)'
+176	  - 'F3 operating regime heatmap: QwQ-32B 位于 degenerate zone'
+177	  analysis: QwQ-32B 是 negative control——论文将其呈现为 'When Does Symbolic Consensus Degenerate?'。核心
+178	    insight：reasoning model 的确定性使 symbolic consensus 冗余。这是 Claim 2 的半壁江山——C0<5% →
+179	    SICA 无效，与 instruction model 的 C0>30% → SICA 有效形成对比。
+180	- name: c0_diagnostic_validation
+181	  plan_id: exp-006
+182	  description: 跨所有模型和 K 值的 C0 vs SICA-SC gap CPU 分析
+183	  expected_results:
+184	    total_data_points: 14
+185	    c0_range_observed:
+186	    - 0.0
+187	    - 0.65
+188	    gap_range_observed:
+189	    - -1.7
+190	    - 6.6
+191	    pearson_r: 0.72
+192	    spearman_rho: 0.78
+193	    c0_below_5pct_all_gap_zero: true
+194	    c0_above_20pct_positive_gap_rate: 0.727
+195	    binary_accuracy_20pct_threshold: 0.86
+196	    n_anomalous_points: 2
+197	    anomaly_1: 'Mistral-7B: C0=0.35, gap=-1.7pp (low extraction quality)'
+198	    anomaly_2: 'PW-expanded-14B: C0=0.38, gap=0.3pp (restricted answer space)'
+199	  result_rationale: 14 个数据点来自 7 个模型配置 × 2 个主要 dataset 的组合（加上 K ablation 和 GSM8K 的少量额外点）。Pearson
+200	    r=0.72 表明中等强度正相关但非完美线性——C0 是 gap 的必要非充分条件。C0<5% 的 3 个点（QwQ-32B 全域 + DeepSeek-R1
+201	    全域）全部 gap=0，验证了下界。C0>20% 的 11 个点中 8 个有正 gap，但 Mistral-7B（constraint quality 差）和
+202	    PW-expanded（answer space 受限）是异常值。Binary classification 以 C0=20% 为阈值达 86% 准确率（12/14），但这基于
+203	    14 个点——论文不应 overclaim。
+204	  tables:
+205	  - 'T_diagnostic: Model × Dataset × C0 × Gap × Binary Prediction × Actual，14 行汇总'
+206	  figures_description:
+207	  - 'F2 (hero figure): 散点图 C0 vs gap，C0=5% 和 20% 处竖线分 3 zone，每点标注 model-dataset shorthand，两个异常点用不同标记高亮'
+208	  analysis: C0 作为 binary diagnostic 在 median 档下成立（86% accuracy），但 r=0.72 不支持 continuous
+209	    predictor claim。Claim 3 必须降级：'C0 serves as a binary indicator (high/low) for SICA
+210	    deployment viability, rather than a continuous predictor of expected gain.' Hero
+211	    figure F2 是论文最重要的图——它一眼传达 operating regime 的核心论点。
+212	- name: sica_72b_awq
+213	  plan_id: exp-007
+214	  description: Qwen2.5-72B-Instruct AWQ 4-bit 在 D012 60 题上
+215	  expected_results:
+216	    sica_accuracy: 0.767
+217	    sc_accuracy: 0.75
+218	    gap_pp: 1.7
+219	    c0_multi_candidate_rate: 0.4
+220	    folio_sica: 0.833
+221	    folio_sc: 0.8
+222	    folio_gap_pp: 3.3
+223	    proofwriter_sica: 0.717
+224	    proofwriter_sc: 0.717
+225	    proofwriter_gap_pp: 0.0
+226	    bootstrap_p: 0.31
+227	    wall_time_hours: 3.5
+228	  result_rationale: 72B SC baseline 更高（75% vs 14B 的 70%），反映更强模型在 NLI 上更准确。C0=0.40
+229	    与 14B 的 0.53 差异存在但不够大——这是 median 档核心特征 '72B not clearly lower than 14B'。原因：(1)
+230	    4-bit AWQ 量化引入精度损失，增加了输出随机性（部分抵消了 72B 的确定性优势）；(2) FOLIO/PW 对 72B 仍有足够挑战性（不像 GSM8K
+231	    被碾压）。Gap 缩至 1.7pp 因为高 baseline 意味着 tie 中 SC 已更常选对——SICA 的 marginal correction
+232	    空间更小。FOLIO 仍有 +3.3pp，PW 仍 0pp，pattern 不变。p=0.31 远不显著（60 题）。C0 gradient 变 noisy：7B(0.65)
+233	    >> 14B(0.53) > 72B(0.40)，14B→72B 仅 drop 13pp，不是 clean monotonic decrease。
+234	  tables:
+235	  - 'T1 Qwen-72B 行: 76.7% vs 75.0%, +1.7pp, C0=0.40'
+236	  figures_description:
+237	  - 'Qwen family scaling 折线: 7B/14B/72B 的 C0 和 gap，展示 monotonic but noisy gradient'
+238	  analysis: 72B 部分支撑 within-family scaling，但 gradient noise 限制了 Claim 3 的连续预测叙事。14B→72B
+239	    仅 13pp C0 drop 而 gap 从 3.3→1.7pp，暗示 C0-gap 关系在高 baseline 区域变弱。论文中需提及 AWQ 量化 confound。将
+240	    scaling 结果定位为 'directionally consistent' 而非 'smooth gradient'。
+241	- name: constraint_quality_case_studies
+242	  plan_id: exp-008
+243	  description: 8 道代表性题目的 constraint 提取质量定性分析
+244	  expected_results:
+245	    n_cases: 8
+246	    case_selection: SICA-flip-correct × 2, SICA-maintain-correct × 2, SICA-flip-wrong
+247	      × 2, SICA-maintain-wrong × 2
+248	    constraint_semantic_accuracy: 0.75
+249	    categories:
+250	      correct_and_meaningful: 4
+251	      partially_correct: 2
+252	      noisy_but_harmless: 1
+253	      misleading: 1
+254	    exclusion_justified_rate: 0.83
+255	    key_pattern: FOLIO constraints map to premise FOL with ~80% fidelity; PW constraints
+256	      degrade on multi-hop chains where intermediate steps are lossy
+257	  result_rationale: 选取 8 道覆盖 4 种 SICA 结果类型的题目做定性分析。约 75% 的 constraint 正确捕获了前提-结论关系——FOLIO
+258	    的 FOL 翻译质量较好（问题本身就是 FOL reasoning），PW 在多跳推理链上 intermediate step 的 FOL 翻译有信息损失。4
+259	    道题 constraint 完全正确且语义 meaningful（SICA flip-correct 的典型案例：多数 trace 的 constraint
+260	    一致指向正确答案，MaxSAT satisfied 它们）。2 道部分正确（关键 constraint 在但有冗余噪声 constraint）。1 道噪声但无害（constraint
+261	    全是 trivial tautology，MaxSAT 退化为 vote count）。1 道 misleading——量词范围歧义导致错误 FOL，MaxSAT
+262	    基于错误 constraint 选了错答案（SICA flip-wrong 的典型案例）。
+263	  tables: []
+264	  figures_description:
+265	  - 'Pipeline 可视化: 2 道 SICA flip-correct 题的完整 trace→FOL→MaxSAT→answer 流程，标注 constraint
+266	    语义对应关系'
+267	  analysis: 定性分析支撑 interpretability 叙事——SICA 可以展示 why（通过 constraint 权重和 exclusion），这是
+268	    SC 做不到的。但 25% 的 constraint quality issue 需在 limitations 讨论。misleading case 直接解释了为什么
+269	    tiebreak win rate 是 68% 而非 100%。
+270	- name: overhead_analysis
+271	  plan_id: exp-009
+272	  description: exp-001 数据的 per-question wall-time 分解
+273	  expected_results:
+274	    avg_total_per_question_s: 56.0
+275	    avg_generation_s: 48.0
+276	    avg_constraint_extraction_s: 5.2
+277	    avg_maxsat_solving_s: 0.8
+278	    avg_postprocessing_s: 2.0
+279	    generation_pct: 85.7
+280	    extraction_pct: 9.3
+281	    maxsat_pct: 1.4
+282	    postprocessing_pct: 3.6
+283	    overhead_vs_sc_pct: 14.3
+284	    overhead_vs_sc_absolute_s: 8.0
+285	    sc_equivalent_time_s: 48.0
+286	  result_rationale: LLM 生成（K=12 条 trace）占 86% 的时间——这部分 SICA 与 SC 完全共享，不是额外开销。Constraint
+287	    extraction 需要一次额外的 LLM call（~5.2s），这是 SICA 的主要 overhead 来源。MaxSAT 在这些小规模问题（每题
+288	    ~50 个 unique constraint）上 Z3 求解极快（<1s）。总 overhead 14.3%（8s/question），全部来自 extraction
+289	    + postprocessing。由于 K 次生成已经是 SC 的必要成本，SICA 的增量成本可控。对 EMNLP reviewer 的说服力：14% overhead
+290	    换取在 tie 场景下 68% vs 49% 的选择准确率，且提供 interpretable constraint analysis。
+291	  tables:
+292	  - 'T4: Stage | Time(s) | % Total — Generation 48.0(85.7%), Extraction 5.2(9.3%),
+293	    MaxSAT 0.8(1.4%), Post 2.0(3.6%)'
+294	  figures_description:
+295	  - 'Stacked bar: SC vs SICA 的 per-question 时间对比，SICA 多出的 extraction+MaxSAT 用不同色标注'
+296	  analysis: 14% overhead 是卖点而非弱点。论文强调 'SICA adds <15% wall-time overhead to SC while
+297	    providing principled tiebreaking and post-hoc constraint interpretability'。MaxSAT
+298	    <1s 也反驳 over-engineering 的运行时担忧（虽然 exp-013 的 accuracy 消融可能支持简化）。
+299	- name: sica_mistral_7b
+300	  plan_id: exp-010
+301	  description: Mistral-7B-Instruct-v0.3 在 D012 60 题上的跨家族验证
+302	  expected_results:
+303	    sica_accuracy: 0.583
+304	    sc_accuracy: 0.6
+305	    gap_pp: -1.7
+306	    c0_multi_candidate_rate: 0.35
+307	    folio_sica: 0.6
+308	    folio_sc: 0.633
+309	    folio_gap_pp: -3.3
+310	    proofwriter_sica: 0.567
+311	    proofwriter_sc: 0.567
+312	    proofwriter_gap_pp: 0.0
+313	    bootstrap_p: 0.72
+314	    c1_extraction_rate: 0.85
+315	    wall_time_hours: 1.2
+316	  result_rationale: Mistral-7B 是 median 档中 'one cross-family model shows anomalous
+317	    C0 or negative gap' 的体现。C0=0.35 中等（在 [0.2, 0.45] 范围内），说明 Mistral 确实有 trace diversity，按
+318	    C0 预测应有正 gap——但实际 gap 为负。根本原因：Mistral 的 instruction following 风格与 SICA 的 FOL extraction
+319	    prompt 不匹配，extraction rate 仅 0.85（15% trace 提取失败）。更关键的是，成功提取的 constraint 中有相当比例存在语义错误——Mistral
+320	    的 reasoning trace 格式较 free-form，FOL 翻译的 fidelity 低于 Qwen/LLaMA。结果：噪声 constraint
+321	    误导 MaxSAT 权重分配，在 FOLIO 上 SICA 翻转了 2 道原本 SC 选对的题但只纠正了 1 道（净亏损）。PW 上 constraint
+322	    噪声被三分类的 clear majority 压制，gap=0。整体 -1.7pp 不显著（p=0.72），不能说 SICA 有害，但也不能说有益。
+323	  tables:
+324	  - 'T1 Mistral-7B 行: 58.3% vs 60.0%, -1.7pp, C0=0.35'
+325	  figures_description:
+326	  - 'F2 散点图: Mistral-7B 是异常点 (C0=0.35, gap=-1.7pp)，用不同标记高亮'
+327	  analysis: Mistral 的负 gap 暴露了 SICA 的隐含前提：constraint extraction quality 必须足够高。C0 是
+328	    necessary but not sufficient——高 C0 + 低 extraction quality = 负 gap。论文中将此作为 'second
+329	    operating condition' 讨论：SICA 有效需要 (1) C0>20% AND (2) constraint extraction fidelity
+330	    sufficient。这实际上深化了 operating regime 分析而非削弱——增加了一个维度。3-family 结果：2/3 positive (Qwen+LLaMA),
+331	    1/3 anomalous (Mistral, with identified mechanism)。
+332	- name: sica_llama_8b
+333	  plan_id: exp-011
+334	  description: LLaMA-3.1-8B-Instruct 在 D012 60 题上的跨家族验证
+335	  expected_results:
+336	    sica_accuracy: 0.617
+337	    sc_accuracy: 0.6
+338	    gap_pp: 1.7
+339	    c0_multi_candidate_rate: 0.43
+340	    folio_sica: 0.667
+341	    folio_sc: 0.633
+342	    folio_gap_pp: 3.4
+343	    proofwriter_sica: 0.567
+344	    proofwriter_sc: 0.567
+345	    proofwriter_gap_pp: 0.0
+346	    bootstrap_p: 0.29
+347	    c1_extraction_rate: 0.94
+348	    wall_time_hours: 1.3
+349	  result_rationale: LLaMA-3.1-8B 是 '2/3 cross-family models show expected C0 pattern'
+350	    的正面案例。C0=0.43 在 [0.2, 0.45] 范围内上段，LLaMA 8B 的 instruction following 产生中等 trace
+351	    diversity。Extraction rate 0.94 接近 Qwen 水平——LLaMA 的 chat template 与 SICA extraction
+352	    prompt 兼容性好（比 Mistral 好得多）。FOLIO 上 +3.4pp（1 道题的 flip），pattern 与 Qwen-14B 一致：formal
+353	    logic domain + 足够 C0 + 好的 extraction quality = 正向 gap。PW 仍然 0pp（与所有 instruction
+354	    model 一致）。Combined +1.7pp 在 cross_family_gap_pp [0.0, 3.0] 范围内。p=0.29 在 60 题上不显著，但方向性一致。与
+355	    Mistral 的关键对比：相似 size (7B vs 8B)，相似 C0 (0.35 vs 0.43)，截然不同的 gap (-1.7 vs +1.7)——差异在
+356	    extraction rate (0.85 vs 0.94)。
+357	  tables:
+358	  - 'T1 LLaMA-8B 行: 61.7% vs 60.0%, +1.7pp, C0=0.43'
+359	  figures_description:
+360	  - 'F2 散点图: LLaMA-8B 位于 expected zone (C0=0.43, gap=1.7pp)'
+361	  analysis: 'LLaMA 成功复制 Qwen 的 FOLIO-positive / PW-neutral pattern，消除 Qwen-specific
+362	    artifact 的攻击。与 Mistral 的对比是论文的 natural experiment——控制了 model size，变化了 extraction
+363	    quality，揭示 SICA 的第二个 operating condition。3-family validation: Qwen(+3.3pp) + LLaMA(+1.7pp)
+364	    positive, Mistral(-1.7pp) anomalous with identified cause。'
+365	- name: gsm8k_pilot_14b
+366	  plan_id: exp-012
+367	  description: Qwen2.5-14B 在 GSM8K 30 题 pilot, K=12
+368	  expected_results:
+369	    sica_accuracy: 0.9
+370	    sc_accuracy: 0.9
+371	    gap_pp: 0.0
+372	    c0_multi_candidate_rate: 0.1
+373	    n_questions: 30
+374	    n_ties: 1
+375	    constraint_extraction_note: ~60% constraints are trivial arithmetic identities
+376	      (e.g., x=5→x=5)
+377	    wall_time_hours: 0.8
+378	  result_rationale: 14B 在 GSM8K 上极强（SC 90%），C0 仅 10%（30 题中 3 题有多候选）。GSM8K 的 grade-school
+379	    数学对 14B 是已解决任务——模型 high confidence 导致 K=12 条 trace 几乎总收敛到同一数值答案。仅 1 个 tie（3 个
+380	    multi-candidate 题中恰好 1 个 vote count 打平），SICA 无实质 tiebreaking 机会。额外挑战：数学推理的 constraint
+381	    提取语义贫乏——算术步骤 '3+4=7' 翻译为 FOL 后多是 trivial identity，无法为 MaxSAT 提供有区分力的信息。Gap=0pp
+382	    是 structural 结果。与 FOLIO(C0=0.48) 的对比说明同一模型在不同 task 上展现不同 C0——C0 是 task-relative
+383	    model confidence 的反映，非 model family 固有属性。
+384	  tables:
+385	  - 'Appendix T_gsm8k: 90% vs 90%, C0=10%, gap=0pp'
+386	  figures_description:
+387	  - 'F2 散点图: GSM8K-14B 位于 low-C0 zone (C0=0.10, gap=0)，与同模型 FOLIO 点 (C0=0.48) 形成对比'
+388	  analysis: GSM8K null result 是 publishable insight：同一模型 14B 在 FOLIO(C0=0.48) 上 SICA
+389	    有效，在 GSM8K(C0=0.10) 上退化，证明 C0 反映 task-relative difficulty 而非 model identity。放
+390	    appendix 作 cross-domain 验证。
+391	- name: constraint_ablation
+392	  plan_id: exp-013
+393	  description: 'CPU-only 消融: SICA-MaxSAT vs SICA-count-only vs SICA-random-weight
+394	    在 exp-001 的 804 题上'
+395	  expected_results:
+396	    n_questions: 804
+397	    maxsat_accuracy: 0.737
+398	    count_only_accuracy: 0.73
+399	    random_weight_accuracy: 0.72
+400	    maxsat_vs_count_gap_pp: 0.7
+401	    maxsat_vs_random_gap_pp: 1.7
+402	    count_vs_random_gap_pp: 1.0
+403	    maxsat_vs_count_bootstrap_p: 0.33
+404	    maxsat_vs_random_bootstrap_p: 0.09
+405	    tie_only_maxsat: 0.681
+406	    tie_only_count: 0.638
+407	    tie_only_random: 0.489
+408	  result_rationale: Median 档定义 'MaxSAT ≥ count-only but difference small (<2pp)'。Overall：MaxSAT
+409	    73.7% vs count-only 73.0%，差 0.7pp（p=0.33 不显著）。大多数题上 MaxSAT 和 count-only 选同一答案——因为拥有更多
+410	    constraint 的答案通常也是 MaxSAT satisfiability 最高的。差异集中在 constraint 间有冲突的少数题：MaxSAT
+411	    通过 partial satisfaction 权衡冲突 constraint，而 count-only 简单加总忽略冲突。Tie-only 场景差异更大（68.1%
+412	    vs 63.8%），因为 tie 正是 constraint 冲突最可能出现的地方。Random-weight 作为下界（72.0% overall, 48.9%
+413	    tie-only）证明 constraint 信息本身有价值——不是随便加权就行。但 MaxSAT vs count-only 的不显著差距意味着论文不能
+414	    claim 'satisfiability checking is essential for accuracy'。
+415	  tables:
+416	  - 'Appendix T_ablation: Method × Overall Acc × Tie-only Acc，3 行'
+417	  figures_description:
+418	  - 'Grouped bar: 3 种方法在 overall 和 tie-only 场景下的准确率对比'
+419	  analysis: 消融结果迫使叙事调整。两种可选路径：(A) 'MaxSAT adds marginal accuracy but provides interpretability
+420	    framework' (B) 'weighted counting suffices for accuracy; MaxSAT is the formal
+421	    foundation enabling constraint-level analysis'。Median 档下选 (B)——不 overclaim MaxSAT
+422	    的 accuracy 优势，强调其作为 formal framework 的价值（constraint satisfaction/violation 的可解释性是
+423	    SC/count-only 无法提供的）。
+424	- name: sica_deepseek_r1_llama_8b
+425	  plan_id: exp-014
+426	  description: DeepSeek-R1-Distill-LLaMA-8B 在 D012 60 题上验证第二个 reasoning architecture
+427	  expected_results:
+428	    sica_accuracy: 0.683
+429	    sc_accuracy: 0.683
+430	    gap_pp: 0.0
+431	    c0_multi_candidate_rate: 0.05
+432	    folio_sica: 0.733
+433	    folio_sc: 0.733
+434	    folio_gap_pp: 0.0
+435	    proofwriter_sica: 0.65
+436	    proofwriter_sc: 0.65
+437	    proofwriter_gap_pp: 0.0
+438	    wall_time_hours: 1.8
+439	  result_rationale: DeepSeek-R1-Distill 继承了 R1 的 reasoning training，产生 extended thinking
+440	    chain 压制输出多样性。C0=5%（60 题中仅 3 题有多候选），与 QwQ-32B 的 3.6% 量级一致。虽然参数仅 8B（与 LLaMA-3.1-8B-Instruct
+441	    的 C0=0.43 形成鲜明对比），但 distillation training 使模型 internalize 了 step-by-step reasoning
+442	    的确定性路径。注意：R1-Distill 的 SC baseline（68.3%）比同 size 的 LLaMA-3.1-8B instruction model（60.0%）高
+443	    8pp——reasoning distillation 提升了基础准确率但消灭了 trace diversity。Gap=0pp 是 structural
+444	    的：3 个 multi-candidate 题中无 tie，MaxSAT 与 majority vote 选择一致。这完美复制了 QwQ-32B 的 pattern
+445	    但在 LLaMA 底座上——同时消除 'only QwQ' 和 'only Qwen architecture' 两重攻击。
+446	  tables:
+447	  - 'T1 DeepSeek-R1 行: 68.3% vs 68.3%, 0pp, C0=5%'
+448	  figures_description:
+449	  - 'F2 散点图: DeepSeek-R1 与 QwQ-32B 都聚集在 (C0<5%, gap≈0) 区域'
+450	  - 'F3 heatmap: instruction models (high C0, variable gap) vs reasoning models (low
+451	    C0, gap=0) 二分清晰'
+452	  analysis: 两个 reasoning model（QwQ-32B Qwen底座 32B + DeepSeek-R1 LLaMA底座 8B）跨架构、跨 size
+453	    一致展示 C0<5% 且 SICA≡SC。论文可 confidently generalize：'Reasoning-trained models, regardless
+454	    of base architecture or scale, exhibit trace determinism that renders symbolic
+455	    consensus redundant.' 与 instruction model（高 C0）的对比构成 Claim 2 的核心 dichotomy。
+456	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8bc6ef0b-a8b0-4762-bcc6-7eb25849bd13",
+  "isSidechain": false,
+  "promptId": "9b19d13a-9729-4d4a-bbaf-1d022067c444",
+  "type": "user",
+  "uuid": "f812b813-cf2b-4807-bb55-ebe29c38b95b",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_context.yaml",
+      "content": "narrative_guidance: Claim 1 弱化为 'principled tiebreaking with interpretability advantage'——FOLIO\n  域显著但 PW 稀释，combined p marginal。Claim 2 (operating regime) 升为主贡献：C0 二分模式（>20% 有效\n  / <5% 退化）跨 3 家族 + 2 reasoning 架构成立，但连续预测能力有限。Claim 3 降级为 binary indicator。论文主线 pivot\n  到 'When does symbolic consensus help?'。FOLIO 作为 formal structure aligns with method\n  的典型域，PW 作为 restricted answer space 域，GSM8K 作为 model-too-strong 域。exp-013 消融结果迫使让步：MaxSAT\n  的 accuracy 优势 over counting 不显著，reframe 为 formal framework for interpretability。目标\n  EMNLP Main 但 Findings 是现实预期。\nimagined_experiments:\n- name: sica_expanded_14b\n  plan_id: exp-001\n  description: PW D5 600题 + FOLIO 204题 = 804题, K=12, T=0.7, Qwen2.5-14B-Instruct 全规模评估\n  expected_results:\n    n_total: 804\n    n_folio: 204\n    n_proofwriter: 600\n    folio_sica_accuracy: 0.794\n    folio_sc_accuracy: 0.755\n    folio_gap_pp: 3.9\n    folio_bootstrap_p: 0.038\n    folio_c0: 0.48\n    proofwriter_sica_accuracy: 0.718\n    proofwriter_sc_accuracy: 0.715\n    proofwriter_gap_pp: 0.3\n    proofwriter_bootstrap_p: 0.41\n    proofwriter_c0: 0.38\n    combined_sica_accuracy: 0.737\n    combined_sc_accuracy: 0.725\n    combined_gap_pp: 1.2\n    combined_bootstrap_p: 0.089\n    c0_multi_candidate_rate: 0.41\n    c1_extraction_rate: 0.97\n    maxsat_exclusion_rate: 0.031\n    total_constraints_unique: 58200\n    tiebreak_problems: 47\n    tiebreak_sica_win_rate: 0.68\n    wall_time_hours: 12.5\n  result_rationale: D012 的 FOLIO +6.7pp 基于 30 题，扩展到 204 题后因回归均值效应缩至 +3.9pp——D012 可能过采样了\n    high-C0 的 '难题'，204 题中约 52% 的 FOLIO 题 C0=0（模型已达共识），这些题 SICA≡SC，拉低整体 gap。PW 600\n    题近乎 null（+0.3pp）：PW 三分类答案空间 {True, False, Unknown} 使 K=12 投票几乎总有 clear majority，tie\n    率极低（<5%），SICA 无 tiebreaking 机会。合并后 PW 的 75% 权重（600/804）稀释 FOLIO 正向信号，combined\n    gap 降至 1.2pp，p=0.089 位于 marginal zone。C0=0.41 略低于 D016 precheck 的 0.46——precheck\n    的 26 题偏难，扩展后纳入更多简单题拉低多样性。提取率 0.97 反映约 3% 的 PW 长 trace 超出 token 限制导致 extraction\n    失败。\n  tables:\n  - 'T1: FOLIO 79.4% vs 75.5% (+3.9pp, p=0.038*), PW 71.8% vs 71.5% (+0.3pp, p=0.41),\n    Combined 73.7% vs 72.5% (+1.2pp, p=0.089)'\n  - 'T2: 47 ties — SICA win 32, SC win 15, win rate 68.1%'\n  figures_description:\n  - '并列柱状图: FOLIO vs PW 的 SICA/SC accuracy 对比，附 95% bootstrap CI error bars，突出 FOLIO\n    的正向 gap 与 PW 的 null'\n  analysis: FOLIO 单独显著（p=0.038）是 Claim 1 的核心支撑，但 combined p=0.089 超过 0.05 阈值。论文策略：不\n    claim blanket improvement，而是 domain-conditional 呈现——'SICA improves accuracy in\n    domains where formal logical structure aligns with the method's constraint extraction\n    capability'。PW null 结果解释为 answer space 受限导致 tie 稀少。这直接驱动 pivot 到 operating regime\n    叙事。\n- name: sica_k_ablation_14b\n  plan_id: exp-002\n  description: K=6,8,12,16,20 在 D012 60 题上的灵敏度分析，Qwen2.5-14B-Instruct\n  expected_results:\n    k6_sica_acc: 0.717\n    k6_sc_acc: 0.683\n    k6_gap_pp: 3.4\n    k6_c0: 0.55\n    k6_tie_rate: 0.28\n    k8_sica_acc: 0.733\n    k8_sc_acc: 0.7\n    k8_gap_pp: 3.3\n    k8_c0: 0.52\n    k8_tie_rate: 0.22\n    k12_sica_acc: 0.733\n    k12_sc_acc: 0.7\n    k12_gap_pp: 3.3\n    k12_c0: 0.53\n    k12_tie_rate: 0.17\n    k16_sica_acc: 0.717\n    k16_sc_acc: 0.7\n    k16_gap_pp: 1.7\n    k16_c0: 0.45\n    k16_tie_rate: 0.12\n    k20_sica_acc: 0.717\n    k20_sc_acc: 0.71\n    k20_gap_pp: 0.7\n    k20_c0: 0.4\n    k20_tie_rate: 0.08\n  result_rationale: K 增大时两个机制同时作用：(1) SC 多数票更稳定（tie 率从 K=6 的 28% 降至 K=20 的 8%），SICA\n    tiebreaking 机会减少；(2) 更多 trace 提供更多 constraint 但也引入更多噪声，边际信息增益递减。K=6 tie 率最高（偶数\n    K 天然更多 tie，且 6 票分布方差大），C0=0.55 也最高（6 条 trace 的采样方差大），但绝对 accuracy 略低于 K=12（样本太少\n    constraint 覆盖不足）。K=12 是 sweet spot——足够的 trace 保证 constraint 质量，tie 率仍可观（17%）。K=16/20\n    时 SC 趋于自足——更多投票使多数规则本身变强，SICA 的 marginal value 递减至 <2pp。Gap 与 tie rate 的正相关直接支撑\n    'SICA 本质是 principled tiebreaker' 的定位。\n  tables:\n  - 'T3: K | SICA% | SC% | Gap(pp) | C0 | Tie Rate — 5 行，展示 gap-tie_rate 正相关'\n  figures_description:\n  - 'F4: 双 Y 轴折线图，X=K，左 Y=SICA-SC gap(pp)，右 Y=tie rate(%)，两线正相关；K=12 标注为 recommended'\n  analysis: K sensitivity 证明 SICA 优势与 tie 频率系统性共变（非 K 的偶然产物），验证 principled tiebreaking\n    叙事。K=12 选择有充分依据：accuracy 与 gap 的最佳平衡点。论文中用 F4 作为 Claim 1 的 mechanistic evidence。\n- name: tiebreak_baseline_analysis\n  plan_id: exp-003\n  description: 在 exp-001 扩展数据 804 题上重新对比 SICA vs SC-random vs SC-alphabetical vs SC-first-seen\n    tiebreak\n  expected_results:\n    n_ties: 47\n    sica_tiebreak_accuracy: 0.681\n    sc_random_tiebreak_accuracy: 0.489\n    sc_alphabetical_accuracy: 0.532\n    sc_first_seen_accuracy: 0.447\n    sica_vs_random_binomial_p: 0.031\n    sica_win_rate_vs_random: 0.68\n  result_rationale: D012 的 5 个 tie 扩展到 47 个后，SICA win rate 从 80%（4/5）回落到 68%（32/47）——小样本的\n    upward bias 被校正。SC-random 在 47 次 tie 上接近理论 50%（实际 48.9%），符合 binomial 预期。SICA 仍系统性优于所有\n    baseline：MaxSAT constraint weighting 在 tie 时利用了 trace 内的逻辑结构信息来区分候选答案，而 SC 的 tiebreak\n    规则完全忽略 trace 内容。68% 而非更高，因为扩展数据中部分 tie 的 constraint extraction 质量差（尤其 PW 的 FOL\n    翻译在 ambiguous 题目上会出错），导致 MaxSAT 也选错。47 个 tie 上的 binomial test p=0.031 显著。\n  tables:\n  - 'T2: SICA 68.1% vs Random 48.9% vs Alphabetical 53.2% vs First-seen 44.7%, n=47,\n    p(SICA>Random)=0.031'\n  figures_description:\n  - '柱状图: 4 种 tiebreak 策略准确率对比，附 binomial 95% CI'\n  analysis: Tiebreak win rate 0.68 在 median 档范围内且统计显著（p=0.031）。这是 Claim 1 最直接的证据——在\n    tie 发生时 SICA 的 principled resolution 系统性优于任意规则。论文中应以 tiebreak analysis 而非 overall\n    accuracy 作为 Claim 1 的核心论据。\n- name: sica_7b_scaling\n  plan_id: exp-004\n  description: Qwen2.5-7B-Instruct 在 D012 60 题上，验证 weaker model → higher C0 → larger\n    gap\n  expected_results:\n    sica_accuracy: 0.65\n    sc_accuracy: 0.617\n    gap_pp: 3.3\n    c0_multi_candidate_rate: 0.65\n    folio_sica: 0.733\n    folio_sc: 0.667\n    folio_gap_pp: 6.6\n    proofwriter_sica: 0.583\n    proofwriter_sc: 0.583\n    proofwriter_gap_pp: 0.0\n    bootstrap_p: 0.19\n    c1_extraction_rate: 0.92\n    wall_time_hours: 1.8\n  result_rationale: 7B 基线更弱（SC 61.7% vs 14B 的 70%），模型在 NLI 推理上不够自信，输出多样性显著更高（C0=0.65\n    vs 14B 的 0.53）。更多题目有 multi-candidate（65% vs 53%），更多 tie 发生，SICA 有更多 tiebreaking\n    机会。FOLIO 上 gap 达 6.6pp——7B 在 FOLIO 上频繁犹豫于不同答案，SICA 的 constraint weighting 帮助选出正确的。PW\n    上仍然 0pp——三分类答案空间的 structural constraint 不变，即使 7B 也能在 PW 上形成 clear majority。Combined\n    gap 3.3pp 但 p=0.19（60 题不足以达显著）。Extraction rate 0.92 低于 14B（1.0），因为 7B 的推理 trace\n    格式不够规范，约 8% 的 trace 无法提取有效 FOL。C0=0.65 >> 14B 的 0.53，明确支撑 gradient 的前半段。\n  tables:\n  - 'T1 Qwen-7B 行: 65.0% vs 61.7%, +3.3pp, C0=0.65'\n  figures_description:\n  - 'F2 散点图: 7B 数据点位于右侧（高 C0=0.65, gap=3.3pp），与 14B（C0=0.53）形成 gradient'\n  analysis: 7B 确立了 C0 gradient 的关键一环：7B(0.65) >> 14B(0.53)。但 gap(3.3pp) 与 14B(3.3pp)\n    持平而非更大——因为 7B 的 constraint extraction 质量较低（rate=0.92），抵消了部分高 C0 带来的 tiebreaking\n    机会。这提示 C0 是必要条件但非充分条件：还需要足够的 constraint quality。\n- name: qwq_32b_operating_regime\n  plan_id: exp-005\n  description: QwQ-32B 已有 MVP 数据的 operating regime 格式化，无新 GPU\n  expected_results:\n    c0_combined: 0.036\n    c0_aime: 0.0\n    c0_folio: 0.0\n    c0_proofwriter: 0.1875\n    sica_sc_gap_all_domains: 0.0\n    n_aime: 22\n    n_folio: 10\n    n_proofwriter: 16\n    n_total: 48\n    regime_label: degenerate (C0<5%)\n  result_rationale: 直接复用 MVP 阶段数据。QwQ-32B 的 extended chain-of-thought 使 reasoning\n    chain 高度确定——即使在 T=0.7 下，thinking tokens 的序列长度和 internal consistency 压制了采样随机性，导致\n    K=12 条 trace 几乎总是收敛到同一答案。AIME/FOLIO 上 C0=0%（完全 unanimity），PW 上 18.75%（仅因三分类下偶尔在\n    True/Unknown 间犹豫）。SICA≡SC 是 structural 结果：无 tie 则无 tiebreaking 机会，MaxSAT 选择与 majority\n    vote 完全一致。\n  tables:\n  - 'T1 QwQ-32B 行: AIME/FOLIO/PW 全部 SICA≡SC, C0=3.6%'\n  figures_description:\n  - 'F2 散点图: QwQ-32B 聚集在原点附近 (C0≈0, gap=0)'\n  - 'F3 operating regime heatmap: QwQ-32B 位于 degenerate zone'\n  analysis: QwQ-32B 是 negative control——论文将其呈现为 'When Does Symbolic Consensus Degenerate?'。核心\n    insight：reasoning model 的确定性使 symbolic consensus 冗余。这是 Claim 2 的半壁江山——C0<5% →\n    SICA 无效，与 instruction model 的 C0>30% → SICA 有效形成对比。\n- name: c0_diagnostic_validation\n  plan_id: exp-006\n  description: 跨所有模型和 K 值的 C0 vs SICA-SC gap CPU 分析\n  expected_results:\n    total_data_points: 14\n    c0_range_observed:\n    - 0.0\n    - 0.65\n    gap_range_observed:\n    - -1.7\n    - 6.6\n    pearson_r: 0.72\n    spearman_rho: 0.78\n    c0_below_5pct_all_gap_zero: true\n    c0_above_20pct_positive_gap_rate: 0.727\n    binary_accuracy_20pct_threshold: 0.86\n    n_anomalous_points: 2\n    anomaly_1: 'Mistral-7B: C0=0.35, gap=-1.7pp (low extraction quality)'\n    anomaly_2: 'PW-expanded-14B: C0=0.38, gap=0.3pp (restricted answer space)'\n  result_rationale: 14 个数据点来自 7 个模型配置 × 2 个主要 dataset 的组合（加上 K ablation 和 GSM8K 的少量额外点）。Pearson\n    r=0.72 表明中等强度正相关但非完美线性——C0 是 gap 的必要非充分条件。C0<5% 的 3 个点（QwQ-32B 全域 + DeepSeek-R1\n    全域）全部 gap=0，验证了下界。C0>20% 的 11 个点中 8 个有正 gap，但 Mistral-7B（constraint quality 差）和\n    PW-expanded（answer space 受限）是异常值。Binary classification 以 C0=20% 为阈值达 86% 准确率（12/14），但这基于\n    14 个点——论文不应 overclaim。\n  tables:\n  - 'T_diagnostic: Model × Dataset × C0 × Gap × Binary Prediction × Actual，14 行汇总'\n  figures_description:\n  - 'F2 (hero figure): 散点图 C0 vs gap，C0=5% 和 20% 处竖线分 3 zone，每点标注 model-dataset shorthand，两个异常点用不同标记高亮'\n  analysis: C0 作为 binary diagnostic 在 median 档下成立（86% accuracy），但 r=0.72 不支持 continuous\n    predictor claim。Claim 3 必须降级：'C0 serves as a binary indicator (high/low) for SICA\n    deployment viability, rather than a continuous predictor of expected gain.' Hero\n    figure F2 是论文最重要的图——它一眼传达 operating regime 的核心论点。\n- name: sica_72b_awq\n  plan_id: exp-007\n  description: Qwen2.5-72B-Instruct AWQ 4-bit 在 D012 60 题上\n  expected_results:\n    sica_accuracy: 0.767\n    sc_accuracy: 0.75\n    gap_pp: 1.7\n    c0_multi_candidate_rate: 0.4\n    folio_sica: 0.833\n    folio_sc: 0.8\n    folio_gap_pp: 3.3\n    proofwriter_sica: 0.717\n    proofwriter_sc: 0.717\n    proofwriter_gap_pp: 0.0\n    bootstrap_p: 0.31\n    wall_time_hours: 3.5\n  result_rationale: 72B SC baseline 更高（75% vs 14B 的 70%），反映更强模型在 NLI 上更准确。C0=0.40\n    与 14B 的 0.53 差异存在但不够大——这是 median 档核心特征 '72B not clearly lower than 14B'。原因：(1)\n    4-bit AWQ 量化引入精度损失，增加了输出随机性（部分抵消了 72B 的确定性优势）；(2) FOLIO/PW 对 72B 仍有足够挑战性（不像 GSM8K\n    被碾压）。Gap 缩至 1.7pp 因为高 baseline 意味着 tie 中 SC 已更常选对——SICA 的 marginal correction\n    空间更小。FOLIO 仍有 +3.3pp，PW 仍 0pp，pattern 不变。p=0.31 远不显著（60 题）。C0 gradient 变 noisy：7B(0.65)\n    >> 14B(0.53) > 72B(0.40)，14B→72B 仅 drop 13pp，不是 clean monotonic decrease。\n  tables:\n  - 'T1 Qwen-72B 行: 76.7% vs 75.0%, +1.7pp, C0=0.40'\n  figures_description:\n  - 'Qwen family scaling 折线: 7B/14B/72B 的 C0 和 gap，展示 monotonic but noisy gradient'\n  analysis: 72B 部分支撑 within-family scaling，但 gradient noise 限制了 Claim 3 的连续预测叙事。14B→72B\n    仅 13pp C0 drop 而 gap 从 3.3→1.7pp，暗示 C0-gap 关系在高 baseline 区域变弱。论文中需提及 AWQ 量化 confound。将\n    scaling 结果定位为 'directionally consistent' 而非 'smooth gradient'。\n- name: constraint_quality_case_studies\n  plan_id: exp-008\n  description: 8 道代表性题目的 constraint 提取质量定性分析\n  expected_results:\n    n_cases: 8\n    case_selection: SICA-flip-correct × 2, SICA-maintain-correct × 2, SICA-flip-wrong\n      × 2, SICA-maintain-wrong × 2\n    constraint_semantic_accuracy: 0.75\n    categories:\n      correct_and_meaningful: 4\n      partially_correct: 2\n      noisy_but_harmless: 1\n      misleading: 1\n    exclusion_justified_rate: 0.83\n    key_pattern: FOLIO constraints map to premise FOL with ~80% fidelity; PW constraints\n      degrade on multi-hop chains where intermediate steps are lossy\n  result_rationale: 选取 8 道覆盖 4 种 SICA 结果类型的题目做定性分析。约 75% 的 constraint 正确捕获了前提-结论关系——FOLIO\n    的 FOL 翻译质量较好（问题本身就是 FOL reasoning），PW 在多跳推理链上 intermediate step 的 FOL 翻译有信息损失。4\n    道题 constraint 完全正确且语义 meaningful（SICA flip-correct 的典型案例：多数 trace 的 constraint\n    一致指向正确答案，MaxSAT satisfied 它们）。2 道部分正确（关键 constraint 在但有冗余噪声 constraint）。1 道噪声但无害（constraint\n    全是 trivial tautology，MaxSAT 退化为 vote count）。1 道 misleading——量词范围歧义导致错误 FOL，MaxSAT\n    基于错误 constraint 选了错答案（SICA flip-wrong 的典型案例）。\n  tables: []\n  figures_description:\n  - 'Pipeline 可视化: 2 道 SICA flip-correct 题的完整 trace→FOL→MaxSAT→answer 流程，标注 constraint\n    语义对应关系'\n  analysis: 定性分析支撑 interpretability 叙事——SICA 可以展示 why（通过 constraint 权重和 exclusion），这是\n    SC 做不到的。但 25% 的 constraint quality issue 需在 limitations 讨论。misleading case 直接解释了为什么\n    tiebreak win rate 是 68% 而非 100%。\n- name: overhead_analysis\n  plan_id: exp-009\n  description: exp-001 数据的 per-question wall-time 分解\n  expected_results:\n    avg_total_per_question_s: 56.0\n    avg_generation_s: 48.0\n    avg_constraint_extraction_s: 5.2\n    avg_maxsat_solving_s: 0.8\n    avg_postprocessing_s: 2.0\n    generation_pct: 85.7\n    extraction_pct: 9.3\n    maxsat_pct: 1.4\n    postprocessing_pct: 3.6\n    overhead_vs_sc_pct: 14.3\n    overhead_vs_sc_absolute_s: 8.0\n    sc_equivalent_time_s: 48.0\n  result_rationale: LLM 生成（K=12 条 trace）占 86% 的时间——这部分 SICA 与 SC 完全共享，不是额外开销。Constraint\n    extraction 需要一次额外的 LLM call（~5.2s），这是 SICA 的主要 overhead 来源。MaxSAT 在这些小规模问题（每题\n    ~50 个 unique constraint）上 Z3 求解极快（<1s）。总 overhead 14.3%（8s/question），全部来自 extraction\n    + postprocessing。由于 K 次生成已经是 SC 的必要成本，SICA 的增量成本可控。对 EMNLP reviewer 的说服力：14% overhead\n    换取在 tie 场景下 68% vs 49% 的选择准确率，且提供 interpretable constraint analysis。\n  tables:\n  - 'T4: Stage | Time(s) | % Total — Generation 48.0(85.7%), Extraction 5.2(9.3%),\n    MaxSAT 0.8(1.4%), Post 2.0(3.6%)'\n  figures_description:\n  - 'Stacked bar: SC vs SICA 的 per-question 时间对比，SICA 多出的 extraction+MaxSAT 用不同色标注'\n  analysis: 14% overhead 是卖点而非弱点。论文强调 'SICA adds <15% wall-time overhead to SC while\n    providing principled tiebreaking and post-hoc constraint interpretability'。MaxSAT\n    <1s 也反驳 over-engineering 的运行时担忧（虽然 exp-013 的 accuracy 消融可能支持简化）。\n- name: sica_mistral_7b\n  plan_id: exp-010\n  description: Mistral-7B-Instruct-v0.3 在 D012 60 题上的跨家族验证\n  expected_results:\n    sica_accuracy: 0.583\n    sc_accuracy: 0.6\n    gap_pp: -1.7\n    c0_multi_candidate_rate: 0.35\n    folio_sica: 0.6\n    folio_sc: 0.633\n    folio_gap_pp: -3.3\n    proofwriter_sica: 0.567\n    proofwriter_sc: 0.567\n    proofwriter_gap_pp: 0.0\n    bootstrap_p: 0.72\n    c1_extraction_rate: 0.85\n    wall_time_hours: 1.2\n  result_rationale: Mistral-7B 是 median 档中 'one cross-family model shows anomalous\n    C0 or negative gap' 的体现。C0=0.35 中等（在 [0.2, 0.45] 范围内），说明 Mistral 确实有 trace diversity，按\n    C0 预测应有正 gap——但实际 gap 为负。根本原因：Mistral 的 instruction following 风格与 SICA 的 FOL extraction\n    prompt 不匹配，extraction rate 仅 0.85（15% trace 提取失败）。更关键的是，成功提取的 constraint 中有相当比例存在语义错误——Mistral\n    的 reasoning trace 格式较 free-form，FOL 翻译的 fidelity 低于 Qwen/LLaMA。结果：噪声 constraint\n    误导 MaxSAT 权重分配，在 FOLIO 上 SICA 翻转了 2 道原本 SC 选对的题但只纠正了 1 道（净亏损）。PW 上 constraint\n    噪声被三分类的 clear majority 压制，gap=0。整体 -1.7pp 不显著（p=0.72），不能说 SICA 有害，但也不能说有益。\n  tables:\n  - 'T1 Mistral-7B 行: 58.3% vs 60.0%, -1.7pp, C0=0.35'\n  figures_description:\n  - 'F2 散点图: Mistral-7B 是异常点 (C0=0.35, gap=-1.7pp)，用不同标记高亮'\n  analysis: Mistral 的负 gap 暴露了 SICA 的隐含前提：constraint extraction quality 必须足够高。C0 是\n    necessary but not sufficient——高 C0 + 低 extraction quality = 负 gap。论文中将此作为 'second\n    operating condition' 讨论：SICA 有效需要 (1) C0>20% AND (2) constraint extraction fidelity\n    sufficient。这实际上深化了 operating regime 分析而非削弱——增加了一个维度。3-family 结果：2/3 positive (Qwen+LLaMA),\n    1/3 anomalous (Mistral, with identified mechanism)。\n- name: sica_llama_8b\n  plan_id: exp-011\n  description: LLaMA-3.1-8B-Instruct 在 D012 60 题上的跨家族验证\n  expected_results:\n    sica_accuracy: 0.617\n    sc_accuracy: 0.6\n    gap_pp: 1.7\n    c0_multi_candidate_rate: 0.43\n    folio_sica: 0.667\n    folio_sc: 0.633\n    folio_gap_pp: 3.4\n    proofwriter_sica: 0.567\n    proofwriter_sc: 0.567\n    proofwriter_gap_pp: 0.0\n    bootstrap_p: 0.29\n    c1_extraction_rate: 0.94\n    wall_time_hours: 1.3\n  result_rationale: LLaMA-3.1-8B 是 '2/3 cross-family models show expected C0 pattern'\n    的正面案例。C0=0.43 在 [0.2, 0.45] 范围内上段，LLaMA 8B 的 instruction following 产生中等 trace\n    diversity。Extraction rate 0.94 接近 Qwen 水平——LLaMA 的 chat template 与 SICA extraction\n    prompt 兼容性好（比 Mistral 好得多）。FOLIO 上 +3.4pp（1 道题的 flip），pattern 与 Qwen-14B 一致：formal\n    logic domain + 足够 C0 + 好的 extraction quality = 正向 gap。PW 仍然 0pp（与所有 instruction\n    model 一致）。Combined +1.7pp 在 cross_family_gap_pp [0.0, 3.0] 范围内。p=0.29 在 60 题上不显著，但方向性一致。与\n    Mistral 的关键对比：相似 size (7B vs 8B)，相似 C0 (0.35 vs 0.43)，截然不同的 gap (-1.7 vs +1.7)——差异在\n    extraction rate (0.85 vs 0.94)。\n  tables:\n  - 'T1 LLaMA-8B 行: 61.7% vs 60.0%, +1.7pp, C0=0.43'\n  figures_description:\n  - 'F2 散点图: LLaMA-8B 位于 expected zone (C0=0.43, gap=1.7pp)'\n  analysis: 'LLaMA 成功复制 Qwen 的 FOLIO-positive / PW-neutral pattern，消除 Qwen-specific\n    artifact 的攻击。与 Mistral 的对比是论文的 natural experiment——控制了 model size，变化了 extraction\n    quality，揭示 SICA 的第二个 operating condition。3-family validation: Qwen(+3.3pp) + LLaMA(+1.7pp)\n    positive, Mistral(-1.7pp) anomalous with identified cause。'\n- name: gsm8k_pilot_14b\n  plan_id: exp-012\n  description: Qwen2.5-14B 在 GSM8K 30 题 pilot, K=12\n  expected_results:\n    sica_accuracy: 0.9\n    sc_accuracy: 0.9\n    gap_pp: 0.0\n    c0_multi_candidate_rate: 0.1\n    n_questions: 30\n    n_ties: 1\n    constraint_extraction_note: ~60% constraints are trivial arithmetic identities\n      (e.g., x=5→x=5)\n    wall_time_hours: 0.8\n  result_rationale: 14B 在 GSM8K 上极强（SC 90%），C0 仅 10%（30 题中 3 题有多候选）。GSM8K 的 grade-school\n    数学对 14B 是已解决任务——模型 high confidence 导致 K=12 条 trace 几乎总收敛到同一数值答案。仅 1 个 tie（3 个\n    multi-candidate 题中恰好 1 个 vote count 打平），SICA 无实质 tiebreaking 机会。额外挑战：数学推理的 constraint\n    提取语义贫乏——算术步骤 '3+4=7' 翻译为 FOL 后多是 trivial identity，无法为 MaxSAT 提供有区分力的信息。Gap=0pp\n    是 structural 结果。与 FOLIO(C0=0.48) 的对比说明同一模型在不同 task 上展现不同 C0——C0 是 task-relative\n    model confidence 的反映，非 model family 固有属性。\n  tables:\n  - 'Appendix T_gsm8k: 90% vs 90%, C0=10%, gap=0pp'\n  figures_description:\n  - 'F2 散点图: GSM8K-14B 位于 low-C0 zone (C0=0.10, gap=0)，与同模型 FOLIO 点 (C0=0.48) 形成对比'\n  analysis: GSM8K null result 是 publishable insight：同一模型 14B 在 FOLIO(C0=0.48) 上 SICA\n    有效，在 GSM8K(C0=0.10) 上退化，证明 C0 反映 task-relative difficulty 而非 model identity。放\n    appendix 作 cross-domain 验证。\n- name: constraint_ablation\n  plan_id: exp-013\n  description: 'CPU-only 消融: SICA-MaxSAT vs SICA-count-only vs SICA-random-weight\n    在 exp-001 的 804 题上'\n  expected_results:\n    n_questions: 804\n    maxsat_accuracy: 0.737\n    count_only_accuracy: 0.73\n    random_weight_accuracy: 0.72\n    maxsat_vs_count_gap_pp: 0.7\n    maxsat_vs_random_gap_pp: 1.7\n    count_vs_random_gap_pp: 1.0\n    maxsat_vs_count_bootstrap_p: 0.33\n    maxsat_vs_random_bootstrap_p: 0.09\n    tie_only_maxsat: 0.681\n    tie_only_count: 0.638\n    tie_only_random: 0.489\n  result_rationale: Median 档定义 'MaxSAT ≥ count-only but difference small (<2pp)'。Overall：MaxSAT\n    73.7% vs count-only 73.0%，差 0.7pp（p=0.33 不显著）。大多数题上 MaxSAT 和 count-only 选同一答案——因为拥有更多\n    constraint 的答案通常也是 MaxSAT satisfiability 最高的。差异集中在 constraint 间有冲突的少数题：MaxSAT\n    通过 partial satisfaction 权衡冲突 constraint，而 count-only 简单加总忽略冲突。Tie-only 场景差异更大（68.1%\n    vs 63.8%），因为 tie 正是 constraint 冲突最可能出现的地方。Random-weight 作为下界（72.0% overall, 48.9%\n    tie-only）证明 constraint 信息本身有价值——不是随便加权就行。但 MaxSAT vs count-only 的不显著差距意味着论文不能\n    claim 'satisfiability checking is essential for accuracy'。\n  tables:\n  - 'Appendix T_ablation: Method × Overall Acc × Tie-only Acc，3 行'\n  figures_description:\n  - 'Grouped bar: 3 种方法在 overall 和 tie-only 场景下的准确率对比'\n  analysis: 消融结果迫使叙事调整。两种可选路径：(A) 'MaxSAT adds marginal accuracy but provides interpretability\n    framework' (B) 'weighted counting suffices for accuracy; MaxSAT is the formal\n    foundation enabling constraint-level analysis'。Median 档下选 (B)——不 overclaim MaxSAT\n    的 accuracy 优势，强调其作为 formal framework 的价值（constraint satisfaction/violation 的可解释性是\n    SC/count-only 无法提供的）。\n- name: sica_deepseek_r1_llama_8b\n  plan_id: exp-014\n  description: DeepSeek-R1-Distill-LLaMA-8B 在 D012 60 题上验证第二个 reasoning architecture\n  expected_results:\n    sica_accuracy: 0.683\n    sc_accuracy: 0.683\n    gap_pp: 0.0\n    c0_multi_candidate_rate: 0.05\n    folio_sica: 0.733\n    folio_sc: 0.733\n    folio_gap_pp: 0.0\n    proofwriter_sica: 0.65\n    proofwriter_sc: 0.65\n    proofwriter_gap_pp: 0.0\n    wall_time_hours: 1.8\n  result_rationale: DeepSeek-R1-Distill 继承了 R1 的 reasoning training，产生 extended thinking\n    chain 压制输出多样性。C0=5%（60 题中仅 3 题有多候选），与 QwQ-32B 的 3.6% 量级一致。虽然参数仅 8B（与 LLaMA-3.1-8B-Instruct\n    的 C0=0.43 形成鲜明对比），但 distillation training 使模型 internalize 了 step-by-step reasoning\n    的确定性路径。注意：R1-Distill 的 SC baseline（68.3%）比同 size 的 LLaMA-3.1-8B instruction model（60.0%）高\n    8pp——reasoning distillation 提升了基础准确率但消灭了 trace diversity。Gap=0pp 是 structural\n    的：3 个 multi-candidate 题中无 tie，MaxSAT 与 majority vote 选择一致。这完美复制了 QwQ-32B 的 pattern\n    但在 LLaMA 底座上——同时消除 'only QwQ' 和 'only Qwen architecture' 两重攻击。\n  tables:\n  - 'T1 DeepSeek-R1 行: 68.3% vs 68.3%, 0pp, C0=5%'\n  figures_description:\n  - 'F2 散点图: DeepSeek-R1 与 QwQ-32B 都聚集在 (C0<5%, gap≈0) 区域'\n  - 'F3 heatmap: instruction models (high C0, variable gap) vs reasoning models (low\n    C0, gap=0) 二分清晰'\n  analysis: 两个 reasoning model（QwQ-32B Qwen底座 32B + DeepSeek-R1 LLaMA底座 8B）跨架构、跨 size\n    一致展示 C0<5% 且 SICA≡SC。论文可 confidently generalize：'Reasoning-trained models, regardless\n    of base architecture or scale, exhibit trace determinism that renders symbolic\n    consensus redundant.' 与 instruction model（高 C0）的对比构成 Claim 2 的核心 dichotomy。\n",
+      "numLines": 456,
+      "startLine": 1,
+      "totalLines": 456
+    }
+  },
+  "sourceToolAssistantUUID": "8bc6ef0b-a8b0-4762-bcc6-7eb25849bd13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T16:27:55.539Z_
+
+<details><summary>↩ Tool result · `toolu_013K3aJ9QSJZhDMM1TCcSJaB`</summary>
+
+```text
+PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_input_e90a5c14.pdf (182.6KB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "422f6a1f-f554-4a33-9b46-4b647338a3cb",
+  "isSidechain": false,
+  "promptId": "9b19d13a-9729-4d4a-bbaf-1d022067c444",
+  "type": "user",
+  "uuid": "dce35351-2e81-4b2e-a794-753ef8cb457b",
+  "toolUseResult": {
+    "type": "pdf",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_input_e90a5c14.pdf",
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "originalSize": 186956
+    }
+  },
+  "sourceToolAssistantUUID": "422f6a1f-f554-4a33-9b46-4b647338a3cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+18 recorded events
+
+### User
+
+_source line 13 · 2026-05-16T16:27:55.537Z_
+
+```json
+{
+  "type": "document",
+  "source": {
+    "type": "base64",
+    "media_type": "application/pdf",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dce35351-2e81-4b2e-a794-753ef8cb457b",
+  "isSidechain": false,
+  "promptId": "9b19d13a-9729-4d4a-bbaf-1d022067c444",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "6da9d6d7-1a2b-49f2-8bb9-b48e3d66efe3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T16:27:55.896Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014BnTFUBs9hAhjDBnAzoraS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_context.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6da9d6d7-1a2b-49f2-8bb9-b48e3d66efe3",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZasVzFzAfnAzgZxC2R",
+  "type": "assistant",
+  "uuid": "8bc6ef0b-a8b0-4762-bcc6-7eb25849bd13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012MQaxyQJ8AwKvtnxFraUBe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11069,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11069,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 292,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11069,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11069
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260516T155754 | review_mode=simple | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_repor…",
+  "leafUuid": "f812b813-cf2b-4807-bb55-ebe29c38b95b",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review symbolic invariant consensus research paper",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-16T16:28:33.140Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now carefully review this paper and prepare a comprehensive review report. I've read both the PDF (10 pages) and the review context YAML which contains the full experimental design with 14 imagined experiments.
+
+Let me analyze the paper systematically before dispatching the review.
+
+The paper presents SICA (Symbolic Invariant Consensus Aggregation), which extracts FOL constraints from LLM reasoning traces and uses weighted partial MAX-SAT to resolve voting ties in Self-Consistency. The main contribution is characterizing the "operating regime" — when does this method help?
+ 
+Looking at the key empirical findings: instruction-tuned models with high baseline correctness above 20% see improvements, while reasoning-trained models with low baseline rates don't benefit. The method achieves 68% accuracy on tiebreaking versus 49% with random selection, gains 3.9 percentage points on FOLIO, and uses baseline correctness as a surprisingly effective binary diagnostic at the 20% threshold. There's a 14.3% computational overhead, though the MAX-SAT weighting doesn't significantly outperform simpler counting approaches.
+
+Now I'm cross-referencing the experiments against the review context to verify coverage—the main experiments span from the expanded FOLIO+PW setup through ablations on the K parameter, tiebreaking analysis, scaling studies across model sizes, and operating regime comparisons between instruction-tuned and reasoning models. I've verified all 14 experiments are accounted for in the paper. Now I'm drafting the review using a straightforward template, laying out the key strengths—the well-motivated research question, systematic model coverage across families and architectures, honest treatment of limitations, the practical value of C0 as a diagnostic tool, and thoughtful experimental controls. On the weaknesses side, the statistical power is quite limited with only one significant result, and the core MAX-SAT method doesn't meaningfully outperform the simpler counting baseline.
+
+The method's real utility is narrow—SICA only helps on about 6% of questions, the combined improvement misses significance, and the approach doesn't generalize beyond FOLIO. The C0 diagnostic is validated on just 14 data points, which is too small to support an 86% accuracy claim, and there are missing citations and no comparison to other structured aggregation approaches. The paper essentially shifts from proposing a method to analyzing when it works, but that regime analysis itself lacks sufficient data to be convincing.
+
+The core issue is that the method doesn't clearly outperform simple counting, statistical significance only appears in one narrow configuration, and the domain coverage is limited to FOLIO. The pivot toward "when does this help" is thoughtfully done, but the answer—only on FOLIO with instruction-tuned models, only on tied predictions, and even then barely better than counting—doesn't feel like a strong contribution. This lands somewhere between borderline reject and borderline accept, but given the lack of overall significance, the MAX-SAT component failing to beat counting, and the regime analysis resting on 14 points, I'm leaning toward a reject.
+
+Now I'll write up the full review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f812b813-cf2b-4807-bb55-ebe29c38b95b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZbFnveEmPgq5CXHewB",
+  "type": "assistant",
+  "uuid": "14efab07-8571-4f8a-b98c-554697605096",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJPfhQcTT4geCd6JJgM4FL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 33996,
+      "cache_read_input_tokens": 22910,
+      "output_tokens": 1536,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33996,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1536,
+          "cache_read_input_tokens": 22910,
+          "cache_creation_input_tokens": 33996,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33996
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-16T16:28:33.144Z_
+
+I've read the full 10-page paper and the review context with all 14 imagined experiments. Let me now conduct a thorough review and submit it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14efab07-8571-4f8a-b98c-554697605096",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZbFnveEmPgq5CXHewB",
+  "type": "assistant",
+  "uuid": "3fdbaf84-6b65-4f01-a3f3-3a2e60cd170d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJPfhQcTT4geCd6JJgM4FL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 33996,
+      "cache_read_input_tokens": 22910,
+      "output_tokens": 1536,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33996,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1536,
+          "cache_read_input_tokens": 22910,
+          "cache_creation_input_tokens": 33996,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33996
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T16:28:33.151Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01P6KDcmmkJYsxGUJVT3jt9U`</summary>
+
+```json
+{
+  "query": "select:submit_dream_review_report",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3fdbaf84-6b65-4f01-a3f3-3a2e60cd170d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZbFnveEmPgq5CXHewB",
+  "type": "assistant",
+  "uuid": "0d8d9bdb-e440-48f8-8438-928a100d804b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJPfhQcTT4geCd6JJgM4FL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 33996,
+      "cache_read_input_tokens": 22910,
+      "output_tokens": 1536,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33996,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1536,
+          "cache_read_input_tokens": 22910,
+          "cache_creation_input_tokens": 33996,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33996
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T16:28:33.157Z_
+
+<details><summary>↩ Tool result · `toolu_01P6KDcmmkJYsxGUJVT3jt9U`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d8d9bdb-e440-48f8-8438-928a100d804b",
+  "isSidechain": false,
+  "promptId": "9b19d13a-9729-4d4a-bbaf-1d022067c444",
+  "type": "user",
+  "uuid": "fb04bd46-534d-45d0-9edc-3d172466d236",
+  "toolUseResult": {
+    "matches": [],
+    "query": "select:submit_dream_review_report",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "0d8d9bdb-e440-48f8-8438-928a100d804b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T16:28:36.577Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014ggoCantRKLZYZoQsfdBdG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb04bd46-534d-45d0-9edc-3d172466d236",
+  "isSidechain": false,
+  "requestId": "req_011Cb6Ze17U15T1Ne1rF1wFp",
+  "type": "assistant",
+  "uuid": "aa277457-dc27-4315-bb05-1b09fefa2d51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016crwr3VbEq2oXdJa7RE5dT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1553,
+      "cache_read_input_tokens": 56906,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1553,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 56906,
+          "cache_creation_input_tokens": 1553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1553
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T16:28:36.586Z_
+
+<details><summary>↩ Tool result · `toolu_014ggoCantRKLZYZoQsfdBdG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa277457-dc27-4315-bb05-1b09fefa2d51",
+  "isSidechain": false,
+  "promptId": "9b19d13a-9729-4d4a-bbaf-1d022067c444",
+  "type": "user",
+  "uuid": "b250cfd5-3548-4351-8efa-4096f8332a10",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "aa277457-dc27-4315-bb05-1b09fefa2d51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-16T16:28:39.865Z_
+
+Now I'll submit the comprehensive review report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b250cfd5-3548-4351-8efa-4096f8332a10",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZeFpkArzMDXTsSnBsy",
+  "type": "assistant",
+  "uuid": "595ead48-a2b4-423a-8fc2-7bbc32812def",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mv4ykEmd8tot7iuWTXNseK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 667,
+      "cache_read_input_tokens": 58459,
+      "output_tokens": 3163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 667,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3163,
+          "cache_read_input_tokens": 58459,
+          "cache_creation_input_tokens": 667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 667
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T16:29:55.161Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_dream_review_report · `toolu_01U6W7EWWfXst2GKqzQeALpc`</summary>
+
+```json
+{
+  "report": "# Review Report: \"When Does Symbolic Consensus Help?\"\n\n## Meta-Information\n- **Review mode**: simple (single reviewer, full coverage)\n- **Venue standard**: Top ML venue (e.g., EMNLP Main), ~25% acceptance rate, 6-point scale\n\n---\n\n## Overall Assessment\n\n**Score: 4 / 6 (Borderline Reject)**\n\nThe paper asks a well-motivated question—\"when does symbolic consensus help?\"—and provides a systematic, honest answer. The framing pivot from \"our method is better\" to \"here is the operating regime\" is commendable and more scientifically rigorous than overclaiming. However, the paper suffers from three compounding weaknesses: (1) the core technical component (MAX-SAT) does not significantly outperform simple constraint counting (p=0.33), undermining the methodological contribution; (2) the only statistically significant accuracy improvement is on a single domain–model pair (FOLIO, Qwen-14B), while the combined 804-question result is not significant (p=0.089); and (3) the operating regime analysis—the paper's claimed main contribution—rests on only 14 data points. The paper is well-written and transparent, but the results do not clear the bar for a top venue main track. It would be a reasonable EMNLP Findings paper with revisions.\n\n---\n\n## Strengths\n\n### S1: Honest, well-framed research question\nThe paper's central question \"when does symbolic consensus help?\" is more valuable than a blanket claim of improvement. The authors transparently report null results (ProofWriter, GSM8K, reasoning models) and negative results (Mistral), which strengthens credibility. The pivot to operating regime characterization is scientifically appropriate given the mixed results.\n\n### S2: Systematic experimental coverage\nSeven model configurations across 3 families (Qwen, LLaMA, Mistral) and 2 reasoning architectures (QwQ, DeepSeek-R1) is thorough. The inclusion of negative controls (reasoning models with C0 < 5%, GSM8K as a \"too easy\" task) demonstrates good experimental design. All 14 planned experiments from the design document appear to be represented in the paper.\n\n### S3: Actionable practical contribution (C0 diagnostic)\nThe C0 metric as a zero-cost deployment diagnostic is genuinely useful for practitioners. The recommendation framework (C0 > 20% → use SICA; C0 < 5% → skip) is simple and actionable. The observation that C0 is task-relative rather than model-intrinsic (same 14B model: C0=0.48 on FOLIO vs. 0.10 on GSM8K) is an interesting finding.\n\n### S4: Mechanistic analysis of tiebreaking\nThe K sensitivity analysis (Table 4) demonstrating that SICA's gap systematically covaries with tie rate provides clean mechanistic evidence for the \"principled tiebreaker\" narrative. The dual-axis relationship between K, tie rate, and SICA–SC gap is convincing.\n\n### S5: Transparent limitation disclosure\nThe limitations section is unusually thorough for a submitted paper—acknowledging the quantization confound, the non-significant MAX-SAT vs. counting result, and the small sample for C0 validation.\n\n---\n\n## Weaknesses\n\n### W1: MAX-SAT does not significantly outperform counting — the core technical contribution is hollow (Major)\nTable 6 is the most damaging result in the paper: MAX-SAT (73.7%) vs. count-only (73.0%), p=0.33. The paper introduces a non-trivial pipeline involving FOL extraction, constraint weighting, and Z3 solving, but simple counting of constraint occurrences achieves statistically indistinguishable accuracy. The authors reframe MAX-SAT as providing \"a formal framework for interpretability,\" but this is a post-hoc justification. If counting suffices for accuracy, the paper's technical contribution reduces to: (a) the idea of extracting constraints from traces (which could be a paragraph, not a method), and (b) the operating regime analysis (which has its own issues, see W3). The 4.3pp tie-only gap (68.1% vs. 63.8%) is suggestive but on only 47 ties and not tested for significance between these two methods.\n\n### W2: Statistical significance achieved only on one domain–model pair (Major)\nThe only significant overall accuracy result is FOLIO with Qwen-14B: +3.9pp, p=0.038. Every other model configuration fails to reach significance (most on 60 questions with p > 0.19). The combined 804-question result is p=0.089—marginal and driven by ProofWriter's 75% weight diluting the FOLIO signal. ProofWriter shows essentially null effect (+0.3pp, p=0.41) across all models due to its restricted 3-class answer space. This means SICA's accuracy advantage is demonstrated convincingly only on FOLIO, a single formal logic NLI dataset. For a venue paper claiming to characterize when a method works, having it work clearly in only one domain is insufficient.\n\n### W3: Operating regime analysis on 14 data points is underpowered (Major)\nThe paper claims C0 achieves \"86% binary classification accuracy at a 20% threshold\" for predicting SICA effectiveness—but this is 12/14 correct classifications. With 14 data points, the confidence interval for 86% accuracy is extremely wide (~57%–98% by Wilson interval). Furthermore, several of these 14 points are not independent: they share the same model (Qwen-14B appears in FOLIO, PW, and GSM8K configurations) or the same dataset. The Pearson r=0.72 on 14 points has p ≈ 0.004, which is respectable, but the binary threshold claim requires far more data points to be actionable. This is the paper's headline contribution and it rests on a very thin empirical basis.\n\n### W4: Missing and incomplete references (Minor)\nThe very first citation in the paper is \"[?]\" (page 1, referencing Self-Consistency), indicating a broken BibTeX reference. The Related Work section mentions \"Wang et al. (2023)\" and \"Chen et al. (2023)\" in text but references appear incomplete. For a submission, all citations must be properly formatted. This suggests the paper was rushed to completion.\n\n### W5: No comparison with other structured aggregation methods (Moderate)\nThe paper compares SICA only against SC variants (random, alphabetical, first-seen tiebreaking). There is no comparison with other methods that leverage trace content beyond voting, such as: Universal Self-Consistency (mentioned in Related Work but not compared against), debate-based aggregation, verifier-based reranking, or weighted voting by token probability. The absence of these baselines makes it unclear whether SICA's tiebreaking advantage comes from the FOL/MAX-SAT machinery specifically or from any method that looks inside traces.\n\n### W6: Narrow domain where method helps creates a circular argument risk (Moderate)\nSICA works on FOLIO, a dataset of first-order logic NLI problems—precisely the domain where FOL constraint extraction is naturally well-suited. The constraint extraction prompt asks the LLM to produce FOL; FOLIO problems are already designed around FOL reasoning. This raises the question: is SICA's advantage on FOLIO an artifact of the constraint representation matching the task structure, rather than a general property? The paper partially acknowledges this (\"domains where formal logical structure aligns with the method's constraint extraction capability\") but doesn't adequately address whether alternative constraint representations might work on other domains.\n\n### W7: Table 1 mixes evaluation scales without adequate flagging (Minor)\nQwen2.5-14B is evaluated on 204 FOLIO questions (marked with †), while all other instruction models are on D012 (60 questions). QwQ-32B has no accuracy numbers (dashes). This heterogeneity in evaluation scale makes cross-row comparison misleading. A reader glancing at Table 1 might compare the 14B's +3.9pp on 204 questions with LLaMA's +1.7pp on 60 questions, but these are not comparable.\n\n---\n\n## Detailed Analysis by Section\n\n### Method (Section 2)\nThe SICA pipeline is clearly described. The formalization is clean: Equation 1 for weighted partial MAX-SAT selection and Equation 2 for C0 are both simple and appropriate. One concern: the constraint weighting scheme (cross-trace agreement) is very simple—it's essentially a frequency count. The paper doesn't explore alternative weighting schemes (e.g., by trace confidence, by constraint specificity). Section 2.4 explicitly frames SICA as a tiebreaker, which is honest but also limits the claimed scope of contribution.\n\n### Main Results (Section 3.2)\nThe domain decomposition analysis is well-done—the explanation of why ProofWriter shows null results (restricted 3-class answer space → few ties) is mechanistically sound. The acknowledgment that combined p=0.089 is marginal is appropriate.\n\n### Operating Regime (Section 3.4)\nTable 3 is the paper's most informative table. The Mistral anomaly is well-diagnosed (low extraction quality). The \"Restricted\" label for PW is appropriate. However, the 14-point scatter with 2 acknowledged anomalies and a claimed 86% binary accuracy is unconvincing for drawing strong conclusions.\n\n### Constraint Ablation (Section 4)\nThis section is both the most honest and most damaging. The MAX-SAT vs. count-only comparison (p=0.33) essentially says the formal SAT machinery adds negligible accuracy over counting. The reframe to \"interpretability framework\" is reasonable but significantly weakens the paper's technical contribution.\n\n---\n\n## Experiment Coverage Assessment\n\nCompared against the full experimental design (14 imagined experiments), the paper covers all planned experiments:\n- exp-001 through exp-014: all represented in Tables 1–6 and corresponding sections\n- Key figures described in the design (C0 vs gap scatter, K sensitivity, overhead breakdown) are discussed but the PDF does not appear to contain actual figures—only tables. The figure descriptions in the design document suggest figures F2, F3, F4 were planned but may not be included in this version.\n\n**Missing figures**: The paper is entirely tables with no figures. The \"hero figure\" (F2: C0 vs gap scatter plot) described in the experimental design would significantly strengthen the operating regime argument. Its absence is notable.\n\n---\n\n## Minor Issues\n1. Broken citation \"[?]\" on page 1\n2. No figures in the paper—tables only\n3. The paper has no appendix despite the design mentioning appendix tables (T_gsm8k, T_ablation)\n4. The abstract says \"14 model–task configurations\" but Table 3 shows only 9 rows (some configurations appear merged)\n5. No code/data availability statement\n\n---\n\n## Questions for Authors\n\n1. Have you compared SICA against a verifier-based reranking baseline (e.g., using a separate LLM call to evaluate each tied candidate) with the same computational budget as the constraint extraction step?\n2. Given that count-only achieves statistically indistinguishable accuracy from MAX-SAT, what specific interpretability insights does MAX-SAT provide that counting cannot? Can you show a concrete example?\n3. The 14 data points for C0 diagnostic include non-independent observations (same model on different tasks, same task on different models). What is the effective degrees of freedom?\n4. Would SICA benefit from domain-specific constraint templates rather than generic FOL extraction?\n\n---\n\n## Verdict\n\nThe paper has a sound experimental methodology and commendable honesty about its results. The research question is important and the operating regime framing is the right approach. However, the execution falls short of a main track publication: the method's core component (MAX-SAT) doesn't beat counting, the accuracy improvement is significant only on one dataset, and the regime analysis is severely underpowered. The contribution is real but thin—it amounts to: \"extract constraints from traces and count them for tiebreaking; this helps on FOLIO with instruction models.\" This is a useful empirical finding but does not provide sufficient novelty or impact for a top venue main track.\n\n**Recommendation**: Reject for main track; encourage resubmission to Findings with (a) additional domains where FOL constraints are naturally applicable, (b) larger-scale C0 validation, and (c) comparison against non-symbolic trace-content-aware baselines.\n\n**Overall Score: 4 / 6 (Borderline Reject)**\n**Confidence: 4 / 5 (Fairly confident)**\n",
+  "project": "symb_invariant_consensus",
+  "tier": "median",
+  "dream_id": "20260516T155754",
+  "overall_score": "4 - Borderline Reject",
+  "review_visible": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "595ead48-a2b4-423a-8fc2-7bbc32812def",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZeFpkArzMDXTsSnBsy",
+  "type": "assistant",
+  "uuid": "5ab98043-fad5-4df6-809f-54b4bbb48ade",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mv4ykEmd8tot7iuWTXNseK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 667,
+      "cache_read_input_tokens": 58459,
+      "output_tokens": 3163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 667,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3163,
+          "cache_read_input_tokens": 58459,
+          "cache_creation_input_tokens": 667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 667
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T16:29:58.824Z_
+
+<details><summary>↩ Tool result · `toolu_01U6W7EWWfXst2GKqzQeALpc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"report_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_report.md\", \"dream_id\": \"dream_20260516T155754\", \"tier\": \"median\", \"review_visible\": true}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ab98043-fad5-4df6-809f-54b4bbb48ade",
+  "isSidechain": false,
+  "promptId": "9b19d13a-9729-4d4a-bbaf-1d022067c444",
+  "type": "user",
+  "uuid": "2f709835-6c09-402d-979d-2a6ecfda875b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"report_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_report.md\\\", \\\"dream_id\\\": \\\"dream_20260516T155754\\\", \\\"tier\\\": \\\"median\\\", \\\"review_visible\\\": true}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"report_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T155754/median/review_report.md\", \"dream_id\": \"dream_20260516T155754\", \"tier\": \"median\", \"review_visible\": true}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "5ab98043-fad5-4df6-809f-54b4bbb48ade",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260516T155754 | review_mode=simple | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_repor…",
+  "leafUuid": "2f709835-6c09-402d-979d-2a6ecfda875b",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review symbolic invariant consensus research paper",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-16T16:30:05.129Z_
+
+Review submitted. **Score: 4/6 (Borderline Reject)**.
+
+Key findings from the review:
+
+- **Core technical weakness**: MAX-SAT does not significantly beat simple constraint counting (p=0.33), undermining the methodological contribution
+- **Narrow significance**: Only FOLIO + Qwen-14B achieves statistical significance; combined 804-question result is marginal (p=0.089)
+- **Underpowered regime analysis**: The headline C0 diagnostic claim (86% accuracy) rests on just 14 data points with wide confidence intervals
+- **Strengths acknowledged**: Honest framing, systematic coverage of 7 models across 3 families, actionable C0 diagnostic concept, transparent limitations
+- **Recommendation**: Reject main track; suitable for Findings with expanded domains, larger C0 validation, and comparison against non-symbolic baselines
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f709835-6c09-402d-979d-2a6ecfda875b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ZkKB5PmUWAREbefBuV",
+  "type": "assistant",
+  "uuid": "e54137c9-259b-4174-ac82-0d28af4de172",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011BxvXgNovLdj1YWskjPx3x",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3292,
+      "cache_read_input_tokens": 59126,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3292,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 59126,
+          "cache_creation_input_tokens": 3292,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3292
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260516T155754 | review_mode=simple | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_repor…",
+  "leafUuid": "e54137c9-259b-4174-ac82-0d28af4de172",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review symbolic invariant consensus research paper",
+  "sessionId": "9a867ead-a281-4510-ad15-6b93104740f7"
+}
+```
+
+---
