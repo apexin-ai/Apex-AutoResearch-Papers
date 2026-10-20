@@ -1,0 +1,770 @@
+{
+  "schema_version": "1.0",
+  "id": "b95db20bf72393252c8b",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: schema_semantic_constrained_ie ## 运行环境 - 服务器名: westd-16980 - SSH 账户: root（调用 ssh_execute / submi",
+  "task_key": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/149ffbee-2f43-456c-8c07-3d3d04daf39d.jsonl",
+    "occurrence": 1,
+    "bytes": 51155,
+    "sha256": "0fdccb1ab886fe46649879465c3bd2cde5d30833e964b9cec5fa0224466852b5"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "record": 10,
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 2,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T20:19:25.601Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T20:19:25.601Z",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+                "content": "<project_context>\n# 项目: schema_semantic_constrained_ie\n\n## 运行环境\n- 服务器名: westd-16980\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/schema_semantic_constrained_ie\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：在 §5 DocRED core result 段添加 Entity F1 CI\n\n文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex`\n\n### 具体修改\n\n在 core result 段落中，找到 Relation F1 bootstrap CI 那句话（大约在 \"Relation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI...\" 这行附近）。\n\n在这句话之后，**紧接着**添加一个新句子：\n\n```\nEntity F1 also improves significantly, from 58.15 to 59.37 ($+$1.23\\,pp; bootstrap 95\\% CI [$+$0.94, $+$1.55]\\,pp, $p < 0.001$), driven entirely by the grammar layer's elimination of non-standard entity types (grammar-only Entity F1\\,=\\,59.38\\%, indistinguishable from full S1's 59.37\\%, $p = 0.66$).\n```\n\n然后添加一行注释追溯：\n```\n% bootstrap: E-F1 delta=+1.23pp, CI=[+0.94,+1.55], p<0.001\n% grammar_only E-F1=59.38 vs full_s1 E-F1=59.37, bootstrap p=0.66\n```\n\n### 同时修改\n原文中 \"and entity F1 from 58.15 to 59.37 (+1.22\\,pp)\" 这句现在应该删除或整合，因为新句子已经覆盖了 Entity F1 信息，且用了 bootstrap point estimate +1.23pp（不是直接相减的 +1.22pp）。\n\n### 注意\n- 先 Read 文件，然后用 Edit 精确修改\n- 保留现有 comment 追溯格式\n- 不要改动文件其他部分\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T20:19:25.605Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T20:19:25.605Z",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T20:19:25.651Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: schema_semantic_constrained_ie\n\n## 运行环境\n- 服务器名: westd-16980\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/schema_semantic_constrained_ie\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：在 §5 DocRED core result 段添加 Entity F1 CI\n\n文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex`\n\n### 具体修改\n\n在 core result 段落中，找到 Relation F1 bootstrap CI 那句话（大约在 \"Relation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI...\" 这行附近）。\n\n在这句话之后，**紧接着**添加一个新句子：\n\n```\nEntity F1 also improves significantly, from 58.15 to 59.37 ($+$1.23\\,pp; bootstrap 95\\% CI [$+$0.94, $+$1.55]\\,pp, $p < 0.001$), driven entirely by the grammar layer's elimination of non-standard entity types (grammar-only Entity F1\\,=\\,59.38\\%, indistinguishable from full S1's 59.37\\%, $p = 0.66$).\n```\n\n然后添加一行注释追溯：\n```\n% bootstrap: E-F1 delta=+1.23pp, CI=[+0.94,+1.55], p<0.001\n% grammar_only E-F1=59.38 vs full_s1 E-F1=59.37, bootstrap p=0.66\n```\n\n### 同时修改\n原文中 \"and entity F1 from 58.15 to 59.37 (+1.22\\,pp)\" 这句现在应该删除或整合，因为新句子已经覆盖了 Entity F1 信息，且用了 bootstrap point estimate +1.23pp（不是直接相减的 +1.22pp）。\n\n### 注意\n- 先 Read 文件，然后用 Edit 精确修改\n- 保留现有 comment 追溯格式\n- 不要改动文件其他部分\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "eeba80a3-78fd-44b5-8e23-a81390702d42",
+            "type": "user",
+            "uuid": "266f1589-7d51-40ce-8b2b-beda62a6d3bd",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T20:19:25.650Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "266f1589-7d51-40ce-8b2b-beda62a6d3bd",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "c727ef38-b751-4a51-aaf2-8d44ac7de642",
+                "timestamp": "2026-05-14T20:19:25.650Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T20:19:25.650Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "c727ef38-b751-4a51-aaf2-8d44ac7de642",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "6eff24b0-0909-4b6e-8160-0d07fa97b0b3",
+                "timestamp": "2026-05-14T20:19:25.650Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T20:19:25.650Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "6eff24b0-0909-4b6e-8160-0d07fa97b0b3",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "38ee8b96-79f0-4bbd-926c-1a78d5f6fd93",
+                "timestamp": "2026-05-14T20:19:25.650Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add Entity F1 confidence interval to DocRED section",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T20:19:28.502Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the file first to understand the current content and find the exact locations to modify.",
+              "signature": "Ep8CClkIDRgCKkDAsXFiuJUxCl1CTXipqRH++rMItdYHYqGuFTKQcWD8zemtuFzsZ16fyCisS2UZ0BVV2tQD7C84D3Vqx8/ngaMUMg9jbGF1ZGUtb3B1cy00LTY4ABIMOriv1m+VU4HI4KDfGgzBRNpXUpMvEMVJbJciMHHxGOOPBTuZbeNE7Z8jqM4sUFQq0WGpf3I6vnPLv0pzu6yxvl9TZES97Sa+EkdPAyp0PVHomqS+gy9pjklpf8c/bDpIN4dltWz3IkenAiggBuOK/9v46CP+6zMqbTmYO2+gJrSeJdpM2fXhJUVPEhQQgaAADCotTE+9He8DRBHHPOOmEg98WzInbY82XXycnjAzO0ITUVK0dukAKrI8C/hgxScWfTwYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38ee8b96-79f0-4bbd-926c-1a78d5f6fd93",
+            "isSidechain": false,
+            "requestId": "req_011Cb35dJ3e73NyLpt4QJtqa",
+            "type": "assistant",
+            "uuid": "2ac652ce-b9a3-469e-80fd-3eff526d76aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014yejBsdQoPW79Za4B2G9mC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11313,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 133,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11313,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 133,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11313,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11313
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T20:19:29.085Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ve6CPtF2QC7FvFqdZbii8B",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ac652ce-b9a3-469e-80fd-3eff526d76aa",
+            "isSidechain": false,
+            "requestId": "req_011Cb35dJ3e73NyLpt4QJtqa",
+            "type": "assistant",
+            "uuid": "3a42c4c5-5d96-4a8d-8ae1-0d6dfca59f90",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014yejBsdQoPW79Za4B2G9mC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11313,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 133,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11313,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 133,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11313,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11313
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T20:19:29.099Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ve6CPtF2QC7FvFqdZbii8B",
+              "type": "tool_result",
+              "content": "1\t% Section 5 — DocRED Results (Draft)\n2\t% Data source: Phase 2 DocRED registry experiments (checker_version: fixed_20260514)\n3\t% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\n4\t%          phase2_docred_semantic_only, phase2_docred_full_s1\n5\t% All numbers verified against registry 2026-05-14.\n6\t% F1 computed via all_set method with name→Wikidata PID normalization.\n7\t\n8\t\\subsection{Cross-Dataset Validation on DocRED}\n9\t\\label{sec:docred-results}\n10\t\n11\tTable~\\ref{tab:docred-ablation} presents the four-way ablation on DocRED,\n12\ta document-level relation extraction benchmark with 96 Wikidata relation\n13\ttypes---14$\\times$ the ontology size of SciERC\n14\t(Section~\\ref{sec:scierc-results}).\n15\tAll experiments use Qwen3-8B in a zero-shot setting on 998 test documents\n16\twith identical prompts and decoding parameters.\n17\tRelation F1 is computed via name-to-Wikidata-PID normalization:\n18\teach predicted relation name is mapped to its canonical PID before\n19\tmatching against gold annotations, and predictions that cannot be mapped\n20\tto any valid PID are counted as false positives.\n21\t\n22\t% ──────────────────────────────────────────\n23\t%  Table: DocRED four-way ablation\n24\t% ──────────────────────────────────────────\n25\t\\begin{table}[t]\n26\t\\centering\n27\t\\small\n28\t\\setlength{\\tabcolsep}{3.6pt}\n29\t\\begin{tabular}{@{}l rrrrr rr@{}}\n30\t\\toprule\n31\t& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n32\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n33\t\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n34\t\\textbf{Mode}\n35\t  & DR\\,$\\downarrow$ & $\\Delta$DR\n36\t  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n37\t  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n38\t\\midrule\n39\tUnconstrained\n40\t  & 18.46 & ---\n41\t  & 29.66 & 2.48\n42\t  & 0.10\n43\t  & 7.74  & 58.15 \\\\\n44\tGrammar\n45\t  & 26.17 & $\\uparrow$42\\%\n46\t  & \\textbf{0.03} & \\textbf{0}\n47\t  & 0.07\n48\t  & \\textbf{8.31}  & \\textbf{59.38} \\\\\n49\tSemantic\n50\t  & 13.84 & $\\downarrow$25\\%\n51\t  & 29.87 & 4.22\n52\t  & 1.05\n53\t  & 7.70  & 57.81 \\\\\n54\tFull (S1)\n55\t  & \\textbf{10.21} & $\\downarrow$\\textbf{45\\%}\n56\t  & \\textbf{0.03} & \\textbf{0}\n57\t  & 2.57\n58\t  & 8.23  & 59.37 \\\\\n59\t\\bottomrule\n60\t\\end{tabular}\n61\t\\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).\n62\tDR: domain/range violation rate;\n63\tRV: relation vocabulary violation rate;\n64\tET: entity type violation rate;\n65\tCF: cross-field consistency violation rate.\n66\t$\\Delta$DR: relative change vs.\\ the unconstrained baseline\n67\t($\\uparrow$: increase; $\\downarrow$: decrease).\n68\tBest per column in \\textbf{bold} (CF excluded---see text).\n69\tF1 scores are multiplied by 100.\n70\tEntity type violation rates reflect per-unique-entity counting (checker v2).\n71\tStatistical significance assessed via bootstrap resampling (10{,}000 iterations).}\n72\t\\label{tab:docred-ablation}\n73\t\\end{table}\n74\t\n75\t% ──────────────────────────────────────────\n76\t%  (a) Core result\n77\t% ──────────────────────────────────────────\n78\t\\paragraph{Core result: DR halved with preserved or improved F1.}\n79\tThe full two-layer configuration reduces domain/range violations from\n80\t18.46\\% to 10.21\\%, a 45\\% relative reduction, while simultaneously\n81\teliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\n82\tnear-eliminating relation vocabulary violations\n83\t(29.66\\%\\,$\\to$\\,0.03\\%).\n84\t% phase2_docred_unconstrained: DR=0.1846, ET=0.0248, RV=0.2966\n85\t% phase2_docred_full_s1: DR=0.1021, ET=0, RV=0.0003\n86\tRelation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations)\n87\tand entity F1 from 58.15 to 59.37 (+1.22\\,pp).\n88\t% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815\n89\t% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937\n90\t% bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001\n91\tThe relation F1 improvement is statistically significant, attributable\n92\tto grammar-layer elimination of 5{,}189 out-of-vocabulary relation\n93\tpredictions that are counted as false positives under the all-valid-set\n94\tprotocol (Section~\\ref{sec:discussion}).\n95\tCross-field consistency violations increase modestly from 0.10\\% to\n96\t2.57\\%, substantially lower than the 9.90\\% observed on SciERC;\n97\t% phase2_docred_unconstrained: CF=0.0010; phase2_docred_full_s1: CF=0.0257\n98\twe discuss this trade-off in Section~\\ref{sec:discussion}.\n99\t\n100\t% ──────────────────────────────────────────\n101\t%  (b) Grammar layer\n102\t% ──────────────────────────────────────────\n103\t\\paragraph{Grammar layer: structural guarantees generalize, but surface latent violations.}\n104\tGrammar-only constraints generalize to DocRED's 96-relation ontology,\n105\teliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\n106\tnear-eliminating relation vocabulary violations\n107\t(29.66\\%\\,$\\to$\\,0.03\\%).\n108\t% phase2_docred_grammar_only: ET=0, RV=0.0003\n109\tHowever, domain/range violations \\emph{increase} from 18.46\\% to\n110\t26.17\\% (+42\\% relative).\n111\t% phase2_docred_grammar_only: DR=0.2617\n112\tThis counter-intuitive result has a structural explanation.\n113\tIn the unconstrained baseline, 29.66\\% of triples contain\n114\tout-of-vocabulary relation names and are classified as RV violations;\n115\tbecause no schema entry exists for an invalid relation name,\n116\tthese triples \\emph{cannot} be evaluated against domain/range rules\n117\tand are therefore absent from the DR count.\n118\tWhen grammar constraints force all relation names into the valid\n119\tvocabulary, these formerly RV-classified triples receive valid\n120\trelation names---but the associated entity types frequently violate\n121\tthe domain/range rules of the assigned relation, surfacing as new\n122\tDR violations.\n123\tThe grammar layer thus \\emph{reveals} latent type incompatibilities\n124\trather than creating them, directly motivating the semantic layer:\n125\twithout domain/range enforcement, grammar alone makes the type\n126\tviolation landscape worse, not better.\n127\t\n128\t% ──────────────────────────────────────────\n129\t%  (c) Enabling dependency\n130\t% ──────────────────────────────────────────\n131\t\\paragraph{Enabling dependency confirmed across datasets.}\n132\tSemantic constraints alone reduce DR by 25\\%\n133\t(18.46\\%\\,$\\to$\\,13.84\\%) but cannot eliminate relation vocabulary\n134\tviolations (RV\\,=\\,29.87\\%) or entity type violations\n135\t(ET\\,=\\,4.22\\%).\n136\t% phase2_docred_semantic_only: DR=0.1384, RV=0.2987, ET=0.0422\n137\tThe elevated ET under semantic-only decoding (4.22\\% vs.\\ 2.48\\%\n138\tunconstrained) reflects a genuine trajectory perturbation:\n139\tconstrained logit masking shifts the generation distribution,\n140\tcausing the model to produce more non-standard entity types\n141\t(e.g., \\textsc{Work}, \\textsc{Event}, \\textsc{Ethnic\\_Group})\n142\tthat fall outside DocRED's canonical six-type vocabulary.\n143\t% Top non-standard types: WORK (823), EVENT (743), ETHNIC_GROUP (137)\n144\tWe discuss this side effect in the limitations.\n145\tCombining both layers (Full S1) reduces DR a further 26\\% relative to\n146\tthe semantic-only configuration (13.84\\%\\,$\\to$\\,10.21\\%),\n147\t% phase2_docred_full_s1: DR=0.1021; delta=(13.84-10.21)/13.84=0.262\n148\treplicating the enabling dependency observed on SciERC:\n149\twithout grammar-enforced vocabulary constraints, the semantic layer\n150\tencounters out-of-vocabulary relation types for which no domain/range\n151\trules exist, limiting its enforcement capacity.\n152\tThe consistency of this pattern across two datasets with substantially\n153\tdifferent ontology sizes (7 vs.\\ 96 relation types) and violation\n154\tprofiles (SciERC RV\\,=\\,1.39\\% vs.\\ DocRED RV\\,=\\,29.66\\%) confirms\n155\tthat the grammar$\\to$semantic enabling dependency is a general\n156\tarchitectural property of the framework, not an artifact of a\n157\tparticular schema.\n158\t\n159\t% ──────────────────────────────────────────\n160\t%  (d) Comparison with post-hoc filtering\n161\t% ──────────────────────────────────────────\n162\t\\paragraph{Comparison with post-hoc filtering.}\n163\tAn alternative to decoding-time constraint enforcement is post-hoc filtering:\n164\tgenerating triples without constraints and discarding those that violate\n165\tschema rules afterward.\n166\t% posthoc_report_docred: filtering applied to phase2_docred_unconstrained\n167\tOn DocRED, post-hoc filtering removes 8{,}419 of 17{,}497 triples\n168\t(48.1\\% rejection rate), including 5{,}189 out-of-vocabulary predictions,\n169\t692 entity type violations, and 2{,}538 domain/range violations.\n170\t% posthoc_docred: removed_rv=5189, removed_et=692, removed_dr=2538\n171\tThis raises precision from 6.55\\% to 11.22\\% but reduces recall from\n172\t9.46\\% to 8.40\\%, as 127 gold-standard triples are discarded along with\n173\tthe violations (relation F1: 7.74\\,$\\to$\\,9.61).\n174\t% posthoc_docred: P_before=0.0655, P_after=0.1122, R_before=0.0946, R_after=0.0840\n175\t% posthoc_docred: F1_before=0.0774, F1_after=0.0961, tp_before=1137, tp_after=1010\n176\tOn SciERC, the pattern is analogous: 16.8\\% of triples are rejected, recall\n177\tdrops from 11.40\\% to 10.68\\%, and 7 gold-standard triples are lost.\n178\t% posthoc_scierc: rejection_rate=0.1676, R_before=0.114, R_after=0.1068\n179\t% posthoc_scierc: tp_before=111, tp_after=104\n180\tOntoCoDec avoids this coverage--precision trade-off by guiding generation\n181\ttoward schema-compliant triples rather than discarding non-compliant ones,\n182\tand operates as a single decoding pass without a separate filtering stage.\n183\t\n184\t% ──────────────────────────────────────────\n185\t%  (e) Constraint tightness scaling\n186\t% ──────────────────────────────────────────\n187\t\\paragraph{Constraint tightness governs enforcement ceiling.}\n188\tThe residual DR on DocRED (10.21\\%) substantially exceeds that of\n189\tSciERC (0.93\\%, Section~\\ref{sec:scierc-results}).\n190\tThis gap is explained by per-relation \\emph{constraint tightness}:\n191\tDocRED relations admit on average only 5.68 valid entity type pairs\n192\t(mean tightness\\,=\\,0.842, i.e., 84.2\\% of entity type pairs violate\n193\tdomain/range rules), compared to 24 valid pairs on SciERC\n194\t(tightness\\,=\\,0.333).\n195\t% DocRED: avg_valid_pairs=5.68, avg_tightness=0.842\n196\t% SciERC: avg_valid_pairs=24, avg_tightness=0.333\n197\tWith tighter per-relation constraints, the semantic layer's logit mask\n198\teliminates a larger fraction of candidate tokens at each decoding step,\n199\tincreasing the probability that the intersection of grammar and\n200\tsemantic masks yields a narrow or empty candidate set.\n201\tIn the limiting case, the system falls back to grammar-only constraints,\n202\tpreserving structural validity but forgoing domain/range enforcement\n203\tfor that token position.\n204\tFor example, P1198 (\\textsc{unemployment\\_rate}) triggers fallback on\n205\t83\\% of decoded triples due to its extremely tight constraint set,\n206\twhile P171 (\\textsc{parent\\_taxon}) falls back at 78\\%.\n207\t% docred_fallback: P1198=83%, P171=78% (tight constraints)\n208\tIn contrast, relations with looser constraints such as P127\n209\t(\\textsc{owned\\_by}) and P170 (\\textsc{creator}) exhibit 0\\% fallback.\n210\t% docred_fallback: P127=0%, P170=0% (loose constraints)\n211\tThe aggregate triple-level fallback rate (10.2\\%; 1{,}770 of 17{,}341\n212\ttriples) closely tracks the residual DR rate (10.21\\%), confirming\n213\tthat each residual violation corresponds to exactly one fallback event.\n214\t% docred_fallback: 1770/17341=10.2%; phase2_docred_full_s1: DR=0.1021\n215\tConversely, SciERC's looser constraints leave more valid alternatives\n216\tfor the model to redirect probability mass toward, enabling\n217\tnear-complete DR elimination.\n218\tThe DR reduction thus scales inversely with constraint tightness:\n219\t45\\% on DocRED (tight) vs.\\ 94\\% on SciERC (loose).\n220\t% DocRED: DR_reduction=45%; SciERC: DR_reduction=94%\n221\tThe grammar-only configuration achieves marginally higher relation F1\n222\t(8.31 vs.\\ 8.23); this 0.08\\,pp difference is not statistically\n223\tsignificant (bootstrap $p = 0.14$) and likely reflects minor\n224\tdistributional shifts from semantic logit masking.\n225\t% grammar_only: R-F1=8.31; full_s1: R-F1=8.23; bootstrap p=0.14\n226\tThis represents, to our knowledge, the first empirical characterization\n227\tof how ontology constraint properties modulate decoding-time enforcement\n228\teffectiveness; we develop this analysis further in\n229\tSection~\\ref{sec:discussion}.\n230\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a42c4c5-5d96-4a8d-8ae1-0d6dfca59f90",
+            "isSidechain": false,
+            "promptId": "eeba80a3-78fd-44b5-8e23-a81390702d42",
+            "type": "user",
+            "uuid": "bfccb30c-4907-4010-9f2d-48df2b595e72",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+                "content": "% Section 5 — DocRED Results (Draft)\n% Data source: Phase 2 DocRED registry experiments (checker_version: fixed_20260514)\n% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\n%          phase2_docred_semantic_only, phase2_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n% F1 computed via all_set method with name→Wikidata PID normalization.\n\n\\subsection{Cross-Dataset Validation on DocRED}\n\\label{sec:docred-results}\n\nTable~\\ref{tab:docred-ablation} presents the four-way ablation on DocRED,\na document-level relation extraction benchmark with 96 Wikidata relation\ntypes---14$\\times$ the ontology size of SciERC\n(Section~\\ref{sec:scierc-results}).\nAll experiments use Qwen3-8B in a zero-shot setting on 998 test documents\nwith identical prompts and decoding parameters.\nRelation F1 is computed via name-to-Wikidata-PID normalization:\neach predicted relation name is mapped to its canonical PID before\nmatching against gold annotations, and predictions that cannot be mapped\nto any valid PID are counted as false positives.\n\n% ──────────────────────────────────────────\n%  Table: DocRED four-way ablation\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.6pt}\n\\begin{tabular}{@{}l rrrrr rr@{}}\n\\toprule\n& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n\\textbf{Mode}\n  & DR\\,$\\downarrow$ & $\\Delta$DR\n  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n\\midrule\nUnconstrained\n  & 18.46 & ---\n  & 29.66 & 2.48\n  & 0.10\n  & 7.74  & 58.15 \\\\\nGrammar\n  & 26.17 & $\\uparrow$42\\%\n  & \\textbf{0.03} & \\textbf{0}\n  & 0.07\n  & \\textbf{8.31}  & \\textbf{59.38} \\\\\nSemantic\n  & 13.84 & $\\downarrow$25\\%\n  & 29.87 & 4.22\n  & 1.05\n  & 7.70  & 57.81 \\\\\nFull (S1)\n  & \\textbf{10.21} & $\\downarrow$\\textbf{45\\%}\n  & \\textbf{0.03} & \\textbf{0}\n  & 2.57\n  & 8.23  & 59.37 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).\nDR: domain/range violation rate;\nRV: relation vocabulary violation rate;\nET: entity type violation rate;\nCF: cross-field consistency violation rate.\n$\\Delta$DR: relative change vs.\\ the unconstrained baseline\n($\\uparrow$: increase; $\\downarrow$: decrease).\nBest per column in \\textbf{bold} (CF excluded---see text).\nF1 scores are multiplied by 100.\nEntity type violation rates reflect per-unique-entity counting (checker v2).\nStatistical significance assessed via bootstrap resampling (10{,}000 iterations).}\n\\label{tab:docred-ablation}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Core result\n% ──────────────────────────────────────────\n\\paragraph{Core result: DR halved with preserved or improved F1.}\nThe full two-layer configuration reduces domain/range violations from\n18.46\\% to 10.21\\%, a 45\\% relative reduction, while simultaneously\neliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\nnear-eliminating relation vocabulary violations\n(29.66\\%\\,$\\to$\\,0.03\\%).\n% phase2_docred_unconstrained: DR=0.1846, ET=0.0248, RV=0.2966\n% phase2_docred_full_s1: DR=0.1021, ET=0, RV=0.0003\nRelation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations)\nand entity F1 from 58.15 to 59.37 (+1.22\\,pp).\n% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937\n% bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001\nThe relation F1 improvement is statistically significant, attributable\nto grammar-layer elimination of 5{,}189 out-of-vocabulary relation\npredictions that are counted as false positives under the all-valid-set\nprotocol (Section~\\ref{sec:discussion}).\nCross-field consistency violations increase modestly from 0.10\\% to\n2.57\\%, substantially lower than the 9.90\\% observed on SciERC;\n% phase2_docred_unconstrained: CF=0.0010; phase2_docred_full_s1: CF=0.0257\nwe discuss this trade-off in Section~\\ref{sec:discussion}.\n\n% ──────────────────────────────────────────\n%  (b) Grammar layer\n% ──────────────────────────────────────────\n\\paragraph{Grammar layer: structural guarantees generalize, but surface latent violations.}\nGrammar-only constraints generalize to DocRED's 96-relation ontology,\neliminating entity type violations (2.48\\%\\,$\\to$\\,0\\%) and\nnear-eliminating relation vocabulary violations\n(29.66\\%\\,$\\to$\\,0.03\\%).\n% phase2_docred_grammar_only: ET=0, RV=0.0003\nHowever, domain/range violations \\emph{increase} from 18.46\\% to\n26.17\\% (+42\\% relative).\n% phase2_docred_grammar_only: DR=0.2617\nThis counter-intuitive result has a structural explanation.\nIn the unconstrained baseline, 29.66\\% of triples contain\nout-of-vocabulary relation names and are classified as RV violations;\nbecause no schema entry exists for an invalid relation name,\nthese triples \\emph{cannot} be evaluated against domain/range rules\nand are therefore absent from the DR count.\nWhen grammar constraints force all relation names into the valid\nvocabulary, these formerly RV-classified triples receive valid\nrelation names---but the associated entity types frequently violate\nthe domain/range rules of the assigned relation, surfacing as new\nDR violations.\nThe grammar layer thus \\emph{reveals} latent type incompatibilities\nrather than creating them, directly motivating the semantic layer:\nwithout domain/range enforcement, grammar alone makes the type\nviolation landscape worse, not better.\n\n% ──────────────────────────────────────────\n%  (c) Enabling dependency\n% ──────────────────────────────────────────\n\\paragraph{Enabling dependency confirmed across datasets.}\nSemantic constraints alone reduce DR by 25\\%\n(18.46\\%\\,$\\to$\\,13.84\\%) but cannot eliminate relation vocabulary\nviolations (RV\\,=\\,29.87\\%) or entity type violations\n(ET\\,=\\,4.22\\%).\n% phase2_docred_semantic_only: DR=0.1384, RV=0.2987, ET=0.0422\nThe elevated ET under semantic-only decoding (4.22\\% vs.\\ 2.48\\%\nunconstrained) reflects a genuine trajectory perturbation:\nconstrained logit masking shifts the generation distribution,\ncausing the model to produce more non-standard entity types\n(e.g., \\textsc{Work}, \\textsc{Event}, \\textsc{Ethnic\\_Group})\nthat fall outside DocRED's canonical six-type vocabulary.\n% Top non-standard types: WORK (823), EVENT (743), ETHNIC_GROUP (137)\nWe discuss this side effect in the limitations.\nCombining both layers (Full S1) reduces DR a further 26\\% relative to\nthe semantic-only configuration (13.84\\%\\,$\\to$\\,10.21\\%),\n% phase2_docred_full_s1: DR=0.1021; delta=(13.84-10.21)/13.84=0.262\nreplicating the enabling dependency observed on SciERC:\nwithout grammar-enforced vocabulary constraints, the semantic layer\nencounters out-of-vocabulary relation types for which no domain/range\nrules exist, limiting its enforcement capacity.\nThe consistency of this pattern across two datasets with substantially\ndifferent ontology sizes (7 vs.\\ 96 relation types) and violation\nprofiles (SciERC RV\\,=\\,1.39\\% vs.\\ DocRED RV\\,=\\,29.66\\%) confirms\nthat the grammar$\\to$semantic enabling dependency is a general\narchitectural property of the framework, not an artifact of a\nparticular schema.\n\n% ──────────────────────────────────────────\n%  (d) Comparison with post-hoc filtering\n% ──────────────────────────────────────────\n\\paragraph{Comparison with post-hoc filtering.}\nAn alternative to decoding-time constraint enforcement is post-hoc filtering:\ngenerating triples without constraints and discarding those that violate\nschema rules afterward.\n% posthoc_report_docred: filtering applied to phase2_docred_unconstrained\nOn DocRED, post-hoc filtering removes 8{,}419 of 17{,}497 triples\n(48.1\\% rejection rate), including 5{,}189 out-of-vocabulary predictions,\n692 entity type violations, and 2{,}538 domain/range violations.\n% posthoc_docred: removed_rv=5189, removed_et=692, removed_dr=2538\nThis raises precision from 6.55\\% to 11.22\\% but reduces recall from\n9.46\\% to 8.40\\%, as 127 gold-standard triples are discarded along with\nthe violations (relation F1: 7.74\\,$\\to$\\,9.61).\n% posthoc_docred: P_before=0.0655, P_after=0.1122, R_before=0.0946, R_after=0.0840\n% posthoc_docred: F1_before=0.0774, F1_after=0.0961, tp_before=1137, tp_after=1010\nOn SciERC, the pattern is analogous: 16.8\\% of triples are rejected, recall\ndrops from 11.40\\% to 10.68\\%, and 7 gold-standard triples are lost.\n% posthoc_scierc: rejection_rate=0.1676, R_before=0.114, R_after=0.1068\n% posthoc_scierc: tp_before=111, tp_after=104\nOntoCoDec avoids this coverage--precision trade-off by guiding generation\ntoward schema-compliant triples rather than discarding non-compliant ones,\nand operates as a single decoding pass without a separate filtering stage.\n\n% ──────────────────────────────────────────\n%  (e) Constraint tightness scaling\n% ──────────────────────────────────────────\n\\paragraph{Constraint tightness governs enforcement ceiling.}\nThe residual DR on DocRED (10.21\\%) substantially exceeds that of\nSciERC (0.93\\%, Section~\\ref{sec:scierc-results}).\nThis gap is explained by per-relation \\emph{constraint tightness}:\nDocRED relations admit on average only 5.68 valid entity type pairs\n(mean tightness\\,=\\,0.842, i.e., 84.2\\% of entity type pairs violate\ndomain/range rules), compared to 24 valid pairs on SciERC\n(tightness\\,=\\,0.333).\n% DocRED: avg_valid_pairs=5.68, avg_tightness=0.842\n% SciERC: avg_valid_pairs=24, avg_tightness=0.333\nWith tighter per-relation constraints, the semantic layer's logit mask\neliminates a larger fraction of candidate tokens at each decoding step,\nincreasing the probability that the intersection of grammar and\nsemantic masks yields a narrow or empty candidate set.\nIn the limiting case, the system falls back to grammar-only constraints,\npreserving structural validity but forgoing domain/range enforcement\nfor that token position.\nFor example, P1198 (\\textsc{unemployment\\_rate}) triggers fallback on\n83\\% of decoded triples due to its extremely tight constraint set,\nwhile P171 (\\textsc{parent\\_taxon}) falls back at 78\\%.\n% docred_fallback: P1198=83%, P171=78% (tight constraints)\nIn contrast, relations with looser constraints such as P127\n(\\textsc{owned\\_by}) and P170 (\\textsc{creator}) exhibit 0\\% fallback.\n% docred_fallback: P127=0%, P170=0% (loose constraints)\nThe aggregate triple-level fallback rate (10.2\\%; 1{,}770 of 17{,}341\ntriples) closely tracks the residual DR rate (10.21\\%), confirming\nthat each residual violation corresponds to exactly one fallback event.\n% docred_fallback: 1770/17341=10.2%; phase2_docred_full_s1: DR=0.1021\nConversely, SciERC's looser constraints leave more valid alternatives\nfor the model to redirect probability mass toward, enabling\nnear-complete DR elimination.\nThe DR reduction thus scales inversely with constraint tightness:\n45\\% on DocRED (tight) vs.\\ 94\\% on SciERC (loose).\n% DocRED: DR_reduction=45%; SciERC: DR_reduction=94%\nThe grammar-only configuration achieves marginally higher relation F1\n(8.31 vs.\\ 8.23); this 0.08\\,pp difference is not statistically\nsignificant (bootstrap $p = 0.14$) and likely reflects minor\ndistributional shifts from semantic logit masking.\n% grammar_only: R-F1=8.31; full_s1: R-F1=8.23; bootstrap p=0.14\nThis represents, to our knowledge, the first empirical characterization\nof how ontology constraint properties modulate decoding-time enforcement\neffectiveness; we develop this analysis further in\nSection~\\ref{sec:discussion}.\n",
+                "numLines": 230,
+                "startLine": 1,
+                "totalLines": 230
+              }
+            },
+            "sourceToolAssistantUUID": "3a42c4c5-5d96-4a8d-8ae1-0d6dfca59f90",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "bfccb30c-4907-4010-9f2d-48df2b595e72",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d"
+              }
+            }
+          ],
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add Entity F1 confidence interval to DocRED section",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T20:19:34.298Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll make the edits. I need to:\n\n1. Replace the sentence with \"and entity F1 from 58.15 to 59.37 (+1.22\\,pp).\" — remove it from the combined sentence and add a new standalone sentence after it with the bootstrap CI and comment lines."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfccb30c-4907-4010-9f2d-48df2b595e72",
+            "isSidechain": false,
+            "requestId": "req_011Cb35dYmffWPDQPnfC8sYw",
+            "type": "assistant",
+            "uuid": "a8df2f98-8382-46d9-91c2-a3796d9162a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PMTEfp1tdwteQWPaHqYaVN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4451,
+                "cache_read_input_tokens": 23154,
+                "output_tokens": 744,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4451,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 744,
+                    "cache_read_input_tokens": 23154,
+                    "cache_creation_input_tokens": 4451,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4451
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T20:19:44.883Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EJu8SNZkZNoBETTH3MN129",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+                "old_string": "Relation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations)\nand entity F1 from 58.15 to 59.37 (+1.22\\,pp).\n% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937\n% bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001",
+                "new_string": "Relation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations).\nEntity F1 also improves significantly, from 58.15 to 59.37 ($+$1.23\\,pp; bootstrap 95\\% CI [$+$0.94, $+$1.55]\\,pp, $p < 0.001$), driven entirely by the grammar layer's elimination of non-standard entity types (grammar-only Entity F1\\,=\\,59.38\\%, indistinguishable from full S1's 59.37\\%, $p = 0.66$).\n% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937\n% bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001\n% bootstrap: E-F1 delta=+1.23pp, CI=[+0.94,+1.55], p<0.001\n% grammar_only E-F1=59.38 vs full_s1 E-F1=59.37, bootstrap p=0.66"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8df2f98-8382-46d9-91c2-a3796d9162a8",
+            "isSidechain": false,
+            "requestId": "req_011Cb35dYmffWPDQPnfC8sYw",
+            "type": "assistant",
+            "uuid": "6d950b4d-a4fe-4a7a-ab70-1109f43dda1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PMTEfp1tdwteQWPaHqYaVN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4451,
+                "cache_read_input_tokens": 23154,
+                "output_tokens": 744,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4451,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 744,
+                    "cache_read_input_tokens": 23154,
+                    "cache_creation_input_tokens": 4451,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4451
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T20:19:44.909Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EJu8SNZkZNoBETTH3MN129",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d950b4d-a4fe-4a7a-ab70-1109f43dda1c",
+            "isSidechain": false,
+            "promptId": "eeba80a3-78fd-44b5-8e23-a81390702d42",
+            "type": "user",
+            "uuid": "55937aca-f017-4b56-beb9-2b357f600e1f",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+              "oldString": "Relation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations)\nand entity F1 from 58.15 to 59.37 (+1.22\\,pp).\n% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937\n% bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001",
+              "newString": "Relation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations).\nEntity F1 also improves significantly, from 58.15 to 59.37 ($+$1.23\\,pp; bootstrap 95\\% CI [$+$0.94, $+$1.55]\\,pp, $p < 0.001$), driven entirely by the grammar layer's elimination of non-standard entity types (grammar-only Entity F1\\,=\\,59.38\\%, indistinguishable from full S1's 59.37\\%, $p = 0.66$).\n% phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815\n% phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937\n% bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001\n% bootstrap: E-F1 delta=+1.23pp, CI=[+0.94,+1.55], p<0.001\n% grammar_only E-F1=59.38 vs full_s1 E-F1=59.37, bootstrap p=0.66",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 83,
+                  "oldLines": 11,
+                  "newStart": 83,
+                  "newLines": 13,
+                  "lines": [
+                    " (29.66\\%\\,$\\to$\\,0.03\\%).",
+                    " % phase2_docred_unconstrained: DR=0.1846, ET=0.0248, RV=0.2966",
+                    " % phase2_docred_full_s1: DR=0.1021, ET=0, RV=0.0003",
+                    "-Relation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations)",
+                    "-and entity F1 from 58.15 to 59.37 (+1.22\\,pp).",
+                    "+Relation F1 moves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81]\\,pp, $p < 0.001$, 10{,}000 iterations).",
+                    "+Entity F1 also improves significantly, from 58.15 to 59.37 ($+$1.23\\,pp; bootstrap 95\\% CI [$+$0.94, $+$1.55]\\,pp, $p < 0.001$), driven entirely by the grammar layer's elimination of non-standard entity types (grammar-only Entity F1\\,=\\,59.38\\%, indistinguishable from full S1's 59.37\\%, $p = 0.66$).",
+                    " % phase2_docred_unconstrained: R-F1=0.0774, E-F1=0.5815",
+                    " % phase2_docred_full_s1: R-F1=0.0823, E-F1=0.5937",
+                    " % bootstrap: delta=+0.50pp, CI=[+0.23,+0.81], p<0.001",
+                    "+% bootstrap: E-F1 delta=+1.23pp, CI=[+0.94,+1.55], p<0.001",
+                    "+% grammar_only E-F1=59.38 vs full_s1 E-F1=59.37, bootstrap p=0.66",
+                    " The relation F1 improvement is statistically significant, attributable",
+                    " to grammar-layer elimination of 5{,}189 out-of-vocabulary relation",
+                    " predictions that are counted as false positives under the all-valid-set"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "6d950b4d-a4fe-4a7a-ab70-1109f43dda1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T20:19:53.778Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。变更内容：\n\n- 原 Relation F1 句尾的 \"and entity F1 from 58.15 to 59.37 (+1.22\\,pp)\" 已删除，Relation F1 句改为句号结尾\n- 新增独立 Entity F1 句，包含 bootstrap 95% CI [+0.94, +1.55]pp、p<0.001，以及 grammar-only 归因分析（grammar-only E-F1=59.38% vs full S1 59.37%, p=0.66）\n- 新增两行 comment 追溯，与现有格式一致"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55937aca-f017-4b56-beb9-2b357f600e1f",
+            "isSidechain": false,
+            "requestId": "req_011Cb35eiMuW9Yce18pDAqZc",
+            "type": "assistant",
+            "uuid": "2a319ab8-8df7-4ca2-b253-f50107113aa5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Awrty574244WvyNR9xwThS",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 827,
+                "cache_read_input_tokens": 27605,
+                "output_tokens": 173,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 827,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 173,
+                    "cache_read_input_tokens": 27605,
+                    "cache_creation_input_tokens": 827,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 827
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "2a319ab8-8df7-4ca2-b253-f50107113aa5",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add Entity F1 confidence interval to DocRED section",
+                "sessionId": "149ffbee-2f43-456c-8c07-3d3d04daf39d"
+              }
+            }
+          ],
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-schema-semantic-constrained-ie-westd-16980-ssh-root-ssh-execut-copy-4.md"
+}

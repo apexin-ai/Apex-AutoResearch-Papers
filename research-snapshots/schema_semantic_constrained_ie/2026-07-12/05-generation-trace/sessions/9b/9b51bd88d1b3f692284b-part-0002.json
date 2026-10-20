@@ -1,0 +1,644 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9b51bd88d1b3f692284b",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-15T15:51:46.284Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uq2Et7KCmCntbSfX7jk76h",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/cf_fallback_code_diff_analysis.md",
+                "content": "# CF Fallback 代码 Diff 分析报告\n\n**任务**: 验证 Reviewer 关于 W1 CF fallback pilot (`DR 14.78% ≈ grammar_only 14.84%`) 的根因假设\n**生成时间**: 2026-05-15\n**服务器**: westd-16980 `/root/schema_semantic_constrained_ie/`\n**Pilot 实验**: `w1_cf_fallback_scierc_pilot` (Qwen3-8B × SciERC, 551 samples)\n\n---\n\n## 0. 关键前置事实\n\n### 0.1 项目不是 git 仓库\n\n```\n$ ls /root/schema_semantic_constrained_ie/.git\nls: cannot access '...': No such file or directory\n```\n\n无 `git log` / `git diff` 可用，所有对比基于 **保存的快照文件**。\n\n### 0.2 文件快照状态（用 md5sum 确认，2026-05-15 23:24）\n\n| 路径 | 大小 | mtime | md5 |\n|---|---:|---|---|\n| `compiler/type_mask_processor.py` | 15 666 B | 2026-05-15 23:24:33 | `e957f43206…ceb594` |\n| `compiler/type_mask_processor.py.bak` | 15 666 B | 2026-05-14 11:06:30 | `e957f43206…ceb594` *(同上)* |\n| `compiler/type_mask_processor_cf_fallback.py` | 20 195 B | 2026-05-15 23:24:33 | `82aea5ee5c…ab2237` |\n\n**关键事实**: 当前生产文件 `type_mask_processor.py` 与 `.bak`（CF fallback 引入之前的快照）**字节级别完全相同**。CF fallback 代码已被 `worker_code_revert_cf_fallback` (2026-05-15 15:22) 回退到 `.bak`，CF 版本被另存为 `type_mask_processor_cf_fallback.py`。\n\n### 0.3 Pilot 实际运行的代码版本\n\nPilot 运行时间窗：2026-05-15 14:07 (RUNNING) → 14:57 (DONE)，**早于 15:22 的回退**。故 pilot 实际跑的是 `type_mask_processor_cf_fallback.py` 的内容（490 行）。\n\n运行确证：`outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json` 含 `cf_registry_fallback_count: 763`，而该计数器仅存在于 CF fallback 版本（`.bak` 与当前 .py 都没有 `reset_fallback_stats` / `get_fallback_stats`）。\n\n下文所有 \"CF fallback 行号\" 均指 `type_mask_processor_cf_fallback.py`。\n\n---\n\n## 1. 代码 Diff（pilot 版本 vs 当前/.bak 基线）\n\n完整 unified diff (`diff -u type_mask_processor.py type_mask_processor_cf_fallback.py`)，重点段落：\n\n### 1.1 模块顶部：日志器（+2 行）\n\n```diff\n@@ L34-44 @@\n import re\n+import logging\n from dataclasses import dataclass, field\n ...\n from .ontology_compiler import ConstraintSpec\n+\n+logger = logging.getLogger(__name__)\n```\n\n### 1.2 类属性 + 类方法：全局计数器（+22 行，cf_fallback.py L188-211）\n\n```diff\n@@ class TypeConstraintProcessor @@\n+    grammar_first_fallback_count = 0\n+    cf_registry_fallback_count = 0\n+    total_mask_calls = 0\n+\n+    @classmethod\n+    def reset_fallback_stats(cls): ...\n+\n+    @classmethod\n+    def get_fallback_stats(cls):\n+        return {\n+            \"grammar_first_fallback_count\": ...,\n+            \"cf_registry_fallback_count\":   ...,\n+            \"total_mask_calls\":             ...,\n+            \"grammar_first_fallback_rate\":  ...,\n+            \"cf_registry_fallback_rate\":    ...,\n+        }\n```\n\n`run_constrained_extraction.py:691, 754` 调用这两个 classmethod 写出 `*_fallback_stats.json`。\n\n### 1.3 `__init__`：实例计数器（+2 行，cf_fallback.py L227-228）\n\n```diff\n         self._type_first_token, self._all_type_first_tokens = self._build_first_token_map()\n+        self._grammar_first_skip_count = 0\n+        self._cf_fallback_count = 0\n```\n\n### 1.4 `_mask_head_type`：CF 回退分支（**核心改动**，cf_fallback.py L312-337）\n\n```diff\n-        - If entity type known but NOT D/R-valid → use D/R constraint\n+    - If entity type known but NOT D/R-valid → force registered type\n+      (W1: registry consistency > DR compliance, prevents CF violations)\n \n         rel_type = self.state.current_relation_type\n         constraint = self.spec.get_constraint(rel_type) if rel_type else None\n         allowed_dr = constraint.valid_head_types() if constraint else None\n \n         head_text = self.state.current_head_text\n         if head_text:\n             actual_type = self.state.entity_registry.get_type(head_text)\n             if actual_type and actual_type in self._type_first_token:\n                 if allowed_dr is None or actual_type in allowed_dr:\n                     return self._apply_type_mask(logits, {actual_type})\n+                else:\n+                    # W1 registry-consistent fallback\n+                    self._cf_fallback_count += 1\n+                    TypeConstraintProcessor.cf_registry_fallback_count += 1\n+                    logger.debug(\"CF fallback (head): '%s' registered as '%s' not in dom(%s)\", ...)\n+                    return self._apply_type_mask(logits, {actual_type})  # <-- 强制注册类型\n \n-        if allowed_dr is not None:\n+        if allowed_dr is not None and allowed_dr:\n             return self._apply_type_mask(logits, allowed_dr)\n         return logits\n```\n\n### 1.5 `_mask_tail_type`：CF 回退分支（与 head 对称，cf_fallback.py L357-382）\n\n```diff\n         tail_text = self.state.current_tail_text\n         if tail_text:\n             actual_type = self.state.entity_registry.get_type(tail_text)\n             if actual_type and actual_type in self._type_first_token:\n                 if allowed_dr is None or actual_type in allowed_dr:\n                     return self._apply_type_mask(logits, {actual_type})\n+                else:\n+                    # W1 registry-consistent fallback: registered type conflicts\n+                    # with range(r, head_type). Force registered type to prevent CF violations.\n+                    self._cf_fallback_count += 1\n+                    TypeConstraintProcessor.cf_registry_fallback_count += 1\n+                    return self._apply_type_mask(logits, {actual_type})\n \n-        if allowed_dr is not None:\n+        if allowed_dr is not None and allowed_dr:\n             return self._apply_type_mask(logits, allowed_dr)\n         return logits\n```\n\n注意：`allowed_dr` 计算 **未变** — pair-based `valid_tail_types_for_head(head_type)` 仍是 normal path 默认（cf_fallback.py L353）。\n\n### 1.6 `_apply_type_mask`：Grammar-first 守卫（**核心改动**，cf_fallback.py L385-447）\n\n```diff\n+    # Grammar-First Invariant: semantic mask ⊆ grammar allowed set\n+    # When XGrammar marks grammar-invalid tokens with finite negative values (e.g., -1e10)\n+    # rather than -inf, and semantic masking sets all grammar-valid type tokens to -inf,\n+    # argmax selects a grammar-invalid token → XGrammar accept_token assertion failure.\n+    _GRAMMAR_MASK_THRESHOLD = -1e8\n+\n     def _apply_type_mask(self, logits, allowed_types):\n+        TypeConstraintProcessor.total_mask_calls += 1\n+\n+        if not allowed_types:\n+            return logits\n+\n         disallowed_first_tokens = [\n             tid for etype, tid in self._type_first_token.items()\n             if etype not in allowed_types\n         ]\n-        if disallowed_first_tokens:\n-            logits[disallowed_first_tokens] = float(\"-inf\")\n+        if not disallowed_first_tokens:\n+            return logits\n+\n+        # Verify at least one allowed type has a non-grammar-masked logit\n+        any_allowed_valid = any(\n+            logits[self._type_first_token[t]].item() > self._GRAMMAR_MASK_THRESHOLD\n+            for t in allowed_types\n+            if t in self._type_first_token\n+        )\n+        if not any_allowed_valid:\n+            self._grammar_first_skip_count += 1\n+            TypeConstraintProcessor.grammar_first_fallback_count += 1\n+            logger.warning(\"Grammar-first fallback triggered (skip_count=%d): semantic mask would eliminate all grammar-valid tokens\", ...)\n+            return logits          # <-- 完全放弃 semantic mask\n+\n+        logits[disallowed_first_tokens] = float(\"-inf\")\n         return logits\n```\n\n### 1.7 总修改量\n\n```\ndiff -u type_mask_processor.py type_mask_processor_cf_fallback.py\n→ +91 行（净增），200 行 diff 输出\n```\n\n---\n\n## 2. CF Fallback 执行流程图（文字描述）\n\n```\n每个 decoding step 进入 TypeConstraintProcessor.__call__:\n    │\n    ├─ PositionDetector.detect(generated_text, state)\n    │   ├─ 用 _RE_ENTITY 解析 entities 段，逐条 register(text, type) 到 entity_registry\n    │   ├─ 用 _RE_REL_TYPE_VAL / _RE_HEAD_TYPE_VAL / _RE_HEAD_TEXT_VAL / _RE_TAIL_TEXT_VAL\n    │   │   解析最后一个 relation 对象，更新 state.current_{relation_type, head_type,\n    │   │   head_text, tail_text}\n    │   └─ 用 last-100-chars regex 判定 FieldPosition\n    │\n    ├─ position == ENTITY_TYPE:\n    │       allowed_types = set(spec.entity_types)         # 全 6 种\n    │       → _apply_type_mask\n    │           ├─ total_mask_calls += 1\n    │           ├─ disallowed_first_tokens = []            # 没有 type 被排除\n    │           └─ 立即 return logits                       # ★ early return, 不计入任何 fallback\n    │\n    ├─ position == RELATION_HEAD_TYPE:\n    │       rel = state.current_relation_type\n    │       allowed_dr = constraint.valid_head_types()     # 不依赖 head_type，是 union\n    │       head_text = state.current_head_text            # 来自已写出的 \"head\":\"…\"\n    │       actual_type = entity_registry.get_type(head_text)\n    │       ┌────────────────────────────────────────────────┐\n    │       │  分支 A: actual_type ∈ allowed_dr              │\n    │       │     → _apply_type_mask({actual_type})  (强制 1 种) │\n    │       │                                                │\n    │       │  分支 B: actual_type ∉ allowed_dr  ★CF 回退★  │\n    │       │     cf_registry_fallback_count += 1            │\n    │       │     → _apply_type_mask({actual_type})          │\n    │       │     ※ 强制使用 registry 类型，覆盖 D/R 约束       │\n    │       │     ※ 这一次 mask 一定产生 DR 违规                │\n    │       │                                                │\n    │       │  分支 C: head_text 未注册 / 缺失                 │\n    │       │     → _apply_type_mask(allowed_dr)             │\n    │       └────────────────────────────────────────────────┘\n    │\n    ├─ position == RELATION_TAIL_TYPE:\n    │       与 HEAD 完全对称，唯一差别：\n    │       allowed_dr = valid_tail_types_for_head(head_type)   # ★ pair-based, 用 head_type\n    │       若 head_type 为 None (state 还没解析到) → 退化为 valid_tail_types() (union)\n    │\n    └─ _apply_type_mask(logits, allowed_types):\n          ├─ total_mask_calls += 1\n          ├─ if not allowed_types: return                        # ★ 空集守卫\n          ├─ disallowed = {first_tokens of (entity_types − allowed)}\n          ├─ if not disallowed: return                           # ★ 全允许时短路\n          │\n          ├─★ Grammar-first 守卫:\n          │      any_allowed_valid = ∃ t ∈ allowed_types: logits[first_token[t]] > -1e8\n          │      if not any_allowed_valid:\n          │          grammar_first_fallback_count += 1\n          │          return logits                               # ★ 放弃 semantic\n          │\n          └─ logits[disallowed] = -inf                            # 正常生效\n```\n\n**Pilot 实测（17 024 次 mask 调用，551 SciERC 样本）**:\n\n| 通道 | 次数 | 占比 | 实际语义效果 |\n|---|---:|---:|---|\n| Normal mask（含 ENTITY_TYPE 全允许短路） | 10 024 | 58.85 % | 标记 disallowed first-token = -∞ |\n| Grammar-first 跳过 | 6 237 | 36.64 % | **放弃 semantic mask，仅 grammar 控制** |\n| CF registry 覆盖 | 763 | 4.48 % | **强制 registry 类型，覆盖 D/R 约束** |\n\n日志直接证据（`/root/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log`）：`grep -c \"Grammar-first fallback\" → 6237`，等于 stats JSON 里的 count。\n\n---\n\n## 3. Reviewer 假设逐条验证\n\nReviewer 的三种候选行为：\n- **(A)** 用 registry type 覆盖 constraint → semantic masking 正常但基于不同 type\n- **(B)** 放弃 registry type → head_type 未知 → pair-based masking 退化为 full range\n- **(C)** 跳过 semantic masking entirely → 等同 grammar-only\n\n### 3.1 (A) **确认成立**（路径明确，频次 4.48 %）\n\n- 代码证据: `type_mask_processor_cf_fallback.py:312-337`（head）、`:357-382`（tail）`else` 分支显式 `return self._apply_type_mask(logits, {actual_type})`。\n- 运行证据: `cf_registry_fallback_count = 763 / 17 024 = 4.48 %`。\n- 语义后果: 每一次都把 `state.current_relation_type` 的 D/R 约束 **覆盖** 为 `entity_registry` 里的类型，产生 763 次 token-级 DR 违规决策（折算到 triple 级数量会被多 token 类型名重复计数 + 同一 mention 多次出现稀释，可能落在 100 ~ 200 triples 的量级，但确定 > 0）。\n\n### 3.2 (B) **不成立**\n\n- `state.current_head_type` 来自 `_RE_HEAD_TYPE_VAL = r'\"head_type\"\\s*:\\s*\"([^\"]+)\"'`，**只依赖已生成的 JSON 文本**，与 entity_registry **完全无关**。\n- 在 RELATION_TAIL_TYPE 位置，`head_type` 字段已被模型写完闭合（紧邻 tail_type 之前），regex 一定匹配到 → `state.current_head_type` 一定非空 → `valid_tail_types_for_head(head_type)` 一定被调用，**没有\"退化为 union\"的代码路径**。\n- 即使 `head_type` 解析失败（理论上的 None 分支），代码也只是退化为 `valid_tail_types()`（仍是 D/R 约束的 union），不是\"full range / no mask\"。\n\n### 3.3 (C) **确认成立**（频次 36.64 %）\n\n- 代码证据: `_apply_type_mask` 的 grammar-first 守卫（`type_mask_processor_cf_fallback.py:432-441`）在 `allowed_types` 全部 grammar-masked 时直接 `return logits`，**完全放弃 semantic mask**。\n- 运行证据: `grammar_first_fallback_count = 6 237 / 17 024 = 36.64 %`，日志里有 6 237 行 `Grammar-first fallback triggered` 与该计数一致。\n- 语义后果: 在被跳过的 36.64 % token-step 上，TypeConstraintProcessor 等价于一个 no-op，**这一步退化为 grammar_only**。\n\n### 3.4 综合判定\n\nReviewer 推断的核心结论 — **\"semantic 层虽被调用但无法获取 head entity type → pair-based tail masking 退化\"** — 是 **部分确认 + 部分修正**:\n\n- ✅ **现象正确**: semantic 层在 41.12 % (= 36.64 % + 4.48 %) 的 mask 调用上 **没有实际约束效果**，叠加 ENTITY_TYPE 位置的全允许短路（即便归在\"Normal\"通道里也是 no-op），**真正切断 token 的 mask 调用占比远低于\"100 % 调用率\"暗示的数值**。\n- ❌ **机制误判**: 失效不来自 `head_type` 解析不到，而来自:\n    1. (C) Grammar-first 守卫主动放弃 mask — 因为多 token 类型名的 token 2..N 上，所有 entity-type first-token 都已被 grammar 屏蔽，`any_allowed_valid=False` → 跳过。这条 path 大部分情况是 **无害的**（首 token 上的 mask 已经把类型锁死了，后续 token 由 grammar 强制续写），但它把\"semantic mask 调用次数\"打了 36.64 % 的水分。\n    2. (A) CF registry 覆盖 — 主动放弃 D/R，去保 CF 一致性。**这条 path 每一次都是有害的**: 把\"可能违反 CF\"的 token 改成\"必然违反 D/R\"的 token。\n\n**为什么 DR 14.78 % ≈ grammar_only 14.84 %**: \n- Channel (A) 直接制造 DR 违规\n- Channel (C) 放弃 DR 防护\n- 剩下的 58.85 % \"Normal\" 通道里又有相当一部分是 ENTITY_TYPE 短路 (no-op) + multi-token 类型首 token 后的 trivial 应用，能真正影响 head/tail 选择的\"硬约束\"调用占比远低于 58.85 %\n- 三者叠加 → 端到端等价于 grammar_only\n\n证据链补充: 已有 `artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_pilot_detailed_analysis.md` 的 Section 5.2 已独立得出相同结论 — \"When the semantic mask is most restrictive, the grammar-first guard fires most often.\"\n\n---\n\n## 4. 论文叙事建议\n\n### 4.1 推荐: **\"Shared Violation Budget / Trade-off\"** 框架\n\n**不推荐** 用 \"enabling mechanism\" / \"CF fallback enables semantic enforcement\"：CF fallback 在代码层面是 **替换**（用 registry 类型覆盖 D/R）而非 **增强**（联合两种约束）。任何把它包装成\"enabling\"的措辞都站不住脚 — Reviewer 一旦复盘 diff (4.5 % CF 覆盖 + 36.6 % grammar 跳过)，会发现叙事与代码不一致。\n\n**推荐叙事 (3 个 load-bearing claim, 与现有 detailed_analysis.md 一致)**:\n\n1. **Mask-invocation count is NOT enforcement strength** \n   - 数据: 17 024 次 mask 调用中只有 58.85 % 通过 grammar-first 守卫，其中再扣除 CF 覆盖的 4.48 %，\"effective semantic enforcement\" 上界 ≈ 58.85 %（实际更低，因为 ENTITY_TYPE no-op 和 multi-token 续写 token 不构成硬约束）。\n   - 论文建议同时报告 *coverage*（mask processor 被挂上的 token 比例）和 *effective coverage*（实际有 disallowed-token 被置 -∞ 且决定 argmax 的比例）。\n\n2. **CF 和 DR 共享一个违规预算**\n   - Baseline (full_s1): DR 0.93 % + CF 9.90 % = 10.83 %\n   - CF Fallback pilot: DR 14.78 % + CF 0.04 % = 14.82 %\n   - 消 CF (9.86 pp ↓) 的代价是 + DR (13.85 pp ↑)，总预算反而上升 +3.99 pp。\n   - 直接证据: hierarchical fallback（先 CF 后 DR）无法同时降低两者；需要 **joint mask**（CF ∧ D/R 的交集）才能真正减小总违规预算。\n\n3. **Tightness 是 fallback 风险的预测因子**\n   - 表 2 (`detailed_analysis.md` §2) 显示 Compare (tightness 0.528) ΔDR = +36.62 pp，远高于 Used-for (tightness 0.028) ΔDR = +0.25 pp。Spearman ≈ 1.0。\n   - 高 tightness 关系下，`valid_tail_types_for_head` 集合很小，越容易触发 grammar-first 跳过和 CF 覆盖。\n   - 论文 implication: **联合掩码 / 回溯解码 / 训练时对齐** 是密集约束 schema 的可行路线；纯前向 fallback decoding 不行。\n\n### 4.2 在 paper 里如何措辞\n\n错误措辞: \"CF fallback enables semantic enforcement by …\"\n正确措辞: \"We expose a hierarchical fallback policy (CF-priority → D/R-priority) and quantify its limitation: silencing CF violations re-emerges as D/R violations because the two constraint surfaces share a single violation budget. The 4.5 % CF-override and 36.6 % grammar-first-skip rates measured on Qwen3-8B × SciERC are direct mechanism-level evidence.\"\n\n把这次 pilot 写成 **negative result motivating joint masking**，比试图把它包装成 positive 更稳，也更对得起 reviewer 的预期。\n\n---\n\n## 5. 附录 A — 文件与时间线\n\n```\n2026-05-14 11:06  type_mask_processor.py.bak             # baseline 快照\n2026-05-15 05:00  type_mask_processor.py (Birth)\n2026-05-15 09:59  worker_code_w1_cf_registry_consistent_fallback   # CF fallback 实现\n2026-05-15 13:34  worker_code_cf_fallback_logging                  # 加日志/计数器\n2026-05-15 14:07  pilot RUNNING (CF fallback 生效)\n2026-05-15 14:57  pilot DONE → fallback_stats.json\n2026-05-15 15:22  worker_code_revert_cf_fallback  # 拷贝 .bak 覆盖 .py\n2026-05-15 15:24  type_mask_processor.py mtime (revert 完成，与 .bak 字节同)\n2026-05-15 15:42  本次分析任务启动\n```\n\n## 6. 附录 B — 关键 Stats（来自 outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json）\n\n```json\n{\n  \"grammar_first_fallback_count\": 6237,\n  \"cf_registry_fallback_count\":   763,\n  \"total_mask_calls\":             17024,\n  \"grammar_first_fallback_rate\":  0.366365,\n  \"cf_registry_fallback_rate\":    0.044819\n}\n```\n\n`grep -c \"Grammar-first fallback\" /root/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log → 6237` ✓ 一致\n`grep -c \"CF fallback\" ... → 0`（logger.debug 级别未启用，仅有计数器证据；建议未来把 CF 路径升级到 INFO 以便日志可追溯）。\n\n## 7. 附录 C — 建议下一步代码改动（若决定继续 W1）\n\n1. **CF fallback 日志升级**: `logger.debug` → `logger.info`，并加 `cf_break_reason` 字段，让每一次覆盖都能在 jsonl 里追溯。\n2. **Per-relation 计数器**: 把 `grammar_first_fallback_by_relation: dict[str,int]` 与 `cf_registry_fallback_by_relation: dict[str,int]` 加到类属性里，~10 LOC，可以让 detailed_analysis.md §3 的\"per-relation 调用归属\"从估算变成直接读取。\n3. **Per-doc breakdown**: 在 jsonl 输出里加 `{effective, grammar_override, cf_override}` 字段，便于离线复盘单文档。\n4. **不必恢复**: 既然 W1 已被判负，主线 `type_mask_processor.py` 不需要再切回 CF fallback；但 `_cf_fallback.py` 应保留作为 reviewer 复现实验时的副本。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3150e32-ff0c-4197-be77-2e2cfd1386e2",
+            "isSidechain": false,
+            "requestId": "req_011Cb4csBQYGrgWXaGwtgTqj",
+            "type": "assistant",
+            "uuid": "fb6b8a9f-7654-4049-9eb0-551e03de5905",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "1d531890-a0a5-46ac-b310-689524919a70",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_014hRQQVzofhjF3Ya4tPYUw7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 380,
+                "cache_read_input_tokens": 131709,
+                "output_tokens": 9024,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 380,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 9024,
+                    "cache_read_input_tokens": 131709,
+                    "cache_creation_input_tokens": 380,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 380
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-15T15:51:46.318Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uq2Et7KCmCntbSfX7jk76h",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/cf_fallback_code_diff_analysis.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb6b8a9f-7654-4049-9eb0-551e03de5905",
+            "isSidechain": false,
+            "promptId": "bb08e4bd-1a9e-4b6c-8581-3727c4373d13",
+            "type": "user",
+            "uuid": "0a9b65c3-d6e5-4554-9255-18d52df26e73",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/cf_fallback_code_diff_analysis.md",
+              "content": "# CF Fallback 代码 Diff 分析报告\n\n**任务**: 验证 Reviewer 关于 W1 CF fallback pilot (`DR 14.78% ≈ grammar_only 14.84%`) 的根因假设\n**生成时间**: 2026-05-15\n**服务器**: westd-16980 `/root/schema_semantic_constrained_ie/`\n**Pilot 实验**: `w1_cf_fallback_scierc_pilot` (Qwen3-8B × SciERC, 551 samples)\n\n---\n\n## 0. 关键前置事实\n\n### 0.1 项目不是 git 仓库\n\n```\n$ ls /root/schema_semantic_constrained_ie/.git\nls: cannot access '...': No such file or directory\n```\n\n无 `git log` / `git diff` 可用，所有对比基于 **保存的快照文件**。\n\n### 0.2 文件快照状态（用 md5sum 确认，2026-05-15 23:24）\n\n| 路径 | 大小 | mtime | md5 |\n|---|---:|---|---|\n| `compiler/type_mask_processor.py` | 15 666 B | 2026-05-15 23:24:33 | `e957f43206…ceb594` |\n| `compiler/type_mask_processor.py.bak` | 15 666 B | 2026-05-14 11:06:30 | `e957f43206…ceb594` *(同上)* |\n| `compiler/type_mask_processor_cf_fallback.py` | 20 195 B | 2026-05-15 23:24:33 | `82aea5ee5c…ab2237` |\n\n**关键事实**: 当前生产文件 `type_mask_processor.py` 与 `.bak`（CF fallback 引入之前的快照）**字节级别完全相同**。CF fallback 代码已被 `worker_code_revert_cf_fallback` (2026-05-15 15:22) 回退到 `.bak`，CF 版本被另存为 `type_mask_processor_cf_fallback.py`。\n\n### 0.3 Pilot 实际运行的代码版本\n\nPilot 运行时间窗：2026-05-15 14:07 (RUNNING) → 14:57 (DONE)，**早于 15:22 的回退**。故 pilot 实际跑的是 `type_mask_processor_cf_fallback.py` 的内容（490 行）。\n\n运行确证：`outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json` 含 `cf_registry_fallback_count: 763`，而该计数器仅存在于 CF fallback 版本（`.bak` 与当前 .py 都没有 `reset_fallback_stats` / `get_fallback_stats`）。\n\n下文所有 \"CF fallback 行号\" 均指 `type_mask_processor_cf_fallback.py`。\n\n---\n\n## 1. 代码 Diff（pilot 版本 vs 当前/.bak 基线）\n\n完整 unified diff (`diff -u type_mask_processor.py type_mask_processor_cf_fallback.py`)，重点段落：\n\n### 1.1 模块顶部：日志器（+2 行）\n\n```diff\n@@ L34-44 @@\n import re\n+import logging\n from dataclasses import dataclass, field\n ...\n from .ontology_compiler import ConstraintSpec\n+\n+logger = logging.getLogger(__name__)\n```\n\n### 1.2 类属性 + 类方法：全局计数器（+22 行，cf_fallback.py L188-211）\n\n```diff\n@@ class TypeConstraintProcessor @@\n+    grammar_first_fallback_count = 0\n+    cf_registry_fallback_count = 0\n+    total_mask_calls = 0\n+\n+    @classmethod\n+    def reset_fallback_stats(cls): ...\n+\n+    @classmethod\n+    def get_fallback_stats(cls):\n+        return {\n+            \"grammar_first_fallback_count\": ...,\n+            \"cf_registry_fallback_count\":   ...,\n+            \"total_mask_calls\":             ...,\n+            \"grammar_first_fallback_rate\":  ...,\n+            \"cf_registry_fallback_rate\":    ...,\n+        }\n```\n\n`run_constrained_extraction.py:691, 754` 调用这两个 classmethod 写出 `*_fallback_stats.json`。\n\n### 1.3 `__init__`：实例计数器（+2 行，cf_fallback.py L227-228）\n\n```diff\n         self._type_first_token, self._all_type_first_tokens = self._build_first_token_map()\n+        self._grammar_first_skip_count = 0\n+        self._cf_fallback_count = 0\n```\n\n### 1.4 `_mask_head_type`：CF 回退分支（**核心改动**，cf_fallback.py L312-337）\n\n```diff\n-        - If entity type known but NOT D/R-valid → use D/R constraint\n+    - If entity type known but NOT D/R-valid → force registered type\n+      (W1: registry consistency > DR compliance, prevents CF violations)\n \n         rel_type = self.state.current_relation_type\n         constraint = self.spec.get_constraint(rel_type) if rel_type else None\n         allowed_dr = constraint.valid_head_types() if constraint else None\n \n         head_text = self.state.current_head_text\n         if head_text:\n             actual_type = self.state.entity_registry.get_type(head_text)\n             if actual_type and actual_type in self._type_first_token:\n                 if allowed_dr is None or actual_type in allowed_dr:\n                     return self._apply_type_mask(logits, {actual_type})\n+                else:\n+                    # W1 registry-consistent fallback\n+                    self._cf_fallback_count += 1\n+                    TypeConstraintProcessor.cf_registry_fallback_count += 1\n+                    logger.debug(\"CF fallback (head): '%s' registered as '%s' not in dom(%s)\", ...)\n+                    return self._apply_type_mask(logits, {actual_type})  # <-- 强制注册类型\n \n-        if allowed_dr is not None:\n+        if allowed_dr is not None and allowed_dr:\n             return self._apply_type_mask(logits, allowed_dr)\n         return logits\n```\n\n### 1.5 `_mask_tail_type`：CF 回退分支（与 head 对称，cf_fallback.py L357-382）\n\n```diff\n         tail_text = self.state.current_tail_text\n         if tail_text:\n             actual_type = self.state.entity_registry.get_type(tail_text)\n             if actual_type and actual_type in self._type_first_token:\n                 if allowed_dr is None or actual_type in allowed_dr:\n                     return self._apply_type_mask(logits, {actual_type})\n+                else:\n+                    # W1 registry-consistent fallback: registered type conflicts\n+                    # with range(r, head_type). Force registered type to prevent CF violations.\n+                    self._cf_fallback_count += 1\n+                    TypeConstraintProcessor.cf_registry_fallback_count += 1\n+                    return self._apply_type_mask(logits, {actual_type})\n \n-        if allowed_dr is not None:\n+        if allowed_dr is not None and allowed_dr:\n             return self._apply_type_mask(logits, allowed_dr)\n         return logits\n```\n\n注意：`allowed_dr` 计算 **未变** — pair-based `valid_tail_types_for_head(head_type)` 仍是 normal path 默认（cf_fallback.py L353）。\n\n### 1.6 `_apply_type_mask`：Grammar-first 守卫（**核心改动**，cf_fallback.py L385-447）\n\n```diff\n+    # Grammar-First Invariant: semantic mask ⊆ grammar allowed set\n+    # When XGrammar marks grammar-invalid tokens with finite negative values (e.g., -1e10)\n+    # rather than -inf, and semantic masking sets all grammar-valid type tokens to -inf,\n+    # argmax selects a grammar-invalid token → XGrammar accept_token assertion failure.\n+    _GRAMMAR_MASK_THRESHOLD = -1e8\n+\n     def _apply_type_mask(self, logits, allowed_types):\n+        TypeConstraintProcessor.total_mask_calls += 1\n+\n+        if not allowed_types:\n+            return logits\n+\n         disallowed_first_tokens = [\n             tid for etype, tid in self._type_first_token.items()\n             if etype not in allowed_types\n         ]\n-        if disallowed_first_tokens:\n-            logits[disallowed_first_tokens] = float(\"-inf\")\n+        if not disallowed_first_tokens:\n+            return logits\n+\n+        # Verify at least one allowed type has a non-grammar-masked logit\n+        any_allowed_valid = any(\n+            logits[self._type_first_token[t]].item() > self._GRAMMAR_MASK_THRESHOLD\n+            for t in allowed_types\n+            if t in self._type_first_token\n+        )\n+        if not any_allowed_valid:\n+            self._grammar_first_skip_count += 1\n+            TypeConstraintProcessor.grammar_first_fallback_count += 1\n+            logger.warning(\"Grammar-first fallback triggered (skip_count=%d): semantic mask would eliminate all grammar-valid tokens\", ...)\n+            return logits          # <-- 完全放弃 semantic mask\n+\n+        logits[disallowed_first_tokens] = float(\"-inf\")\n         return logits\n```\n\n### 1.7 总修改量\n\n```\ndiff -u type_mask_processor.py type_mask_processor_cf_fallback.py\n→ +91 行（净增），200 行 diff 输出\n```\n\n---\n\n## 2. CF Fallback 执行流程图（文字描述）\n\n```\n每个 decoding step 进入 TypeConstraintProcessor.__call__:\n    │\n    ├─ PositionDetector.detect(generated_text, state)\n    │   ├─ 用 _RE_ENTITY 解析 entities 段，逐条 register(text, type) 到 entity_registry\n    │   ├─ 用 _RE_REL_TYPE_VAL / _RE_HEAD_TYPE_VAL / _RE_HEAD_TEXT_VAL / _RE_TAIL_TEXT_VAL\n    │   │   解析最后一个 relation 对象，更新 state.current_{relation_type, head_type,\n    │   │   head_text, tail_text}\n    │   └─ 用 last-100-chars regex 判定 FieldPosition\n    │\n    ├─ position == ENTITY_TYPE:\n    │       allowed_types = set(spec.entity_types)         # 全 6 种\n    │       → _apply_type_mask\n    │           ├─ total_mask_calls += 1\n    │           ├─ disallowed_first_tokens = []            # 没有 type 被排除\n    │           └─ 立即 return logits                       # ★ early return, 不计入任何 fallback\n    │\n    ├─ position == RELATION_HEAD_TYPE:\n    │       rel = state.current_relation_type\n    │       allowed_dr = constraint.valid_head_types()     # 不依赖 head_type，是 union\n    │       head_text = state.current_head_text            # 来自已写出的 \"head\":\"…\"\n    │       actual_type = entity_registry.get_type(head_text)\n    │       ┌────────────────────────────────────────────────┐\n    │       │  分支 A: actual_type ∈ allowed_dr              │\n    │       │     → _apply_type_mask({actual_type})  (强制 1 种) │\n    │       │                                                │\n    │       │  分支 B: actual_type ∉ allowed_dr  ★CF 回退★  │\n    │       │     cf_registry_fallback_count += 1            │\n    │       │     → _apply_type_mask({actual_type})          │\n    │       │     ※ 强制使用 registry 类型，覆盖 D/R 约束       │\n    │       │     ※ 这一次 mask 一定产生 DR 违规                │\n    │       │                                                │\n    │       │  分支 C: head_text 未注册 / 缺失                 │\n    │       │     → _apply_type_mask(allowed_dr)             │\n    │       └────────────────────────────────────────────────┘\n    │\n    ├─ position == RELATION_TAIL_TYPE:\n    │       与 HEAD 完全对称，唯一差别：\n    │       allowed_dr = valid_tail_types_for_head(head_type)   # ★ pair-based, 用 head_type\n    │       若 head_type 为 None (state 还没解析到) → 退化为 valid_tail_types() (union)\n    │\n    └─ _apply_type_mask(logits, allowed_types):\n          ├─ total_mask_calls += 1\n          ├─ if not allowed_types: return                        # ★ 空集守卫\n          ├─ disallowed = {first_tokens of (entity_types − allowed)}\n          ├─ if not disallowed: return                           # ★ 全允许时短路\n          │\n          ├─★ Grammar-first 守卫:\n          │      any_allowed_valid = ∃ t ∈ allowed_types: logits[first_token[t]] > -1e8\n          │      if not any_allowed_valid:\n          │          grammar_first_fallback_count += 1\n          │          return logits                               # ★ 放弃 semantic\n          │\n          └─ logits[disallowed] = -inf                            # 正常生效\n```\n\n**Pilot 实测（17 024 次 mask 调用，551 SciERC 样本）**:\n\n| 通道 | 次数 | 占比 | 实际语义效果 |\n|---|---:|---:|---|\n| Normal mask（含 ENTITY_TYPE 全允许短路） | 10 024 | 58.85 % | 标记 disallowed first-token = -∞ |\n| Grammar-first 跳过 | 6 237 | 36.64 % | **放弃 semantic mask，仅 grammar 控制** |\n| CF registry 覆盖 | 763 | 4.48 % | **强制 registry 类型，覆盖 D/R 约束** |\n\n日志直接证据（`/root/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log`）：`grep -c \"Grammar-first fallback\" → 6237`，等于 stats JSON 里的 count。\n\n---\n\n## 3. Reviewer 假设逐条验证\n\nReviewer 的三种候选行为：\n- **(A)** 用 registry type 覆盖 constraint → semantic masking 正常但基于不同 type\n- **(B)** 放弃 registry type → head_type 未知 → pair-based masking 退化为 full range\n- **(C)** 跳过 semantic masking entirely → 等同 grammar-only\n\n### 3.1 (A) **确认成立**（路径明确，频次 4.48 %）\n\n- 代码证据: `type_mask_processor_cf_fallback.py:312-337`（head）、`:357-382`（tail）`else` 分支显式 `return self._apply_type_mask(logits, {actual_type})`。\n- 运行证据: `cf_registry_fallback_count = 763 / 17 024 = 4.48 %`。\n- 语义后果: 每一次都把 `state.current_relation_type` 的 D/R 约束 **覆盖** 为 `entity_registry` 里的类型，产生 763 次 token-级 DR 违规决策（折算到 triple 级数量会被多 token 类型名重复计数 + 同一 mention 多次出现稀释，可能落在 100 ~ 200 triples 的量级，但确定 > 0）。\n\n### 3.2 (B) **不成立**\n\n- `state.current_head_type` 来自 `_RE_HEAD_TYPE_VAL = r'\"head_type\"\\s*:\\s*\"([^\"]+)\"'`，**只依赖已生成的 JSON 文本**，与 entity_registry **完全无关**。\n- 在 RELATION_TAIL_TYPE 位置，`head_type` 字段已被模型写完闭合（紧邻 tail_type 之前），regex 一定匹配到 → `state.current_head_type` 一定非空 → `valid_tail_types_for_head(head_type)` 一定被调用，**没有\"退化为 union\"的代码路径**。\n- 即使 `head_type` 解析失败（理论上的 None 分支），代码也只是退化为 `valid_tail_types()`（仍是 D/R 约束的 union），不是\"full range / no mask\"。\n\n### 3.3 (C) **确认成立**（频次 36.64 %）\n\n- 代码证据: `_apply_type_mask` 的 grammar-first 守卫（`type_mask_processor_cf_fallback.py:432-441`）在 `allowed_types` 全部 grammar-masked 时直接 `return logits`，**完全放弃 semantic mask**。\n- 运行证据: `grammar_first_fallback_count = 6 237 / 17 024 = 36.64 %`，日志里有 6 237 行 `Grammar-first fallback triggered` 与该计数一致。\n- 语义后果: 在被跳过的 36.64 % token-step 上，TypeConstraintProcessor 等价于一个 no-op，**这一步退化为 grammar_only**。\n\n### 3.4 综合判定\n\nReviewer 推断的核心结论 — **\"semantic 层虽被调用但无法获取 head entity type → pair-based tail masking 退化\"** — 是 **部分确认 + 部分修正**:\n\n- ✅ **现象正确**: semantic 层在 41.12 % (= 36.64 % + 4.48 %) 的 mask 调用上 **没有实际约束效果**，叠加 ENTITY_TYPE 位置的全允许短路（即便归在\"Normal\"通道里也是 no-op），**真正切断 token 的 mask 调用占比远低于\"100 % 调用率\"暗示的数值**。\n- ❌ **机制误判**: 失效不来自 `head_type` 解析不到，而来自:\n    1. (C) Grammar-first 守卫主动放弃 mask — 因为多 token 类型名的 token 2..N 上，所有 entity-type first-token 都已被 grammar 屏蔽，`any_allowed_valid=False` → 跳过。这条 path 大部分情况是 **无害的**（首 token 上的 mask 已经把类型锁死了，后续 token 由 grammar 强制续写），但它把\"semantic mask 调用次数\"打了 36.64 % 的水分。\n    2. (A) CF registry 覆盖 — 主动放弃 D/R，去保 CF 一致性。**这条 path 每一次都是有害的**: 把\"可能违反 CF\"的 token 改成\"必然违反 D/R\"的 token。\n\n**为什么 DR 14.78 % ≈ grammar_only 14.84 %**: \n- Channel (A) 直接制造 DR 违规\n- Channel (C) 放弃 DR 防护\n- 剩下的 58.85 % \"Normal\" 通道里又有相当一部分是 ENTITY_TYPE 短路 (no-op) + multi-token 类型首 token 后的 trivial 应用，能真正影响 head/tail 选择的\"硬约束\"调用占比远低于 58.85 %\n- 三者叠加 → 端到端等价于 grammar_only\n\n证据链补充: 已有 `artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_pilot_detailed_analysis.md` 的 Section 5.2 已独立得出相同结论 — \"When the semantic mask is most restrictive, the grammar-first guard fires most often.\"\n\n---\n\n## 4. 论文叙事建议\n\n### 4.1 推荐: **\"Shared Violation Budget / Trade-off\"** 框架\n\n**不推荐** 用 \"enabling mechanism\" / \"CF fallback enables semantic enforcement\"：CF fallback 在代码层面是 **替换**（用 registry 类型覆盖 D/R）而非 **增强**（联合两种约束）。任何把它包装成\"enabling\"的措辞都站不住脚 — Reviewer 一旦复盘 diff (4.5 % CF 覆盖 + 36.6 % grammar 跳过)，会发现叙事与代码不一致。\n\n**推荐叙事 (3 个 load-bearing claim, 与现有 detailed_analysis.md 一致)**:\n\n1. **Mask-invocation count is NOT enforcement strength** \n   - 数据: 17 024 次 mask 调用中只有 58.85 % 通过 grammar-first 守卫，其中再扣除 CF 覆盖的 4.48 %，\"effective semantic enforcement\" 上界 ≈ 58.85 %（实际更低，因为 ENTITY_TYPE no-op 和 multi-token 续写 token 不构成硬约束）。\n   - 论文建议同时报告 *coverage*（mask processor 被挂上的 token 比例）和 *effective coverage*（实际有 disallowed-token 被置 -∞ 且决定 argmax 的比例）。\n\n2. **CF 和 DR 共享一个违规预算**\n   - Baseline (full_s1): DR 0.93 % + CF 9.90 % = 10.83 %\n   - CF Fallback pilot: DR 14.78 % + CF 0.04 % = 14.82 %\n   - 消 CF (9.86 pp ↓) 的代价是 + DR (13.85 pp ↑)，总预算反而上升 +3.99 pp。\n   - 直接证据: hierarchical fallback（先 CF 后 DR）无法同时降低两者；需要 **joint mask**（CF ∧ D/R 的交集）才能真正减小总违规预算。\n\n3. **Tightness 是 fallback 风险的预测因子**\n   - 表 2 (`detailed_analysis.md` §2) 显示 Compare (tightness 0.528) ΔDR = +36.62 pp，远高于 Used-for (tightness 0.028) ΔDR = +0.25 pp。Spearman ≈ 1.0。\n   - 高 tightness 关系下，`valid_tail_types_for_head` 集合很小，越容易触发 grammar-first 跳过和 CF 覆盖。\n   - 论文 implication: **联合掩码 / 回溯解码 / 训练时对齐** 是密集约束 schema 的可行路线；纯前向 fallback decoding 不行。\n\n### 4.2 在 paper 里如何措辞\n\n错误措辞: \"CF fallback enables semantic enforcement by …\"\n正确措辞: \"We expose a hierarchical fallback policy (CF-priority → D/R-priority) and quantify its limitation: silencing CF violations re-emerges as D/R violations because the two constraint surfaces share a single violation budget. The 4.5 % CF-override and 36.6 % grammar-first-skip rates measured on Qwen3-8B × SciERC are direct mechanism-level evidence.\"\n\n把这次 pilot 写成 **negative result motivating joint masking**，比试图把它包装成 positive 更稳，也更对得起 reviewer 的预期。\n\n---\n\n## 5. 附录 A — 文件与时间线\n\n```\n2026-05-14 11:06  type_mask_processor.py.bak             # baseline 快照\n2026-05-15 05:00  type_mask_processor.py (Birth)\n2026-05-15 09:59  worker_code_w1_cf_registry_consistent_fallback   # CF fallback 实现\n2026-05-15 13:34  worker_code_cf_fallback_logging                  # 加日志/计数器\n2026-05-15 14:07  pilot RUNNING (CF fallback 生效)\n2026-05-15 14:57  pilot DONE → fallback_stats.json\n2026-05-15 15:22  worker_code_revert_cf_fallback  # 拷贝 .bak 覆盖 .py\n2026-05-15 15:24  type_mask_processor.py mtime (revert 完成，与 .bak 字节同)\n2026-05-15 15:42  本次分析任务启动\n```\n\n## 6. 附录 B — 关键 Stats（来自 outputs/w1_cf_fallback_scierc_pilot_fallback_stats.json）\n\n```json\n{\n  \"grammar_first_fallback_count\": 6237,\n  \"cf_registry_fallback_count\":   763,\n  \"total_mask_calls\":             17024,\n  \"grammar_first_fallback_rate\":  0.366365,\n  \"cf_registry_fallback_rate\":    0.044819\n}\n```\n\n`grep -c \"Grammar-first fallback\" /root/runs/schema_semantic_constrained_ie/w1_cf_fallback_scierc_pilot.log → 6237` ✓ 一致\n`grep -c \"CF fallback\" ... → 0`（logger.debug 级别未启用，仅有计数器证据；建议未来把 CF 路径升级到 INFO 以便日志可追溯）。\n\n## 7. 附录 C — 建议下一步代码改动（若决定继续 W1）\n\n1. **CF fallback 日志升级**: `logger.debug` → `logger.info`，并加 `cf_break_reason` 字段，让每一次覆盖都能在 jsonl 里追溯。\n2. **Per-relation 计数器**: 把 `grammar_first_fallback_by_relation: dict[str,int]` 与 `cf_registry_fallback_by_relation: dict[str,int]` 加到类属性里，~10 LOC，可以让 detailed_analysis.md §3 的\"per-relation 调用归属\"从估算变成直接读取。\n3. **Per-doc breakdown**: 在 jsonl 输出里加 `{effective, grammar_override, cf_override}` 字段，便于离线复盘单文档。\n4. **不必恢复**: 既然 W1 已被判负，主线 `type_mask_processor.py` 不需要再切回 CF fallback；但 `_cf_fallback.py` 应保留作为 reviewer 复现实验时的副本。\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "fb6b8a9f-7654-4049-9eb0-551e03de5905",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "1d531890-a0a5-46ac-b310-689524919a70",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "0a9b65c3-d6e5-4554-9255-18d52df26e73",
+                "sessionId": "1d531890-a0a5-46ac-b310-689524919a70"
+              }
+            }
+          ],
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze CF fallback code diff for semantic masking issue",
+                "sessionId": "1d531890-a0a5-46ac-b310-689524919a70"
+              }
+            }
+          ],
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-15T15:51:55.975Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017EBeV8tq8QiobU5wVudwoz",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "cf_fallback_code_diff_analysis",
+                "type": "report",
+                "description": "W1 CF fallback pilot 代码 diff 与 reviewer 假设验证。结论: (A) 4.48% CF registry 覆盖 + (C) 36.64% grammar-first 跳过共同导致 semantic 层在 41.12% mask 调用上无效，端到端等价于 grammar_only；(B) head_type 解析路径与 entity_registry 无关，未发生退化。论文应采用 \"shared violation budget / trade-off\" 而非 \"enabling mechanism\" 框架。",
+                "project": "schema_semantic_constrained_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/cf_fallback_code_diff_analysis.md",
+                "tags": [
+                  "w1_cf_fallback",
+                  "code_diff",
+                  "reviewer_response",
+                  "trade_off",
+                  "negative_result"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a9b65c3-d6e5-4554-9255-18d52df26e73",
+            "isSidechain": false,
+            "requestId": "req_011Cb4d2QqS4KQXzXvCZSUuT",
+            "type": "assistant",
+            "uuid": "1cef3bee-3e69-4a6e-96ee-1bfc10115947",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "1d531890-a0a5-46ac-b310-689524919a70",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01KinsPHVsyV1xkCWf7UDnsR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9111,
+                "cache_read_input_tokens": 132089,
+                "output_tokens": 485,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9111,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 485,
+                    "cache_read_input_tokens": 132089,
+                    "cache_creation_input_tokens": 9111,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9111
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-15T15:51:56.088Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017EBeV8tq8QiobU5wVudwoz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_c536e4\\\", \\\"name\\\": \\\"cf_fallback_code_diff_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"W1 CF fallback pilot 代码 diff 与 reviewer 假设验证。结论: (A) 4.48% CF registry 覆盖 + (C) 36.64% grammar-first 跳过共同导致 semantic 层在 41.12% mask 调用上无效，端到端等价于 grammar_only；(B) head_type 解析路径与 entity_registry 无关，未发生退化。论文应采用 \\\\\\\"shared violation budget / trade-off\\\\\\\" 而非 \\\\\\\"enabling mechanism\\\\\\\" 框架。\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/report/cf_fallback_code_diff_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T15:51:55.983207+00:00\\\", \\\"tags\\\": [\\\"w1_cf_fallback\\\", \\\"code_diff\\\", \\\"reviewer_response\\\", \\\"trade_off\\\", \\\"negative_result\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1cef3bee-3e69-4a6e-96ee-1bfc10115947",
+            "isSidechain": false,
+            "promptId": "bb08e4bd-1a9e-4b6c-8581-3727c4373d13",
+            "type": "user",
+            "uuid": "f6af4e9c-6d94-45ab-9f11-1af8d1bfc51f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_c536e4\\\", \\\"name\\\": \\\"cf_fallback_code_diff_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"W1 CF fallback pilot 代码 diff 与 reviewer 假设验证。结论: (A) 4.48% CF registry 覆盖 + (C) 36.64% grammar-first 跳过共同导致 semantic 层在 41.12% mask 调用上无效，端到端等价于 grammar_only；(B) head_type 解析路径与 entity_registry 无关，未发生退化。论文应采用 \\\\\\\"shared violation budget / trade-off\\\\\\\" 而非 \\\\\\\"enabling mechanism\\\\\\\" 框架。\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/report/cf_fallback_code_diff_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T15:51:55.983207+00:00\\\", \\\"tags\\\": [\\\"w1_cf_fallback\\\", \\\"code_diff\\\", \\\"reviewer_response\\\", \\\"trade_off\\\", \\\"negative_result\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_c536e4\", \"name\": \"cf_fallback_code_diff_analysis\", \"type\": \"report\", \"description\": \"W1 CF fallback pilot 代码 diff 与 reviewer 假设验证。结论: (A) 4.48% CF registry 覆盖 + (C) 36.64% grammar-first 跳过共同导致 semantic 层在 41.12% mask 调用上无效，端到端等价于 grammar_only；(B) head_type 解析路径与 entity_registry 无关，未发生退化。论文应采用 \\\"shared violation budget / trade-off\\\" 而非 \\\"enabling mechanism\\\" 框架。\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/_project/report/cf_fallback_code_diff_analysis.md\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T15:51:55.983207+00:00\", \"tags\": [\"w1_cf_fallback\", \"code_diff\", \"reviewer_response\", \"trade_off\", \"negative_result\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "1cef3bee-3e69-4a6e-96ee-1bfc10115947",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "1d531890-a0a5-46ac-b310-689524919a70",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-15T15:51:56.098Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f6af4e9c-6d94-45ab-9f11-1af8d1bfc51f",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [
+                    {
+                      "content": "探测服务器环境和镜像",
+                      "status": "completed",
+                      "activeForm": "探测服务器环境"
+                    },
+                    {
+                      "content": "读 type_mask_processor.py CF fallback 代码",
+                      "status": "completed",
+                      "activeForm": "读 CF fallback 代码"
+                    },
+                    {
+                      "content": "diff .py vs .bak 与 cf_fallback.py",
+                      "status": "completed",
+                      "activeForm": "对比三个文件"
+                    },
+                    {
+                      "content": "读 cf_fallback.py 中 _mask_head_type / _mask_tail_type 全文",
+                      "status": "completed",
+                      "activeForm": "读 cf_fallback.py 中间部分"
+                    },
+                    {
+                      "content": "检查 pilot 日志与 fallback_stats",
+                      "status": "completed",
+                      "activeForm": "检查日志"
+                    },
+                    {
+                      "content": "参考现有 detailed_analysis.md",
+                      "status": "completed",
+                      "activeForm": "参考现有分析"
+                    },
+                    {
+                      "content": "撰写分析报告并注册",
+                      "status": "in_progress",
+                      "activeForm": "撰写报告"
+                    }
+                  ],
+                  "itemCount": 7
+                },
+                "type": "attachment",
+                "uuid": "bd60e333-2719-499e-bd43-844311e58552",
+                "timestamp": "2026-05-15T15:51:56.098Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "1d531890-a0a5-46ac-b310-689524919a70",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-15T15:52:08.246Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PuW9dkiiFB8LN1KDXsxuro",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "探测服务器环境和镜像",
+                    "activeForm": "探测服务器环境",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "读 type_mask_processor.py CF fallback 代码",
+                    "activeForm": "读 CF fallback 代码",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "diff .py vs .bak 与 cf_fallback.py",
+                    "activeForm": "对比三个文件",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "读 cf_fallback.py 中 _mask_head_type / _mask_tail_type 全文",
+                    "activeForm": "读 cf_fallback.py 中间部分",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "检查 pilot 日志与 fallback_stats",
+                    "activeForm": "检查日志",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "参考现有 detailed_analysis.md",
+                    "activeForm": "参考现有分析",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "撰写分析报告并注册",
+                    "activeForm": "撰写报告",
+                    "status": "completed"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd60e333-2719-499e-bd43-844311e58552",
+            "isSidechain": false,
+            "requestId": "req_011Cb4d38SyH7xNc23JjcSkQ",
+            "type": "assistant",
+            "uuid": "a24f52f3-afb9-4f7c-846d-268bffc0b98e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "1d531890-a0a5-46ac-b310-689524919a70",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01MYEpYQArE5Xkmr9TEfKJ7Z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1400,
+                "cache_read_input_tokens": 141200,
+                "output_tokens": 661,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1400,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 661,
+                    "cache_read_input_tokens": 141200,
+                    "cache_creation_input_tokens": 1400,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1400
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-15T15:52:08.252Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PuW9dkiiFB8LN1KDXsxuro",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a24f52f3-afb9-4f7c-846d-268bffc0b98e",
+            "isSidechain": false,
+            "promptId": "bb08e4bd-1a9e-4b6c-8581-3727c4373d13",
+            "type": "user",
+            "uuid": "b4080e44-4359-4dc7-a051-23adeb7c5b8a",
+            "toolUseResult": {
+              "oldTodos": [
+                {
+                  "content": "探测服务器环境和镜像",
+                  "status": "completed",
+                  "activeForm": "探测服务器环境"
+                },
+                {
+                  "content": "读 type_mask_processor.py CF fallback 代码",
+                  "status": "completed",
+                  "activeForm": "读 CF fallback 代码"
+                },
+                {
+                  "content": "diff .py vs .bak 与 cf_fallback.py",
+                  "status": "completed",
+                  "activeForm": "对比三个文件"
+                },
+                {
+                  "content": "读 cf_fallback.py 中 _mask_head_type / _mask_tail_type 全文",
+                  "status": "completed",
+                  "activeForm": "读 cf_fallback.py 中间部分"
+                },
+                {
+                  "content": "检查 pilot 日志与 fallback_stats",
+                  "status": "completed",
+                  "activeForm": "检查日志"
+                },
+                {
+                  "content": "参考现有 detailed_analysis.md",
+                  "status": "completed",
+                  "activeForm": "参考现有分析"
+                },
+                {
+                  "content": "撰写分析报告并注册",
+                  "status": "in_progress",
+                  "activeForm": "撰写报告"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "探测服务器环境和镜像",
+                  "status": "completed",
+                  "activeForm": "探测服务器环境"
+                },
+                {
+                  "content": "读 type_mask_processor.py CF fallback 代码",
+                  "status": "completed",
+                  "activeForm": "读 CF fallback 代码"
+                },
+                {
+                  "content": "diff .py vs .bak 与 cf_fallback.py",
+                  "status": "completed",
+                  "activeForm": "对比三个文件"
+                },
+                {
+                  "content": "读 cf_fallback.py 中 _mask_head_type / _mask_tail_type 全文",
+                  "status": "completed",
+                  "activeForm": "读 cf_fallback.py 中间部分"
+                },
+                {
+                  "content": "检查 pilot 日志与 fallback_stats",
+                  "status": "completed",
+                  "activeForm": "检查日志"
+                },
+                {
+                  "content": "参考现有 detailed_analysis.md",
+                  "status": "completed",
+                  "activeForm": "参考现有分析"
+                },
+                {
+                  "content": "撰写分析报告并注册",
+                  "status": "completed",
+                  "activeForm": "撰写报告"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            },
+            "sourceToolAssistantUUID": "a24f52f3-afb9-4f7c-846d-268bffc0b98e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "1d531890-a0a5-46ac-b310-689524919a70",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-15T15:52:24.249Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写出并注册 (`art_20260515_c536e4`)，路径 `artifacts/_project/report/cf_fallback_code_diff_analysis.md`。\n\n## 核心结论\n\n**关键前置发现**: 项目非 git 仓库，且 **CF fallback 代码已于 15:22 被回退**。当前 `compiler/type_mask_processor.py` 与 `.bak`（CF fallback 引入之前的快照）**md5 完全相同**。Pilot (14:07-14:57) 实际运行的代码现保存为独立文件 `compiler/type_mask_processor_cf_fallback.py`（490 行，+91 行 vs baseline）。\n\n**Reviewer 假设验证**:\n- **(A) 确认** — CF registry 覆盖 D/R，路径明确（cf_fallback.py L326-336, L370-380），频次 4.48% (763/17024)，每次都强制制造 DR 违规\n- **(B) 否定** — `state.current_head_type` 来自 `_RE_HEAD_TYPE_VAL` 正则解析已生成 JSON 文本，与 entity_registry 无关；TAIL_TYPE 位置 head_type 已写入完整，pair-based `valid_tail_types_for_head` 始终被调用，不存在退化为 union 的代码路径\n- **(C) 确认** — Grammar-first 守卫 (`_apply_type_mask` L432-441) 在 `allowed_types` 全部被 grammar mask 时直接 return logits，频次 36.64% (6237/17024)，日志 `grep -c \"Grammar-first fallback\" = 6237` 一致\n\n**DR ≈ grammar_only 的机制**: 41.12% (= 36.64% + 4.48%) 的 mask 调用 semantic 不生效，剩余 58.85% 中 ENTITY_TYPE 全允许短路 + multi-token 类型续写 token 也大多是 trivial no-op，**真正硬约束的占比远低于\"100% 调用率\"暗示的数值**。\n\n**论文叙事建议**: 用 **\"shared violation budget / trade-off\"** 而非 \"enabling mechanism\"。CF 与 DR 共享同一违规预算 (10.83% → 14.82%, +3.99 pp)，hierarchical fallback 无法同时降低两者，这恰恰是 motivate joint masking 的 negative result。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4080e44-4359-4dc7-a051-23adeb7c5b8a",
+            "isSidechain": false,
+            "requestId": "req_011Cb4d42Pcq4T9iXa5SgcMX",
+            "type": "assistant",
+            "uuid": "11d2fbc0-0127-4d03-86e1-0827ff8229a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "1d531890-a0a5-46ac-b310-689524919a70",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_011vn5GJUPw2DVwzvxgvy9mh",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 719,
+                "cache_read_input_tokens": 142600,
+                "output_tokens": 818,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 719,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 818,
+                    "cache_read_input_tokens": 142600,
+                    "cache_creation_input_tokens": 719,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 719
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "11d2fbc0-0127-4d03-86e1-0827ff8229a6",
+                "sessionId": "1d531890-a0a5-46ac-b310-689524919a70"
+              }
+            }
+          ],
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze CF fallback code diff for semantic masking issue",
+                "sessionId": "1d531890-a0a5-46ac-b310-689524919a70"
+              }
+            }
+          ],
+          "id": "event-000156"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a87552811f33ed3f6724",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 SSH 配置名：westd-21461。上次失败因 ontology_constraints.json 不在 /root/autodl-tmp/OntoCoDec/ 下。必须先 find 搜索正确路径",
+  "task_key": "12f61f9d-6ba2-4476-9f21-356ef3e4809f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/12f61f9d-6ba2-4476-9f21-356ef3e4809f.jsonl",
+    "occurrence": 1,
+    "bytes": 594008,
+    "sha256": "a1c45181079c51d20d3db65fc7783463d253aedb3684ae25fe32b87278baaeae"
+  },
+  "statistics": {
+    "messages": 118,
+    "user_turns": 1,
+    "tool_calls": 31,
+    "roles": {
+      "record": 32,
+      "user": 1,
+      "assistant": 23,
+      "tool_call": 31,
+      "tool_result": 31
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a87552811f33ed3f6724-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "a87552811f33ed3f6724-part-0001.json",
+          "message_count": 113
+        },
+        {
+          "path": "a87552811f33ed3f6724-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-ssh-westd-21461-ontology-constraints-json-root-autodl-tmp-ontoco.md"
+}

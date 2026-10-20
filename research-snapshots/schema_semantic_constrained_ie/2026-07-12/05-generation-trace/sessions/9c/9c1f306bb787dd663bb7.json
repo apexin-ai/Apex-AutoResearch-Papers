@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1f306bb787dd663bb7",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Paper 在 /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifact",
+  "task_key": "e9267415-5d26-422f-ace0-a4e0a83b31b0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/e9267415-5d26-422f-ace0-a4e0a83b31b0.jsonl",
+    "occurrence": 1,
+    "bytes": 602428,
+    "sha256": "777d5ddc2d48b11009d6360767e526d462f5c2614e76085201653df293eb8d40"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 1,
+    "tool_calls": 62,
+    "roles": {
+      "record": 42,
+      "user": 1,
+      "assistant": 34,
+      "tool_call": 62,
+      "tool_result": 62
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9c1f306bb787dd663bb7-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "9c1f306bb787dd663bb7-part-0001.json",
+          "message_count": 177
+        },
+        {
+          "path": "9c1f306bb787dd663bb7-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-paper-home-ubuntu-agent-ml-research-idea-gen-0509-6-projects-sch.md"
+}

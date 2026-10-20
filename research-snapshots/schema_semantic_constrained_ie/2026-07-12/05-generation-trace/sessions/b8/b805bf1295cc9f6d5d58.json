@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "b805bf1295cc9f6d5d58",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器: westd-21461 项目路径: /root/schema_semantic_constrained_ie 模型路径: /root/autodl-tmp/models/LLM-Research/M",
+  "task_key": "cd2e7c41-28b8-4488-8038-661d785d927a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/cd2e7c41-28b8-4488-8038-661d785d927a.jsonl",
+    "occurrence": 1,
+    "bytes": 873134,
+    "sha256": "e682fe096c38adbe24d5fb1221b6a89b3b2cbe07969f712e717b103092ca92ae"
+  },
+  "statistics": {
+    "messages": 439,
+    "user_turns": 1,
+    "tool_calls": 129,
+    "roles": {
+      "record": 75,
+      "user": 1,
+      "assistant": 105,
+      "tool_call": 129,
+      "tool_result": 129
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b805bf1295cc9f6d5d58-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 437,
+      "chunks": [
+        {
+          "path": "b805bf1295cc9f6d5d58-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "b805bf1295cc9f6d5d58-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b805bf1295cc9f6d5d58-part-0003.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-21461-root-schema-semantic-constrained-ie-root-autodl-tmp.md"
+}

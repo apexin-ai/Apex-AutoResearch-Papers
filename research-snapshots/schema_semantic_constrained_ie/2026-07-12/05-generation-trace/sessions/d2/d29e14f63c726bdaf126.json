@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "d29e14f63c726bdaf126",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Round 6 审稿请求]: ## Round 6 审稿任务 — Reviewer 1（方法严谨性 + 实验分析） ### 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Ex",
+  "task_key": "e0eafec6-6db7-491a-8bd5-b5b559b70068",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/e0eafec6-6db7-491a-8bd5-b5b559b70068.jsonl",
+    "occurrence": 1,
+    "bytes": 6081728,
+    "sha256": "d6f856349dd3b54015d5315a3fc31efacde28325a3a77730f1a087b62cf4a8e0"
+  },
+  "statistics": {
+    "messages": 114,
+    "user_turns": 1,
+    "tool_calls": 33,
+    "roles": {
+      "record": 27,
+      "user": 1,
+      "assistant": 20,
+      "tool_call": 33,
+      "tool_result": 33
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d29e14f63c726bdaf126-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "d29e14f63c726bdaf126-part-0001.json",
+          "message_count": 106
+        },
+        {
+          "path": "d29e14f63c726bdaf126-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-round-6-round-6-reviewer-1-ontocodec-type-constrained-information-ex.md"
+}

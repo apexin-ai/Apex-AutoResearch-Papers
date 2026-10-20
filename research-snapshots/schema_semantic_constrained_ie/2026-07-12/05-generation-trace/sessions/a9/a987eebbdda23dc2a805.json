@@ -1,0 +1,889 @@
+{
+  "schema_version": "1.0",
+  "id": "a987eebbdda23dc2a805",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the following files completely and return their full contents verbatim. This is for a final pre-submission regressi",
+  "task_key": "agent-ab2a359574bd378bd",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ab2a359574bd378bd.jsonl",
+    "occurrence": 1,
+    "bytes": 85562,
+    "sha256": "8c6a342403c77ac7fe734d47cac7e19c3c464739fd21877b94bd16c6e2c95625"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T01:51:09.842Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the following files completely and return their full contents verbatim. This is for a final pre-submission regression check of a research paper.\n\nFiles to read:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_70b_ablation.tex\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex (lines 1-150)\n\nReturn ALL contents exactly as they appear, with line numbers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1a5d66fd-f053-4874-a999-8c0ec7afebc5",
+            "agentId": "ab2a359574bd378bd",
+            "type": "user",
+            "uuid": "a926793a-3b30-4905-81d9-880d1a16dcbe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T01:51:09.846Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a926793a-3b30-4905-81d9-880d1a16dcbe",
+                "isSidechain": true,
+                "agentId": "ab2a359574bd378bd",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "7178051d-e689-4557-a2b5-478e36eed1e0",
+                "timestamp": "2026-05-23T01:51:09.846Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+                "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "zany-marinating-cherny"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T01:51:12.144Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll read all 7 files in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7178051d-e689-4557-a2b5-478e36eed1e0",
+            "isSidechain": true,
+            "agentId": "ab2a359574bd378bd",
+            "requestId": "req_011CbJfPqrT9kLGixU1n2M1k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "827a4516-7397-417b-a121-d1eae1952aa2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBRTbNNdfQP2SfLf3vnEy5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25424,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T01:51:13.190Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RP4LNpK1uGJHp5NadL2saq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "827a4516-7397-417b-a121-d1eae1952aa2",
+            "isSidechain": true,
+            "agentId": "ab2a359574bd378bd",
+            "requestId": "req_011CbJfPqrT9kLGixU1n2M1k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5f2ff874-f588-4e33-be93-5353fa385d38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBRTbNNdfQP2SfLf3vnEy5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25424,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T01:51:13.201Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RP4LNpK1uGJHp5NadL2saq",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tWe present \\textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints.\n3\tA decidability analysis yields a two-layer architecture: a \\emph{grammar layer} (context-free) compiles ontology constraints into grammars ensuring JSON validity and vocabulary membership; a \\emph{semantic layer} (prefix-decidable with state) interprets type constraints at runtime via stateful token masking over a dynamic entity registry, with grammar-first fallback when constraints conflict.\n4\tThe two layers exhibit an empirical enabling dependency (Proposition~1, scale-sensitive; \\S\\ref{sec:70b-results}): neither achieves full DR reduction alone.\n5\t% exp_ids: w5_lora_scierc_constrained_eval, w5_qwen_docred_lora_constrained_eval, w5_llama_lora_scierc_constrained_eval, w5_llama_docred_lora_constrained_eval\n6\tComposed with LoRA fine-tuning on three 8B-class models across two RE datasets (up to 96 relation types), \\textsc{OntoCoDec} near-eliminates DR ($<$\\,0.1\\%) at R-F1 41--47\\% ($\\pm$0.8\\,pp); under fine-tuning, CF remains $\\leq$\\,1.4\\% with greedy decoding and reaches zero with beam search ($k{=}4$) on both RE datasets (1.54$\\times$ latency; \\S\\ref{sec:beam-results}).\n7\tZero-shot evaluation serves as a diagnostic probe, revealing DR reduction of 76--99\\% on SciERC and 42--90\\% on DocRED across three models; constraint tightness ($\\bar{\\kappa}$) is a descriptive correlate of enforcement difficulty ($n{=}3$ schemas, $p{=}0.138$).\n8\t70B-class validation on SciERC (full six-way ablation; \\S\\ref{sec:70b-results}) with preliminary DocRED support, and event extraction on WikiEvents (\\S\\ref{sec:wikievents}), confirm generalizability beyond the primary 8B evaluation.\n9\t\\end{abstract}\n10\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f2ff874-f588-4e33-be93-5353fa385d38",
+            "isSidechain": true,
+            "promptId": "1a5d66fd-f053-4874-a999-8c0ec7afebc5",
+            "agentId": "ab2a359574bd378bd",
+            "type": "user",
+            "uuid": "eb80816b-8921-4bd3-875e-8c739ff2390f",
+            "sourceToolAssistantUUID": "5f2ff874-f588-4e33-be93-5353fa385d38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T01:51:13.676Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T16bBk4npo3gZXyAtyynPY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb80816b-8921-4bd3-875e-8c739ff2390f",
+            "isSidechain": true,
+            "agentId": "ab2a359574bd378bd",
+            "requestId": "req_011CbJfPqrT9kLGixU1n2M1k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0d40a8d1-179f-4232-9511-5a9cb62b083a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBRTbNNdfQP2SfLf3vnEy5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25424,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T01:51:13.684Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T16bBk4npo3gZXyAtyynPY",
+              "type": "tool_result",
+              "content": "1\t% Section 1: Introduction (compressed, 669→~550 words)\n2\t\n3\t\\section{Introduction}\n4\t\\label{sec:introduction}\n5\t\n6\tLarge language models are increasingly used for information extraction~\\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity necessarily carries a type consistent with the ontology's domain/range constraints for $r$.\n7\tWe call such outputs \\emph{domain/range violations}: structurally valid triples that are ontologically invalid.\n8\tViolations persist across the capability spectrum: 15.4\\% of triples on SciERC~\\cite{luan2018scierc} and 18.5\\% on DocRED~\\cite{yao2019docred} under zero-shot decoding, and 0.5--2\\% even after LoRA fine-tuning; rates correlate with schema restrictiveness (few valid type pairs per relation) rather than ontology or model scale.\n9\tAt competitive quality (R-F1 41--47\\%), even 1--2\\% residual violations compound across thousands of documents into systematic knowledge graph corruption, making reliable constraint enforcement necessary.\n10\t\n11\tExisting approaches leave a fundamental gap.\n12\tSchema-informed prompting reduces violations by 62\\% on average but is per-relation unreliable (violations for \\textsc{Evaluate-for} actually \\emph{increase} by 5.8\\,pp).\n13\tGrammar-constrained decoding~\\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} ensures syntactic well-formedness but cannot encode cross-field semantic constraints.\n14\tPost-hoc filtering improves precision but discards up to 48\\% of predictions including true positives (\\S\\ref{sec:cross-model}); at high rejection rates (e.g., Mistral DocRED 73.7\\%), it becomes impractical.\n15\tTraining-based approaches~\\cite{sainz2024gollie,lu2022uie} internalize schema knowledge but provide only soft guidance without runtime enforcement; no method provides both semantic awareness and hard constraint enforcement.\n16\t\n17\tWe propose \\textbf{OntoCoDec}, a framework that translates IE ontologies into composable layers of decoding-time constraints.\n18\tA decidability analysis of IE type constraints (\\S\\ref{sec:decidability}) yields a two-layer architecture: the \\emph{grammar layer} compiles ontology constraints into context-free grammars (JSON structure, vocabulary membership) via XGrammar; the \\emph{semantic layer} interprets type constraints at runtime via dynamic logit masking over an entity registry, with an \\emph{empirical enabling dependency} between layers.\n19\tOntoCoDec compiles constraints automatically from IE ontologies, requires no constraint-specific training, and is applicable to autoregressive LMs with logits access; we validate on three English datasets (up to 96 relation types), three 8B-class models across three tokenizer families, with 70B-class validation (\\S\\ref{sec:70b-results}).\n20\tLoRA + greedy S1 achieves near-complete DR elimination: DR\\,$\\leq$\\,0.09\\% at R-F1 41--47\\% ($\\pm$0.8\\,pp, $+$10\\% latency); beam ($k{=}4$) eliminates all violation types on both RE datasets under fine-tuning (1.54$\\times$ latency).\n21\tDR enforcement converts ontologically invalid violations to individually valid but type-inconsistent ones (CF\\,$\\leq$\\,1.4\\% fine-tuned; \\S\\ref{sec:scierc-results}); zero-shot evaluation reveals DR drops 42--99\\% across models and datasets, with 76--99\\% on SciERC, but total violations (DR+CF) decrease by $\\sim$31\\%, reflecting conversion that fine-tuning resolves (\\S\\ref{sec:cross-model}).\n22\t\n23\tWe make a systematic engineering contribution with theoretical grounding:\n24\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n25\t    \\item A two-layer constrained decoding framework: we formalize a well-known intuition that cross-field type constraints require runtime state beyond context-free expressiveness (Proposition~1), yielding pair-based sequential enforcement at each level (\\S\\ref{sec:decidability}). Constraints compile automatically from IE ontologies, validated on schemas of varying restrictiveness with up to 96 relation types.\n26\t    \\item A comprehensive evaluation across 3 IE datasets, 3 models (8B-class), and 2 tasks, with 70B validation (full SciERC ablation, preliminary DocRED): under fine-tuning, DR\\,$\\leq$\\,0.09\\% at R-F1 41--47\\% with CF\\,$\\leq$\\,1.4\\%; zero-shot ablation reveals an enabling dependency where on SciERC neither layer alone exceeds 24\\% DR reduction (at 70B, semantic layer achieves 84\\% independently; \\S\\ref{sec:70b-results}); event extraction on WikiEvents validates applicability beyond RE (\\S\\ref{sec:wikievents}).\n27\t\\end{enumerate}\n28\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d40a8d1-179f-4232-9511-5a9cb62b083a",
+            "isSidechain": true,
+            "promptId": "1a5d66fd-f053-4874-a999-8c0ec7afebc5",
+            "agentId": "ab2a359574bd378bd",
+            "type": "user",
+            "uuid": "32e5df9f-62f3-44e0-b59c-6baddc18a640",
+            "sourceToolAssistantUUID": "0d40a8d1-179f-4232-9511-5a9cb62b083a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T01:51:14.142Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kg2WTR2iShjThErK6E8U7U",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32e5df9f-62f3-44e0-b59c-6baddc18a640",
+            "isSidechain": true,
+            "agentId": "ab2a359574bd378bd",
+            "requestId": "req_011CbJfPqrT9kLGixU1n2M1k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ab8c18f7-f3a6-4d40-9de4-8f1b895a0038",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBRTbNNdfQP2SfLf3vnEy5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25424,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T01:51:14.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kg2WTR2iShjThErK6E8U7U",
+              "type": "tool_result",
+              "content": "1\t% Section: Constraint Composition (compressed, 787→~500 words)\n2\t\n3\tAt each decoding step $t$, let $G(t) \\subseteq V$ and $S(t) \\subseteq V$ denote the tokens permitted by the grammar and semantic layers, respectively.\n4\tThe final mask is their conjunction:\n5\t%\n6\t\\begin{equation}\\label{eq:composition}\n7\t  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n8\t\\end{equation}\n9\t%\n10\twhere $\\wedge$ denotes element-wise AND over the vocabulary $V$; a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\n11\tThe conjunction is asymmetric: $S(t)$ is defined only over $G(t)$. This reflects the empirical enabling dependency (\\S\\ref{sec:method}): the semantic layer requires the relation type to belong to $\\mathcal{R}$, a property enforced only by the grammar layer.\n12\tThis dependency is scale-sensitive: 70B semantic-only achieves 84\\% DR reduction (vs.\\ 24\\% on 8B), though grammar remains necessary for RV elimination (\\S\\ref{sec:70b-results}).\n13\t\n14\t\\paragraph{Grammar-First Fallback.}\n15\tWhen $S(t) \\cap G(t) = \\emptyset$ (tight constraints leave no token that is both grammar-valid and semantically valid), na\\\"{\\i}ve masking would force selection of a grammar-invalid token, breaking JSON structure.\n16\tWe enforce a \\emph{grammar-first fallback}: semantic masking is skipped and the grammar layer alone controls selection.\n17\tStructural integrity is a hard constraint; type violations are soft errors detectable by downstream validation, with DR (ontologically invalid type pair) more severe than CF (individually valid triples with cross-triple type inconsistency).\n18\t\n19\t\\paragraph{Constraint Tightness.}\n20\t\\label{eq:tightness}\n21\tWe define per-relation constraint tightness $\\kappa(r) = 1 - |\\sigma(r)|/|\\mathcal{E}|^2$ and the schema-level mean $\\bar{\\kappa} = \\frac{1}{|\\mathcal{R}|}\\sum_{r} \\kappa(r)$.\n22\tAcross three schemas---WikiEvents ($\\bar{\\kappa}{=}0.029$), SciERC ($\\bar{\\kappa}{=}0.333$), DocRED ($\\bar{\\kappa}{=}0.842$)---DR reduction ranges from 94--99\\% (low $\\bar{\\kappa}$) to 42--90\\% (high $\\bar{\\kappa}$), though this correlation is descriptive only ($n{=}3$, $p{=}0.138$); entity type confusability is a critical co-factor (Appendix~\\ref{app:kappa-case-study},~\\ref{app:tcr}); high-$\\bar{\\kappa}$ relations account for only 3.8\\% of gold triples in DocRED (Appendix~\\ref{app:kappa-analysis}).\n23\t\n24\t\\paragraph{Greedy limitation and fallback cascade.}\n25\t\\label{sec:greedy-limitation}\n26\tThe semantic layer commits entity types greedily---an instance of Level~3 (non-local) constraints (\\S\\ref{sec:decidability})---so CF violations arise when the same entity receives different types across triples; beam search mitigates this in favorable configurations (\\S\\ref{sec:beam-results}).\n27\tGrammar-first fallback triggers on 0.5--5.7\\% of type-bearing positions (zero-shot; correlating with $\\bar{\\kappa}$), virtually eliminated by fine-tuning ($\\leq$\\,0.11\\%); all residual DR occurs at fallback positions (Appendix~\\ref{app:causal-tracing}).\n28\t\n29\t\\paragraph{Non-rectangularity and independent enforcement.}\n30\t\\label{sec:rectangularity}\n31\tType signatures are non-rectangular (0/7 SciERC, 23/96 DocRED rectangular); independent enforcement is a sound over-approximation admitting 33--37\\% spurious pairs; fine-tuning eliminates all residual DR (Table~\\ref{tab:composability}).\n32\tSchema enumeration order does not affect decoding: shuffling entity and relation type order in the compiled constraints produces byte-identical outputs across all 551 SciERC documents, confirming that OntoCoDec is fully order-invariant (Appendix~\\ref{app:order-invariance}).\n33\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab8c18f7-f3a6-4d40-9de4-8f1b895a0038",
+            "isSidechain": true,
+            "promptId": "1a5d66fd-f053-4874-a999-8c0ec7afebc5",
+            "agentId": "ab2a359574bd378bd",
+            "type": "user",
+            "uuid": "1a3245dc-a08c-46a0-a17e-59c59e7c6842",
+            "sourceToolAssistantUUID": "ab8c18f7-f3a6-4d40-9de4-8f1b895a0038",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T01:51:15.077Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FvNKBzPSXji4oMASKDKHwb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a3245dc-a08c-46a0-a17e-59c59e7c6842",
+            "isSidechain": true,
+            "agentId": "ab2a359574bd378bd",
+            "requestId": "req_011CbJfPqrT9kLGixU1n2M1k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f00b4781-c684-43bf-b4df-022379214dc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBRTbNNdfQP2SfLf3vnEy5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25424,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T01:51:15.088Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FvNKBzPSXji4oMASKDKHwb",
+              "type": "tool_result",
+              "content": "1\t% Runtime overhead (inline paragraph, no subsection header to save space)\n2\t\n3\t\\paragraph{Runtime overhead.}\n4\t\\label{sec:runtime}\n5\tS1 overhead is $+$13.1\\% on SciERC, lower on DocRED due to amortization over longer sequences; under LoRA, $+$10.0\\% with 37\\% lower absolute latency.\n6\tConstraint compilation is one-time $<$0.5\\,s; scaling benchmarks confirm constant overhead (2--3\\%) up to 200 entity types and 1{,}000 relations (Appendix~\\ref{app:scalability}).\n7\t\n8\t\\paragraph{Beam search compatibility.}\n9\t\\label{sec:beam-results}\n10\tWith LoRA, beam search ($k{=}4$)~\\cite{anderson2017guided} eliminates all four violation types on both SciERC and DocRED (R-F1 43--47; Appendix~\\ref{app:beam-search}), yielding two deployment tiers: greedy S1 ($+$10\\% latency, DR${<}$0.1\\%, CF${\\leq}$1.4\\%) and beam S1 (1.54$\\times$ latency, all violations${\\to}$0\\%; Table~\\ref{tab:beam-latency}).\n11\t70B beam4 confirms scale-independent violation elimination (DR${=}$0\\% on both datasets at both 8B and 70B; \\S\\ref{sec:70b-results}).\n12\t\n13\t% exp_ids: r16_70b_scierc_zs_s1, r16_70b_docred_zs_s1, 70b_lora_scierc, 70b_lora_docred_200\n14\t\\paragraph{70B-class validation.}\n15\t\\label{sec:70b-results}\n16\tOn Llama-3.1-70B-Instruct (AWQ INT4), zero-shot S1 eliminates DR on both datasets: SciERC 6.41\\%\\,$\\to$\\,0\\% (R-F1 11.24), DocRED 14.98\\%\\,$\\to$\\,0\\% (R-F1 13.05); CF rises to 0.04--3.50\\%, comparable to 8B zero-shot CF.\n17\t% exp_ids: r16_70b_scierc_zs_ablation (grammar_only, semantic_only, full_s1)\n18\tA four-way ablation on SciERC reveals scale-dependent layer interaction: semantic-only achieves 84\\% DR reduction (6.41\\%\\,$\\to$\\,1.01\\%), far exceeding the 8B result (24\\%; Table~\\ref{tab:scierc-ablation}), reflecting stronger internalized JSON generation; grammar remains necessary for RV elimination (0.61\\%\\,$\\to$\\,0\\%) and CF control (semantic-only CF${=}$76).\n19\tSemantic layer effectiveness thus scales with model capability (24\\%\\,$\\to$\\,84\\% independent DR reduction from 8B to 70B), suggesting that constraint enforcement benefits compound as base models improve.\n20\t% exp_ids: eval_70b_lora_scierc_s1_constrained, eval_70b_lora_docred_200_s1_constrained\n21\tLoRA confirms composability: DR\\,$\\to$\\,0\\% on both datasets (R-F1 44.53, 43.95; $|\\Delta| \\leq 0.20$\\,pp); CF drops to 0.18--1.33\\%, consistent with the 8B pattern (\\S\\ref{sec:composability}).\n22\t% exp_ids: eval_70b_lora_docred_200_beam4_s1\n23\tOn DocRED, beam ($k{=}4$) S1 additionally reduces parse failures from 12.5\\% to 0.5\\%, contributing to a $+$4.19\\,pp R-F1 improvement (43.95\\,$\\to$\\,48.14); the controlled comparison on SciERC (0\\% parse failure in both settings) isolates the pure beam quality gain at $+$0.28\\,pp (Appendix~\\ref{app:70b-ablation}).\n24\t\n25\t% exp_ids: trie_qwen_ft_scierc, trie_qwen_zs_scierc, trie_llama_ft_scierc, trie_llama_zs_scierc\n26\t\\paragraph{Comparison with grammar-constrained approaches.}\n27\t\\label{sec:constrained-baselines}\n28\tOur grammar-only ablation (Table~\\ref{tab:scierc-ablation}, row~2) implements the same constraints as GCD~\\cite{geng2023gcd} and BoostCD~\\cite{boostcd2025}; vLLM \\texttt{guided\\_json}~\\cite{kwon2023vllm} confirms equivalence (DR${=}$15.26\\%, R-F1${=}$8.75; GCD-equiv.\\ row, Appendix~\\ref{app:gcd-comparison}).\n29\tThe ${\\sim}$15\\% residual DR is the gap our semantic layer addresses (94\\% total reduction).\n30\tTrie-only constraints without JSON enforcement yield 9--51\\% parse failure (Appendix~\\ref{app:trie-baseline}).\n31\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f00b4781-c684-43bf-b4df-022379214dc7",
+            "isSidechain": true,
+            "promptId": "1a5d66fd-f053-4874-a999-8c0ec7afebc5",
+            "agentId": "ab2a359574bd378bd",
+            "type": "user",
+            "uuid": "53fdef14-a023-4a74-afd5-9192b535e249",
+            "sourceToolAssistantUUID": "f00b4781-c684-43bf-b4df-022379214dc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T01:51:15.557Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K3TzpMLc6wnAKDFpEjVCYR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53fdef14-a023-4a74-afd5-9192b535e249",
+            "isSidechain": true,
+            "agentId": "ab2a359574bd378bd",
+            "requestId": "req_011CbJfPqrT9kLGixU1n2M1k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a3d0fa35-ce0f-4b17-85f6-e2d3bd4c40b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBRTbNNdfQP2SfLf3vnEy5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25424,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T01:51:15.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K3TzpMLc6wnAKDFpEjVCYR",
+              "type": "tool_result",
+              "content": "1\t% Section 7 — Discussion and Conclusion\n2\t\n3\tOntoCoDec translates IE ontologies into composable token-level constraints, providing a systematic empirical framework---automatically compiled from ontologies, validated across 3 datasets, 3+ models, and 2 tasks---rather than a novel decoding algorithm.\n4\tLoRA + greedy S1 near-eliminates DR ($<$\\,0.1\\%) with CF\\,$\\leq$\\,1.4\\%; beam ($k{=}4$) eliminates all violations on both RE datasets (1.54$\\times$ latency); zero-shot DR drops 42--99\\% across three 8B-class models.\n5\tThe central insight is that IE type constraints exceed context-free expressiveness (Proposition~1): unlike rejection-based approaches that prune invalid outputs post-generation~\\cite{scholak2021picard}, the semantic layer applies constructive forward masking via a dynamic entity registry, bridging the gap grammar-only enforcement cannot address (3\\% vs.\\ 94\\% DR reduction); this enabling dependency---scale-sensitive (\\S\\ref{sec:70b-results})---shows grammar-constrained decoding is necessary but insufficient for IE schema compliance.\n6\tResidual CF arises from per-triple independent enforcement; extending to global entity-level type consensus during decoding---eliminating CF without beam search overhead---is the most important direction for future work.\n7\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3d0fa35-ce0f-4b17-85f6-e2d3bd4c40b8",
+            "isSidechain": true,
+            "promptId": "1a5d66fd-f053-4874-a999-8c0ec7afebc5",
+            "agentId": "ab2a359574bd378bd",
+            "type": "user",
+            "uuid": "452f05ee-3f35-4f74-b6d9-9a4e277e9e64",
+            "sourceToolAssistantUUID": "a3d0fa35-ce0f-4b17-85f6-e2d3bd4c40b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T01:51:16.030Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FVRogY9b2dnKH6BwB9H47d",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_70b_ablation.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "452f05ee-3f35-4f74-b6d9-9a4e277e9e64",
+            "isSidechain": true,
+            "agentId": "ab2a359574bd378bd",
+            "requestId": "req_011CbJfPqrT9kLGixU1n2M1k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "91b98575-390d-438d-a59b-c52605d06aea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBRTbNNdfQP2SfLf3vnEy5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25424,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T01:51:16.036Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FVRogY9b2dnKH6BwB9H47d",
+              "type": "tool_result",
+              "content": "1\t% Appendix: 70B-Class LoRA Ablation on SciERC\n2\t% exp_ids: eval_70b_lora_scierc_unconstrained, eval_70b_lora_scierc_grammar_only,\n3\t%          eval_70b_lora_scierc_semantic_only, eval_70b_lora_scierc_s1_constrained,\n4\t%          eval_70b_lora_scierc_s2_constrained, eval_70b_lora_scierc_beam4_s1\n5\t\n6\t\\paragraph{70B-class fine-tuned ablation.}\n7\t\\label{app:70b-ablation}\n8\t\n9\tTable~\\ref{tab:70b-ft-ablation} presents the constraint ablation on Llama-3.1-70B-Instruct (AWQ INT4) with LoRA fine-tuning on SciERC (551 documents).\n10\t\n11\t\\begin{table}[h]\n12\t\\centering\n13\t\\small\n14\t\\setlength{\\tabcolsep}{3.6pt}\n15\t\\begin{tabular}{@{}l rrrr rr@{}}\n16\t\\toprule\n17\t\\textbf{Mode}\n18\t  & \\textbf{DR\\,$\\downarrow$} & \\textbf{RV\\,$\\downarrow$} & \\textbf{ET\\,$\\downarrow$} & \\textbf{CF}\n19\t  & \\textbf{R-F1\\,$\\uparrow$} & \\textbf{E-F1\\,$\\uparrow$} \\\\\n20\t\\midrule\n21\tUnconstrained & 1.50 & 0 & 0 & 0    & 44.73 & 64.86 \\\\\n22\tGrammar       & 1.50 & 0 & 0 & 0    & 44.63 & 64.82 \\\\\n23\tSemantic      & 0.60 & 0 & 0 & 9    & 44.73 & 64.86 \\\\\n24\tS1            & \\textbf{0} & 0 & 0 & 15 & 44.53 & 64.76 \\\\\n25\tS2            & \\textbf{0} & 0 & 0 & 18 & 36.28 & 62.35 \\\\\n26\tBeam4 S1      & \\textbf{0} & 0 & 0 & \\textbf{1} & \\textbf{44.81} & \\textbf{64.89} \\\\\n27\t\\bottomrule\n28\t\\end{tabular}\n29\t\\caption{70B-class (Llama-3.1-70B-Instruct (AWQ INT4)) LoRA ablation on SciERC (551 docs).\n30\tCF: violation count. F1 $\\times$100.}\n31\t\\label{tab:70b-ft-ablation}\n32\t\\end{table}\n33\t\n34\tThe grammar layer provides no independent DR benefit at 70B (1.50\\%\\,$\\to$\\,1.50\\% on SciERC; on DocRED zero-shot, DR actually increases $+$3.58\\,pp due to RV$\\to$DR conversion in the high-$\\bar{\\kappa}$ schema; Table~\\ref{tab:70b-docred-zs-ablation}).\n35\tThe semantic layer is the sole effective defense (1.50\\%\\,$\\to$\\,0.60\\%, 60\\% reduction) with no R-F1 cost ($\\Delta{=}$0\\,pp), and full S1 eliminates all DR.\n36\tS2 eliminates DR but causes severe R-F1 degradation ($-$8.45\\,pp), indicating that optimal constraint granularity is scale-dependent: the additional S2 constraints become overly restrictive at 70B, where stronger baseline generation makes fine-grained intervention counterproductive.\n37\tBeam ($k{=}4$) S1 remains the optimal configuration (DR${=}$0\\%, CF${=}$1, R-F1${=}$44.81).\n38\tNotably, S2 increases CF from 15 (S1) to 18 despite its cross-field consistency design, suggesting that over-constraining induces cascading generation degradation that creates new violations.\n39\t\n40\t% exp_ids: eval_70b_lora_docred_200_unconstrained, eval_70b_lora_docred_200_s1_constrained,\n41\t%          eval_70b_lora_docred_200_beam4_s1\n42\t\\paragraph{70B-class DocRED results.}\n43\t\\label{app:70b-docred}\n44\t\n45\tTable~\\ref{tab:70b-docred-ablation} presents available 70B LoRA configurations on DocRED (998 documents).\n46\t\n47\t\\begin{table}[h]\n48\t\\centering\n49\t\\small\n50\t\\setlength{\\tabcolsep}{3.6pt}\n51\t\\begin{tabular}{@{}l rrrr rr@{}}\n52\t\\toprule\n53\t\\textbf{Mode}\n54\t  & \\textbf{DR\\,$\\downarrow$} & \\textbf{RV\\,$\\downarrow$} & \\textbf{ET\\,$\\downarrow$} & \\textbf{CF}\n55\t  & \\textbf{R-F1\\,$\\uparrow$} & \\textbf{E-F1\\,$\\uparrow$} \\\\\n56\t\\midrule\n57\tUnconstrained & 0.22 & 0.57 & 0 & 2  & 43.80 & 80.34 \\\\\n58\tS1            & \\textbf{0} & 0 & 0 & 0.18\\%$^\\dagger$ & 43.95 & 79.38 \\\\\n59\tBeam4 S1      & \\textbf{0} & 0 & 0 & \\textbf{0} & \\textbf{48.14} & \\textbf{85.57} \\\\\n60\t\\bottomrule\n61\t\\end{tabular}\n62\t\\caption{70B-class (Llama-3.1-70B-Instruct (AWQ INT4)) LoRA results on DocRED (998 docs).\n63\tCF: violation count except $^\\dagger$reported as percentage (raw count unavailable).\n64\tF1 $\\times$100. Grammar-only and semantic-only ablations omitted; see SciERC panel for full six-way decomposition.\n65\tPF: greedy S1 12.5\\% (25/200 docs), beam4 S1 0.5\\% (1/200).}\n66\t\\label{tab:70b-docred-ablation}\n67\t\\end{table}\n68\t\n69\tThe $+$4.19\\,pp R-F1 gain from beam search on DocRED (43.95\\,$\\to$\\,48.14) is largely attributable to parse failure recovery: greedy S1 fails to parse 12.5\\% of documents (25/200), while beam reduces this to 0.5\\% (1/200), recovering $\\sim$24 documents that contribute no triples under greedy decoding.\n70\tThe controlled comparison on SciERC---where both greedy and beam achieve 0\\% parse failure---isolates the pure beam quality gain at $+$0.28\\,pp, consistent with the 8B pattern (Appendix~\\ref{app:beam-search}).\n71\t\n72\t% exp_ids: r16_70b_docred_zs_unconstrained, r16_70b_docred_zs_grammar_only,\n73\t%          r16_70b_docred_zs_semantic_only\n74\t\\paragraph{70B-class DocRED zero-shot ablation.}\n75\t\\label{app:70b-docred-zs}\n76\t\n77\tTable~\\ref{tab:70b-docred-zs-ablation} presents the layer ablation on DocRED under zero-shot decoding at 70B.\n78\t\n79\t\\begin{table}[h]\n80\t\\centering\n81\t\\small\n82\t\\setlength{\\tabcolsep}{3.6pt}\n83\t\\begin{tabular}{@{}l rrrr rr@{}}\n84\t\\toprule\n85\t\\textbf{Mode}\n86\t  & \\textbf{DR\\,$\\downarrow$} & \\textbf{RV\\,$\\downarrow$} & \\textbf{ET\\,$\\downarrow$} & \\textbf{CF}\n87\t  & \\textbf{R-F1\\,$\\uparrow$} & \\textbf{E-F1\\,$\\uparrow$} \\\\\n88\t\\midrule\n89\tUnconstrained & 13.45 & 7.88 & 0 & 0    & 13.25 & 70.14 \\\\\n90\tGrammar       & 17.03 & 0    & 0 & 0    & 13.23 & 70.12 \\\\\n91\tSemantic      & 1.66  & 8.24 & 0.12 & 132  & 13.05 & 70.10 \\\\\n92\t\\bottomrule\n93\t\\end{tabular}\n94\t\\caption{70B-class zero-shot layer ablation on DocRED.\n95\tCF: violation count. F1 $\\times$100.}\n96\t\\label{tab:70b-docred-zs-ablation}\n97\t\\end{table}\n98\t\n99\tGrammar-only eliminates RV (7.88\\%\\,$\\to$\\,0\\%) but DR increases by $+$3.58\\,pp (13.45\\%\\,$\\to$\\,17.03\\%): forced vocabulary mapping in DocRED's high-$\\bar{\\kappa}$ schema ($\\bar{\\kappa}{=}0.842$, ${\\sim}$16\\% type pairs valid) converts RV into DR violations.\n100\tSemantic-only independently achieves 87.7\\% DR reduction (13.45\\%\\,$\\to$\\,1.66\\%) with no R-F1 cost, confirming the pattern from SciERC (84\\%; Table~\\ref{tab:70b-ft-ablation}).\n101\tThe two layers thus serve complementary roles: grammar provides the RV elimination foundation that semantic-layer DR enforcement requires, while the semantic layer addresses the DR that grammar alone cannot---and in high-$\\bar{\\kappa}$ schemas, exacerbates.\n102\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "91b98575-390d-438d-a59b-c52605d06aea",
+            "isSidechain": true,
+            "promptId": "1a5d66fd-f053-4874-a999-8c0ec7afebc5",
+            "agentId": "ab2a359574bd378bd",
+            "type": "user",
+            "uuid": "94c3d3c8-c9dd-4177-8b21-55a8dfba2b48",
+            "sourceToolAssistantUUID": "91b98575-390d-438d-a59b-c52605d06aea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T01:51:16.554Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QSeRYCNzbPGxmEwPpeCiBV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94c3d3c8-c9dd-4177-8b21-55a8dfba2b48",
+            "isSidechain": true,
+            "agentId": "ab2a359574bd378bd",
+            "requestId": "req_011CbJfPqrT9kLGixU1n2M1k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6d31c945-15b0-47a8-ad3a-39ac0ca3db3c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBRTbNNdfQP2SfLf3vnEy5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25424,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T01:51:16.562Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QSeRYCNzbPGxmEwPpeCiBV",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage[table]{xcolor}\n14\t\\usepackage{amsmath}\n15\t\\usepackage{amssymb}\n16\t\\usepackage{amsthm}\n17\t\\usepackage{enumitem}\n18\t\\usepackage{pifont}\n19\t\\usepackage{soul}\n20\t\\usepackage{tikz}\n21\t\\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds,calc}\n22\t\\newcommand{\\TBD}[1]{\\textcolor{red}{#1}}\n23\t\n24\t\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Schema Constraints}\n25\t\n26\t\\author{Anonymous ACL submission}\n27\t\n28\t\\begin{document}\n29\t\\maketitle\n30\t\n31\t% === Abstract ===\n32\t\\input{abstract}\n33\t\n34\t% === §1 Introduction ===\n35\t\\input{section1_introduction_draft}\n36\t\n37\t% === §2 Background ===\n38\t\\input{section2_background}\n39\t\n40\t% === §3 Method ===\n41\t\\input{section3_method_draft}\n42\t\n43\t% === §4 Constraint Composition ===\n44\t\\section{Constraint Composition}\n45\t\\label{sec:composition}\n46\t\\input{section4_composition_draft}\n47\t\n48\t% === §5 Experiments ===\n49\t\\section{Experiments}\n50\t\\label{sec:experiments}\n51\t\n52\t\\input{section3_violation_landscape}\n53\t\n54\t\\input{section5_scierc_draft}\n55\t\\input{section5_docred_draft}\n56\t\\input{section5_crossmodel_draft}\n57\t\\input{section5_wikievents_draft}\n58\t\\input{section5_runtime}\n59\t\n60\t% === §6 Related Work ===\n61\t\\input{section6_related_work}\n62\t\n63\t% === §7 Discussion and Conclusion ===\n64\t\\section{Discussion and Conclusion}\n65\t\\label{sec:discussion}\n66\t\\input{section7_conclusion_compressed}\n67\t\n68\t% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===\n69\t\\clearpage\n70\t\\section*{Limitations}\n71\t\n72\t\\paragraph{Constraint scope.}\n73\tCF impact is model-dependent: for well-calibrated models (Qwen, Llama; DR\\,$\\leq$\\,1\\% under greedy constrained decoding), S1 introduces CF violations (up to 12.02\\%) as a consequence of per-relation independent enforcement; for poorly-calibrated models (Mistral), S1 substantially reduces CF (56.87\\%\\,$\\to$\\,1.27\\%) by constraining type assignments to schema-valid values.\n74\tCF fallback ablation shows that eliminating CF re-routes violations to DR ($+$13.85\\,pp). CF$\\leftrightarrow$DR thus represents a fundamental trade-off in composable constraint systems rather than an independently resolvable limitation (Appendix~\\ref{app:cf-dr-tradeoff}).\n75\tGlobal entity-level type consensus during decoding offers the most direct path to resolving CF violations.\n76\tCF type inconsistencies may propagate to downstream tasks that consume extracted triples (e.g., knowledge graph construction, question answering); the impact of such propagation has not been evaluated.\n77\tEntity F1 impact is model-dependent ($+$1.22\\,pp for Qwen vs.\\ $-$0.64\\,pp for Llama on DocRED), partially confounded by increased parse failures under constraints (Llama: 9.1\\% vs.\\ 6.8\\%).\n78\tOn 70B DocRED LoRA, parse failure rises modestly under S1 (10.0\\%\\,$\\to$\\,12.5\\%) due to generation timeouts on long documents rather than JSON format errors; SciERC (shorter documents) shows 0\\% parse failure in both settings.\n79\tResidual DR under fine-tuning (36 violations across all fine-tuned settings, both models and both datasets) decomposes into entity type errors (39\\%), schema coverage gaps (33\\%), and model generation errors correctly caught by constraints (28\\%); Llama DocRED alone accounts for 33 of 36 residual violations (92\\%), reflecting weaker entity typing (Appendix~\\ref{app:residual-dr-analysis}).\n80\tSchema coverage gaps (one-third of residual violations) arise because RE constraints are extracted from training-data type pairs, which may not cover all valid combinations; larger training sets or manual constraint table completion can reduce this gap.\n81\tPost-hoc type consensus re-voting (Appendix~\\ref{app:tcr}) reduces CF violations by 18--92\\% depending on model and dataset, confirming that first-assignment ordering sensitivity is a primary CF source; however, integrating consensus into the decoding loop remains future work.\n82\t\n83\t\\paragraph{Evaluation coverage.}\n84\tZero-shot results cover three 7--8B-class models, where relation F1 remains around 4--8\\% compared to $\\sim$45\\% for fine-tuned systems.\n85\tZero-shot evaluation covers three 8B-class and one 70B-class model; fine-tuning composability is validated on 8B-class (two models, full datasets) and 70B-class models (one model; SciERC full, DocRED 200-document subset).\n86\tScaling to smaller models has not been verified; the observed relationship between schema restrictiveness and enforcement difficulty is based on only three schemas.\n87\tComposability with fine-tuned models is validated on SciERC, DocRED, and WikiEvents with Qwen3-8B and Llama-3.1-8B (RE: DR\\,$\\leq$\\,0.09\\%, R-F1 within $\\pm$0.8\\,pp; EE: RoV$\\to$0\\%, AC$\\leq$0.8\\%), but evaluation is limited to one fine-tuning method (LoRA); residual CF (Qwen 1.18\\%, Llama 0.46\\% on SciERC) traces to schema-level type ambiguity (\\textsc{Generic}$\\leftrightarrow$X) rather than enforcement failure.\n88\tWikiEvents fine-tuning composability is preliminary (20-document test set, the full official split).\n89\tAll main experiments use greedy decoding; our evaluation of beam search on the full SciERC (551 documents) and DocRED (998 documents) test sets across three models confirms compatibility (Appendices~\\ref{app:sampling},~\\ref{app:beam-search}), but comprehensive evaluation across all decoding configurations remains future work.\n90\t\n91\t\\paragraph{Engineering considerations.}\n92\tScalability benchmarks up to 200 entity types and 1,000 relations show constant 2--3\\% inference overhead and sub-second compilation ($<$0.5\\,s; Appendix~\\ref{app:scalability}); however, the first-token uniqueness requirement for continuation masking may become a tokenizer-dependent bottleneck beyond this scale.\n93\tOur approach requires access to model logits for token-level masking, which excludes API-only models (e.g., GPT-4, Claude) where only output text is available; extending to API-only settings would require alternative enforcement mechanisms such as constrained sampling APIs or output reranking.\n94\tContinuation masking assumes each entity type name maps to a distinguishable token prefix sequence.\n95\tThis assumption holds for our evaluation ontologies but may be challenged by ontologies with morphologically similar type names (e.g., \\texttt{Protein} vs.\\ \\texttt{Protein\\_Complex} vs.\\ \\texttt{Protein\\_Domain}); when type names share a common prefix longer than one token, masking granularity depends on the tokenizer's subword segmentation.\n96\t70B experiments use AWQ INT4 quantization, which may alter logit distributions at mask boundaries; the impact on constraint enforcement precision has not been isolated.\n97\tOur evaluation is limited to English-language datasets.\n98\tThe grammar layer (CFG compilation via XGrammar) is tokenizer-agnostic, applying unchanged to any BPE or SentencePiece tokenizer including those trained on CJK-heavy corpora.\n99\tThe semantic layer's continuation masking is likewise language-independent in mechanism: prefix matching over type name tokens operates identically regardless of script, though CJK entity names produce more fragmented tokenizations under byte-level BPE (2--3$\\times$ more tokens per entity than English equivalents), increasing the number of masking steps per type field without affecting correctness.\n100\tValidation on Chinese IE benchmarks (e.g., DuIE, CLUENER) remains future work.\n101\tFine-tuning composability was validated exclusively with LoRA; full fine-tuning with an untuned learning rate underperforms LoRA (R-F1 37.89 vs.\\ 43.77 on SciERC) but confirms that constraints remain effective (DR 2.74\\%\\,$\\to$\\,0\\%; Appendix~\\ref{app:full-ft}); other fine-tuning methods may exhibit different constraint interaction patterns and warrant further investigation.\n102\tThe two-pass strategy (S2) exhibits scale-dependent degradation: at 70B, S2 reduces R-F1 by 8.45\\,pp while 8B models show comparable S1/S2 performance, suggesting optimal constraint granularity varies with model capacity (Appendix~\\ref{app:70b-ablation}).\n103\t\n104\t\n105\t% === Ethics Statement ===\n106\t\\section*{Ethics Statement}\n107\t\n108\tThis work uses publicly available benchmark datasets (SciERC, DocRED, and WikiEvents) with no personally identifiable information.\n109\tNo human subjects were involved in the experiments.\n110\tThe constrained decoding method operates on model outputs and does not introduce new privacy or safety risks beyond those inherent in the base language models.\n111\tCode and data will be released upon acceptance.\n112\t\n113\t% === Bibliography ===\n114\t\\bibliography{relwork_new_entries}\n115\t\n116\t% === Appendix ===\n117\t\\appendix\n118\t\n119\t\\input{appendix_prompts}\n120\t\\input{appendix_related_work}\n121\t\\input{appendix_discussion}\n122\t\\input{appendix_70b_ablation}\n123\t\\input{appendix_llama_per_relation}\n124\t\\input{appendix_sampling_table}\n125\t\\input{appendix_beam_search}\n126\t\\input{appendix_reproducibility}\n127\t\\input{appendix_power_analysis}\n128\t\\input{appendix_doc_length}\n129\t\\input{appendix_prompt_sensitivity}\n130\t\\input{appendix_case_studies}\n131\t\\input{appendix_downstream_analysis}\n132\t\\input{appendix_scalability}\n133\t\\input{appendix_full_ft}\n134\t\\input{appendix_tcr}\n135\t\\input{appendix_kappa_case_study}\n136\t\\input{appendix_high_kappa_analysis}\n137\t\\input{appendix_order_invariance}\n138\t\\input{appendix_pumping_lemma}\n139\t\n140\t\\end{document}\n141\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d31c945-15b0-47a8-ad3a-39ac0ca3db3c",
+            "isSidechain": true,
+            "promptId": "1a5d66fd-f053-4874-a999-8c0ec7afebc5",
+            "agentId": "ab2a359574bd378bd",
+            "type": "user",
+            "uuid": "95e4a867-37d6-44a4-8d59-7c7b3832075e",
+            "sourceToolAssistantUUID": "6d31c945-15b0-47a8-ad3a-39ac0ca3db3c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T01:55:07.124Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the full contents of all 7 requested files:\n\n---\n\n**File 1: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex`**\n\n```\n1\t\\begin{abstract}\n2\tWe present \\textsc{OntoCoDec}, a framework that translates Information Extraction (IE) ontologies into composable token-level decoding constraints.\n3\tA decidability analysis yields a two-layer architecture: a \\emph{grammar layer} (context-free) compiles ontology constraints into grammars ensuring JSON validity and vocabulary membership; a \\emph{semantic layer} (prefix-decidable with state) interprets type constraints at runtime via stateful token masking over a dynamic entity registry, with grammar-first fallback when constraints conflict.\n4\tThe two layers exhibit an empirical enabling dependency (Proposition~1, scale-sensitive; \\S\\ref{sec:70b-results}): neither achieves full DR reduction alone.\n5\t% exp_ids: w5_lora_scierc_constrained_eval, w5_qwen_docred_lora_constrained_eval, w5_llama_lora_scierc_constrained_eval, w5_llama_docred_lora_constrained_eval\n6\tComposed with LoRA fine-tuning on three 8B-class models across two RE datasets (up to 96 relation types), \\textsc{OntoCoDec} near-eliminates DR ($<$\\,0.1\\%) at R-F1 41--47\\% ($\\pm$0.8\\,pp); under fine-tuning, CF remains $\\leq$\\,1.4\\% with greedy decoding and reaches zero with beam search ($k{=}4$) on both RE datasets (1.54$\\times$ latency; \\S\\ref{sec:beam-results}).\n7\tZero-shot evaluation serves as a diagnostic probe, revealing DR reduction of 76--99\\% on SciERC and 42--90\\% on DocRED across three models; constraint tightness ($\\bar{\\kappa}$) is a descriptive correlate of enforcement difficulty ($n{=}3$ schemas, $p{=}0.138$).\n8\t70B-class validation on SciERC (full six-way ablation; \\S\\ref{sec:70b-results}) with preliminary DocRED support, and event extraction on WikiEvents (\\S\\ref{sec:wikievents}), confirm generalizability beyond the primary 8B evaluation.\n9\t\\end{abstract}\n```\n\n---\n\n**File 2: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex`**\n\n```\n1\t% Section 1: Introduction (compressed, 669→~550 words)\n2\t\n3\t\\section{Introduction}\n4\t\\label{sec:introduction}\n5\t\n6\tLarge language models are increasingly used for information extraction~\\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity necessarily carries a type consistent with the ontology's domain/range constraints for $r$.\n7\tWe call such outputs \\emph{domain/range violations}: structurally valid triples that are ontologically invalid.\n8\tViolations persist across the capability spectrum: 15.4\\% of triples on SciERC~\\cite{luan2018scierc} and 18.5\\% on DocRED~\\cite{yao2019docred} under zero-shot decoding, and 0.5--2\\% even after LoRA fine-tuning; rates correlate with schema restrictiveness (few valid type pairs per relation) rather than ontology or model scale.\n9\tAt competitive quality (R-F1 41--47\\%), even 1--2\\% residual violations compound across thousands of documents into systematic knowledge graph corruption, making reliable constraint enforcement necessary.\n10\t\n11\tExisting approaches leave a fundamental gap.\n12\tSchema-informed prompting reduces violations by 62\\% on average but is per-relation unreliable (violations for \\textsc{Evaluate-for} actually \\emph{increase} by 5.8\\,pp).\n13\tGrammar-constrained decoding~\\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} ensures syntactic well-formedness but cannot encode cross-field semantic constraints.\n14\tPost-hoc filtering improves precision but discards up to 48\\% of predictions including true positives (\\S\\ref{sec:cross-model}); at high rejection rates (e.g., Mistral DocRED 73.7\\%), it becomes impractical.\n15\tTraining-based approaches~\\cite{sainz2024gollie,lu2022uie} internalize schema knowledge but provide only soft guidance without runtime enforcement; no method provides both semantic awareness and hard constraint enforcement.\n16\t\n17\tWe propose \\textbf{OntoCoDec}, a framework that translates IE ontologies into composable layers of decoding-time constraints.\n18\tA decidability analysis of IE type constraints (\\S\\ref{sec:decidability}) yields a two-layer architecture: the \\emph{grammar layer} compiles ontology constraints into context-free grammars (JSON structure, vocabulary membership) via XGrammar; the \\emph{semantic layer} interprets type constraints at runtime via dynamic logit masking over an entity registry, with an \\emph{empirical enabling dependency} between layers.\n19\tOntoCoDec compiles constraints automatically from IE ontologies, requires no constraint-specific training, and is applicable to autoregressive LMs with logits access; we validate on three English datasets (up to 96 relation types), three 8B-class models across three tokenizer families, with 70B-class validation (\\S\\ref{sec:70b-results}).\n20\tLoRA + greedy S1 achieves near-complete DR elimination: DR\\,$\\leq$\\,0.09\\% at R-F1 41--47\\% ($\\pm$0.8\\,pp, $+$10\\% latency); beam ($k{=}4$) eliminates all violation types on both RE datasets under fine-tuning (1.54$\\times$ latency).\n21\tDR enforcement converts ontologically invalid violations to individually valid but type-inconsistent ones (CF\\,$\\leq$\\,1.4\\% fine-tuned; \\S\\ref{sec:scierc-results}); zero-shot evaluation reveals DR drops 42--99\\% across models and datasets, with 76--99\\% on SciERC, but total violations (DR+CF) decrease by $\\sim$31\\%, reflecting conversion that fine-tuning resolves (\\S\\ref{sec:cross-model}).\n22\t\n23\tWe make a systematic engineering contribution with theoretical grounding:\n24\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n25\t    \\item A two-layer constrained decoding framework: we formalize a well-known intuition that cross-field type constraints require runtime state beyond context-free expressiveness (Proposition~1), yielding pair-based sequential enforcement at each level (\\S\\ref{sec:decidability}). Constraints compile automatically from IE ontologies, validated on schemas of varying restrictiveness with up to 96 relation types.\n26\t    \\item A comprehensive evaluation across 3 IE datasets, 3 models (8B-class), and 2 tasks, with 70B validation (full SciERC ablation, preliminary DocRED): under fine-tuning, DR\\,$\\leq$\\,0.09\\% at R-F1 41--47\\% with CF\\,$\\leq$\\,1.4\\%; zero-shot ablation reveals an enabling dependency where on SciERC neither layer alone exceeds 24\\% DR reduction (at 70B, semantic layer achieves 84\\% independently; \\S\\ref{sec:70b-results}); event extraction on WikiEvents validates applicability beyond RE (\\S\\ref{sec:wikievents}).\n27\t\\end{enumerate}\n```\n\n---\n\n**File 3: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex`**\n\n```\n1\t% Section: Constraint Composition (compressed, 787→~500 words)\n2\t\n3\tAt each decoding step $t$, let $G(t) \\subseteq V$ and $S(t) \\subseteq V$ denote the tokens permitted by the grammar and semantic layers, respectively.\n4\tThe final mask is their conjunction:\n5\t%\n6\t\\begin{equation}\\label{eq:composition}\n7\t  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n8\t\\end{equation}\n9\t%\n10\twhere $\\wedge$ denotes element-wise AND over the vocabulary $V$; a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\n11\tThe conjunction is asymmetric: $S(t)$ is defined only over $G(t)$. This reflects the empirical enabling dependency (\\S\\ref{sec:method}): the semantic layer requires the relation type to belong to $\\mathcal{R}$, a property enforced only by the grammar layer.\n12\tThis dependency is scale-sensitive: 70B semantic-only achieves 84\\% DR reduction (vs.\\ 24\\% on 8B), though grammar remains necessary for RV elimination (\\S\\ref{sec:70b-results}).\n13\t\n14\t\\paragraph{Grammar-First Fallback.}\n15\tWhen $S(t) \\cap G(t) = \\emptyset$ (tight constraints leave no token that is both grammar-valid and semantically valid), na\\\"{\\i}ve masking would force selection of a grammar-invalid token, breaking JSON structure.\n16\tWe enforce a \\emph{grammar-first fallback}: semantic masking is skipped and the grammar layer alone controls selection.\n17\tStructural integrity is a hard constraint; type violations are soft errors detectable by downstream validation, with DR (ontologically invalid type pair) more severe than CF (individually valid triples with cross-triple type inconsistency).\n18\t\n19\t\\paragraph{Constraint Tightness.}\n20\t\\label{eq:tightness}\n21\tWe define per-relation constraint tightness $\\kappa(r) = 1 - |\\sigma(r)|/|\\mathcal{E}|^2$ and the schema-level mean $\\bar{\\kappa} = \\frac{1}{|\\mathcal{R}|}\\sum_{r} \\kappa(r)$.\n22\tAcross three schemas---WikiEvents ($\\bar{\\kappa}{=}0.029$), SciERC ($\\bar{\\kappa}{=}0.333$), DocRED ($\\bar{\\kappa}{=}0.842$)---DR reduction ranges from 94--99\\% (low $\\bar{\\kappa}$) to 42--90\\% (high $\\bar{\\kappa}$), though this correlation is descriptive only ($n{=}3$, $p{=}0.138$); entity type confusability is a critical co-factor (Appendix~\\ref{app:kappa-case-study},~\\ref{app:tcr}); high-$\\bar{\\kappa}$ relations account for only 3.8\\% of gold triples in DocRED (Appendix~\\ref{app:kappa-analysis}).\n23\t\n24\t\\paragraph{Greedy limitation and fallback cascade.}\n25\t\\label{sec:greedy-limitation}\n26\tThe semantic layer commits entity types greedily---an instance of Level~3 (non-local) constraints (\\S\\ref{sec:decidability})---so CF violations arise when the same entity receives different types across triples; beam search mitigates this in favorable configurations (\\S\\ref{sec:beam-results}).\n27\tGrammar-first fallback triggers on 0.5--5.7\\% of type-bearing positions (zero-shot; correlating with $\\bar{\\kappa}$), virtually eliminated by fine-tuning ($\\leq$\\,0.11\\%); all residual DR occurs at fallback positions (Appendix~\\ref{app:causal-tracing}).\n28\t\n29\t\\paragraph{Non-rectangularity and independent enforcement.}\n30\t\\label{sec:rectangularity}\n31\tType signatures are non-rectangular (0/7 SciERC, 23/96 DocRED rectangular); independent enforcement is a sound over-approximation admitting 33--37\\% spurious pairs; fine-tuning eliminates all residual DR (Table~\\ref{tab:composability}).\n32\tSchema enumeration order does not affect decoding: shuffling entity and relation type order in the compiled constraints produces byte-identical outputs across all 551 SciERC documents, confirming that OntoCoDec is fully order-invariant (Appendix~\\ref{app:order-invariance}).\n```\n\n---\n\n**File 4: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex`**\n\n```\n1\t% Runtime overhead (inline paragraph, no subsection header to save space)\n2\t\n3\t\\paragraph{Runtime overhead.}\n4\t\\label{sec:runtime}\n5\tS1 overhead is $+$13.1\\% on SciERC, lower on DocRED due to amortization over longer sequences; under LoRA, $+$10.0\\% with 37\\% lower absolute latency.\n6\tConstraint compilation is one-time $<$0.5\\,s; scaling benchmarks confirm constant overhead (2--3\\%) up to 200 entity types and 1{,}000 relations (Appendix~\\ref{app:scalability}).\n7\t\n8\t\\paragraph{Beam search compatibility.}\n9\t\\label{sec:beam-results}\n10\tWith LoRA, beam search ($k{=}4$)~\\cite{anderson2017guided} eliminates all four violation types on both SciERC and DocRED (R-F1 43--47; Appendix~\\ref{app:beam-search}), yielding two deployment tiers: greedy S1 ($+$10\\% latency, DR${<}$0.1\\%, CF${\\leq}$1.4\\%) and beam S1 (1.54$\\times$ latency, all violations${\\to}$0\\%; Table~\\ref{tab:beam-latency}).\n11\t70B beam4 confirms scale-independent violation elimination (DR${=}$0\\% on both datasets at both 8B and 70B; \\S\\ref{sec:70b-results}).\n12\t\n13\t% exp_ids: r16_70b_scierc_zs_s1, r16_70b_docred_zs_s1, 70b_lora_scierc, 70b_lora_docred_200\n14\t\\paragraph{70B-class validation.}\n15\t\\label{sec:70b-results}\n16\tOn Llama-3.1-70B-Instruct (AWQ INT4), zero-shot S1 eliminates DR on both datasets: SciERC 6.41\\%\\,$\\to$\\,0\\% (R-F1 11.24), DocRED 14.98\\%\\,$\\to$\\,0\\% (R-F1 13.05); CF rises to 0.04--3.50\\%, comparable to 8B zero-shot CF.\n17\t% exp_ids: r16_70b_scierc_zs_ablation (grammar_only, semantic_only, full_s1)\n18\tA four-way ablation on SciERC reveals scale-dependent layer interaction: semantic-only achieves 84\\% DR reduction (6.41\\%\\,$\\to$\\,1.01\\%), far exceeding the 8B result (24\\%; Table~\\ref{tab:scierc-ablation}), reflecting stronger internalized JSON generation; grammar remains necessary for RV elimination (0.61\\%\\,$\\to$\\,0\\%) and CF control (semantic-only CF${=}$76).\n19\tSemantic layer effectiveness thus scales with model capability (24\\%\\,$\\to$\\,84\\% independent DR reduction from 8B to 70B), suggesting that constraint enforcement benefits compound as base models improve.\n20\t% exp_ids: eval_70b_lora_scierc_s1_constrained, eval_70b_lora_docred_200_s1_constrained\n21\tLoRA confirms composability: DR\\,$\\to$\\,0\\% on both datasets (R-F1 44.53, 43.95; $|\\Delta| \\leq 0.20$\\,pp); CF drops to 0.18--1.33\\%, consistent with the 8B pattern (\\S\\ref{sec:composability}).\n22\t% exp_ids: eval_70b_lora_docred_200_beam4_s1\n23\tOn DocRED, beam ($k{=}4$) S1 additionally reduces parse failures from 12.5\\% to 0.5\\%, contributing to a $+$4.19\\,pp R-F1 improvement (43.95\\,$\\to$\\,48.14); the controlled comparison on SciERC (0\\% parse failure in both settings) isolates the pure beam quality gain at $+$0.28\\,pp (Appendix~\\ref{app:70b-ablation}).\n24\t\n25\t% exp_ids: trie_qwen_ft_scierc, trie_qwen_zs_scierc, trie_llama_ft_scierc, trie_llama_zs_scierc\n26\t\\paragraph{Comparison with grammar-constrained approaches.}\n27\t\\label{sec:constrained-baselines}\n28\tOur grammar-only ablation (Table~\\ref{tab:scierc-ablation}, row~2) implements the same constraints as GCD~\\cite{geng2023gcd} and BoostCD~\\cite{boostcd2025}; vLLM \\texttt{guided\\_json}~\\cite{kwon2023vllm} confirms equivalence (DR${=}$15.26\\%, R-F1${=}$8.75; GCD-equiv.\\ row, Appendix~\\ref{app:gcd-comparison}).\n29\tThe ${\\sim}$15\\% residual DR is the gap our semantic layer addresses (94\\% total reduction).\n30\tTrie-only constraints without JSON enforcement yield 9--51\\% parse failure (Appendix~\\ref{app:trie-baseline}).\n```\n\n---\n\n**File 5: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex`**\n\n```\n1\t% Section 7 — Discussion and Conclusion\n2\t\n3\tOntoCoDec translates IE ontologies into composable token-level constraints, providing a systematic empirical framework---automatically compiled from ontologies, validated across 3 datasets, 3+ models, and 2 tasks---rather than a novel decoding algorithm.\n4\tLoRA + greedy S1 near-eliminates DR ($<$\\,0.1\\%) with CF\\,$\\leq$\\,1.4\\%; beam ($k{=}4$) eliminates all violations on both RE datasets (1.54$\\times$ latency); zero-shot DR drops 42--99\\% across three 8B-class models.\n5\tThe central insight is that IE type constraints exceed context-free expressiveness (Proposition~1): unlike rejection-based approaches that prune invalid outputs post-generation~\\cite{scholak2021picard}, the semantic layer applies constructive forward masking via a dynamic entity registry, bridging the gap grammar-only enforcement cannot address (3\\% vs.\\ 94\\% DR reduction); this enabling dependency---scale-sensitive (\\S\\ref{sec:70b-results})---shows grammar-constrained decoding is necessary but insufficient for IE schema compliance.\n6\tResidual CF arises from per-triple independent enforcement; extending to global entity-level type consensus during decoding---eliminating CF without beam search overhead---is the most important direction for future work.\n```\n\n---\n\n**File 6: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_70b_ablation.tex`**\n\n```\n1\t% Appendix: 70B-Class LoRA Ablation on SciERC\n2\t% exp_ids: eval_70b_lora_scierc_unconstrained, eval_70b_lora_scierc_grammar_only,\n3\t%          eval_70b_lora_scierc_semantic_only, eval_70b_lora_scierc_s1_constrained,\n4\t%          eval_70b_lora_scierc_s2_constrained, eval_70b_lora_scierc_beam4_s1\n5\t\n6\t\\paragraph{70B-class fine-tuned ablation.}\n7\t\\label{app:70b-ablation}\n8\t\n9\tTable~\\ref{tab:70b-ft-ablation} presents the constraint ablation on Llama-3.1-70B-Instruct (AWQ INT4) with LoRA fine-tuning on SciERC (551 documents).\n10\t\n11\t\\begin{table}[h]\n12\t\\centering\n13\t\\small\n14\t\\setlength{\\tabcolsep}{3.6pt}\n15\t\\begin{tabular}{@{}l rrrr rr@{}}\n16\t\\toprule\n17\t\\textbf{Mode}\n18\t  & \\textbf{DR\\,$\\downarrow$} & \\textbf{RV\\,$\\downarrow$} & \\textbf{ET\\,$\\downarrow$} & \\textbf{CF}\n19\t  & \\textbf{R-F1\\,$\\uparrow$} & \\textbf{E-F1\\,$\\uparrow$} \\\\\n20\t\\midrule\n21\tUnconstrained & 1.50 & 0 & 0 & 0    & 44.73 & 64.86 \\\\\n22\tGrammar       & 1.50 & 0 & 0 & 0    & 44.63 & 64.82 \\\\\n23\tSemantic      & 0.60 & 0 & 0 & 9    & 44.73 & 64.86 \\\\\n24\tS1            & \\textbf{0} & 0 & 0 & 15 & 44.53 & 64.76 \\\\\n25\tS2            & \\textbf{0} & 0 & 0 & 18 & 36.28 & 62.35 \\\\\n26\tBeam4 S1      & \\textbf{0} & 0 & 0 & \\textbf{1} & \\textbf{44.81} & \\textbf{64.89} \\\\\n27\t\\bottomrule\n28\t\\end{tabular}\n29\t\\caption{70B-class (Llama-3.1-70B-Instruct (AWQ INT4)) LoRA ablation on SciERC (551 docs).\n30\tCF: violation count. F1 $\\times$100.}\n31\t\\label{tab:70b-ft-ablation}\n32\t\\end{table}\n33\t\n34\tThe grammar layer provides no independent DR benefit at 70B (1.50\\%\\,$\\to$\\,1.50\\% on SciERC; on DocRED zero-shot, DR actually increases $+$3.58\\,pp due to RV$\\to$DR conversion in the high-$\\bar{\\kappa}$ schema; Table~\\ref{tab:70b-docred-zs-ablation}).\n35\tThe semantic layer is the sole effective defense (1.50\\%\\,$\\to$\\,0.60\\%, 60\\% reduction) with no R-F1 cost ($\\Delta{=}$0\\,pp), and full S1 eliminates all DR.\n36\tS2 eliminates DR but causes severe R-F1 degradation ($-$8.45\\,pp), indicating that optimal constraint granularity is scale-dependent: the additional S2 constraints become overly restrictive at 70B, where stronger baseline generation makes fine-grained intervention counterproductive.\n37\tBeam ($k{=}4$) S1 remains the optimal configuration (DR${=}$0\\%, CF${=}$1, R-F1${=}$44.81).\n38\tNotably, S2 increases CF from 15 (S1) to 18 despite its cross-field consistency design, suggesting that over-constraining induces cascading generation degradation that creates new violations.\n39\t\n40\t% exp_ids: eval_70b_lora_docred_200_unconstrained, eval_70b_lora_docred_200_s1_constrained,\n41\t%          eval_70b_lora_docred_200_beam4_s1\n42\t\\paragraph{70B-class DocRED results.}\n43\t\\label{app:70b-docred}\n44\t\n45\tTable~\\ref{tab:70b-docred-ablation} presents available 70B LoRA configurations on DocRED (998 documents).\n46\t\n47\t\\begin{table}[h]\n48\t\\centering\n49\t\\small\n50\t\\setlength{\\tabcolsep}{3.6pt}\n51\t\\begin{tabular}{@{}l rrrr rr@{}}\n52\t\\toprule\n53\t\\textbf{Mode}\n54\t  & \\textbf{DR\\,$\\downarrow$} & \\textbf{RV\\,$\\downarrow$} & \\textbf{ET\\,$\\downarrow$} & \\textbf{CF}\n55\t  & \\textbf{R-F1\\,$\\uparrow$} & \\textbf{E-F1\\,$\\uparrow$} \\\\\n56\t\\midrule\n57\tUnconstrained & 0.22 & 0.57 & 0 & 2  & 43.80 & 80.34 \\\\\n58\tS1            & \\textbf{0} & 0 & 0 & 0.18\\%$^\\dagger$ & 43.95 & 79.38 \\\\\n59\tBeam4 S1      & \\textbf{0} & 0 & 0 & \\textbf{0} & \\textbf{48.14} & \\textbf{85.57} \\\\\n60\t\\bottomrule\n61\t\\end{tabular}\n62\t\\caption{70B-class (Llama-3.1-70B-Instruct (AWQ INT4)) LoRA results on DocRED (998 docs).\n63\tCF: violation count except $^\\dagger$reported as percentage (raw count unavailable).\n64\tF1 $\\times$100. Grammar-only and semantic-only ablations omitted; see SciERC panel for full six-way decomposition.\n65\tPF: greedy S1 12.5\\% (25/200 docs), beam4 S1 0.5\\% (1/200).}\n66\t\\label{tab:70b-docred-ablation}\n67\t\\end{table}\n68\t\n69\tThe $+$4.19\\,pp R-F1 gain from beam search on DocRED (43.95\\,$\\to$\\,48.14) is largely attributable to parse failure recovery: greedy S1 fails to parse 12.5\\% of documents (25/200), while beam reduces this to 0.5\\% (1/200), recovering $\\sim$24 documents that contribute no triples under greedy decoding.\n70\tThe controlled comparison on SciERC---where both greedy and beam achieve 0\\% parse failure---isolates the pure beam quality gain at $+$0.28\\,pp, consistent with the 8B pattern (Appendix~\\ref{app:beam-search}).\n71\t\n72\t% exp_ids: r16_70b_docred_zs_unconstrained, r16_70b_docred_zs_grammar_only,\n73\t%          r16_70b_docred_zs_semantic_only\n74\t\\paragraph{70B-class DocRED zero-shot ablation.}\n75\t\\label{app:70b-docred-zs}\n76\t\n77\tTable~\\ref{tab:70b-docred-zs-ablation} presents the layer ablation on DocRED under zero-shot decoding at 70B.\n78\t\n79\t\\begin{table}[h]\n80\t\\centering\n81\t\\small\n82\t\\setlength{\\tabcolsep}{3.6pt}\n83\t\\begin{tabular}{@{}l rrrr rr@{}}\n84\t\\toprule\n85\t\\textbf{Mode}\n86\t  & \\textbf{DR\\,$\\downarrow$} & \\textbf{RV\\,$\\downarrow$} & \\textbf{ET\\,$\\downarrow$} & \\textbf{CF}\n87\t  & \\textbf{R-F1\\,$\\uparrow$} & \\textbf{E-F1\\,$\\uparrow$} \\\\\n88\t\\midrule\n89\tUnconstrained & 13.45 & 7.88 & 0 & 0    & 13.25 & 70.14 \\\\\n90\tGrammar       & 17.03 & 0    & 0 & 0    & 13.23 & 70.12 \\\\\n91\tSemantic      & 1.66  & 8.24 & 0.12 & 132  & 13.05 & 70.10 \\\\\n92\t\\bottomrule\n93\t\\end{tabular}\n94\t\\caption{70B-class zero-shot layer ablation on DocRED.\n95\tCF: violation count. F1 $\\times$100.}\n96\t\\label{tab:70b-docred-zs-ablation}\n97\t\\end{table}\n98\t\n99\tGrammar-only eliminates RV (7.88\\%\\,$\\to$\\,0\\%) but DR increases by $+$3.58\\,pp (13.45\\%\\,$\\to$\\,17.03\\%): forced vocabulary mapping in DocRED's high-$\\bar{\\kappa}$ schema ($\\bar{\\kappa}{=}0.842$, ${\\sim}$16\\% type pairs valid) converts RV into DR violations.\n100\tSemantic-only independently achieves 87.7\\% DR reduction (13.45\\%\\,$\\to$\\,1.66\\%) with no R-F1 cost, confirming the pattern from SciERC (84\\%; Table~\\ref{tab:70b-ft-ablation}).\n101\tThe two layers thus serve complementary roles: grammar provides the RV elimination foundation that semantic-layer DR enforcement requires, while the semantic layer addresses the DR that grammar alone cannot---and in high-$\\bar{\\kappa}$ schemas, exacerbates.\n102\t\n```\n\n---\n\n**File 7: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex` (lines 1-150)**\n\n```\n1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage[table]{xcolor}\n14\t\\usepackage{amsmath}\n15\t\\usepackage{amssymb}\n16\t\\usepackage{amsthm}\n17\t\\usepackage{enumitem}\n18\t\\usepackage{pifont}\n19\t\\usepackage{soul}\n20\t\\usepackage{tikz}\n21\t\\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds,calc}\n22\t\\newcommand{\\TBD}[1]{\\textcolor{red}{#1}}\n23\t\n24\t\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Schema Constraints}\n25\t\n26\t\\author{Anonymous ACL submission}\n27\t\n28\t\\begin{document}\n29\t\\maketitle\n30\t\n31\t% === Abstract ===\n32\t\\input{abstract}\n33\t\n34\t% === §1 Introduction ===\n35\t\\input{section1_introduction_draft}\n36\t\n37\t% === §2 Background ===\n38\t\\input{section2_background}\n39\t\n40\t% === §3 Method ===\n41\t\\input{section3_method_draft}\n42\t\n43\t% === §4 Constraint Composition ===\n44\t\\section{Constraint Composition}\n45\t\\label{sec:composition}\n46\t\\input{section4_composition_draft}\n47\t\n48\t% === §5 Experiments ===\n49\t\\section{Experiments}\n50\t\\label{sec:experiments}\n51\t\n52\t\\input{section3_violation_landscape}\n53\t\n54\t\\input{section5_scierc_draft}\n55\t\\input{section5_docred_draft}\n56\t\\input{section5_crossmodel_draft}\n57\t\\input{section5_wikievents_draft}\n58\t\\input{section5_runtime}\n59\t\n60\t% === §6 Related Work ===\n61\t\\input{section6_related_work}\n62\t\n63\t% === §7 Discussion and Conclusion ===\n64\t\\section{Discussion and Conclusion}\n65\t\\label{sec:discussion}\n66\t\\input{section7_conclusion_compressed}\n67\t\n68\t% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===\n69\t\\clearpage\n70\t\\section*{Limitations}\n71\t\n72\t\\paragraph{Constraint scope.}\n73\tCF impact is model-dependent: for well-calibrated models (Qwen, Llama; DR\\,$\\leq$\\,1\\% under greedy constrained decoding), S1 introduces CF violations (up to 12.02\\%) as a consequence of per-relation independent enforcement; for poorly-calibrated models (Mistral), S1 substantially reduces CF (56.87\\%\\,$\\to$\\,1.27\\%) by constraining type assignments to schema-valid values.\n74\tCF fallback ablation shows that eliminating CF re-routes violations to DR ($+$13.85\\,pp). CF$\\leftrightarrow$DR thus represents a fundamental trade-off in composable constraint systems rather than an independently resolvable limitation (Appendix~\\ref{app:cf-dr-tradeoff}).\n75\tGlobal entity-level type consensus during decoding offers the most direct path to resolving CF violations.\n76\tCF type inconsistencies may propagate to downstream tasks that consume extracted triples (e.g., knowledge graph construction, question answering); the impact of such propagation has not been evaluated.\n77\tEntity F1 impact is model-dependent ($+$1.22\\,pp for Qwen vs.\\ $-$0.64\\,pp for Llama on DocRED), partially confounded by increased parse failures under constraints (Llama: 9.1\\% vs.\\ 6.8\\%).\n78\tOn 70B DocRED LoRA, parse failure rises modestly under S1 (10.0\\%\\,$\\to$\\,12.5\\%) due to generation timeouts on long documents rather than JSON format errors; SciERC (shorter documents) shows 0\\% parse failure in both settings.\n79\tResidual DR under fine-tuning (36 violations across all fine-tuned settings, both models and both datasets) decomposes into entity type errors (39\\%), schema coverage gaps (33\\%), and model generation errors correctly caught by constraints (28\\%); Llama DocRED alone accounts for 33 of 36 residual violations (92\\%), reflecting weaker entity typing (Appendix~\\ref{app:residual-dr-analysis}).\n80\tSchema coverage gaps (one-third of residual violations) arise because RE constraints are extracted from training-data type pairs, which may not cover all valid combinations; larger training sets or manual constraint table completion can reduce this gap.\n81\tPost-hoc type consensus re-voting (Appendix~\\ref{app:tcr}) reduces CF violations by 18--92\\% depending on model and dataset, confirming that first-assignment ordering sensitivity is a primary CF source; however, integrating consensus into the decoding loop remains future work.\n82\t\n83\t\\paragraph{Evaluation coverage.}\n84\tZero-shot results cover three 7--8B-class models, where relation F1 remains around 4--8\\% compared to $\\sim$45\\% for fine-tuned systems.\n85\tZero-shot evaluation covers three 8B-class and one 70B-class model; fine-tuning composability is validated on 8B-class (two models, full datasets) and 70B-class models (one model; SciERC full, DocRED 200-document subset).\n86\tScaling to smaller models has not been verified; the observed relationship between schema restrictiveness and enforcement difficulty is based on only three schemas.\n87\tComposability with fine-tuned models is validated on SciERC, DocRED, and WikiEvents with Qwen3-8B and Llama-3.1-8B (RE: DR\\,$\\leq$\\,0.09\\%, R-F1 within $\\pm$0.8\\,pp; EE: RoV$\\to$0\\%, AC$\\leq$0.8\\%), but evaluation is limited to one fine-tuning method (LoRA); residual CF (Qwen 1.18\\%, Llama 0.46\\% on SciERC) traces to schema-level type ambiguity (\\textsc{Generic}$\\leftrightarrow$X) rather than enforcement failure.\n88\tWikiEvents fine-tuning composability is preliminary (20-document test set, the full official split).\n89\tAll main experiments use greedy decoding; our evaluation of beam search on the full SciERC (551 documents) and DocRED (998 documents) test sets across three models confirms compatibility (Appendices~\\ref{app:sampling},~\\ref{app:beam-search}), but comprehensive evaluation across all decoding configurations remains future work.\n90\t\n91\t\\paragraph{Engineering considerations.}\n92\tScalability benchmarks up to 200 entity types and 1,000 relations show constant 2--3\\% inference overhead and sub-second compilation ($<$0.5\\,s; Appendix~\\ref{app:scalability}); however, the first-token uniqueness requirement for continuation masking may become a tokenizer-dependent bottleneck beyond this scale.\n93\tOur approach requires access to model logits for token-level masking, which excludes API-only models (e.g., GPT-4, Claude) where only output text is available; extending to API-only settings would require alternative enforcement mechanisms such as constrained sampling APIs or output reranking.\n94\tContinuation masking assumes each entity type name maps to a distinguishable token prefix sequence.\n95\tThis assumption holds for our evaluation ontologies but may be challenged by ontologies with morphologically similar type names (e.g., \\texttt{Protein} vs.\\ \\texttt{Protein\\_Complex} vs.\\ \\texttt{Protein\\_Domain}); when type names share a common prefix longer than one token, masking granularity depends on the tokenizer's subword segmentation.\n96\t70B experiments use AWQ INT4 quantization, which may alter logit distributions at mask boundaries; the impact on constraint enforcement precision has not been isolated.\n97\tOur evaluation is limited to English-language datasets.\n98\tThe grammar layer (CFG compilation via XGrammar) is tokenizer-agnostic, applying unchanged to any BPE or SentencePiece tokenizer including those trained on CJK-heavy corpora.\n99\tThe semantic layer's continuation masking is likewise language-independent in mechanism: prefix matching over type name tokens operates identically regardless of script, though CJK entity names produce more fragmented tokenizations under byte-level BPE (2--3$\\times$ more tokens per entity than English equivalents), increasing the number of masking steps per type field without affecting correctness.\n100\tValidation on Chinese IE benchmarks (e.g., DuIE, CLUENER) remains future work.\n101\tFine-tuning composability was validated exclusively with LoRA; full fine-tuning with an untuned learning rate underperforms LoRA (R-F1 37.89 vs.\\ 43.77 on SciERC) but confirms that constraints remain effective (DR 2.74\\%\\,$\\to$\\,0\\%; Appendix~\\ref{app:full-ft}); other fine-tuning methods may exhibit different constraint interaction patterns and warrant further investigation.\n102\tThe two-pass strategy (S2) exhibits scale-dependent degradation: at 70B, S2 reduces R-F1 by 8.45\\,pp while 8B models show comparable S1/S2 performance, suggesting optimal constraint granularity varies with model capacity (Appendix~\\ref{app:70b-ablation}).\n103\t\n104\t\n105\t% === Ethics Statement ===\n106\t\\section*{Ethics Statement}\n107\t\n108\tThis work uses publicly available benchmark datasets (SciERC, DocRED, and WikiEvents) with no personally identifiable information.\n109\tNo human subjects were involved in the experiments.\n110\tThe constrained decoding method operates on model outputs and does not introduce new privacy or safety risks beyond those inherent in the base language models.\n111\tCode and data will be released upon acceptance.\n112\t\n113\t% === Bibliography ===\n114\t\\bibliography{relwork_new_entries}\n115\t\n116\t% === Appendix ===\n117\t\\appendix\n118\t\n119\t\\input{appendix_prompts}\n120\t\\input{appendix_related_work}\n121\t\\input{appendix_discussion}\n122\t\\input{appendix_70b_ablation}\n123\t\\input{appendix_llama_per_relation}\n124\t\\input{appendix_sampling_table}\n125\t\\input{appendix_beam_search}\n126\t\\input{appendix_reproducibility}\n127\t\\input{appendix_power_analysis}\n128\t\\input{appendix_doc_length}\n129\t\\input{appendix_prompt_sensitivity}\n130\t\\input{appendix_case_studies}\n131\t\\input{appendix_downstream_analysis}\n132\t\\input{appendix_scalability}\n133\t\\input{appendix_full_ft}\n134\t\\input{appendix_tcr}\n135\t\\input{appendix_kappa_case_study}\n136\t\\input{appendix_high_kappa_analysis}\n137\t\\input{appendix_order_invariance}\n138\t\\input{appendix_pumping_lemma}\n139\t\n140\t\\end{document}\n141\t\n```\n\nAll 7 files returned verbatim with line numbers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95e4a867-37d6-44a4-8d59-7c7b3832075e",
+            "isSidechain": true,
+            "agentId": "ab2a359574bd378bd",
+            "requestId": "req_011CbJfQLtTM4oeh26hKNEU4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4aede353-4176-4c29-a12b-3e5df9a9ea5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jp49egBYvoALrBo98ELCeD",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12021,
+                "cache_read_input_tokens": 25424,
+                "output_tokens": 10842,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12021
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 10842,
+                    "cache_read_input_tokens": 25424,
+                    "cache_creation_input_tokens": 12021,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12021,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-following-files-completely-and-return-their-full-contents-verbatim-th.md"
+}

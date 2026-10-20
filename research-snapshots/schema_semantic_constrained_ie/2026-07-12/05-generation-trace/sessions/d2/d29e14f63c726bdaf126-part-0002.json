@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d29e14f63c726bdaf126",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-18T12:33:25.789Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L4ijQaa5DxNpUKT9MfaVNA",
+              "name": "mcp__agent-ml-research__review_reviewer_post_to_director",
+              "input": {
+                "text": "## Round 6 审稿意见 — Reviewer 1（方法严谨性 + 实验分析）\n\n**论文**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints\n**Venue**: EMNLP 2026 (ARR May 2026)\n\n---\n\n## 1. Summary\n\nOntoCoDec 提出将 IE ontology schema 编译为两层 token-level 解码约束（grammar + semantic），在自回归生成过程中强制 domain/range type validity。在 3 个模型 × 3 个数据集上验证，DR 下降 42-99%，F1 无显著损失。与 LoRA 微调组合后 DR ≤ 0.20%，beam search 可完全消除校准模型的约束违反。本轮论文相比上轮有显著改善：Abstract 中移除了统计学上不显著的 R² claim，CF-DR trade-off 讨论更加诚实和系统化，reproducibility 细节充分。但发现一个新的关键数据一致性问题（两个 runtime 表数据矛盾）和若干遗留问题部分修复。\n\n---\n\n## 2. Strengths\n\n**S1** 问题定义清晰且有实际意义。violation landscape 分析（§5.1）系统展示了 LLM-IE 中 DR violation 的普遍性和 tightness 驱动机制，为方法提供了强动机。per-relation breakdown 和 tightness 相关性分析（Figure 2, Appendix C）具有独立参考价值。\n\n**S2** 两层架构设计合理，enabling dependency 有充分的实验验证。Semantic-only 仅降 DR 24%（Table 1），grammar+semantic 达 94%，清晰证明了层间依赖关系。sequential masking 相对于 independent masking 的必要性通过 non-rectangularity 分析（§4）严格论证（33-37% spurious pairs）。\n\n**S3** 实验覆盖面优秀。3 models × 3 datasets（2 RE + 1 EE）、zero-shot + LoRA、greedy + sampling + beam search、post-hoc comparison、prompt sensitivity、document length analysis。消融实验设计合理（five-way on SciERC, four-way on DocRED, fine-tuned four-way）。\n\n**S4** CF-DR trade-off 的处理诚实透明。Table 7 的 pilot ablation、Spearman ρ = −0.77 的跨设置验证、CF violation 分布分析（Table 8, Generic 类型占 63.3%）展示了该限制的结构性根源。fine-tuning 将 CF 从 9.90% 降至 1.18%，beam search 进一步降至 0.53%，提供了明确的缓解路径。\n\n**S5** Reproducibility 极为详尽（Appendix G）：LoRA 全部超参数、GPU 型号（RTX PRO 6000, 98GB）、seed=42、软件版本、训练时间。\n\n**S6** WikiEvents 泛化验证（§5.5）展示了框架在 EE 任务上的零修改迁移能力，vocabulary violations 完全消除且 Entity F1 从 0% 提升至 12-18%。\n\n---\n\n## 3. Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**N1** [critical] **Runtime 数据自相矛盾**\n- 具体位置：Table 9 (Appendix B, §app:runtime) vs Table 12 (Appendix G, §app:reproducibility)\n- 问题：两表均声称测量 Qwen3-8B zero-shot per-document inference time，但数据严重矛盾：\n  - SciERC unconstrained: Table 9 = 2.587s vs Table 12 = 8.69s（**3.4× 差异**）\n  - SciERC Full S1: Table 9 = 2.647s (+2.3%) vs Table 12 = 6.76s (**−22%**)\n  - DocRED unconstrained: Table 9 = 21.023s vs Table 12 = 19.75s\n- Table 9 和 inline text (§5, \"Full S1 adds +2.3% on SciERC\") 声称约束增加开销；Table 12 和紧随其后的文字声称 \"full S1 constrained decoding is 22% **faster**\"。方向完全相反。\n- 为什么影响接收：审稿人无法判断实际 runtime 开销。同一论文中对同一配置作出相反的定量声明（+2.3% vs −22%）是数据完整性问题。\n- 建议修改方向：确认哪组数据正确，删除错误表格或解释两表的测量差异（如 Table 9 仅测量 generation time 而 Table 12 包含 prompt encoding）。确保 inline text 与保留的表格一致。\n\n### Should-Fix（影响评分但不一票否决）\n\n**W1** [warning] **Sampling robustness on DocRED: CF 5× 跳升未讨论**\n- 具体位置：Table 6 (Appendix E), DocRED sampling row\n- 问题：Nucleus sampling 下 DocRED CF 从 2.57% 跳至 12.63%（4.9×），但论文仅称 \"Constraint robustness under nucleus sampling\"。DR 接近不变（10.21→10.31%），但 CF 的剧烈恶化未被讨论或解释。此外 DocRED sampling 仅评估 114/998 文档（11.4%），统计代表性有限。\n- 建议：在 Appendix E 正文中增加对 CF 跳升的分析（可能原因：sampling 的随机性导致更多 registry override events），并明确注明 DocRED sampling 结果的代表性限制。\n\n**W2** [warning] **WikiEvents Grammar-only F1 缺失**\n- 具体位置：Table 4 (§5.5), Grammar rows\n- 问题：Grammar-only 行的 Trigger F1 和 Entity F1 标记为 \"---\"（not applicable），但 grammar-only 仍然产生结构化输出，理应可以计算 F1。Caption 解释为 \"grammar-only has no semantic-layer metrics\"，但 F1 不是 semantic-layer metric。\n- 为什么重要：Grammar-only 作为 ablation baseline，缺少 F1 使得无法独立评估 grammar 层对 extraction quality 的影响。\n- 建议：补充 grammar-only 的 Trigger/Entity F1，或者解释为什么 grammar-only 输出无法进行 F1 评估（如 parser 仍无法处理 RoV=76% 的输出）。\n\n**W3** [warning] **Llama DocRED parse failure 对 F1 的 confounding 效应未充分量化**\n- 具体位置：Table 3 caption, Limitations section\n- 问题：Llama DocRED parse failure 从 unconstrained 的约 6.8% 增至 constrained 的 9.1%（+34%），Limitations 承认 \"partially confounded by increased parse failures\"。但论文未提供 parse-failure-excluded F1 对比，审稿人无法判断 Llama DocRED 的 F1 变化（+0.29pp）有多少来自 constraint 效果 vs parse failure 分布变化。\n- 建议：在 Appendix 中增加 parse-success-only 子集的 F1 对比，或至少报告 constrained vs unconstrained 在 parse-successful 交集上的 F1。\n\n**W4** [warning] **RV=0.03% 残余未解释**\n- 具体位置：Table 2 (§5.3), Grammar row and Full S1 row\n- 问题：Grammar 层和 Full S1 在 DocRED 上均保留 RV=0.03%（约 5/17,478 triples），而 SciERC 和其他所有设置 RV=0%。Grammar enforcement 理论上应完全消除 RV（因为 CFG 限制 relation 到 R），0.03% 的残余违背了 grammar layer 的设计保证。\n- 建议：解释这些残余 RV 的来源（tokenization edge case? multi-token relation name 的 continuation masking gap? 或 evaluation artifact?）。\n\n**W5** [warning] **Semantic-only ET 增长机制未解释**\n- 具体位置：Table 2 (§5.3), Semantic row: ET 2.48% → 4.22% (+70%)\n- 问题：§5.3 称 semantic-only \"cannot prevent ET increases (2.48%→4.22%), replicating SciERC's enabling dependency\"。但 enabling dependency 解释的是 semantic-only 无法消除 ET（缺少 grammar enforcement），不能解释为什么 ET 会**增加** 70%。增加意味着 semantic layer 主动导致了更多的 ET violation，这需要不同的解释。\n- 建议：分析 semantic-only 下 ET 增加的具体机制。可能假设：semantic masking 在某些位置改变了 type token 的概率分布，使模型生成了更多 OOV type names。\n\n---\n\n## 4. Open Issue Resolution Check\n\n| Issue ID | 描述 | 状态 | 备注 |\n|----------|------|------|------|\n| R2-N1 (Critical) | Abstract R²=0.886 移除 | ✅ resolved | Abstract 改为定性描述 \"residual DR correlates with...\"。R² 保留在 Appendix B 且加了充分 caveat（p≈0.058, n=4, \"descriptive characterization\"） |\n| W3 | Post-hoc filtering framing 平衡 | ✅ resolved | §1 明确写 \"Post-hoc filtering achieves higher F1 in most zero-shot settings via precision gains, but at the cost of discarding up to 48%...\"，平衡表述到位 |\n| R2-N3 | Llama DocRED parse failure metrics | ⚠️ partially | Table 3 caption 报告了 parse failure rate (9.1%)，Limitations 承认 confounding。但未提供 parse-failure-excluded 的 violation rate 和 F1（见 W3） |\n| R2-N6 | Semantic-only DocRED ET +70% 机制 | ❌ not fixed | §5.3 提到了现象但将其归因于 enabling dependency，这无法解释 ET 为何**增加**（见 W5） |\n| R4-N3 | Beam search SciERC full set 正文讨论 | ✅ resolved | §5.2 和 §7 均引用 beam search 结果并指向 Appendix F |\n| R4-W2 | DocRED fallback coverage 显式报告 | ✅ resolved | Appendix B 报告 Qwen DocRED f_gf = 0.08% (46/54,859)，99.9% coverage |\n| R4-W3 | §4 vs Abstract DR range 不一致 | ✅ resolved | §4 现在解释完整 42-99% 范围来源（包含 Mistral），与 Abstract 一致 |\n| R4-Q1 | JSON field ordering 在 §3 显式声明 | ✅ resolved | §3.1: \"a fixed field ordering (head → tail → relation → head_type → tail_type) via deterministic grammar compilation\" |\n| R4-Q2 | CF-DR ablation DocRED 讨论 | ✅ resolved | Appendix B 增加 cross-configuration 分析（Spearman ρ = −0.77, n=6），讨论了 Llama DocRED 的 CF headroom |\n| R2-N10 | RV=0.03% 解释一致性 | ⚠️ partially | 论文中 RV=0.03% 出现在 Table 2 但未给出解释（见 W4） |\n| GC-N1 | Grammar-only 标识为 GCD 上限 | ✅ resolved | §5.2 明确写 \"This configuration represents the capability ceiling of grammar-based constrained decoding\" |\n| R2-N5 | Reproducibility 补充 | ✅ resolved | Appendix G 极为详尽：LoRA 全参数、GPU、seed、软件版本、训练时间 |\n\n**总结**: 12 项中 8 项 ✅ resolved，2 项 ⚠️ partially，2 项 ❌/⚠️ not adequately addressed。\n\n---\n\n## 5. New Issues\n\n（已包含在 §3 Weaknesses 中：N1 runtime 矛盾、W1 sampling CF 跳升、W2 WikiEvents F1 缺失、W4 RV 残余、W5 ET 增长机制）\n\n---\n\n## 6. Questions to Authors\n\n**Q1**: Table 9 和 Table 12 的 runtime 测量条件具体有何不同？如果是不同的测量粒度（generation-only vs end-to-end），为什么 SciERC 上方向相反（+2.3% vs −22%）但 DocRED 上方向一致（+5.4% vs +3.2%）？\n\n**Q2**: WikiEvents Grammar-only 行 Trigger/Entity F1 标记为 \"---\" 的具体原因是什么？是因为 grammar-only 输出在 RoV=76% 时 parser 无法正确提取（格式问题），还是有其他原因？\n\n**Q3**: Semantic-only 在 DocRED 上 ET 从 2.48% 增至 4.22%。Semantic layer 是否在某些 edge case 下修改了 type token 的概率分布，使模型更倾向生成不在 E 中的 token？\n\n**Q4**: DocRED RV=0.03% 残余（Grammar 和 Full S1 均如此）的来源是什么？如果 CFG 严格限制 relation 到 R，为什么会有任何 RV violation？\n\n---\n\n## 7. Missing References\n\n引用验证结果总体良好（52 条 bib, 47 条被引用, 41 条 online verified）。\n\n- 5 个 orphan bib entries 未被引用：`guidance2023`, `sakota2025boostcd`, `ugare2025itergen`, `xie2016tkrl`, `zaratiana2023gliner`。建议清理或引用。\n- 2 个 not_found：`regino2025kgcurator` 和 `guidance2023`（后者为 orphan）。`regino2025kgcurator` 在 OpenAlex 中未找到匹配，建议验证其存在性。\n- 8 个 author name mismatch（主要是 LaTeX 编码 vs API 标准化差异，如 `m\\\"undler` vs `mündler`），不影响引用正确性。\n\n建议：清理未使用的 bib entries，删除 orphan 条目避免审稿人质疑。\n\n---\n\n## 8. Scores\n\n| 维度 | 分数 | 理由 |\n|------|------|------|\n| **Overall Assessment** | **3.5** (Borderline Conference) | 方法有新意且实验全面，但 runtime 数据矛盾是数据完整性问题，若修复则可达 Conference 水平 |\n| **Soundness** | **3/5** | 核心方法严谨，形式化完整，但两个 runtime 表数据矛盾、semantic-only ET 增长未解释、RV 残余未解释 |\n| **Excitement** | **3.5/5** | 问题定义有清晰价值，two-layer composition + enabling dependency 是有洞察的设计；CF trade-off 的诚实讨论增加可信度 |\n| **Reproducibility** | **4/5** | Appendix G 极为详尽（LoRA params, GPU, seed, software versions, training time）；唯一扣分是 runtime 数据矛盾导致无法确认实际开销 |\n| **Confidence** | **4/5** | 我仔细阅读了完整论文（正文 + 全部 9 个附录），逐一核查了数据一致性和上轮遗留问题 |\n\n---\n\n## 9. Detailed Section Comments\n\n### Abstract\n- R² 已移除 ✅\n- DR range 42-99% 与正文一致 ✅\n- WikiEvents 结果（Entity F1: 0%→12-18%）有正文支撑 ✅\n- 长度接近上限（~260 words），但信息密度高，可接受\n\n### §1 Introduction\n- Post-hoc filtering 平衡表述到位 ✅\n- Contribution 3 信息非常密集（DR、F1、EE、composability、CF trade-off 全部压在一个 bullet point），考虑拆分为 (3a) empirical validation + (3b) composability\n- \"DR ↓76-99% on SciERC and ↓42-90% on DocRED\" 与 Table 3 一致 ✅\n\n### §2 Background\n- 形式化清晰（O, E, R, σ, tightness κ）\n- prefix-decidable 的概念引入恰当\n- \"each entity type name maps to a unique first subword token\" 这个假设在 §3 有进一步讨论（continuation masking），但 §2 的措辞可能误导读者以为这是一个更简单的假设\n\n### §3 Method\n- JSON field ordering 作为 sequential masking 前提已显式声明 ✅\n- Continuation masking (§3.3.4) 设计巧妙，解决了 SentencePiece 和 prefix-shared type 问题\n- Grammar-first fallback 的设计决策（structural integrity > type validity）有清晰的理由\n- S2 two-pass strategy 的比较过于简略（\"Detailed comparison is provided in the appendix\"），但考虑到 S1 在所有 metric 上优于或等于 S2，这可以接受\n\n### §4 Constraint Composition\n- Non-rectangularity 论证严格（100% SciERC, 73/96 DocRED relations）\n- Decidability taxonomy (local/prefix-decidable/non-local) 是有用的框架\n- Tightness 定义 κ(r) 使用 V(r) 替代 §2 的 σ(r)，notation 不完全一致但语义等价\n\n### §5 Experiments\n- Five-way ablation (Table 1) 和 four-way ablation (Table 2) 设计合理\n- Bootstrap CI 和 p-value 报告规范\n- **DocRED grammar-only DR 上升 42% 的\"latent violation surfacing\"解释**合理且有说服力\n- WikiEvents：F1 从 0% 到 12-18% 的增益令人印象深刻，但 grammar-only F1 缺失是一个 gap (W2)\n- Composability table (Table 5) 展示了 ZS + LoRA × unconstr + S1 的完整矩阵，数据说服力强\n\n### §6 Related Work\n- 正文简洁（3 paragraphs），Appendix A 提供了详尽的 extended survey\n- Positioning 清晰：vs grammar-only (XGrammar/Outlines/LMQL), vs type-constrained code gen (PICARD/Synchromesh/MGD), vs post-hoc (ODKE+/SPIRES/OntoLogX)\n- Quality impact discussion 引用 CRANE/Tam et al./Schall et al. 来回应 \"constrained decoding hurts quality\" 的顾虑，有效\n\n### §7 Discussion and Conclusion\n- 非常简短（约 100 words），主要是摘要式总结\n- CF trade-off 指向 §5.2 和 Appendix B，beam search 指向 Appendix F\n- 未来工作方向（global entity-level type consensus）明确\n\n### Limitations\n- 覆盖全面：CF model-dependence, CF-DR trade-off, entity F1 confounding, zero-shot F1 ceiling, composability scope (LoRA only), scalability (7-8B only), continuation masking scalability, beam search scope, residual DR decomposition\n- 是我见过的最诚实和详尽的 Limitations section 之一\n\n### Appendices\n- 内容丰富且有组织（A-I，涵盖 prompts, extended related work, extended discussion, per-relation analysis, sampling, beam search, reproducibility, doc length, prompt sensitivity）\n- Appendix B (Extended Discussion) 是核心贡献的重要补充，建议确保正文中的引用指向正确\n- **关键问题**：Table 9 (App B) vs Table 12 (App G) runtime 矛盾（N1）",
+                "reviewer_id": "1",
+                "project": "schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58b998f2-04fb-44de-9753-d0f38f7469ad",
+            "isSidechain": false,
+            "requestId": "req_011CbA2y9s12nD4xtu5gj6Er",
+            "type": "assistant",
+            "uuid": "ac1c3f0c-6b5b-4365-9fbe-97cb14f61508",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_1_11179fb2",
+            "sessionId": "e0eafec6-6db7-491a-8bd5-b5b559b70068",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PyyZSRPbM8htpqzXV2m23u",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 512,
+                "cache_read_input_tokens": 99875,
+                "output_tokens": 12579,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 512,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 12579,
+                    "cache_read_input_tokens": 99875,
+                    "cache_creation_input_tokens": 512,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 512
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 6 审稿请求]: ## Round 6 审稿任务 — Reviewer 1（方法严谨性 + 实验分析）  ### 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_semanti…",
+                "leafUuid": "ac1c3f0c-6b5b-4365-9fbe-97cb14f61508",
+                "sessionId": "e0eafec6-6db7-491a-8bd5-b5b559b70068"
+              }
+            }
+          ],
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review OntoCoDec paper methodological soundness",
+                "sessionId": "e0eafec6-6db7-491a-8bd5-b5b559b70068"
+              }
+            }
+          ],
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-18T12:33:29.893Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L4ijQaa5DxNpUKT9MfaVNA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac1c3f0c-6b5b-4365-9fbe-97cb14f61508",
+            "isSidechain": false,
+            "promptId": "adcdbc20-12bb-4f81-8f0a-0d372219d5c6",
+            "type": "user",
+            "uuid": "244e4dd0-649b-43dc-a124-8768bd5a4ade",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "ac1c3f0c-6b5b-4365-9fbe-97cb14f61508",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_1_11179fb2",
+            "sessionId": "e0eafec6-6db7-491a-8bd5-b5b559b70068",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 6 审稿请求]: ## Round 6 审稿任务 — Reviewer 1（方法严谨性 + 实验分析）  ### 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_semanti…",
+                "leafUuid": "244e4dd0-649b-43dc-a124-8768bd5a4ade",
+                "sessionId": "e0eafec6-6db7-491a-8bd5-b5b559b70068"
+              }
+            }
+          ],
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review OntoCoDec paper methodological soundness",
+                "sessionId": "e0eafec6-6db7-491a-8bd5-b5b559b70068"
+              }
+            }
+          ],
+          "id": "event-000114"
+        }
+      ]
+    }
+  ]
+}

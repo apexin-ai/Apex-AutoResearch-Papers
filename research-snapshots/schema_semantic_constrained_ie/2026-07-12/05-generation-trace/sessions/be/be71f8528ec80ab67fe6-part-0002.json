@@ -1,0 +1,1559 @@
+{
+  "schema_version": "1.0",
+  "session_id": "be71f8528ec80ab67fe6",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-20T18:14:19.915Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QT38HDaFm86XgCLFgDVQnk",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cat > /root/schema_semantic_constrained_ie/scripts/r12_bootstrap_ci_table2.py << 'PYEOF'\n\"\"\"Bootstrap CI for Table 2 composability: R-F1 delta & DR% delta.\nDocument-level paired bootstrap, 10k iterations.\nEval logic matches eval_d066_unified.py exactly.\n\"\"\"\nimport json, os\nimport numpy as np\n\nSEED = 42\nB = 10000\nCI_LEVEL = 0.95\nOUT_DIR = \"/root/schema_semantic_constrained_ie/outputs\"\nSCIERC_ONT = \"/root/schema_semantic_constrained_ie/ontology_constraints.json\"\nDOCRED_ONT = \"/root/schema_semantic_constrained_ie/data/docred/ontology_constraints_docred.json\"\n\nENTITY_ALIASES = {\n    'PERSON': 'PER', 'PEOPLE': 'PER',\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\n    'LOCATION': 'LOC', 'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\n    'MISCELLANEOUS': 'MISC',\n}\n\nSETTINGS = {\n    \"qwen_scierc\": {\n        \"unc\": f\"{OUT_DIR}/w5_lora_scierc_unconstrained_eval.jsonl\",\n        \"con\": f\"{OUT_DIR}/w5_lora_scierc_full_s1_eval.jsonl\",\n        \"ontology\": SCIERC_ONT,\n    },\n    \"llama_scierc\": {\n        \"unc\": f\"{OUT_DIR}/w5_llama_lora_scierc_unconstrained.jsonl\",\n        \"con\": f\"{OUT_DIR}/w5_llama_lora_scierc_constrained.jsonl\",\n        \"ontology\": SCIERC_ONT,\n    },\n    \"qwen_docred\": {\n        \"unc\": f\"{OUT_DIR}/w5_qwen_docred_lora_unconstrained_eval.jsonl\",\n        \"con\": f\"{OUT_DIR}/w5_qwen_docred_lora_constrained_eval.jsonl\",\n        \"ontology\": DOCRED_ONT,\n    },\n    \"llama_docred\": {\n        \"unc\": f\"{OUT_DIR}/w5_llama_docred_lora_unconstrained_eval.jsonl\",\n        \"con\": f\"{OUT_DIR}/w5_llama_docred_lora_constrained_eval.jsonl\",\n        \"ontology\": DOCRED_ONT,\n    },\n}\n\n\ndef load_ontology(path):\n    with open(path) as f:\n        data = json.load(f)\n    valid_etypes = set(data[\"entity_types\"])\n    upper_map = {t.upper(): t for t in valid_etypes}\n    rt = data[\"relation_types\"]\n    is_pcode = isinstance(rt, dict)\n    pcode_to_name = rt if is_pcode else {}\n    raw_to_canonical = data.get(\"raw_to_canonical\", {})\n    rc = data.get(\"relation_constraints\", {})\n    valid_pairs = {}\n    for key, c in rc.items():\n        rn = pcode_to_name.get(key, key).lower().strip() if is_pcode else key.lower().strip()\n        valid_pairs[rn] = set(tuple(p) for p in c[\"valid_pairs\"])\n    return dict(upper_map=upper_map, is_pcode=is_pcode,\n                pcode_to_name=pcode_to_name, raw_to_canonical=raw_to_canonical,\n                valid_pairs=valid_pairs)\n\n\ndef norm_etype(raw, upper_map):\n    t = raw.strip()\n    tu = t.upper()\n    if tu in ENTITY_ALIASES:\n        return ENTITY_ALIASES[tu]\n    if tu in upper_map:\n        return upper_map[tu]\n    return t\n\n\ndef doc_stats(doc, ont):\n    \"\"\"Per-document: (rel_tp, rel_fp, rel_fn, dr_violations, total_pred_rels)\"\"\"\n    parsed = doc.get(\"parsed_output\")\n    gold_rels = doc.get(\"gold_relations\", [])\n    is_pcode = ont[\"is_pcode\"]\n    p2n = ont[\"pcode_to_name\"]\n    r2c = ont[\"raw_to_canonical\"]\n    vp = ont[\"valid_pairs\"]\n    um = ont[\"upper_map\"]\n\n    gold_set = set()\n    for r in gold_rels:\n        rt = r[\"type\"]\n        rn = p2n.get(rt, rt).lower().strip() if is_pcode else rt.lower().strip()\n        gold_set.add((r[\"head\"], r[\"tail\"], rn))\n\n    if parsed is None or parsed == {}:\n        return (0, 0, len(gold_set), 0, 0)\n\n    pred_rels = parsed.get(\"relations\", [])\n    pred_set = set()\n    dr_v = 0\n    for r in pred_rels:\n        rt_raw = r.get(\"type\", \"\")\n        if rt_raw in r2c:\n            rt_raw = r2c[rt_raw]\n        rn = rt_raw.lower().strip()\n        pred_set.add((r.get(\"head\", \"\"), r.get(\"tail\", \"\"), rn))\n        ht = r.get(\"head_type\", \"\")\n        tt = r.get(\"tail_type\", \"\")\n        if rn in vp:\n            pair = (norm_etype(ht, um), norm_etype(tt, um))\n            if pair not in vp[rn]:\n                dr_v += 1\n\n    tp = len(gold_set & pred_set)\n    fp = len(pred_set - gold_set)\n    fn = len(gold_set - pred_set)\n    return (tp, fp, fn, dr_v, len(pred_rels))\n\n\ndef f1(tp, fp, fn):\n    p = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n    r = tp / (tp + fn) if (tp + fn) > 0 else 0.0\n    return 2*p*r/(p+r) if (p+r) > 0 else 0.0\n\n\ndef dr_pct(dv, total):\n    return dv / total * 100 if total > 0 else 0.0\n\n\ndef bootstrap(unc_s, con_s):\n    rng = np.random.RandomState(SEED)\n    n = len(unc_s)\n    unc = np.array(unc_s, dtype=np.float64)\n    con = np.array(con_s, dtype=np.float64)\n\n    # Point estimates\n    uf1 = f1(unc[:,0].sum(), unc[:,1].sum(), unc[:,2].sum())\n    cf1 = f1(con[:,0].sum(), con[:,1].sum(), con[:,2].sum())\n    udr = dr_pct(unc[:,3].sum(), unc[:,4].sum())\n    cdr = dr_pct(con[:,3].sum(), con[:,4].sum())\n\n    df1_samples = np.zeros(B)\n    ddr_samples = np.zeros(B)\n    uf1_samples = np.zeros(B)\n    cf1_samples = np.zeros(B)\n    udr_samples = np.zeros(B)\n    cdr_samples = np.zeros(B)\n\n    for b in range(B):\n        idx = rng.randint(0, n, n)\n        ub = unc[idx]; cb = con[idx]\n        uf1_b = f1(ub[:,0].sum(), ub[:,1].sum(), ub[:,2].sum())\n        cf1_b = f1(cb[:,0].sum(), cb[:,1].sum(), cb[:,2].sum())\n        udr_b = dr_pct(ub[:,3].sum(), ub[:,4].sum())\n        cdr_b = dr_pct(cb[:,3].sum(), cb[:,4].sum())\n        df1_samples[b] = cf1_b - uf1_b\n        ddr_samples[b] = cdr_b - udr_b\n        uf1_samples[b] = uf1_b\n        cf1_samples[b] = cf1_b\n        udr_samples[b] = udr_b\n        cdr_samples[b] = cdr_b\n\n    a = (1 - CI_LEVEL) / 2\n\n    def ci(pt, samps):\n        return {\"point\": round(pt, 4), \"mean\": round(float(np.mean(samps)), 4),\n                \"ci_lower\": round(float(np.percentile(samps, 100*a)), 4),\n                \"ci_upper\": round(float(np.percentile(samps, 100*(1-a))), 4)}\n\n    # two-sided p for R-F1 delta\n    df1_pt = cf1 - uf1\n    if df1_pt >= 0:\n        pf1 = min(float(np.mean(df1_samples < 0)) * 2, 1.0)\n    else:\n        pf1 = min(float(np.mean(df1_samples > 0)) * 2, 1.0)\n\n    # one-sided p for DR delta (H0: constraints don't reduce DR, delta >= 0)\n    ddr_pt = cdr - udr\n    pdr = float(np.mean(ddr_samples >= 0))\n\n    return {\n        \"rf1_unc\": ci(uf1*100, uf1_samples*100),\n        \"rf1_con\": ci(cf1*100, cf1_samples*100),\n        \"rf1_delta\": {**ci(df1_pt*100, df1_samples*100), \"p_value\": round(pf1, 4)},\n        \"dr_unc\": ci(udr, udr_samples),\n        \"dr_con\": ci(cdr, cdr_samples),\n        \"dr_delta\": {**ci(ddr_pt, ddr_samples), \"p_value\": round(pdr, 4)},\n        \"global_counts\": {\n            \"unc\": {\"rel_tp\": int(unc[:,0].sum()), \"rel_fp\": int(unc[:,1].sum()),\n                    \"rel_fn\": int(unc[:,2].sum()), \"dr_violations\": int(unc[:,3].sum()),\n                    \"total_pred_rels\": int(unc[:,4].sum())},\n            \"con\": {\"rel_tp\": int(con[:,0].sum()), \"rel_fp\": int(con[:,1].sum()),\n                    \"rel_fn\": int(con[:,2].sum()), \"dr_violations\": int(con[:,3].sum()),\n                    \"total_pred_rels\": int(con[:,4].sum())},\n        }\n    }\n\n\ndef main():\n    results = {}\n    for name, cfg in SETTINGS.items():\n        print(f\"\\n{'='*60}\")\n        print(f\"  {name}\")\n        print(f\"{'='*60}\")\n        ont = load_ontology(cfg[\"ontology\"])\n        with open(cfg[\"unc\"]) as fh:\n            unc_recs = [json.loads(l) for l in fh if l.strip()]\n        with open(cfg[\"con\"]) as fh:\n            con_recs = [json.loads(l) for l in fh if l.strip()]\n        assert len(unc_recs) == len(con_recs), f\"Count mismatch: {len(unc_recs)} vs {len(con_recs)}\"\n        for u, c in zip(unc_recs, con_recs):\n            assert u[\"doc_id\"] == c[\"doc_id\"], f\"ID mismatch: {u['doc_id']} vs {c['doc_id']}\"\n\n        us = [doc_stats(r, ont) for r in unc_recs]\n        cs = [doc_stats(r, ont) for r in con_recs]\n        res = bootstrap(us, cs)\n        res[\"n_docs\"] = len(unc_recs)\n        results[name] = res\n\n        print(f\"  n={len(unc_recs)}\")\n        gc = res[\"global_counts\"]\n        print(f\"  Unc: tp={gc['unc']['rel_tp']} fp={gc['unc']['rel_fp']} fn={gc['unc']['rel_fn']} DR={gc['unc']['dr_violations']}/{gc['unc']['total_pred_rels']}\")\n        print(f\"  Con: tp={gc['con']['rel_tp']} fp={gc['con']['rel_fp']} fn={gc['con']['rel_fn']} DR={gc['con']['dr_violations']}/{gc['con']['total_pred_rels']}\")\n        print(f\"  R-F1 unc: {res['rf1_unc']['point']:.2f}% [{res['rf1_unc']['ci_lower']:.2f}, {res['rf1_unc']['ci_upper']:.2f}]\")\n        print(f\"  R-F1 con: {res['rf1_con']['point']:.2f}% [{res['rf1_con']['ci_lower']:.2f}, {res['rf1_con']['ci_upper']:.2f}]\")\n        d = res['rf1_delta']\n        sig = \"***\" if d['p_value']<0.001 else \"**\" if d['p_value']<0.01 else \"*\" if d['p_value']<0.05 else \"n.s.\"\n        print(f\"  ΔR-F1: {d['point']:+.2f}pp [{d['ci_lower']:+.2f}, {d['ci_upper']:+.2f}] p={d['p_value']:.4f} {sig}\")\n        print(f\"  DR% unc: {res['dr_unc']['point']:.2f}% [{res['dr_unc']['ci_lower']:.2f}, {res['dr_unc']['ci_upper']:.2f}]\")\n        print(f\"  DR% con: {res['dr_con']['point']:.2f}% [{res['dr_con']['ci_lower']:.2f}, {res['dr_con']['ci_upper']:.2f}]\")\n        dd = res['dr_delta']\n        sig2 = \"***\" if dd['p_value']<0.001 else \"**\" if dd['p_value']<0.01 else \"*\" if dd['p_value']<0.05 else \"n.s.\"\n        print(f\"  ΔDR%: {dd['point']:+.2f}pp [{dd['ci_lower']:+.2f}, {dd['ci_upper']:+.2f}] p={dd['p_value']:.4f} {sig2}\")\n\n    output = {\n        \"results\": results,\n        \"metadata\": {\n            \"n_bootstrap\": B, \"ci_method\": \"percentile\", \"ci_level\": CI_LEVEL,\n            \"seed\": SEED,\n            \"eval_logic\": \"d066_unified (exact case text, lowered relation type)\",\n            \"comparison\": \"constrained - unconstrained (paired bootstrap, document-level)\",\n            \"p_value_rf1\": \"two-sided\",\n            \"p_value_dr\": \"one-sided (H0: delta_DR >= 0)\",\n        }\n    }\n    out_path = \"/root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\"\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\n    with open(out_path, \"w\") as fh:\n        json.dump(output, fh, indent=2)\n    print(f\"\\nSaved to {out_path}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a443f0d0-3a5d-4b01-8422-6f1ebefbce93",
+            "isSidechain": false,
+            "requestId": "req_011CbEGrm43BwBd7zuycemxm",
+            "type": "assistant",
+            "uuid": "64dbc82d-261b-43b4-ab26-63956f519626",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J4e1W6LGrAXrZyVXXgHGDB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 17429,
+                "cache_read_input_tokens": 82869,
+                "output_tokens": 4468,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 17429,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4468,
+                    "cache_read_input_tokens": 82869,
+                    "cache_creation_input_tokens": 17429,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 17429
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-20T18:14:20.396Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QT38HDaFm86XgCLFgDVQnk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "64dbc82d-261b-43b4-ab26-63956f519626",
+            "isSidechain": false,
+            "promptId": "271f5094-159e-4ab1-b870-4a1b2131f873",
+            "type": "user",
+            "uuid": "71729876-daa2-46ff-a9d8-701cfd840b2a",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            },
+            "sourceToolAssistantUUID": "64dbc82d-261b-43b4-ab26-63956f519626",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-20T18:14:32.055Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RWPJYJ3d9YJyYdg5m8LMFM",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/r12_bootstrap_ci_table2.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71729876-daa2-46ff-a9d8-701cfd840b2a",
+            "isSidechain": false,
+            "requestId": "req_011CbEGwYXMnHsmAyb2vauRW",
+            "type": "assistant",
+            "uuid": "a68dafaa-59eb-4b03-8362-f45a151816cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ps1YqLBFzS6Rd1axZoBqzv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4546,
+                "cache_read_input_tokens": 100298,
+                "output_tokens": 132,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4546,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 132,
+                    "cache_read_input_tokens": 100298,
+                    "cache_creation_input_tokens": 4546,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4546
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-20T18:14:34.577Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RWPJYJ3d9YJyYdg5m8LMFM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  qwen_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=461 fp=667 fn=513 DR=22/1128\\\\n  Con: tp=460 fp=668 fn=514 DR=0/1128\\\\n  R-F1 unc: 43.86% [39.90, 47.78]\\\\n  R-F1 con: 43.77% [39.80, 47.66]\\\\n  ΔR-F1: -0.10pp [-0.30, +0.00] p=0.0000 ***\\\\n  DR% unc: 1.95% [1.11, 2.87]\\\\n  DR% con: 0.00% [0.00, 0.00]\\\\n  ΔDR%: -1.95pp [-2.87, -1.11] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=467 fp=614 fn=507 DR=12/1082\\\\n  Con: tp=467 fp=613 fn=507 DR=1/1081\\\\n  R-F1 unc: 45.45% [41.41, 49.41]\\\\n  R-F1 con: 45.47% [41.42, 49.47]\\\\n  ΔR-F1: +0.02pp [+0.00, +0.07] p=0.0000 ***\\\\n  DR% unc: 1.11% [0.38, 2.09]\\\\n  DR% con: 0.09% [0.00, 0.29]\\\\n  ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\\\\n\\\\n============================================================\\\\n  qwen_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=5663 fp=9890 fn=6501 DR=121/15870\\\\n  Con: tp=5579 fp=9769 fn=6585 DR=2/15563\\\\n  R-F1 unc: 40.86% [39.21, 42.48]\\\\n  R-F1 con: 40.56% [38.90, 42.19]\\\\n  ΔR-F1: -0.31pp [-0.69, +0.01] p=0.0560 n.s.\\\\n  DR% unc: 0.76% [0.49, 1.08]\\\\n  DR% con: 0.01% [0.00, 0.04]\\\\n  ΔDR%: -0.75pp [-1.07, -0.48] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=6132 fp=9757 fn=6032 DR=80/16171\\\\n  Con: tp=6111 fp=9644 fn=6053 DR=33/16074\\\\n  R-F1 unc: 43.72% [42.10, 45.36]\\\\n  R-F1 con: 43.78% [42.16, 45.41]\\\\n  ΔR-F1: +0.06pp [-0.11, +0.25] p=0.5346 n.s.\\\\n  DR% unc: 0.49% [0.28, 0.75]\\\\n  DR% con: 0.21% [0.09, 0.34]\\\\n  ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\\\\n\\\\nSaved to /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a68dafaa-59eb-4b03-8362-f45a151816cb",
+            "isSidechain": false,
+            "promptId": "271f5094-159e-4ab1-b870-4a1b2131f873",
+            "type": "user",
+            "uuid": "83539f6c-318b-46bf-abbe-c079542e0875",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  qwen_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=461 fp=667 fn=513 DR=22/1128\\\\n  Con: tp=460 fp=668 fn=514 DR=0/1128\\\\n  R-F1 unc: 43.86% [39.90, 47.78]\\\\n  R-F1 con: 43.77% [39.80, 47.66]\\\\n  ΔR-F1: -0.10pp [-0.30, +0.00] p=0.0000 ***\\\\n  DR% unc: 1.95% [1.11, 2.87]\\\\n  DR% con: 0.00% [0.00, 0.00]\\\\n  ΔDR%: -1.95pp [-2.87, -1.11] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=467 fp=614 fn=507 DR=12/1082\\\\n  Con: tp=467 fp=613 fn=507 DR=1/1081\\\\n  R-F1 unc: 45.45% [41.41, 49.41]\\\\n  R-F1 con: 45.47% [41.42, 49.47]\\\\n  ΔR-F1: +0.02pp [+0.00, +0.07] p=0.0000 ***\\\\n  DR% unc: 1.11% [0.38, 2.09]\\\\n  DR% con: 0.09% [0.00, 0.29]\\\\n  ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\\\\n\\\\n============================================================\\\\n  qwen_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=5663 fp=9890 fn=6501 DR=121/15870\\\\n  Con: tp=5579 fp=9769 fn=6585 DR=2/15563\\\\n  R-F1 unc: 40.86% [39.21, 42.48]\\\\n  R-F1 con: 40.56% [38.90, 42.19]\\\\n  ΔR-F1: -0.31pp [-0.69, +0.01] p=0.0560 n.s.\\\\n  DR% unc: 0.76% [0.49, 1.08]\\\\n  DR% con: 0.01% [0.00, 0.04]\\\\n  ΔDR%: -0.75pp [-1.07, -0.48] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=6132 fp=9757 fn=6032 DR=80/16171\\\\n  Con: tp=6111 fp=9644 fn=6053 DR=33/16074\\\\n  R-F1 unc: 43.72% [42.10, 45.36]\\\\n  R-F1 con: 43.78% [42.16, 45.41]\\\\n  ΔR-F1: +0.06pp [-0.11, +0.25] p=0.5346 n.s.\\\\n  DR% unc: 0.49% [0.28, 0.75]\\\\n  DR% con: 0.21% [0.09, 0.34]\\\\n  ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\\\\n\\\\nSaved to /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  qwen_scierc\\n============================================================\\n  n=551\\n  Unc: tp=461 fp=667 fn=513 DR=22/1128\\n  Con: tp=460 fp=668 fn=514 DR=0/1128\\n  R-F1 unc: 43.86% [39.90, 47.78]\\n  R-F1 con: 43.77% [39.80, 47.66]\\n  ΔR-F1: -0.10pp [-0.30, +0.00] p=0.0000 ***\\n  DR% unc: 1.95% [1.11, 2.87]\\n  DR% con: 0.00% [0.00, 0.00]\\n  ΔDR%: -1.95pp [-2.87, -1.11] p=0.0000 ***\\n\\n============================================================\\n  llama_scierc\\n============================================================\\n  n=551\\n  Unc: tp=467 fp=614 fn=507 DR=12/1082\\n  Con: tp=467 fp=613 fn=507 DR=1/1081\\n  R-F1 unc: 45.45% [41.41, 49.41]\\n  R-F1 con: 45.47% [41.42, 49.47]\\n  ΔR-F1: +0.02pp [+0.00, +0.07] p=0.0000 ***\\n  DR% unc: 1.11% [0.38, 2.09]\\n  DR% con: 0.09% [0.00, 0.29]\\n  ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\\n\\n============================================================\\n  qwen_docred\\n============================================================\\n  n=998\\n  Unc: tp=5663 fp=9890 fn=6501 DR=121/15870\\n  Con: tp=5579 fp=9769 fn=6585 DR=2/15563\\n  R-F1 unc: 40.86% [39.21, 42.48]\\n  R-F1 con: 40.56% [38.90, 42.19]\\n  ΔR-F1: -0.31pp [-0.69, +0.01] p=0.0560 n.s.\\n  DR% unc: 0.76% [0.49, 1.08]\\n  DR% con: 0.01% [0.00, 0.04]\\n  ΔDR%: -0.75pp [-1.07, -0.48] p=0.0000 ***\\n\\n============================================================\\n  llama_docred\\n============================================================\\n  n=998\\n  Unc: tp=6132 fp=9757 fn=6032 DR=80/16171\\n  Con: tp=6111 fp=9644 fn=6053 DR=33/16074\\n  R-F1 unc: 43.72% [42.10, 45.36]\\n  R-F1 con: 43.78% [42.16, 45.41]\\n  ΔR-F1: +0.06pp [-0.11, +0.25] p=0.5346 n.s.\\n  DR% unc: 0.49% [0.28, 0.75]\\n  DR% con: 0.21% [0.09, 0.34]\\n  ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\\n\\nSaved to /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5}}"
+              }
+            },
+            "sourceToolAssistantUUID": "a68dafaa-59eb-4b03-8362-f45a151816cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-20T18:16:48.100Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script ran successfully. Let me verify the aggregate numbers match d066:\n\n**Qwen SciERC:**\n- My script: unc tp=461, fp=667, fn=513 → R-F1=43.86%\n- d066: tp=461, fp=667, fn=513 → R-F1=43.86% ✓\n- My script: unc DR=22/1128 = 1.95%\n- d066: DR=1.95% ✓\n\n\n- My script: con tp=460, fp=668, fn=514 → R-F1=43.77%\n- d066: tp=460, fp=668, fn=514 → R-F1=43.77% ✓\n- My script: con DR=0/1128 = 0%\n- d066: DR=0% ✓\n\n**Llama SciERC:**\n- My script: unc tp=467, fp=614, fn=507 → R-F1=45.45%\n- d066: tp=467, fp=614, fn=507 → R-F1=45.45% ✓\n- My script: con tp=467, fp=613, fn=507 → R-F1=45.47%\n- d066: tp=467, fp=613, fn=507 → R-F1=45.47% ✓\n\n**Qwen DocRED:**\n- My script: unc tp=5663, fp=9890, fn=6501 → R-F1=40.86%\n- d066: R-F1=40.86% ✓\n- My script: unc DR=121/15870 = 0.76%\n- d066: DR=0.76% ✓\n- My script: con tp=5579, fp=9769, fn=6585 → R-F1=40.56%\n- d066: R-F1=40.56% ✓\n- My script: con DR=2/15870 = 0.01%\n\nVerifying the metrics across all three datasets—my implementation matches d066's results for both unconstrained and constrained settings, with R-F1 scores and detection rates aligning perfectly.\n\nNow I'm looking at the SciERC results from the paper and starting to analyze the performance differences, beginning with the Qwen model's R-F1 change.\n\nThe p-value for the small R-F1 delta seems suspiciously low, so I'm reconsidering my calculation—if the constraint consistently affects the same relation, the bootstrap samples might all show negative or zero deltas, which would indeed produce a p-value of essentially zero. The bootstrap mechanism creates a deterministic situation where delta can only be negative or zero—never positive—since it hinges on whether a single document gets sampled. So P(delta > 0) is genuinely zero, which technically makes this statistically significant, even though the practical impact of -0.10pp is negligible. The R-F1 changes are minimal, but I'm realizing my p-value calculation might not be the right approach here. The two-sided test should compare the absolute magnitude of the observed delta against all bootstrap samples, not just look at sign flips. I notice the existing bootstrap results showed p=0.726 for Qwen SciERC, which differs from what I'm getting, so I need to trace through my computation logic to see where the discrepancy is. The lowercase matching in the existing bootstrap changes how entity text is compared, which affects the TP/FP/FN counts differently than exact case matching would. Looking at the actual numbers, the difference between unconstrained and constrained is just 1 TP, 1 FP, and 1 FN, suggesting a single relation was affected—but I need to figure out whether the constraint only impacts that one document or if it's changing predictions across multiple documents in a way that happens to net out to these totals. ipped: it was a TP in unconstrained mode, but in constrained mode it became something different (either it was removed and we got 1 more FN, and a different pred became FP).\n\nActually, this could affect multiple documents. But the net effect is exactly TP-1, FP+1, FN+1.\n\nIn bootstrap, if we resample documents, the per-document effects might average out differently. But if the document with the change is always included, the delta is always -0.10pp or so. If it's not included, delta is 0.\n\nWait actually, there could be multiple documents where the per-document TP/FP/FN differ between unc and con. Let me check how many documents have different stats.\n\nActually, the question is: do the unc and con predictions differ only in DR-violating relations, or can they differ in other ways too? If the constraint masking changes the generation trajectory, even non-DR-violating parts of the output could change.\n\nFor LoRA fine-tuned models, the unconstrained and constrained runs use the same model but different decoding—the constraint mask only blocks tokens that would violate DR, so it might only affect a few documents where violations actually occur. With SciERC and Qwen, there are 22 DR violations in unconstrained mode spread across maybe 20 documents out of 551 total, and the constraint eliminates all of them while producing a -0.10pp F1 delta. In bootstrap resampling, whether those affected documents get included determines the variation, which makes my p-value of 0.0000 seem suspicious. Let me check my code again.\n\nExamining the code...\n\nChecking the bootstrap p-value calculation...\n\nI'm realizing the constraint might actually improve performance on some documents while hurting it on others, so delta could theoretically be positive in bootstrap samples where the improved documents are oversampled. But the global counts show con_tp is only 1 less than unc_tp, so any positive deltas in individual samples would need to be offset by larger negative ones elsewhere. The real question is whether my per-document statistics are capturing these differences accurately enough.\n\nFor the paper, I think the R-F1 difference is too small to be meaningful—it's essentially noise—so I should reconsider the p-value approach rather than relying on the bootstrap sign test result of p=0. A permutation test that randomly swaps the unc/con labels for each document would be more appropriate, though it's more complex to implement. Alternatively, I could just report the confidence interval and note that zero falls at its boundary, which is more honest about the uncertainty. The lowercase matching version gave a more reasonable p-value of 0.726, suggesting the exact-case matching might be too strict and creating this artifact where deltas are never positive.\n\nThe core issue is that the SciERC data has consistent casing between gold and predicted labels, so the constraint only removes specific token sequences without introducing the minor case variations that would create noise and allow some positive deltas. I should adopt the Berg-Kirkpatrick et al. approach: compute the observed delta, then for each bootstrap sample calculate the resampled delta and determine what proportion exceed the observed value. ≥ |δ|) for two-sided (testing if the observed |delta| could occur by chance)\n\n   But this still doesn't work well when the test statistic has a point mass at 0.\n\n   Actually, I think the simplest fix is to use:\n   p = P(|delta*| >= |delta_observed|) for two-sided\n\n   But this requires centering the bootstrap distribution. The standard approach would be:\n   - Under H0: delta = 0\n   - Center the bootstrap deltas: delta* - mean(delta*)\n   - p = P(|centered delta*| >= |delta_observed|)\n\n   Or, equivalently, I could just report the CI and skip the p-value for R-F1.\n\n   Actually, the existing bootstrap result (p=0.726) is more reasonable. The difference is due to case normalization. Let me just fix my p-value computation to avoid the degenerate case.\n\n   I could compute the p-value by checking when the bootstrap samples have opposite signs from the observation or equal zero, which handles the degenerate case better. For a two-sided test, I'd take twice the minimum of the tail probabilities. When all bootstrap samples are on one side with some zeros, this naturally produces a p-value between 0 and 1 depending on the proportion of zeros.\n\n   For Qwen SciERC with all delta* <= 0 and some zeros:\n   P(delta* < delta_observed) = fraction more negative\n   P(delta* > delta_observed) = fraction with delta = 0 or less negative\n   p = 2 * min(P(delta* < delta_observed), P(delta* > delta_observed))\n\n   This should give a reasonable p-value that reflects the uncertainty.\n\nI'm reconsidering the p-value calculation approach—the CI-based method is cleaner, but I realize the standard achieved significance level formula works better when I properly account for the bootstrap distribution's shape and handle the degenerate cases where many samples cluster at zero. Looking at the existing bootstrap implementation, it's checking whether the observed delta crosses zero by counting how many bootstrap deltas fall on the opposite side, then doubling that proportion to get a two-tailed p-value. The existing code gets p=0.726 for the Qwen SciERC result because it uses different matching that adds more noise to the bootstrap distribution.\n\nComparing the results side by side, the point estimates are identical (delta = -0.0010 or -0.10pp), but the p-values diverge dramatically (0.726 vs 0.0000). This stark difference means the existing bootstrap is generating many positive deltas while mine produces none, which traces back to the case-sensitivity difference in matching—the existing approach's lowercase matching creates more variability in per-document differences, allowing the bootstrap to sample both positive and negative deltas, whereas my exact-case matching produces deterministic per-document differences.\n\nThe real takeaway is that the constraint has a tiny but consistent negative effect on R-F1, though at -0.10pp it's practically negligible. For the paper, what matters most is communicating the magnitude of change rather than obsessing over the p-value, so I should focus on reporting the confidence interval for delta and use a more straightforward approach to significance testing.\n\nFor the p-value calculation, I'll go with the two-sided bootstrap approach: computing the proportion of bootstrap samples where the absolute delta is at least as extreme as what I observed. For the Qwen SciERC case, that means checking how often |delta*| >= 0.0010.\n\nNow I'm stepping back to consider what the reviewer actually needs—evidence of statistical significance for the R-F1 differences. Looking at the deltas across datasets, most are tiny effects (Qwen SciERC at -0.10pp, Llama SciERC at +0.02pp), with only Qwen DocRED showing something potentially borderline at -0.31pp.\n\nThe real insight is that these R-F1 changes are negligible, which the paper already argues, and the confidence intervals are more informative than p-values here. For DR%, the picture is different—the constraint reliably reduces violations, so those p-values should show significance.\n\nI think the cleanest approach is to use the confidence interval directly: if it includes zero, the effect isn't significant; if it excludes zero, it is. Let me refactor the script to compute p-values this way instead of relying on the bootstrap delta distribution. I'm centering the bootstrap distribution around its mean and then calculating the p-value as the proportion of centered deltas with absolute values at least as extreme as the observed difference. For Qwen SciERC, this gives me a centered distribution ranging from about -0.0020 to +0.0010, and with an observed delta of 0.0010, I can compute a meaningful p-value using this approach.\n\nActually, the cleaner way forward is to use confidence intervals for the hypothesis test—if zero falls outside the 95% CI, I reject the null hypothesis. For Qwen SciERC, the CI is [-0.30, 0.00], which puts zero right at the boundary, so significance depends on whether the interval is open or closed. I think the best approach for the paper is to report the 95% CI for each metric, mark results as significant only if zero is excluded from the interval, skip explicit p-values for R-F1 since the CI conveys the information, and report one-sided p-values for DR%. Now I'll update the script to implement this cleaner methodology.\n\nAdjusting the p-value calculation to count bootstrap samples where delta equals zero as evidence against the null hypothesis...\n\nFor the Qwen SciERC case, when the observed delta is negative, including the zero samples in the opposite-sign group gives p = 0.60, which aligns better with the existing bootstrap result. I need to verify this same logic applies to the Llama SciERC result where the observed delta is positive.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "83539f6c-318b-46bf-abbe-c079542e0875",
+            "isSidechain": false,
+            "requestId": "req_011CbEGxb7QxcVtQwWdjnzb6",
+            "type": "assistant",
+            "uuid": "cce64422-bbee-4d0f-81af-858e740c1511",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UiEU5fea19AXWmBQ5duR2m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1196,
+                "cache_read_input_tokens": 104844,
+                "output_tokens": 7289,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1196,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7289,
+                    "cache_read_input_tokens": 104844,
+                    "cache_creation_input_tokens": 1196,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1196
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-20T18:16:50.801Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数字与 d066 完全一致。但 R-F1 的 p-value 有问题——由于精确匹配下 delta 几乎不过零，p=0 误导性太强。需要修正 p-value 计算（将 delta=0 计入 \"相反方向\"）。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cce64422-bbee-4d0f-81af-858e740c1511",
+            "isSidechain": false,
+            "requestId": "req_011CbEGxb7QxcVtQwWdjnzb6",
+            "type": "assistant",
+            "uuid": "fb5e0663-8db2-43e4-b543-1393eed8da63",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UiEU5fea19AXWmBQ5duR2m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1196,
+                "cache_read_input_tokens": 104844,
+                "output_tokens": 7289,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1196,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7289,
+                    "cache_read_input_tokens": 104844,
+                    "cache_creation_input_tokens": 1196,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1196
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-20T18:16:56.946Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ph1smYBjXz7fZpB5gZr59r",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cat > /tmp/fix_pvalue.py << 'PYEOF'\nimport json, numpy as np\n\n# Fix: use >= 0 / <= 0 (include 0 as \"no difference\" in null direction)\n# This is more conservative and appropriate for H0: delta = 0\n\nimport sys\nsys.path.insert(0, \"/root/schema_semantic_constrained_ie\")\n\n# Reload the original script but with fixed p-values\nexec(open(\"/root/schema_semantic_constrained_ie/scripts/r12_bootstrap_ci_table2.py\").read().replace(\n    # Fix for R-F1 two-sided p:\n    \"\"\"if df1_pt >= 0:\n        pf1 = min(float(np.mean(df1_samples < 0)) * 2, 1.0)\n    else:\n        pf1 = min(float(np.mean(df1_samples > 0)) * 2, 1.0)\"\"\",\n    \"\"\"if df1_pt >= 0:\n        pf1 = min(float(np.mean(df1_samples <= 0)) * 2, 1.0)\n    else:\n        pf1 = min(float(np.mean(df1_samples >= 0)) * 2, 1.0)\"\"\"\n))\nPYEOF\ncd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/fix_pvalue.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb5e0663-8db2-43e4-b543-1393eed8da63",
+            "isSidechain": false,
+            "requestId": "req_011CbEGxb7QxcVtQwWdjnzb6",
+            "type": "assistant",
+            "uuid": "5fdd1155-d51b-48d6-bb5f-cd725f8ca651",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UiEU5fea19AXWmBQ5duR2m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1196,
+                "cache_read_input_tokens": 104844,
+                "output_tokens": 7289,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1196,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7289,
+                    "cache_read_input_tokens": 104844,
+                    "cache_creation_input_tokens": 1196,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1196
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "5fdd1155-d51b-48d6-bb5f-cd725f8ca651",
+                "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53"
+              }
+            }
+          ],
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap CI for Table 2 R-F1 significance tests",
+                "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53"
+              }
+            }
+          ],
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-20T18:16:59.451Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ph1smYBjXz7fZpB5gZr59r",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  qwen_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=461 fp=667 fn=513 DR=22/1128\\\\n  Con: tp=460 fp=668 fn=514 DR=0/1128\\\\n  R-F1 unc: 43.86% [39.90, 47.78]\\\\n  R-F1 con: 43.77% [39.80, 47.66]\\\\n  ΔR-F1: -0.10pp [-0.30, +0.00] p=0.7260 n.s.\\\\n  DR% unc: 1.95% [1.11, 2.87]\\\\n  DR% con: 0.00% [0.00, 0.00]\\\\n  ΔDR%: -1.95pp [-2.87, -1.11] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=467 fp=614 fn=507 DR=12/1082\\\\n  Con: tp=467 fp=613 fn=507 DR=1/1081\\\\n  R-F1 unc: 45.45% [41.41, 49.41]\\\\n  R-F1 con: 45.47% [41.42, 49.47]\\\\n  ΔR-F1: +0.02pp [+0.00, +0.07] p=0.7364 n.s.\\\\n  DR% unc: 1.11% [0.38, 2.09]\\\\n  DR% con: 0.09% [0.00, 0.29]\\\\n  ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\\\\n\\\\n============================================================\\\\n  qwen_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=5663 fp=9890 fn=6501 DR=121/15870\\\\n  Con: tp=5579 fp=9769 fn=6585 DR=2/15563\\\\n  R-F1 unc: 40.86% [39.21, 42.48]\\\\n  R-F1 con: 40.56% [38.90, 42.19]\\\\n  ΔR-F1: -0.31pp [-0.69, +0.01] p=0.0560 n.s.\\\\n  DR% unc: 0.76% [0.49, 1.08]\\\\n  DR% con: 0.01% [0.00, 0.04]\\\\n  ΔDR%: -0.75pp [-1.07, -0.48] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=6132 fp=9757 fn=6032 DR=80/16171\\\\n  Con: tp=6111 fp=9644 fn=6053 DR=33/16074\\\\n  R-F1 unc: 43.72% [42.10, 45.36]\\\\n  R-F1 con: 43.78% [42.16, 45.41]\\\\n  ΔR-F1: +0.06pp [-0.11, +0.25] p=0.5346 n.s.\\\\n  DR% unc: 0.49% [0.28, 0.75]\\\\n  DR% con: 0.21% [0.09, 0.34]\\\\n  ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\\\\n\\\\nSaved to /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fdd1155-d51b-48d6-bb5f-cd725f8ca651",
+            "isSidechain": false,
+            "promptId": "271f5094-159e-4ab1-b870-4a1b2131f873",
+            "type": "user",
+            "uuid": "9c702660-75e0-4622-8199-df616e20d4da",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  qwen_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=461 fp=667 fn=513 DR=22/1128\\\\n  Con: tp=460 fp=668 fn=514 DR=0/1128\\\\n  R-F1 unc: 43.86% [39.90, 47.78]\\\\n  R-F1 con: 43.77% [39.80, 47.66]\\\\n  ΔR-F1: -0.10pp [-0.30, +0.00] p=0.7260 n.s.\\\\n  DR% unc: 1.95% [1.11, 2.87]\\\\n  DR% con: 0.00% [0.00, 0.00]\\\\n  ΔDR%: -1.95pp [-2.87, -1.11] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=467 fp=614 fn=507 DR=12/1082\\\\n  Con: tp=467 fp=613 fn=507 DR=1/1081\\\\n  R-F1 unc: 45.45% [41.41, 49.41]\\\\n  R-F1 con: 45.47% [41.42, 49.47]\\\\n  ΔR-F1: +0.02pp [+0.00, +0.07] p=0.7364 n.s.\\\\n  DR% unc: 1.11% [0.38, 2.09]\\\\n  DR% con: 0.09% [0.00, 0.29]\\\\n  ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\\\\n\\\\n============================================================\\\\n  qwen_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=5663 fp=9890 fn=6501 DR=121/15870\\\\n  Con: tp=5579 fp=9769 fn=6585 DR=2/15563\\\\n  R-F1 unc: 40.86% [39.21, 42.48]\\\\n  R-F1 con: 40.56% [38.90, 42.19]\\\\n  ΔR-F1: -0.31pp [-0.69, +0.01] p=0.0560 n.s.\\\\n  DR% unc: 0.76% [0.49, 1.08]\\\\n  DR% con: 0.01% [0.00, 0.04]\\\\n  ΔDR%: -0.75pp [-1.07, -0.48] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=6132 fp=9757 fn=6032 DR=80/16171\\\\n  Con: tp=6111 fp=9644 fn=6053 DR=33/16074\\\\n  R-F1 unc: 43.72% [42.10, 45.36]\\\\n  R-F1 con: 43.78% [42.16, 45.41]\\\\n  ΔR-F1: +0.06pp [-0.11, +0.25] p=0.5346 n.s.\\\\n  DR% unc: 0.49% [0.28, 0.75]\\\\n  DR% con: 0.21% [0.09, 0.34]\\\\n  ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\\\\n\\\\nSaved to /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.49}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  qwen_scierc\\n============================================================\\n  n=551\\n  Unc: tp=461 fp=667 fn=513 DR=22/1128\\n  Con: tp=460 fp=668 fn=514 DR=0/1128\\n  R-F1 unc: 43.86% [39.90, 47.78]\\n  R-F1 con: 43.77% [39.80, 47.66]\\n  ΔR-F1: -0.10pp [-0.30, +0.00] p=0.7260 n.s.\\n  DR% unc: 1.95% [1.11, 2.87]\\n  DR% con: 0.00% [0.00, 0.00]\\n  ΔDR%: -1.95pp [-2.87, -1.11] p=0.0000 ***\\n\\n============================================================\\n  llama_scierc\\n============================================================\\n  n=551\\n  Unc: tp=467 fp=614 fn=507 DR=12/1082\\n  Con: tp=467 fp=613 fn=507 DR=1/1081\\n  R-F1 unc: 45.45% [41.41, 49.41]\\n  R-F1 con: 45.47% [41.42, 49.47]\\n  ΔR-F1: +0.02pp [+0.00, +0.07] p=0.7364 n.s.\\n  DR% unc: 1.11% [0.38, 2.09]\\n  DR% con: 0.09% [0.00, 0.29]\\n  ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\\n\\n============================================================\\n  qwen_docred\\n============================================================\\n  n=998\\n  Unc: tp=5663 fp=9890 fn=6501 DR=121/15870\\n  Con: tp=5579 fp=9769 fn=6585 DR=2/15563\\n  R-F1 unc: 40.86% [39.21, 42.48]\\n  R-F1 con: 40.56% [38.90, 42.19]\\n  ΔR-F1: -0.31pp [-0.69, +0.01] p=0.0560 n.s.\\n  DR% unc: 0.76% [0.49, 1.08]\\n  DR% con: 0.01% [0.00, 0.04]\\n  ΔDR%: -0.75pp [-1.07, -0.48] p=0.0000 ***\\n\\n============================================================\\n  llama_docred\\n============================================================\\n  n=998\\n  Unc: tp=6132 fp=9757 fn=6032 DR=80/16171\\n  Con: tp=6111 fp=9644 fn=6053 DR=33/16074\\n  R-F1 unc: 43.72% [42.10, 45.36]\\n  R-F1 con: 43.78% [42.16, 45.41]\\n  ΔR-F1: +0.06pp [-0.11, +0.25] p=0.5346 n.s.\\n  DR% unc: 0.49% [0.28, 0.75]\\n  DR% con: 0.21% [0.09, 0.34]\\n  ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\\n\\nSaved to /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.49}}"
+              }
+            },
+            "sourceToolAssistantUUID": "5fdd1155-d51b-48d6-bb5f-cd725f8ca651",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-20T18:17:08.975Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now the p-values are much more reasonable:\n\n**Qwen SciERC:**\n- ΔR-F1: -0.10pp [-0.30, +0.00] p=0.726 n.s. ← matches existing bootstrap exactly!\n- ΔDR%: -1.95pp [-2.87, -1.11] p=0.000 ***\n\n**Llama SciERC:**\n- ΔR-F1: +0.02pp [+0.00, +0.07] p=0.736 n.s. ← matches existing bootstrap (0.7364)!\n\n\n- ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\n\n**Qwen DocRED:**\n- ΔR-F1: -0.31pp [-0.69, +0.01] p=0.056 n.s. (borderline)\n- ΔDR%: -0.75pp [-1.07, -0.48] p=0.000 ***\n\n**Llama DocRED:**\n- ΔR-F1: +0.06pp [-0.11, +0.25] p=0.535 n.s.\n- ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\n\nThe pattern is consistent across both datasets: R-F1 changes are mostly non-significant, while document-level recall shows significant degradation across all models.\n\nNow I need to update the computation script with the corrected p-value calculation, verify the JSON output contains the right values, and write up the caption text.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c702660-75e0-4622-8199-df616e20d4da",
+            "isSidechain": false,
+            "requestId": "req_011CbEH9GYmDjyLqW6itR5rP",
+            "type": "assistant",
+            "uuid": "6c670cda-43bf-4e38-a424-6ae3ed02eaca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EbrYHyoQxA6zLAqnZkxJYW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8345,
+                "cache_read_input_tokens": 106040,
+                "output_tokens": 699,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8345,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 699,
+                    "cache_read_input_tokens": 106040,
+                    "cache_creation_input_tokens": 8345,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8345
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-20T18:17:10.065Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "P-values 现在合理了，与现有 bootstrap 一致（Qwen SciERC p=0.726, Llama SciERC p=0.736）。更新脚本并保存最终结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c670cda-43bf-4e38-a424-6ae3ed02eaca",
+            "isSidechain": false,
+            "requestId": "req_011CbEH9GYmDjyLqW6itR5rP",
+            "type": "assistant",
+            "uuid": "a32be063-f0d2-42d5-95eb-1ddae76f4b34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EbrYHyoQxA6zLAqnZkxJYW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8345,
+                "cache_read_input_tokens": 106040,
+                "output_tokens": 699,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8345,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 699,
+                    "cache_read_input_tokens": 106040,
+                    "cache_creation_input_tokens": 8345,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8345
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-20T18:17:12.452Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015Pnvc4AvGJjLvgscd1Dq8p",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-16980",
+                "command": "cd /root/schema_semantic_constrained_ie && sed -i 's/np.mean(df1_samples < 0)/np.mean(df1_samples <= 0)/; s/np.mean(df1_samples > 0)/np.mean(df1_samples >= 0)/' scripts/r12_bootstrap_ci_table2.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/r12_bootstrap_ci_table2.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a32be063-f0d2-42d5-95eb-1ddae76f4b34",
+            "isSidechain": false,
+            "requestId": "req_011CbEH9GYmDjyLqW6itR5rP",
+            "type": "assistant",
+            "uuid": "bd6984c9-8cb9-4375-a787-32d99ecd4dda",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EbrYHyoQxA6zLAqnZkxJYW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8345,
+                "cache_read_input_tokens": 106040,
+                "output_tokens": 699,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8345,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 699,
+                    "cache_read_input_tokens": 106040,
+                    "cache_creation_input_tokens": 8345,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8345
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-20T18:17:14.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Pnvc4AvGJjLvgscd1Dq8p",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  qwen_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=461 fp=667 fn=513 DR=22/1128\\\\n  Con: tp=460 fp=668 fn=514 DR=0/1128\\\\n  R-F1 unc: 43.86% [39.90, 47.78]\\\\n  R-F1 con: 43.77% [39.80, 47.66]\\\\n  ΔR-F1: -0.10pp [-0.30, +0.00] p=0.7260 n.s.\\\\n  DR% unc: 1.95% [1.11, 2.87]\\\\n  DR% con: 0.00% [0.00, 0.00]\\\\n  ΔDR%: -1.95pp [-2.87, -1.11] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=467 fp=614 fn=507 DR=12/1082\\\\n  Con: tp=467 fp=613 fn=507 DR=1/1081\\\\n  R-F1 unc: 45.45% [41.41, 49.41]\\\\n  R-F1 con: 45.47% [41.42, 49.47]\\\\n  ΔR-F1: +0.02pp [+0.00, +0.07] p=0.7364 n.s.\\\\n  DR% unc: 1.11% [0.38, 2.09]\\\\n  DR% con: 0.09% [0.00, 0.29]\\\\n  ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\\\\n\\\\n============================================================\\\\n  qwen_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=5663 fp=9890 fn=6501 DR=121/15870\\\\n  Con: tp=5579 fp=9769 fn=6585 DR=2/15563\\\\n  R-F1 unc: 40.86% [39.21, 42.48]\\\\n  R-F1 con: 40.56% [38.90, 42.19]\\\\n  ΔR-F1: -0.31pp [-0.69, +0.01] p=0.0560 n.s.\\\\n  DR% unc: 0.76% [0.49, 1.08]\\\\n  DR% con: 0.01% [0.00, 0.04]\\\\n  ΔDR%: -0.75pp [-1.07, -0.48] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=6132 fp=9757 fn=6032 DR=80/16171\\\\n  Con: tp=6111 fp=9644 fn=6053 DR=33/16074\\\\n  R-F1 unc: 43.72% [42.10, 45.36]\\\\n  R-F1 con: 43.78% [42.16, 45.41]\\\\n  ΔR-F1: +0.06pp [-0.11, +0.25] p=0.5346 n.s.\\\\n  DR% unc: 0.49% [0.28, 0.75]\\\\n  DR% con: 0.21% [0.09, 0.34]\\\\n  ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\\\\n\\\\nSaved to /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd6984c9-8cb9-4375-a787-32d99ecd4dda",
+            "isSidechain": false,
+            "promptId": "271f5094-159e-4ab1-b870-4a1b2131f873",
+            "type": "user",
+            "uuid": "4b344956-85c7-4f76-8f4e-9654242b2177",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  qwen_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=461 fp=667 fn=513 DR=22/1128\\\\n  Con: tp=460 fp=668 fn=514 DR=0/1128\\\\n  R-F1 unc: 43.86% [39.90, 47.78]\\\\n  R-F1 con: 43.77% [39.80, 47.66]\\\\n  ΔR-F1: -0.10pp [-0.30, +0.00] p=0.7260 n.s.\\\\n  DR% unc: 1.95% [1.11, 2.87]\\\\n  DR% con: 0.00% [0.00, 0.00]\\\\n  ΔDR%: -1.95pp [-2.87, -1.11] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_scierc\\\\n============================================================\\\\n  n=551\\\\n  Unc: tp=467 fp=614 fn=507 DR=12/1082\\\\n  Con: tp=467 fp=613 fn=507 DR=1/1081\\\\n  R-F1 unc: 45.45% [41.41, 49.41]\\\\n  R-F1 con: 45.47% [41.42, 49.47]\\\\n  ΔR-F1: +0.02pp [+0.00, +0.07] p=0.7364 n.s.\\\\n  DR% unc: 1.11% [0.38, 2.09]\\\\n  DR% con: 0.09% [0.00, 0.29]\\\\n  ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\\\\n\\\\n============================================================\\\\n  qwen_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=5663 fp=9890 fn=6501 DR=121/15870\\\\n  Con: tp=5579 fp=9769 fn=6585 DR=2/15563\\\\n  R-F1 unc: 40.86% [39.21, 42.48]\\\\n  R-F1 con: 40.56% [38.90, 42.19]\\\\n  ΔR-F1: -0.31pp [-0.69, +0.01] p=0.0560 n.s.\\\\n  DR% unc: 0.76% [0.49, 1.08]\\\\n  DR% con: 0.01% [0.00, 0.04]\\\\n  ΔDR%: -0.75pp [-1.07, -0.48] p=0.0000 ***\\\\n\\\\n============================================================\\\\n  llama_docred\\\\n============================================================\\\\n  n=998\\\\n  Unc: tp=6132 fp=9757 fn=6032 DR=80/16171\\\\n  Con: tp=6111 fp=9644 fn=6053 DR=33/16074\\\\n  R-F1 unc: 43.72% [42.10, 45.36]\\\\n  R-F1 con: 43.78% [42.16, 45.41]\\\\n  ΔR-F1: +0.06pp [-0.11, +0.25] p=0.5346 n.s.\\\\n  DR% unc: 0.49% [0.28, 0.75]\\\\n  DR% con: 0.21% [0.09, 0.34]\\\\n  ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\\\\n\\\\nSaved to /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.52}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  qwen_scierc\\n============================================================\\n  n=551\\n  Unc: tp=461 fp=667 fn=513 DR=22/1128\\n  Con: tp=460 fp=668 fn=514 DR=0/1128\\n  R-F1 unc: 43.86% [39.90, 47.78]\\n  R-F1 con: 43.77% [39.80, 47.66]\\n  ΔR-F1: -0.10pp [-0.30, +0.00] p=0.7260 n.s.\\n  DR% unc: 1.95% [1.11, 2.87]\\n  DR% con: 0.00% [0.00, 0.00]\\n  ΔDR%: -1.95pp [-2.87, -1.11] p=0.0000 ***\\n\\n============================================================\\n  llama_scierc\\n============================================================\\n  n=551\\n  Unc: tp=467 fp=614 fn=507 DR=12/1082\\n  Con: tp=467 fp=613 fn=507 DR=1/1081\\n  R-F1 unc: 45.45% [41.41, 49.41]\\n  R-F1 con: 45.47% [41.42, 49.47]\\n  ΔR-F1: +0.02pp [+0.00, +0.07] p=0.7364 n.s.\\n  DR% unc: 1.11% [0.38, 2.09]\\n  DR% con: 0.09% [0.00, 0.29]\\n  ΔDR%: -1.02pp [-1.98, -0.29] p=0.0008 ***\\n\\n============================================================\\n  qwen_docred\\n============================================================\\n  n=998\\n  Unc: tp=5663 fp=9890 fn=6501 DR=121/15870\\n  Con: tp=5579 fp=9769 fn=6585 DR=2/15563\\n  R-F1 unc: 40.86% [39.21, 42.48]\\n  R-F1 con: 40.56% [38.90, 42.19]\\n  ΔR-F1: -0.31pp [-0.69, +0.01] p=0.0560 n.s.\\n  DR% unc: 0.76% [0.49, 1.08]\\n  DR% con: 0.01% [0.00, 0.04]\\n  ΔDR%: -0.75pp [-1.07, -0.48] p=0.0000 ***\\n\\n============================================================\\n  llama_docred\\n============================================================\\n  n=998\\n  Unc: tp=6132 fp=9757 fn=6032 DR=80/16171\\n  Con: tp=6111 fp=9644 fn=6053 DR=33/16074\\n  R-F1 unc: 43.72% [42.10, 45.36]\\n  R-F1 con: 43.78% [42.16, 45.41]\\n  ΔR-F1: +0.06pp [-0.11, +0.25] p=0.5346 n.s.\\n  DR% unc: 0.49% [0.28, 0.75]\\n  DR% con: 0.21% [0.09, 0.34]\\n  ΔDR%: -0.29pp [-0.53, -0.10] p=0.0001 ***\\n\\nSaved to /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.52}}"
+              }
+            },
+            "sourceToolAssistantUUID": "bd6984c9-8cb9-4375-a787-32d99ecd4dda",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-20T18:17:25.867Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, the final results are consistent. Let me now read the saved JSON to verify it's correct, and then register the artifact.",
+              "signature": "EsQCCmMIDRgCKkDTz8ohNCN1esQqIotdQSwsat+OZwgptPR1+d4E8IP+FWFv3ns1Q652zr5iAl4FaOFrylsNdP+HQGWTJp5WT8isMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDPTgAphlLivWTDvtYBoMPqXHAaOZL5jg905uIjB0Wki/D8e1ZjRIyaQ01ZAcaPkij5JFsJttqv5BnFd602rrq6N7Hjcm49jx+lwM59YqjgFtNOlzumZdC8dV8BCNJV8flbAq9OkpKeDKm11pDyVLKQn+sXHiGBg+kKtsK5cLQinR5/nria/oVWgHMBWz8Dgm9EbTb6kL+LinJJZbWlFdO88ht0iLqRBREAtP3OT2dklQRCuof6PVZJOmewo+3xwTqnwyr2HztdzPi0sxc0wXpd67/2YNppCNNIlrjxWAGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b344956-85c7-4f76-8f4e-9654242b2177",
+            "isSidechain": false,
+            "requestId": "req_011CbEHAQuap94GXsiDv8haD",
+            "type": "assistant",
+            "uuid": "0875dfeb-6aff-4219-b9aa-2d352697f4bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017L2c4vvY5rz6TPv67Mq8jU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1767,
+                "cache_read_input_tokens": 114385,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1767,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 114385,
+                    "cache_creation_input_tokens": 1767,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1767
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-20T18:17:26.775Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证保存的 JSON。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0875dfeb-6aff-4219-b9aa-2d352697f4bb",
+            "isSidechain": false,
+            "requestId": "req_011CbEHAQuap94GXsiDv8haD",
+            "type": "assistant",
+            "uuid": "ba74d02f-2464-48f8-b8de-61307390ead8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017L2c4vvY5rz6TPv67Mq8jU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1767,
+                "cache_read_input_tokens": 114385,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1767,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 114385,
+                    "cache_creation_input_tokens": 1767,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1767
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-20T18:17:27.468Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017eopFMRKjD494YuUW7375e",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-16980",
+                "command": "cat /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba74d02f-2464-48f8-b8de-61307390ead8",
+            "isSidechain": false,
+            "requestId": "req_011CbEHAQuap94GXsiDv8haD",
+            "type": "assistant",
+            "uuid": "d23f852d-8b23-4d51-8ba1-3f66a2382fb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017L2c4vvY5rz6TPv67Mq8jU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1767,
+                "cache_read_input_tokens": 114385,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1767,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 114385,
+                    "cache_creation_input_tokens": 1767,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1767
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-20T18:17:27.935Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017eopFMRKjD494YuUW7375e",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"qwen_scierc\\\\\\\": {\\\\n      \\\\\\\"rf1_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 43.863,\\\\n        \\\\\\\"mean\\\\\\\": 43.8152,\\\\n        \\\\\\\"ci_lower\\\\\\\": 39.8981,\\\\n        \\\\\\\"ci_upper\\\\\\\": 47.7835\\\\n      },\\\\n      \\\\\\\"rf1_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 43.7678,\\\\n        \\\\\\\"mean\\\\\\\": 43.7196,\\\\n        \\\\\\\"ci_lower\\\\\\\": 39.8024,\\\\n        \\\\\\\"ci_upper\\\\\\\": 47.664\\\\n      },\\\\n      \\\\\\\"rf1_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -0.0951,\\\\n        \\\\\\\"mean\\\\\\\": -0.0956,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.2967,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.726\\\\n      },\\\\n      \\\\\\\"dr_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 1.9504,\\\\n        \\\\\\\"mean\\\\\\\": 1.9529,\\\\n        \\\\\\\"ci_lower\\\\\\\": 1.1121,\\\\n        \\\\\\\"ci_upper\\\\\\\": 2.8731\\\\n      },\\\\n      \\\\\\\"dr_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0,\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"dr_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -1.9504,\\\\n        \\\\\\\"mean\\\\\\\": -1.9529,\\\\n        \\\\\\\"ci_lower\\\\\\\": -2.8731,\\\\n        \\\\\\\"ci_upper\\\\\\\": -1.1121,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"global_counts\\\\\\\": {\\\\n        \\\\\\\"unc\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 461,\\\\n          \\\\\\\"rel_fp\\\\\\\": 667,\\\\n          \\\\\\\"rel_fn\\\\\\\": 513,\\\\n          \\\\\\\"dr_violations\\\\\\\": 22,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 1128\\\\n        },\\\\n        \\\\\\\"con\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 460,\\\\n          \\\\\\\"rel_fp\\\\\\\": 668,\\\\n          \\\\\\\"rel_fn\\\\\\\": 514,\\\\n          \\\\\\\"dr_violations\\\\\\\": 0,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 1128\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_docs\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"llama_scierc\\\\\\\": {\\\\n      \\\\\\\"rf1_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 45.4501,\\\\n        \\\\\\\"mean\\\\\\\": 45.396,\\\\n        \\\\\\\"ci_lower\\\\\\\": 41.41,\\\\n        \\\\\\\"ci_upper\\\\\\\": 49.4144\\\\n      },\\\\n      \\\\\\\"rf1_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 45.4722,\\\\n        \\\\\\\"mean\\\\\\\": 45.4182,\\\\n        \\\\\\\"ci_lower\\\\\\\": 41.4166,\\\\n        \\\\\\\"ci_upper\\\\\\\": 49.4697\\\\n      },\\\\n      \\\\\\\"rf1_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0221,\\\\n        \\\\\\\"mean\\\\\\\": 0.0222,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0705,\\\\n        \\\\\\\"p_value\\\\\\\": 0.7364\\\\n      },\\\\n      \\\\\\\"dr_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 1.1091,\\\\n        \\\\\\\"mean\\\\\\\": 1.1062,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.3756,\\\\n        \\\\\\\"ci_upper\\\\\\\": 2.0852\\\\n      },\\\\n      \\\\\\\"dr_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0925,\\\\n        \\\\\\\"mean\\\\\\\": 0.0911,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.2933\\\\n      },\\\\n      \\\\\\\"dr_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -1.0166,\\\\n        \\\\\\\"mean\\\\\\\": -1.0151,\\\\n        \\\\\\\"ci_lower\\\\\\\": -1.983,\\\\n        \\\\\\\"ci_upper\\\\\\\": -0.2905,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0008\\\\n      },\\\\n      \\\\\\\"global_counts\\\\\\\": {\\\\n        \\\\\\\"unc\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 467,\\\\n          \\\\\\\"rel_fp\\\\\\\": 614,\\\\n          \\\\\\\"rel_fn\\\\\\\": 507,\\\\n          \\\\\\\"dr_violations\\\\\\\": 12,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 1082\\\\n        },\\\\n        \\\\\\\"con\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 467,\\\\n          \\\\\\\"rel_fp\\\\\\\": 613,\\\\n          \\\\\\\"rel_fn\\\\\\\": 507,\\\\n          \\\\\\\"dr_violations\\\\\\\": 1,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 1081\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_docs\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"qwen_docred\\\\\\\": {\\\\n      \\\\\\\"rf1_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 40.863,\\\\n        \\\\\\\"mean\\\\\\\": 40.8627,\\\\n        \\\\\\\"ci_lower\\\\\\\": 39.2112,\\\\n        \\\\\\\"ci_upper\\\\\\\": 42.4759\\\\n      },\\\\n      \\\\\\\"rf1_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 40.5568,\\\\n        \\\\\\\"mean\\\\\\\": 40.5557,\\\\n        \\\\\\\"ci_lower\\\\\\\": 38.9006,\\\\n        \\\\\\\"ci_upper\\\\\\\": 42.1939\\\\n      },\\\\n      \\\\\\\"rf1_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -0.3062,\\\\n        \\\\\\\"mean\\\\\\\": -0.3071,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.694,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0059,\\\\n        \\\\\\\"p_value\\\\\\\": 0.056\\\\n      },\\\\n      \\\\\\\"dr_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.7624,\\\\n        \\\\\\\"mean\\\\\\\": 0.7634,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.4916,\\\\n        \\\\\\\"ci_upper\\\\\\\": 1.0815\\\\n      },\\\\n      \\\\\\\"dr_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0129,\\\\n        \\\\\\\"mean\\\\\\\": 0.0128,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0396\\\\n      },\\\\n      \\\\\\\"dr_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -0.7496,\\\\n        \\\\\\\"mean\\\\\\\": -0.7506,\\\\n        \\\\\\\"ci_lower\\\\\\\": -1.0653,\\\\n        \\\\\\\"ci_upper\\\\\\\": -0.4783,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"global_counts\\\\\\\": {\\\\n        \\\\\\\"unc\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 5663,\\\\n          \\\\\\\"rel_fp\\\\\\\": 9890,\\\\n          \\\\\\\"rel_fn\\\\\\\": 6501,\\\\n          \\\\\\\"dr_violations\\\\\\\": 121,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 15870\\\\n        },\\\\n        \\\\\\\"con\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 5579,\\\\n          \\\\\\\"rel_fp\\\\\\\": 9769,\\\\n          \\\\\\\"rel_fn\\\\\\\": 6585,\\\\n          \\\\\\\"dr_violations\\\\\\\": 2,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 15563\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_docs\\\\\\\": 998\\\\n    },\\\\n    \\\\\\\"llama_docred\\\\\\\": {\\\\n      \\\\\\\"rf1_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 43.7172,\\\\n        \\\\\\\"mean\\\\\\\": 43.7217,\\\\n        \\\\\\\"ci_lower\\\\\\\": 42.0957,\\\\n        \\\\\\\"ci_upper\\\\\\\": 45.3602\\\\n      },\\\\n      \\\\\\\"rf1_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 43.7766,\\\\n        \\\\\\\"mean\\\\\\\": 43.7804,\\\\n        \\\\\\\"ci_lower\\\\\\\": 42.1575,\\\\n        \\\\\\\"ci_upper\\\\\\\": 45.4142\\\\n      },\\\\n      \\\\\\\"rf1_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0594,\\\\n        \\\\\\\"mean\\\\\\\": 0.0587,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.1089,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.2495,\\\\n        \\\\\\\"p_value\\\\\\\": 0.5346\\\\n      },\\\\n      \\\\\\\"dr_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.4947,\\\\n        \\\\\\\"mean\\\\\\\": 0.4954,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2807,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7546\\\\n      },\\\\n      \\\\\\\"dr_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.2053,\\\\n        \\\\\\\"mean\\\\\\\": 0.205,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0943,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.3378\\\\n      },\\\\n      \\\\\\\"dr_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -0.2894,\\\\n        \\\\\\\"mean\\\\\\\": -0.2904,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.5336,\\\\n        \\\\\\\"ci_upper\\\\\\\": -0.1,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0001\\\\n      },\\\\n      \\\\\\\"global_counts\\\\\\\": {\\\\n        \\\\\\\"unc\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 6132,\\\\n          \\\\\\\"rel_fp\\\\\\\": 9757,\\\\n          \\\\\\\"rel_fn\\\\\\\": 6032,\\\\n          \\\\\\\"dr_violations\\\\\\\": 80,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 16171\\\\n        },\\\\n        \\\\\\\"con\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 6111,\\\\n          \\\\\\\"rel_fp\\\\\\\": 9644,\\\\n          \\\\\\\"rel_fn\\\\\\\": 6053,\\\\n          \\\\\\\"dr_violations\\\\\\\": 33,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 16074\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_docs\\\\\\\": 998\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n    \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"eval_logic\\\\\\\": \\\\\\\"d066_unified (exact case text, lowered relation type)\\\\\\\",\\\\n    \\\\\\\"comparison\\\\\\\": \\\\\\\"constrained - unconstrained (paired bootstrap, document-level)\\\\\\\",\\\\n    \\\\\\\"p_value_rf1\\\\\\\": \\\\\\\"two-sided\\\\\\\",\\\\n    \\\\\\\"p_value_dr\\\\\\\": \\\\\\\"one-sided (H0: delta_DR >= 0)\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d23f852d-8b23-4d51-8ba1-3f66a2382fb8",
+            "isSidechain": false,
+            "promptId": "271f5094-159e-4ab1-b870-4a1b2131f873",
+            "type": "user",
+            "uuid": "2a94ac5d-8dbb-43fc-aab0-9c3bdcf50c98",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"qwen_scierc\\\\\\\": {\\\\n      \\\\\\\"rf1_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 43.863,\\\\n        \\\\\\\"mean\\\\\\\": 43.8152,\\\\n        \\\\\\\"ci_lower\\\\\\\": 39.8981,\\\\n        \\\\\\\"ci_upper\\\\\\\": 47.7835\\\\n      },\\\\n      \\\\\\\"rf1_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 43.7678,\\\\n        \\\\\\\"mean\\\\\\\": 43.7196,\\\\n        \\\\\\\"ci_lower\\\\\\\": 39.8024,\\\\n        \\\\\\\"ci_upper\\\\\\\": 47.664\\\\n      },\\\\n      \\\\\\\"rf1_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -0.0951,\\\\n        \\\\\\\"mean\\\\\\\": -0.0956,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.2967,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.726\\\\n      },\\\\n      \\\\\\\"dr_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 1.9504,\\\\n        \\\\\\\"mean\\\\\\\": 1.9529,\\\\n        \\\\\\\"ci_lower\\\\\\\": 1.1121,\\\\n        \\\\\\\"ci_upper\\\\\\\": 2.8731\\\\n      },\\\\n      \\\\\\\"dr_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0,\\\\n        \\\\\\\"mean\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"dr_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -1.9504,\\\\n        \\\\\\\"mean\\\\\\\": -1.9529,\\\\n        \\\\\\\"ci_lower\\\\\\\": -2.8731,\\\\n        \\\\\\\"ci_upper\\\\\\\": -1.1121,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"global_counts\\\\\\\": {\\\\n        \\\\\\\"unc\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 461,\\\\n          \\\\\\\"rel_fp\\\\\\\": 667,\\\\n          \\\\\\\"rel_fn\\\\\\\": 513,\\\\n          \\\\\\\"dr_violations\\\\\\\": 22,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 1128\\\\n        },\\\\n        \\\\\\\"con\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 460,\\\\n          \\\\\\\"rel_fp\\\\\\\": 668,\\\\n          \\\\\\\"rel_fn\\\\\\\": 514,\\\\n          \\\\\\\"dr_violations\\\\\\\": 0,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 1128\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_docs\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"llama_scierc\\\\\\\": {\\\\n      \\\\\\\"rf1_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 45.4501,\\\\n        \\\\\\\"mean\\\\\\\": 45.396,\\\\n        \\\\\\\"ci_lower\\\\\\\": 41.41,\\\\n        \\\\\\\"ci_upper\\\\\\\": 49.4144\\\\n      },\\\\n      \\\\\\\"rf1_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 45.4722,\\\\n        \\\\\\\"mean\\\\\\\": 45.4182,\\\\n        \\\\\\\"ci_lower\\\\\\\": 41.4166,\\\\n        \\\\\\\"ci_upper\\\\\\\": 49.4697\\\\n      },\\\\n      \\\\\\\"rf1_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0221,\\\\n        \\\\\\\"mean\\\\\\\": 0.0222,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0705,\\\\n        \\\\\\\"p_value\\\\\\\": 0.7364\\\\n      },\\\\n      \\\\\\\"dr_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 1.1091,\\\\n        \\\\\\\"mean\\\\\\\": 1.1062,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.3756,\\\\n        \\\\\\\"ci_upper\\\\\\\": 2.0852\\\\n      },\\\\n      \\\\\\\"dr_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0925,\\\\n        \\\\\\\"mean\\\\\\\": 0.0911,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.2933\\\\n      },\\\\n      \\\\\\\"dr_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -1.0166,\\\\n        \\\\\\\"mean\\\\\\\": -1.0151,\\\\n        \\\\\\\"ci_lower\\\\\\\": -1.983,\\\\n        \\\\\\\"ci_upper\\\\\\\": -0.2905,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0008\\\\n      },\\\\n      \\\\\\\"global_counts\\\\\\\": {\\\\n        \\\\\\\"unc\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 467,\\\\n          \\\\\\\"rel_fp\\\\\\\": 614,\\\\n          \\\\\\\"rel_fn\\\\\\\": 507,\\\\n          \\\\\\\"dr_violations\\\\\\\": 12,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 1082\\\\n        },\\\\n        \\\\\\\"con\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 467,\\\\n          \\\\\\\"rel_fp\\\\\\\": 613,\\\\n          \\\\\\\"rel_fn\\\\\\\": 507,\\\\n          \\\\\\\"dr_violations\\\\\\\": 1,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 1081\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_docs\\\\\\\": 551\\\\n    },\\\\n    \\\\\\\"qwen_docred\\\\\\\": {\\\\n      \\\\\\\"rf1_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 40.863,\\\\n        \\\\\\\"mean\\\\\\\": 40.8627,\\\\n        \\\\\\\"ci_lower\\\\\\\": 39.2112,\\\\n        \\\\\\\"ci_upper\\\\\\\": 42.4759\\\\n      },\\\\n      \\\\\\\"rf1_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 40.5568,\\\\n        \\\\\\\"mean\\\\\\\": 40.5557,\\\\n        \\\\\\\"ci_lower\\\\\\\": 38.9006,\\\\n        \\\\\\\"ci_upper\\\\\\\": 42.1939\\\\n      },\\\\n      \\\\\\\"rf1_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -0.3062,\\\\n        \\\\\\\"mean\\\\\\\": -0.3071,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.694,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0059,\\\\n        \\\\\\\"p_value\\\\\\\": 0.056\\\\n      },\\\\n      \\\\\\\"dr_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.7624,\\\\n        \\\\\\\"mean\\\\\\\": 0.7634,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.4916,\\\\n        \\\\\\\"ci_upper\\\\\\\": 1.0815\\\\n      },\\\\n      \\\\\\\"dr_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0129,\\\\n        \\\\\\\"mean\\\\\\\": 0.0128,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.0396\\\\n      },\\\\n      \\\\\\\"dr_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -0.7496,\\\\n        \\\\\\\"mean\\\\\\\": -0.7506,\\\\n        \\\\\\\"ci_lower\\\\\\\": -1.0653,\\\\n        \\\\\\\"ci_upper\\\\\\\": -0.4783,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"global_counts\\\\\\\": {\\\\n        \\\\\\\"unc\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 5663,\\\\n          \\\\\\\"rel_fp\\\\\\\": 9890,\\\\n          \\\\\\\"rel_fn\\\\\\\": 6501,\\\\n          \\\\\\\"dr_violations\\\\\\\": 121,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 15870\\\\n        },\\\\n        \\\\\\\"con\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 5579,\\\\n          \\\\\\\"rel_fp\\\\\\\": 9769,\\\\n          \\\\\\\"rel_fn\\\\\\\": 6585,\\\\n          \\\\\\\"dr_violations\\\\\\\": 2,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 15563\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_docs\\\\\\\": 998\\\\n    },\\\\n    \\\\\\\"llama_docred\\\\\\\": {\\\\n      \\\\\\\"rf1_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 43.7172,\\\\n        \\\\\\\"mean\\\\\\\": 43.7217,\\\\n        \\\\\\\"ci_lower\\\\\\\": 42.0957,\\\\n        \\\\\\\"ci_upper\\\\\\\": 45.3602\\\\n      },\\\\n      \\\\\\\"rf1_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 43.7766,\\\\n        \\\\\\\"mean\\\\\\\": 43.7804,\\\\n        \\\\\\\"ci_lower\\\\\\\": 42.1575,\\\\n        \\\\\\\"ci_upper\\\\\\\": 45.4142\\\\n      },\\\\n      \\\\\\\"rf1_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.0594,\\\\n        \\\\\\\"mean\\\\\\\": 0.0587,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.1089,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.2495,\\\\n        \\\\\\\"p_value\\\\\\\": 0.5346\\\\n      },\\\\n      \\\\\\\"dr_unc\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.4947,\\\\n        \\\\\\\"mean\\\\\\\": 0.4954,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.2807,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.7546\\\\n      },\\\\n      \\\\\\\"dr_con\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": 0.2053,\\\\n        \\\\\\\"mean\\\\\\\": 0.205,\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.0943,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.3378\\\\n      },\\\\n      \\\\\\\"dr_delta\\\\\\\": {\\\\n        \\\\\\\"point\\\\\\\": -0.2894,\\\\n        \\\\\\\"mean\\\\\\\": -0.2904,\\\\n        \\\\\\\"ci_lower\\\\\\\": -0.5336,\\\\n        \\\\\\\"ci_upper\\\\\\\": -0.1,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0001\\\\n      },\\\\n      \\\\\\\"global_counts\\\\\\\": {\\\\n        \\\\\\\"unc\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 6132,\\\\n          \\\\\\\"rel_fp\\\\\\\": 9757,\\\\n          \\\\\\\"rel_fn\\\\\\\": 6032,\\\\n          \\\\\\\"dr_violations\\\\\\\": 80,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 16171\\\\n        },\\\\n        \\\\\\\"con\\\\\\\": {\\\\n          \\\\\\\"rel_tp\\\\\\\": 6111,\\\\n          \\\\\\\"rel_fp\\\\\\\": 9644,\\\\n          \\\\\\\"rel_fn\\\\\\\": 6053,\\\\n          \\\\\\\"dr_violations\\\\\\\": 33,\\\\n          \\\\\\\"total_pred_rels\\\\\\\": 16074\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_docs\\\\\\\": 998\\\\n    }\\\\n  },\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n    \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"eval_logic\\\\\\\": \\\\\\\"d066_unified (exact case text, lowered relation type)\\\\\\\",\\\\n    \\\\\\\"comparison\\\\\\\": \\\\\\\"constrained - unconstrained (paired bootstrap, document-level)\\\\\\\",\\\\n    \\\\\\\"p_value_rf1\\\\\\\": \\\\\\\"two-sided\\\\\\\",\\\\n    \\\\\\\"p_value_dr\\\\\\\": \\\\\\\"one-sided (H0: delta_DR >= 0)\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"qwen_scierc\\\": {\\n      \\\"rf1_unc\\\": {\\n        \\\"point\\\": 43.863,\\n        \\\"mean\\\": 43.8152,\\n        \\\"ci_lower\\\": 39.8981,\\n        \\\"ci_upper\\\": 47.7835\\n      },\\n      \\\"rf1_con\\\": {\\n        \\\"point\\\": 43.7678,\\n        \\\"mean\\\": 43.7196,\\n        \\\"ci_lower\\\": 39.8024,\\n        \\\"ci_upper\\\": 47.664\\n      },\\n      \\\"rf1_delta\\\": {\\n        \\\"point\\\": -0.0951,\\n        \\\"mean\\\": -0.0956,\\n        \\\"ci_lower\\\": -0.2967,\\n        \\\"ci_upper\\\": 0.0,\\n        \\\"p_value\\\": 0.726\\n      },\\n      \\\"dr_unc\\\": {\\n        \\\"point\\\": 1.9504,\\n        \\\"mean\\\": 1.9529,\\n        \\\"ci_lower\\\": 1.1121,\\n        \\\"ci_upper\\\": 2.8731\\n      },\\n      \\\"dr_con\\\": {\\n        \\\"point\\\": 0.0,\\n        \\\"mean\\\": 0.0,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0\\n      },\\n      \\\"dr_delta\\\": {\\n        \\\"point\\\": -1.9504,\\n        \\\"mean\\\": -1.9529,\\n        \\\"ci_lower\\\": -2.8731,\\n        \\\"ci_upper\\\": -1.1121,\\n        \\\"p_value\\\": 0.0\\n      },\\n      \\\"global_counts\\\": {\\n        \\\"unc\\\": {\\n          \\\"rel_tp\\\": 461,\\n          \\\"rel_fp\\\": 667,\\n          \\\"rel_fn\\\": 513,\\n          \\\"dr_violations\\\": 22,\\n          \\\"total_pred_rels\\\": 1128\\n        },\\n        \\\"con\\\": {\\n          \\\"rel_tp\\\": 460,\\n          \\\"rel_fp\\\": 668,\\n          \\\"rel_fn\\\": 514,\\n          \\\"dr_violations\\\": 0,\\n          \\\"total_pred_rels\\\": 1128\\n        }\\n      },\\n      \\\"n_docs\\\": 551\\n    },\\n    \\\"llama_scierc\\\": {\\n      \\\"rf1_unc\\\": {\\n        \\\"point\\\": 45.4501,\\n        \\\"mean\\\": 45.396,\\n        \\\"ci_lower\\\": 41.41,\\n        \\\"ci_upper\\\": 49.4144\\n      },\\n      \\\"rf1_con\\\": {\\n        \\\"point\\\": 45.4722,\\n        \\\"mean\\\": 45.4182,\\n        \\\"ci_lower\\\": 41.4166,\\n        \\\"ci_upper\\\": 49.4697\\n      },\\n      \\\"rf1_delta\\\": {\\n        \\\"point\\\": 0.0221,\\n        \\\"mean\\\": 0.0222,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0705,\\n        \\\"p_value\\\": 0.7364\\n      },\\n      \\\"dr_unc\\\": {\\n        \\\"point\\\": 1.1091,\\n        \\\"mean\\\": 1.1062,\\n        \\\"ci_lower\\\": 0.3756,\\n        \\\"ci_upper\\\": 2.0852\\n      },\\n      \\\"dr_con\\\": {\\n        \\\"point\\\": 0.0925,\\n        \\\"mean\\\": 0.0911,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.2933\\n      },\\n      \\\"dr_delta\\\": {\\n        \\\"point\\\": -1.0166,\\n        \\\"mean\\\": -1.0151,\\n        \\\"ci_lower\\\": -1.983,\\n        \\\"ci_upper\\\": -0.2905,\\n        \\\"p_value\\\": 0.0008\\n      },\\n      \\\"global_counts\\\": {\\n        \\\"unc\\\": {\\n          \\\"rel_tp\\\": 467,\\n          \\\"rel_fp\\\": 614,\\n          \\\"rel_fn\\\": 507,\\n          \\\"dr_violations\\\": 12,\\n          \\\"total_pred_rels\\\": 1082\\n        },\\n        \\\"con\\\": {\\n          \\\"rel_tp\\\": 467,\\n          \\\"rel_fp\\\": 613,\\n          \\\"rel_fn\\\": 507,\\n          \\\"dr_violations\\\": 1,\\n          \\\"total_pred_rels\\\": 1081\\n        }\\n      },\\n      \\\"n_docs\\\": 551\\n    },\\n    \\\"qwen_docred\\\": {\\n      \\\"rf1_unc\\\": {\\n        \\\"point\\\": 40.863,\\n        \\\"mean\\\": 40.8627,\\n        \\\"ci_lower\\\": 39.2112,\\n        \\\"ci_upper\\\": 42.4759\\n      },\\n      \\\"rf1_con\\\": {\\n        \\\"point\\\": 40.5568,\\n        \\\"mean\\\": 40.5557,\\n        \\\"ci_lower\\\": 38.9006,\\n        \\\"ci_upper\\\": 42.1939\\n      },\\n      \\\"rf1_delta\\\": {\\n        \\\"point\\\": -0.3062,\\n        \\\"mean\\\": -0.3071,\\n        \\\"ci_lower\\\": -0.694,\\n        \\\"ci_upper\\\": 0.0059,\\n        \\\"p_value\\\": 0.056\\n      },\\n      \\\"dr_unc\\\": {\\n        \\\"point\\\": 0.7624,\\n        \\\"mean\\\": 0.7634,\\n        \\\"ci_lower\\\": 0.4916,\\n        \\\"ci_upper\\\": 1.0815\\n      },\\n      \\\"dr_con\\\": {\\n        \\\"point\\\": 0.0129,\\n        \\\"mean\\\": 0.0128,\\n        \\\"ci_lower\\\": 0.0,\\n        \\\"ci_upper\\\": 0.0396\\n      },\\n      \\\"dr_delta\\\": {\\n        \\\"point\\\": -0.7496,\\n        \\\"mean\\\": -0.7506,\\n        \\\"ci_lower\\\": -1.0653,\\n        \\\"ci_upper\\\": -0.4783,\\n        \\\"p_value\\\": 0.0\\n      },\\n      \\\"global_counts\\\": {\\n        \\\"unc\\\": {\\n          \\\"rel_tp\\\": 5663,\\n          \\\"rel_fp\\\": 9890,\\n          \\\"rel_fn\\\": 6501,\\n          \\\"dr_violations\\\": 121,\\n          \\\"total_pred_rels\\\": 15870\\n        },\\n        \\\"con\\\": {\\n          \\\"rel_tp\\\": 5579,\\n          \\\"rel_fp\\\": 9769,\\n          \\\"rel_fn\\\": 6585,\\n          \\\"dr_violations\\\": 2,\\n          \\\"total_pred_rels\\\": 15563\\n        }\\n      },\\n      \\\"n_docs\\\": 998\\n    },\\n    \\\"llama_docred\\\": {\\n      \\\"rf1_unc\\\": {\\n        \\\"point\\\": 43.7172,\\n        \\\"mean\\\": 43.7217,\\n        \\\"ci_lower\\\": 42.0957,\\n        \\\"ci_upper\\\": 45.3602\\n      },\\n      \\\"rf1_con\\\": {\\n        \\\"point\\\": 43.7766,\\n        \\\"mean\\\": 43.7804,\\n        \\\"ci_lower\\\": 42.1575,\\n        \\\"ci_upper\\\": 45.4142\\n      },\\n      \\\"rf1_delta\\\": {\\n        \\\"point\\\": 0.0594,\\n        \\\"mean\\\": 0.0587,\\n        \\\"ci_lower\\\": -0.1089,\\n        \\\"ci_upper\\\": 0.2495,\\n        \\\"p_value\\\": 0.5346\\n      },\\n      \\\"dr_unc\\\": {\\n        \\\"point\\\": 0.4947,\\n        \\\"mean\\\": 0.4954,\\n        \\\"ci_lower\\\": 0.2807,\\n        \\\"ci_upper\\\": 0.7546\\n      },\\n      \\\"dr_con\\\": {\\n        \\\"point\\\": 0.2053,\\n        \\\"mean\\\": 0.205,\\n        \\\"ci_lower\\\": 0.0943,\\n        \\\"ci_upper\\\": 0.3378\\n      },\\n      \\\"dr_delta\\\": {\\n        \\\"point\\\": -0.2894,\\n        \\\"mean\\\": -0.2904,\\n        \\\"ci_lower\\\": -0.5336,\\n        \\\"ci_upper\\\": -0.1,\\n        \\\"p_value\\\": 0.0001\\n      },\\n      \\\"global_counts\\\": {\\n        \\\"unc\\\": {\\n          \\\"rel_tp\\\": 6132,\\n          \\\"rel_fp\\\": 9757,\\n          \\\"rel_fn\\\": 6032,\\n          \\\"dr_violations\\\": 80,\\n          \\\"total_pred_rels\\\": 16171\\n        },\\n        \\\"con\\\": {\\n          \\\"rel_tp\\\": 6111,\\n          \\\"rel_fp\\\": 9644,\\n          \\\"rel_fn\\\": 6053,\\n          \\\"dr_violations\\\": 33,\\n          \\\"total_pred_rels\\\": 16074\\n        }\\n      },\\n      \\\"n_docs\\\": 998\\n    }\\n  },\\n  \\\"metadata\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"ci_method\\\": \\\"percentile\\\",\\n    \\\"ci_level\\\": 0.95,\\n    \\\"seed\\\": 42,\\n    \\\"eval_logic\\\": \\\"d066_unified (exact case text, lowered relation type)\\\",\\n    \\\"comparison\\\": \\\"constrained - unconstrained (paired bootstrap, document-level)\\\",\\n    \\\"p_value_rf1\\\": \\\"two-sided\\\",\\n    \\\"p_value_dr\\\": \\\"one-sided (H0: delta_DR >= 0)\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d23f852d-8b23-4d51-8ba1-3f66a2382fb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "2a94ac5d-8dbb-43fc-aab0-9c3bdcf50c98",
+                "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53"
+              }
+            }
+          ],
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap CI for Table 2 R-F1 significance tests",
+                "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53"
+              }
+            }
+          ],
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-20T18:17:42.356Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The JSON is saved correctly. Now let me register the artifact and provide the caption/footnote text.\n\nLet me summarize the key findings:\n\n**Paper Table 2 (SciERC composability):**\n\n| Setting | ΔR-F1 (pp) | 95% CI | p | ΔDR% (pp) | 95% CI | p |\n|---------|-----------|--------|---|-----------|--------|---|\n| Qwen SciERC | -0.10 | [-0.30, 0.00] | 0.726 | -1.95 | [-2.87, -1.11] | <0.001 |\n\n\n| Llama SciERC | +0.02 | [0.00, +0.07] | 0.736 | -1.02 | [-1.98, -0.29] | <0.001 |\n\n**Extended (DocRED):**\n| Setting | ΔR-F1 (pp) | 95% CI | p | ΔDR% (pp) | 95% CI | p |\n|---------|-----------|--------|---|-----------|--------|---|\n| Qwen DocRED | -0.31 | [-0.69, +0.01] | 0.056 | -0.75 |\n\nGenerating results table...\n\nThe key takeaway is that R-F1 scores remain stable across all settings with no statistical significance, while the constraint violations drop dramatically and significantly, which validates that the approach achieves composability without sacrificing performance. Now I'm ready to write the caption and finalize the artifact.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a94ac5d-8dbb-43fc-aab0-9c3bdcf50c98",
+            "isSidechain": false,
+            "requestId": "req_011CbEHBNRHZHfN5SS6r7tdj",
+            "type": "assistant",
+            "uuid": "7ba7543a-7a5c-4eed-b274-e2cf53042470",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014vKpQKVfEQQcsKTfp8PYPh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3569,
+                "cache_read_input_tokens": 116152,
+                "output_tokens": 778,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3569,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 778,
+                    "cache_read_input_tokens": 116152,
+                    "cache_creation_input_tokens": 3569,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3569
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-20T18:17:42.395Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果完全匹配 d066 eval。现在注册 artifact 并生成论文 caption/footnote。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ba7543a-7a5c-4eed-b274-e2cf53042470",
+            "isSidechain": false,
+            "requestId": "req_011CbEHBNRHZHfN5SS6r7tdj",
+            "type": "assistant",
+            "uuid": "09958052-ed7d-4af5-9bc9-dccdc2a21f67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014vKpQKVfEQQcsKTfp8PYPh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3569,
+                "cache_read_input_tokens": 116152,
+                "output_tokens": 778,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3569,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 778,
+                    "cache_read_input_tokens": 116152,
+                    "cache_creation_input_tokens": 3569,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3569
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-20T18:17:45.740Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DB1a6TkhPNDtoFXWm5XNeQ",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "r12_table2_bootstrap_ci",
+                "type": "data",
+                "description": "Bootstrap CI (10k iterations) for Table 2 composability: R-F1 delta and DR% delta with p-values for all 4 model-dataset pairs",
+                "project": "schema_semantic_constrained_ie",
+                "source_path": "/root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json",
+                "tags": [
+                  "bootstrap",
+                  "table2",
+                  "composability",
+                  "significance"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09958052-ed7d-4af5-9bc9-dccdc2a21f67",
+            "isSidechain": false,
+            "requestId": "req_011CbEHBNRHZHfN5SS6r7tdj",
+            "type": "assistant",
+            "uuid": "0366c39b-f8dd-4931-8b51-28a79f0fe1cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014vKpQKVfEQQcsKTfp8PYPh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3569,
+                "cache_read_input_tokens": 116152,
+                "output_tokens": 778,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3569,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 778,
+                    "cache_read_input_tokens": 116152,
+                    "cache_creation_input_tokens": 3569,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3569
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-20T18:17:45.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DB1a6TkhPNDtoFXWm5XNeQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0366c39b-f8dd-4931-8b51-28a79f0fe1cf",
+            "isSidechain": false,
+            "promptId": "271f5094-159e-4ab1-b870-4a1b2131f873",
+            "type": "user",
+            "uuid": "1aa8d55e-5f96-4e80-95dc-745083c8f53c",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\\\", \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json\", \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "0366c39b-f8dd-4931-8b51-28a79f0fe1cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-20T18:17:45.801Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1aa8d55e-5f96-4e80-95dc-745083c8f53c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "184018d7-bf58-47ab-8c79-60118e829167",
+                "timestamp": "2026-05-20T18:17:45.801Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-20T18:17:51.182Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The source_path is on the remote server, not local. I need to use the `content` parameter instead to register the artifact.",
+              "signature": "EsECCmMIDRgCKkCvEV+msHiFI048b79GmDDioepZMhvvILCKeDY8vD/lAvRGnnP47mgwAQONnVeoVIyzoJfcjN8PTJgtDeaH/uI3Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDJpf3TXeHZ8XLGMzoRoMasQTHv2HNy5WOjiPIjBKmZJQzzomcInBUdOqsUePS95wUetdzhktJDxkiPqfGbVuWBfBaBeoCfzskkN3MMkqiwHgDN/sLaZiGjw9GrH3ujt5M9XVkQSe6VXLx+cBkjhUMZC2gMit6nvqBx8wV53neBNMaIMEQ1zn0RMtQcf940nScw4p4hl5H3/W+4qJBBZLTsHfyetq/yS06s83kN/kXXZ8+rYKAUBDp0xxKduyADgQEt2PmTK3GhSCJj0NDK9/Agh0TdGXeyhElAW7GAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "184018d7-bf58-47ab-8c79-60118e829167",
+            "isSidechain": false,
+            "requestId": "req_011CbEHCggAcssDzHQCQ8uRn",
+            "type": "assistant",
+            "uuid": "be8eb6c3-8671-4e31-ae56-1d8bf63af36e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PFofzmhX9KhgV6B9iXyz6z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 949,
+                "cache_read_input_tokens": 119721,
+                "output_tokens": 343,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 949,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 343,
+                    "cache_read_input_tokens": 119721,
+                    "cache_creation_input_tokens": 949,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 949
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-20T18:17:53.808Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CtA7j5Te14kYVgNB3NA6N1",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "r12_table2_bootstrap_ci",
+                "type": "data",
+                "description": "Bootstrap CI (10k iterations) for Table 2 composability: R-F1 delta and DR% delta with p-values for all 4 model-dataset pairs",
+                "project": "schema_semantic_constrained_ie",
+                "content": "See /root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json on westd-16980. Script: /root/schema_semantic_constrained_ie/scripts/r12_bootstrap_ci_table2.py",
+                "content_filename": "r12_table2_bootstrap_ci_pointer.txt",
+                "tags": [
+                  "bootstrap",
+                  "table2",
+                  "composability",
+                  "significance"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be8eb6c3-8671-4e31-ae56-1d8bf63af36e",
+            "isSidechain": false,
+            "requestId": "req_011CbEHCggAcssDzHQCQ8uRn",
+            "type": "assistant",
+            "uuid": "73e760f1-0107-4675-b2b0-368e475a34eb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PFofzmhX9KhgV6B9iXyz6z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 949,
+                "cache_read_input_tokens": 119721,
+                "output_tokens": 343,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 949,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 343,
+                    "cache_read_input_tokens": 119721,
+                    "cache_creation_input_tokens": 949,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 949
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-20T18:17:54.108Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CtA7j5Te14kYVgNB3NA6N1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_69cf8e\\\", \\\"name\\\": \\\"r12_table2_bootstrap_ci\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI (10k iterations) for Table 2 composability: R-F1 delta and DR% delta with p-values for all 4 model-dataset pairs\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/data/r12_table2_bootstrap_ci_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T18:17:53.814948+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"table2\\\", \\\"composability\\\", \\\"significance\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73e760f1-0107-4675-b2b0-368e475a34eb",
+            "isSidechain": false,
+            "promptId": "271f5094-159e-4ab1-b870-4a1b2131f873",
+            "type": "user",
+            "uuid": "2375cd6a-850d-4aee-abaf-ee5a61606db0",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_69cf8e\\\", \\\"name\\\": \\\"r12_table2_bootstrap_ci\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI (10k iterations) for Table 2 composability: R-F1 delta and DR% delta with p-values for all 4 model-dataset pairs\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/data/r12_table2_bootstrap_ci_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T18:17:53.814948+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"table2\\\", \\\"composability\\\", \\\"significance\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_69cf8e\", \"name\": \"r12_table2_bootstrap_ci\", \"type\": \"data\", \"description\": \"Bootstrap CI (10k iterations) for Table 2 composability: R-F1 delta and DR% delta with p-values for all 4 model-dataset pairs\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/_project/data/r12_table2_bootstrap_ci_pointer.txt\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-20T18:17:53.814948+00:00\", \"tags\": [\"bootstrap\", \"table2\", \"composability\", \"significance\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "73e760f1-0107-4675-b2b0-368e475a34eb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-20T18:18:13.395Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是结果总结和论文 caption 文本。\n\n## 结果\n\n**R-F1 差异（constrained − unconstrained）：所有 n.s.**\n\n| Setting | ΔR-F1 (pp) | 95% CI | p |\n|---------|-----------|--------|---|\n| Qwen SciERC (n=551) | −0.10 | [−0.30, 0.00] | 0.726 |\n| Llama SciERC (n=551) | +0.02 | [0.00, +0.07] | 0.736 |\n| Qwen DocRED (n=998) | −0.31 | [−0.69, +0.01] | 0.056 |\n| Llama DocRED (n=998) | +0.06 | [−0.11, +0.25] | 0.535 |\n\n**DR% 差异：全部 p < 0.001**\n\n| Setting | ΔDR% (pp) | 95% CI | p |\n|---------|-----------|--------|---|\n| Qwen SciERC | −1.95 | [−2.87, −1.11] | <0.001 |\n| Llama SciERC | −1.02 | [−1.98, −0.29] | <0.001 |\n| Qwen DocRED | −0.75 | [−1.07, −0.48] | <0.001 |\n| Llama DocRED | −0.29 | [−0.53, −0.10] | <0.001 |\n\n**数据验证**：聚合 TP/FP/FN 与 d066_unified eval 完全一致（e.g. Qwen SciERC unc: tp=461, fp=667, fn=513 → R-F1=43.86%）。\n\n## 论文 Caption/Footnote 文本\n\n用于 Table 2 caption（SciERC composability table）：\n\n> Paired bootstrap test (10{,}000 iterations, document-level resampling): $\\Delta$R-F1 between constrained and unconstrained decoding is not statistically significant for either model ($p{>}0.5$, two-sided), while DR reduction is significant for both ($p{<}0.001$, one-sided).\n\n如果需要更详细的 footnote（含 DocRED 的扩展版）：\n\n> Bootstrap significance (10{,}000 iterations, document-level resampling, seed=42): No R-F1 difference reaches significance at $\\alpha{=}0.05$ (Qwen $\\Delta{=}{-}0.10$\\,pp, $p{=}0.73$; Llama $\\Delta{=}{+}0.02$\\,pp, $p{=}0.74$). DR\\% reduction is significant in all settings ($p{<}0.001$). On DocRED (998 docs), results are consistent: R-F1 $\\Delta$ ranges from $-0.31$ to $+0.06$\\,pp (all $p{>}0.05$) while DR\\% reduction remains significant.\n\n**文件位置**：\n- JSON: `westd-16980:/root/autodl-tmp/schema_outputs/r12_table2_bootstrap_ci.json`\n- 脚本: `westd-16980:/root/schema_semantic_constrained_ie/scripts/r12_bootstrap_ci_table2.py`"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2375cd6a-850d-4aee-abaf-ee5a61606db0",
+            "isSidechain": false,
+            "requestId": "req_011CbEHDJE5dLNWRH25CPHsh",
+            "type": "assistant",
+            "uuid": "2e23d502-01ef-43d7-a139-fc3f14f60938",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JMubSsmTZc9qpNwSDZ1ucj",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 641,
+                "cache_read_input_tokens": 120670,
+                "output_tokens": 896,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 641,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 896,
+                    "cache_read_input_tokens": 120670,
+                    "cache_creation_input_tokens": 641,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 641
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "2e23d502-01ef-43d7-a139-fc3f14f60938",
+                "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53"
+              }
+            }
+          ],
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap CI for Table 2 R-F1 significance tests",
+                "sessionId": "885d0dc2-fe44-4f69-8a62-85dbf90d4d53"
+              }
+            }
+          ],
+          "id": "event-000167"
+        }
+      ]
+    }
+  ]
+}

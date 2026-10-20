@@ -1,0 +1,2401 @@
+{
+  "schema_version": "1.0",
+  "id": "995b608b1cb713d5662d",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify that specific papers cited in a research proposal are real, and find their actual baseline numbers. Sea",
+  "task_key": "agent-a33d48fac880b5530",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a33d48fac880b5530.jsonl",
+    "occurrence": 1,
+    "bytes": 129298,
+    "sha256": "e3ebbe6cbd81cd366fbdda69b43a819353ca894dce605adba8d9ed15dfd42d5a"
+  },
+  "statistics": {
+    "messages": 48,
+    "user_turns": 1,
+    "tool_calls": 21,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 21,
+      "tool_result": 21
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-11T22:15:05.842Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify that specific papers cited in a research proposal are real, and find their actual baseline numbers. Search for each of these papers and confirm their title, venue, and year. Also find the specific performance numbers mentioned.\n\nPapers to verify:\n1. \"AEVS\" (2025) — anchor-constrained provenance tracking for KG extraction, reduces hallucination by 0.412 F1. Search: \"AEVS anchor extraction verification 2025\"\n2. \"FactNet\" (Feb 2026) — billion-scale span-level evidence grounding for knowledge graphs. Search: \"FactNet span evidence grounding knowledge graph 2026\"\n3. \"ProUIE\" (April 2026) — SFR rewards decomposed by structural units for UIE. Search: \"ProUIE structural unit reward UIE 2026\"\n4. \"PARSE\" (EMNLP 2025) — 11.97% invalid response rates on complex schemas. Search: \"PARSE EMNLP 2025 information extraction invalid response\"\n5. \"GoLLIE\" (ICLR 2024) — code-style output for IE. Search: \"GoLLIE ICLR 2024 information extraction\"\n6. \"KnowCoder\" (ACL 2024) — code-style IE. Search: \"KnowCoder ACL 2024 information extraction\"\n7. \"LAQuer\" (ACL 2025) — attribution of output spans to source texts for QA. Search: \"LAQuer ACL 2025 attribution question answering\"\n\nFor each paper, report:\n- Whether you could verify it exists\n- The exact title\n- The venue and year\n- Key performance numbers (especially on ACE05, SciERC, WebNLG, REBEL if available)\n\nAlso search for: \"ACE05 SciERC state of the art information extraction 2025 2026\" to find current SOTA numbers on these benchmarks that we'd need to beat."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "0dacd8e8-e217-4493-a62a-23f2c0a0b958",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-11T22:15:05.849Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "0dacd8e8-e217-4493-a62a-23f2c0a0b958",
+                "isSidechain": true,
+                "agentId": "a33d48fac880b5530",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "8c459b4f-0073-4544-9c4f-8c8d7dfa7e0b",
+                "timestamp": "2026-05-11T22:15:05.849Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-11T22:15:08.813Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for each of these papers systematically. Let me start by searching for all of them in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c459b4f-0073-4544-9c4f-8c8d7dfa7e0b",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ291wC36L6BcQhTWEX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eae142a9-4b50-42ce-a6ed-11033c64e1f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TBRTnTnzhg9uMfrj94AAjX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 996,
+                "cache_read_input_tokens": 7304,
+                "output_tokens": 100,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 996
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 100,
+                    "cache_read_input_tokens": 7304,
+                    "cache_creation_input_tokens": 996,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 996,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-11T22:15:08.836Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NaRGKRHyFc1rAGA7aCmSWW",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eae142a9-4b50-42ce-a6ed-11033c64e1f6",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ291wC36L6BcQhTWEX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2681d250-85a0-4d3b-9ff2-e4269cc21161",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TBRTnTnzhg9uMfrj94AAjX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 996,
+                "cache_read_input_tokens": 7304,
+                "output_tokens": 100,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 996
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 100,
+                    "cache_read_input_tokens": 7304,
+                    "cache_creation_input_tokens": 996,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 996,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-11T22:15:08.840Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01NaRGKRHyFc1rAGA7aCmSWW",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2681d250-85a0-4d3b-9ff2-e4269cc21161",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "b82129e3-3f82-458d-a660-5b78b63111f9",
+            "sourceToolAssistantUUID": "2681d250-85a0-4d3b-9ff2-e4269cc21161",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-11T22:15:11.682Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me search for all the papers in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b82129e3-3f82-458d-a660-5b78b63111f9",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ2N22U6rhREsPuhxiw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f3587b90-1a8e-4bed-9577-90541ea07f45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014rr6ndzgxphrByLqmAeMeZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1417,
+                "cache_read_input_tokens": 8300,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1417,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-11T22:15:11.963Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sf2gavw2QhASneVNhz3VPZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "AEVS anchor extraction verification 2025 knowledge graph hallucination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3587b90-1a8e-4bed-9577-90541ea07f45",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ2N22U6rhREsPuhxiw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "690d6069-f658-4f24-94f2-70044c8ca817",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014rr6ndzgxphrByLqmAeMeZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1417,
+                "cache_read_input_tokens": 8300,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1417
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 8300,
+                    "cache_creation_input_tokens": 1417,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1417,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-11T22:15:19.500Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sf2gavw2QhASneVNhz3VPZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AEVS anchor extraction verification 2025 knowledge graph hallucination\"\n\nLinks: [{\"title\":\"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking\",\"url\":\"https://www.mdpi.com/2073-431X/15/3/178\"},{\"title\":\"Taxonomy-Driven Knowledge Graph Construction for ...\",\"url\":\"https://aclanthology.org/2025.findings-acl.223.pdf\"},{\"title\":\"Aalborg Universitet Knowledge Graphs, Large Language Models, and Hallucinations\",\"url\":\"https://vbn.aau.dk/ws/portalfiles/portal/756595643/JoWS_position.pdf\"},{\"title\":\"Knowledge Graphs, Large Language Models, and Hallucinations: An NLP Perspective - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S1570826824000301\"},{\"title\":\"[2407.10793] GraphEval: A Knowledge-Graph Based LLM Hallucination Evaluation Framework\",\"url\":\"https://arxiv.org/abs/2407.10793\"},{\"title\":\"KGHaluBench: A Knowledge Graph-Based Hallucination Benchmark for Evaluating the Breadth and Depth of LLM Knowledge\",\"url\":\"https://arxiv.org/html/2602.19643v1\"},{\"title\":\"An Overview of AI Hallucinations with RAG and Knowledge Graphs | DigitalOcean\",\"url\":\"https://www.digitalocean.com/community/conceptual-articles/ai-hallucinations-with-rag-and-knowledge-graphs\"},{\"title\":\"Contents lists available at ScienceDirect\",\"url\":\"https://repositum.tuwien.at/bitstream/20.500.12708/216177/1/Lavrinovics-2025-Journal%20of%20Web%20Semantics-vor.pdf\"},{\"title\":\"Investigations on using Evidence-Based GraphRag ...\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.05.03.25325604v1.full.pdf\"},{\"title\":\"From Prompt Engineering to Knowledge Graphs — Part 1 | by Fanghua (Joshua) Yu | Medium\",\"url\":\"https://medium.com/@yu-joshua/from-prompt-engineering-to-knowledge-graphs-part-1-8b6fa01fd06e\"}]\n\nBased on the search results, I found relevant information about AEVS and knowledge graph hallucination:\n\n## AEVS Framework Overview\n\nAEVS (anchor-extraction-verification-supplement) is a novel framework that addresses the hallucination problem by ensuring complete traceability in LLM-based knowledge graph extraction.\n\n## How It Works\n\nAEVS operates in three stages: (1) anchor discovery identifies entities, relation phrases, and attribute values with precise positions, forming a constrained extraction vocabulary; (2) grounded extraction generates triplets linked to discovered anchors; and (3) restoration-based verification validates triplets through hierarchical matching, with a coverage-aware supplement ensuring comprehensive extraction.\n\n## The Hallucination Problem\n\nLLMs frequently hallucinate—generating plausible triplets unsupported by the source text. The root cause is the lack of provenance: existing methods produce triplets without explicit links to their textual origins, making faithfulness unverifiable.\n\n## Key Innovation\n\nThe anchor set establishes a closed vocabulary of elements that can legitimately appear in triplets; any triplet element not traceable to an anchor immediately signals a potential hallucination.\n\n## Performance Results\n\nExperiments on WebNLG, REBEL, and Wiki-NRE demonstrate consistent improvements over both trained models and LLM-based baselines. Hallucination rates range from 0.23–20.23% across model–dataset configurations.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "690d6069-f658-4f24-94f2-70044c8ca817",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "6f7461da-44f2-4bf3-92fd-b3f002da6842",
+            "sourceToolAssistantUUID": "690d6069-f658-4f24-94f2-70044c8ca817",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-11T22:15:21.825Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014TuWcJ9MxFxRSMvAd7siC9",
+              "name": "WebSearch",
+              "input": {
+                "query": "FactNet span evidence grounding knowledge graph 2026 billion-scale"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f7461da-44f2-4bf3-92fd-b3f002da6842",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ39NYVC6fSEXqjsoe2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "da91e83f-41a4-4c96-992c-7379e7614b63",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011xhYyzAXsXkxX1jyrQNf3U",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1016,
+                "cache_read_input_tokens": 9717,
+                "output_tokens": 67,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1016
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 67,
+                    "cache_read_input_tokens": 9717,
+                    "cache_creation_input_tokens": 1016,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1016,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-11T22:15:28.857Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014TuWcJ9MxFxRSMvAd7siC9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FactNet span evidence grounding knowledge graph 2026 billion-scale\"\n\nLinks: [{\"title\":\"GitHub - yl-shen/factnet: FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding · GitHub\",\"url\":\"https://github.com/yl-shen/factnet\"},{\"title\":\"FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding\",\"url\":\"https://arxiv.org/pdf/2602.03417\"},{\"title\":\"(PDF) FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding\",\"url\":\"https://www.researchgate.net/publication/400415601_FactNet_A_Billion-Scale_Knowledge_Graph_for_Multilingual_Factual_Grounding\"},{\"title\":\"[2602.03417] FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding\",\"url\":\"https://arxiv.org/abs/2602.03417\"},{\"title\":\"FactNet: Multilingual Knowledge Graph & FNAR\",\"url\":\"https://www.emergentmind.com/topics/factnet\"},{\"title\":\"openbmb/factnet_factstatements · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/openbmb/factnet_factstatements\"},{\"title\":\"FactNet-Bench: Multilingual KG & Fact Checking\",\"url\":\"https://www.emergentmind.com/topics/factnet-bench\"},{\"title\":\"7 Knowledge Graph Examples of 2026\",\"url\":\"https://www.puppygraph.com/blog/knowledge-graph-examples\"},{\"title\":\"FactNet - a openbmb Collection\",\"url\":\"https://huggingface.co/collections/openbmb/factnet\"},{\"title\":\"Factuality challenges in the era of large language models and opportunities for fact-checking\",\"url\":\"https://www.researchgate.net/publication/383366735_Factuality_challenges_in_the_era_of_large_language_models_and_opportunities_for_fact-checking\"}]\n\nBased on the search results, here's what I found about FactNet:\n\n## Overview\n\nFactNet is the only resource combining billion-scale coverage and broad multilinguality with native, span-level evidence grounding. It is a massive, open-source resource designed to unify 1.7 billion atomic assertions with 3.01 billion auditable evidence pointers derived exclusively from 316 Wikipedia editions.\n\n## Scale and Structure\n\nThe corpus consolidates 1.7B FactStatements (spanning 12.1K properties) into 1.55B FactSynsets, supported by 3.01B Wikipedia-grounded FactSenses across 316 languages and interconnected by 3.69B rule-derived RelationEdges.\n\n## Key Technical Features\n\nFactNet employs a strictly deterministic construction pipeline, ensuring that every evidence unit is recoverable with byte-level precision. Extensive auditing confirms a high grounding precision of 92.1%, even in long-tail languages.\n\n## Evaluation Benchmarks\n\nFactNet-Bench is a comprehensive evaluation suite for Knowledge Graph Completion, Question Answering, and Fact Checking. Systems retrieve FACTSENSE evidence units and identify character-offset spans.\n\nThe project is available as an open-source resource with code on GitHub and datasets available through Hugging Face.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da91e83f-41a4-4c96-992c-7379e7614b63",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "4d33ade8-218a-44fe-9fbc-265841a25398",
+            "sourceToolAssistantUUID": "da91e83f-41a4-4c96-992c-7379e7614b63",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-11T22:15:31.408Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012CokhqxKkWAXDAsz23LjSV",
+              "name": "WebSearch",
+              "input": {
+                "query": "ProUIE structural unit reward UIE 2026 information extraction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d33ade8-218a-44fe-9fbc-265841a25398",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ3qPLiMJEUhFKWgWwp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ead2610c-ca45-4c6c-9045-539a5e4d5c68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013968GYE97XTiREyBKz33wu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 908,
+                "cache_read_input_tokens": 10733,
+                "output_tokens": 65,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 908
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 65,
+                    "cache_read_input_tokens": 10733,
+                    "cache_creation_input_tokens": 908,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 908,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-11T22:15:39.679Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012CokhqxKkWAXDAsz23LjSV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ProUIE structural unit reward UIE 2026 information extraction\"\n\nLinks: [{\"title\":\"[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2604.10633\"},{\"title\":\"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/html/2604.10633\"},{\"title\":\"GitHub - universal-ie/UIE: Unified Structure Generation for Universal Information Extraction\",\"url\":\"https://github.com/universal-ie/UIE\"},{\"title\":\"Unified Structure Generation for Universal Information Extraction | universal-ie.github.io\",\"url\":\"https://universal-ie.github.io/\"},{\"title\":\"Uniﬁed Structure Generation for Universal Information Extraction\",\"url\":\"https://arxiv.org/pdf/2203.12277\"},{\"title\":\"[2203.12277] Unified Structure Generation for Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2203.12277\"},{\"title\":\"MR-UIE: multi-perspective reasoning with reinforcement learning for universal information extraction | Vicinagearth | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s44336-025-00019-8\"},{\"title\":\"GitHub - BeyonderXX/InstructUIE: Universal information extraction with instruction learning · GitHub\",\"url\":\"https://github.com/BeyonderXX/InstructUIE\"},{\"title\":\"Unified Structure Generation for Universal Information ...\",\"url\":\"https://aclanthology.org/2022.acl-long.395.pdf\"},{\"title\":\"Multi-LoRA continual learning based instruction tuning framework for universal information extraction - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0950705124013844\"}]\n\nBased on the search results, I found detailed information about ProUIE and its approach to structural unit reward in universal information extraction:\n\n## ProUIE: Macro-to-Micro Progressive Learning for UIE\n\nProUIE is a Macro-to-Micro progressive learning approach that improves UIE without introducing any external information.\n\n### Three-Stage Training Framework\n\nProUIE consists of three stages: (i) macro-level Complete Modeling (CM), which learns NER, RE, and EE along their intrinsic difficulty order on the full training data to build a unified extraction foundation, (ii) meso-level Streamlined Alignment (SA), which operates on sampled data with simplified target formats, streamlining and regularizing structured outputs to make them more concise and controllable, and (iii) micro-level Deep Exploration (DE), which applies GRPO with stepwise fine-grained rewards (SFR) over structural units to guide exploration and improve performance.\n\n### Stepwise Fine-Grained Rewards (SFR) for Structural Units\n\nThe key innovation regarding structural unit rewards is the Stepwise Fine-Grained Reward system. The key idea of SFR is to decompose structural correctness into progressively finer units and assign rewards across levels: for NER, SFR defines stepwise rewards at the entity-type and entity-value levels; for RE, at the relation-type, relation-instance, and entity-pair levels; and for EE, at the event-type, trigger, role, and argument levels. By shaping rewards from coarse to fine, DE can directly correct structural errors while still using only the original training data.\n\n### Performance Results\n\nExperiments on 36 public datasets show that ProUIE consistently improves unified extraction, outperforming strong instruction-tuned baselines on average for NER and RE while using a smaller backbone, and it further demonstrates clear gains in large-scale production-oriented information extraction.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ead2610c-ca45-4c6c-9045-539a5e4d5c68",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "6f96db45-a8db-4e48-9f47-0cd69f0d6bb3",
+            "sourceToolAssistantUUID": "ead2610c-ca45-4c6c-9045-539a5e4d5c68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-11T22:15:44.216Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CkSq6uxuaJ2BuNeHbG8adM",
+              "name": "WebSearch",
+              "input": {
+                "query": "PARSE EMNLP 2025 information extraction invalid response schema"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f96db45-a8db-4e48-9f47-0cd69f0d6bb3",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ4dgAg57avRPCjeaMB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7ce1a2cb-9726-4cc4-b896-580815c957c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P9CcQ1Q4vL7pTnj22HUAjD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 998,
+                "cache_read_input_tokens": 11641,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 998,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-11T22:15:49.258Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CkSq6uxuaJ2BuNeHbG8adM",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PARSE EMNLP 2025 information extraction invalid response schema\"\n\nLinks: [{\"title\":\"Accepted Findings Papers - EMNLP 2025\",\"url\":\"https://2025.emnlp.org/program/find_papers/\"},{\"title\":\"PARSE: LLM Driven Schema Optimization for Reliable ...\",\"url\":\"https://aclanthology.org/2025.emnlp-industry.184.pdf\"},{\"title\":\"Bloomberg’s AI Researchers Publish 7 Papers at EMNLP 2025 | Bloomberg LP\",\"url\":\"https://www.bloomberg.com/company/stories/bloombergs-ai-researchers-publish-7-papers-at-emnlp-2025/\"},{\"title\":\"EMNLP 2025 - Amazon Science\",\"url\":\"https://www.amazon.science/conferences-and-events/emnlp-2025\"},{\"title\":\"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: System Demonstrations - ACL Anthology\",\"url\":\"https://aclanthology.org/volumes/2025.emnlp-demos/\"},{\"title\":\"Findings of the Association for Computational Linguistics: EMNLP 2025 - ACL Anthology\",\"url\":\"https://aclanthology.org/volumes/2025.findings-emnlp/\"},{\"title\":\"EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=883\"},{\"title\":\"dblp: EMNLP 2025 - System Demonstrations\",\"url\":\"https://dblp.org/db/conf/emnlp/emnlp2025d.html\"},{\"title\":\"Paper Digest: EMNLP 2025 Papers & Highlights – Paper Digest\",\"url\":\"https://www.paperdigest.org/2025/11/emnlp-2025-papers-highlights/\"},{\"title\":\"Problem Solved? Information Extraction Design Space for Layout-Rich Documents using LLMs - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.973/\"}]\n\nBased on the search results, I found information about PARSE at EMNLP 2025. Here's what I found:\n\nPARSE is a paper on \"LLM driven schema optimization for reliable entity extraction\" by authors Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury, and Promod Yenigalla. The paper was presented at EMNLP 2025, which took place November 4-9, 2025.\n\nRegarding the \"invalid response schema\" aspect of your query: The search results show PARSE focuses on a framework for schema optimization and extraction, which appears to address the challenge of working with response schemas in information extraction tasks. However, the specific details about how PARSE handles invalid response schemas are not fully detailed in the available search results. The paper appears to address schema optimization to improve the reliability of entity extraction using large language models.\n\nIf you need more specific technical details about how PARSE handles invalid response schemas, I'd recommend accessing the full paper directly through the ACL Anthology or the conference proceedings.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ce1a2cb-9726-4cc4-b896-580815c957c6",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "b0431913-8be0-4060-8f22-c13970637fbf",
+            "sourceToolAssistantUUID": "7ce1a2cb-9726-4cc4-b896-580815c957c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-11T22:15:52.223Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GUmu6A9Voj8hEGXNfkrzq2",
+              "name": "WebSearch",
+              "input": {
+                "query": "GoLLIE ICLR 2024 information extraction code-style"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0431913-8be0-4060-8f22-c13970637fbf",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ5LYZBjxhpPhxs8nP6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "edbfec7e-4bbd-40a1-bbd0-116eabb632c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016YHGrLAjxAZt6b7ARCBoUu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 872,
+                "cache_read_input_tokens": 12639,
+                "output_tokens": 69,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 872
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 69,
+                    "cache_read_input_tokens": 12639,
+                    "cache_creation_input_tokens": 872,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 872,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-11T22:15:59.441Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GUmu6A9Voj8hEGXNfkrzq2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GoLLIE ICLR 2024 information extraction code-style\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf\"},{\"title\":\"ICLR Poster GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://iclr.cc/virtual/2024/poster/18435\"},{\"title\":\"[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://arxiv.org/abs/2310.03668\"},{\"title\":\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | OpenReview\",\"url\":\"https://openreview.net/forum?id=Y3wpuxd7u9\"},{\"title\":\"GoLLIE | Guideline following Large Language Model for Information Extraction\",\"url\":\"https://hitz-zentroa.github.io/GoLLIE/\"},{\"title\":\"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub\",\"url\":\"https://github.com/quqxui/Awesome-LLM4IE-Papers\"},{\"title\":\"GitHub - hitz-zentroa/GoLLIE: Guideline following Large Language Model for Information Extraction · GitHub\",\"url\":\"https://github.com/hitz-zentroa/GoLLIE\"},{\"title\":\"gollie : annotation guidelines improve zero-shot ...\",\"url\":\"https://arxiv.org/pdf/2310.03668\"},{\"title\":\"Awesome-LLM4IE-Papers/README.md at main · quqxui/Awesome-LLM4IE-Papers\",\"url\":\"https://github.com/quqxui/Awesome-LLM4IE-Papers/blob/main/README.md\"},{\"title\":\"GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...\",\"url\":\"https://openreview.net/pdf?id=Y3wpuxd7u9\"}]\n\nBased on the search results, here's comprehensive information about GoLLIE at ICLR 2024:\n\n## Overview\n\nGoLLIE (Guideline-following Large Language Model for IE) is a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines.\n\n## Code-Style Approach\n\nGoLLIE adopts a Python code-based representation for both the input and output of the model, which offers a clear and human-readable structure and addresses several challenges typically associated with natural language instructions.\n\nMore specifically, the labels are represented as Python classes, and the guidelines or instructions are introduced as docstrings. This allows users to define custom schemas using Python code, where Python classes allow writing human-readable code that is also familiar with current LLMs.\n\n## Key Features and Performance\n\nGoLLIE outperforms previous approaches on zero-shot Information Extraction and allows the user to perform inferences with annotation schemas defined on the fly, while being able to follow detailed definitions and not only relying on the knowledge already encoded in the LLM.\n\nGoLLIE is based on Code-Llama, and code and models are publicly available. Additionally, the project releases three GoLLIE models based on Code-Llama (7B, 13B, and 34B) that are available in the HuggingFace Hub.\n\n## Code Availability\n\nCode and models are publicly available, and the official repository is hosted on GitHub at hitz-zentroa/GoLLIE.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edbfec7e-4bbd-40a1-bbd0-116eabb632c8",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "baa33cb9-7486-4225-b2cb-569358fde1e6",
+            "sourceToolAssistantUUID": "edbfec7e-4bbd-40a1-bbd0-116eabb632c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-11T22:16:10.213Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017JKSHrbD6AT8HhuxaTphaN",
+              "name": "WebSearch",
+              "input": {
+                "query": "KnowCoder ACL 2024 information extraction code generation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "baa33cb9-7486-4225-b2cb-569358fde1e6",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ666g5YD7aa91vRV3T",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4eafe782-ae61-4bdd-8d15-fbf9f519e48a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01So7iZqZpdtPz69uX4zeq6m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 992,
+                "cache_read_input_tokens": 13511,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 992,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-11T22:16:16.487Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017JKSHrbD6AT8HhuxaTphaN",
+              "type": "tool_result",
+              "content": "Web search results for query: \"KnowCoder ACL 2024 information extraction code generation\"\n\nLinks: [{\"title\":\"KnowCoder: Coding Structured Knowledge into LLMs for ...\",\"url\":\"https://aclanthology.org/2024.acl-long.475.pdf\"},{\"title\":\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.acl-long.475/\"},{\"title\":\"[2403.07969] KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2403.07969\"},{\"title\":\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction - Zixuan Li\",\"url\":\"https://lee-zix.github.io/publications/2024-08-16-ACL/\"},{\"title\":\"KnowCoder\",\"url\":\"https://ict-goknow.github.io/knowcoder/\"},{\"title\":\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction | Request PDF\",\"url\":\"https://www.researchgate.net/publication/384207388_KnowCoder_Coding_Structured_Knowledge_into_LLMs_for_Universal_Information_Extraction\"},{\"title\":\"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub\",\"url\":\"https://github.com/quqxui/Awesome-LLM4IE-Papers\"},{\"title\":\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\",\"url\":\"https://arxiv.org/html/2403.07969v2\"},{\"title\":\"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11704-024-40555-y\"},{\"title\":\"Instruction-Tuning LLMs for Event Extraction with Annotation Guidelines\",\"url\":\"https://arxiv.org/html/2502.16377v2\"}]\n\nBased on the search results, here's the information about KnowCoder at ACL 2024:\n\n## Overview\n\nKnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction was published in the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 8758–8779, Bangkok, Thailand.\n\n## Core Concept\n\nKnowCoder is a Large Language Model (LLM) to conduct Universal Information Extraction (UIE) via code generation. KnowCoder aims to develop a kind of unified schema representation that LLMs can easily understand and an effective learning framework that encourages LLMs to follow schemas and extract structured knowledge accurately.\n\n## Key Innovation\n\nKnowCoder introduces a code-style schema representation method to uniformly transform different schemas into Python classes, with which complex schema information, such as constraints among tasks in UIE, can be captured in an LLM-friendly manner.\n\n## Schema Library\n\nKnowCoder constructs a code-style schema library covering over 30,000 types of knowledge, which is the largest one for UIE.\n\n## Training Approach\n\nKnowCoder contains a two-phase learning framework that enhances its schema understanding ability via code pretraining and its schema following ability via instruction tuning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4eafe782-ae61-4bdd-8d15-fbf9f519e48a",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "aa096687-6545-46dd-b6b1-7187876daffe",
+            "sourceToolAssistantUUID": "4eafe782-ae61-4bdd-8d15-fbf9f519e48a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-11T22:16:18.872Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B1qFES6pFtR56TZUt9d9cv",
+              "name": "WebSearch",
+              "input": {
+                "query": "LAQuer ACL 2025 attribution question answering spans"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa096687-6545-46dd-b6b1-7187876daffe",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ7LzeaEPC2A7y49F16",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6efd105e-8e67-40ad-930a-b7c171154c26",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013AG1eUikGsemWWPLfyazG3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 930,
+                "cache_read_input_tokens": 14503,
+                "output_tokens": 65,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 930
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 65,
+                    "cache_read_input_tokens": 14503,
+                    "cache_creation_input_tokens": 930,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 930,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-11T22:16:24.986Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B1qFES6pFtR56TZUt9d9cv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LAQuer ACL 2025 attribution question answering spans\"\n\nLinks: [{\"title\":\"LAQuer: Localized Attribution Queries in Content-grounded Generation - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.746/\"},{\"title\":\"LAQuer: Localized Attribution Queries in Content-grounded ...\",\"url\":\"https://aclanthology.org/2025.acl-long.746.pdf\"},{\"title\":\"Accepted Findings Papers - ACL 2025\",\"url\":\"https://2025.aclweb.org/program/find_papers/\"},{\"title\":\"On Synthesizing Data for Context Attribution in Question Answering - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.828/\"},{\"title\":\"[2506.01187] LAQuer: Localized Attribution Queries in Content-grounded Generation\",\"url\":\"https://arxiv.org/abs/2506.01187\"},{\"title\":\"ACL.2025 - Short Papers | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/venue/ACL.2025?group=Short+Papers\"},{\"title\":\"Large Language Models Meet Knowledge Graphs for Question Answering: Synthesis and Opportunities - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1249/\"},{\"title\":\"IJCNLP-AACL 2025 The 14th International Joint Conference on Natural\",\"url\":\"https://aclanthology.org/2025.ijcnlp-tutorials.pdf\"},{\"title\":\"Paper Digest: ACL 2025 Papers & Highlights – Paper Digest\",\"url\":\"https://www.paperdigest.org/2025/07/acl-2025-papers-highlights/\"},{\"title\":\"Question Answering | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/category/topics/question-answering\"}]\n\nBased on the search results, I found information about LAQuer, which is an ACL 2025 paper:\n\n## LAQuer: Localized Attribution Queries\n\nLAQuer is a new task that localizes selected spans of generated output to their corresponding source spans, allowing fine-grained and user-directed attribution.\n\n### Key Contributions\n\nThe paper's contributions include: (1) proposing the LAQuer task to enhance attribution usability, (2) suggesting a modeling framework and benchmarking multiple baselines, and (3) proposing a new evaluation setting to promote future research on localized attribution in content-grounded generation.\n\n### Methodology\n\nThe researchers compare two approaches for the LAQuer task, including prompting large language models (LLMs) and leveraging LLM internal representations. They also explore a modeling framework that extends existing attributed text generation methods to LAQuer.\n\n### Evaluation\n\nThe framework is evaluated across two grounded text generation tasks: Multi-document Summarization (MDS) and Long-form Question Answering (LFQA). Their findings show that LAQuer methods significantly reduce the length of the attributed text.\n\nThe paper was published at the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6efd105e-8e67-40ad-930a-b7c171154c26",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "ca4184c4-21f7-4812-b31b-1e1520c4fb6d",
+            "sourceToolAssistantUUID": "6efd105e-8e67-40ad-930a-b7c171154c26",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-11T22:16:27.616Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E8WYNh4P3zLT3Sf8gtUcT4",
+              "name": "WebSearch",
+              "input": {
+                "query": "ACE05 SciERC state of the art information extraction 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca4184c4-21f7-4812-b31b-1e1520c4fb6d",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ7yLBvPmEvR7PmZRDs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c07430e2-6453-42bb-8c9b-4f711764fdb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GYbWG3xCNjYMHenpKXvE4R",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 958,
+                "cache_read_input_tokens": 15433,
+                "output_tokens": 71,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 958
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 71,
+                    "cache_read_input_tokens": 15433,
+                    "cache_creation_input_tokens": 958,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 958,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-11T22:16:34.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E8WYNh4P3zLT3Sf8gtUcT4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ACE05 SciERC state of the art information extraction 2025 2026\"\n\nLinks: [{\"title\":\"Position-aware Joint Entity and Relation Extraction with Attention Mechanism\",\"url\":\"https://www.ijcai.org/proceedings/2022/0624.pdf\"},{\"title\":\"[1904.03296] A General Framework for Information Extraction using Dynamic Span Graphs\",\"url\":\"https://ar5iv.labs.arxiv.org/html/1904.03296\"},{\"title\":\"A Trigger-Sense Memory Flow Framework for Joint Entity and Relation Extraction\",\"url\":\"https://arxiv.org/pdf/2101.10213\"},{\"title\":\"[2109.06067] Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2109.06067\"},{\"title\":\"A survey on cutting-edge relation extraction techniques based on language models | Artificial Intelligence Review | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10462-025-11280-0\"},{\"title\":\"Benchmarking LLM-based Information Extraction Tools for ...\",\"url\":\"https://www.medrxiv.org/content/10.64898/2026.01.19.26344287v1.full.pdf\"},{\"title\":\"[PDF] Entity, Relation, and Event Extraction with Contextualized Span Representations | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Entity,-Relation,-and-Event-Extraction-with-Span-Wadden-Wennberg/fac2368c2ec81ef82fd168d49a0def2f8d1ec7d8\"},{\"title\":\"Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://openreview.net/pdf?id=0YD1VAUGZ-X\"},{\"title\":\"Iterative Transformer-based Entity Recognition and ...\",\"url\":\"https://aclanthology.org/2024.findings-emnlp.655.pdf\"},{\"title\":\"A General Framework for Information Extraction using Dynamic Span Graphs\",\"url\":\"https://arxiv.org/pdf/1904.03296\"}]\n\nBased on the search results, here's what I found about state-of-the-art information extraction on ACE05 and SciERC datasets:\n\n## Recent State-of-the-Art Results\n\nRecent advancements in relation extraction have been analyzed in papers from 2020-2023 conferences, with BERT-based methods dominating state-of-the-art results while emerging Large Language Models like T5 show promise in few-shot relation extraction scenarios.\n\n## Notable Recent Models\n\nSeveral approaches have achieved state-of-the-art performance on both ACE05 and SciERC:\n\n1. **Packed Levitated Marker (2021)**: This model achieved 4.1%-4.3% strict relation F1 improvement on ACE04 and ACE05 compared to previous state-of-the-art and performed better on SciERC.\n\n2. **Trigger-Sense Memory Flow Framework (2021)**: This model advanced previous models by +3.2%, +4.9%, +0.6%, and +2.3% relation F1 scores on SciERC, ACE05, CoNLL04, and ADE respectively.\n\n3. **DyGIE Framework**: DyGIE achieved relative improvements of 5.7% and 9.9% over state of the art on the ACE05 entity and relation extraction tasks, and an 11.3% relative improvement on the ACE05 overlapping entity extraction task.\n\n4. **UNIRE Model**: The UNIRE model achieved state-of-the-art performance on the ACE04 and ACE05 datasets, based on BERT-base-uncased, ALBERT, and SciBERT encodings depending on the dataset.\n\nThe search results primarily contain papers from 2019-2024, with the most recent comprehensive survey dated July 2025. However, specific results from 2025-2026 may not be fully available yet.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c07430e2-6453-42bb-8c9b-4f711764fdb8",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "30d30607-de8c-4765-9570-f31ed00fc582",
+            "sourceToolAssistantUUID": "c07430e2-6453-42bb-8c9b-4f711764fdb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-11T22:16:37.867Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more specific details on several of these papers - the AEVS F1 numbers, PARSE invalid response rates, and current SOTA benchmarks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30d30607-de8c-4765-9570-f31ed00fc582",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ8gwybKNehgguadEFB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "326b8c59-9e49-4188-a1a8-8261bbd36a2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KqLhVZaiWn7oiCAgNhqaC7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1077,
+                "cache_read_input_tokens": 16391,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1077,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-11T22:16:38.629Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0115kZmQcXa5LDVf11K78jeX",
+              "name": "WebSearch",
+              "input": {
+                "query": "AEVS anchor-constrained provenance tracking WebNLG REBEL F1 results hallucination rate"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "326b8c59-9e49-4188-a1a8-8261bbd36a2c",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ8gwybKNehgguadEFB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fbe3ae7b-1353-4f39-92e8-63960c983621",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KqLhVZaiWn7oiCAgNhqaC7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1077,
+                "cache_read_input_tokens": 16391,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1077
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 16391,
+                    "cache_creation_input_tokens": 1077,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1077,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-11T22:16:46.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0115kZmQcXa5LDVf11K78jeX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AEVS anchor-constrained provenance tracking WebNLG REBEL F1 results hallucination rate\"\n\nLinks: [{\"title\":\"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking\",\"url\":\"https://www.mdpi.com/2073-431X/15/3/178\"},{\"title\":\"Aligning Instruction Tasks Unlocks Large Language Models as Zero-Shot Relation Extractors | Request PDF\",\"url\":\"https://www.researchgate.net/publication/372917828_Aligning_Instruction_Tasks_Unlocks_Large_Language_Models_as_Zero-Shot_Relation_Extractors\"},{\"title\":\"VeriTrail: Detecting hallucination and tracing provenance in multi-step AI workflows - Microsoft Research\",\"url\":\"https://www.microsoft.com/en-us/research/blog/veritrail-detecting-hallucination-and-tracing-provenance-in-multi-step-ai-workflows/\"},{\"title\":\"Knowledge Integrity in Large Language Models: A State-of-The-Art Review\",\"url\":\"https://www.mdpi.com/2078-2489/16/12/1076\"},{\"title\":\"Learn How to Build Reliable RAG Applications in 2026! - DEV Community\",\"url\":\"https://dev.to/pavanbelagatti/learn-how-to-build-reliable-rag-applications-in-2026-1b7p\"},{\"title\":\"[2002.11000] Distributed Ledger for Provenance Tracking of Artificial Intelligence Assets\",\"url\":\"https://arxiv.org/abs/2002.11000\"},{\"title\":\"Toward Agile Maneuvers in Highly Constrained Spaces\",\"url\":\"https://www.cs.utexas.edu/~xiao/papers/hallucination.pdf\"},{\"title\":\"GitHub - WebNLG/WebNLG-Text-to-triples: WebNLG+ Challenge 2020: the automatic evaluation script for the text-to-RDF task\",\"url\":\"https://github.com/WebNLG/WebNLG-Text-to-triples\"},{\"title\":\"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub\",\"url\":\"https://github.com/tmgthb/Autonomous-Agents\"},{\"title\":\"Managing hallucination risk in LLM deployments at the EY organization\",\"url\":\"https://www.ey.com/content/dam/ey-unified-site/ey-com/en-gl/technical/documents/ey-gl-managing-hallucination-risk-in-llm-deployments-01-26.pdf\"}]\n\nBased on the web search results, I found detailed information about AEVS and its performance metrics on the benchmarks you mentioned.\n\n## AEVS Framework Overview\n\nAEVS (Anchor-Extraction-Verification-Supplement) is a framework that grounds every triplet element to the source text. It operates in three stages: (1) anchor discovery identifies entities, relation phrases, and attribute values with precise positions, forming a constrained extraction vocabulary; (2) grounded extraction generates triplets linked to discovered anchors; and (3) restoration-based verification validates triplets through hierarchical matching, with a coverage-aware supplement ensuring comprehensive extraction.\n\n## F1 Results\n\nExtensive experiments on three benchmarks (WebNLG, REBEL, and Wiki-NRE) demonstrate that AEVS significantly outperforms both specialized trained models and existing LLM-based approaches, achieving up to a 0.412 absolute improvement in F1 score.\n\nMore specifically on WebNLG: On WebNLG, AEVS with Gemini 2.5 Flash achieved substantial improvements over REGEN across all three metrics: +0.107 in Partial F1 (0.874 vs. 0.767), +0.082 in Strict F1 (0.802 vs. 0.720), and +0.105 in Exact F1 (0.828 vs. 0.723).\n\nOn REBEL: On REBEL, AEVS with Claude 4.5 Haiku outperformed GenIE by +0.412 in Partial F1 (0.797 vs. 0.385), +0.370 in Strict F1 (0.732 vs. 0.362), and +0.393 in Exact F1 (0.757 vs. [content cut off in source]\n\n## Hallucination Rates\n\nThe paper provides dedicated analyses of anchor discovery quality, computational cost, hallucination rates, and qualitative error patterns to characterize the framework's practical applicability and limitations.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fbe3ae7b-1353-4f39-92e8-63960c983621",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "37013069-fbdc-4f71-a554-87d4f0c5215e",
+            "sourceToolAssistantUUID": "fbe3ae7b-1353-4f39-92e8-63960c983621",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-11T22:16:49.193Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017s5gb88CJTtjX1kxcFGKa8",
+              "name": "WebSearch",
+              "input": {
+                "query": "PARSE \"invalid response\" rate schema EMNLP 2025 entity extraction percentage"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37013069-fbdc-4f71-a554-87d4f0c5215e",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZ9aTKpqU4wyAwErSi2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "86903452-c032-4c1a-8e81-80deabc14d52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A9zJ4xiaDD4jm1eUNHUDwQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1262,
+                "cache_read_input_tokens": 17468,
+                "output_tokens": 71,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1262
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 71,
+                    "cache_read_input_tokens": 17468,
+                    "cache_creation_input_tokens": 1262,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1262,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-11T22:16:54.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017s5gb88CJTtjX1kxcFGKa8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PARSE \"invalid response\" rate schema EMNLP 2025 entity extraction percentage\"\n\nLinks: [{\"title\":\"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\",\"url\":\"https://arxiv.org/html/2510.08623v1\"},{\"title\":\"PARSE: LLM Driven Schema Optimization for Reliable ...\",\"url\":\"https://aclanthology.org/2025.emnlp-industry.184.pdf\"},{\"title\":\"Accepted Findings Papers - EMNLP 2025\",\"url\":\"https://2025.emnlp.org/program/find_papers/\"},{\"title\":\"PARSE: LLM driven schema optimization for reliable entity extraction - Amazon Science\",\"url\":\"https://www.amazon.science/publications/parse-llm-driven-schema-optimization-for-reliable-entity-extraction\"},{\"title\":\"SLOT: Structuring the Output of Large Language Models\",\"url\":\"https://aclanthology.org/2025.emnlp-industry.32.pdf\"},{\"title\":\"[2510.08623] PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\",\"url\":\"https://arxiv.org/abs/2510.08623\"},{\"title\":\"Benchmarking LLM-based Information Extraction Tools for ...\",\"url\":\"https://www.medrxiv.org/content/10.64898/2026.01.19.26344287v1.full.pdf\"},{\"title\":\"MOLE: Metadata Extraction and Validation in Scientific ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.655.pdf\"},{\"title\":\"GitHub - microsoft/Structured-Entity-Extraction: Code for the EMNLP'24 paper \\\"Learning to Extract Structured Entities Using Language Models\\\"\",\"url\":\"https://github.com/microsoft/Structured-Entity-Extraction\"},{\"title\":\"json_schema with $ref/$defs silently fails: grammar rule count exceeds MAX_REPETITION_THRESHOLD · Issue #21228 · ggml-org/llama.cpp\",\"url\":\"https://github.com/ggml-org/llama.cpp/issues/21228\"}]\n\nBased on the search results, I found relevant information about PARSE and invalid response rates:\n\nPARSE research found that GPT-4 shows an 11.97% invalid response rate for complex extraction tasks. PARSE is a paper presented at EMNLP 2025 (November 4-9, 2025).\n\nThe PARSE system addresses the problem that recent approaches often treat JSON schemas as static contracts, leading to suboptimal extraction performance, frequent hallucinations, and unreliable agent behavior when schemas contain ambiguous or incomplete specifications.\n\nThe paper proposes a novel framework called PARSE (Parameter Automated Refinement and Schema Extraction) with two main components: ARCHITECT for schema refinement and SCOPE for extraction, designed to improve the reliability of entity extraction from unstructured text.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86903452-c032-4c1a-8e81-80deabc14d52",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "33ddc10c-f999-4650-b774-7bd15b650110",
+            "sourceToolAssistantUUID": "86903452-c032-4c1a-8e81-80deabc14d52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-11T22:16:56.505Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017QvgALdfKKCegQr1gvQHgw",
+              "name": "WebSearch",
+              "input": {
+                "query": "GoLLIE ACE05 NER relation extraction F1 score results benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33ddc10c-f999-4650-b774-7bd15b650110",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZA7uBkQq7MqVbmbr85",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d7838fc3-c06c-450a-84e0-f061070ee5ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01No2pUgmJjr3eJ6XZoocV4c",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 798,
+                "cache_read_input_tokens": 18730,
+                "output_tokens": 70,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 798
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 70,
+                    "cache_read_input_tokens": 18730,
+                    "cache_creation_input_tokens": 798,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 798,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-11T22:17:03.880Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017QvgALdfKKCegQr1gvQHgw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GoLLIE ACE05 NER relation extraction F1 score results benchmark\"\n\nLinks: [{\"title\":\"GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://arxiv.org/html/2310.03668v3\"},{\"title\":\"GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf\"},{\"title\":\"The Thirty-Third AAAI Conference on Artiﬁcial Intelligence (AAAI-19)\",\"url\":\"https://www.aaai.org/ojs/index.php/AAAI/article/view/4684/4562\"},{\"title\":\"Transfer Learning for Joint Entity Relation Extraction\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/4684/4562\"},{\"title\":\"Named-Entity evaluation metrics based on entity-level\",\"url\":\"https://www.davidsbatista.net/blog/2018/05/09/Named_Entity_Evaluation/\"},{\"title\":\"90% F1 Score in Relational Triple Extraction: Is it Real ?\",\"url\":\"https://aclanthology.org/2023.genbench-1.1.pdf\"},{\"title\":\"Relation Extraction Capabilities of LLMs on Clinical Text: A\",\"url\":\"https://arxiv.org/pdf/2601.09367\"},{\"title\":\"F1 Score for NER: A Metric To Evaluate Precision And Recall\",\"url\":\"https://thatware.co/f1-score-for-ner/\"},{\"title\":\"Position-aware Joint Entity and Relation Extraction with Attention Mechanism\",\"url\":\"https://www.ijcai.org/proceedings/2022/0624.pdf\"},{\"title\":\"90% F1 Score in Relation Triple Extraction: Is it Real? - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.genbench-1.1/\"}]\n\nBased on the web search results, I found information about GoLLIE and ACE05 benchmark results:\n\nGoLLIE (Guideline-following Large Language Model for IE) is an LLM fine-tuned to learn how to attend to guidelines on a small set of well-known IE tasks.\n\nFor performance on the zero-shot setting, the results are improved significantly when using guidelines on almost every dataset, with an absolute difference of 13 F1 points on average. GoLLIE surpassed by a large margin the current zero-shot SoTA methods Instruct-UIE and Entailment based IE.\n\nRegarding supervised results on benchmarks like ACE05, comparing GoLLIE with the baseline, they both obtain very similar results, with an absolute difference of 0.3 F1 points on average. This is because the baseline model implicitly learns the guidelines for annotating the datasets based on the data distribution during fine-tuning.\n\nThe paper also notes that GoLLIE demonstrates better generalization ability, showing a smaller gap in F1 scores between the seen and unseen labels.\n\nFor relation extraction specifically on ACE05, the search results indicate that baseline models achieve around 57.8 F1 score on ACE05, though the GoLLIE paper's specific F1 results for relation extraction on ACE05 were not detailed in these search results.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7838fc3-c06c-450a-84e0-f061070ee5ec",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "cfd4f684-2f07-42cf-a696-c1dead88e7d1",
+            "sourceToolAssistantUUID": "d7838fc3-c06c-450a-84e0-f061070ee5ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-11T22:17:06.602Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0156BPv2JMeAmrmxQ24Zwin8",
+              "name": "WebSearch",
+              "input": {
+                "query": "KnowCoder ACE05 SciERC F1 results performance numbers universal information extraction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfd4f684-2f07-42cf-a696-c1dead88e7d1",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZAqftyjuwRGEExAN8D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "584b9308-39e6-42e7-9cb3-d25a2d573cfd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BwzScQyXTDtgYBcSRHEHX5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 928,
+                "cache_read_input_tokens": 19528,
+                "output_tokens": 73,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 928
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 73,
+                    "cache_read_input_tokens": 19528,
+                    "cache_creation_input_tokens": 928,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 928,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-11T22:17:13.684Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0156BPv2JMeAmrmxQ24Zwin8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"KnowCoder ACE05 SciERC F1 results performance numbers universal information extraction\"\n\nLinks: [{\"title\":\"KnowCoder\",\"url\":\"https://ict-goknow.github.io/knowcoder/\"},{\"title\":\"Position-aware Joint Entity and Relation Extraction with Attention Mechanism\",\"url\":\"https://www.ijcai.org/proceedings/2022/0624.pdf\"},{\"title\":\"Performance on SciERC dataset. (The highest F1 is shown in bold.) | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Performance-on-SciERC-dataset-The-highest-F1-is-shown-in-bold_tbl2_361413093\"},{\"title\":\"GitHub - luanyi/DyGIE\",\"url\":\"https://github.com/luanyi/DyGIE\"},{\"title\":\"SciERC/README.md at master · YerevaNN/SciERC\",\"url\":\"https://github.com/YerevaNN/SciERC/blob/master/README.md\"},{\"title\":\"GitHub - YerevaNN/SciERC: A fork of https://bitbucket.org/luanyi/scierc/src\",\"url\":\"https://github.com/YerevaNN/SciERC\"},{\"title\":\"KnowCoder: Coding Structured Knowledge into LLMs for\",\"url\":\"https://arxiv.org/pdf/2403.07969\"},{\"title\":\"GitHub - TigranGalstyan/SciERC: A fork of https://bitbucket.org/luanyi/scierc/src\",\"url\":\"https://github.com/TigranGalstyan/SciERC\"},{\"title\":\"Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://openreview.net/pdf?id=0YD1VAUGZ-X\"},{\"title\":\"A Few-Shot Approach for Relation Extraction Domain Adaptation using Large Language Models\",\"url\":\"https://arxiv.org/html/2408.02377v1\"}]\n\nBased on the search results, here's what I found about KnowCoder's performance on ACE05 and SciERC for universal information extraction:\n\n## KnowCoder Overview\n\nKnowCoder is a Large Language Model (LLM) developed for Universal Information Extraction (UIE) via code generation, with the goal of developing a unified schema representation method that LLMs can easily understand and an effective learning framework that encourages LLMs to follow schemas and extract structural knowledge accurately.\n\n## Performance on ACE05 and SciERC Datasets\n\nFor the RE (Relation Extraction) task, KnowCoder was evaluated using 8 datasets under the supervised setting, including ACE05, ADE corpus, CoNLL04, GIDS, kbp37, NYT, SciERC, and semeval RE.\n\nAfter code pretraining on around 1.5B automatically constructed data, KnowCoder attains remarkable generalization ability and achieves NER improvements compared to LLaMA2 by 49.8% relative F1 under the few-shot setting.\n\nAfter instruction tuning, KnowCoder further exhibits strong generalization ability on unseen schemas and achieves up to 12.5% and 21.9% improvements under the zero-shot setting and the low resource setting, respectively.\n\nAdditionally, based on unified schema representations, various human-annotated datasets can simultaneously be utilized to refine KnowCoder, which achieves significant improvements up to 7.5% under the supervised setting.\n\nThe search results indicate that KnowCoder uses both ACE05 and SciERC as evaluation benchmarks, but specific F1 scores for each dataset are not provided in the available excerpts.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "584b9308-39e6-42e7-9cb3-d25a2d573cfd",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "76edabda-078d-4d77-a827-c4686eae7c1b",
+            "sourceToolAssistantUUID": "584b9308-39e6-42e7-9cb3-d25a2d573cfd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-11T22:17:16.264Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ERhwg2McHXDKoT9AYXwNAd",
+              "name": "WebSearch",
+              "input": {
+                "query": "ProUIE ACE05 NER RE F1 results performance 2026 arxiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76edabda-078d-4d77-a827-c4686eae7c1b",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZBZYKPswbYp8QCXD4W",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "255f1037-4d27-42ff-867d-774e589bcd3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016HSfWsryew8Wg6NVppziHW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 996,
+                "cache_read_input_tokens": 20456,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 996,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-11T22:17:28.637Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ERhwg2McHXDKoT9AYXwNAd",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ProUIE ACE05 NER RE F1 results performance 2026 arxiv\"\n\nLinks: [{\"title\":\"[2210.12720] Span-based joint entity and relation extraction augmented with sequence tagging mechanism\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2210.12720\"},{\"title\":\"[2109.06067] Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2109.06067\"},{\"title\":\"[2603.15192] Benchmarking Formula 1 results using a normal model\",\"url\":\"https://arxiv.org/abs/2603.15192\"},{\"title\":\"DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition\",\"url\":\"https://arxiv.org/html/2604.15866v1\"},{\"title\":\"Benchmarking Formula 1 results using a normal model John Fry∗ Silvio Fanzon†\",\"url\":\"https://arxiv.org/pdf/2603.15192\"},{\"title\":\"GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://arxiv.org/html/2310.03668v5\"},{\"title\":\"GPT-RE: In-context Learning for Relation Extraction using Large Language Models\",\"url\":\"https://arxiv.org/html/2305.02105\"},{\"title\":\"Deep Neural Network-based lap time forecasting of Formula 1 Racing\",\"url\":\"https://ace.ewapub.com/article/view/10867\"},{\"title\":\"Evaluating the Predictive Power of Qualifying Performance ...\",\"url\":\"https://arxiv.org/pdf/2507.10966\"},{\"title\":\"Evaluating the Predictive Power of Qualifying Performance in Formula One Grand Prix\",\"url\":\"https://arxiv.org/html/2507.10966v1\"}]\n\nThe search results do not contain information about \"ProUIE\" with the specific ACE05 NER RE F1 performance results from 2026 on arXiv. The results returned are mostly about Formula 1 racing and other NLP models for Named Entity Recognition and Relation Extraction (NER/RE) tasks, but not the specific \"ProUIE\" model you're asking about.\n\nLet me try a more specific search:\n\nLinks: [{\"title\":\"[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2604.10633\"},{\"title\":\"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/html/2604.10633\"},{\"title\":\"arXiv.org e-Print archive\",\"url\":\"https://arxiv.org/\"},{\"title\":\"GitHub - jamwithai/arxiv-paper-curator\",\"url\":\"https://github.com/jamwithai/arxiv-paper-curator\"},{\"title\":\"GitHub - PrathamLearnsToCode/paper2code: Agent skill to turn any arxiv paper into a working implementation · GitHub\",\"url\":\"https://github.com/PrathamLearnsToCode/paper2code\"},{\"title\":\"Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/\"},{\"title\":\"PROUD: PaRetO-gUided Diffusion Model for Multi-objective Generation\",\"url\":\"https://arxiv.org/html/2407.04493v1\"},{\"title\":\"[2305.12600] PRODIGY: Enabling In-context Learning Over Graphs\",\"url\":\"https://arxiv.org/abs/2305.12600\"},{\"title\":\"arXiv.org - Engineering Library - Cornell University\",\"url\":\"https://engineering.library.cornell.edu/database/arxiv-org/\"},{\"title\":\"ArXiv.org | Rutgers University Libraries\",\"url\":\"https://www.libraries.rutgers.edu/databases/arxiv-org\"}]\n\nGreat! I found the ProUIE paper. Now let me search for the specific F1 results on ACE05 for NER and RE:\n\nLinks: [{\"title\":\"Formula 1 Live Results\",\"url\":\"https://www.flashscore.com/auto-racing/formula-1/\"},{\"title\":\"[2210.12720] Span-based joint entity and relation extraction augmented with sequence tagging mechanism\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2210.12720\"},{\"title\":\"F1 News, Drivers, Results - Formula 1 Live Online | Sky Sports\",\"url\":\"https://www.skysports.com/f1\"},{\"title\":\"Multi-classification results of ACE05 dataset. | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Multi-classification-results-of-ACE05-dataset_tbl1_353798698\"},{\"title\":\"[2109.06067] Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2109.06067\"},{\"title\":\"F1 Results: All Time Championship Table Results by Year\",\"url\":\"https://www.f1-fansite.com/f1-results/\"},{\"title\":\"F1 Results today | Free practice, qualifying, and race | RacingNews365\",\"url\":\"https://racingnews365.com/formula-1-results\"},{\"title\":\"Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://openreview.net/pdf?id=0YD1VAUGZ-X\"},{\"title\":\"Comparison results with other models on the ACE05 dataset. | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Comparison-results-with-other-models-on-the-ACE05-dataset_tbl4_353798698\"},{\"title\":\"Event extraction results on ACE05 dataset and ERE dataset (F-score, %). | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Event-extraction-results-on-ACE05-dataset-and-ERE-dataset-F-score_tbl1_355234254\"}]\n\nLet me search more directly for the ProUIE paper's HTML version to find the specific results:\n\nLinks: [{\"title\":\"[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2604.10633\"},{\"title\":\"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/html/2604.10633\"}]\n\nBased on the web search results, I found the ProUIE paper on arXiv (paper ID: 2604.10633). Here's what I can tell you about it:\n\n## ProUIE Paper Summary\n\nProUIE is a Macro-to-Micro progressive learning approach for LLM-based universal information extraction that improves UIE without introducing any external information.\n\nProUIE consists of three stages: (i) macro-level Complete Modeling (CM), which learns NER, RE, and EE along their intrinsic difficulty order on the full training data to build a unified extraction foundation, (ii) meso-level Streamlined Alignment (SA), which operates on sampled data with simplified target formats, streamlining and regularizing structured outputs to make them more concise and controllable, and (iii) micro-level Deep Exploration (DE), which applies GRPO with stepwise fine-grained rewards (SFR) over structural units to guide exploration and improve performance.\n\n**Performance Results:**\n\nExperiments on 36 public datasets show that ProUIE consistently improves unified extraction, outperforming strong instruction-tuned baselines on average for NER and RE while using a smaller backbone.\n\nThe paper was submitted to arXiv on April 12, 2026. While the search results confirm the paper's existence and general approach, the specific F1 scores for ACE05 NER and RE tasks are not displayed in the search results I retrieved. To view the exact numerical results from the tables in the paper, you would need to access the full PDF or HTML version directly on arXiv at https://arxiv.org/html/2604.10633.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "255f1037-4d27-42ff-867d-774e589bcd3d",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "4d1bf254-100f-48c7-a6f5-63a4a749d705",
+            "sourceToolAssistantUUID": "255f1037-4d27-42ff-867d-774e589bcd3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-11T22:17:31.402Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016TTaK3bQoQGVGHtG3qmNvv",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"AEVS\" \"0.412\" F1 knowledge graph extraction 2025 venue journal conference"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d1bf254-100f-48c7-a6f5-63a4a749d705",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZCfVmieodssgWDQJAQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b735e58f-2aff-49a1-924b-cd9147b4189f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QFAE8eL4GNPso3RTTWBUot",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2077,
+                "cache_read_input_tokens": 21452,
+                "output_tokens": 75,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2077
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 75,
+                    "cache_read_input_tokens": 21452,
+                    "cache_creation_input_tokens": 2077,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2077,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-11T22:17:36.907Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016TTaK3bQoQGVGHtG3qmNvv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"AEVS\" \"0.412\" F1 knowledge graph extraction 2025 venue journal conference\"\n\nLinks: [{\"title\":\"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking\",\"url\":\"https://www.mdpi.com/2073-431X/15/3/178\"},{\"title\":\"Understanding the effect of knowledge graph extraction error on downstream graph analyses: a case study on affiliation graphs | Applied Network Science | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s41109-025-00749-0\"},{\"title\":\"The construction and refined extraction techniques of knowledge graph based on large language models | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-026-38066-w\"},{\"title\":\"From LLMs to Knowledge Graphs: Building Production-Ready Graph Systems in 2025 | by Claudiu Branzan | Medium\",\"url\":\"https://medium.com/@claudiubranzan/from-llms-to-knowledge-graphs-building-production-ready-graph-systems-in-2025-2b4aff1ec99a\"},{\"title\":\"Knowledge Graph Retrieval-Augmented Generation for ...\",\"url\":\"https://aclanthology.org/2025.acl-long.1317.pdf\"},{\"title\":\"Original Paper Large Language Model–Driven Knowledge Graph Construction\",\"url\":\"https://www.jmir.org/2025/1/e65537/PDF\"},{\"title\":\"Knowledge Graph Construction: Extraction, Learning, and Evaluation\",\"url\":\"https://www.mdpi.com/2076-3417/15/7/3727\"},{\"title\":\"Research on Construction and Application of Knowledge Graph in Science and Technology Field Based on Large Language Model | Proceedings of the 2025 6th International Conference on Education, Knowledge and Information Management\",\"url\":\"https://dl.acm.org/doi/10.1145/3756580.3756635\"},{\"title\":\"Knowledge graph construction and fault identification for new ...\",\"url\":\"https://academic.oup.com/ijlct/article-pdf/doi/10.1093/ijlct/ctaf143/66127079/ctaf143.pdf\"},{\"title\":\"A Temporal Knowledge Graph Generation Dataset Supervised Distantly by Large Language Models | Scientific Data\",\"url\":\"https://www.nature.com/articles/s41597-025-05062-0\"}]\n\nBased on the search results, I found the relevant information about AEVS and the 0.412 F1 score:\n\nAEVS (Anchor-Extraction-Verification-Supplement) is a framework that grounds every triplet element to source text for knowledge graph extraction. The framework achieved up to a 0.412 absolute improvement in F1 score on multiple benchmarks (WebNLG, REBEL, and Wiki-NRE), significantly outperforming both specialized trained models and existing LLM-based approaches.\n\n**Publication Details:**\nThe research was published in 2025, and based on the metadata, the article appears in an MDPI journal (specifically at mdpi.com/2073-431X/15/3/178). The full title is \"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking.\"\n\nThe research specifically addresses the problem of hallucination in LLM-based knowledge graph extraction by ensuring that every extracted triplet element is grounded in explicit textual evidence, which contributes to the framework's strong performance improvements.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b735e58f-2aff-49a1-924b-cd9147b4189f",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "3d1a15b3-93d7-4e4d-a2f2-bd924b0c313c",
+            "sourceToolAssistantUUID": "b735e58f-2aff-49a1-924b-cd9147b4189f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-11T22:17:39.697Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V6ZoFZcZ641hw4XoiVDLpq",
+              "name": "WebSearch",
+              "input": {
+                "query": "FactNet \"span-level evidence\" \"billion-scale\" February 2026 venue conference arxiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d1a15b3-93d7-4e4d-a2f2-bd924b0c313c",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZDGs2P9ipFJxZ9g4br",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8f44b3c6-b812-4b3e-b9eb-4d8b7482a0f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UCPiUL7nqAwwGU4PZP58V1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 924,
+                "cache_read_input_tokens": 23529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 924,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-11T22:17:45.975Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V6ZoFZcZ641hw4XoiVDLpq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FactNet \"span-level evidence\" \"billion-scale\" February 2026 venue conference arxiv\"\n\nLinks: [{\"title\":\"FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding\",\"url\":\"https://arxiv.org/pdf/2602.03417\"},{\"title\":\"[2602.03417] FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding\",\"url\":\"https://arxiv.org/abs/2602.03417\"},{\"title\":\"(PDF) FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding\",\"url\":\"https://www.researchgate.net/publication/400415601_FactNet_A_Billion-Scale_Knowledge_Graph_for_Multilingual_Factual_Grounding\"},{\"title\":\"GitHub - yl-shen/factnet: FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding · GitHub\",\"url\":\"https://github.com/yl-shen/factnet\"},{\"title\":\"The CLEF-2026 CheckThat! Lab: Advancing Multilingual Fact-Checking\",\"url\":\"https://arxiv.org/pdf/2602.09516\"},{\"title\":\"FactNet: Multilingual Knowledge Graph & FNAR\",\"url\":\"https://www.emergentmind.com/topics/factnet\"},{\"title\":\"[2602.04768] Billion-Scale Graph Foundation Models\",\"url\":\"https://arxiv.org/abs/2602.04768\"},{\"title\":\"FactReview: Evidence-Grounded Reviews with Literature Positioning and Execution-Based Claim Verification\",\"url\":\"https://arxiv.org/html/2604.04074v2\"},{\"title\":\"[2601.02023] Not All Needles Are Found: How Fact Distribution and Don't Make It Up Prompts Shape Literal Extraction, Logical Inference, and Hallucination Risks in Long-Context LLMs\",\"url\":\"https://arxiv.org/abs/2601.02023\"},{\"title\":\"Foundation Models to Unlock Real-World Evidence from Nationwide Medical Claims\",\"url\":\"https://arxiv.org/html/2605.02740v1\"}]\n\nI found relevant results for your search query. Here's what I found:\n\n## FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding\n\nFactNet is a massive, open-source resource designed to unify 1.7 billion atomic assertions with 3.01 billion auditable evidence pointers derived exclusively from 316 Wikipedia editions.\n\n### Key Features\n\nFactNet is the only resource combining billion-scale coverage and broad multilinguality with native, span-level evidence grounding. FactNet employs a strictly deterministic construction pipeline, ensuring that every evidence unit is recoverable with byte-level precision.\n\n### Publication Details\n\nThe paper is published on arXiv as paper 2602.03417. Extensive auditing confirms a high grounding precision of 92.1%, even in long-tail languages.\n\n### Evaluation Suite\n\nFactNet-Bench is a comprehensive evaluation suite for Knowledge Graph Completion, Question Answering, and Fact Checking.\n\nThe paper was published in February 2026 on arXiv and represents a significant resource for multilingual factual grounding with the span-level evidence you were searching for.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f44b3c6-b812-4b3e-b9eb-4d8b7482a0f1",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "cb5d8627-8329-4616-89a3-7b8343e89d8d",
+            "sourceToolAssistantUUID": "8f44b3c6-b812-4b3e-b9eb-4d8b7482a0f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-11T22:17:48.705Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0192rjpfTTd2kva2BwTMLVii",
+              "name": "WebSearch",
+              "input": {
+                "query": "AEVS mdpi computers journal 2025 \"Grounded Knowledge Graph Extraction\" authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb5d8627-8329-4616-89a3-7b8343e89d8d",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZDwcRTo8gzfuJ1gNpc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "298380f1-a252-4e8e-9f39-6a7f162b0c48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JbJYVBi6LAo7oya7g7SHuj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 896,
+                "cache_read_input_tokens": 24453,
+                "output_tokens": 73,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 896
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 73,
+                    "cache_read_input_tokens": 24453,
+                    "cache_creation_input_tokens": 896,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 896,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-11T22:17:53.365Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0192rjpfTTd2kva2BwTMLVii",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AEVS mdpi computers journal 2025 \"Grounded Knowledge Graph Extraction\" authors\"\n\nLinks: [{\"title\":\"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking\",\"url\":\"https://www.mdpi.com/2073-431X/15/3/178\"},{\"title\":\"Knowledge Graph Construction: Extraction, Learning, and Evaluation\",\"url\":\"https://www.mdpi.com/2076-3417/15/7/3727\"},{\"title\":\"Construction of a Machining Process Knowledge Graph and Its Application in Process Route Recommendation\",\"url\":\"https://www.mdpi.com/2079-9292/14/15/3156\"},{\"title\":\"Generative Model Using Knowledge Graph for Document-Grounded Conversations | MDPI\",\"url\":\"https://www.mdpi.com/2076-3417/12/7/3367\"},{\"title\":\"KA-RAG: Integrating Knowledge Graphs and Agentic Retrieval-Augmented Generation for an Intelligent Educational Question-Answering Model\",\"url\":\"https://www.mdpi.com/2076-3417/15/23/12547\"},{\"title\":\"Document GraphRAG: Knowledge Graph Enhanced Retrieval Augmented Generation for Document Question Answering Within the Manufacturing Domain\",\"url\":\"https://www.mdpi.com/2079-9292/14/11/2102\"},{\"title\":\"Knowledge Graphs and Their Reciprocal Relationship with Large Language Models\",\"url\":\"https://www.mdpi.com/2504-4990/7/2/38\"},{\"title\":\"Information | Special Issue : Applications of Information Extraction, Knowledge Graphs, and Large Language Models\",\"url\":\"https://www.mdpi.com/journal/information/special_issues/S0NN5AB65C\"},{\"title\":\"Construction of Journal Knowledge Graph Based on Deep Learning and LLM | MDPI\",\"url\":\"https://www.mdpi.com/2079-9292/14/9/1728\"},{\"title\":\"Machine Learning and Knowledge Extraction | An Open Access Journal from MDPI\",\"url\":\"https://www.mdpi.com/journal/make\"}]\n\nBased on the search results, I found the article you're looking for. The paper proposes anchor-extraction-verification-supplement (AEVS), a framework that grounds every triplet element to the source text in LLM-based knowledge graph extraction.\n\nThe article is titled \"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking\" and was published in the MDPI Computers journal in 2025.\n\nHowever, the search results provided don't explicitly list the authors' names for this specific paper. To get the complete author information, you can access the full article directly at: https://www.mdpi.com/2073-431X/15/3/178\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "298380f1-a252-4e8e-9f39-6a7f162b0c48",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "411261ff-483f-4c5d-a38f-8c671e37895a",
+            "sourceToolAssistantUUID": "298380f1-a252-4e8e-9f39-6a7f162b0c48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-11T22:17:56.382Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DwS2Dw5eYhUdm6ZTFQi5B8",
+              "name": "WebSearch",
+              "input": {
+                "query": "ProUIE arxiv 2604.10633 ACE05 SciERC specific F1 scores NER RE results table"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "411261ff-483f-4c5d-a38f-8c671e37895a",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZEVChwQALK66o1MNFo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9e3c9a3c-0742-4c3f-b165-cd63a6a6588e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BF8Ershm3MCK9GVTLqvzUa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 879,
+                "cache_read_input_tokens": 25349,
+                "output_tokens": 81,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 879
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 81,
+                    "cache_read_input_tokens": 25349,
+                    "cache_creation_input_tokens": 879,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 879,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-11T22:18:07.896Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DwS2Dw5eYhUdm6ZTFQi5B8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ProUIE arxiv 2604.10633 ACE05 SciERC specific F1 scores NER RE results table\"\n\nLinks: [{\"title\":\"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/html/2604.10633\"},{\"title\":\"[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2604.10633\"},{\"title\":\"Position-aware Joint Entity and Relation Extraction with Attention Mechanism\",\"url\":\"https://www.ijcai.org/proceedings/2022/0624.pdf\"},{\"title\":\"arXiv:2109.12008v1 [cs.CL] 24 Sep 2021\",\"url\":\"https://arxiv.org/pdf/2109.12008\"},{\"title\":\"GitHub - luanyi/DyGIE\",\"url\":\"https://github.com/luanyi/DyGIE\"},{\"title\":\"[2305.09410] About Evaluation of F1 Score for RECENT Relation Extraction System\",\"url\":\"https://arxiv.org/abs/2305.09410\"},{\"title\":\"F1-score performance measure on the NER task by NE class | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/F1-score-performance-measure-on-the-NER-task-by-NE-class_tbl4_346746995\"},{\"title\":\"Information Extraction in Low-Resource Scenarios: Survey and Perspective\",\"url\":\"https://arxiv.org/html/2202.08063v5\"},{\"title\":\"Performance on SciERC dataset. (The highest F1 is shown in bold.) | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Performance-on-SciERC-dataset-The-highest-F1-is-shown-in-bold_tbl2_361413093\"},{\"title\":\"GPT-RE: In-context Learning for Relation Extraction using Large Language Models\",\"url\":\"https://arxiv.org/html/2305.02105v3\"}]\n\nI found the ProUIE paper (arxiv 2604.10633). The first search result links to the HTML version of the paper. Let me search for more specific information about the NER and RE results tables with the exact F1 scores.\n\nLinks: [{\"title\":\"[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2604.10633\"},{\"title\":\"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\",\"url\":\"https://arxiv.org/html/2604.10633\"},{\"title\":\"GitHub - princeton-nlp/PURE: [NAACL 2021] A Frustratingly Easy Approach for Entity and Relation Extraction https://arxiv.org/abs/2010.12812\",\"url\":\"https://github.com/princeton-nlp/PURE\"},{\"title\":\"Separating Retention from Extraction in\",\"url\":\"https://arxiv.org/pdf/2109.12008\"},{\"title\":\"GitHub - luanyi/DyGIE\",\"url\":\"https://github.com/luanyi/DyGIE\"},{\"title\":\"A Trigger-Sense Memory Flow Framework for Joint Entity and Relation Extraction\",\"url\":\"https://arxiv.org/pdf/2101.10213\"},{\"title\":\"Position-aware Joint Entity and Relation Extraction with Attention Mechanism\",\"url\":\"https://www.ijcai.org/proceedings/2022/0624.pdf\"},{\"title\":\"Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://openreview.net/pdf?id=0YD1VAUGZ-X\"},{\"title\":\"Iterative Transformer-based Entity Recognition and ...\",\"url\":\"https://aclanthology.org/2024.findings-emnlp.655.pdf\"},{\"title\":\"GitHub - dwadden/dygiepp: Span-based system for named entity, relation, and event extraction.\",\"url\":\"https://github.com/dwadden/dygiepp\"}]\n\nI found references to the ProUIE paper, but the search results are showing only abstract information and general discussions. Let me try a more specific search to access the actual tables with the F1 scores.\n\nNo links found.\n\nLet me try a direct search approach to find the specific F1 values reported in ProUIE paper.\n\nNo links found.\n\nBased on my web search results, I was able to find some information about the ProUIE paper (arxiv 2604.10633), though the search did not return the complete detailed tables with all specific F1 scores you requested.\n\nHere's what I found:\n\nTable 2 reports RE results on multiple benchmarks. Overall, ProUIE attains the best average F1 among methods with reported Avg scores (71.17), outperforming InstructUIE by +3.19 F1.\n\nThe analysis uses SciERC and SemEval RE, and ACE2005 for evaluation.\n\nUnfortunately, the search results did not provide the complete numerical F1 scores for individual datasets (ACE05 and SciERC) for both NER and RE tasks broken down in table format. To access the full results tables with specific F1 scores for:\n- NER F1 on ACE05\n- NER F1 on SciERC  \n- RE F1 on ACE05\n- RE F1 on SciERC\n\nI recommend directly accessing the paper at https://arxiv.org/html/2604.10633, which should have the complete Table 1 (for NER results) and Table 2 (for RE results) with all the specific numerical values you're looking for.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e3c9a3c-0742-4c3f-b165-cd63a6a6588e",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "37d9c4cc-3182-4618-a516-458b36823c79",
+            "sourceToolAssistantUUID": "9e3c9a3c-0742-4c3f-b165-cd63a6a6588e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-11T22:18:10.787Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CpECdGTp5X8kdT7cAbJw9b",
+              "name": "WebSearch",
+              "input": {
+                "query": "LAQuer \"Localized Attribution Queries\" ACL 2025 authors results performance"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37d9c4cc-3182-4618-a516-458b36823c79",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZFZMmRr8Hfqe5Csxf5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bc287d17-4a87-4ca0-8d86-dcef25e50cd7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GPwGgxvyDiniMC3Fjqgbid",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1517,
+                "cache_read_input_tokens": 26228,
+                "output_tokens": 71,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1517
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 71,
+                    "cache_read_input_tokens": 26228,
+                    "cache_creation_input_tokens": 1517,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1517,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-11T22:18:18.213Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CpECdGTp5X8kdT7cAbJw9b",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LAQuer \"Localized Attribution Queries\" ACL 2025 authors results performance\"\n\nLinks: [{\"title\":\"LAQuer: Localized Attribution Queries in Content-grounded Generation - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.746/\"},{\"title\":\"LAQuer: Localized Attribution Queries in Content-grounded ...\",\"url\":\"https://aclanthology.org/2025.acl-long.746.pdf\"},{\"title\":\"GitHub - eranhirs/LAQuer: Localized Attribution Queries in Content-grounded Generation · GitHub\",\"url\":\"https://github.com/eranhirs/LAQuer\"},{\"title\":\"[2506.01187] LAQuer: Localized Attribution Queries in Content-grounded Generation\",\"url\":\"https://arxiv.org/abs/2506.01187\"},{\"title\":\"LAQuer: Localized Attribution Queries in Content-grounded Generation\",\"url\":\"https://arxiv.org/html/2506.01187\"},{\"title\":\"Aviv Slobodkin - ACL Anthology\",\"url\":\"https://aclanthology.org/people/aviv-slobodkin/\"},{\"title\":\"LAQuer: Localized Attribution Queries in Content-grounded ...\",\"url\":\"https://arxiv.org/pdf/2506.01187\"},{\"title\":\"Localized Attribution Queries in Content-grounded Generation\",\"url\":\"https://www.semanticscholar.org/paper/LAQuer:-Localized-Attribution-Queries-in-Generation-Hirsch-Slobodkin/f7d17c222af2a396c0aec2676f75070022f6de24\"},{\"title\":\"Lightweight Query Checkpoint: Classifying Faulty User Queries to Mitigate Hallucinations in Large Language Model Question Answering - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-acl.756/\"},{\"title\":\"Accepted Main Conference Papers - ACL 2025\",\"url\":\"https://2025.aclweb.org/program/main_papers/\"}]\n\nBased on the search results, here's comprehensive information about the LAQuer paper presented at ACL 2025:\n\n## Paper Overview\n\nLAQuer is authored by Eran Hirsch, Aviv Slobodkin, David Wan, Elias Stengel-Eskin, Mohit Bansal, and Ido Dagan, and was presented at the 63rd Annual Meeting of the Association for Computational Linguistics in 2025.\n\n## Core Contribution\n\nLAQuer introduces a new task that localizes selected spans of generated output to their corresponding source spans, allowing fine-grained and user-directed attribution. LAQuer enables users to request attribution for specific spans of LLM-generated text by highlighting the exact information they care about, producing localized, span-level attributions rather than broad sentence-level citations.\n\n## Research Approaches\n\nThe paper explores a modeling framework that extends existing attributed text generation methods to LAQuer, comparing two approaches including prompting large language models (LLMs) and leveraging LLM internal representations.\n\n## Performance Results\n\nThe framework was evaluated across two grounded text generation tasks: Multi-document Summarization (MDS) and Long-form Question Answering (LFQA), with findings showing that LAQuer methods significantly reduce the length of the attributed text.\n\n## Contributions\n\nThe paper's contributions include: (1) proposing the LAQuer task to enhance attribution usability, (2) suggesting a modeling framework and benchmarking multiple baselines, and (3) proposing a new evaluation setting to promote future research on localized attribution in content-grounded generation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc287d17-4a87-4ca0-8d86-dcef25e50cd7",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "a384769e-9078-4806-92e3-b02cff878c11",
+            "sourceToolAssistantUUID": "bc287d17-4a87-4ca0-8d86-dcef25e50cd7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-11T22:18:20.893Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016fzRHztKxvLPPS5MC3xDmv",
+              "name": "WebSearch",
+              "input": {
+                "query": "ACE05 relation extraction SOTA 2025 2026 best F1 score current state of the art"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a384769e-9078-4806-92e3-b02cff878c11",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZGKT8LMsSKyhZXmGo9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d027c315-76eb-4658-9f30-0a1d0257fa1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W94S18f8vke8otBDse5tXE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 961,
+                "cache_read_input_tokens": 27745,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 961
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 27745,
+                    "cache_creation_input_tokens": 961,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 961,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-11T22:18:34.731Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016fzRHztKxvLPPS5MC3xDmv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ACE05 relation extraction SOTA 2025 2026 best F1 score current state of the art\"\n\nLinks: [{\"title\":\"Closed-Domain Event Extraction Literature Review January 2025 v1.0\",\"url\":\"https://www.turing.ac.uk/sites/default/files/2025-07/arc_event_extraction_lit_review.pdf\"},{\"title\":\"ACE 2005 Benchmark (Relation Extraction)\",\"url\":\"https://paperswithcode.com/sota/relation-extraction-on-ace-2005\"},{\"title\":\"GPT-RE: In-context Learning for Relation Extraction using Large Language Models\",\"url\":\"https://arxiv.org/html/2305.02105\"},{\"title\":\"[2205.08770] Relation Extraction with Weighted Contrastive Pre-training on Distant Supervision\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2205.08770\"},{\"title\":\"Relation of the Relations: A New Paradigm of the Relation Extraction Problem\",\"url\":\"https://arxiv.org/pdf/2006.03719\"},{\"title\":\"Transfer Learning for Joint Entity Relation Extraction\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/download/4684/4562\"},{\"title\":\"[2305.02105] GPT-RE: In-context Learning for Relation Extraction using Large Language Models\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2305.02105\"},{\"title\":\"90% F1 Score in Relational Triple Extraction: Is it Real ?\",\"url\":\"https://arxiv.org/pdf/2302.09887\"},{\"title\":\"Multi-classification results of ACE05 dataset. | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Multi-classification-results-of-ACE05-dataset_tbl1_353798698\"},{\"title\":\"[2302.09887] 90% F1 Score in Relational Triple Extraction: Is it Real ?\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2302.09887\"}]\n\nLet me search for more specific and recent information about ACE05 relation extraction SOTA performance.\n\nLinks: [{\"title\":\"Transfer Learning for Joint Entity Relation Extraction\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/download/4684/4562\"},{\"title\":\"SOMD 2025: Fine-tuning ModernBERT for In\",\"url\":\"https://aclanthology.org/2025.sdp-1.15.pdf\"},{\"title\":\"Multi-classification results of ACE05 dataset. | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Multi-classification-results-of-ACE05-dataset_tbl1_353798698\"},{\"title\":\"Relation extraction: advancements through deep learning and entity-related features | Social Network Analysis and Mining | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s13278-023-01095-8\"},{\"title\":\"F1 standings 2026 - Formula 1 points\",\"url\":\"https://www.formula1points.com/season\"},{\"title\":\"[PDF] The ACE 2005 ( ACE 05 ) Evaluation Plan Evaluation of the Detection and Recognition of ACE Entities , Values , Temporal Expressions , Relations , and Events 1 | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/The-ACE-2005-(-ACE-05-)-Evaluation-Plan-Evaluation-Ntroduction/3a9b136ca1ab91592df36f148ef16095f74d009e\"},{\"title\":\"Asking Effective and Diverse Questions: A Machine Reading Comprehension\",\"url\":\"https://www.ijcai.org/Proceedings/2020/0546.pdf\"},{\"title\":\"[2305.09410] About Evaluation of F1 Score for RECENT Relation Extraction System\",\"url\":\"https://arxiv.org/abs/2305.09410\"},{\"title\":\"Trusted Knowledge Extraction for Operations and Maintenance Intelligence\",\"url\":\"https://arxiv.org/html/2507.22935v3\"},{\"title\":\"What is F1 Score in Machine Learning?\",\"url\":\"https://www.analyticsvidhya.com/blog/2025/12/what-is-f1-score-in-machine-learning/\"}]\n\nLet me search for more recent papers with specific SOTA results on ACE05 relation extraction.\n\nLinks: [{\"title\":\"[1905.05529] Entity-Relation Extraction as Multi-Turn Question Answering\",\"url\":\"https://arxiv.org/abs/1905.05529\"},{\"title\":\"A survey on cutting-edge relation extraction techniques based on language models | Artificial Intelligence Review | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10462-025-11280-0\"},{\"title\":\"GPT-RE: In-context Learning for Relation Extraction using Large Language Models\",\"url\":\"https://arxiv.org/html/2305.02105v3\"},{\"title\":\"Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future\",\"url\":\"https://arxiv.org/html/2512.19537v1\"},{\"title\":\"Multi-classification results of ACE05 dataset. | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Multi-classification-results-of-ACE05-dataset_tbl1_353798698\"},{\"title\":\"Relation of the Relations: A New Paradigm of the Relation Extraction Problem\",\"url\":\"https://arxiv.org/pdf/2006.03719\"},{\"title\":\"[2205.08770] Relation Extraction with Weighted Contrastive Pre-training on Distant Supervision\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2205.08770\"},{\"title\":\"[2305.02105] GPT-RE: In-context Learning for Relation Extraction using Large Language Models\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2305.02105\"},{\"title\":\"A Two Dimensional Feature Engineering Method for Relation Extraction\",\"url\":\"https://arxiv.org/html/2404.04959\"},{\"title\":\"J. COMBIN. MATH. COMBIN. COMPUT. 127a (2025) 2657--2673\",\"url\":\"https://combinatorialpress.com/article/jcmcc/Volume%20127/Volume%20127a/a-study-on-the-application-of-graph-convolutional-network-based-joint-model-in-entity-relationship-extraction.pdf\"}]\n\nLet me search more specifically for papers with exact F1 scores on ACE05.\n\nLinks: [{\"title\":\"[2109.06067] Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2109.06067\"},{\"title\":\"Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://openreview.net/pdf?id=0YD1VAUGZ-X\"},{\"title\":\"Packed Levitated Marker for Entity and Relation Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2022.acl-long.337/\"},{\"title\":\"[2109.06067] Packed Levitated Marker for Entity and Relation Extraction\",\"url\":\"https://arxiv.org/abs/2109.06067\"},{\"title\":\"GitHub - sailfish009/PURE: NAACL'2021: A Frustratingly Easy Approach for Entity and Relation Extraction\",\"url\":\"https://github.com/sailfish009/PURE\"},{\"title\":\"GitHub - princeton-nlp/PURE: [NAACL 2021] A Frustratingly Easy Approach for Entity and Relation Extraction https://arxiv.org/abs/2010.12812\",\"url\":\"https://github.com/princeton-nlp/PURE\"},{\"title\":\"GitHub - thunlp/PL-Marker: Source code for \\\"Packed Levitated Marker for Entity and Relation Extraction\\\" · GitHub\",\"url\":\"https://github.com/thunlp/PL-Marker\"},{\"title\":\"Position-aware Joint Entity and Relation Extraction with Attention Mechanism\",\"url\":\"https://www.ijcai.org/proceedings/2022/0624.pdf\"},{\"title\":\"Transfer Learning for Joint Entity Relation Extraction\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/download/4684/4562\"},{\"title\":\"A Frustratingly Easy Approach for Entity and Relation ...\",\"url\":\"https://aclanthology.org/2021.naacl-main.5.pdf\"}]\n\nBased on my web search results, I can provide you with information about ACE05 relation extraction SOTA performance:\n\n## ACE05 Relation Extraction State-of-the-Art\n\n### Recent Performance Results\n\nA recent approach using ModernBERT achieved F1 scores of 91.7% for NER and 71.9% for RE on ACE05 (2025).\n\nThe PURE model achieved relation extraction F1 scores of 0.670536 on ACE05 test set (approximately 67.05%).\n\n### Notable SOTA Models\n\nPL-Marker (Packed Levitated Marker) achieved a 4.1%-4.3% strict relation F1 improvement over previous state-of-the-art models on ACE04 and ACE05.\n\nThe UNIRE model, based on BERT-base-uncased, ALBERT, and SciBERT depending on the dataset, achieves state-of-the-art performance on ACE04 and ACE05 datasets.\n\n### Challenges with ACE05\n\nACE05 contains a large proportion of null examples (95.60%), which presents challenges for relation extraction models.\n\nThe current state-of-the-art appears to be in the range of 71.9% F1 score (ModernBERT-based approach, 2025), with various strong contenders like PL-Marker and UNIRE achieving competitive results. The high percentage of null examples in the ACE05 dataset remains a significant challenge for achieving even higher performance.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d027c315-76eb-4658-9f30-0a1d0257fa1c",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "706be234-56dc-454f-8b00-c91fc5c851fa",
+            "sourceToolAssistantUUID": "d027c315-76eb-4658-9f30-0a1d0257fa1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-11T22:18:37.690Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HPaf5qrvysC6jB4dWaeeCz",
+              "name": "WebSearch",
+              "input": {
+                "query": "SciERC relation extraction state of the art 2025 F1 best performance"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "706be234-56dc-454f-8b00-c91fc5c851fa",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZHY5BKZA2ZQ8kGMe7z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9eb4d17a-99a7-4b7b-b110-f6f5f21f4eb7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lm2Jb6bB7aa8cKiTiyD345",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2570,
+                "cache_read_input_tokens": 28706,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2570,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-11T22:18:43.803Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HPaf5qrvysC6jB4dWaeeCz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SciERC relation extraction state of the art 2025 F1 best performance\"\n\nLinks: [{\"title\":\"Performance on SciERC dataset. (The highest F1 is shown in bold.) | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Performance-on-SciERC-dataset-The-highest-F1-is-shown-in-bold_tbl2_361413093\"},{\"title\":\"Information Extraction from Multi-Domain Scientific Documents: Methods and Insights\",\"url\":\"https://www.mdpi.com/2076-3417/15/16/9086\"},{\"title\":\"SciIE: Scientific Information Extractor\",\"url\":\"https://www.emergentmind.com/topics/scientific-information-extractor-sciie\"},{\"title\":\"SOMD 2025: Fine-tuning ModernBERT for In\",\"url\":\"https://aclanthology.org/2025.sdp-1.15.pdf\"},{\"title\":\"SciER: An Entity and Relation Extraction Dataset for Datasets, Methods, and Tasks in Scientific Documents\",\"url\":\"https://arxiv.org/html/2410.21155v1\"},{\"title\":\"SciNLP: A Domain-Specific Benchmark for Full-Text Scientific Entity and Relation Extraction in NLP\",\"url\":\"https://arxiv.org/html/2509.07801\"},{\"title\":\"SciREX: Document-Level IE Benchmark\",\"url\":\"https://www.emergentmind.com/topics/scirex-dataset\"},{\"title\":\"A Few-Shot Approach for Relation Extraction Domain Adaptation using Large Language Models\",\"url\":\"https://arxiv.org/html/2408.02377v1\"},{\"title\":\"Hallucination-Resistant Relation Extraction via ...\",\"url\":\"https://arxiv.org/pdf/2508.14391\"},{\"title\":\"SciER: An Entity and Relation Extraction Dataset for ...\",\"url\":\"https://aclanthology.org/2024.emnlp-main.726.pdf\"}]\n\nBased on the search results, here's what I found about state-of-the-art relation extraction performance on the SciERC dataset in 2025:\n\n## Current State-of-the-Art Performance\n\nRecent LLM-based models using reinforcement learning (R^22GRPO) have achieved relation extraction F1 scores of 65.95% on the SciER dataset, surpassing the previous supervised baseline HGERE (61.10%) with improved out-of-domain generalization.\n\nFor reference on the SciERC dataset specifically, the SpERT model achieved up to 50.84% micro-average F1 on relation extraction on SciERC.\n\n## Recent Developments\n\nSpan-based models such as PURE (pipeline) and HGERE (joint, hypergraph-based) achieve state-of-the-art performance, with SciBERT as the backbone encoder. On the SciER dataset, HGERE attains relation (Rel+) F1 = 61.10% in-domain, with moderate drops on out-of-distribution data (Rel+ = 58.32%).\n\nThe search results indicate that while traditional supervised models like HGERE remain competitive, newer LLM-based approaches using specialized reasoning and reward modeling are beginning to outperform them, particularly on the SciER dataset which has more comprehensive annotations than SciERC.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9eb4d17a-99a7-4b7b-b110-f6f5f21f4eb7",
+            "isSidechain": true,
+            "promptId": "45be7914-06f2-49b2-a949-fe8e5f9e007b",
+            "agentId": "a33d48fac880b5530",
+            "type": "user",
+            "uuid": "66007037-77d4-4d2e-ab7e-7d12c32c6838",
+            "sourceToolAssistantUUID": "9eb4d17a-99a7-4b7b-b110-f6f5f21f4eb7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-11T22:19:42.824Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have enough information to compile a comprehensive report. Here is my findings:\n\n---\n\n## Paper Verification Report\n\n### 1. \"AEVS\" (2025)\n\n- **VERIFIED: YES** -- the paper exists.\n- **Exact Title:** \"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking\"\n- **Venue/Year:** Published in MDPI *Computers* journal, 2025 (Volume 15, Issue 3, Article 178). This is an **open-access journal**, not a top-tier ML conference.\n- **Claim check (\"reduces hallucination by 0.412 F1\"):** The 0.412 number is **real but misleadingly framed** in your proposal. It is not a \"hallucination reduction\" metric -- it is the maximum absolute F1 improvement on the REBEL dataset (Partial F1: 0.797 vs. 0.385 for the GenIE baseline). On WebNLG the improvement was smaller (+0.107 Partial F1). The 0.412 is a best-case cherry-picked number against a weak baseline (GenIE), not a general hallucination reduction figure.\n- **Key numbers:** WebNLG Partial F1 = 0.874, Strict F1 = 0.802; REBEL Partial F1 = 0.797, Strict F1 = 0.732. Hallucination rates ranged from 0.23-20.23% depending on model/dataset.\n\nSources:\n- [AEVS paper (MDPI)](https://www.mdpi.com/2073-431X/15/3/178)\n\n---\n\n### 2. \"FactNet\" (Feb 2026)\n\n- **VERIFIED: YES** -- the paper exists.\n- **Exact Title:** \"FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding\"\n- **Venue/Year:** arXiv preprint, February 2026 (arXiv:2602.03417). From OpenBMB. **Not peer-reviewed at a conference as of this search.**\n- **Claim check (\"billion-scale span-level evidence grounding for knowledge graphs\"):** Accurate. FactNet consolidates 1.7B FactStatements into 1.55B FactSynsets with 3.01B Wikipedia-grounded FactSenses across 316 languages. Grounding precision is 92.1%.\n- **However:** FactNet is a **knowledge graph resource**, not an IE extraction model. It does not directly produce ACE05/SciERC numbers. Citing it as if it is a baseline for extraction tasks would be misleading.\n\nSources:\n- [FactNet on arXiv](https://arxiv.org/abs/2602.03417)\n- [FactNet GitHub](https://github.com/yl-shen/factnet)\n- [FactNet on HuggingFace](https://huggingface.co/collections/openbmb/factnet)\n\n---\n\n### 3. \"ProUIE\" (April 2026)\n\n- **VERIFIED: YES** -- the paper exists.\n- **Exact Title:** \"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction\"\n- **Venue/Year:** arXiv preprint, April 2026 (arXiv:2604.10633). **Not yet peer-reviewed at a conference.**\n- **Claim check (\"SFR rewards decomposed by structural units for UIE\"):** Accurate. ProUIE uses Stepwise Fine-Grained Rewards (SFR) decomposed by structural units (entity-type/value for NER, relation-type/instance/entity-pair for RE, event-type/trigger/role/argument for EE) combined with GRPO.\n- **Key numbers:** Best average RE F1 of 71.17 across benchmarks (outperforming InstructUIE by +3.19 F1). Evaluated on 36 datasets. I could not extract specific per-dataset ACE05/SciERC numbers from search results alone -- the full paper tables at `arxiv.org/html/2604.10633` would need to be consulted.\n\nSources:\n- [ProUIE on arXiv](https://arxiv.org/abs/2604.10633)\n- [ProUIE HTML](https://arxiv.org/html/2604.10633)\n\n---\n\n### 4. \"PARSE\" (EMNLP 2025)\n\n- **VERIFIED: YES** -- the paper exists.\n- **Exact Title:** \"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\"\n- **Venue/Year:** EMNLP 2025 Industry Track (not main conference). Published in proceedings as `2025.emnlp-industry.184`.\n- **Claim check (\"11.97% invalid response rates on complex schemas\"):** This number appears to be confirmed -- GPT-4 shows an 11.97% invalid response rate for complex extraction tasks. This is a **motivating statistic** in the paper, not a result of PARSE itself.\n- **Note:** This is an **industry track** paper focused on entity extraction schema optimization, not a general IE benchmarking paper. It should be cited as \"EMNLP 2025 Industry Track,\" not just \"EMNLP 2025.\"\n\nSources:\n- [PARSE on ACL Anthology](https://aclanthology.org/2025.emnlp-industry.184/)\n- [PARSE on arXiv](https://arxiv.org/abs/2510.08623)\n- [PARSE on Amazon Science](https://www.amazon.science/publications/parse-llm-driven-schema-optimization-for-reliable-entity-extraction)\n\n---\n\n### 5. \"GoLLIE\" (ICLR 2024)\n\n- **VERIFIED: YES** -- the paper exists.\n- **Exact Title:** \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\"\n- **Venue/Year:** ICLR 2024 (conference paper, poster). Correct venue and year.\n- **Claim check (\"code-style output for IE\"):** Accurate. GoLLIE uses Python code-based representations where labels are Python classes and guidelines are docstrings. Based on Code-Llama (7B, 13B, 34B).\n- **Key numbers:** Average +13 F1 points improvement in zero-shot settings. In supervised settings, performance difference from baseline is only ~0.3 F1 on average. The paper focuses on zero-shot generalization, not supervised SOTA.\n\nSources:\n- [GoLLIE at ICLR 2024](https://iclr.cc/virtual/2024/poster/18435)\n- [GoLLIE on arXiv](https://arxiv.org/abs/2310.03668)\n- [GoLLIE on OpenReview](https://openreview.net/forum?id=Y3wpuxd7u9)\n- [GoLLIE GitHub](https://github.com/hitz-zentroa/GoLLIE)\n\n---\n\n### 6. \"KnowCoder\" (ACL 2024)\n\n- **VERIFIED: YES** -- the paper exists.\n- **Exact Title:** \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\"\n- **Venue/Year:** ACL 2024 Long Papers (pages 8758-8779, Bangkok). Correct venue and year.\n- **Claim check (\"code-style IE\"):** Accurate. KnowCoder transforms schemas into Python classes and uses a two-phase learning framework (code pretraining + instruction tuning) with a schema library covering 30,000+ types.\n- **Key numbers:** +49.8% relative NER F1 improvement over LLaMA2 in few-shot; up to +12.5% zero-shot and +21.9% low-resource improvements; up to +7.5% supervised improvement. Evaluated on ACE05, SciERC, and 6 other RE datasets.\n\nSources:\n- [KnowCoder on ACL Anthology](https://aclanthology.org/2024.acl-long.475/)\n- [KnowCoder on arXiv](https://arxiv.org/abs/2403.07969)\n- [KnowCoder project page](https://ict-goknow.github.io/knowcoder/)\n\n---\n\n### 7. \"LAQuer\" (ACL 2025)\n\n- **VERIFIED: YES** -- the paper exists.\n- **Exact Title:** \"LAQuer: Localized Attribution Queries in Content-grounded Generation\"\n- **Venue/Year:** ACL 2025 Main Conference (Long Papers, paper 746). Correct venue and year.\n- **Claim check (\"attribution of output spans to source texts for QA\"):** Accurate. LAQuer introduces span-level localized attribution for generated text, evaluated on Multi-document Summarization and Long-form QA.\n- **Note:** LAQuer is about **attribution in text generation**, not information extraction per se. Citing it in an IE proposal requires careful framing of how span attribution relates to IE provenance.\n\nSources:\n- [LAQuer on ACL Anthology](https://aclanthology.org/2025.acl-long.746/)\n- [LAQuer on arXiv](https://arxiv.org/abs/2506.01187)\n- [LAQuer GitHub](https://github.com/eranhirs/LAQuer)\n\n---\n\n### Current SOTA on Key Benchmarks (ACE05, SciERC)\n\n**ACE05:**\n- **NER:** ~91.7% F1 (ModernBERT-based, 2025)\n- **Relation Extraction:** ~71.9% F1 (ModernBERT-based, 2025); PL-Marker (ACL 2022) was a long-standing strong baseline at ~67-69% F1\n\n**SciERC:**\n- **Relation Extraction:** HGERE achieves ~61.10% F1 (supervised); LLM-based R^2-GRPO achieves ~65.95% F1 on the related SciER dataset\n- Traditional span-based models like SpERT achieve ~50.84% F1 on SciERC RE\n\nSources:\n- [ACE 2005 Benchmark (Papers With Code)](https://paperswithcode.com/sota/relation-extraction-on-ace-2005)\n- [PL-Marker paper](https://aclanthology.org/2022.acl-long.337/)\n\n---\n\n### Summary of Concerns\n\n1. **All 7 papers are real.** No fabricated citations detected.\n2. **Venue accuracy issues:** PARSE should be cited as EMNLP 2025 *Industry Track*, not just \"EMNLP 2025.\" FactNet and ProUIE are arXiv preprints with no confirmed conference acceptance.\n3. **The 0.412 F1 AEVS number** is a best-case improvement on REBEL against a weak baseline (GenIE), not a general \"hallucination reduction\" metric. The AEVS venue (MDPI Computers) is also a low-prestige open-access journal.\n4. **FactNet** is a KG resource, not an extraction model -- it does not produce IE benchmark numbers directly.\n5. **LAQuer** is about generation attribution, not IE -- the connection needs careful justification.\n6. **ProUIE's average RE F1 of 71.17** appears to be the best current unified IE number, but it is from an unreviewed preprint."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66007037-77d4-4d2e-ab7e-7d12c32c6838",
+            "isSidechain": true,
+            "agentId": "a33d48fac880b5530",
+            "requestId": "req_011CawZJCwGeSTYfPTrnJQgG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3f9497a0-5cea-46ec-95e4-6faf1b6c2546",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a10763e2-55b3-4111-a7b3-96147dd03457",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CXEKDETtbPwKQujzY74Fve",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 898,
+                "cache_read_input_tokens": 31276,
+                "output_tokens": 2840,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 898
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2840,
+                    "cache_read_input_tokens": 31276,
+                    "cache_creation_input_tokens": 898,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 898,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000048"
+        }
+      ],
+      "message_count": 48
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-that-specific-papers-cited-in-a-research-proposal-are-real-an.md"
+}

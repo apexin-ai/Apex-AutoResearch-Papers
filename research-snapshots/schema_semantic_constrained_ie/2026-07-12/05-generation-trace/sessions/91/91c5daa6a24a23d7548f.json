@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "91c5daa6a24a23d7548f",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: schema_semantic_constrained_ie ## 运行环境 - 服务器名: westd-16980 - SSH 账户: root（调用 ssh_execute / submi",
+  "task_key": "98cae89f-5973-4200-8e05-459701e8cfd9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/98cae89f-5973-4200-8e05-459701e8cfd9.jsonl",
+    "occurrence": 1,
+    "bytes": 603110,
+    "sha256": "a3c5f5b047b6bee6cea59543ab9d5619f8d96d1485981bfce8c292ffba04e76f"
+  },
+  "statistics": {
+    "messages": 337,
+    "user_turns": 1,
+    "tool_calls": 100,
+    "roles": {
+      "record": 55,
+      "user": 1,
+      "assistant": 81,
+      "tool_call": 100,
+      "tool_result": 100
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "91c5daa6a24a23d7548f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 335,
+      "chunks": [
+        {
+          "path": "91c5daa6a24a23d7548f-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "91c5daa6a24a23d7548f-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-schema-semantic-constrained-ie-westd-16980-ssh-root-ssh-execut-copy-227.md"
+}

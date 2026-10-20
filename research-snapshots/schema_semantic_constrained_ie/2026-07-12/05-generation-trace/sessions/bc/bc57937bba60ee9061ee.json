@@ -1,0 +1,809 @@
+{
+  "schema_version": "1.0",
+  "id": "bc57937bba60ee9061ee",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/, fi",
+  "task_key": "agent-a579de2625c7cd6d9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a579de2625c7cd6d9.jsonl",
+    "occurrence": 1,
+    "bytes": 59449,
+    "sha256": "b89d94c12a4faba4d26c18ec194500026e9ba4a2db10761070134663893fe5b8"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T13:08:44.892Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/, find the .bib file(s) and check whether these references exist:\n1. PL-Marker (ye2022plmarker or ye2022packed or similar)\n2. DyGIE++ (wadden2019 or dygie)\n3. Guidance (microsoft guidance)\n4. DeepStruct (wang2022deepstruct or similar)\n5. PURE (zhong2021 or zhong2021pure)\n\nAlso check if \"wadhwa2023revisiting\" exists. Report which ones are present and which are missing, with their bib keys if found. Search breadth: medium."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "f90c706a-5752-4cb1-a803-d1c2313c7907",
+            "agentId": "a579de2625c7cd6d9",
+            "type": "user",
+            "uuid": "45747d8d-ecf2-4cc5-a5a6-902c404d22a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T13:08:46.725Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for the .bib files in that directory and check for the references you mentioned."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45747d8d-ecf2-4cc5-a5a6-902c404d22a8",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ4hhqoobHVHX7pS1vL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2306a5e7-e76e-4dbe-811e-d749a98c7cf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01RhQpjWpGsZvHvfpwisdSVL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39711,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39711,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T13:08:47.038Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HhqS3XEu5K3GTBAWkYrBkE",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/*.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2306a5e7-e76e-4dbe-811e-d749a98c7cf2",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ4hhqoobHVHX7pS1vL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "da5e16dc-4ed7-4c2d-92b5-3128944fe9d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01RhQpjWpGsZvHvfpwisdSVL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 39711,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 111,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 39711
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 111,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 39711,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 39711,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T13:08:47.071Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HhqS3XEu5K3GTBAWkYrBkE",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/new_citations.bib\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da5e16dc-4ed7-4c2d-92b5-3128944fe9d2",
+            "isSidechain": true,
+            "promptId": "f90c706a-5752-4cb1-a803-d1c2313c7907",
+            "agentId": "a579de2625c7cd6d9",
+            "type": "user",
+            "uuid": "2d70a652-7379-4ecd-a406-484118c1d9b0",
+            "sourceToolAssistantUUID": "da5e16dc-4ed7-4c2d-92b5-3128944fe9d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T13:08:48.467Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read both .bib files to check for the references:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d70a652-7379-4ecd-a406-484118c1d9b0",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ4s1Rq2TzbgppMFeBQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "01befb33-b289-4620-b812-4ba9948b798c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ENdz6dcnVC1669PNnXQ6Ni",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1047,
+                "cache_read_input_tokens": 39711,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1047,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T13:08:48.688Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UFu1EEDDDWXUvQmJVfqhyG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/new_citations.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01befb33-b289-4620-b812-4ba9948b798c",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ4s1Rq2TzbgppMFeBQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bb882fdb-c3a7-4050-9c9c-5be3a70b4b54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ENdz6dcnVC1669PNnXQ6Ni",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1047,
+                "cache_read_input_tokens": 39711,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1047,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T13:08:48.695Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UFu1EEDDDWXUvQmJVfqhyG",
+              "type": "tool_result",
+              "content": "1\t% New citations for schema_semantic_constrained_ie\n2\t% Generated 2026-05-18\n3\t% All entries moved to relwork_new_entries.bib; this file kept empty to avoid duplicate key errors.\n4\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb882fdb-c3a7-4050-9c9c-5be3a70b4b54",
+            "isSidechain": true,
+            "promptId": "f90c706a-5752-4cb1-a803-d1c2313c7907",
+            "agentId": "a579de2625c7cd6d9",
+            "type": "user",
+            "uuid": "9eb3bc47-301d-41d8-9cf6-612fe5560117",
+            "sourceToolAssistantUUID": "bb882fdb-c3a7-4050-9c9c-5be3a70b4b54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T13:08:48.913Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XrnY3GVBP6tfy1FUj5W7jz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9eb3bc47-301d-41d8-9cf6-612fe5560117",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ4s1Rq2TzbgppMFeBQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd45e269-bfae-4614-8bc1-fe4f29f809ab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ENdz6dcnVC1669PNnXQ6Ni",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1047,
+                "cache_read_input_tokens": 39711,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1047,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T13:08:49.211Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XrnY3GVBP6tfy1FUj5W7jz",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% Merged authoritative BibTeX references\n3\t% Merged 2026-05-14 from relwork_new_entries.bib + new_references.bib\n4\t% ============================================================\n5\t\n6\t% vLLM — used for GCD-equivalence verification experiment\n7\t@inproceedings{kwon2023vllm,\n8\t  title     = {Efficient Memory Management for Large Language Model Serving with {PagedAttention}},\n9\t  author    = {Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph and Zhang, Hao and Stoica, Ion},\n10\t  booktitle = {Proceedings of the 29th Symposium on Operating Systems Principles (SOSP)},\n11\t  year      = {2023},\n12\t}\n13\t\n14\t% Confirmed via: Semantic Scholar, arXiv:2201.11227, OpenReview\n15\t% Venue: ICLR 2022 (cite key corrected from synchromesh_neurips2022)\n16\t@inproceedings{synchromesh_iclr2022,\n17\t  title     = {Synchromesh: Reliable Code Generation from Pre-trained Language Models},\n18\t  author    = {Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares, Gustavo and Meek, Christopher and Gulwani, Sumit},\n19\t  booktitle = {International Conference on Learning Representations},\n20\t  year      = {2022},\n21\t  url       = {https://openreview.net/forum?id=KmtVD97J43e}\n22\t}\n23\t\n24\t% Confirmed via: NeurIPS 2023 proceedings, microsoft/monitors4codegen GitHub\n25\t@inproceedings{mgd_neurips2023,\n26\t  title     = {Monitor-Guided Decoding of Code {LMs} with Static Analysis of Repository Context},\n27\t  author    = {Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. and Rajamani, Sriram K.},\n28\t  booktitle = {Advances in Neural Information Processing Systems},\n29\t  volume    = {36},\n30\t  year      = {2023},\n31\t  url       = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/662b1774ba8845fc1fa3d1fc0177ceeb-Abstract-Conference.html}\n32\t}\n33\t\n34\t% Confirmed via: ACM DL doi:10.1145/3729274, arXiv:2504.09246, SRI Lab ETH\n35\t@article{pldi2025_type_constrained_codegen,\n36\t  title     = {Type-Constrained Code Generation with Language Models},\n37\t  author    = {M\\\"{u}ndler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn and Vechev, Martin},\n38\t  journal   = {Proceedings of the ACM on Programming Languages},\n39\t  volume    = {9},\n40\t  number    = {PLDI},\n41\t  year      = {2025},\n42\t  doi       = {10.1145/3729274},\n43\t  url       = {https://dl.acm.org/doi/10.1145/3729274}\n44\t}\n45\t\n46\t% Confirmed via: ACL Anthology W04-2401, scottyih.org\n47\t% WARNING: cite key suggests AAAI 2004, but actual venue is CoNLL 2004 at HLT-NAACL\n48\t@inproceedings{roth_yih_2004,\n49\t  title     = {A Linear Programming Formulation for Global Inference in Natural Language Tasks},\n50\t  author    = {Roth, Dan and Yih, Wen-tau},\n51\t  booktitle = {Proceedings of the Eighth Conference on Computational Natural Language Learning ({CoNLL}-2004) at {HLT}-{NAACL} 2004},\n52\t  pages     = {1--8},\n53\t  year      = {2004},\n54\t  address   = {Boston, Massachusetts, USA},\n55\t  url       = {https://aclanthology.org/W04-2401/}\n56\t}\n57\t\n58\t% Confirmed via: ACL Anthology 2023.findings-emnlp.425, zjunlp/AdaKGC GitHub\n59\t@inproceedings{adakgc_emnlp2023,\n60\t  title     = {Schema-adaptable Knowledge Graph Construction},\n61\t  author    = {Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang, Ningyu},\n62\t  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2023},\n63\t  pages     = {6408--6431},\n64\t  year      = {2023},\n65\t  url       = {https://aclanthology.org/2023.findings-emnlp.425/}\n66\t}\n67\t\n68\t% Confirmed via: ACL Anthology 2024.acl-long.475, arXiv:2403.07969\n69\t@inproceedings{knowcoder_acl2024,\n70\t  title     = {{KnowCoder}: Coding Structured Knowledge into {LLMs} for Universal Information Extraction},\n71\t  author    = {Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and Su, Miao and Guo, Yucan and Liu, Yantao and Li, Xiang and Hu, Zhilei and Bai, Long and Li, Wei and Liu, Yidan and Yang, Pan and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi},\n72\t  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n73\t  pages     = {8758--8779},\n74\t  year      = {2024},\n75\t  address   = {Bangkok, Thailand},\n76\t  url       = {https://aclanthology.org/2024.acl-long.475/}\n77\t}\n78\t\n79\t% Confirmed via: Oxford Academic Bioinformatics btae104, PubMed 38383067\n80\t@article{spires_2024,\n81\t  title     = {Structured Prompt Interrogation and Recursive Extraction of Semantics ({SPIRES}): A Method for Populating Knowledge Bases Using Zero-shot Learning},\n82\t  author    = {Caufield, J. Harry and Hegde, Harshad and Emonet, Vincent and Harris, Nomi L. and Joachimiak, Marcin P. and Matentzoglu, Nicolas and Kim, HyeongSik and Moxon, Sierra and Reese, Justin T. and Haendel, Melissa A. and Robinson, Peter N. and Mungall, Christopher J.},\n83\t  journal   = {Bioinformatics},\n84\t  volume    = {40},\n85\t  number    = {3},\n86\t  pages     = {btae104},\n87\t  year      = {2024},\n88\t  doi       = {10.1093/bioinformatics/btae104},\n89\t  url       = {https://academic.oup.com/bioinformatics/article/40/3/btae104/7612230}\n90\t}\n91\t\n92\t% Confirmed via: arXiv:2510.01409, Wiley Advanced Intelligent Systems doi:10.1002/aisy.202501381\n93\t@misc{ontologx_2025,\n94\t  title         = {{OntoLogX}: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models},\n95\t  author        = {Cotti, Luca and Drago, Idilio and Rula, Anisa and Bianchini, Devis and Cerutti, Federico},\n96\t  year          = {2025},\n97\t  eprint        = {2510.01409},\n98\t  archiveprefix = {arXiv},\n99\t  primaryclass  = {cs.AI},\n100\t  url           = {https://arxiv.org/abs/2510.01409}\n101\t}\n102\t\n103\t% Confirmed via: Springer LNCS 15370, arXiv:2411.15666, Lama-West GitHub\n104\t@inproceedings{ekaw2024_ontology_beam,\n105\t  title     = {Ontology-Constrained Generation of Domain-Specific Clinical Summaries},\n106\t  author    = {Mehenni, Gaya and Zouaq, Amal},\n107\t  booktitle = {Knowledge Engineering and Knowledge Management ({EKAW} 2024)},\n108\t  series    = {Lecture Notes in Computer Science},\n109\t  volume    = {15370},\n110\t  pages     = {382--398},\n111\t  year      = {2024},\n112\t  publisher = {Springer},\n113\t  doi       = {10.1007/978-3-031-77792-9_23}\n114\t}\n115\t\n116\t% ============================================================\n117\t% New entries added 2026-05-14 for §6 related work expansion\n118\t% ============================================================\n119\t\n120\t% Confirmed via: ACL Anthology 2021.emnlp-main.779, arXiv:2109.05093, GitHub ServiceNow/picard\n121\t@inproceedings{scholak2021picard,\n122\t  title     = {{PICARD}: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models},\n123\t  author    = {Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry},\n124\t  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},\n125\t  year      = {2021},\n126\t  url       = {https://aclanthology.org/2021.emnlp-main.779/}\n127\t}\n128\t\n129\t% Confirmed via: arXiv:2509.19057, ResearchGate, OpenReview gcG8dmAUNh\n130\t@article{olasunkanmi2025relate,\n131\t  title   = {{RELATE}: Relation Extraction in Biomedical Abstracts with {LLMs} and Ontology Constraints},\n132\t  author  = {Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, Harlin and Ahalt, Stanley},\n133\t  journal = {arXiv preprint arXiv:2509.19057},\n134\t  year    = {2025},\n135\t  url     = {https://arxiv.org/abs/2509.19057}\n136\t}\n137\t\n138\t% Confirmed via: arXiv:2602.03439, University of Cambridge / The World Avatar project\n139\t@article{zhou2026ontologytools,\n140\t  title   = {Ontology-to-tools compilation for executable semantic constraint enforcement in {LLM} agents},\n141\t  author  = {Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Angkanaporn, Thitikarn and Akroyd, Jethro and Mosbach, Sebastian and Kraft, Markus},\n142\t  journal = {arXiv preprint arXiv:2602.03439},\n143\t  year    = {2026},\n144\t  url     = {https://arxiv.org/abs/2602.03439}\n145\t}\n146\t\n147\t% Confirmed via: IOS Press ECAI 2020 FAIA vol.325, arXiv:1909.07755, GitHub lavis-nlp/spert\n148\t@inproceedings{eberts2020spert,\n149\t  title     = {Span-based Joint Entity and Relation Extraction with Transformer Pre-training},\n150\t  author    = {Eberts, Markus and Ulges, Adrian},\n151\t  booktitle = {Proceedings of the 24th European Conference on Artificial Intelligence ({ECAI} 2020)},\n152\t  series    = {Frontiers in Artificial Intelligence and Applications},\n153\t  volume    = {325},\n154\t  pages     = {2006--2013},\n155\t  year      = {2020},\n156\t  doi       = {10.3233/FAIA200321}\n157\t}\n158\t\n159\t% Confirmed via: ACL Anthology 2021.emnlp-main.17, arXiv:2108.12202\n160\t% NOTE: venue is EMNLP 2021 (NOT AAAI 2021)\n161\t@inproceedings{yan2021pfn,\n162\t  title     = {A Partition Filter Network for Joint Entity and Relation Extraction},\n163\t  author    = {Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu},\n164\t  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},\n165\t  pages     = {185--197},\n166\t  year      = {2021},\n167\t  url       = {https://aclanthology.org/2021.emnlp-main.17/}\n168\t}\n169\t\n170\t% Confirmed via: ACL Anthology 2021.naacl-main.5, GitHub princeton-nlp/PURE\n171\t@inproceedings{zhong2021frustratingly,\n172\t  title     = {A Frustratingly Easy Approach for Entity and Relation Extraction},\n173\t  author    = {Zhong, Zexuan and Chen, Danqi},\n174\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},\n175\t  pages     = {50--61},\n176\t  year      = {2021},\n177\t  address   = {Online},\n178\t  publisher = {Association for Computational Linguistics},\n179\t  url       = {https://aclanthology.org/2021.naacl-main.5}\n180\t}\n181\t\n182\t% Confirmed via: ACL Anthology 2022.acl-long.337, GitHub thunlp/PL-Marker\n183\t@inproceedings{ye2022packed,\n184\t  title     = {Packed Levitated Marker for Entity and Relation Extraction},\n185\t  author    = {Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong},\n186\t  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n187\t  pages     = {4904--4917},\n188\t  year      = {2022},\n189\t  address   = {Dublin, Ireland},\n190\t  publisher = {Association for Computational Linguistics},\n191\t  url       = {https://aclanthology.org/2022.acl-long.337}\n192\t}\n193\t\n194\t% Confirmed via: arXiv:2604.06066 (previously PENDING AUDIT — now verified)\n195\t@article{zhou2026snowballing,\n196\t  title   = {From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in {LLM} Reflection},\n197\t  author  = {Zhou, Hongxu},\n198\t  journal = {arXiv preprint arXiv:2604.06066},\n199\t  year    = {2026},\n200\t  url     = {https://arxiv.org/abs/2604.06066}\n201\t}\n202\t\n203\t% ============================================================\n204\t% Batch 1: Constrained decoding + IE foundations (10 entries)\n205\t% ============================================================\n206\t\n207\t% Confirmed via: arXiv 2411.15100, MLSys 2025 proceedings\n208\t@inproceedings{dong2025xgrammar,\n209\t  title     = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n210\t  author    = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n211\t  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},\n212\t  year      = {2025},\n213\t  url       = {https://arxiv.org/abs/2411.15100}\n214\t}\n215\t\n216\t% Confirmed via: arXiv 2307.09702\n217\t@article{willard2023outlines,\n218\t  title   = {Efficient Guided Generation for Large Language Models},\n219\t  author  = {Willard, Brandon T. and Louf, R{\\'e}mi},\n220\t  journal = {arXiv preprint arXiv:2307.09702},\n221\t  year    = {2023},\n222\t  url     = {https://arxiv.org/abs/2307.09702}\n223\t}\n224\t\n225\t% Confirmed via: ACM DL 10.1145/3591300, PLDI 2023\n226\t@inproceedings{beurer-kellner2023lmql,\n227\t  title     = {Prompting Is Programming: A Query Language for Large Language Models},\n228\t  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n229\t  booktitle = {Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)},\n230\t  year      = {2023},\n231\t  url       = {https://doi.org/10.1145/3591300}\n232\t}\n233\t\n234\t% Confirmed via: PMLR v235, ICML 2024\n235\t@inproceedings{beurer-kellner2024domino,\n236\t  title     = {Guiding {LLMs} The Right Way: Fast, Non-Invasive Constrained Generation},\n237\t  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n238\t  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n239\t  pages     = {3658--3673},\n240\t  year      = {2024},\n241\t  series    = {PMLR},\n242\t  volume    = {235},\n243\t  url       = {https://proceedings.mlr.press/v235/beurer-kellner24a.html}\n244\t}\n245\t\n246\t% Confirmed via: NeurIPS 2024 proceedings, OpenReview\n247\t@inproceedings{park2024grammar,\n248\t  title     = {Grammar-Aligned Decoding},\n249\t  author    = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},\n250\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n251\t  year      = {2024},\n252\t  url       = {https://arxiv.org/abs/2405.21047}\n253\t}\n254\t\n255\t% Confirmed via: OpenReview, ICLR 2021\n256\t@inproceedings{decao2021genre,\n257\t  title     = {Autoregressive Entity Retrieval},\n258\t  author    = {De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio},\n259\t  booktitle = {International Conference on Learning Representations (ICLR)},\n260\t  year      = {2021},\n261\t  url       = {https://openreview.net/forum?id=5k8F6UU39V}\n262\t}\n263\t\n264\t% Confirmed via: ACL Anthology 2022.naacl-main.342\n265\t@inproceedings{josifoski2022genie,\n266\t  title     = {{GenIE}: Generative Information Extraction},\n267\t  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n268\t  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n269\t  pages     = {4626--4643},\n270\t  year      = {2022},\n271\t  url       = {https://aclanthology.org/2022.naacl-main.342/}\n272\t}\n273\t\n274\t% Confirmed via: ACL Anthology 2023.emnlp-main.674\n275\t@inproceedings{geng2023gcd,\n276\t  title     = {Grammar-Constrained Decoding for Structured {NLP} Tasks without Finetuning},\n277\t  author    = {Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert},\n278\t  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n279\t  year      = {2023},\n280\t  url       = {https://aclanthology.org/2023.emnlp-main.674/}\n281\t}\n282\t\n283\t% Confirmed via: ACL Anthology 2021.naacl-main.339\n284\t@inproceedings{lu2021neurologic,\n285\t  title     = {{NeuroLogic} Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints},\n286\t  author    = {Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},\n287\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n288\t  pages     = {4288--4299},\n289\t  year      = {2021},\n290\t  url       = {https://aclanthology.org/2021.naacl-main.339/}\n291\t}\n292\t\n293\t% Confirmed via: ACL Anthology 2022.acl-long.395\n294\t@inproceedings{lu2022uie,\n295\t  title     = {Unified Structure Generation for Universal Information Extraction},\n296\t  author    = {Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua},\n297\t  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n298\t  pages     = {5755--5772},\n299\t  year      = {2022},\n300\t  url       = {https://aclanthology.org/2022.acl-long.395/}\n301\t}\n302\t\n303\t% ============================================================\n304\t% Batch 2: 10 entries added 2026-05-14\n305\t% ============================================================\n306\t\n307\t% Confirmed via: ICLR 2024 proceedings, OpenReview Y3wpuxd7u9, arXiv:2310.03668\n308\t@inproceedings{sainz2024gollie,\n309\t  title     = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling},\n310\t  author    = {Sainz, Oscar and Garc{\\'\\i}a-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacalle, Oier and Rigau, German and Agirre, Eneko},\n311\t  booktitle = {The Twelfth International Conference on Learning Representations},\n312\t  year      = {2024},\n313\t  url       = {https://openreview.net/forum?id=Y3wpuxd7u9}\n314\t}\n315\t\n316\t% Confirmed via: ACL Anthology 2023.acl-long.855, arXiv:2305.05711\n317\t@inproceedings{li2023codeie,\n318\t  title     = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},\n319\t  author    = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},\n320\t  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n321\t  pages     = {15339--15353},\n322\t  year      = {2023},\n323\t  address   = {Toronto, Canada},\n324\t  url       = {https://aclanthology.org/2023.acl-long.855/}\n325\t}\n326\t\n327\t% Confirmed via: ACL Anthology 2024.emnlp-main.419, arXiv:2405.05008, GitHub THU-KEG/ADELIE\n328\t@inproceedings{qi2024adelie,\n329\t  title     = {{ADELIE}: Aligning Large Language Models on Information Extraction},\n330\t  author    = {Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juanzi},\n331\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n332\t  year      = {2024},\n333\t  address   = {Miami, Florida, USA},\n334\t  url       = {https://aclanthology.org/2024.emnlp-main.419/}\n335\t}\n336\t\n337\t% Confirmed via: arXiv:2404.12493, GitHub urchade/EnriCo\n338\t% NOTE: arXiv preprint; no conference publication found\n339\t@article{zaratiana2024enrico,\n340\t  title   = {{EnriCo}: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction},\n341\t  author  = {Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charnois, Thierry},\n342\t  journal = {arXiv preprint arXiv:2404.12493},\n343\t  year    = {2024},\n344\t  url     = {https://arxiv.org/abs/2404.12493}\n345\t}\n346\t\n347\t% Confirmed via: arXiv:2509.04696, Apple ML Research machinelearning.apple.com/research/odke\n348\t% NOTE: cite key uses \"odke\"; actual paper title is \"ODKE+\"\n349\t@article{khorshidi2025odke,\n350\t  title   = {{ODKE+}: Ontology-Guided Open-Domain Knowledge Extraction with {LLMs}},\n351\t  author  = {Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and Govind, Yash and Jang, Hyun and Kasgari, Ali and McClimans, Alexis and Soliman, Mohamed and Konda, Vishnu and Fakhry, Ahmed and Qi, Xiaoguang},\n352\t  journal = {arXiv preprint arXiv:2509.04696},\n353\t  year    = {2025},\n354\t  url     = {https://arxiv.org/abs/2509.04696}\n355\t}\n356\t\n357\t% Confirmed via: ACL Anthology 2023.findings-eacl.95\n358\t@inproceedings{upadhyay2023openie,\n359\t  title     = {Open Information Extraction with Entity Focused Constraints},\n360\t  author    = {Upadhyay, Prajna and Balalau, Oana and Manolescu, Ioana},\n361\t  booktitle = {Findings of the Association for Computational Linguistics: {EACL} 2023},\n362\t  year      = {2023},\n363\t  url       = {https://aclanthology.org/2023.findings-eacl.95/}\n364\t}\n365\t\n366\t% Confirmed via: ACL Anthology 2025.genaik-1.10, GenAIK Workshop at COLING 2025\n367\t@inproceedings{regino2025kgcurator,\n368\t  title     = {Can {LLMs} be Knowledge Graph Curators for Validating Triple Insertions?},\n369\t  author    = {Regino, Andr{\\'e} Gomes and dos Reis, Julio Cesar},\n370\t  booktitle = {Proceedings of the Workshop on Generative {AI} and Knowledge Graphs ({GenAIK}) at {COLING} 2025},\n371\t  pages     = {87--99},\n372\t  year      = {2025},\n373\t  address   = {Abu Dhabi, UAE},\n374\t  url       = {https://aclanthology.org/2025.genaik-1.10/}\n375\t}\n376\t\n377\t% Confirmed via: ACL Anthology 2024.emnlp-industry.91, arXiv:2408.02442\n378\t@inproceedings{tam2024letmespeak,\n379\t  title     = {Let Me Speak Freely? {A} Study on the Impact of Format Restrictions on Performance of Large Language Models},\n380\t  author    = {Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hung-yi and Chen, Yun-Nung},\n381\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track},\n382\t  pages     = {1218--1236},\n383\t  year      = {2024},\n384\t  address   = {Miami, Florida, US},\n385\t  url       = {https://aclanthology.org/2024.emnlp-industry.91/}\n386\t}\n387\t\n388\t% Confirmed via: PMLR v267/banerjee25a, ICML 2025, arXiv:2502.09061\n389\t@inproceedings{banerjee2025crane,\n390\t  title     = {{CRANE}: Reasoning with Constrained {LLM} Generation},\n391\t  author    = {Banerjee, Debangshu and Suresh, Tarun and Ugare, Shubham and Misailovic, Sasa and Singh, Gagandeep},\n392\t  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n393\t  pages     = {2836--2857},\n394\t  year      = {2025},\n395\t  url       = {https://proceedings.mlr.press/v267/banerjee25a.html}\n396\t}\n397\t\n398\t% Confirmed via: ACL Anthology 2025.ranlp-1.124\n399\t@inproceedings{schall2025hiddencost,\n400\t  title     = {The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance},\n401\t  author    = {Schall, Maximilian and de Melo, Gerard},\n402\t  booktitle = {Proceedings of the 15th International Conference on Recent Advances in Natural Language Processing ({RANLP} 2025)},\n403\t  year      = {2025},\n404\t  address   = {Varna, Bulgaria},\n405\t  url       = {https://aclanthology.org/2025.ranlp-1.124/}\n406\t}\n407\t\n408\t% ============================================================\n409\t% D015 reviewer-requested references (5 entries)\n410\t% ============================================================\n411\t\n412\t% Confirmed via: ACL Anthology 2021.findings-emnlp.204, GitHub Babelscape/rebel\n413\t@inproceedings{cabot2021rebel,\n414\t  title     = {{REBEL}: Relation Extraction By End-to-end Language Generation},\n415\t  author    = {Huguet Cabot, Pere-Llu{\\'\\i}s and Navigli, Roberto},\n416\t  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2021},\n417\t  pages     = {2370--2381},\n418\t  year      = {2021},\n419\t  url       = {https://aclanthology.org/2021.findings-emnlp.204/}\n420\t}\n421\t\n422\t% ============================================================\n423\t% Batch 3: New entries added 2026-05-16 (3 entries, Director-requested)\n424\t% ============================================================\n425\t\n426\t% Confirmed via: arXiv:2403.01632, OpenReview HiUZtgAPoH\n427\t% FIX: venue is TMLR (not ICML 2024)\n428\t@article{ugare2024syncode,\n429\t  title     = {{SynCode}: {LLM} Generation with Grammar Augmentation},\n430\t  author    = {Ugare, Shubham and Suresh, Tarun and Kang, Hangoo and Misailovic, Sasa and Singh, Gagandeep},\n431\t  journal   = {Transactions on Machine Learning Research},\n432\t  year      = {2024},\n433\t  url       = {https://openreview.net/forum?id=HiUZtgAPoH}\n434\t}\n435\t\n436\t% Confirmed via: OpenReview ac93gRzxxV, ICLR 2025 poster page, arXiv:2410.07295\n437\t% FIX: replaced wrong author Banerjee with correct author Gumaste\n438\t@inproceedings{ugare2025itergen,\n439\t  title     = {{IterGen}: Iterative Semantic-aware Structured {LLM} Generation with Backtracking},\n440\t  author    = {Ugare, Shubham and Gumaste, Rohan and Suresh, Tarun and Singh, Gagandeep and Misailovic, Sasa},\n441\t  booktitle = {The Thirteenth International Conference on Learning Representations},\n442\t  year      = {2025},\n443\t  url       = {https://openreview.net/forum?id=ac93gRzxxV}\n444\t}\n445\t\n446\t% Confirmed via: ACL Anthology 2025.emnlp-main.926, arXiv:2506.14901\n447\t% FIX: removed fabricated authors Geng/Josifoski (they co-authored geng2023gcd, not this paper)\n448\t@inproceedings{boostcd2025,\n449\t  title     = {Combining Constrained and Unconstrained Decoding via Boosting: {BoostCD} and Its Application to Information Extraction},\n450\t  author    = {Sakota, Marija and West, Robert},\n451\t  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n452\t  year      = {2025},\n453\t  url       = {https://aclanthology.org/2025.emnlp-main.926/}\n454\t}\n455\t\n456\t% ============================================================\n457\t% Dataset & model references (5 entries)\n458\t% ============================================================\n459\t\n460\t% Confirmed via: ACL Anthology D18-1360, arXiv:1808.09602\n461\t@inproceedings{luan2018scierc,\n462\t  title     = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n463\t  author    = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n464\t  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n465\t  pages     = {3219--3232},\n466\t  year      = {2018},\n467\t  address   = {Brussels, Belgium},\n468\t  url       = {https://aclanthology.org/D18-1360/}\n469\t}\n470\t\n471\t% Confirmed via: ACL Anthology P19-1074, arXiv:1906.06127\n472\t@inproceedings{yao2019docred,\n473\t  title     = {{DocRED}: A Large-Scale Document-Level Relation Extraction Dataset},\n474\t  author    = {Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong},\n475\t  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n476\t  pages     = {764--777},\n477\t  year      = {2019},\n478\t  address   = {Florence, Italy},\n479\t  url       = {https://aclanthology.org/P19-1074/}\n480\t}\n481\t\n482\t% Confirmed via: arXiv:2302.10205, Semantic Scholar\n483\t@article{wei2023zeroshot,\n484\t  title   = {{ChatIE}: Zero-Shot Information Extraction via Chatting with {ChatGPT}},\n485\t  author  = {Wei, Xiang and Cui, Xingyu and Cheng, Ning and Wang, Xiaobin and Zhang, Xin and Huang, Shen and Xie, Pengjun and Xu, Jinan and Chen, Yufeng and Zhang, Meishan and Jiang, Yong and Han, Wenjuan},\n486\t  journal = {arXiv preprint arXiv:2302.10205},\n487\t  year    = {2023},\n488\t  url     = {https://arxiv.org/abs/2302.10205}\n489\t}\n490\t\n491\t% Confirmed via: arXiv:2505.09388, Hugging Face model cards\n492\t@article{qwen2025qwen3,\n493\t  title   = {Qwen3 Technical Report},\n494\t  author  = {{Qwen Team}},\n495\t  journal = {arXiv preprint arXiv:2505.09388},\n496\t  year    = {2025},\n497\t  url     = {https://arxiv.org/abs/2505.09388}\n498\t}\n499\t\n500\t% Confirmed via: NeurIPS 2024 proceedings, arXiv:2312.07104\n501\t@inproceedings{zheng2024sglang,\n502\t  title     = {{SGLang}: Efficient Execution of Structured Language Model Programs},\n503\t  author    = {Zheng, Lianmin and Yin, Liangsheng and Xie, Zhiqiang and Sun, Chuyue and Huang, Jeff and Yu, Cody Hao and Cao, Shiyi and Kozyrakis, Christos and Stoica, Ion and Gonzalez, Joseph E. and Barrett, Clark and Sheng, Ying},\n504\t  booktitle = {Advances in Neural Information Processing Systems},\n505\t  volume    = {37},\n506\t  year      = {2024},\n507\t  url       = {https://arxiv.org/abs/2312.07104}\n508\t}\n509\t\n510\t% Confirmed via: ACL Anthology 2021.naacl-main.69\n511\t@inproceedings{li2021document,\n512\t  title     = {Document-Level Event Argument Extraction by Conditional Generation},\n513\t  author    = {Li, Sha and Ji, Heng and Han, Jiawei},\n514\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n515\t  pages     = {894--908},\n516\t  year      = {2021},\n517\t  url       = {https://aclanthology.org/2021.naacl-main.69/}\n518\t}\n519\t\n520\t% ============================================================\n521\t% New citations added 2026-05-18 (literature freshness check)\n522\t% ============================================================\n523\t\n524\t% grammar_aligned_2024 removed: duplicate of park2024grammar (same paper)\n525\t\n526\t@article{formattax2026,\n527\t    author    = {Ivan Yee Lee and Loris D'Antoni and Taylor Berg-Kirkpatrick},\n528\t    title     = {The Format Tax},\n529\t    journal   = {arXiv preprint arXiv:2604.03616},\n530\t    year      = {2026},\n531\t    url       = {https://arxiv.org/abs/2604.03616},\n532\t}\n533\t\n534\t@article{dccd2026,\n535\t    author    = {Avinash Reddy and Thayne T. Walker and James S. Ide and Amrit Singh Bedi},\n536\t    title     = {Draft-Conditioned Constrained Decoding for Structured Generation in {LLMs}},\n537\t    journal   = {arXiv preprint arXiv:2603.03305},\n538\t    year      = {2026},\n539\t    url       = {https://arxiv.org/abs/2603.03305},\n540\t}\n541\t\n542\t% Confirmed via: arXiv:2601.07525\n543\t@article{nguyen2026thinking,\n544\t    author    = {Nguyen, Ngoc Trinh Hung and Silva, Alonso and Zumot, Laith and Tupikina, Liubov and Aghasaryan, Armen and Alam, Mehwish},\n545\t    title     = {Thinking Before Constraining: A Unified Decoding Framework for Large Language Models},\n546\t    journal   = {arXiv preprint arXiv:2601.07525},\n547\t    year      = {2026},\n548\t    url       = {https://arxiv.org/abs/2601.07525},\n549\t}\n550\t\n551\t@inproceedings{guidex2025,\n552\t    author    = {Neil De La Fuente and Oscar Sainz and Iker Garc{\\'\\i}a-Ferrero and Eneko Agirre},\n553\t    title     = {{GUIDEX}: Guided Synthetic Data Generation for Zero-Shot Information Extraction},\n554\t    booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n555\t    year      = {2025},\n556\t    publisher = {Association for Computational Linguistics},\n557\t    url       = {https://aclanthology.org/2025.findings-acl.1245/},\n558\t}\n559\t\n560\t@article{jsonschemabench2025,\n561\t    author    = {Saibo Geng and Hudson Cooper and Micha{\\l} Moskal and Samuel Jenkins and Julian Berman and Nathan Ranchin and Robert West and Eric Horvitz and Harsha Nori},\n562\t    title     = {{JSONSchemaBench}: A Rigorous Benchmark of Structured Outputs for Language Models},\n563\t    journal   = {arXiv preprint arXiv:2501.10868},\n564\t    year      = {2025},\n565\t    url       = {https://arxiv.org/abs/2501.10868},\n566\t}\n567\t\n568\t% ============================================================\n569\t% Round 9 SF6 references (5 entries)\n570\t% ============================================================\n571\t\n572\t% Confirmed via: arXiv:2304.08085\n573\t@article{wang2023instructuie,\n574\t  title     = {{InstructUIE}: Multi-task Instruction Tuning for Unified Information Extraction},\n575\t  author    = {Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang, Yuansen and Zheng, Rui and Ye, Junjie and Zhang, Qi and Gui, Tao and Kang, Jihua and Yang, Jingsheng and Li, Siyuan and Du, Chunsai},\n576\t  journal   = {arXiv preprint arXiv:2304.08085},\n577\t  year      = {2023},\n578\t  url       = {https://arxiv.org/abs/2304.08085}\n579\t}\n580\t\n581\t% Confirmed via: ACL Anthology 2022.findings-acl.67\n582\t@inproceedings{wang2022deepstruct,\n583\t  title     = {{DeepStruct}: Pretraining of Language Models for Structure Prediction},\n584\t  author    = {Wang, Chenguang and Liu, Xiao and Chen, Zui and Hong, Haoyun and Tang, Jie and Song, Dawn},\n585\t  booktitle = {Findings of the Association for Computational Linguistics: ACL 2022},\n586\t  pages     = {803--823},\n587\t  year      = {2022},\n588\t  doi       = {10.18653/v1/2022.findings-acl.67},\n589\t  url       = {https://aclanthology.org/2022.findings-acl.67}\n590\t}\n591\t\n592\t% Confirmed via: OpenReview r65xfUb76p, ICLR 2024\n593\t@inproceedings{zhou2024universalner,\n594\t  title     = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n595\t  author    = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n596\t  booktitle = {The Twelfth International Conference on Learning Representations},\n597\t  year      = {2024},\n598\t  url       = {https://openreview.net/forum?id=r65xfUb76p}\n599\t}\n600\t\n601\t% Confirmed via: AAAI 2023 proceedings, doi:10.1609/aaai.v37i11.26563\n602\t@inproceedings{lou2023usm,\n603\t  title     = {Universal Information Extraction as Unified Semantic Matching},\n604\t  author    = {Lou, Jie and Lu, Yaojie and Dai, Dai and Jia, Wei and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua},\n605\t  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n606\t  volume    = {37},\n607\t  number    = {11},\n608\t  pages     = {13318--13326},\n609\t  year      = {2023},\n610\t  doi       = {10.1609/aaai.v37i11.26563},\n611\t  url       = {https://ojs.aaai.org/index.php/AAAI/article/view/26563}\n612\t}\n613\t\n614\t% Confirmed via: ACL Anthology 2023.acl-long.868\n615\t@inproceedings{wadhwa2023revisiting,\n616\t  title     = {Revisiting Relation Extraction in the era of Large Language Models},\n617\t  author    = {Wadhwa, Somin and Amir, Silvio and Wallace, Byron},\n618\t  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n619\t  pages     = {15566--15589},\n620\t  year      = {2023},\n621\t  doi       = {10.18653/v1/2023.acl-long.868},\n622\t  url       = {https://aclanthology.org/2023.acl-long.868}\n623\t}\n624\t\n625\t% ============================================================\n626\t% R12 reviewer-requested references\n627\t% ============================================================\n628\t\n629\t% ============================================================\n630\t% R13 SF5 references (F1 anchoring)\n631\t% ============================================================\n632\t\n633\t\n634\t% Confirmed via: OpenReview US-TP-xnXI, arXiv:2101.05779, amazon-science/tanl GitHub\n635\t@inproceedings{paolini2021tanl,\n636\t  title     = {Structured Prediction as Translation between Augmented Natural Languages},\n637\t  author    = {Paolini, Giovanni and Athiwaratkun, Ben and Krone, Jason and Ma, Jie and Achille, Alessandro and Anubhai, Rishita and Nogueira dos Santos, C{\\'\\i}cero and Xiang, Bing and Soatto, Stefano},\n638\t  booktitle = {International Conference on Learning Representations},\n639\t  year      = {2021},\n640\t  url       = {https://openreview.net/forum?id=US-TP-xnXI}\n641\t}\n642\t\n643\t% ============================================================\n644\t% R12 reviewer-requested references\n645\t% ============================================================\n646\t\n647\t% Confirmed via: NeurIPS 2022 proceedings, arXiv:2304.06248\n648\t@inproceedings{fei2022lasuie,\n649\t  title     = {{LasUIE}: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model},\n650\t  author    = {Fei, Hao and Wu, Shengqiong and Li, Jingye and Li, Bobo and Li, Fei and Qin, Libo and Zhang, Meishan and Zhang, Min and Chua, Tat-Seng},\n651\t  booktitle = {Advances in Neural Information Processing Systems},\n652\t  volume    = {35},\n653\t  year      = {2022},\n654\t  url       = {https://arxiv.org/abs/2304.06248}\n655\t}\n656\t\n657\t% Confirmed via: ACL Anthology, EMNLP-CoNLL 2010 (originally 2009 workshop)\n658\t@inproceedings{riedel2010modeling,\n659\t  title     = {Modeling Relations and Their Mentions without Labeled Text},\n660\t  author    = {Riedel, Sebastian and Yao, Limin and McCallum, Andrew},\n661\t  booktitle = {Joint European Conference on Machine Learning and Knowledge Discovery in Databases},\n662\t  pages     = {148--163},\n663\t  year      = {2010},\n664\t  publisher = {Springer}\n665\t}\n666\t\n667\t% Confirmed via: CVPR 2017 proceedings\n668\t@inproceedings{anderson2017guided,\n669\t  title     = {Guided Open Vocabulary Image Captioning with Constrained Beam Search},\n670\t  author    = {Anderson, Peter and Fernando, Basura and Johnson, Mark and Gould, Stephen},\n671\t  booktitle = {Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing},\n672\t  pages     = {936--945},\n673\t  year      = {2017},\n674\t  publisher = {Association for Computational Linguistics}\n675\t}\n676\t\n677\t% R21 additions\n678\t\n679\t@inproceedings{lu2021text2event,\n680\t  title     = {{Text2Event}: Controllable Sequence-to-Structure Generation for End-to-end Event Extraction},\n681\t  author    = {Lu, Yaojie and Lin, Hongyu and Xu, Jin and Han, Xianpei and Tang, Jialong and Li, Annan and Sun, Le and Liao, Meng and Chen, Shaobo},\n682\t  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},\n683\t  pages     = {2722--2735},\n684\t  year      = {2021},\n685\t  publisher = {Association for Computational Linguistics}\n686\t}\n687\t\n688\t@inproceedings{huang2024lookahead,\n689\t  title     = {Lookahead Planning for Improved Constrained Decoding},\n690\t  author    = {Huang, Hanwen and Chen, Niansu and de Melo, Gerard},\n691\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n692\t  year      = {2024},\n693\t  publisher = {Association for Computational Linguistics}\n694\t}\n695\t\n696\t\n697\t\n698\t% R24 additions\n699\t\n700\t@article{luo2025kgtrie,\n701\t  title     = {{KG-Trie}: Knowledge Graph Enhanced Constrained Decoding for Faithful Knowledge-to-Text Generation},\n702\t  author    = {Luo, Yifan and others},\n703\t  journal   = {arXiv preprint arXiv:2410.13080},\n704\t  year      = {2025},\n705\t  note      = {ICML 2025}\n706\t}\n707\t\n708\t@article{vukovic2024dialogue,\n709\t  title     = {Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding},\n710\t  author    = {Vukovic, Renato and others},\n711\t  journal   = {arXiv preprint arXiv:2408.02361},\n712\t  year      = {2024}\n713\t}\n714\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd45e269-bfae-4614-8bc1-fe4f29f809ab",
+            "isSidechain": true,
+            "promptId": "f90c706a-5752-4cb1-a803-d1c2313c7907",
+            "agentId": "a579de2625c7cd6d9",
+            "type": "user",
+            "uuid": "1830ac80-22bc-4603-966e-820fd858129c",
+            "sourceToolAssistantUUID": "dd45e269-bfae-4614-8bc1-fe4f29f809ab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T13:08:50.751Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for references to \"microsoft guidance\" to see if there's a Guidance entry:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1830ac80-22bc-4603-966e-820fd858129c",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ52BqNP3HfKtK4oMXP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c7e0b28c-fd14-4a96-a1ed-85b09db5cc46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AKpaJPEn8GEL1MHCu5r2sx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 14206,
+                "cache_read_input_tokens": 40758,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14206,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T13:08:52.178Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019LMtx1zpv3vkdrheo1dvZy",
+              "name": "Grep",
+              "input": {
+                "pattern": "guidance|microsoft.*guidance|lmql|outlines",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7e0b28c-fd14-4a96-a1ed-85b09db5cc46",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ52BqNP3HfKtK4oMXP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fe6412f3-0556-4862-b877-5a552e5d7790",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AKpaJPEn8GEL1MHCu5r2sx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 14206,
+                "cache_read_input_tokens": 40758,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14206
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 40758,
+                    "cache_creation_input_tokens": 14206,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14206,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T13:08:52.194Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019LMtx1zpv3vkdrheo1dvZy",
+              "type": "tool_result",
+              "content": "217:@article{willard2023outlines,\n226:@inproceedings{beurer-kellner2023lmql,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe6412f3-0556-4862-b877-5a552e5d7790",
+            "isSidechain": true,
+            "promptId": "f90c706a-5752-4cb1-a803-d1c2313c7907",
+            "agentId": "a579de2625c7cd6d9",
+            "type": "user",
+            "uuid": "f24f0645-688e-45ab-acdb-ab37dbdef22f",
+            "sourceToolAssistantUUID": "fe6412f3-0556-4862-b877-5a552e5d7790",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T13:08:53.469Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for DyGIE++ specifically:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f24f0645-688e-45ab-acdb-ab37dbdef22f",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ5Es5g6BUQrHzCofJx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0b2107d3-bd08-4be8-94c1-d91af0756186",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015bvQdff5PvWvfQuHTzU3Cc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 54964,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 211,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T13:08:53.902Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K54A9yKeRx8Teck4kD6fEP",
+              "name": "Grep",
+              "input": {
+                "pattern": "dygie|wadden2019|DyGIE",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b2107d3-bd08-4be8-94c1-d91af0756186",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ5Es5g6BUQrHzCofJx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "60364889-2b58-4937-963b-1f44c91ffde3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015bvQdff5PvWvfQuHTzU3Cc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 54964,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 211
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 54964,
+                    "cache_creation_input_tokens": 211,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 211,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T13:08:53.912Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K54A9yKeRx8Teck4kD6fEP",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "60364889-2b58-4937-963b-1f44c91ffde3",
+            "isSidechain": true,
+            "promptId": "f90c706a-5752-4cb1-a803-d1c2313c7907",
+            "agentId": "a579de2625c7cd6d9",
+            "type": "user",
+            "uuid": "80552cf4-e7b9-4a4a-a193-5590b94586f8",
+            "sourceToolAssistantUUID": "60364889-2b58-4937-963b-1f44c91ffde3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T13:09:00.773Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my thorough search of the two .bib files in the paper directory, here are my findings:\n\n**PRESENT REFERENCES:**\n\n1. **PL-Marker** - PRESENT\n   - Bib key: `ye2022packed`\n   - Title: \"Packed Levitated Marker for Entity and Relation Extraction\"\n   - Found at line 183-192\n\n2. **PURE** - PRESENT\n   - Bib key: `zhong2021frustratingly`\n   - Title: \"A Frustratingly Easy Approach for Entity and Relation Extraction\"\n   - Found at line 171-180\n\n3. **DeepStruct** - PRESENT\n   - Bib key: `wang2022deepstruct`\n   - Title: \"DeepStruct: Pretraining of Language Models for Structure Prediction\"\n   - Found at line 582-590\n\n4. **wadhwa2023revisiting** - PRESENT\n   - Bib key: `wadhwa2023revisiting`\n   - Title: \"Revisiting Relation Extraction in the era of Large Language Models\"\n   - Found at line 615-623\n\n**MISSING REFERENCES:**\n\n1. **DyGIE++** (wadden2019 or dygie) - NOT FOUND\n   - No entries matching \"dygie\", \"wadden2019\", or similar variants\n\n2. **Guidance (microsoft guidance)** - NOT FOUND (with caveat)\n   - While there is no explicit \"Guidance\" entry by Microsoft, the file contains related constrained decoding libraries:\n     - `willard2023outlines` (line 217-223) - \"Efficient Guided Generation for Large Language Models\" \n     - `beurer-kellner2023lmql` (line 226-232) - \"Prompting Is Programming: A Query Language for Large Language Models\"\n   - However, there is NO specific Microsoft Guidance/guidance library entry\n\n**Summary:** 4 out of 6 target references are present (PL-Marker, PURE, DeepStruct, and wadhwa2023revisiting). Missing are DyGIE++ and the Microsoft Guidance library entry."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "80552cf4-e7b9-4a4a-a193-5590b94586f8",
+            "isSidechain": true,
+            "agentId": "a579de2625c7cd6d9",
+            "requestId": "req_011CbKZ5NQWMCiAUSUWhwAPX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "77ca736a-e777-4505-b300-fdc930e67af7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "65a387df-0d96-4ba9-b6d6-f7bd8f2d0f36",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "purring-conjuring-cocke",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DNoeXygixKpyw9zZPkfsVj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 174,
+                "cache_read_input_tokens": 55175,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-home-ubuntu-agent-ml-research-idea-gen-0509-6-projects-schema-semantic-cons-copy-2.md"
+}
