@@ -243,6 +243,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 548
+        },
+        "irt_equated_bench_regen": {
+          "status": "uploaded",
+          "project": "irt_equated_bench_regen",
+          "collection": "irt_equated_bench_regen--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "c7b48c7f7b48407bcc42e8b6762e0646c2b3bd46d3aee77468be2020b72a40c2",
+          "indexed_members": 534,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 529
         }
       },
       "status": "in_progress",

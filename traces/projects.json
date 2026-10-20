@@ -840,6 +840,19 @@
       }
     },
     {
+      "project": "irt_equated_bench_regen--export-20260712",
+      "title": "Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models (July export snapshot)",
+      "catalog": "../research-snapshots/irt_equated_bench_regen/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 529,
+        "messages": 91230,
+        "user_turns": 4020,
+        "tool_calls": 23972,
+        "unparsed_lines": 0,
+        "conversation": 529
+      }
+    },
+    {
       "project": "irt_personfit_contam",
       "title": "What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?",
       "catalog": "../paper-assets/irt_personfit_contam/05-generation-trace/catalog.json",
