@@ -712,6 +712,29 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39376444897"
+    },
+    "nlp_variance_gtheory/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 921619936,
+        "etag": "\"dc4ad22e63d17cd24efbf5338fd5e8b3-110\"",
+        "modified": "2026-05-31T17:32:34+00:00"
+      },
+      "archive_sha256": "fe75a74ae7b52053f7e5dd63ed07e07aad0f922691aa4cca0c2e8787bca06b81",
+      "projects": [
+        "nlp_variance_gtheory"
+      ],
+      "counts": [
+        {
+          "project": "nlp_variance_gtheory",
+          "title": "Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models",
+          "paper_pdf": "paper.pdf",
+          "code_count": 396,
+          "data_count": 519,
+          "trace_count": 815
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39380619280"
     }
   }
 }

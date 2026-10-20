@@ -502,6 +502,22 @@
       }
     },
     {
+      "project": "nlp_variance_gtheory",
+      "title": "Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models",
+      "catalog": "../paper-assets/nlp_variance_gtheory/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 815,
+        "messages": 81448,
+        "user_turns": 2329,
+        "tool_calls": 32435,
+        "unparsed_lines": 340,
+        "result": 335,
+        "worker": 343,
+        "conversation": 128,
+        "history": 9
+      }
+    },
+    {
       "project": "prod42",
       "title": "prod42",
       "catalog": "../paper-assets/prod42/05-generation-trace/catalog.json",

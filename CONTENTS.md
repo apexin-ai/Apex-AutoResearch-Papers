@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **29 projects with manuscript PDFs** and **18 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **30 projects with manuscript PDFs** and **18 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -28,6 +28,7 @@ This catalogue covers **29 projects with manuscript PDFs** and **18 additional p
 | [irt_equated_bench_regen](paper-assets/irt_equated_bench_regen/README.md) | [PDF](paper-assets/irt_equated_bench_regen/01-manuscript/paper.pdf) | 92 | 348 | 380 | 53,711 |
 | [irt_personfit_contam](paper-assets/irt_personfit_contam/README.md) | [PDF](paper-assets/irt_personfit_contam/01-manuscript/paper.pdf) | 289 | 908 | 726 | 70,309 |
 | [meta_brain_lora_routing](paper-assets/meta_brain_lora_routing/README.md) | [PDF](paper-assets/meta_brain_lora_routing/01-manuscript/paper.pdf) | 137 | 203 | 556 | 55,779 |
+| [nlp_variance_gtheory](paper-assets/nlp_variance_gtheory/README.md) | [PDF](paper-assets/nlp_variance_gtheory/01-manuscript/paper.pdf) | 396 | 519 | 815 | 81,448 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |
