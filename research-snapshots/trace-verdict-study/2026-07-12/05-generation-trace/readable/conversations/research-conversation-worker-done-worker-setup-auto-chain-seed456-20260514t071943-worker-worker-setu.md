@@ -1,0 +1,4340 @@
+# Research conversation: [系统通知 — worker_done:worker_setup_auto_chain_seed456_20260514T071943]: Worker worker_setup_auto_chain_seed456_20260514T07
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 1
+- **Tool calls:** 23
+- **Original source:** `logs/chats/exported-trajectories/account-1/f05ff0ab-778e-47e6-9b0f-524c93b2b5b0.jsonl`
+- **Structured JSON:** [`3cbdfcb519733c379e67.json`](../../sessions/3c/3cbdfcb519733c379e67.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T07:21:26.589Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T07:21:26.589Z",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "content": "[系统通知 — worker_done:worker_setup_auto_chain_seed456_20260514T071943]:\nWorker worker_setup_auto_chain_seed456_20260514T071943 已完成（status=done），请审查 Agent 的处理结果。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T07:21:26.594Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T07:21:26.594Z",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+## Round 1
+
+75 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T07:21:26.634Z_
+
+[系统通知 — worker_done:worker_setup_auto_chain_seed456_20260514T071943]:
+Worker worker_setup_auto_chain_seed456_20260514T071943 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "610c5217-a731-4491-ac1d-7b9b15892ccd",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T07:21:26.634Z_
+
+```json
+{
+  "parentUuid": "610c5217-a731-4491-ac1d-7b9b15892ccd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1a330661-e866-4fd8-b5ba-2b64799be87e",
+  "timestamp": "2026-05-14T07:21:26.634Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T07:21:26.634Z_
+
+```json
+{
+  "parentUuid": "1a330661-e866-4fd8-b5ba-2b64799be87e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "4225a3c6-cf8c-4693-9954-428c6e67eff2",
+  "timestamp": "2026-05-14T07:21:26.634Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T07:21:26.634Z_
+
+```json
+{
+  "parentUuid": "4225a3c6-cf8c-4693-9954-428c6e67eff2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "3f59b52b-3c54-4249-a950-8a438023ff64",
+  "timestamp": "2026-05-14T07:21:26.634Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker setup and auto chain completion",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T07:21:30.055Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Worker完成通知，我需要审查这个worker的处理结果。让我先读取registry和相关信息来了解实验状态。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f59b52b-3c54-4249-a950-8a438023ff64",
+  "isSidechain": false,
+  "requestId": "req_011Cb24JPLjnH1GPvitTkuvc",
+  "type": "assistant",
+  "uuid": "0702f2ce-c1ef-4d6b-95c5-a1b069f82266",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdSq3igbv438hFZCysWgCZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18838,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18838,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 265,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 18838,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18838
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T07:21:31.057Z_
+
+收到 worker 完成通知，开始审查。先拉取 registry 和项目状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0702f2ce-c1ef-4d6b-95c5-a1b069f82266",
+  "isSidechain": false,
+  "requestId": "req_011Cb24JPLjnH1GPvitTkuvc",
+  "type": "assistant",
+  "uuid": "caad38ac-27b5-40e3-b7d5-d71da1e24516",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdSq3igbv438hFZCysWgCZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18838,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18838,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 265,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 18838,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18838
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T07:21:33.501Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01M7QDno17ok6Moz2WdSK4GE`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_gpu_health",
+  "max_results": 7
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "caad38ac-27b5-40e3-b7d5-d71da1e24516",
+  "isSidechain": false,
+  "requestId": "req_011Cb24JPLjnH1GPvitTkuvc",
+  "type": "assistant",
+  "uuid": "99ab342e-fd57-4ba3-b65e-82bbfa862d7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdSq3igbv438hFZCysWgCZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18838,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18838,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 265,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 18838,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18838
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T07:21:33.509Z_
+
+<details><summary>↩ Tool result · `toolu_01M7QDno17ok6Moz2WdSK4GE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_gpu_health"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99ab342e-fd57-4ba3-b65e-82bbfa862d7c",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "c9194a25-e5c6-4498-8ee7-497be8680c80",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_gpu_health",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "99ab342e-fd57-4ba3-b65e-82bbfa862d7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T07:21:37.180Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01UXDfjHgMiHmD1BYEggEe8k`</summary>
+
+```json
+{
+  "project": "div_cal_verify",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9194a25-e5c6-4498-8ee7-497be8680c80",
+  "isSidechain": false,
+  "requestId": "req_011Cb24Jtbsu8nZCbMRu3sr4",
+  "type": "assistant",
+  "uuid": "0e50ecdd-d6d7-4a6a-9e4a-708113d0c256",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GAZbrocYJvxVzWSEXHCLbb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 30679,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 30679,
+          "cache_creation_input_tokens": 1920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T07:21:37.306Z_
+
+<details><summary>↩ Tool result · `toolu_01UXDfjHgMiHmD1BYEggEe8k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"medium_rgds_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:56:02.314Z\", \"updated_at\": \"2026-05-14T07:14:26.229Z\", \"hypothesis\": \"GPT2-medium (355M) RGDS seed=123: 2-seed 统计检验依赖，验证 alignment gap 加速崩塌在 355M 跨 seed 一致\", \"parent\": \"medium_rgds_seed42\", \"spec\": {\"command\": \"chain_cuda0_seed123.sh (rgds segment)\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) rgds seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0_s123\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_rgds_seed123.log\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"ppl\": 26.32, \"rankme\": 365.65, \"knn\": 0.988, \"rare\": 0.0343, \"corr\": 0.0301}, \"gen1\": {\"ppl\": 33.72, \"rankme\": 396.58, \"knn\": 0.988, \"rare\": 0.0285, \"corr\": 0.0135}, \"gen2\": {\"ppl\": 43.58, \"rankme\": 416.12, \"knn\": 0.988, \"rare\": 0.0224, \"corr\": 0.0148}, \"gen3\": {\"ppl\": 51.8, \"rankme\": 422.63, \"knn\": 0.988, \"rare\": 0.0194, \"corr\": -0.0004}, \"gen4\": {\"ppl\": 57.08, \"rankme\": 422.85, \"knn\": 0.988, \"rare\": 0.0183, \"corr\": -0.0109}, \"gen5\": {\"ppl\": 69.28, \"rankme\": 426.34, \"knn\": 0.988, \"rare\": 0.0171, \"corr\": -0.0089}, \"gen6\": {\"ppl\": 77.57, \"rankme\": 428.93, \"knn\": 0.988, \"rare\": 0.0162, \"corr\": -0.0274}, \"gen7\": {\"ppl\": 90.25, \"rankme\": 431.19, \"knn\": 0.988, \"rare\": 0.0149, \"corr\": -0.017}}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_rgds_seed123/rgds/gen_7/checkpoint\", \"completed_at\": \"2026-05-14T07:11:47.218Z\"}, \"medium_external_seed456\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:21:29.786Z\", \"updated_at\": \"2026-05-14T07:13:53.442Z\", \"hypothesis\": \"GPT2-medium (355M) External-only seed=456: 3-seed 统计检验，验证 frozen embeddings 在 355M 跨 seed 避免 alignment gap\", \"parent\": \"medium_external_seed42\", \"spec\": {\"command\": \"run_medium_external_seed456.sh 1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) external_only seed=456\", \"seed\": 456, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"medium_external_seed456\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external_seed456.log\", \"note\": \"50% Contriever frozen embedding selection, 8 gens, 500K tokens/gen\"}}, \"medium_random50_seed123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:56:03.403Z\", \"updated_at\": \"2026-05-14T07:12:06.090Z\", \"hypothesis\": \"GPT2-medium (355M) Random 50% seed=123: 2-seed 统计检验依赖，验证 C3 (RGDS 劣于 Random) 在 355M 跨 seed 一致\", \"parent\": \"medium_random50_seed42\", \"spec\": {\"command\": \"chain_cuda0_seed123.sh (random50 segment)\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) random_50 seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0_s123\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_random50_seed123.log\"}}, \"medium_uncurated_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:55:48.455Z\", \"updated_at\": \"2026-05-14T07:11:28.205Z\", \"hypothesis\": \"GPT2-medium (355M) Uncurated baseline seed=123: 2-seed 统计检验依赖，验证 355M collapse 严重度跨 seed 一致\", \"parent\": \"medium_uncurated_seed42\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash chain_cuda0_seed123.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) uncurated seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0_s123\", \"note\": \"chain_cuda0_seed123.sh 串行执行 uncurated→rgds→random50。首个实验。\"}, \"conclusion\": \"success\", \"metrics\": {\"gen7_ppl\": 87.05, \"gen7_rankme\": 436.04, \"gen7_rare\": 0.0136}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_uncurated_seed123/uncurated/gen_7/checkpoint\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_uncurated_seed123.log\", \"completed_at\": \"2026-05-14T07:11:28.205Z\"}, \"medium_external_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:56:03.780Z\", \"updated_at\": \"2026-05-14T06:49:14.249Z\", \"hypothesis\": \"GPT2-medium (355M) External-only seed=123: 2-seed 统计检验依赖，验证 frozen Contriever embeddings 在 355M 跨 seed 仍避免 alignment gap\", \"parent\": \"medium_external_seed42\", \"spec\": {\"command\": \"bash run_medium_external_seed123.sh 1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) external_only seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"medium_external_seed123\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external_seed123.log\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"ppl\": 26.3, \"rankme\": 366.16, \"knn\": 0.988, \"rare\": 0.0343, \"corr\": 0.0119}, \"gen1\": {\"ppl\": 33.62, \"rankme\": 400.2, \"knn\": 0.988, \"rare\": 0.0303, \"corr\": 0.0077}, \"gen2\": {\"ppl\": 44.51, \"rankme\": 417.58, \"knn\": 0.988, \"rare\": 0.0246, \"corr\": -0.0114}, \"gen3\": {\"ppl\": 51.18, \"rankme\": 421.73, \"knn\": 0.988, \"rare\": 0.0206, \"corr\": -0.014}, \"gen4\": {\"ppl\": 61.11, \"rankme\": 427.42, \"knn\": 0.988, \"rare\": 0.0184, \"corr\": -0.0282}, \"gen5\": {\"ppl\": 69.58, \"rankme\": 429.36, \"knn\": 0.988, \"rare\": 0.0172, \"corr\": -0.0232}, \"gen6\": {\"ppl\": 74.33, \"rankme\": 428.14, \"knn\": 0.988, \"rare\": 0.0168, \"corr\": -0.0458}, \"gen7\": {\"ppl\": 79.56, \"rankme\": 429.83, \"knn\": 0.988, \"rare\": 0.0161, \"corr\": -0.0533, \"ratio\": 1.222}}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_external_seed123/external_only/gen_7/checkpoint\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external_seed123.log\", \"completed_at\": \"2026-05-14T06:49:14.249Z\"}, \"medium_random50_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:21:29.247Z\", \"updated_at\": \"2026-05-14T03:22:00.608Z\", \"hypothesis\": \"GPT2-medium (355M) Random 50% seed=456: 3-seed 统计检验，验证 C3 (RGDS 劣于 Random) 在 355M 跨 seed 一致\", \"parent\": \"medium_random50_seed42\"}, \"medium_rgds_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:21:28.342Z\", \"updated_at\": \"2026-05-14T03:21:59.635Z\", \"hypothesis\": \"GPT2-medium (355M) RGDS seed=456: 3-seed 统计检验，验证 alignment gap 在 355M 跨 seed 一致\", \"parent\": \"medium_rgds_seed42\"}, \"medium_uncurated_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:21:27.986Z\", \"updated_at\": \"2026-05-14T03:21:58.622Z\", \"hypothesis\": \"GPT2-medium (355M) Uncurated seed=456: 3-seed 统计检验，验证 355M collapse 跨 seed 一致性\", \"parent\": \"medium_uncurated_seed42\"}, \"medium_external_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:32:08.840Z\", \"updated_at\": \"2026-05-14T03:11:09.334Z\", \"spec\": {\"command\": \"auto-chained from rgds_seed456 completion on cuda:1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) external_only seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda1\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external.log\", \"note\": \"由 chain_cuda1 自动启动\"}, \"hypothesis\": \"GPT2-medium (355M) External-only diversity selection: 验证 frozen Contriever embeddings 在更大模型上是否仍能避免 alignment gap（model scaling + external embedding interaction）\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_external/external_only/gen_7/checkpoint\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external.log\", \"metrics\": {\"gen7_ppl\": 77.74, \"gen7_rankme\": 421.5, \"gen7_knn\": 0.988, \"gen7_rare_ngram\": 0.0165, \"gen7_rank_corr\": -0.0072, \"gen0_ppl\": 26.33, \"gen0_rankme\": 363.43, \"ppl_increase_ratio\": 2.95, \"rankme_increase\": 58.07}, \"completed_at\": \"2026-05-14T03:11:09.334Z\"}, \"medium_random50_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:01:02.034Z\", \"updated_at\": \"2026-05-14T01:53:02.738Z\", \"hypothesis\": \"GPT2-medium (355M) Random 50% baseline: 验证同 budget 随机选择在更大模型上的表现，作为 RGDS alignment gap 在 355M scale 的关键对照组\", \"parent\": \"medium_rgds_seed42\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_medium_random50.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) random_50 seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0\", \"note\": \"由 chain_cuda0 自动启动，medium_rgds 完成后衔接。Worker 确认已在跑，Gen 6/8。\"}, \"metrics\": {\"gen0\": {\"ppl\": 26.12, \"rankme\": 361.63, \"knn\": 0.988, \"rare\": 0.0346, \"corr\": 0.0101}, \"gen1\": {\"ppl\": 32.57, \"rankme\": 387.8, \"knn\": 0.988, \"rare\": 0.0277, \"corr\": 0.0331}, \"gen2\": {\"ppl\": 41.58, \"rankme\": 410.08, \"knn\": 0.988, \"rare\": 0.0214, \"corr\": 0.0088}, \"gen3\": {\"ppl\": 49.87, \"rankme\": 421.67, \"knn\": 0.988, \"rare\": 0.0182, \"corr\": -0.0018}, \"gen4\": {\"ppl\": 59.83, \"rankme\": 427.23, \"knn\": 0.988, \"rare\": 0.0161, \"corr\": -0.0014}, \"gen5\": {\"ppl\": 60.62, \"rankme\": 426.16, \"knn\": 0.988, \"rare\": 0.0144, \"corr\": -0.0004}, \"gen6\": {\"ppl\": 68.34, \"rankme\": 427.19, \"knn\": 0.988, \"rare\": 0.0134, \"corr\": -0.0071}, \"gen7\": {\"ppl\": 70.25, \"rankme\": 426.5, \"knn\": 0.988, \"rare\": 0.0128, \"corr\": -0.0034}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_random50/random_50/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_random50.log\", \"completed_at\": \"2026-05-14T01:53:02.738Z\"}, \"medium_rgds_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:37:18.001Z\", \"updated_at\": \"2026-05-14T00:53:34.267Z\", \"hypothesis\": \"GPT2-medium (355M) RGDS diversity selection: 验证 alignment gap 加速崩塌在更大模型上是否复现（model scaling + method interaction）\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_medium_rgds.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) rgds seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_rgds.log\", \"note\": \"由 chain_cuda0 自动启动，medium_uncurated 完成后衔接\"}, \"parent\": \"medium_uncurated_seed42\", \"metrics\": {\"gen0\": {\"ppl\": 26.04, \"rankme\": 365.07, \"knn\": 0.988, \"rare\": 0.0346, \"corr\": 0.0196, \"ratio\": 0.9759}, \"gen1\": {\"ppl\": 32.99, \"rankme\": 398.29, \"knn\": 0.988, \"rare\": 0.0286, \"corr\": 0.0402, \"ratio\": 0.9991}, \"gen2\": {\"ppl\": 41.99, \"rankme\": 418.21, \"knn\": 0.988, \"rare\": 0.0232, \"corr\": 0.0014, \"ratio\": 0.9225}, \"gen3\": {\"ppl\": 50.8, \"rankme\": 421.44, \"knn\": 0.988, \"rare\": 0.0198, \"corr\": 0.0058, \"ratio\": 0.9127}, \"gen4\": {\"ppl\": 60.71, \"rankme\": 425.62, \"knn\": 0.988, \"rare\": 0.0187, \"corr\": -0.0068, \"ratio\": 0.7989}, \"gen5\": {\"ppl\": 66.29, \"rankme\": 424.71, \"knn\": 0.988, \"rare\": 0.018, \"corr\": -0.0235, \"ratio\": 0.9002}, \"gen6\": {\"ppl\": 72, \"rankme\": 423.93, \"knn\": 0.988, \"rare\": 0.0168, \"corr\": -0.0197, \"ratio\": 0.7622}, \"gen7\": {\"ppl\": 82.84, \"rankme\": 424.72, \"knn\": 0.988, \"rare\": 0.0166, \"corr\": -0.0286, \"ratio\": 0.8313}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_rgds/rgds/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_rgds.log\", \"completed_at\": \"2026-05-14T00:53:34.267Z\"}, \"rgds_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:44:56.404Z\", \"updated_at\": \"2026-05-13T23:32:22.643Z\", \"hypothesis\": \"RGDS (50% internal embedding selection) seed=456 复现：3-seed 统计检验依赖，验证 RGDS alignment gap 加速崩塌跨 seed 一致\", \"parent\": \"phase2_3method_selfit\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 bash run_rgds_seed456.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/rgds_seed456.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) RGDS seed=456\", \"seed\": 456, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"seed456_methods\", \"note\": \"实际未启动，排在 ext_seed456 之后串行。误标 RUNNING，registry 不允许回退到 QUEUED。ext_seed456 完成后自动启动。\"}, \"metrics\": {\"gen0_ppl\": 36.7, \"gen0_rankme\": 274.06, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0284, \"gen0_corr\": -0.0138, \"gen0_ratio\": 0.9114, \"gen1_ppl\": 44.59, \"gen1_rankme\": 291.76, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0189, \"gen1_corr\": -0.0418, \"gen1_ratio\": 0.8895, \"gen2_ppl\": 45.3, \"gen2_rankme\": 290.79, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0139, \"gen2_corr\": -0.0356, \"gen2_ratio\": 0.9071, \"gen3_ppl\": 49.13, \"gen3_rankme\": 289.92, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0111, \"gen3_corr\": -0.0403, \"gen3_ratio\": 0.8774, \"gen4_ppl\": 47.4, \"gen4_rankme\": 287.04, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0098, \"gen4_corr\": -0.0342, \"gen4_ratio\": 0.8292, \"gen5_ppl\": 55.99, \"gen5_rankme\": 290.71, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0078, \"gen5_corr\": -0.0269, \"gen5_ratio\": 0.7065, \"gen6_ppl\": 55.99, \"gen6_rankme\": 287.52, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0065, \"gen6_corr\": -0.0247, \"gen6_ratio\": 0.6447, \"gen7_ppl\": 66.22, \"gen7_rankme\": 286.54, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0069, \"gen7_corr\": -0.0228, \"gen7_ratio\": 0.8682}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_seed456/rgds/gen_7/checkpoint/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/rgds_seed456.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:23:02.891Z\"}, \"ext_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:44:57.069Z\", \"updated_at\": \"2026-05-13T21:47:35.556Z\", \"hypothesis\": \"External_only (50% Contriever frozen embedding) seed=456 复现：3-seed 统计检验依赖，验证 external_only 免疫 alignment gap 跨 seed 一致\", \"parent\": \"phase2_ext_seed123\", \"spec\": {\"command\": \"chain experiment - external_only seed=456\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/ext_seed456.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/div_cal_verify/results_seed456/external_only/\", \"data_count\": 488, \"model_name\": \"GPT2-125M\", \"seed\": 456, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"seed456_methods\"}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_seed456/external_only/external_only/gen_7/checkpoint/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/ext_seed456.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T21:46:13.875Z\", \"metrics\": {\"gen0_ppl\": 36.51, \"gen0_rankme\": 273.85, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0284, \"gen0_corr\": -0.0103, \"gen0_ratio\": 1.1621, \"gen1_ppl\": 44.77, \"gen1_rankme\": 291.93, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0203, \"gen1_corr\": -0.0404, \"gen1_ratio\": 1.0686, \"gen2_ppl\": 50.84, \"gen2_rankme\": 298.52, \"gen2_knn\": 0.987, \"gen2_rare\": 0.0152, \"gen2_corr\": -0.0292, \"gen2_ratio\": 1.1119, \"gen3_ppl\": 54.43, \"gen3_rankme\": 298.35, \"gen3_knn\": 0.987, \"gen3_rare\": 0.013, \"gen3_corr\": -0.0223, \"gen3_ratio\": 1.1551, \"gen4_ppl\": 49.91, \"gen4_rankme\": 295.86, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0118, \"gen4_corr\": -0.0321, \"gen4_ratio\": 1.1841, \"gen5_ppl\": 50.45, \"gen5_rankme\": 297.37, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0111, \"gen5_corr\": -0.03, \"gen5_ratio\": 1.2186, \"gen6_ppl\": 47.09, \"gen6_rankme\": 294.35, \"gen6_knn\": 0.988, \"gen6_rare\": 0.01, \"gen6_corr\": -0.0207, \"gen6_ratio\": 1.0818, \"gen7_ppl\": 43.9, \"gen7_rankme\": 292.69, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0106, \"gen7_corr\": -0.0227, \"gen7_ratio\": 1.243}}, \"medium_uncurated_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:20:55.822Z\", \"updated_at\": \"2026-05-13T21:42:26.811Z\", \"hypothesis\": \"GPT2-medium (355M) uncurated baseline: 验证 alignment gap 现象在更大模型上是否复现（model scaling 维度）\", \"parent\": \"phase2_3method_selfit\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_medium_uncurated.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_uncurated.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) uncurated seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"medium_uncurated\", \"pid\": \"283798\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_uncurated/uncurated/\"}, \"metrics\": {\"gen0_ppl\": 26.55, \"gen0_rankme\": 371.57, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0346, \"gen0_corr\": 0.0219, \"gen1_ppl\": 35.12, \"gen1_rankme\": 403.8, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0281, \"gen1_corr\": 0.0228, \"gen2_ppl\": 46.9, \"gen2_rankme\": 420.83, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0216, \"gen2_corr\": 0.0181, \"gen3_ppl\": 57.4, \"gen3_rankme\": 425.35, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0185, \"gen3_corr\": 0.0011, \"gen4_ppl\": 67.45, \"gen4_rankme\": 430.68, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0172, \"gen4_corr\": -0.0046, \"gen5_ppl\": 78.55, \"gen5_rankme\": 438.62, \"gen5_knn\": 0.987, \"gen5_rare\": 0.0159, \"gen5_corr\": -0.0175, \"gen6_ppl\": 84.59, \"gen6_rankme\": 442.85, \"gen6_knn\": 0.987, \"gen6_rare\": 0.0144, \"gen6_corr\": -0.0462, \"gen7_ppl\": 91.66, \"gen7_rankme\": 443.98, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0139, \"gen7_corr\": -0.0379}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T21:41:57.426Z\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_uncurated/uncurated/gen_7/checkpoint/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_uncurated.log\"}, \"uncurated_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:44:55.468Z\", \"updated_at\": \"2026-05-13T19:28:12.126Z\", \"hypothesis\": \"Uncurated (100% data) seed=456 复现：3-seed 统计检验依赖，验证 uncurated 的 PPL/rare 轨迹跨 seed 一致性\", \"parent\": \"phase2_3method_selfit\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 bash run_uncurated_seed456.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/uncurated_seed456.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) uncurated seed=456\", \"seed\": 456, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"seed456_methods\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0_ppl\": 36.64, \"gen0_rankme\": 279.17, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0284, \"gen0_corr\": -0.0205, \"gen7_ppl\": 44.69, \"gen7_rankme\": 287.93, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0086, \"gen7_corr\": -0.0696}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed456/uncurated/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/uncurated_seed456.log\", \"completed_at\": \"2026-05-13T19:28:12.126Z\"}, \"random_50_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:01:32.779Z\", \"updated_at\": \"2026-05-13T19:01:00.100Z\", \"hypothesis\": \"Random 50% seed=456 复现：与 phase2_random50_v2 (seed=42) 完全一致的超参数，验证 random≈external 是否跨 seed 成立（C2-revised + C3 验证，3-seed t 检验依赖）\", \"parent\": \"phase2_random50_v2\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_random50_seed456.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_seed456.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) random_50 seed=456\", \"seed\": 456, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results_random50_seed456/\", \"pid\": \"250453\"}, \"conclusion\": \"success\", \"metrics\": {\"gen7_ppl\": 44.6, \"gen7_rare\": 0.0101, \"gen7_rankme\": 289.87}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_random50_seed456/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_seed456.log\", \"completed_at\": \"2026-05-13T19:01:00.100Z\"}, \"random_50_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:01:31.859Z\", \"updated_at\": \"2026-05-13T19:00:59.367Z\", \"hypothesis\": \"Random 50% seed=123 复现：与 phase2_random50_v2 (seed=42) 完全一致的超参数，验证 random≈external 是否跨 seed 成立（C2-revised + C3 验证，3-seed t 检验依赖）\", \"parent\": \"phase2_random50_v2\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_random50_seed123.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_seed123.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) random_50 seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results_random50_seed123/\", \"pid\": \"250452\"}, \"conclusion\": \"success\", \"metrics\": {\"gen7_ppl\": 41.75, \"gen7_rare\": 0.0098, \"gen7_rankme\": 291.7}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_random50_seed123/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_seed123.log\", \"completed_at\": \"2026-05-13T19:00:59.367Z\"}, \"phase2_random50_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T11:46:06.927Z\", \"updated_at\": \"2026-05-13T16:01:33.541Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /root/div_cal_verify/env.sh && export TRANSFORMERS_OFFLINE=1 && bash /root/div_cal_verify/run_random50.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_v2.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) random_50 seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"/root/div_cal_verify/data_gpt2/\"}, \"hypothesis\": \"Random 50% baseline v2: 与 Phase 2 对照组完全一致的超参数(lr=5e-5, epochs=3, 500K tokens/gen)，随机选择 50% 数据，验证 diversity-aware selection 相比随机选择的增益\", \"parent\": \"phase2_3method_selfit\", \"failure_reason\": \"monitoring false alarm - experiment completed successfully\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T11:54:46.226Z\", \"metrics\": {\"gen0_ppl\": 36.87, \"gen0_rankme\": 275.24, \"gen0_knn\": 0.988, \"gen0_rare\": 0.029, \"gen0_corr\": -0.0081, \"gen1_ppl\": 44.34, \"gen1_rankme\": 292.46, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0193, \"gen1_corr\": -0.036, \"gen2_ppl\": 49.75, \"gen2_rankme\": 295.61, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0143, \"gen2_corr\": -0.0315, \"gen3_ppl\": 49, \"gen3_rankme\": 295.28, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0125, \"gen3_corr\": -0.0238, \"gen4_ppl\": 50.85, \"gen4_rankme\": 297.01, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0113, \"gen4_corr\": -0.0209, \"gen5_ppl\": 47.31, \"gen5_rankme\": 292.81, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0104, \"gen5_corr\": -0.0207, \"gen6_ppl\": 44.78, \"gen6_rankme\": 293.42, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0099, \"gen6_corr\": -0.029, \"gen7_ppl\": 43.2, \"gen7_rankme\": 291.38, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0096, \"gen7_corr\": -0.0391}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_random50/random_50/\"}, \"phase2_seed123_remaining\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T10:05:23.998Z\", \"updated_at\": \"2026-05-13T15:41:50.802Z\", \"spec\": {\"hypothesis\": \"seed=123 下 uncurated + RGDS 方法的复现实验，补齐三方法对照（external_only 已在 cuda:0 运行）。基于 phase2_3method_selfit 配置。\", \"command\": \"bash /root/div_cal_verify/run_seed123_remaining.sh 1\", \"server\": \"westd-11235\", \"gpu_id\": 1, \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) uncurated+RGDS seed=123\", \"seed\": 123, \"log_path\": \"/root/autodl-tmp/div_cal_verify/phase2_seed123_remaining.log\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/\", \"tmux_session\": \"phase2_seed123_remaining\", \"current_method\": \"uncurated\", \"current_gen\": 3, \"total_gens\": 7, \"note\": \"2026-05-13 10:50 check: alive, uncurated Gen 3/7 training, GPU1 15409MiB\"}, \"current_gen\": 3, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/phase2_seed123_remaining.log\", \"metrics\": {\"uncurated\": {\"gen0\": {\"ppl\": 36.69, \"rankme\": 277.86, \"knn\": 0.988, \"rare\": 0.0293, \"corr\": -0.0222}, \"gen1\": {\"ppl\": 45.29, \"rankme\": 297.08, \"knn\": 0.988, \"rare\": 0.0192, \"corr\": -0.0554}, \"gen2\": {\"ppl\": 53.76, \"rankme\": 301.88, \"knn\": 0.988, \"rare\": 0.0137, \"corr\": -0.0448}, \"gen3\": {\"ppl\": 53.76, \"rankme\": 300.7, \"knn\": 0.988, \"rare\": 0.0116, \"corr\": -0.0365}, \"gen4\": {\"ppl\": 54.33, \"rankme\": 298.78, \"knn\": 0.988, \"rare\": 0.0107, \"corr\": -0.0471}, \"gen5\": {\"ppl\": 53, \"rankme\": 293.21, \"knn\": 0.988, \"rare\": 0.01, \"corr\": -0.037}, \"gen6\": {\"ppl\": 49.87, \"rankme\": 295.35, \"knn\": 0.988, \"rare\": 0.0101, \"corr\": -0.0477}, \"gen7\": {\"ppl\": 46.15, \"rankme\": 290.13, \"knn\": 0.988, \"rare\": 0.0093, \"corr\": -0.0755}}, \"rgds\": {\"gen0\": {\"ppl\": 36.71, \"rankme\": 272.68, \"knn\": 0.988, \"rare\": 0.0293, \"corr\": -0.0116, \"ratio\": 0.9997}, \"gen1\": {\"ppl\": 42.81, \"rankme\": 286.96, \"knn\": 0.988, \"rare\": 0.0186, \"corr\": -0.0544, \"ratio\": 0.9066}, \"gen2\": {\"ppl\": 47.35, \"rankme\": 291.31, \"knn\": 0.988, \"rare\": 0.0142, \"corr\": -0.0569, \"ratio\": 0.8604}, \"gen3\": {\"ppl\": 52.64, \"rankme\": 295.72, \"knn\": 0.988, \"rare\": 0.0119, \"corr\": -0.0185, \"ratio\": 0.8689}, \"gen4\": {\"ppl\": 52.74, \"rankme\": 294.9, \"knn\": 0.988, \"rare\": 0.0101, \"corr\": -0.0042, \"ratio\": 0.8863}, \"gen5\": {\"ppl\": 60.62, \"rankme\": 294.93, \"knn\": 0.988, \"rare\": 0.0087, \"corr\": -0.0036, \"ratio\": 0.7809}, \"gen6\": {\"ppl\": 75.03, \"rankme\": 299.36, \"knn\": 0.988, \"rare\": 0.007, \"corr\": -0.0119, \"ratio\": 0.6789}, \"gen7\": {\"ppl\": 81.57, \"rankme\": 298.35, \"knn\": 0.988, \"rare\": 0.0062, \"corr\": -0.0312, \"ratio\": 0.5236}}}, \"completed_at\": \"2026-05-13T15:19:03.216Z\"}, \"phase2_random50_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T11:29:42.169Z\", \"updated_at\": \"2026-05-13T15:19:47.746Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_random50.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"215364\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_baseline.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) random_50 seed=42\", \"seed\": 42}, \"hypothesis\": \"Random 50% baseline: 与 RGDS/external_only 相同的 50% 数据预算但随机选择，验证 diversity-aware selection 相比随机选择的增益\", \"parent\": \"phase2_3method_selfit\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T11:45:56.699Z\", \"failure_reason\": \"TRANSFORMERS_OFFLINE=1 set but gpt2/contriever models not cached locally, all downloads timed out\"}, \"phase2_ext_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T07:12:13.179Z\", \"updated_at\": \"2026-05-13T11:26:05.564Z\", \"hypothesis\": \"external_only seed=123 复现实验，验证 Phase 2 external_only 结果的可重复性（N>1 统计检验准备）\", \"parent\": \"phase2_3method_selfit\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_ext_seed123.sh\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"180459\", \"log_path\": \"~/runs/div_cal_verify/phase2_ext_seed123.log\", \"submitted_at\": \"2026-05-13T07:32:17.645Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) external_only seed=123\", \"seed\": 123, \"checkpoint_source\": \"N/A (self-iterate from pretrained gpt2)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"current_gen\": \"4/7\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/external_only\", \"wall_clock_seconds\": 14027.9, \"gpu_hours\": 3.9}, \"metrics\": {\"gen0_ppl\": 36.66, \"gen0_rankme\": 273.12, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0293, \"gen0_corr\": -0.0034, \"gen0_ratio\": 1.0843, \"gen1_ppl\": 44.75, \"gen1_rankme\": 292.34, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0205, \"gen1_corr\": -0.0409, \"gen1_ratio\": 1.1015, \"gen2_ppl\": 52.21, \"gen2_rankme\": 298.54, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0146, \"gen2_corr\": -0.0338, \"gen2_ratio\": 1.1547, \"gen3_ppl\": 58.4, \"gen3_rankme\": 299.05, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0122, \"gen3_corr\": -0.0124, \"gen3_ratio\": 1.1577, \"gen4_ppl\": 54.89, \"gen4_rankme\": 299.42, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0114, \"gen4_corr\": 0.0033, \"gen4_ratio\": 1.1395, \"gen5_ppl\": 51.71, \"gen5_rankme\": 294.95, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0108, \"gen5_corr\": -0.0026, \"gen5_ratio\": 1.0942, \"gen6_ppl\": 49.17, \"gen6_rankme\": 293.7, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0105, \"gen6_corr\": 0, \"gen6_ratio\": 1.2248, \"gen7_ppl\": 49.66, \"gen7_rankme\": 290.82, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0104, \"gen7_corr\": 0.0111, \"gen7_ratio\": 1.1299}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/external_only/external_only/gen_7/checkpoint\", \"log_path\": \"~/runs/div_cal_verify/phase2_ext_seed123.log\", \"completed_at\": \"2026-05-13T11:26:05.564Z\"}, \"phase2_3method_selfit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T03:16:41.146Z\", \"updated_at\": \"2026-05-13T09:49:16.216Z\", \"hypothesis\": \"RGDS diversity selection 能减缓 self-iterate 模式下的多样性崩塌（rare n-gram 丢失），表现优于 uncurated baseline，至少与 external_only 持平\", \"parent\": \"phase1b_self_iterate\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_phase2.sh 1\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"138667\", \"log_path\": \"~/runs/div_cal_verify/phase2_3method_selfit.log\", \"submitted_at\": \"2026-05-13T03:41:36.054Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) self-iterate 3-method\", \"seed\": 42, \"checkpoint_source\": \"N/A (self-iterate from pretrained gpt2)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"wall_clock_seconds\": 22060.2, \"gpu_hours\": 6.13}, \"reproduce\": {\"finished_at\": \"2026-05-13T09:15:26.220Z\"}, \"metrics\": {\"rgds\": {\"gen0_ppl\": 37.09, \"gen0_rankme\": 275.89, \"gen0_knn\": 0.988, \"gen0_rare\": 0.029, \"gen0_corr\": -0.0123, \"gen0_ratio\": 1.0371, \"gen1_ppl\": 45.36, \"gen1_rankme\": 291.76, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0202, \"gen1_corr\": -0.0459, \"gen1_ratio\": 0.9096, \"gen2_ppl\": 50.51, \"gen2_rankme\": 292.74, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0151, \"gen2_corr\": -0.0365, \"gen2_ratio\": 0.9267, \"gen3_ppl\": 53.82, \"gen3_rankme\": 294.03, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0124, \"gen3_corr\": -0.0308, \"gen3_ratio\": 0.9409, \"gen4_ppl\": 53.97, \"gen4_rankme\": 294.92, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0099, \"gen4_corr\": -0.0483, \"gen4_ratio\": 0.8955, \"gen5_ppl\": 61.75, \"gen5_rankme\": 293.84, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0082, \"gen5_corr\": -0.0388, \"gen5_ratio\": 0.8108, \"gen6_ppl\": 64.12, \"gen6_rankme\": 293.76, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0067, \"gen6_corr\": -0.0464, \"gen6_ratio\": 0.7165, \"gen7_ppl\": 75.07, \"gen7_rankme\": 292.72, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0051, \"gen7_corr\": -0.0387, \"gen7_ratio\": 0.5173}, \"external_only\": {\"gen0_ppl\": 37.04, \"gen0_rankme\": 275.07, \"gen0_knn\": 0.988, \"gen0_rare\": 0.029, \"gen0_corr\": 0.0031, \"gen0_ratio\": 1.1366, \"gen1_ppl\": 44.29, \"gen1_rankme\": 291.62, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0184, \"gen1_corr\": -0.0345, \"gen1_ratio\": 1.2108, \"gen2_ppl\": 50.12, \"gen2_rankme\": 295.53, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0141, \"gen2_corr\": -0.026, \"gen2_ratio\": 1.1164, \"gen3_ppl\": 53.55, \"gen3_rankme\": 295.88, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0117, \"gen3_corr\": -0.0211, \"gen3_ratio\": 1.1963, \"gen4_ppl\": 52.27, \"gen4_rankme\": 296.67, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0102, \"gen4_corr\": -0.0174, \"gen4_ratio\": 1.2817, \"gen5_ppl\": 47.37, \"gen5_rankme\": 290.25, \"gen5_knn\": 0.988, \"gen5_rare\": 0.01, \"gen5_corr\": -0.0133, \"gen5_ratio\": 1.1093, \"gen6_ppl\": 46.11, \"gen6_rankme\": 289.66, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0103, \"gen6_corr\": -0.0054, \"gen6_ratio\": 1.1227, \"gen7_ppl\": 45.51, \"gen7_rankme\": 290.83, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0099, \"gen7_corr\": 0.0107, \"gen7_ratio\": 1.0953}, \"uncurated\": {\"gen0_ppl\": 37.1, \"gen0_rankme\": 280.32, \"gen0_knn\": 0.988, \"gen0_rare\": 0.029, \"gen0_corr\": -0.0226, \"gen1_ppl\": 44.89, \"gen1_rankme\": 297.8, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0192, \"gen1_corr\": -0.0548, \"gen2_ppl\": 51.32, \"gen2_rankme\": 302.47, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0139, \"gen2_corr\": -0.051, \"gen3_ppl\": 56.25, \"gen3_rankme\": 303.05, \"gen3_knn\": 0.987, \"gen3_rare\": 0.0118, \"gen3_corr\": -0.0458, \"gen4_ppl\": 55.88, \"gen4_rankme\": 300.51, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0102, \"gen4_corr\": -0.035, \"gen5_ppl\": 50.08, \"gen5_rankme\": 296.54, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0099, \"gen5_corr\": -0.0452, \"gen6_ppl\": 48.25, \"gen6_rankme\": 290.42, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0094, \"gen6_corr\": -0.0682, \"gen7_ppl\": 50.28, \"gen7_rankme\": 291.43, \"gen7_knn\": 0.988, \"gen7_rare\": 0.009, \"gen7_corr\": -0.088}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2/\", \"log_path\": \"~/runs/div_cal_verify/phase2_3method_selfit.log\", \"completed_at\": \"2026-05-13T09:49:16.216Z\"}, \"phase1b_self_iterate\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:02:07.616Z\", \"updated_at\": \"2026-05-13T03:14:07.440Z\", \"hypothesis\": \"固定 generator 阻断 feedback loop 是前两次实验未崩塌的根因。Student-as-generator 自迭代模式（GPT2-125M 8 代）应能诱导可测量的 model collapse（RankMe >20% 下降，PPL 恶化）\", \"parent\": \"phase1_gpt2_collapse\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_phase1b.sh 1\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"123407\", \"log_path\": \"~/runs/div_cal_verify/phase1b_self_iterate.log\", \"submitted_at\": \"2026-05-13T01:06:57.716Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) self-iterate\", \"seed\": 42, \"checkpoint_source\": \"N/A (self-iterate from pretrained gpt2)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"wall_clock_seconds\": 7629.7, \"gpu_hours\": 2.12}, \"metrics\": {\"uncurated\": {\"gen0_ppl\": 37.1, \"gen1_ppl\": 44.9, \"gen2_ppl\": 51.63, \"gen3_ppl\": 56.97, \"gen4_ppl\": 55.71, \"gen5_ppl\": 51.74, \"gen6_ppl\": 48.67, \"gen7_ppl\": 48.11, \"gen0_rankme\": 280.32, \"gen1_rankme\": 297.81, \"gen2_rankme\": 302.62, \"gen3_rankme\": 303.27, \"gen4_rankme\": 301.33, \"gen5_rankme\": 297.35, \"gen6_rankme\": 293.01, \"gen7_rankme\": 289.79, \"gen0_knn\": 0.988, \"gen1_knn\": 0.988, \"gen2_knn\": 0.987, \"gen3_knn\": 0.988, \"gen4_knn\": 0.988, \"gen5_knn\": 0.988, \"gen6_knn\": 0.988, \"gen7_knn\": 0.988, \"gen0_rare\": 0.029, \"gen1_rare\": 0.0192, \"gen2_rare\": 0.0139, \"gen3_rare\": 0.0116, \"gen4_rare\": 0.0101, \"gen5_rare\": 0.0098, \"gen6_rare\": 0.0089, \"gen7_rare\": 0.0087, \"gen0_rank_corr\": -0.023, \"gen1_rank_corr\": -0.055, \"gen2_rank_corr\": -0.049, \"gen3_rank_corr\": -0.044, \"gen4_rank_corr\": -0.042, \"gen5_rank_corr\": -0.048, \"gen6_rank_corr\": -0.065, \"gen7_rank_corr\": -0.087}, \"baseline_rankme\": 231.08}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase1b/uncurated/\", \"log_path\": \"~/runs/div_cal_verify/phase1b_self_iterate.log\", \"completed_at\": \"2026-05-13T03:14:07.440Z\"}, \"phase1_gpt2_collapse\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:09.792Z\", \"updated_at\": \"2026-05-13T00:57:35.030Z\", \"spec\": {\"hypothesis\": \"GPT2-125M under extreme training (1M tokens/gen, 5 epochs, lr=1e-4, 6 gens) will show measurable representation collapse (RankMe >20% decline)\", \"model_name\": \"gpt2 (124M) + gpt2-medium (355M)\", \"server\": \"westd-11235\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"seed\": 42, \"hyperparams\": {\"methods\": [\"rgds\", \"uncurated\"], \"num_generations\": 6, \"lr\": 0.0001, \"batch_size\": 4, \"grad_accum\": 8, \"seq_len\": 512, \"gen_tokens\": 1000000, \"train_epochs\": 5, \"gpu_mode\": \"single card\"}, \"data_count\": 232588, \"command\": \"bash run_phase1.sh 1 (rgds -> uncurated serial)\", \"gpu\": [\"cuda:1\"], \"pid\": \"93696\", \"log_path\": \"~/runs/div_cal_verify/phase1_all.log\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results_phase1/\"}, \"conclusion\": \"negative\", \"metrics\": {\"rgds\": {\"gen0_ppl\": 36.64, \"gen1_ppl\": 37.05, \"gen2_ppl\": 36.03, \"gen3_ppl\": 35.96, \"gen4_ppl\": 35.96, \"gen5_ppl\": 35.56, \"gen0_rankme\": 286.46, \"gen1_rankme\": 287.32, \"gen2_rankme\": 270.93, \"gen3_rankme\": 262.62, \"gen4_rankme\": 265.12, \"gen5_rankme\": 274.63, \"gen0_knn\": 0.987, \"gen1_knn\": 0.988, \"gen2_knn\": 0.988, \"gen3_knn\": 0.988, \"gen4_knn\": 0.988, \"gen5_knn\": 0.988, \"gen0_rank_corr\": -0.0595, \"gen1_rank_corr\": -0.0851, \"gen2_rank_corr\": -0.0936, \"gen3_rank_corr\": -0.1188, \"gen4_rank_corr\": -0.1024, \"gen5_rank_corr\": -0.1014}, \"uncurated\": {\"gen0_ppl\": 36.2, \"gen1_ppl\": 35.44, \"gen2_ppl\": 34.89, \"gen3_ppl\": 34.84, \"gen4_ppl\": 34.52, \"gen5_ppl\": 34.75, \"gen0_rankme\": 290.15, \"gen1_rankme\": 281.26, \"gen2_rankme\": 268.41, \"gen3_rankme\": 273.41, \"gen4_rankme\": 283.12, \"gen5_rankme\": 297.02, \"gen0_knn\": 0.988, \"gen1_knn\": 0.988, \"gen2_knn\": 0.988, \"gen3_knn\": 0.988, \"gen4_knn\": 0.988, \"gen5_knn\": 0.988, \"gen0_rank_corr\": -0.067, \"gen1_rank_corr\": -0.052, \"gen2_rank_corr\": -0.0975, \"gen3_rank_corr\": -0.108, \"gen4_rank_corr\": -0.1351, \"gen5_rank_corr\": -0.1294}, \"external_only\": {\"status\": \"not_run\", \"note\": \"script did not execute external_only method\"}}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase1/\", \"completed_at\": \"2026-05-13T00:57:35.030Z\"}, \"mvp_serial_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T15:06:13.261Z\", \"updated_at\": \"2026-05-12T20:01:27.621Z\", \"spec\": {\"hypothesis\": \"Serial run of all 3 methods (rgds -> external_only -> uncurated), dual-GPU 0,1, output on data disk, checkpoint auto-cleanup\", \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"server\": \"westd-11235\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"seed\": 42, \"command\": \"bash run_all_methods.sh\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results/\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"45390\", \"log_path\": \"~/runs/div_cal_verify/all_methods_v4.log\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results/{method}/gen_3/checkpoint/\"}, \"metrics\": {\"rgds\": {\"gen0_ppl\": 16.67, \"gen1_ppl\": 16.85, \"gen2_ppl\": 16.51, \"gen3_ppl\": 16.46, \"gen0_rankme\": 970.84, \"gen1_rankme\": 968.2, \"gen2_rankme\": 968.29, \"gen3_rankme\": 967.92, \"gen0_knn\": 0.991, \"gen1_knn\": 0.991, \"gen2_knn\": 0.991, \"gen3_knn\": 0.991, \"gen0_rank_corr\": -0.3698, \"gen1_rank_corr\": -0.3783, \"gen2_rank_corr\": -0.3826, \"gen3_rank_corr\": -0.3799, \"gen0_rare\": 0.0303, \"gen1_rare\": 0.0302, \"gen2_rare\": 0.0306, \"gen3_rare\": 0.0313}, \"external_only\": {\"gen0_ppl\": 16.58, \"gen1_ppl\": 16.44, \"gen2_ppl\": 16.19, \"gen3_ppl\": 16.15, \"gen0_rankme\": 971.38, \"gen1_rankme\": 968.3, \"gen2_rankme\": 966.99, \"gen3_rankme\": 965.88, \"gen0_knn\": 0.991, \"gen1_knn\": 0.991, \"gen2_knn\": 0.991, \"gen3_knn\": 0.991, \"gen0_rank_corr\": -0.3699, \"gen1_rank_corr\": -0.386, \"gen2_rank_corr\": -0.3877, \"gen3_rank_corr\": -0.3936, \"gen0_rare\": 0.0303, \"gen1_rare\": 0.0302, \"gen2_rare\": 0.0306, \"gen3_rare\": 0.0313}, \"uncurated\": {\"status\": \"crashed_gen0_eval\", \"error\": \"ValueError: Contriever mode requires tokenizer and contriever_model\"}}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-12T20:01:27.621Z\"}, \"mvp_serial_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T14:44:01.355Z\", \"updated_at\": \"2026-05-12T15:06:07.103Z\", \"spec\": {\"hypothesis\": \"Serial run of all 3 methods (rgds → external_only → uncurated) on dual-GPU 0,1\", \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"server\": \"westd-11235\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"seed\": 42, \"command\": \"bash run_all_methods.sh (killed for output_dir fix)\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results/\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"42073\", \"log_path\": \"~/runs/div_cal_verify/all_methods.log\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:06:07.103Z\"}, \"mvp_ext_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:53:41.004Z\", \"updated_at\": \"2026-05-12T15:06:01.117Z\", \"spec\": {\"command\": \"PCA dimension mismatch\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"10291\", \"log_path\": \"~/runs/div_cal_verify/mvp_ext_v2.log\", \"submitted_at\": \"2026-05-12T11:54:05.248Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"seed\": 42, \"wall_clock_seconds\": 11515.9, \"gpu_hours\": 3.2}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-12T15:06:01.117Z\"}, \"mvp_rgds_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:53:38.705Z\", \"updated_at\": \"2026-05-12T15:05:59.055Z\", \"spec\": {\"command\": \"OOM on single GPU\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"10214\", \"log_path\": \"~/runs/div_cal_verify/mvp_rgds_v2.log\", \"submitted_at\": \"2026-05-12T11:54:04.012Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"seed\": 42, \"wall_clock_seconds\": 11515.0, \"gpu_hours\": 3.2}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-12T15:05:59.055Z\"}, \"mvp_ext_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:30:03.751Z\", \"updated_at\": \"2026-05-12T14:46:01.010Z\", \"spec\": {\"command\": \"killed before bugfix\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"7284\", \"log_path\": \"~/runs/div_cal_verify/mvp_ext_v1.log\", \"submitted_at\": \"2026-05-12T11:31:51.964Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 242666, \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"seed\": 42, \"hyperparams\": {\"method\": \"external_only\", \"num_generations\": 4, \"lr\": 2e-05, \"batch_size\": 4, \"grad_accum\": 8, \"seq_len\": 512, \"gen_tokens\": 500000}, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 11649.0, \"gpu_hours\": 3.24}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T14:46:01.011Z\"}, \"mvp_rgds_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:30:01.613Z\", \"updated_at\": \"2026-05-12T14:45:58.638Z\", \"spec\": {\"command\": \"killed before bugfix\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"7205\", \"log_path\": \"~/runs/div_cal_verify/mvp_rgds_v1.log\", \"submitted_at\": \"2026-05-12T11:31:50.710Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 242666, \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"seed\": 42, \"hyperparams\": {\"method\": \"rgds\", \"num_generations\": 4, \"lr\": 2e-05, \"batch_size\": 4, \"grad_accum\": 8, \"seq_len\": 512, \"gen_tokens\": 500000, \"tau_rank\": 0.5, \"tau_knn\": 0.6}, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 11647.9, \"gpu_hours\": 3.24}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T14:45:58.638Z\"}, \"mvp_rgds_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:31:40.361Z\", \"updated_at\": \"2026-05-12T14:45:05.208Z\", \"spec\": {\"hypothesis\": \"RGDS internal diversity selection preserves representation quality and achieves >=5% PPL improvement over external-only (dual-GPU mode, fixed PCA alignment)\", \"parent\": \"mvp_rgds_v2\", \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"server\": \"westd-11235\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"seed\": 42, \"hyperparams\": {\"method\": \"rgds\", \"num_generations\": 4, \"lr\": 2e-05, \"batch_size\": 4, \"grad_accum\": 8, \"seq_len\": 512, \"gen_tokens\": 500000, \"gpu_mode\": \"dual (0,1)\", \"tau_rank\": 0.5, \"tau_knn\": 0.6}, \"command\": \"python run_mvp.py --method rgds --num_generations 4 --gpu_ids 0,1\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"18588\", \"log_path\": \"~/runs/div_cal_verify/mvp_rgds_v3.log\", \"output_dir\": \"/root/div_cal_verify/results/rgds/\", \"checkpoint_path\": \"N/A (gen3 disk full)\"}, \"conclusion\": \"failed\", \"metrics\": {\"gen0_ppl\": 16.63, \"gen1_ppl\": 16.84, \"gen2_ppl\": 16.35, \"gen0_rankme\": 971.52, \"gen1_rankme\": 965.2, \"gen2_rankme\": 966.02, \"gen0_knn\": 0.991, \"gen1_knn\": 0.991, \"gen2_knn\": 0.991, \"gen0_rank_corr\": -0.373, \"gen1_rank_corr\": -0.384, \"gen2_rank_corr\": -0.383, \"failure\": \"gen3 disk full (No space left on device)\", \"completed_gens\": 3}, \"completed_at\": \"2026-05-12T14:45:05.208Z\"}}, \"count\": 31, \"total\": 31, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1084}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e50ecdd-d6d7-4a6a-9e4a-708113d0c256",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "d193b967-4a28-4f7a-9b44-473e2b91f017",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"medium_rgds_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:56:02.314Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:14:26.229Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) RGDS seed=123: 2-seed 统计检验依赖，验证 alignment gap 加速崩塌在 355M 跨 seed 一致\\\", \\\"parent\\\": \\\"medium_rgds_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"chain_cuda0_seed123.sh (rgds segment)\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2-medium (355M) rgds seed=123\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"gpt2-medium (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"chain_cuda0_s123\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_rgds_seed123.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"ppl\\\": 26.32, \\\"rankme\\\": 365.65, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0343, \\\"corr\\\": 0.0301}, \\\"gen1\\\": {\\\"ppl\\\": 33.72, \\\"rankme\\\": 396.58, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0285, \\\"corr\\\": 0.0135}, \\\"gen2\\\": {\\\"ppl\\\": 43.58, \\\"rankme\\\": 416.12, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0224, \\\"corr\\\": 0.0148}, \\\"gen3\\\": {\\\"ppl\\\": 51.8, \\\"rankme\\\": 422.63, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0194, \\\"corr\\\": -0.0004}, \\\"gen4\\\": {\\\"ppl\\\": 57.08, \\\"rankme\\\": 422.85, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0183, \\\"corr\\\": -0.0109}, \\\"gen5\\\": {\\\"ppl\\\": 69.28, \\\"rankme\\\": 426.34, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0171, \\\"corr\\\": -0.0089}, \\\"gen6\\\": {\\\"ppl\\\": 77.57, \\\"rankme\\\": 428.93, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0162, \\\"corr\\\": -0.0274}, \\\"gen7\\\": {\\\"ppl\\\": 90.25, \\\"rankme\\\": 431.19, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0149, \\\"corr\\\": -0.017}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_medium_rgds_seed123/rgds/gen_7/checkpoint\\\", \\\"completed_at\\\": \\\"2026-05-14T07:11:47.218Z\\\"}, \\\"medium_external_seed456\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:21:29.786Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:13:53.442Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) External-only seed=456: 3-seed 统计检验，验证 frozen embeddings 在 355M 跨 seed 避免 alignment gap\\\", \\\"parent\\\": \\\"medium_external_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"run_medium_external_seed456.sh 1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2-medium (355M) external_only seed=456\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"gpt2-medium (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"medium_external_seed456\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_external_seed456.log\\\", \\\"note\\\": \\\"50% Contriever frozen embedding selection, 8 gens, 500K tokens/gen\\\"}}, \\\"medium_random50_seed123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:56:03.403Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:12:06.090Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) Random 50% seed=123: 2-seed 统计检验依赖，验证 C3 (RGDS 劣于 Random) 在 355M 跨 seed 一致\\\", \\\"parent\\\": \\\"medium_random50_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"chain_cuda0_seed123.sh (random50 segment)\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2-medium (355M) random_50 seed=123\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"gpt2-medium (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"chain_cuda0_s123\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_random50_seed123.log\\\"}}, \\\"medium_uncurated_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:55:48.455Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:11:28.205Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) Uncurated baseline seed=123: 2-seed 统计检验依赖，验证 355M collapse 严重度跨 seed 一致\\\", \\\"parent\\\": \\\"medium_uncurated_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/div_cal_verify && source env.sh && bash chain_cuda0_seed123.sh\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2-medium (355M) uncurated seed=123\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"gpt2-medium (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"chain_cuda0_s123\\\", \\\"note\\\": \\\"chain_cuda0_seed123.sh 串行执行 uncurated→rgds→random50。首个实验。\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen7_ppl\\\": 87.05, \\\"gen7_rankme\\\": 436.04, \\\"gen7_rare\\\": 0.0136}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_medium_uncurated_seed123/uncurated/gen_7/checkpoint\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_uncurated_seed123.log\\\", \\\"completed_at\\\": \\\"2026-05-14T07:11:28.205Z\\\"}, \\\"medium_external_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:56:03.780Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:49:14.249Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) External-only seed=123: 2-seed 统计检验依赖，验证 frozen Contriever embeddings 在 355M 跨 seed 仍避免 alignment gap\\\", \\\"parent\\\": \\\"medium_external_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_medium_external_seed123.sh 1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2-medium (355M) external_only seed=123\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"gpt2-medium (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"medium_external_seed123\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_external_seed123.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"ppl\\\": 26.3, \\\"rankme\\\": 366.16, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0343, \\\"corr\\\": 0.0119}, \\\"gen1\\\": {\\\"ppl\\\": 33.62, \\\"rankme\\\": 400.2, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0303, \\\"corr\\\": 0.0077}, \\\"gen2\\\": {\\\"ppl\\\": 44.51, \\\"rankme\\\": 417.58, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0246, \\\"corr\\\": -0.0114}, \\\"gen3\\\": {\\\"ppl\\\": 51.18, \\\"rankme\\\": 421.73, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0206, \\\"corr\\\": -0.014}, \\\"gen4\\\": {\\\"ppl\\\": 61.11, \\\"rankme\\\": 427.42, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0184, \\\"corr\\\": -0.0282}, \\\"gen5\\\": {\\\"ppl\\\": 69.58, \\\"rankme\\\": 429.36, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0172, \\\"corr\\\": -0.0232}, \\\"gen6\\\": {\\\"ppl\\\": 74.33, \\\"rankme\\\": 428.14, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0168, \\\"corr\\\": -0.0458}, \\\"gen7\\\": {\\\"ppl\\\": 79.56, \\\"rankme\\\": 429.83, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0161, \\\"corr\\\": -0.0533, \\\"ratio\\\": 1.222}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_medium_external_seed123/external_only/gen_7/checkpoint\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_external_seed123.log\\\", \\\"completed_at\\\": \\\"2026-05-14T06:49:14.249Z\\\"}, \\\"medium_random50_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:21:29.247Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:22:00.608Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) Random 50% seed=456: 3-seed 统计检验，验证 C3 (RGDS 劣于 Random) 在 355M 跨 seed 一致\\\", \\\"parent\\\": \\\"medium_random50_seed42\\\"}, \\\"medium_rgds_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:21:28.342Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:21:59.635Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) RGDS seed=456: 3-seed 统计检验，验证 alignment gap 在 355M 跨 seed 一致\\\", \\\"parent\\\": \\\"medium_rgds_seed42\\\"}, \\\"medium_uncurated_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:21:27.986Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:21:58.622Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) Uncurated seed=456: 3-seed 统计检验，验证 355M collapse 跨 seed 一致性\\\", \\\"parent\\\": \\\"medium_uncurated_seed42\\\"}, \\\"medium_external_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:32:08.840Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:11:09.334Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"auto-chained from rgds_seed456 completion on cuda:1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2-medium (355M) external_only seed=42\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"gpt2-medium (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"chain_cuda1\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_external.log\\\", \\\"note\\\": \\\"由 chain_cuda1 自动启动\\\"}, \\\"hypothesis\\\": \\\"GPT2-medium (355M) External-only diversity selection: 验证 frozen Contriever embeddings 在更大模型上是否仍能避免 alignment gap（model scaling + external embedding interaction）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_medium_external/external_only/gen_7/checkpoint\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_external.log\\\", \\\"metrics\\\": {\\\"gen7_ppl\\\": 77.74, \\\"gen7_rankme\\\": 421.5, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare_ngram\\\": 0.0165, \\\"gen7_rank_corr\\\": -0.0072, \\\"gen0_ppl\\\": 26.33, \\\"gen0_rankme\\\": 363.43, \\\"ppl_increase_ratio\\\": 2.95, \\\"rankme_increase\\\": 58.07}, \\\"completed_at\\\": \\\"2026-05-14T03:11:09.334Z\\\"}, \\\"medium_random50_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:01:02.034Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:53:02.738Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) Random 50% baseline: 验证同 budget 随机选择在更大模型上的表现，作为 RGDS alignment gap 在 355M scale 的关键对照组\\\", \\\"parent\\\": \\\"medium_rgds_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/div_cal_verify && source env.sh && bash run_medium_random50.sh 0\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2-medium (355M) random_50 seed=42\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"gpt2-medium (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"chain_cuda0\\\", \\\"note\\\": \\\"由 chain_cuda0 自动启动，medium_rgds 完成后衔接。Worker 确认已在跑，Gen 6/8。\\\"}, \\\"metrics\\\": {\\\"gen0\\\": {\\\"ppl\\\": 26.12, \\\"rankme\\\": 361.63, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0346, \\\"corr\\\": 0.0101}, \\\"gen1\\\": {\\\"ppl\\\": 32.57, \\\"rankme\\\": 387.8, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0277, \\\"corr\\\": 0.0331}, \\\"gen2\\\": {\\\"ppl\\\": 41.58, \\\"rankme\\\": 410.08, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0214, \\\"corr\\\": 0.0088}, \\\"gen3\\\": {\\\"ppl\\\": 49.87, \\\"rankme\\\": 421.67, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0182, \\\"corr\\\": -0.0018}, \\\"gen4\\\": {\\\"ppl\\\": 59.83, \\\"rankme\\\": 427.23, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0161, \\\"corr\\\": -0.0014}, \\\"gen5\\\": {\\\"ppl\\\": 60.62, \\\"rankme\\\": 426.16, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0144, \\\"corr\\\": -0.0004}, \\\"gen6\\\": {\\\"ppl\\\": 68.34, \\\"rankme\\\": 427.19, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0134, \\\"corr\\\": -0.0071}, \\\"gen7\\\": {\\\"ppl\\\": 70.25, \\\"rankme\\\": 426.5, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0128, \\\"corr\\\": -0.0034}}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_medium_random50/random_50/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_random50.log\\\", \\\"completed_at\\\": \\\"2026-05-14T01:53:02.738Z\\\"}, \\\"medium_rgds_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T21:37:18.001Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:53:34.267Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) RGDS diversity selection: 验证 alignment gap 加速崩塌在更大模型上是否复现（model scaling + method interaction）\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/div_cal_verify && source env.sh && bash run_medium_rgds.sh 0\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2-medium (355M) rgds seed=42\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"gpt2-medium (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"chain_cuda0\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_rgds.log\\\", \\\"note\\\": \\\"由 chain_cuda0 自动启动，medium_uncurated 完成后衔接\\\"}, \\\"parent\\\": \\\"medium_uncurated_seed42\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"ppl\\\": 26.04, \\\"rankme\\\": 365.07, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0346, \\\"corr\\\": 0.0196, \\\"ratio\\\": 0.9759}, \\\"gen1\\\": {\\\"ppl\\\": 32.99, \\\"rankme\\\": 398.29, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0286, \\\"corr\\\": 0.0402, \\\"ratio\\\": 0.9991}, \\\"gen2\\\": {\\\"ppl\\\": 41.99, \\\"rankme\\\": 418.21, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0232, \\\"corr\\\": 0.0014, \\\"ratio\\\": 0.9225}, \\\"gen3\\\": {\\\"ppl\\\": 50.8, \\\"rankme\\\": 421.44, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0198, \\\"corr\\\": 0.0058, \\\"ratio\\\": 0.9127}, \\\"gen4\\\": {\\\"ppl\\\": 60.71, \\\"rankme\\\": 425.62, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0187, \\\"corr\\\": -0.0068, \\\"ratio\\\": 0.7989}, \\\"gen5\\\": {\\\"ppl\\\": 66.29, \\\"rankme\\\": 424.71, \\\"knn\\\": 0.988, \\\"rare\\\": 0.018, \\\"corr\\\": -0.0235, \\\"ratio\\\": 0.9002}, \\\"gen6\\\": {\\\"ppl\\\": 72, \\\"rankme\\\": 423.93, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0168, \\\"corr\\\": -0.0197, \\\"ratio\\\": 0.7622}, \\\"gen7\\\": {\\\"ppl\\\": 82.84, \\\"rankme\\\": 424.72, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0166, \\\"corr\\\": -0.0286, \\\"ratio\\\": 0.8313}}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_medium_rgds/rgds/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_rgds.log\\\", \\\"completed_at\\\": \\\"2026-05-14T00:53:34.267Z\\\"}, \\\"rgds_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:44:56.404Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:32:22.643Z\\\", \\\"hypothesis\\\": \\\"RGDS (50% internal embedding selection) seed=456 复现：3-seed 统计检验依赖，验证 RGDS alignment gap 加速崩塌跨 seed 一致\\\", \\\"parent\\\": \\\"phase2_3method_selfit\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 bash run_rgds_seed456.sh\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/rgds_seed456.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) RGDS seed=456\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"gpt2 (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"seed456_methods\\\", \\\"note\\\": \\\"实际未启动，排在 ext_seed456 之后串行。误标 RUNNING，registry 不允许回退到 QUEUED。ext_seed456 完成后自动启动。\\\"}, \\\"metrics\\\": {\\\"gen0_ppl\\\": 36.7, \\\"gen0_rankme\\\": 274.06, \\\"gen0_knn\\\": 0.988, \\\"gen0_rare\\\": 0.0284, \\\"gen0_corr\\\": -0.0138, \\\"gen0_ratio\\\": 0.9114, \\\"gen1_ppl\\\": 44.59, \\\"gen1_rankme\\\": 291.76, \\\"gen1_knn\\\": 0.988, \\\"gen1_rare\\\": 0.0189, \\\"gen1_corr\\\": -0.0418, \\\"gen1_ratio\\\": 0.8895, \\\"gen2_ppl\\\": 45.3, \\\"gen2_rankme\\\": 290.79, \\\"gen2_knn\\\": 0.988, \\\"gen2_rare\\\": 0.0139, \\\"gen2_corr\\\": -0.0356, \\\"gen2_ratio\\\": 0.9071, \\\"gen3_ppl\\\": 49.13, \\\"gen3_rankme\\\": 289.92, \\\"gen3_knn\\\": 0.988, \\\"gen3_rare\\\": 0.0111, \\\"gen3_corr\\\": -0.0403, \\\"gen3_ratio\\\": 0.8774, \\\"gen4_ppl\\\": 47.4, \\\"gen4_rankme\\\": 287.04, \\\"gen4_knn\\\": 0.988, \\\"gen4_rare\\\": 0.0098, \\\"gen4_corr\\\": -0.0342, \\\"gen4_ratio\\\": 0.8292, \\\"gen5_ppl\\\": 55.99, \\\"gen5_rankme\\\": 290.71, \\\"gen5_knn\\\": 0.988, \\\"gen5_rare\\\": 0.0078, \\\"gen5_corr\\\": -0.0269, \\\"gen5_ratio\\\": 0.7065, \\\"gen6_ppl\\\": 55.99, \\\"gen6_rankme\\\": 287.52, \\\"gen6_knn\\\": 0.988, \\\"gen6_rare\\\": 0.0065, \\\"gen6_corr\\\": -0.0247, \\\"gen6_ratio\\\": 0.6447, \\\"gen7_ppl\\\": 66.22, \\\"gen7_rankme\\\": 286.54, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare\\\": 0.0069, \\\"gen7_corr\\\": -0.0228, \\\"gen7_ratio\\\": 0.8682}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_seed456/rgds/gen_7/checkpoint/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/rgds_seed456.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T23:23:02.891Z\\\"}, \\\"ext_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:44:57.069Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:47:35.556Z\\\", \\\"hypothesis\\\": \\\"External_only (50% Contriever frozen embedding) seed=456 复现：3-seed 统计检验依赖，验证 external_only 免疫 alignment gap 跨 seed 一致\\\", \\\"parent\\\": \\\"phase2_ext_seed123\\\", \\\"spec\\\": {\\\"command\\\": \\\"chain experiment - external_only seed=456\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/ext_seed456.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_seed456/external_only/\\\", \\\"data_count\\\": 488, \\\"model_name\\\": \\\"GPT2-125M\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"gpt2 (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"seed456_methods\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_seed456/external_only/external_only/gen_7/checkpoint/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/ext_seed456.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T21:46:13.875Z\\\", \\\"metrics\\\": {\\\"gen0_ppl\\\": 36.51, \\\"gen0_rankme\\\": 273.85, \\\"gen0_knn\\\": 0.988, \\\"gen0_rare\\\": 0.0284, \\\"gen0_corr\\\": -0.0103, \\\"gen0_ratio\\\": 1.1621, \\\"gen1_ppl\\\": 44.77, \\\"gen1_rankme\\\": 291.93, \\\"gen1_knn\\\": 0.988, \\\"gen1_rare\\\": 0.0203, \\\"gen1_corr\\\": -0.0404, \\\"gen1_ratio\\\": 1.0686, \\\"gen2_ppl\\\": 50.84, \\\"gen2_rankme\\\": 298.52, \\\"gen2_knn\\\": 0.987, \\\"gen2_rare\\\": 0.0152, \\\"gen2_corr\\\": -0.0292, \\\"gen2_ratio\\\": 1.1119, \\\"gen3_ppl\\\": 54.43, \\\"gen3_rankme\\\": 298.35, \\\"gen3_knn\\\": 0.987, \\\"gen3_rare\\\": 0.013, \\\"gen3_corr\\\": -0.0223, \\\"gen3_ratio\\\": 1.1551, \\\"gen4_ppl\\\": 49.91, \\\"gen4_rankme\\\": 295.86, \\\"gen4_knn\\\": 0.988, \\\"gen4_rare\\\": 0.0118, \\\"gen4_corr\\\": -0.0321, \\\"gen4_ratio\\\": 1.1841, \\\"gen5_ppl\\\": 50.45, \\\"gen5_rankme\\\": 297.37, \\\"gen5_knn\\\": 0.988, \\\"gen5_rare\\\": 0.0111, \\\"gen5_corr\\\": -0.03, \\\"gen5_ratio\\\": 1.2186, \\\"gen6_ppl\\\": 47.09, \\\"gen6_rankme\\\": 294.35, \\\"gen6_knn\\\": 0.988, \\\"gen6_rare\\\": 0.01, \\\"gen6_corr\\\": -0.0207, \\\"gen6_ratio\\\": 1.0818, \\\"gen7_ppl\\\": 43.9, \\\"gen7_rankme\\\": 292.69, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare\\\": 0.0106, \\\"gen7_corr\\\": -0.0227, \\\"gen7_ratio\\\": 1.243}}, \\\"medium_uncurated_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T19:20:55.822Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:42:26.811Z\\\", \\\"hypothesis\\\": \\\"GPT2-medium (355M) uncurated baseline: 验证 alignment gap 现象在更大模型上是否复现（model scaling 维度）\\\", \\\"parent\\\": \\\"phase2_3method_selfit\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/div_cal_verify && source env.sh && bash run_medium_uncurated.sh 0\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_uncurated.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2-medium (355M) uncurated seed=42\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"gpt2-medium (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"medium_uncurated\\\", \\\"pid\\\": \\\"283798\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_medium_uncurated/uncurated/\\\"}, \\\"metrics\\\": {\\\"gen0_ppl\\\": 26.55, \\\"gen0_rankme\\\": 371.57, \\\"gen0_knn\\\": 0.988, \\\"gen0_rare\\\": 0.0346, \\\"gen0_corr\\\": 0.0219, \\\"gen1_ppl\\\": 35.12, \\\"gen1_rankme\\\": 403.8, \\\"gen1_knn\\\": 0.988, \\\"gen1_rare\\\": 0.0281, \\\"gen1_corr\\\": 0.0228, \\\"gen2_ppl\\\": 46.9, \\\"gen2_rankme\\\": 420.83, \\\"gen2_knn\\\": 0.988, \\\"gen2_rare\\\": 0.0216, \\\"gen2_corr\\\": 0.0181, \\\"gen3_ppl\\\": 57.4, \\\"gen3_rankme\\\": 425.35, \\\"gen3_knn\\\": 0.988, \\\"gen3_rare\\\": 0.0185, \\\"gen3_corr\\\": 0.0011, \\\"gen4_ppl\\\": 67.45, \\\"gen4_rankme\\\": 430.68, \\\"gen4_knn\\\": 0.988, \\\"gen4_rare\\\": 0.0172, \\\"gen4_corr\\\": -0.0046, \\\"gen5_ppl\\\": 78.55, \\\"gen5_rankme\\\": 438.62, \\\"gen5_knn\\\": 0.987, \\\"gen5_rare\\\": 0.0159, \\\"gen5_corr\\\": -0.0175, \\\"gen6_ppl\\\": 84.59, \\\"gen6_rankme\\\": 442.85, \\\"gen6_knn\\\": 0.987, \\\"gen6_rare\\\": 0.0144, \\\"gen6_corr\\\": -0.0462, \\\"gen7_ppl\\\": 91.66, \\\"gen7_rankme\\\": 443.98, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare\\\": 0.0139, \\\"gen7_corr\\\": -0.0379}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T21:41:57.426Z\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_medium_uncurated/uncurated/gen_7/checkpoint/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/medium_uncurated.log\\\"}, \\\"uncurated_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:44:55.468Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:28:12.126Z\\\", \\\"hypothesis\\\": \\\"Uncurated (100% data) seed=456 复现：3-seed 统计检验依赖，验证 uncurated 的 PPL/rare 轨迹跨 seed 一致性\\\", \\\"parent\\\": \\\"phase2_3method_selfit\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 bash run_uncurated_seed456.sh\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/uncurated_seed456.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) uncurated seed=456\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"gpt2 (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"tmux_session\\\": \\\"seed456_methods\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_ppl\\\": 36.64, \\\"gen0_rankme\\\": 279.17, \\\"gen0_knn\\\": 0.988, \\\"gen0_rare\\\": 0.0284, \\\"gen0_corr\\\": -0.0205, \\\"gen7_ppl\\\": 44.69, \\\"gen7_rankme\\\": 287.93, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare\\\": 0.0086, \\\"gen7_corr\\\": -0.0696}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_phase2_seed456/uncurated/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/uncurated_seed456.log\\\", \\\"completed_at\\\": \\\"2026-05-13T19:28:12.126Z\\\"}, \\\"random_50_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:01:32.779Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:01:00.100Z\\\", \\\"hypothesis\\\": \\\"Random 50% seed=456 复现：与 phase2_random50_v2 (seed=42) 完全一致的超参数，验证 random≈external 是否跨 seed 成立（C2-revised + C3 验证，3-seed t 检验依赖）\\\", \\\"parent\\\": \\\"phase2_random50_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/div_cal_verify && source env.sh && bash run_random50_seed456.sh\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/random50_seed456.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) random_50 seed=456\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"gpt2 (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/div_cal_verify/results_random50_seed456/\\\", \\\"pid\\\": \\\"250453\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen7_ppl\\\": 44.6, \\\"gen7_rare\\\": 0.0101, \\\"gen7_rankme\\\": 289.87}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_random50_seed456/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/random50_seed456.log\\\", \\\"completed_at\\\": \\\"2026-05-13T19:01:00.100Z\\\"}, \\\"random_50_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:01:31.859Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:00:59.367Z\\\", \\\"hypothesis\\\": \\\"Random 50% seed=123 复现：与 phase2_random50_v2 (seed=42) 完全一致的超参数，验证 random≈external 是否跨 seed 成立（C2-revised + C3 验证，3-seed t 检验依赖）\\\", \\\"parent\\\": \\\"phase2_random50_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/div_cal_verify && source env.sh && bash run_random50_seed123.sh\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/random50_seed123.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) random_50 seed=123\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"gpt2 (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/div_cal_verify/results_random50_seed123/\\\", \\\"pid\\\": \\\"250452\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen7_ppl\\\": 41.75, \\\"gen7_rare\\\": 0.0098, \\\"gen7_rankme\\\": 291.7}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_random50_seed123/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/random50_seed123.log\\\", \\\"completed_at\\\": \\\"2026-05-13T19:00:59.367Z\\\"}, \\\"phase2_random50_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T11:46:06.927Z\\\", \\\"updated_at\\\": \\\"2026-05-13T16:01:33.541Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /root/div_cal_verify/env.sh && export TRANSFORMERS_OFFLINE=1 && bash /root/div_cal_verify/run_random50.sh 0\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/random50_v2.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) random_50 seed=42\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"gpt2 (HuggingFace pretrained)\\\", \\\"eval_data\\\": \\\"/root/div_cal_verify/data_gpt2/\\\"}, \\\"hypothesis\\\": \\\"Random 50% baseline v2: 与 Phase 2 对照组完全一致的超参数(lr=5e-5, epochs=3, 500K tokens/gen)，随机选择 50% 数据，验证 diversity-aware selection 相比随机选择的增益\\\", \\\"parent\\\": \\\"phase2_3method_selfit\\\", \\\"failure_reason\\\": \\\"monitoring false alarm - experiment completed successfully\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T11:54:46.226Z\\\", \\\"metrics\\\": {\\\"gen0_ppl\\\": 36.87, \\\"gen0_rankme\\\": 275.24, \\\"gen0_knn\\\": 0.988, \\\"gen0_rare\\\": 0.029, \\\"gen0_corr\\\": -0.0081, \\\"gen1_ppl\\\": 44.34, \\\"gen1_rankme\\\": 292.46, \\\"gen1_knn\\\": 0.988, \\\"gen1_rare\\\": 0.0193, \\\"gen1_corr\\\": -0.036, \\\"gen2_ppl\\\": 49.75, \\\"gen2_rankme\\\": 295.61, \\\"gen2_knn\\\": 0.988, \\\"gen2_rare\\\": 0.0143, \\\"gen2_corr\\\": -0.0315, \\\"gen3_ppl\\\": 49, \\\"gen3_rankme\\\": 295.28, \\\"gen3_knn\\\": 0.988, \\\"gen3_rare\\\": 0.0125, \\\"gen3_corr\\\": -0.0238, \\\"gen4_ppl\\\": 50.85, \\\"gen4_rankme\\\": 297.01, \\\"gen4_knn\\\": 0.988, \\\"gen4_rare\\\": 0.0113, \\\"gen4_corr\\\": -0.0209, \\\"gen5_ppl\\\": 47.31, \\\"gen5_rankme\\\": 292.81, \\\"gen5_knn\\\": 0.988, \\\"gen5_rare\\\": 0.0104, \\\"gen5_corr\\\": -0.0207, \\\"gen6_ppl\\\": 44.78, \\\"gen6_rankme\\\": 293.42, \\\"gen6_knn\\\": 0.988, \\\"gen6_rare\\\": 0.0099, \\\"gen6_corr\\\": -0.029, \\\"gen7_ppl\\\": 43.2, \\\"gen7_rankme\\\": 291.38, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare\\\": 0.0096, \\\"gen7_corr\\\": -0.0391}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_random50/random_50/\\\"}, \\\"phase2_seed123_remaining\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T10:05:23.998Z\\\", \\\"updated_at\\\": \\\"2026-05-13T15:41:50.802Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"seed=123 下 uncurated + RGDS 方法的复现实验，补齐三方法对照（external_only 已在 cuda:0 运行）。基于 phase2_3method_selfit 配置。\\\", \\\"command\\\": \\\"bash /root/div_cal_verify/run_seed123_remaining.sh 1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu_id\\\": 1, \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) uncurated+RGDS seed=123\\\", \\\"seed\\\": 123, \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/phase2_seed123_remaining.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/\\\", \\\"tmux_session\\\": \\\"phase2_seed123_remaining\\\", \\\"current_method\\\": \\\"uncurated\\\", \\\"current_gen\\\": 3, \\\"total_gens\\\": 7, \\\"note\\\": \\\"2026-05-13 10:50 check: alive, uncurated Gen 3/7 training, GPU1 15409MiB\\\"}, \\\"current_gen\\\": 3, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/phase2_seed123_remaining.log\\\", \\\"metrics\\\": {\\\"uncurated\\\": {\\\"gen0\\\": {\\\"ppl\\\": 36.69, \\\"rankme\\\": 277.86, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0293, \\\"corr\\\": -0.0222}, \\\"gen1\\\": {\\\"ppl\\\": 45.29, \\\"rankme\\\": 297.08, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0192, \\\"corr\\\": -0.0554}, \\\"gen2\\\": {\\\"ppl\\\": 53.76, \\\"rankme\\\": 301.88, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0137, \\\"corr\\\": -0.0448}, \\\"gen3\\\": {\\\"ppl\\\": 53.76, \\\"rankme\\\": 300.7, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0116, \\\"corr\\\": -0.0365}, \\\"gen4\\\": {\\\"ppl\\\": 54.33, \\\"rankme\\\": 298.78, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0107, \\\"corr\\\": -0.0471}, \\\"gen5\\\": {\\\"ppl\\\": 53, \\\"rankme\\\": 293.21, \\\"knn\\\": 0.988, \\\"rare\\\": 0.01, \\\"corr\\\": -0.037}, \\\"gen6\\\": {\\\"ppl\\\": 49.87, \\\"rankme\\\": 295.35, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0101, \\\"corr\\\": -0.0477}, \\\"gen7\\\": {\\\"ppl\\\": 46.15, \\\"rankme\\\": 290.13, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0093, \\\"corr\\\": -0.0755}}, \\\"rgds\\\": {\\\"gen0\\\": {\\\"ppl\\\": 36.71, \\\"rankme\\\": 272.68, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0293, \\\"corr\\\": -0.0116, \\\"ratio\\\": 0.9997}, \\\"gen1\\\": {\\\"ppl\\\": 42.81, \\\"rankme\\\": 286.96, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0186, \\\"corr\\\": -0.0544, \\\"ratio\\\": 0.9066}, \\\"gen2\\\": {\\\"ppl\\\": 47.35, \\\"rankme\\\": 291.31, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0142, \\\"corr\\\": -0.0569, \\\"ratio\\\": 0.8604}, \\\"gen3\\\": {\\\"ppl\\\": 52.64, \\\"rankme\\\": 295.72, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0119, \\\"corr\\\": -0.0185, \\\"ratio\\\": 0.8689}, \\\"gen4\\\": {\\\"ppl\\\": 52.74, \\\"rankme\\\": 294.9, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0101, \\\"corr\\\": -0.0042, \\\"ratio\\\": 0.8863}, \\\"gen5\\\": {\\\"ppl\\\": 60.62, \\\"rankme\\\": 294.93, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0087, \\\"corr\\\": -0.0036, \\\"ratio\\\": 0.7809}, \\\"gen6\\\": {\\\"ppl\\\": 75.03, \\\"rankme\\\": 299.36, \\\"knn\\\": 0.988, \\\"rare\\\": 0.007, \\\"corr\\\": -0.0119, \\\"ratio\\\": 0.6789}, \\\"gen7\\\": {\\\"ppl\\\": 81.57, \\\"rankme\\\": 298.35, \\\"knn\\\": 0.988, \\\"rare\\\": 0.0062, \\\"corr\\\": -0.0312, \\\"ratio\\\": 0.5236}}}, \\\"completed_at\\\": \\\"2026-05-13T15:19:03.216Z\\\"}, \\\"phase2_random50_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T11:29:42.169Z\\\", \\\"updated_at\\\": \\\"2026-05-13T15:19:47.746Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_random50.sh 0\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"215364\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/div_cal_verify/random50_baseline.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) random_50 seed=42\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"Random 50% baseline: 与 RGDS/external_only 相同的 50% 数据预算但随机选择，验证 diversity-aware selection 相比随机选择的增益\\\", \\\"parent\\\": \\\"phase2_3method_selfit\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T11:45:56.699Z\\\", \\\"failure_reason\\\": \\\"TRANSFORMERS_OFFLINE=1 set but gpt2/contriever models not cached locally, all downloads timed out\\\"}, \\\"phase2_ext_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T07:12:13.179Z\\\", \\\"updated_at\\\": \\\"2026-05-13T11:26:05.564Z\\\", \\\"hypothesis\\\": \\\"external_only seed=123 复现实验，验证 Phase 2 external_only 结果的可重复性（N>1 统计检验准备）\\\", \\\"parent\\\": \\\"phase2_3method_selfit\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_ext_seed123.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"180459\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/phase2_ext_seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T07:32:17.645Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) external_only seed=123\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"N/A (self-iterate from pretrained gpt2)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"current_gen\\\": \\\"4/7\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/external_only\\\", \\\"wall_clock_seconds\\\": 14027.9, \\\"gpu_hours\\\": 3.9}, \\\"metrics\\\": {\\\"gen0_ppl\\\": 36.66, \\\"gen0_rankme\\\": 273.12, \\\"gen0_knn\\\": 0.988, \\\"gen0_rare\\\": 0.0293, \\\"gen0_corr\\\": -0.0034, \\\"gen0_ratio\\\": 1.0843, \\\"gen1_ppl\\\": 44.75, \\\"gen1_rankme\\\": 292.34, \\\"gen1_knn\\\": 0.988, \\\"gen1_rare\\\": 0.0205, \\\"gen1_corr\\\": -0.0409, \\\"gen1_ratio\\\": 1.1015, \\\"gen2_ppl\\\": 52.21, \\\"gen2_rankme\\\": 298.54, \\\"gen2_knn\\\": 0.988, \\\"gen2_rare\\\": 0.0146, \\\"gen2_corr\\\": -0.0338, \\\"gen2_ratio\\\": 1.1547, \\\"gen3_ppl\\\": 58.4, \\\"gen3_rankme\\\": 299.05, \\\"gen3_knn\\\": 0.988, \\\"gen3_rare\\\": 0.0122, \\\"gen3_corr\\\": -0.0124, \\\"gen3_ratio\\\": 1.1577, \\\"gen4_ppl\\\": 54.89, \\\"gen4_rankme\\\": 299.42, \\\"gen4_knn\\\": 0.988, \\\"gen4_rare\\\": 0.0114, \\\"gen4_corr\\\": 0.0033, \\\"gen4_ratio\\\": 1.1395, \\\"gen5_ppl\\\": 51.71, \\\"gen5_rankme\\\": 294.95, \\\"gen5_knn\\\": 0.988, \\\"gen5_rare\\\": 0.0108, \\\"gen5_corr\\\": -0.0026, \\\"gen5_ratio\\\": 1.0942, \\\"gen6_ppl\\\": 49.17, \\\"gen6_rankme\\\": 293.7, \\\"gen6_knn\\\": 0.988, \\\"gen6_rare\\\": 0.0105, \\\"gen6_corr\\\": 0, \\\"gen6_ratio\\\": 1.2248, \\\"gen7_ppl\\\": 49.66, \\\"gen7_rankme\\\": 290.82, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare\\\": 0.0104, \\\"gen7_corr\\\": 0.0111, \\\"gen7_ratio\\\": 1.1299}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/external_only/external_only/gen_7/checkpoint\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/phase2_ext_seed123.log\\\", \\\"completed_at\\\": \\\"2026-05-13T11:26:05.564Z\\\"}, \\\"phase2_3method_selfit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T03:16:41.146Z\\\", \\\"updated_at\\\": \\\"2026-05-13T09:49:16.216Z\\\", \\\"hypothesis\\\": \\\"RGDS diversity selection 能减缓 self-iterate 模式下的多样性崩塌（rare n-gram 丢失），表现优于 uncurated baseline，至少与 external_only 持平\\\", \\\"parent\\\": \\\"phase1b_self_iterate\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_phase2.sh 1\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"138667\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/phase2_3method_selfit.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T03:41:36.054Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) self-iterate 3-method\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (self-iterate from pretrained gpt2)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"wall_clock_seconds\\\": 22060.2, \\\"gpu_hours\\\": 6.13}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T09:15:26.220Z\\\"}, \\\"metrics\\\": {\\\"rgds\\\": {\\\"gen0_ppl\\\": 37.09, \\\"gen0_rankme\\\": 275.89, \\\"gen0_knn\\\": 0.988, \\\"gen0_rare\\\": 0.029, \\\"gen0_corr\\\": -0.0123, \\\"gen0_ratio\\\": 1.0371, \\\"gen1_ppl\\\": 45.36, \\\"gen1_rankme\\\": 291.76, \\\"gen1_knn\\\": 0.988, \\\"gen1_rare\\\": 0.0202, \\\"gen1_corr\\\": -0.0459, \\\"gen1_ratio\\\": 0.9096, \\\"gen2_ppl\\\": 50.51, \\\"gen2_rankme\\\": 292.74, \\\"gen2_knn\\\": 0.988, \\\"gen2_rare\\\": 0.0151, \\\"gen2_corr\\\": -0.0365, \\\"gen2_ratio\\\": 0.9267, \\\"gen3_ppl\\\": 53.82, \\\"gen3_rankme\\\": 294.03, \\\"gen3_knn\\\": 0.988, \\\"gen3_rare\\\": 0.0124, \\\"gen3_corr\\\": -0.0308, \\\"gen3_ratio\\\": 0.9409, \\\"gen4_ppl\\\": 53.97, \\\"gen4_rankme\\\": 294.92, \\\"gen4_knn\\\": 0.988, \\\"gen4_rare\\\": 0.0099, \\\"gen4_corr\\\": -0.0483, \\\"gen4_ratio\\\": 0.8955, \\\"gen5_ppl\\\": 61.75, \\\"gen5_rankme\\\": 293.84, \\\"gen5_knn\\\": 0.988, \\\"gen5_rare\\\": 0.0082, \\\"gen5_corr\\\": -0.0388, \\\"gen5_ratio\\\": 0.8108, \\\"gen6_ppl\\\": 64.12, \\\"gen6_rankme\\\": 293.76, \\\"gen6_knn\\\": 0.988, \\\"gen6_rare\\\": 0.0067, \\\"gen6_corr\\\": -0.0464, \\\"gen6_ratio\\\": 0.7165, \\\"gen7_ppl\\\": 75.07, \\\"gen7_rankme\\\": 292.72, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare\\\": 0.0051, \\\"gen7_corr\\\": -0.0387, \\\"gen7_ratio\\\": 0.5173}, \\\"external_only\\\": {\\\"gen0_ppl\\\": 37.04, \\\"gen0_rankme\\\": 275.07, \\\"gen0_knn\\\": 0.988, \\\"gen0_rare\\\": 0.029, \\\"gen0_corr\\\": 0.0031, \\\"gen0_ratio\\\": 1.1366, \\\"gen1_ppl\\\": 44.29, \\\"gen1_rankme\\\": 291.62, \\\"gen1_knn\\\": 0.988, \\\"gen1_rare\\\": 0.0184, \\\"gen1_corr\\\": -0.0345, \\\"gen1_ratio\\\": 1.2108, \\\"gen2_ppl\\\": 50.12, \\\"gen2_rankme\\\": 295.53, \\\"gen2_knn\\\": 0.988, \\\"gen2_rare\\\": 0.0141, \\\"gen2_corr\\\": -0.026, \\\"gen2_ratio\\\": 1.1164, \\\"gen3_ppl\\\": 53.55, \\\"gen3_rankme\\\": 295.88, \\\"gen3_knn\\\": 0.988, \\\"gen3_rare\\\": 0.0117, \\\"gen3_corr\\\": -0.0211, \\\"gen3_ratio\\\": 1.1963, \\\"gen4_ppl\\\": 52.27, \\\"gen4_rankme\\\": 296.67, \\\"gen4_knn\\\": 0.988, \\\"gen4_rare\\\": 0.0102, \\\"gen4_corr\\\": -0.0174, \\\"gen4_ratio\\\": 1.2817, \\\"gen5_ppl\\\": 47.37, \\\"gen5_rankme\\\": 290.25, \\\"gen5_knn\\\": 0.988, \\\"gen5_rare\\\": 0.01, \\\"gen5_corr\\\": -0.0133, \\\"gen5_ratio\\\": 1.1093, \\\"gen6_ppl\\\": 46.11, \\\"gen6_rankme\\\": 289.66, \\\"gen6_knn\\\": 0.988, \\\"gen6_rare\\\": 0.0103, \\\"gen6_corr\\\": -0.0054, \\\"gen6_ratio\\\": 1.1227, \\\"gen7_ppl\\\": 45.51, \\\"gen7_rankme\\\": 290.83, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare\\\": 0.0099, \\\"gen7_corr\\\": 0.0107, \\\"gen7_ratio\\\": 1.0953}, \\\"uncurated\\\": {\\\"gen0_ppl\\\": 37.1, \\\"gen0_rankme\\\": 280.32, \\\"gen0_knn\\\": 0.988, \\\"gen0_rare\\\": 0.029, \\\"gen0_corr\\\": -0.0226, \\\"gen1_ppl\\\": 44.89, \\\"gen1_rankme\\\": 297.8, \\\"gen1_knn\\\": 0.988, \\\"gen1_rare\\\": 0.0192, \\\"gen1_corr\\\": -0.0548, \\\"gen2_ppl\\\": 51.32, \\\"gen2_rankme\\\": 302.47, \\\"gen2_knn\\\": 0.988, \\\"gen2_rare\\\": 0.0139, \\\"gen2_corr\\\": -0.051, \\\"gen3_ppl\\\": 56.25, \\\"gen3_rankme\\\": 303.05, \\\"gen3_knn\\\": 0.987, \\\"gen3_rare\\\": 0.0118, \\\"gen3_corr\\\": -0.0458, \\\"gen4_ppl\\\": 55.88, \\\"gen4_rankme\\\": 300.51, \\\"gen4_knn\\\": 0.988, \\\"gen4_rare\\\": 0.0102, \\\"gen4_corr\\\": -0.035, \\\"gen5_ppl\\\": 50.08, \\\"gen5_rankme\\\": 296.54, \\\"gen5_knn\\\": 0.988, \\\"gen5_rare\\\": 0.0099, \\\"gen5_corr\\\": -0.0452, \\\"gen6_ppl\\\": 48.25, \\\"gen6_rankme\\\": 290.42, \\\"gen6_knn\\\": 0.988, \\\"gen6_rare\\\": 0.0094, \\\"gen6_corr\\\": -0.0682, \\\"gen7_ppl\\\": 50.28, \\\"gen7_rankme\\\": 291.43, \\\"gen7_knn\\\": 0.988, \\\"gen7_rare\\\": 0.009, \\\"gen7_corr\\\": -0.088}}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_phase2/\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/phase2_3method_selfit.log\\\", \\\"completed_at\\\": \\\"2026-05-13T09:49:16.216Z\\\"}, \\\"phase1b_self_iterate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T01:02:07.616Z\\\", \\\"updated_at\\\": \\\"2026-05-13T03:14:07.440Z\\\", \\\"hypothesis\\\": \\\"固定 generator 阻断 feedback loop 是前两次实验未崩塌的根因。Student-as-generator 自迭代模式（GPT2-125M 8 代）应能诱导可测量的 model collapse（RankMe >20% 下降，PPL 恶化）\\\", \\\"parent\\\": \\\"phase1_gpt2_collapse\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_phase1b.sh 1\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"123407\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/phase1b_self_iterate.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T01:06:57.716Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"data_count\\\": 232588, \\\"model_name\\\": \\\"gpt2 (124M) self-iterate\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (self-iterate from pretrained gpt2)\\\", \\\"eval_data\\\": \\\"WikiText-103 (built-in eval)\\\", \\\"wall_clock_seconds\\\": 7629.7, \\\"gpu_hours\\\": 2.12}, \\\"metrics\\\": {\\\"uncurated\\\": {\\\"gen0_ppl\\\": 37.1, \\\"gen1_ppl\\\": 44.9, \\\"gen2_ppl\\\": 51.63, \\\"gen3_ppl\\\": 56.97, \\\"gen4_ppl\\\": 55.71, \\\"gen5_ppl\\\": 51.74, \\\"gen6_ppl\\\": 48.67, \\\"gen7_ppl\\\": 48.11, \\\"gen0_rankme\\\": 280.32, \\\"gen1_rankme\\\": 297.81, \\\"gen2_rankme\\\": 302.62, \\\"gen3_rankme\\\": 303.27, \\\"gen4_rankme\\\": 301.33, \\\"gen5_rankme\\\": 297.35, \\\"gen6_rankme\\\": 293.01, \\\"gen7_rankme\\\": 289.79, \\\"gen0_knn\\\": 0.988, \\\"gen1_knn\\\": 0.988, \\\"gen2_knn\\\": 0.987, \\\"gen3_knn\\\": 0.988, \\\"gen4_knn\\\": 0.988, \\\"gen5_knn\\\": 0.988, \\\"gen6_knn\\\": 0.988, \\\"gen7_knn\\\": 0.988, \\\"gen0_rare\\\": 0.029, \\\"gen1_rare\\\": 0.0192, \\\"gen2_rare\\\": 0.0139, \\\"gen3_rare\\\": 0.0116, \\\"gen4_rare\\\": 0.0101, \\\"gen5_rare\\\": 0.0098, \\\"gen6_rare\\\": 0.0089, \\\"gen7_rare\\\": 0.0087, \\\"gen0_rank_corr\\\": -0.023, \\\"gen1_rank_corr\\\": -0.055, \\\"gen2_rank_corr\\\": -0.049, \\\"gen3_rank_corr\\\": -0.044, \\\"gen4_rank_corr\\\": -0.042, \\\"gen5_rank_corr\\\": -0.048, \\\"gen6_rank_corr\\\": -0.065, \\\"gen7_rank_corr\\\": -0.087}, \\\"baseline_rankme\\\": 231.08}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_phase1b/uncurated/\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/phase1b_self_iterate.log\\\", \\\"completed_at\\\": \\\"2026-05-13T03:14:07.440Z\\\"}, \\\"phase1_gpt2_collapse\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:06:09.792Z\\\", \\\"updated_at\\\": \\\"2026-05-13T00:57:35.030Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"GPT2-125M under extreme training (1M tokens/gen, 5 epochs, lr=1e-4, 6 gens) will show measurable representation collapse (RankMe >20% decline)\\\", \\\"model_name\\\": \\\"gpt2 (124M) + gpt2-medium (355M)\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data_gpt2/\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"methods\\\": [\\\"rgds\\\", \\\"uncurated\\\"], \\\"num_generations\\\": 6, \\\"lr\\\": 0.0001, \\\"batch_size\\\": 4, \\\"grad_accum\\\": 8, \\\"seq_len\\\": 512, \\\"gen_tokens\\\": 1000000, \\\"train_epochs\\\": 5, \\\"gpu_mode\\\": \\\"single card\\\"}, \\\"data_count\\\": 232588, \\\"command\\\": \\\"bash run_phase1.sh 1 (rgds -> uncurated serial)\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"93696\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/phase1_all.log\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/div_cal_verify/results_phase1/\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rgds\\\": {\\\"gen0_ppl\\\": 36.64, \\\"gen1_ppl\\\": 37.05, \\\"gen2_ppl\\\": 36.03, \\\"gen3_ppl\\\": 35.96, \\\"gen4_ppl\\\": 35.96, \\\"gen5_ppl\\\": 35.56, \\\"gen0_rankme\\\": 286.46, \\\"gen1_rankme\\\": 287.32, \\\"gen2_rankme\\\": 270.93, \\\"gen3_rankme\\\": 262.62, \\\"gen4_rankme\\\": 265.12, \\\"gen5_rankme\\\": 274.63, \\\"gen0_knn\\\": 0.987, \\\"gen1_knn\\\": 0.988, \\\"gen2_knn\\\": 0.988, \\\"gen3_knn\\\": 0.988, \\\"gen4_knn\\\": 0.988, \\\"gen5_knn\\\": 0.988, \\\"gen0_rank_corr\\\": -0.0595, \\\"gen1_rank_corr\\\": -0.0851, \\\"gen2_rank_corr\\\": -0.0936, \\\"gen3_rank_corr\\\": -0.1188, \\\"gen4_rank_corr\\\": -0.1024, \\\"gen5_rank_corr\\\": -0.1014}, \\\"uncurated\\\": {\\\"gen0_ppl\\\": 36.2, \\\"gen1_ppl\\\": 35.44, \\\"gen2_ppl\\\": 34.89, \\\"gen3_ppl\\\": 34.84, \\\"gen4_ppl\\\": 34.52, \\\"gen5_ppl\\\": 34.75, \\\"gen0_rankme\\\": 290.15, \\\"gen1_rankme\\\": 281.26, \\\"gen2_rankme\\\": 268.41, \\\"gen3_rankme\\\": 273.41, \\\"gen4_rankme\\\": 283.12, \\\"gen5_rankme\\\": 297.02, \\\"gen0_knn\\\": 0.988, \\\"gen1_knn\\\": 0.988, \\\"gen2_knn\\\": 0.988, \\\"gen3_knn\\\": 0.988, \\\"gen4_knn\\\": 0.988, \\\"gen5_knn\\\": 0.988, \\\"gen0_rank_corr\\\": -0.067, \\\"gen1_rank_corr\\\": -0.052, \\\"gen2_rank_corr\\\": -0.0975, \\\"gen3_rank_corr\\\": -0.108, \\\"gen4_rank_corr\\\": -0.1351, \\\"gen5_rank_corr\\\": -0.1294}, \\\"external_only\\\": {\\\"status\\\": \\\"not_run\\\", \\\"note\\\": \\\"script did not execute external_only method\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results_phase1/\\\", \\\"completed_at\\\": \\\"2026-05-13T00:57:35.030Z\\\"}, \\\"mvp_serial_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T15:06:13.261Z\\\", \\\"updated_at\\\": \\\"2026-05-12T20:01:27.621Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Serial run of all 3 methods (rgds -> external_only -> uncurated), dual-GPU 0,1, output on data disk, checkpoint auto-cleanup\\\", \\\"model_name\\\": \\\"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data/\\\", \\\"data_count\\\": 237666, \\\"seed\\\": 42, \\\"command\\\": \\\"bash run_all_methods.sh\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/div_cal_verify/results/\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"45390\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/all_methods_v4.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/div_cal_verify/results/{method}/gen_3/checkpoint/\\\"}, \\\"metrics\\\": {\\\"rgds\\\": {\\\"gen0_ppl\\\": 16.67, \\\"gen1_ppl\\\": 16.85, \\\"gen2_ppl\\\": 16.51, \\\"gen3_ppl\\\": 16.46, \\\"gen0_rankme\\\": 970.84, \\\"gen1_rankme\\\": 968.2, \\\"gen2_rankme\\\": 968.29, \\\"gen3_rankme\\\": 967.92, \\\"gen0_knn\\\": 0.991, \\\"gen1_knn\\\": 0.991, \\\"gen2_knn\\\": 0.991, \\\"gen3_knn\\\": 0.991, \\\"gen0_rank_corr\\\": -0.3698, \\\"gen1_rank_corr\\\": -0.3783, \\\"gen2_rank_corr\\\": -0.3826, \\\"gen3_rank_corr\\\": -0.3799, \\\"gen0_rare\\\": 0.0303, \\\"gen1_rare\\\": 0.0302, \\\"gen2_rare\\\": 0.0306, \\\"gen3_rare\\\": 0.0313}, \\\"external_only\\\": {\\\"gen0_ppl\\\": 16.58, \\\"gen1_ppl\\\": 16.44, \\\"gen2_ppl\\\": 16.19, \\\"gen3_ppl\\\": 16.15, \\\"gen0_rankme\\\": 971.38, \\\"gen1_rankme\\\": 968.3, \\\"gen2_rankme\\\": 966.99, \\\"gen3_rankme\\\": 965.88, \\\"gen0_knn\\\": 0.991, \\\"gen1_knn\\\": 0.991, \\\"gen2_knn\\\": 0.991, \\\"gen3_knn\\\": 0.991, \\\"gen0_rank_corr\\\": -0.3699, \\\"gen1_rank_corr\\\": -0.386, \\\"gen2_rank_corr\\\": -0.3877, \\\"gen3_rank_corr\\\": -0.3936, \\\"gen0_rare\\\": 0.0303, \\\"gen1_rare\\\": 0.0302, \\\"gen2_rare\\\": 0.0306, \\\"gen3_rare\\\": 0.0313}, \\\"uncurated\\\": {\\\"status\\\": \\\"crashed_gen0_eval\\\", \\\"error\\\": \\\"ValueError: Contriever mode requires tokenizer and contriever_model\\\"}}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-12T20:01:27.621Z\\\"}, \\\"mvp_serial_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T14:44:01.355Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:06:07.103Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Serial run of all 3 methods (rgds → external_only → uncurated) on dual-GPU 0,1\\\", \\\"model_name\\\": \\\"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data/\\\", \\\"data_count\\\": 237666, \\\"seed\\\": 42, \\\"command\\\": \\\"bash run_all_methods.sh (killed for output_dir fix)\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/div_cal_verify/results/\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"42073\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/all_methods.log\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:06:07.103Z\\\"}, \\\"mvp_ext_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:53:41.004Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:06:01.117Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"PCA dimension mismatch\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"10291\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/mvp_ext_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T11:54:05.248Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data/\\\", \\\"data_count\\\": 237666, \\\"model_name\\\": \\\"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 11515.9, \\\"gpu_hours\\\": 3.2}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:06:01.117Z\\\"}, \\\"mvp_rgds_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:53:38.705Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:05:59.055Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"OOM on single GPU\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"10214\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/mvp_rgds_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T11:54:04.012Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data/\\\", \\\"data_count\\\": 237666, \\\"model_name\\\": \\\"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 11515.0, \\\"gpu_hours\\\": 3.2}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-12T15:05:59.055Z\\\"}, \\\"mvp_ext_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:30:03.751Z\\\", \\\"updated_at\\\": \\\"2026-05-12T14:46:01.010Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"killed before bugfix\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"7284\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/mvp_ext_v1.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T11:31:51.964Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data/\\\", \\\"data_count\\\": 242666, \\\"model_name\\\": \\\"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"method\\\": \\\"external_only\\\", \\\"num_generations\\\": 4, \\\"lr\\\": 2e-05, \\\"batch_size\\\": 4, \\\"grad_accum\\\": 8, \\\"seq_len\\\": 512, \\\"gen_tokens\\\": 500000}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 11649.0, \\\"gpu_hours\\\": 3.24}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T14:46:01.011Z\\\"}, \\\"mvp_rgds_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:30:01.613Z\\\", \\\"updated_at\\\": \\\"2026-05-12T14:45:58.638Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"killed before bugfix\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"7205\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/mvp_rgds_v1.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T11:31:50.710Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data/\\\", \\\"data_count\\\": 242666, \\\"model_name\\\": \\\"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"method\\\": \\\"rgds\\\", \\\"num_generations\\\": 4, \\\"lr\\\": 2e-05, \\\"batch_size\\\": 4, \\\"grad_accum\\\": 8, \\\"seq_len\\\": 512, \\\"gen_tokens\\\": 500000, \\\"tau_rank\\\": 0.5, \\\"tau_knn\\\": 0.6}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 11647.9, \\\"gpu_hours\\\": 3.24}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-12T14:45:58.638Z\\\"}, \\\"mvp_rgds_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:31:40.361Z\\\", \\\"updated_at\\\": \\\"2026-05-12T14:45:05.208Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"RGDS internal diversity selection preserves representation quality and achieves >=5% PPL improvement over external-only (dual-GPU mode, fixed PCA alignment)\\\", \\\"parent\\\": \\\"mvp_rgds_v2\\\", \\\"model_name\\\": \\\"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/div_cal_verify/data/\\\", \\\"data_count\\\": 237666, \\\"seed\\\": 42, \\\"hyperparams\\\": {\\\"method\\\": \\\"rgds\\\", \\\"num_generations\\\": 4, \\\"lr\\\": 2e-05, \\\"batch_size\\\": 4, \\\"grad_accum\\\": 8, \\\"seq_len\\\": 512, \\\"gen_tokens\\\": 500000, \\\"gpu_mode\\\": \\\"dual (0,1)\\\", \\\"tau_rank\\\": 0.5, \\\"tau_knn\\\": 0.6}, \\\"command\\\": \\\"python run_mvp.py --method rgds --num_generations 4 --gpu_ids 0,1\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"18588\\\", \\\"log_path\\\": \\\"~/runs/div_cal_verify/mvp_rgds_v3.log\\\", \\\"output_dir\\\": \\\"/root/div_cal_verify/results/rgds/\\\", \\\"checkpoint_path\\\": \\\"N/A (gen3 disk full)\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"gen0_ppl\\\": 16.63, \\\"gen1_ppl\\\": 16.84, \\\"gen2_ppl\\\": 16.35, \\\"gen0_rankme\\\": 971.52, \\\"gen1_rankme\\\": 965.2, \\\"gen2_rankme\\\": 966.02, \\\"gen0_knn\\\": 0.991, \\\"gen1_knn\\\": 0.991, \\\"gen2_knn\\\": 0.991, \\\"gen0_rank_corr\\\": -0.373, \\\"gen1_rank_corr\\\": -0.384, \\\"gen2_rank_corr\\\": -0.383, \\\"failure\\\": \\\"gen3 disk full (No space left on device)\\\", \\\"completed_gens\\\": 3}, \\\"completed_at\\\": \\\"2026-05-12T14:45:05.208Z\\\"}}, \\\"count\\\": 31, \\\"total\\\": 31, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1084}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"medium_rgds_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:56:02.314Z\", \"updated_at\": \"2026-05-14T07:14:26.229Z\", \"hypothesis\": \"GPT2-medium (355M) RGDS seed=123: 2-seed 统计检验依赖，验证 alignment gap 加速崩塌在 355M 跨 seed 一致\", \"parent\": \"medium_rgds_seed42\", \"spec\": {\"command\": \"chain_cuda0_seed123.sh (rgds segment)\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) rgds seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0_s123\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_rgds_seed123.log\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"ppl\": 26.32, \"rankme\": 365.65, \"knn\": 0.988, \"rare\": 0.0343, \"corr\": 0.0301}, \"gen1\": {\"ppl\": 33.72, \"rankme\": 396.58, \"knn\": 0.988, \"rare\": 0.0285, \"corr\": 0.0135}, \"gen2\": {\"ppl\": 43.58, \"rankme\": 416.12, \"knn\": 0.988, \"rare\": 0.0224, \"corr\": 0.0148}, \"gen3\": {\"ppl\": 51.8, \"rankme\": 422.63, \"knn\": 0.988, \"rare\": 0.0194, \"corr\": -0.0004}, \"gen4\": {\"ppl\": 57.08, \"rankme\": 422.85, \"knn\": 0.988, \"rare\": 0.0183, \"corr\": -0.0109}, \"gen5\": {\"ppl\": 69.28, \"rankme\": 426.34, \"knn\": 0.988, \"rare\": 0.0171, \"corr\": -0.0089}, \"gen6\": {\"ppl\": 77.57, \"rankme\": 428.93, \"knn\": 0.988, \"rare\": 0.0162, \"corr\": -0.0274}, \"gen7\": {\"ppl\": 90.25, \"rankme\": 431.19, \"knn\": 0.988, \"rare\": 0.0149, \"corr\": -0.017}}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_rgds_seed123/rgds/gen_7/checkpoint\", \"completed_at\": \"2026-05-14T07:11:47.218Z\"}, \"medium_external_seed456\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:21:29.786Z\", \"updated_at\": \"2026-05-14T07:13:53.442Z\", \"hypothesis\": \"GPT2-medium (355M) External-only seed=456: 3-seed 统计检验，验证 frozen embeddings 在 355M 跨 seed 避免 alignment gap\", \"parent\": \"medium_external_seed42\", \"spec\": {\"command\": \"run_medium_external_seed456.sh 1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) external_only seed=456\", \"seed\": 456, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"medium_external_seed456\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external_seed456.log\", \"note\": \"50% Contriever frozen embedding selection, 8 gens, 500K tokens/gen\"}}, \"medium_random50_seed123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:56:03.403Z\", \"updated_at\": \"2026-05-14T07:12:06.090Z\", \"hypothesis\": \"GPT2-medium (355M) Random 50% seed=123: 2-seed 统计检验依赖，验证 C3 (RGDS 劣于 Random) 在 355M 跨 seed 一致\", \"parent\": \"medium_random50_seed42\", \"spec\": {\"command\": \"chain_cuda0_seed123.sh (random50 segment)\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) random_50 seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0_s123\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_random50_seed123.log\"}}, \"medium_uncurated_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:55:48.455Z\", \"updated_at\": \"2026-05-14T07:11:28.205Z\", \"hypothesis\": \"GPT2-medium (355M) Uncurated baseline seed=123: 2-seed 统计检验依赖，验证 355M collapse 严重度跨 seed 一致\", \"parent\": \"medium_uncurated_seed42\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash chain_cuda0_seed123.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) uncurated seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0_s123\", \"note\": \"chain_cuda0_seed123.sh 串行执行 uncurated→rgds→random50。首个实验。\"}, \"conclusion\": \"success\", \"metrics\": {\"gen7_ppl\": 87.05, \"gen7_rankme\": 436.04, \"gen7_rare\": 0.0136}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_uncurated_seed123/uncurated/gen_7/checkpoint\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_uncurated_seed123.log\", \"completed_at\": \"2026-05-14T07:11:28.205Z\"}, \"medium_external_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:56:03.780Z\", \"updated_at\": \"2026-05-14T06:49:14.249Z\", \"hypothesis\": \"GPT2-medium (355M) External-only seed=123: 2-seed 统计检验依赖，验证 frozen Contriever embeddings 在 355M 跨 seed 仍避免 alignment gap\", \"parent\": \"medium_external_seed42\", \"spec\": {\"command\": \"bash run_medium_external_seed123.sh 1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) external_only seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"medium_external_seed123\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external_seed123.log\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"ppl\": 26.3, \"rankme\": 366.16, \"knn\": 0.988, \"rare\": 0.0343, \"corr\": 0.0119}, \"gen1\": {\"ppl\": 33.62, \"rankme\": 400.2, \"knn\": 0.988, \"rare\": 0.0303, \"corr\": 0.0077}, \"gen2\": {\"ppl\": 44.51, \"rankme\": 417.58, \"knn\": 0.988, \"rare\": 0.0246, \"corr\": -0.0114}, \"gen3\": {\"ppl\": 51.18, \"rankme\": 421.73, \"knn\": 0.988, \"rare\": 0.0206, \"corr\": -0.014}, \"gen4\": {\"ppl\": 61.11, \"rankme\": 427.42, \"knn\": 0.988, \"rare\": 0.0184, \"corr\": -0.0282}, \"gen5\": {\"ppl\": 69.58, \"rankme\": 429.36, \"knn\": 0.988, \"rare\": 0.0172, \"corr\": -0.0232}, \"gen6\": {\"ppl\": 74.33, \"rankme\": 428.14, \"knn\": 0.988, \"rare\": 0.0168, \"corr\": -0.0458}, \"gen7\": {\"ppl\": 79.56, \"rankme\": 429.83, \"knn\": 0.988, \"rare\": 0.0161, \"corr\": -0.0533, \"ratio\": 1.222}}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_external_seed123/external_only/gen_7/checkpoint\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external_seed123.log\", \"completed_at\": \"2026-05-14T06:49:14.249Z\"}, \"medium_random50_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:21:29.247Z\", \"updated_at\": \"2026-05-14T03:22:00.608Z\", \"hypothesis\": \"GPT2-medium (355M) Random 50% seed=456: 3-seed 统计检验，验证 C3 (RGDS 劣于 Random) 在 355M 跨 seed 一致\", \"parent\": \"medium_random50_seed42\"}, \"medium_rgds_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:21:28.342Z\", \"updated_at\": \"2026-05-14T03:21:59.635Z\", \"hypothesis\": \"GPT2-medium (355M) RGDS seed=456: 3-seed 统计检验，验证 alignment gap 在 355M 跨 seed 一致\", \"parent\": \"medium_rgds_seed42\"}, \"medium_uncurated_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:21:27.986Z\", \"updated_at\": \"2026-05-14T03:21:58.622Z\", \"hypothesis\": \"GPT2-medium (355M) Uncurated seed=456: 3-seed 统计检验，验证 355M collapse 跨 seed 一致性\", \"parent\": \"medium_uncurated_seed42\"}, \"medium_external_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:32:08.840Z\", \"updated_at\": \"2026-05-14T03:11:09.334Z\", \"spec\": {\"command\": \"auto-chained from rgds_seed456 completion on cuda:1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) external_only seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda1\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external.log\", \"note\": \"由 chain_cuda1 自动启动\"}, \"hypothesis\": \"GPT2-medium (355M) External-only diversity selection: 验证 frozen Contriever embeddings 在更大模型上是否仍能避免 alignment gap（model scaling + external embedding interaction）\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_external/external_only/gen_7/checkpoint\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_external.log\", \"metrics\": {\"gen7_ppl\": 77.74, \"gen7_rankme\": 421.5, \"gen7_knn\": 0.988, \"gen7_rare_ngram\": 0.0165, \"gen7_rank_corr\": -0.0072, \"gen0_ppl\": 26.33, \"gen0_rankme\": 363.43, \"ppl_increase_ratio\": 2.95, \"rankme_increase\": 58.07}, \"completed_at\": \"2026-05-14T03:11:09.334Z\"}, \"medium_random50_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:01:02.034Z\", \"updated_at\": \"2026-05-14T01:53:02.738Z\", \"hypothesis\": \"GPT2-medium (355M) Random 50% baseline: 验证同 budget 随机选择在更大模型上的表现，作为 RGDS alignment gap 在 355M scale 的关键对照组\", \"parent\": \"medium_rgds_seed42\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_medium_random50.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) random_50 seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0\", \"note\": \"由 chain_cuda0 自动启动，medium_rgds 完成后衔接。Worker 确认已在跑，Gen 6/8。\"}, \"metrics\": {\"gen0\": {\"ppl\": 26.12, \"rankme\": 361.63, \"knn\": 0.988, \"rare\": 0.0346, \"corr\": 0.0101}, \"gen1\": {\"ppl\": 32.57, \"rankme\": 387.8, \"knn\": 0.988, \"rare\": 0.0277, \"corr\": 0.0331}, \"gen2\": {\"ppl\": 41.58, \"rankme\": 410.08, \"knn\": 0.988, \"rare\": 0.0214, \"corr\": 0.0088}, \"gen3\": {\"ppl\": 49.87, \"rankme\": 421.67, \"knn\": 0.988, \"rare\": 0.0182, \"corr\": -0.0018}, \"gen4\": {\"ppl\": 59.83, \"rankme\": 427.23, \"knn\": 0.988, \"rare\": 0.0161, \"corr\": -0.0014}, \"gen5\": {\"ppl\": 60.62, \"rankme\": 426.16, \"knn\": 0.988, \"rare\": 0.0144, \"corr\": -0.0004}, \"gen6\": {\"ppl\": 68.34, \"rankme\": 427.19, \"knn\": 0.988, \"rare\": 0.0134, \"corr\": -0.0071}, \"gen7\": {\"ppl\": 70.25, \"rankme\": 426.5, \"knn\": 0.988, \"rare\": 0.0128, \"corr\": -0.0034}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_random50/random_50/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_random50.log\", \"completed_at\": \"2026-05-14T01:53:02.738Z\"}, \"medium_rgds_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:37:18.001Z\", \"updated_at\": \"2026-05-14T00:53:34.267Z\", \"hypothesis\": \"GPT2-medium (355M) RGDS diversity selection: 验证 alignment gap 加速崩塌在更大模型上是否复现（model scaling + method interaction）\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_medium_rgds.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) rgds seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"chain_cuda0\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_rgds.log\", \"note\": \"由 chain_cuda0 自动启动，medium_uncurated 完成后衔接\"}, \"parent\": \"medium_uncurated_seed42\", \"metrics\": {\"gen0\": {\"ppl\": 26.04, \"rankme\": 365.07, \"knn\": 0.988, \"rare\": 0.0346, \"corr\": 0.0196, \"ratio\": 0.9759}, \"gen1\": {\"ppl\": 32.99, \"rankme\": 398.29, \"knn\": 0.988, \"rare\": 0.0286, \"corr\": 0.0402, \"ratio\": 0.9991}, \"gen2\": {\"ppl\": 41.99, \"rankme\": 418.21, \"knn\": 0.988, \"rare\": 0.0232, \"corr\": 0.0014, \"ratio\": 0.9225}, \"gen3\": {\"ppl\": 50.8, \"rankme\": 421.44, \"knn\": 0.988, \"rare\": 0.0198, \"corr\": 0.0058, \"ratio\": 0.9127}, \"gen4\": {\"ppl\": 60.71, \"rankme\": 425.62, \"knn\": 0.988, \"rare\": 0.0187, \"corr\": -0.0068, \"ratio\": 0.7989}, \"gen5\": {\"ppl\": 66.29, \"rankme\": 424.71, \"knn\": 0.988, \"rare\": 0.018, \"corr\": -0.0235, \"ratio\": 0.9002}, \"gen6\": {\"ppl\": 72, \"rankme\": 423.93, \"knn\": 0.988, \"rare\": 0.0168, \"corr\": -0.0197, \"ratio\": 0.7622}, \"gen7\": {\"ppl\": 82.84, \"rankme\": 424.72, \"knn\": 0.988, \"rare\": 0.0166, \"corr\": -0.0286, \"ratio\": 0.8313}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_rgds/rgds/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_rgds.log\", \"completed_at\": \"2026-05-14T00:53:34.267Z\"}, \"rgds_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:44:56.404Z\", \"updated_at\": \"2026-05-13T23:32:22.643Z\", \"hypothesis\": \"RGDS (50% internal embedding selection) seed=456 复现：3-seed 统计检验依赖，验证 RGDS alignment gap 加速崩塌跨 seed 一致\", \"parent\": \"phase2_3method_selfit\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 bash run_rgds_seed456.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/rgds_seed456.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) RGDS seed=456\", \"seed\": 456, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"seed456_methods\", \"note\": \"实际未启动，排在 ext_seed456 之后串行。误标 RUNNING，registry 不允许回退到 QUEUED。ext_seed456 完成后自动启动。\"}, \"metrics\": {\"gen0_ppl\": 36.7, \"gen0_rankme\": 274.06, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0284, \"gen0_corr\": -0.0138, \"gen0_ratio\": 0.9114, \"gen1_ppl\": 44.59, \"gen1_rankme\": 291.76, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0189, \"gen1_corr\": -0.0418, \"gen1_ratio\": 0.8895, \"gen2_ppl\": 45.3, \"gen2_rankme\": 290.79, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0139, \"gen2_corr\": -0.0356, \"gen2_ratio\": 0.9071, \"gen3_ppl\": 49.13, \"gen3_rankme\": 289.92, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0111, \"gen3_corr\": -0.0403, \"gen3_ratio\": 0.8774, \"gen4_ppl\": 47.4, \"gen4_rankme\": 287.04, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0098, \"gen4_corr\": -0.0342, \"gen4_ratio\": 0.8292, \"gen5_ppl\": 55.99, \"gen5_rankme\": 290.71, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0078, \"gen5_corr\": -0.0269, \"gen5_ratio\": 0.7065, \"gen6_ppl\": 55.99, \"gen6_rankme\": 287.52, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0065, \"gen6_corr\": -0.0247, \"gen6_ratio\": 0.6447, \"gen7_ppl\": 66.22, \"gen7_rankme\": 286.54, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0069, \"gen7_corr\": -0.0228, \"gen7_ratio\": 0.8682}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_seed456/rgds/gen_7/checkpoint/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/rgds_seed456.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:23:02.891Z\"}, \"ext_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:44:57.069Z\", \"updated_at\": \"2026-05-13T21:47:35.556Z\", \"hypothesis\": \"External_only (50% Contriever frozen embedding) seed=456 复现：3-seed 统计检验依赖，验证 external_only 免疫 alignment gap 跨 seed 一致\", \"parent\": \"phase2_ext_seed123\", \"spec\": {\"command\": \"chain experiment - external_only seed=456\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/ext_seed456.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/div_cal_verify/results_seed456/external_only/\", \"data_count\": 488, \"model_name\": \"GPT2-125M\", \"seed\": 456, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"seed456_methods\"}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_seed456/external_only/external_only/gen_7/checkpoint/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/ext_seed456.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T21:46:13.875Z\", \"metrics\": {\"gen0_ppl\": 36.51, \"gen0_rankme\": 273.85, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0284, \"gen0_corr\": -0.0103, \"gen0_ratio\": 1.1621, \"gen1_ppl\": 44.77, \"gen1_rankme\": 291.93, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0203, \"gen1_corr\": -0.0404, \"gen1_ratio\": 1.0686, \"gen2_ppl\": 50.84, \"gen2_rankme\": 298.52, \"gen2_knn\": 0.987, \"gen2_rare\": 0.0152, \"gen2_corr\": -0.0292, \"gen2_ratio\": 1.1119, \"gen3_ppl\": 54.43, \"gen3_rankme\": 298.35, \"gen3_knn\": 0.987, \"gen3_rare\": 0.013, \"gen3_corr\": -0.0223, \"gen3_ratio\": 1.1551, \"gen4_ppl\": 49.91, \"gen4_rankme\": 295.86, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0118, \"gen4_corr\": -0.0321, \"gen4_ratio\": 1.1841, \"gen5_ppl\": 50.45, \"gen5_rankme\": 297.37, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0111, \"gen5_corr\": -0.03, \"gen5_ratio\": 1.2186, \"gen6_ppl\": 47.09, \"gen6_rankme\": 294.35, \"gen6_knn\": 0.988, \"gen6_rare\": 0.01, \"gen6_corr\": -0.0207, \"gen6_ratio\": 1.0818, \"gen7_ppl\": 43.9, \"gen7_rankme\": 292.69, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0106, \"gen7_corr\": -0.0227, \"gen7_ratio\": 1.243}}, \"medium_uncurated_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:20:55.822Z\", \"updated_at\": \"2026-05-13T21:42:26.811Z\", \"hypothesis\": \"GPT2-medium (355M) uncurated baseline: 验证 alignment gap 现象在更大模型上是否复现（model scaling 维度）\", \"parent\": \"phase2_3method_selfit\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_medium_uncurated.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_uncurated.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2-medium (355M) uncurated seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2-medium (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"medium_uncurated\", \"pid\": \"283798\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_uncurated/uncurated/\"}, \"metrics\": {\"gen0_ppl\": 26.55, \"gen0_rankme\": 371.57, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0346, \"gen0_corr\": 0.0219, \"gen1_ppl\": 35.12, \"gen1_rankme\": 403.8, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0281, \"gen1_corr\": 0.0228, \"gen2_ppl\": 46.9, \"gen2_rankme\": 420.83, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0216, \"gen2_corr\": 0.0181, \"gen3_ppl\": 57.4, \"gen3_rankme\": 425.35, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0185, \"gen3_corr\": 0.0011, \"gen4_ppl\": 67.45, \"gen4_rankme\": 430.68, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0172, \"gen4_corr\": -0.0046, \"gen5_ppl\": 78.55, \"gen5_rankme\": 438.62, \"gen5_knn\": 0.987, \"gen5_rare\": 0.0159, \"gen5_corr\": -0.0175, \"gen6_ppl\": 84.59, \"gen6_rankme\": 442.85, \"gen6_knn\": 0.987, \"gen6_rare\": 0.0144, \"gen6_corr\": -0.0462, \"gen7_ppl\": 91.66, \"gen7_rankme\": 443.98, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0139, \"gen7_corr\": -0.0379}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T21:41:57.426Z\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_medium_uncurated/uncurated/gen_7/checkpoint/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/medium_uncurated.log\"}, \"uncurated_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:44:55.468Z\", \"updated_at\": \"2026-05-13T19:28:12.126Z\", \"hypothesis\": \"Uncurated (100% data) seed=456 复现：3-seed 统计检验依赖，验证 uncurated 的 PPL/rare 轨迹跨 seed 一致性\", \"parent\": \"phase2_3method_selfit\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 bash run_uncurated_seed456.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/uncurated_seed456.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) uncurated seed=456\", \"seed\": 456, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"tmux_session\": \"seed456_methods\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0_ppl\": 36.64, \"gen0_rankme\": 279.17, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0284, \"gen0_corr\": -0.0205, \"gen7_ppl\": 44.69, \"gen7_rankme\": 287.93, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0086, \"gen7_corr\": -0.0696}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed456/uncurated/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/uncurated_seed456.log\", \"completed_at\": \"2026-05-13T19:28:12.126Z\"}, \"random_50_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:01:32.779Z\", \"updated_at\": \"2026-05-13T19:01:00.100Z\", \"hypothesis\": \"Random 50% seed=456 复现：与 phase2_random50_v2 (seed=42) 完全一致的超参数，验证 random≈external 是否跨 seed 成立（C2-revised + C3 验证，3-seed t 检验依赖）\", \"parent\": \"phase2_random50_v2\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_random50_seed456.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_seed456.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) random_50 seed=456\", \"seed\": 456, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results_random50_seed456/\", \"pid\": \"250453\"}, \"conclusion\": \"success\", \"metrics\": {\"gen7_ppl\": 44.6, \"gen7_rare\": 0.0101, \"gen7_rankme\": 289.87}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_random50_seed456/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_seed456.log\", \"completed_at\": \"2026-05-13T19:01:00.100Z\"}, \"random_50_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:01:31.859Z\", \"updated_at\": \"2026-05-13T19:00:59.367Z\", \"hypothesis\": \"Random 50% seed=123 复现：与 phase2_random50_v2 (seed=42) 完全一致的超参数，验证 random≈external 是否跨 seed 成立（C2-revised + C3 验证，3-seed t 检验依赖）\", \"parent\": \"phase2_random50_v2\", \"spec\": {\"command\": \"cd /root/div_cal_verify && source env.sh && bash run_random50_seed123.sh\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_seed123.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) random_50 seed=123\", \"seed\": 123, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results_random50_seed123/\", \"pid\": \"250452\"}, \"conclusion\": \"success\", \"metrics\": {\"gen7_ppl\": 41.75, \"gen7_rare\": 0.0098, \"gen7_rankme\": 291.7}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_random50_seed123/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_seed123.log\", \"completed_at\": \"2026-05-13T19:00:59.367Z\"}, \"phase2_random50_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T11:46:06.927Z\", \"updated_at\": \"2026-05-13T16:01:33.541Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /root/div_cal_verify/env.sh && export TRANSFORMERS_OFFLINE=1 && bash /root/div_cal_verify/run_random50.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_v2.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) random_50 seed=42\", \"seed\": 42, \"checkpoint_source\": \"gpt2 (HuggingFace pretrained)\", \"eval_data\": \"/root/div_cal_verify/data_gpt2/\"}, \"hypothesis\": \"Random 50% baseline v2: 与 Phase 2 对照组完全一致的超参数(lr=5e-5, epochs=3, 500K tokens/gen)，随机选择 50% 数据，验证 diversity-aware selection 相比随机选择的增益\", \"parent\": \"phase2_3method_selfit\", \"failure_reason\": \"monitoring false alarm - experiment completed successfully\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T11:54:46.226Z\", \"metrics\": {\"gen0_ppl\": 36.87, \"gen0_rankme\": 275.24, \"gen0_knn\": 0.988, \"gen0_rare\": 0.029, \"gen0_corr\": -0.0081, \"gen1_ppl\": 44.34, \"gen1_rankme\": 292.46, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0193, \"gen1_corr\": -0.036, \"gen2_ppl\": 49.75, \"gen2_rankme\": 295.61, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0143, \"gen2_corr\": -0.0315, \"gen3_ppl\": 49, \"gen3_rankme\": 295.28, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0125, \"gen3_corr\": -0.0238, \"gen4_ppl\": 50.85, \"gen4_rankme\": 297.01, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0113, \"gen4_corr\": -0.0209, \"gen5_ppl\": 47.31, \"gen5_rankme\": 292.81, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0104, \"gen5_corr\": -0.0207, \"gen6_ppl\": 44.78, \"gen6_rankme\": 293.42, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0099, \"gen6_corr\": -0.029, \"gen7_ppl\": 43.2, \"gen7_rankme\": 291.38, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0096, \"gen7_corr\": -0.0391}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_random50/random_50/\"}, \"phase2_seed123_remaining\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T10:05:23.998Z\", \"updated_at\": \"2026-05-13T15:41:50.802Z\", \"spec\": {\"hypothesis\": \"seed=123 下 uncurated + RGDS 方法的复现实验，补齐三方法对照（external_only 已在 cuda:0 运行）。基于 phase2_3method_selfit 配置。\", \"command\": \"bash /root/div_cal_verify/run_seed123_remaining.sh 1\", \"server\": \"westd-11235\", \"gpu_id\": 1, \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) uncurated+RGDS seed=123\", \"seed\": 123, \"log_path\": \"/root/autodl-tmp/div_cal_verify/phase2_seed123_remaining.log\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/\", \"tmux_session\": \"phase2_seed123_remaining\", \"current_method\": \"uncurated\", \"current_gen\": 3, \"total_gens\": 7, \"note\": \"2026-05-13 10:50 check: alive, uncurated Gen 3/7 training, GPU1 15409MiB\"}, \"current_gen\": 3, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/phase2_seed123_remaining.log\", \"metrics\": {\"uncurated\": {\"gen0\": {\"ppl\": 36.69, \"rankme\": 277.86, \"knn\": 0.988, \"rare\": 0.0293, \"corr\": -0.0222}, \"gen1\": {\"ppl\": 45.29, \"rankme\": 297.08, \"knn\": 0.988, \"rare\": 0.0192, \"corr\": -0.0554}, \"gen2\": {\"ppl\": 53.76, \"rankme\": 301.88, \"knn\": 0.988, \"rare\": 0.0137, \"corr\": -0.0448}, \"gen3\": {\"ppl\": 53.76, \"rankme\": 300.7, \"knn\": 0.988, \"rare\": 0.0116, \"corr\": -0.0365}, \"gen4\": {\"ppl\": 54.33, \"rankme\": 298.78, \"knn\": 0.988, \"rare\": 0.0107, \"corr\": -0.0471}, \"gen5\": {\"ppl\": 53, \"rankme\": 293.21, \"knn\": 0.988, \"rare\": 0.01, \"corr\": -0.037}, \"gen6\": {\"ppl\": 49.87, \"rankme\": 295.35, \"knn\": 0.988, \"rare\": 0.0101, \"corr\": -0.0477}, \"gen7\": {\"ppl\": 46.15, \"rankme\": 290.13, \"knn\": 0.988, \"rare\": 0.0093, \"corr\": -0.0755}}, \"rgds\": {\"gen0\": {\"ppl\": 36.71, \"rankme\": 272.68, \"knn\": 0.988, \"rare\": 0.0293, \"corr\": -0.0116, \"ratio\": 0.9997}, \"gen1\": {\"ppl\": 42.81, \"rankme\": 286.96, \"knn\": 0.988, \"rare\": 0.0186, \"corr\": -0.0544, \"ratio\": 0.9066}, \"gen2\": {\"ppl\": 47.35, \"rankme\": 291.31, \"knn\": 0.988, \"rare\": 0.0142, \"corr\": -0.0569, \"ratio\": 0.8604}, \"gen3\": {\"ppl\": 52.64, \"rankme\": 295.72, \"knn\": 0.988, \"rare\": 0.0119, \"corr\": -0.0185, \"ratio\": 0.8689}, \"gen4\": {\"ppl\": 52.74, \"rankme\": 294.9, \"knn\": 0.988, \"rare\": 0.0101, \"corr\": -0.0042, \"ratio\": 0.8863}, \"gen5\": {\"ppl\": 60.62, \"rankme\": 294.93, \"knn\": 0.988, \"rare\": 0.0087, \"corr\": -0.0036, \"ratio\": 0.7809}, \"gen6\": {\"ppl\": 75.03, \"rankme\": 299.36, \"knn\": 0.988, \"rare\": 0.007, \"corr\": -0.0119, \"ratio\": 0.6789}, \"gen7\": {\"ppl\": 81.57, \"rankme\": 298.35, \"knn\": 0.988, \"rare\": 0.0062, \"corr\": -0.0312, \"ratio\": 0.5236}}}, \"completed_at\": \"2026-05-13T15:19:03.216Z\"}, \"phase2_random50_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T11:29:42.169Z\", \"updated_at\": \"2026-05-13T15:19:47.746Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_random50.sh 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"215364\", \"log_path\": \"/root/autodl-tmp/div_cal_verify/random50_baseline.log\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) random_50 seed=42\", \"seed\": 42}, \"hypothesis\": \"Random 50% baseline: 与 RGDS/external_only 相同的 50% 数据预算但随机选择，验证 diversity-aware selection 相比随机选择的增益\", \"parent\": \"phase2_3method_selfit\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T11:45:56.699Z\", \"failure_reason\": \"TRANSFORMERS_OFFLINE=1 set but gpt2/contriever models not cached locally, all downloads timed out\"}, \"phase2_ext_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T07:12:13.179Z\", \"updated_at\": \"2026-05-13T11:26:05.564Z\", \"hypothesis\": \"external_only seed=123 复现实验，验证 Phase 2 external_only 结果的可重复性（N>1 统计检验准备）\", \"parent\": \"phase2_3method_selfit\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_ext_seed123.sh\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"180459\", \"log_path\": \"~/runs/div_cal_verify/phase2_ext_seed123.log\", \"submitted_at\": \"2026-05-13T07:32:17.645Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) external_only seed=123\", \"seed\": 123, \"checkpoint_source\": \"N/A (self-iterate from pretrained gpt2)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"current_gen\": \"4/7\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/external_only\", \"wall_clock_seconds\": 14027.9, \"gpu_hours\": 3.9}, \"metrics\": {\"gen0_ppl\": 36.66, \"gen0_rankme\": 273.12, \"gen0_knn\": 0.988, \"gen0_rare\": 0.0293, \"gen0_corr\": -0.0034, \"gen0_ratio\": 1.0843, \"gen1_ppl\": 44.75, \"gen1_rankme\": 292.34, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0205, \"gen1_corr\": -0.0409, \"gen1_ratio\": 1.1015, \"gen2_ppl\": 52.21, \"gen2_rankme\": 298.54, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0146, \"gen2_corr\": -0.0338, \"gen2_ratio\": 1.1547, \"gen3_ppl\": 58.4, \"gen3_rankme\": 299.05, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0122, \"gen3_corr\": -0.0124, \"gen3_ratio\": 1.1577, \"gen4_ppl\": 54.89, \"gen4_rankme\": 299.42, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0114, \"gen4_corr\": 0.0033, \"gen4_ratio\": 1.1395, \"gen5_ppl\": 51.71, \"gen5_rankme\": 294.95, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0108, \"gen5_corr\": -0.0026, \"gen5_ratio\": 1.0942, \"gen6_ppl\": 49.17, \"gen6_rankme\": 293.7, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0105, \"gen6_corr\": 0, \"gen6_ratio\": 1.2248, \"gen7_ppl\": 49.66, \"gen7_rankme\": 290.82, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0104, \"gen7_corr\": 0.0111, \"gen7_ratio\": 1.1299}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2_seed123/external_only/external_only/gen_7/checkpoint\", \"log_path\": \"~/runs/div_cal_verify/phase2_ext_seed123.log\", \"completed_at\": \"2026-05-13T11:26:05.564Z\"}, \"phase2_3method_selfit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T03:16:41.146Z\", \"updated_at\": \"2026-05-13T09:49:16.216Z\", \"hypothesis\": \"RGDS diversity selection 能减缓 self-iterate 模式下的多样性崩塌（rare n-gram 丢失），表现优于 uncurated baseline，至少与 external_only 持平\", \"parent\": \"phase1b_self_iterate\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_phase2.sh 1\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"138667\", \"log_path\": \"~/runs/div_cal_verify/phase2_3method_selfit.log\", \"submitted_at\": \"2026-05-13T03:41:36.054Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) self-iterate 3-method\", \"seed\": 42, \"checkpoint_source\": \"N/A (self-iterate from pretrained gpt2)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"wall_clock_seconds\": 22060.2, \"gpu_hours\": 6.13}, \"reproduce\": {\"finished_at\": \"2026-05-13T09:15:26.220Z\"}, \"metrics\": {\"rgds\": {\"gen0_ppl\": 37.09, \"gen0_rankme\": 275.89, \"gen0_knn\": 0.988, \"gen0_rare\": 0.029, \"gen0_corr\": -0.0123, \"gen0_ratio\": 1.0371, \"gen1_ppl\": 45.36, \"gen1_rankme\": 291.76, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0202, \"gen1_corr\": -0.0459, \"gen1_ratio\": 0.9096, \"gen2_ppl\": 50.51, \"gen2_rankme\": 292.74, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0151, \"gen2_corr\": -0.0365, \"gen2_ratio\": 0.9267, \"gen3_ppl\": 53.82, \"gen3_rankme\": 294.03, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0124, \"gen3_corr\": -0.0308, \"gen3_ratio\": 0.9409, \"gen4_ppl\": 53.97, \"gen4_rankme\": 294.92, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0099, \"gen4_corr\": -0.0483, \"gen4_ratio\": 0.8955, \"gen5_ppl\": 61.75, \"gen5_rankme\": 293.84, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0082, \"gen5_corr\": -0.0388, \"gen5_ratio\": 0.8108, \"gen6_ppl\": 64.12, \"gen6_rankme\": 293.76, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0067, \"gen6_corr\": -0.0464, \"gen6_ratio\": 0.7165, \"gen7_ppl\": 75.07, \"gen7_rankme\": 292.72, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0051, \"gen7_corr\": -0.0387, \"gen7_ratio\": 0.5173}, \"external_only\": {\"gen0_ppl\": 37.04, \"gen0_rankme\": 275.07, \"gen0_knn\": 0.988, \"gen0_rare\": 0.029, \"gen0_corr\": 0.0031, \"gen0_ratio\": 1.1366, \"gen1_ppl\": 44.29, \"gen1_rankme\": 291.62, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0184, \"gen1_corr\": -0.0345, \"gen1_ratio\": 1.2108, \"gen2_ppl\": 50.12, \"gen2_rankme\": 295.53, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0141, \"gen2_corr\": -0.026, \"gen2_ratio\": 1.1164, \"gen3_ppl\": 53.55, \"gen3_rankme\": 295.88, \"gen3_knn\": 0.988, \"gen3_rare\": 0.0117, \"gen3_corr\": -0.0211, \"gen3_ratio\": 1.1963, \"gen4_ppl\": 52.27, \"gen4_rankme\": 296.67, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0102, \"gen4_corr\": -0.0174, \"gen4_ratio\": 1.2817, \"gen5_ppl\": 47.37, \"gen5_rankme\": 290.25, \"gen5_knn\": 0.988, \"gen5_rare\": 0.01, \"gen5_corr\": -0.0133, \"gen5_ratio\": 1.1093, \"gen6_ppl\": 46.11, \"gen6_rankme\": 289.66, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0103, \"gen6_corr\": -0.0054, \"gen6_ratio\": 1.1227, \"gen7_ppl\": 45.51, \"gen7_rankme\": 290.83, \"gen7_knn\": 0.988, \"gen7_rare\": 0.0099, \"gen7_corr\": 0.0107, \"gen7_ratio\": 1.0953}, \"uncurated\": {\"gen0_ppl\": 37.1, \"gen0_rankme\": 280.32, \"gen0_knn\": 0.988, \"gen0_rare\": 0.029, \"gen0_corr\": -0.0226, \"gen1_ppl\": 44.89, \"gen1_rankme\": 297.8, \"gen1_knn\": 0.988, \"gen1_rare\": 0.0192, \"gen1_corr\": -0.0548, \"gen2_ppl\": 51.32, \"gen2_rankme\": 302.47, \"gen2_knn\": 0.988, \"gen2_rare\": 0.0139, \"gen2_corr\": -0.051, \"gen3_ppl\": 56.25, \"gen3_rankme\": 303.05, \"gen3_knn\": 0.987, \"gen3_rare\": 0.0118, \"gen3_corr\": -0.0458, \"gen4_ppl\": 55.88, \"gen4_rankme\": 300.51, \"gen4_knn\": 0.988, \"gen4_rare\": 0.0102, \"gen4_corr\": -0.035, \"gen5_ppl\": 50.08, \"gen5_rankme\": 296.54, \"gen5_knn\": 0.988, \"gen5_rare\": 0.0099, \"gen5_corr\": -0.0452, \"gen6_ppl\": 48.25, \"gen6_rankme\": 290.42, \"gen6_knn\": 0.988, \"gen6_rare\": 0.0094, \"gen6_corr\": -0.0682, \"gen7_ppl\": 50.28, \"gen7_rankme\": 291.43, \"gen7_knn\": 0.988, \"gen7_rare\": 0.009, \"gen7_corr\": -0.088}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase2/\", \"log_path\": \"~/runs/div_cal_verify/phase2_3method_selfit.log\", \"completed_at\": \"2026-05-13T09:49:16.216Z\"}, \"phase1b_self_iterate\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T01:02:07.616Z\", \"updated_at\": \"2026-05-13T03:14:07.440Z\", \"hypothesis\": \"固定 generator 阻断 feedback loop 是前两次实验未崩塌的根因。Student-as-generator 自迭代模式（GPT2-125M 8 代）应能诱导可测量的 model collapse（RankMe >20% 下降，PPL 恶化）\", \"parent\": \"phase1_gpt2_collapse\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/div_cal_verify/run_phase1b.sh 1\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"123407\", \"log_path\": \"~/runs/div_cal_verify/phase1b_self_iterate.log\", \"submitted_at\": \"2026-05-13T01:06:57.716Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"data_count\": 232588, \"model_name\": \"gpt2 (124M) self-iterate\", \"seed\": 42, \"checkpoint_source\": \"N/A (self-iterate from pretrained gpt2)\", \"eval_data\": \"WikiText-103 (built-in eval)\", \"wall_clock_seconds\": 7629.7, \"gpu_hours\": 2.12}, \"metrics\": {\"uncurated\": {\"gen0_ppl\": 37.1, \"gen1_ppl\": 44.9, \"gen2_ppl\": 51.63, \"gen3_ppl\": 56.97, \"gen4_ppl\": 55.71, \"gen5_ppl\": 51.74, \"gen6_ppl\": 48.67, \"gen7_ppl\": 48.11, \"gen0_rankme\": 280.32, \"gen1_rankme\": 297.81, \"gen2_rankme\": 302.62, \"gen3_rankme\": 303.27, \"gen4_rankme\": 301.33, \"gen5_rankme\": 297.35, \"gen6_rankme\": 293.01, \"gen7_rankme\": 289.79, \"gen0_knn\": 0.988, \"gen1_knn\": 0.988, \"gen2_knn\": 0.987, \"gen3_knn\": 0.988, \"gen4_knn\": 0.988, \"gen5_knn\": 0.988, \"gen6_knn\": 0.988, \"gen7_knn\": 0.988, \"gen0_rare\": 0.029, \"gen1_rare\": 0.0192, \"gen2_rare\": 0.0139, \"gen3_rare\": 0.0116, \"gen4_rare\": 0.0101, \"gen5_rare\": 0.0098, \"gen6_rare\": 0.0089, \"gen7_rare\": 0.0087, \"gen0_rank_corr\": -0.023, \"gen1_rank_corr\": -0.055, \"gen2_rank_corr\": -0.049, \"gen3_rank_corr\": -0.044, \"gen4_rank_corr\": -0.042, \"gen5_rank_corr\": -0.048, \"gen6_rank_corr\": -0.065, \"gen7_rank_corr\": -0.087}, \"baseline_rankme\": 231.08}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase1b/uncurated/\", \"log_path\": \"~/runs/div_cal_verify/phase1b_self_iterate.log\", \"completed_at\": \"2026-05-13T03:14:07.440Z\"}, \"phase1_gpt2_collapse\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:09.792Z\", \"updated_at\": \"2026-05-13T00:57:35.030Z\", \"spec\": {\"hypothesis\": \"GPT2-125M under extreme training (1M tokens/gen, 5 epochs, lr=1e-4, 6 gens) will show measurable representation collapse (RankMe >20% decline)\", \"model_name\": \"gpt2 (124M) + gpt2-medium (355M)\", \"server\": \"westd-11235\", \"data_path\": \"/root/div_cal_verify/data_gpt2/\", \"seed\": 42, \"hyperparams\": {\"methods\": [\"rgds\", \"uncurated\"], \"num_generations\": 6, \"lr\": 0.0001, \"batch_size\": 4, \"grad_accum\": 8, \"seq_len\": 512, \"gen_tokens\": 1000000, \"train_epochs\": 5, \"gpu_mode\": \"single card\"}, \"data_count\": 232588, \"command\": \"bash run_phase1.sh 1 (rgds -> uncurated serial)\", \"gpu\": [\"cuda:1\"], \"pid\": \"93696\", \"log_path\": \"~/runs/div_cal_verify/phase1_all.log\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results_phase1/\"}, \"conclusion\": \"negative\", \"metrics\": {\"rgds\": {\"gen0_ppl\": 36.64, \"gen1_ppl\": 37.05, \"gen2_ppl\": 36.03, \"gen3_ppl\": 35.96, \"gen4_ppl\": 35.96, \"gen5_ppl\": 35.56, \"gen0_rankme\": 286.46, \"gen1_rankme\": 287.32, \"gen2_rankme\": 270.93, \"gen3_rankme\": 262.62, \"gen4_rankme\": 265.12, \"gen5_rankme\": 274.63, \"gen0_knn\": 0.987, \"gen1_knn\": 0.988, \"gen2_knn\": 0.988, \"gen3_knn\": 0.988, \"gen4_knn\": 0.988, \"gen5_knn\": 0.988, \"gen0_rank_corr\": -0.0595, \"gen1_rank_corr\": -0.0851, \"gen2_rank_corr\": -0.0936, \"gen3_rank_corr\": -0.1188, \"gen4_rank_corr\": -0.1024, \"gen5_rank_corr\": -0.1014}, \"uncurated\": {\"gen0_ppl\": 36.2, \"gen1_ppl\": 35.44, \"gen2_ppl\": 34.89, \"gen3_ppl\": 34.84, \"gen4_ppl\": 34.52, \"gen5_ppl\": 34.75, \"gen0_rankme\": 290.15, \"gen1_rankme\": 281.26, \"gen2_rankme\": 268.41, \"gen3_rankme\": 273.41, \"gen4_rankme\": 283.12, \"gen5_rankme\": 297.02, \"gen0_knn\": 0.988, \"gen1_knn\": 0.988, \"gen2_knn\": 0.988, \"gen3_knn\": 0.988, \"gen4_knn\": 0.988, \"gen5_knn\": 0.988, \"gen0_rank_corr\": -0.067, \"gen1_rank_corr\": -0.052, \"gen2_rank_corr\": -0.0975, \"gen3_rank_corr\": -0.108, \"gen4_rank_corr\": -0.1351, \"gen5_rank_corr\": -0.1294}, \"external_only\": {\"status\": \"not_run\", \"note\": \"script did not execute external_only method\"}}, \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results_phase1/\", \"completed_at\": \"2026-05-13T00:57:35.030Z\"}, \"mvp_serial_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T15:06:13.261Z\", \"updated_at\": \"2026-05-12T20:01:27.621Z\", \"spec\": {\"hypothesis\": \"Serial run of all 3 methods (rgds -> external_only -> uncurated), dual-GPU 0,1, output on data disk, checkpoint auto-cleanup\", \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"server\": \"westd-11235\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"seed\": 42, \"command\": \"bash run_all_methods.sh\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results/\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"45390\", \"log_path\": \"~/runs/div_cal_verify/all_methods_v4.log\", \"checkpoint_path\": \"/root/autodl-tmp/div_cal_verify/results/{method}/gen_3/checkpoint/\"}, \"metrics\": {\"rgds\": {\"gen0_ppl\": 16.67, \"gen1_ppl\": 16.85, \"gen2_ppl\": 16.51, \"gen3_ppl\": 16.46, \"gen0_rankme\": 970.84, \"gen1_rankme\": 968.2, \"gen2_rankme\": 968.29, \"gen3_rankme\": 967.92, \"gen0_knn\": 0.991, \"gen1_knn\": 0.991, \"gen2_knn\": 0.991, \"gen3_knn\": 0.991, \"gen0_rank_corr\": -0.3698, \"gen1_rank_corr\": -0.3783, \"gen2_rank_corr\": -0.3826, \"gen3_rank_corr\": -0.3799, \"gen0_rare\": 0.0303, \"gen1_rare\": 0.0302, \"gen2_rare\": 0.0306, \"gen3_rare\": 0.0313}, \"external_only\": {\"gen0_ppl\": 16.58, \"gen1_ppl\": 16.44, \"gen2_ppl\": 16.19, \"gen3_ppl\": 16.15, \"gen0_rankme\": 971.38, \"gen1_rankme\": 968.3, \"gen2_rankme\": 966.99, \"gen3_rankme\": 965.88, \"gen0_knn\": 0.991, \"gen1_knn\": 0.991, \"gen2_knn\": 0.991, \"gen3_knn\": 0.991, \"gen0_rank_corr\": -0.3699, \"gen1_rank_corr\": -0.386, \"gen2_rank_corr\": -0.3877, \"gen3_rank_corr\": -0.3936, \"gen0_rare\": 0.0303, \"gen1_rare\": 0.0302, \"gen2_rare\": 0.0306, \"gen3_rare\": 0.0313}, \"uncurated\": {\"status\": \"crashed_gen0_eval\", \"error\": \"ValueError: Contriever mode requires tokenizer and contriever_model\"}}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-12T20:01:27.621Z\"}, \"mvp_serial_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T14:44:01.355Z\", \"updated_at\": \"2026-05-12T15:06:07.103Z\", \"spec\": {\"hypothesis\": \"Serial run of all 3 methods (rgds → external_only → uncurated) on dual-GPU 0,1\", \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"server\": \"westd-11235\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"seed\": 42, \"command\": \"bash run_all_methods.sh (killed for output_dir fix)\", \"output_dir\": \"/root/autodl-tmp/div_cal_verify/results/\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"42073\", \"log_path\": \"~/runs/div_cal_verify/all_methods.log\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T15:06:07.103Z\"}, \"mvp_ext_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:53:41.004Z\", \"updated_at\": \"2026-05-12T15:06:01.117Z\", \"spec\": {\"command\": \"PCA dimension mismatch\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"10291\", \"log_path\": \"~/runs/div_cal_verify/mvp_ext_v2.log\", \"submitted_at\": \"2026-05-12T11:54:05.248Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"seed\": 42, \"wall_clock_seconds\": 11515.9, \"gpu_hours\": 3.2}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-12T15:06:01.117Z\"}, \"mvp_rgds_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:53:38.705Z\", \"updated_at\": \"2026-05-12T15:05:59.055Z\", \"spec\": {\"command\": \"OOM on single GPU\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"10214\", \"log_path\": \"~/runs/div_cal_verify/mvp_rgds_v2.log\", \"submitted_at\": \"2026-05-12T11:54:04.012Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"seed\": 42, \"wall_clock_seconds\": 11515.0, \"gpu_hours\": 3.2}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-12T15:05:59.055Z\"}, \"mvp_ext_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:30:03.751Z\", \"updated_at\": \"2026-05-12T14:46:01.010Z\", \"spec\": {\"command\": \"killed before bugfix\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"7284\", \"log_path\": \"~/runs/div_cal_verify/mvp_ext_v1.log\", \"submitted_at\": \"2026-05-12T11:31:51.964Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 242666, \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"seed\": 42, \"hyperparams\": {\"method\": \"external_only\", \"num_generations\": 4, \"lr\": 2e-05, \"batch_size\": 4, \"grad_accum\": 8, \"seq_len\": 512, \"gen_tokens\": 500000}, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 11649.0, \"gpu_hours\": 3.24}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T14:46:01.011Z\"}, \"mvp_rgds_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:30:01.613Z\", \"updated_at\": \"2026-05-12T14:45:58.638Z\", \"spec\": {\"command\": \"killed before bugfix\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"7205\", \"log_path\": \"~/runs/div_cal_verify/mvp_rgds_v1.log\", \"submitted_at\": \"2026-05-12T11:31:50.710Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 242666, \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"seed\": 42, \"hyperparams\": {\"method\": \"rgds\", \"num_generations\": 4, \"lr\": 2e-05, \"batch_size\": 4, \"grad_accum\": 8, \"seq_len\": 512, \"gen_tokens\": 500000, \"tau_rank\": 0.5, \"tau_knn\": 0.6}, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 11647.9, \"gpu_hours\": 3.24}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-12T14:45:58.638Z\"}, \"mvp_rgds_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:31:40.361Z\", \"updated_at\": \"2026-05-12T14:45:05.208Z\", \"spec\": {\"hypothesis\": \"RGDS internal diversity selection preserves representation quality and achieves >=5% PPL improvement over external-only (dual-GPU mode, fixed PCA alignment)\", \"parent\": \"mvp_rgds_v2\", \"model_name\": \"Qwen/Qwen3-1.7B + Qwen/Qwen3-4B\", \"server\": \"westd-11235\", \"data_path\": \"/root/div_cal_verify/data/\", \"data_count\": 237666, \"seed\": 42, \"hyperparams\": {\"method\": \"rgds\", \"num_generations\": 4, \"lr\": 2e-05, \"batch_size\": 4, \"grad_accum\": 8, \"seq_len\": 512, \"gen_tokens\": 500000, \"gpu_mode\": \"dual (0,1)\", \"tau_rank\": 0.5, \"tau_knn\": 0.6}, \"command\": \"python run_mvp.py --method rgds --num_generations 4 --gpu_ids 0,1\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"18588\", \"log_path\": \"~/runs/div_cal_verify/mvp_rgds_v3.log\", \"output_dir\": \"/root/div_cal_verify/results/rgds/\", \"checkpoint_path\": \"N/A (gen3 disk full)\"}, \"conclusion\": \"failed\", \"metrics\": {\"gen0_ppl\": 16.63, \"gen1_ppl\": 16.84, \"gen2_ppl\": 16.35, \"gen0_rankme\": 971.52, \"gen1_rankme\": 965.2, \"gen2_rankme\": 966.02, \"gen0_knn\": 0.991, \"gen1_knn\": 0.991, \"gen2_knn\": 0.991, \"gen0_rank_corr\": -0.373, \"gen1_rank_corr\": -0.384, \"gen2_rank_corr\": -0.383, \"failure\": \"gen3 disk full (No space left on device)\", \"completed_gens\": 3}, \"completed_at\": \"2026-05-12T14:45:05.208Z\"}}, \"count\": 31, \"total\": 31, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1084}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0e50ecdd-d6d7-4a6a-9e4a-708113d0c256",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T07:21:37.998Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_gpu_health · `toolu_01D3yfuvmacAy6t3XAe9q4FY`</summary>
+
+```json
+{
+  "server": "westd-11235"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d193b967-4a28-4f7a-9b44-473e2b91f017",
+  "isSidechain": false,
+  "requestId": "req_011Cb24Jtbsu8nZCbMRu3sr4",
+  "type": "assistant",
+  "uuid": "f28c0a84-073c-486a-86b9-eca749910776",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GAZbrocYJvxVzWSEXHCLbb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 30679,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 30679,
+          "cache_creation_input_tokens": 1920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T07:21:38.004Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01UykZUsjpsBVd4ztLucuXdr`</summary>
+
+```json
+{
+  "project": "div_cal_verify"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f28c0a84-073c-486a-86b9-eca749910776",
+  "isSidechain": false,
+  "requestId": "req_011Cb24Jtbsu8nZCbMRu3sr4",
+  "type": "assistant",
+  "uuid": "e66a9fee-b4ce-486e-88a4-e723ac7ec196",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GAZbrocYJvxVzWSEXHCLbb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1920,
+      "cache_read_input_tokens": 30679,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 30679,
+          "cache_creation_input_tokens": 1920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T07:21:38.014Z_
+
+<details><summary>↩ Tool result · `toolu_01D3yfuvmacAy6t3XAe9q4FY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"servers\": {\"westd-11235\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f28c0a84-073c-486a-86b9-eca749910776",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "fc0fd9c1-3f23-4526-9fe7-f72e9961bf9f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"westd-11235\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"servers\": {\"westd-11235\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f28c0a84-073c-486a-86b9-eca749910776",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T07:21:38.022Z_
+
+<details><summary>↩ Tool result · `toolu_01UykZUsjpsBVd4ztLucuXdr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/ROADMAP.md\", \"content\": \"# div_cal_verify — Research Dashboard\\n\\n> 最后更新: 2026-05-14 04:51 UTC | 更新原因: 勾选 paper_framing 同步 + scaling narrative 定稿；添加统计分析脚本准备 + 论文质量审查任务；修正运行中实验表\\n\\n## 核心方向\\n迭代自训练中，模型内部嵌入的几何多样性与内容多样性系统性失对齐（Embedding Alignment Gap），导致基于内部表征的 diversity selection 灾难性加速 model collapse。详见 paper_framing.md (D014 revised)。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中（Group C 独立处理）\\n- **MVP**: PASS (D009)\\n- **Core claims**: C1 (ratio 退化) 强 ✅ | C3 (RGDS > Random 同 budget) 强 ✅ 跨 scale | C2-revised (内部嵌入特异性) 定性强 ✅\\n- **125M 完成**: 4 方法 × 3 seed 完整，3-seed t-test 就绪\\n- **355M 进展**: seed=42 四方法完成 ✅ | seed=123 四方法运行中（2 卡并行）| seed=456 脚本就绪待启动 (D019)\\n- **355M seed=42 完整排序**: Random 70.25 < External 77.74 < RGDS 82.84 < Uncurated 91.66 → C3 成立\\n- **Scaling narrative (D020)**: 双假说共存（表征冗余缓冲 + ceiling effect），ratio 作为鉴别指标，已加 limitation 句\\n- **论文写作**: Results 355M + Discussion scaling narrative 已完成（D020 patch）。全文 Provenance 18/19。\\n\\n## 运行中实验\\n| 实验 | GPU | 状态 | 预计完成 |\\n|------|-----|------|----------|\\n| medium_uncurated_seed123 → rgds_seed123 | cuda:0 | chain 进行中 | rgds ~15:00 CST |\\n| medium_external_seed123 → random50_seed123 | cuda:1 | chain 进行中 | random50 ~16:15 CST |\\n\\n## 自动衔接\\n- cuda:0: uncurated_seed123 → rgds_seed123 (~15:00)\\n- cuda:1: external_seed123 → random50_seed123 (~16:15)\\n- **全部 seed=123 完成：~16:15 CST**\\n- seed=456: 两卡 chain 脚本就绪，seed=123 完成后立即启动（~5h wall → ~21:00 CST）\\n\\n## 近期任务\\n- [x] seed=456 脚本准备（4 方法 + 2 chain 脚本 + registry 预注册）\\n- [x] Paper Agent Results 355M + Discussion 深化（seed=42 数据）\\n- [x] 因果性语言修正（D017 降级 S3 相关表述）\\n- [x] paper_framing.md 同步：S3 降级 (D017) + External scaling nuance + scaling narrative (D020)\\n- [x] Scaling narrative 定稿：双假说共存框架 (D020)\\n- [ ] seed=123 四方法完成（预计 ~16:15 CST 今天）\\n- [ ] seed=456 四方法执行（seed=123 完成后，~5h wall time）\\n- [ ] 355M 3-seed 统计检验 + ratio 汇总（Agent 提前准备分析脚本中）\\n- [ ] Paper Agent patch: 填入 355M 统计检验数据 + ratio 鉴别结果\\n- [ ] 论文质量打磨：Intro/Related Work/Ablation（Reviewer 审查中）\\n\\n## GPU 预算\\n- 分配: westd-11235 2×RTX PRO 6000 98GB\\n- DDL: EMNLP 2026 ARR **2026-05-25**（还有 **11 天**）\\n- seed=123 剩余: ~5h（今天 ~16:15 完成）\\n- seed=456 (D019): ~10h GPU / ~5h wall → 预计今天 ~21:00 CST 完成\\n- 总剩余到 DDL: 充裕\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D020 | 2026-05-14 | 355M scaling narrative 采用修正版 B：双假说共存（表征冗余缓冲 + ceil | medium_external_seed42, medium_rgds_seed42 |\\n| D019 | 2026-05-14 | 追加 355M seed=456 实验（4 方法），使 355M 与 125M 同为 3-seed  | medium_external_seed42, medium_external_seed123 |\\n| D018 | 2026-05-13 | Reviewer 独立评估确认三核心 claim 跨 seed 稳健：C1 STRONG (rati | phase2_3method_selfit, phase2_seed123_remaining, random_50_seed456, uncurated_seed456 |\\n| D017 | 2026-05-13 | D017: S3 (random pruning as regularizer) 降级为 direc | random_50_seed123, random_50_seed456, phase2_random50_v2 |\\n| D016 | 2026-05-13 | D016: random_50 三 seed 确认 random < external（非 nois | random_50_seed123, random_50_seed456, phase2_random50_v2 |\\n| D015 | 2026-05-13 | D015: Claim 层级确认——C1/C3 强，C2-revised 定性强但定量弱化，S3 暂 | phase2_3method_selfit, phase2_seed123_remaining |\\n| D014 | 2026-05-13 | D014: 接受 Reviewer framing 修正方案，C2-weak→C2-revised  | phase2_random50_v2, phase2_3method_selfit |\\n| D013 | 2026-05-13 | D013: random_50 baseline 完成，RGDS 比随机选择差 +74% PPL，e | phase2_random50_v2, phase2_3method_selfit, phase2_seed123_remaining |\\n| D012 | 2026-05-13 | Reviewer claim 边界分析：确定 novelty 定位为 quantification+ | phase2_3method_selfit |\\n| D011 | 2026-05-13 | Dream full review 确认 Findings 可达，识别 4 个结构性必修项 + 1  | phase2_3method_selfit |\\n\\n\\n\", \"lines\": 65}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e66a9fee-b4ce-486e-88a4-e723ac7ec196",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "4de733c0-b964-4b34-9cd5-e7cd575a9b9b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/ROADMAP.md\\\", \\\"content\\\": \\\"# div_cal_verify — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 04:51 UTC | 更新原因: 勾选 paper_framing 同步 + scaling narrative 定稿；添加统计分析脚本准备 + 论文质量审查任务；修正运行中实验表\\\\n\\\\n## 核心方向\\\\n迭代自训练中，模型内部嵌入的几何多样性与内容多样性系统性失对齐（Embedding Alignment Gap），导致基于内部表征的 diversity selection 灾难性加速 model collapse。详见 paper_framing.md (D014 revised)。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中（Group C 独立处理）\\\\n- **MVP**: PASS (D009)\\\\n- **Core claims**: C1 (ratio 退化) 强 ✅ | C3 (RGDS > Random 同 budget) 强 ✅ 跨 scale | C2-revised (内部嵌入特异性) 定性强 ✅\\\\n- **125M 完成**: 4 方法 × 3 seed 完整，3-seed t-test 就绪\\\\n- **355M 进展**: seed=42 四方法完成 ✅ | seed=123 四方法运行中（2 卡并行）| seed=456 脚本就绪待启动 (D019)\\\\n- **355M seed=42 完整排序**: Random 70.25 < External 77.74 < RGDS 82.84 < Uncurated 91.66 → C3 成立\\\\n- **Scaling narrative (D020)**: 双假说共存（表征冗余缓冲 + ceiling effect），ratio 作为鉴别指标，已加 limitation 句\\\\n- **论文写作**: Results 355M + Discussion scaling narrative 已完成（D020 patch）。全文 Provenance 18/19。\\\\n\\\\n## 运行中实验\\\\n| 实验 | GPU | 状态 | 预计完成 |\\\\n|------|-----|------|----------|\\\\n| medium_uncurated_seed123 → rgds_seed123 | cuda:0 | chain 进行中 | rgds ~15:00 CST |\\\\n| medium_external_seed123 → random50_seed123 | cuda:1 | chain 进行中 | random50 ~16:15 CST |\\\\n\\\\n## 自动衔接\\\\n- cuda:0: uncurated_seed123 → rgds_seed123 (~15:00)\\\\n- cuda:1: external_seed123 → random50_seed123 (~16:15)\\\\n- **全部 seed=123 完成：~16:15 CST**\\\\n- seed=456: 两卡 chain 脚本就绪，seed=123 完成后立即启动（~5h wall → ~21:00 CST）\\\\n\\\\n## 近期任务\\\\n- [x] seed=456 脚本准备（4 方法 + 2 chain 脚本 + registry 预注册）\\\\n- [x] Paper Agent Results 355M + Discussion 深化（seed=42 数据）\\\\n- [x] 因果性语言修正（D017 降级 S3 相关表述）\\\\n- [x] paper_framing.md 同步：S3 降级 (D017) + External scaling nuance + scaling narrative (D020)\\\\n- [x] Scaling narrative 定稿：双假说共存框架 (D020)\\\\n- [ ] seed=123 四方法完成（预计 ~16:15 CST 今天）\\\\n- [ ] seed=456 四方法执行（seed=123 完成后，~5h wall time）\\\\n- [ ] 355M 3-seed 统计检验 + ratio 汇总（Agent 提前准备分析脚本中）\\\\n- [ ] Paper Agent patch: 填入 355M 统计检验数据 + ratio 鉴别结果\\\\n- [ ] 论文质量打磨：Intro/Related Work/Ablation（Reviewer 审查中）\\\\n\\\\n## GPU 预算\\\\n- 分配: westd-11235 2×RTX PRO 6000 98GB\\\\n- DDL: EMNLP 2026 ARR **2026-05-25**（还有 **11 天**）\\\\n- seed=123 剩余: ~5h（今天 ~16:15 完成）\\\\n- seed=456 (D019): ~10h GPU / ~5h wall → 预计今天 ~21:00 CST 完成\\\\n- 总剩余到 DDL: 充裕\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D020 | 2026-05-14 | 355M scaling narrative 采用修正版 B：双假说共存（表征冗余缓冲 + ceil | medium_external_seed42, medium_rgds_seed42 |\\\\n| D019 | 2026-05-14 | 追加 355M seed=456 实验（4 方法），使 355M 与 125M 同为 3-seed  | medium_external_seed42, medium_external_seed123 |\\\\n| D018 | 2026-05-13 | Reviewer 独立评估确认三核心 claim 跨 seed 稳健：C1 STRONG (rati | phase2_3method_selfit, phase2_seed123_remaining, random_50_seed456, uncurated_seed456 |\\\\n| D017 | 2026-05-13 | D017: S3 (random pruning as regularizer) 降级为 direc | random_50_seed123, random_50_seed456, phase2_random50_v2 |\\\\n| D016 | 2026-05-13 | D016: random_50 三 seed 确认 random < external（非 nois | random_50_seed123, random_50_seed456, phase2_random50_v2 |\\\\n| D015 | 2026-05-13 | D015: Claim 层级确认——C1/C3 强，C2-revised 定性强但定量弱化，S3 暂 | phase2_3method_selfit, phase2_seed123_remaining |\\\\n| D014 | 2026-05-13 | D014: 接受 Reviewer framing 修正方案，C2-weak→C2-revised  | phase2_random50_v2, phase2_3method_selfit |\\\\n| D013 | 2026-05-13 | D013: random_50 baseline 完成，RGDS 比随机选择差 +74% PPL，e | phase2_random50_v2, phase2_3method_selfit, phase2_seed123_remaining |\\\\n| D012 | 2026-05-13 | Reviewer claim 边界分析：确定 novelty 定位为 quantification+ | phase2_3method_selfit |\\\\n| D011 | 2026-05-13 | Dream full review 确认 Findings 可达，识别 4 个结构性必修项 + 1  | phase2_3method_selfit |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 65}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/ROADMAP.md\", \"content\": \"# div_cal_verify — Research Dashboard\\n\\n> 最后更新: 2026-05-14 04:51 UTC | 更新原因: 勾选 paper_framing 同步 + scaling narrative 定稿；添加统计分析脚本准备 + 论文质量审查任务；修正运行中实验表\\n\\n## 核心方向\\n迭代自训练中，模型内部嵌入的几何多样性与内容多样性系统性失对齐（Embedding Alignment Gap），导致基于内部表征的 diversity selection 灾难性加速 model collapse。详见 paper_framing.md (D014 revised)。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中（Group C 独立处理）\\n- **MVP**: PASS (D009)\\n- **Core claims**: C1 (ratio 退化) 强 ✅ | C3 (RGDS > Random 同 budget) 强 ✅ 跨 scale | C2-revised (内部嵌入特异性) 定性强 ✅\\n- **125M 完成**: 4 方法 × 3 seed 完整，3-seed t-test 就绪\\n- **355M 进展**: seed=42 四方法完成 ✅ | seed=123 四方法运行中（2 卡并行）| seed=456 脚本就绪待启动 (D019)\\n- **355M seed=42 完整排序**: Random 70.25 < External 77.74 < RGDS 82.84 < Uncurated 91.66 → C3 成立\\n- **Scaling narrative (D020)**: 双假说共存（表征冗余缓冲 + ceiling effect），ratio 作为鉴别指标，已加 limitation 句\\n- **论文写作**: Results 355M + Discussion scaling narrative 已完成（D020 patch）。全文 Provenance 18/19。\\n\\n## 运行中实验\\n| 实验 | GPU | 状态 | 预计完成 |\\n|------|-----|------|----------|\\n| medium_uncurated_seed123 → rgds_seed123 | cuda:0 | chain 进行中 | rgds ~15:00 CST |\\n| medium_external_seed123 → random50_seed123 | cuda:1 | chain 进行中 | random50 ~16:15 CST |\\n\\n## 自动衔接\\n- cuda:0: uncurated_seed123 → rgds_seed123 (~15:00)\\n- cuda:1: external_seed123 → random50_seed123 (~16:15)\\n- **全部 seed=123 完成：~16:15 CST**\\n- seed=456: 两卡 chain 脚本就绪，seed=123 完成后立即启动（~5h wall → ~21:00 CST）\\n\\n## 近期任务\\n- [x] seed=456 脚本准备（4 方法 + 2 chain 脚本 + registry 预注册）\\n- [x] Paper Agent Results 355M + Discussion 深化（seed=42 数据）\\n- [x] 因果性语言修正（D017 降级 S3 相关表述）\\n- [x] paper_framing.md 同步：S3 降级 (D017) + External scaling nuance + scaling narrative (D020)\\n- [x] Scaling narrative 定稿：双假说共存框架 (D020)\\n- [ ] seed=123 四方法完成（预计 ~16:15 CST 今天）\\n- [ ] seed=456 四方法执行（seed=123 完成后，~5h wall time）\\n- [ ] 355M 3-seed 统计检验 + ratio 汇总（Agent 提前准备分析脚本中）\\n- [ ] Paper Agent patch: 填入 355M 统计检验数据 + ratio 鉴别结果\\n- [ ] 论文质量打磨：Intro/Related Work/Ablation（Reviewer 审查中）\\n\\n## GPU 预算\\n- 分配: westd-11235 2×RTX PRO 6000 98GB\\n- DDL: EMNLP 2026 ARR **2026-05-25**（还有 **11 天**）\\n- seed=123 剩余: ~5h（今天 ~16:15 完成）\\n- seed=456 (D019): ~10h GPU / ~5h wall → 预计今天 ~21:00 CST 完成\\n- 总剩余到 DDL: 充裕\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D020 | 2026-05-14 | 355M scaling narrative 采用修正版 B：双假说共存（表征冗余缓冲 + ceil | medium_external_seed42, medium_rgds_seed42 |\\n| D019 | 2026-05-14 | 追加 355M seed=456 实验（4 方法），使 355M 与 125M 同为 3-seed  | medium_external_seed42, medium_external_seed123 |\\n| D018 | 2026-05-13 | Reviewer 独立评估确认三核心 claim 跨 seed 稳健：C1 STRONG (rati | phase2_3method_selfit, phase2_seed123_remaining, random_50_seed456, uncurated_seed456 |\\n| D017 | 2026-05-13 | D017: S3 (random pruning as regularizer) 降级为 direc | random_50_seed123, random_50_seed456, phase2_random50_v2 |\\n| D016 | 2026-05-13 | D016: random_50 三 seed 确认 random < external（非 nois | random_50_seed123, random_50_seed456, phase2_random50_v2 |\\n| D015 | 2026-05-13 | D015: Claim 层级确认——C1/C3 强，C2-revised 定性强但定量弱化，S3 暂 | phase2_3method_selfit, phase2_seed123_remaining |\\n| D014 | 2026-05-13 | D014: 接受 Reviewer framing 修正方案，C2-weak→C2-revised  | phase2_random50_v2, phase2_3method_selfit |\\n| D013 | 2026-05-13 | D013: random_50 baseline 完成，RGDS 比随机选择差 +74% PPL，e | phase2_random50_v2, phase2_3method_selfit, phase2_seed123_remaining |\\n| D012 | 2026-05-13 | Reviewer claim 边界分析：确定 novelty 定位为 quantification+ | phase2_3method_selfit |\\n| D011 | 2026-05-13 | Dream full review 确认 Findings 可达，识别 4 个结构性必修项 + 1  | phase2_3method_selfit |\\n\\n\\n\", \"lines\": 65}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e66a9fee-b4ce-486e-88a4-e723ac7ec196",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_setup_auto_chain_seed456_20260514T071943]: Worker worker_setup_auto_chain_seed456_20260514T071943 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "4de733c0-b964-4b34-9cd5-e7cd575a9b9b",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker setup and auto chain completion",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-14T07:21:55.862Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze what I see. The worker notification is about `worker_setup_auto_chain_seed456_20260514T071943`. This worker name suggests it was setting up the auto-chain for seed=456 experiments. Let me check what's happening:
+
+From the registry:
+- `medium_uncurated_seed456` - PREPARING (created 2026-05-14T03:21)
+- `medium_rgds_seed456` - PREPARING (created 2026-05-14T03:21)
+- `medium_random50_seed456` - PREPARING (created 2026-05-14T03:21)
+
+
+- `medium_external_seed456` - RUNNING (created 2026-05-14T03:21, updated 2026-05-14T07:13)
+
+So the worker was preparing chain scripts for the seed=456 experiments, and now I can see that `medium_external_seed456` is actively running on cuda:1 while the other three variants are still in the PREPARING state.
+
+Looking at the roadmap, seed=123 experiments are mostly done with only `medium_random50_seed123` still running, but seed=456 only has the external variant going. I need to SSH in and verify the GPU health, check whether `medium_external_seed456` is actually executing properly, and confirm that the chain setup completed successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4de733c0-b964-4b34-9cd5-e7cd575a9b9b",
+  "isSidechain": false,
+  "requestId": "req_011Cb24KEC6hSFTdwqsfTTuz",
+  "type": "assistant",
+  "uuid": "ff85818d-ae91-4280-95a0-2eb6d843ddfd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrrqVdFLXMqwJ1LGMKeJg8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26231,
+      "cache_read_input_tokens": 32599,
+      "output_tokens": 874,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26231,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 874,
+          "cache_read_input_tokens": 32599,
+          "cache_creation_input_tokens": 26231,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26231
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-14T07:21:55.881Z_
+
+GPU health 数据过期，需要直接 SSH 核实。同时查看 seed=456 chain 设置和正在运行的进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff85818d-ae91-4280-95a0-2eb6d843ddfd",
+  "isSidechain": false,
+  "requestId": "req_011Cb24KEC6hSFTdwqsfTTuz",
+  "type": "assistant",
+  "uuid": "95e14f0f-e231-4b7e-a0ad-60f95f5c92ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrrqVdFLXMqwJ1LGMKeJg8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26231,
+      "cache_read_input_tokens": 32599,
+      "output_tokens": 874,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26231,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 874,
+          "cache_read_input_tokens": 32599,
+          "cache_creation_input_tokens": 26231,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26231
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T07:21:55.961Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H7JjdYC1gjxcDsT71C7shp`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95e14f0f-e231-4b7e-a0ad-60f95f5c92ca",
+  "isSidechain": false,
+  "requestId": "req_011Cb24KEC6hSFTdwqsfTTuz",
+  "type": "assistant",
+  "uuid": "a8f824f1-1a04-447c-8cd9-3c40a24fa23a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrrqVdFLXMqwJ1LGMKeJg8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26231,
+      "cache_read_input_tokens": 32599,
+      "output_tokens": 874,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26231,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 874,
+          "cache_read_input_tokens": 32599,
+          "cache_creation_input_tokens": 26231,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26231
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T07:21:56.045Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dwqz18aVYe5E1UNzBxhczk`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8f824f1-1a04-447c-8cd9-3c40a24fa23a",
+  "isSidechain": false,
+  "requestId": "req_011Cb24KEC6hSFTdwqsfTTuz",
+  "type": "assistant",
+  "uuid": "12865272-eb68-48d9-8ba1-ef50dcf32384",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrrqVdFLXMqwJ1LGMKeJg8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26231,
+      "cache_read_input_tokens": 32599,
+      "output_tokens": 874,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26231,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 874,
+          "cache_read_input_tokens": 32599,
+          "cache_creation_input_tokens": 26231,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26231
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T07:21:57.058Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TXCpUMPcBnb7Bhi3DY8hcY`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls -la /root/div_cal_verify/chain_*seed456* /root/div_cal_verify/run_*seed456*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12865272-eb68-48d9-8ba1-ef50dcf32384",
+  "isSidechain": false,
+  "requestId": "req_011Cb24KEC6hSFTdwqsfTTuz",
+  "type": "assistant",
+  "uuid": "b19d6d2d-068e-4378-adb1-491474b2b964",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrrqVdFLXMqwJ1LGMKeJg8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 26231,
+      "cache_read_input_tokens": 32599,
+      "output_tokens": 874,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26231,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 874,
+          "cache_read_input_tokens": 32599,
+          "cache_creation_input_tokens": 26231,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26231
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T07:21:57.351Z_
+
+<details><summary>↩ Tool result · `toolu_01H7JjdYC1gjxcDsT71C7shp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 71641 MiB, 97887 MiB, 52\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 24 %, 19261 MiB, 97887 MiB, 41\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8f824f1-1a04-447c-8cd9-3c40a24fa23a",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "0f26b8e7-434a-4092-9328-6289d6bb5ffa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 71641 MiB, 97887 MiB, 52\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 24 %, 19261 MiB, 97887 MiB, 41\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 %, 71641 MiB, 97887 MiB, 52\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 24 %, 19261 MiB, 97887 MiB, 41\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a8f824f1-1a04-447c-8cd9-3c40a24fa23a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T07:21:57.971Z_
+
+<details><summary>↩ Tool result · `toolu_01Dwqz18aVYe5E1UNzBxhczk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"453372, GPU-ade8d9bb-4b1e-d9b7-5bb3-4ca87bc731f8, 22460 MiB, python3\\n462871, GPU-48463d2b-a292-1aa0-cf8b-fbc051619694, 19252 MiB, python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12865272-eb68-48d9-8ba1-ef50dcf32384",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "f0810fe4-b6f7-4b0c-a5b5-1e7dfd9c5959",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"453372, GPU-ade8d9bb-4b1e-d9b7-5bb3-4ca87bc731f8, 22460 MiB, python3\\\\n462871, GPU-48463d2b-a292-1aa0-cf8b-fbc051619694, 19252 MiB, python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"453372, GPU-ade8d9bb-4b1e-d9b7-5bb3-4ca87bc731f8, 22460 MiB, python3\\n462871, GPU-48463d2b-a292-1aa0-cf8b-fbc051619694, 19252 MiB, python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  },
+  "sourceToolAssistantUUID": "12865272-eb68-48d9-8ba1-ef50dcf32384",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T07:21:58.513Z_
+
+<details><summary>↩ Tool result · `toolu_01TXCpUMPcBnb7Bhi3DY8hcY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rwxr-xr-x 1 root root  884 May 14 11:47 /root/div_cal_verify/chain_cuda0_seed456.sh\\n-rw-r--r-- 1 root root  749 May 14 00:46 /root/div_cal_verify/run_ext_seed456.sh\\n-rwxr-xr-x 1 root root 1013 May 14 11:47 /root/div_cal_verify/run_medium_external_seed456.sh\\n-rwxr-xr-x 1 root root  968 May 14 11:47 /root/div_cal_verify/run_medium_random50_seed456.sh\\n-rwxr-xr-x 1 root root  973 May 14 11:47 /root/div_cal_verify/run_medium_rgds_seed456.sh\\n-rwxr-xr-x 1 root root  970 May 14 11:47 /root/div_cal_verify/run_medium_uncurated_seed456.sh\\n-rwxr-xr-x 1 root root  555 May 14 00:04 /root/div_cal_verify/run_random50_seed456.sh\\n-rw-r--r-- 1 root root  722 May 14 00:45 /root/div_cal_verify/run_rgds_seed456.sh\\n-rw-r--r-- 1 root root  737 May 14 00:45 /root/div_cal_verify/run_uncurated_seed456.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b19d6d2d-068e-4378-adb1-491474b2b964",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "e3b85f93-8259-41f5-83d8-9168abf25a39",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rwxr-xr-x 1 root root  884 May 14 11:47 /root/div_cal_verify/chain_cuda0_seed456.sh\\\\n-rw-r--r-- 1 root root  749 May 14 00:46 /root/div_cal_verify/run_ext_seed456.sh\\\\n-rwxr-xr-x 1 root root 1013 May 14 11:47 /root/div_cal_verify/run_medium_external_seed456.sh\\\\n-rwxr-xr-x 1 root root  968 May 14 11:47 /root/div_cal_verify/run_medium_random50_seed456.sh\\\\n-rwxr-xr-x 1 root root  973 May 14 11:47 /root/div_cal_verify/run_medium_rgds_seed456.sh\\\\n-rwxr-xr-x 1 root root  970 May 14 11:47 /root/div_cal_verify/run_medium_uncurated_seed456.sh\\\\n-rwxr-xr-x 1 root root  555 May 14 00:04 /root/div_cal_verify/run_random50_seed456.sh\\\\n-rw-r--r-- 1 root root  722 May 14 00:45 /root/div_cal_verify/run_rgds_seed456.sh\\\\n-rw-r--r-- 1 root root  737 May 14 00:45 /root/div_cal_verify/run_uncurated_seed456.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rwxr-xr-x 1 root root  884 May 14 11:47 /root/div_cal_verify/chain_cuda0_seed456.sh\\n-rw-r--r-- 1 root root  749 May 14 00:46 /root/div_cal_verify/run_ext_seed456.sh\\n-rwxr-xr-x 1 root root 1013 May 14 11:47 /root/div_cal_verify/run_medium_external_seed456.sh\\n-rwxr-xr-x 1 root root  968 May 14 11:47 /root/div_cal_verify/run_medium_random50_seed456.sh\\n-rwxr-xr-x 1 root root  973 May 14 11:47 /root/div_cal_verify/run_medium_rgds_seed456.sh\\n-rwxr-xr-x 1 root root  970 May 14 11:47 /root/div_cal_verify/run_medium_uncurated_seed456.sh\\n-rwxr-xr-x 1 root root  555 May 14 00:04 /root/div_cal_verify/run_random50_seed456.sh\\n-rw-r--r-- 1 root root  722 May 14 00:45 /root/div_cal_verify/run_rgds_seed456.sh\\n-rw-r--r-- 1 root root  737 May 14 00:45 /root/div_cal_verify/run_uncurated_seed456.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b19d6d2d-068e-4378-adb1-491474b2b964",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-14T07:22:13.372Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze:
+
+1. GPU 0: 0% utilization, 71641 MiB used - there's a process using 22460 MiB (PID 453372) but 0% compute utilization. The 71641 MiB used is strange - that's a lot. Maybe there are other processes.
+
+Wait, the compute apps output shows:
+- PID 453372 on GPU-ade8... (need to map to GPU index), 22460 MiB - python3
+
+
+- PID 462871 on GPU-48463..., 19252 MiB - python3
+
+So PID 462871 is on GPU 1 (19252 MiB matches the 19261 MiB reported), and PID 453372 is on GPU 0 using 22460 MiB. But GPU 0 shows 71641 MiB total used with 0% compute utilization - there's a significant gap between the process memory and total GPU memory that I need to account for.
+
+GPU 0 is showing 0% utilization despite having a process running, which suggests it might be stalled or idle. I'm also noticing that chain_cuda0_seed456.sh exists but I don't see a corresponding chain_cuda1_seed456.sh, so I need to check what's actually running in the tmux sessions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3b85f93-8259-41f5-83d8-9168abf25a39",
+  "isSidechain": false,
+  "requestId": "req_011Cb24LjaD8X3FA7ZaQtfpm",
+  "type": "assistant",
+  "uuid": "696e2645-c29e-41bc-83e8-0ae79be56643",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01494qZQPAb2Z99FJvPnUdad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1757,
+      "cache_read_input_tokens": 58830,
+      "output_tokens": 892,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 892,
+          "cache_read_input_tokens": 58830,
+          "cache_creation_input_tokens": 1757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-14T07:22:14.294Z_
+
+GPU 0 显示 0% 利用率但占用 71641 MiB 显存——可能异常。继续排查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "696e2645-c29e-41bc-83e8-0ae79be56643",
+  "isSidechain": false,
+  "requestId": "req_011Cb24LjaD8X3FA7ZaQtfpm",
+  "type": "assistant",
+  "uuid": "eab3b461-8b91-4687-b81b-3152821b7089",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01494qZQPAb2Z99FJvPnUdad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1757,
+      "cache_read_input_tokens": 58830,
+      "output_tokens": 892,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 892,
+          "cache_read_input_tokens": 58830,
+          "cache_creation_input_tokens": 1757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T07:22:14.904Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ya6Wfx8zjrgd2C38PkvxBC`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ps -p 453372,462871 -o pid,etime,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eab3b461-8b91-4687-b81b-3152821b7089",
+  "isSidechain": false,
+  "requestId": "req_011Cb24LjaD8X3FA7ZaQtfpm",
+  "type": "assistant",
+  "uuid": "50ab1f15-8780-460e-a66d-2938970cef87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01494qZQPAb2Z99FJvPnUdad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1757,
+      "cache_read_input_tokens": 58830,
+      "output_tokens": 892,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 892,
+          "cache_read_input_tokens": 58830,
+          "cache_creation_input_tokens": 1757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T07:22:15.419Z_
+
+<details><summary>↩ Tool result · `toolu_01Ya6Wfx8zjrgd2C38PkvxBC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"453372       52:47 python3 /root/div_cal_verify/run_mvp.py --method random_50 --student_model gpt2-medium --self_iterate --no_quality_filter --data_dir /root/div_cal_verify/data_gpt2 --output_dir /root/autodl-tmp/div_cal_verify/results_medium_random50_seed123 --num_generations 8 --gen_tokens 500000 --train_epochs 3 --train_lr 5e-5 --train_batch_size 4 --train_grad_accum 8 --seq_len 512 --gpu_ids 0 --seed 123\\n462871       10:47 python3 /root/div_cal_verify/run_mvp.py --method external_only --student_model gpt2-medium --self_iterate --no_quality_filter --data_dir /root/div_cal_verify/data_gpt2 --output_dir /root/autodl-tmp/div_cal_verify/results_medium_external_seed456 --num_generations 8 --gen_tokens 500000 --train_epochs 3 --train_lr 5e-5 --train_batch_size 4 --train_grad_accum 8 --seq_len 512 --gpu_ids 0 --seed 456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50ab1f15-8780-460e-a66d-2938970cef87",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "6c94a6c0-79b4-4c6b-b42a-b859dbfdfcdc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"453372       52:47 python3 /root/div_cal_verify/run_mvp.py --method random_50 --student_model gpt2-medium --self_iterate --no_quality_filter --data_dir /root/div_cal_verify/data_gpt2 --output_dir /root/autodl-tmp/div_cal_verify/results_medium_random50_seed123 --num_generations 8 --gen_tokens 500000 --train_epochs 3 --train_lr 5e-5 --train_batch_size 4 --train_grad_accum 8 --seq_len 512 --gpu_ids 0 --seed 123\\\\n462871       10:47 python3 /root/div_cal_verify/run_mvp.py --method external_only --student_model gpt2-medium --self_iterate --no_quality_filter --data_dir /root/div_cal_verify/data_gpt2 --output_dir /root/autodl-tmp/div_cal_verify/results_medium_external_seed456 --num_generations 8 --gen_tokens 500000 --train_epochs 3 --train_lr 5e-5 --train_batch_size 4 --train_grad_accum 8 --seq_len 512 --gpu_ids 0 --seed 456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"453372       52:47 python3 /root/div_cal_verify/run_mvp.py --method random_50 --student_model gpt2-medium --self_iterate --no_quality_filter --data_dir /root/div_cal_verify/data_gpt2 --output_dir /root/autodl-tmp/div_cal_verify/results_medium_random50_seed123 --num_generations 8 --gen_tokens 500000 --train_epochs 3 --train_lr 5e-5 --train_batch_size 4 --train_grad_accum 8 --seq_len 512 --gpu_ids 0 --seed 123\\n462871       10:47 python3 /root/div_cal_verify/run_mvp.py --method external_only --student_model gpt2-medium --self_iterate --no_quality_filter --data_dir /root/div_cal_verify/data_gpt2 --output_dir /root/autodl-tmp/div_cal_verify/results_medium_external_seed456 --num_generations 8 --gen_tokens 500000 --train_epochs 3 --train_lr 5e-5 --train_batch_size 4 --train_grad_accum 8 --seq_len 512 --gpu_ids 0 --seed 456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  },
+  "sourceToolAssistantUUID": "50ab1f15-8780-460e-a66d-2938970cef87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T07:22:15.788Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NPKKbFfSW8jVMcTqqpZcTX`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "tail -5 /root/autodl-tmp/div_cal_verify/medium_random50_seed123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c94a6c0-79b4-4c6b-b42a-b859dbfdfcdc",
+  "isSidechain": false,
+  "requestId": "req_011Cb24LjaD8X3FA7ZaQtfpm",
+  "type": "assistant",
+  "uuid": "e21da415-3c96-4b21-9bd6-99da7814b1ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01494qZQPAb2Z99FJvPnUdad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1757,
+      "cache_read_input_tokens": 58830,
+      "output_tokens": 892,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 892,
+          "cache_read_input_tokens": 58830,
+          "cache_creation_input_tokens": 1757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T07:22:16.232Z_
+
+<details><summary>↩ Tool result · `toolu_01NPKKbFfSW8jVMcTqqpZcTX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Selected 488/977 sequences\\n  Selection diag: sel=0.0834 rej=0.0832 ratio=1.0026\\n  QF diag: would_remove=0, removed_rare=nan, kept_rare=nan\\n\\n[3/5] Training student (lr=5e-05, epochs=3)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e21da415-3c96-4b21-9bd6-99da7814b1ce",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "31d4f255-b9e1-4f32-ac7e-1a1f69e6a21d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Selected 488/977 sequences\\\\n  Selection diag: sel=0.0834 rej=0.0832 ratio=1.0026\\\\n  QF diag: would_remove=0, removed_rare=nan, kept_rare=nan\\\\n\\\\n[3/5] Training student (lr=5e-05, epochs=3)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Selected 488/977 sequences\\n  Selection diag: sel=0.0834 rej=0.0832 ratio=1.0026\\n  QF diag: would_remove=0, removed_rare=nan, kept_rare=nan\\n\\n[3/5] Training student (lr=5e-05, epochs=3)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e21da415-3c96-4b21-9bd6-99da7814b1ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T07:22:16.609Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EVb6zUjCCrf6DCCgWofb97`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "tail -5 /root/autodl-tmp/div_cal_verify/medium_external_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31d4f255-b9e1-4f32-ac7e-1a1f69e6a21d",
+  "isSidechain": false,
+  "requestId": "req_011Cb24LjaD8X3FA7ZaQtfpm",
+  "type": "assistant",
+  "uuid": "feb92153-8713-4845-b2f5-0af32590619d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01494qZQPAb2Z99FJvPnUdad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1757,
+      "cache_read_input_tokens": 58830,
+      "output_tokens": 892,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 892,
+          "cache_read_input_tokens": 58830,
+          "cache_creation_input_tokens": 1757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_setup_auto_chain_seed456_20260514T071943]: Worker worker_setup_auto_chain_seed456_20260514T071943 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "feb92153-8713-4845-b2f5-0af32590619d",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker setup and auto chain completion",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T07:22:17.107Z_
+
+<details><summary>↩ Tool result · `toolu_01EVb6zUjCCrf6DCCgWofb97`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n===== GPT2-medium EXTERNAL_ONLY seed=456 =====\\nGPU: 1\\nStart: Thu May 14 15:11:28 CST 2026\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "feb92153-8713-4845-b2f5-0af32590619d",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "16db2132-feeb-4f9b-89af-916bd393ea8a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n===== GPT2-medium EXTERNAL_ONLY seed=456 =====\\\\nGPU: 1\\\\nStart: Thu May 14 15:11:28 CST 2026\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n===== GPT2-medium EXTERNAL_ONLY seed=456 =====\\nGPU: 1\\nStart: Thu May 14 15:11:28 CST 2026\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  },
+  "sourceToolAssistantUUID": "feb92153-8713-4845-b2f5-0af32590619d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38 · 2026-05-14T07:22:17.111Z_
+
+```json
+{
+  "parentUuid": "16db2132-feeb-4f9b-89af-916bd393ea8a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b690a8dc-34d2-45df-8e8f-c3668a338d0d",
+  "timestamp": "2026-05-14T07:22:17.111Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-14T07:22:35.245Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Critical findings:
+
+1. **PID 462871 (medium_external_seed456)** - the command says `--gpu_ids 0` but it's actually running on GPU 1 (19252 MiB on GPU 1). The `--gpu_ids 0` flag in the command line says GPU 0, but the process is actually on GPU 1. Let me check more carefully.
+
+Wait, the process cmdline shows `--gpu_ids 0`, but looking at nvidia-smi output, PID 462871 is on GPU-48463d2b (GPU 1 based on memory). 
+
+The registry indicates this experiment should be on `cuda:1`, which suggests the launch script is using CUDA_VISIBLE_DEVICES=1 to remap the device indices, so `--gpu_ids 0` actually refers to the visible GPU (physical GPU 1). This is a standard pattern for device remapping.
+
+2. **PID 453372 (medium_random50_seed123)** - running for 52 minutes on GPU 0 with `--gpu_ids 0`. GPU 0 shows 0% utilization but 71641 MiB memory used, which is concerning.
+
+The process itself only accounts for 22460 MiB, leaving about 49 GB unaccounted for on GPU 0 — this could be leftover memory from finished processes that hasn't been freed yet, or possibly zombie processes. The 0% utilization might just be a snapshot between training steps or during data loading. I need to dig deeper into what's happening with GPU 0's memory and check which generation each of these experiments is running on, plus verify the seed=456 chain scripts are properly configured.
+
+The medium_external_seed456 job just started and is only showing a torch_dtype deprecation warning so far, so I should monitor its progress. I also need to verify the chain_cuda0_seed456.sh script and check if there's a corresponding chain_cuda1_seed456.sh script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b690a8dc-34d2-45df-8e8f-c3668a338d0d",
+  "isSidechain": false,
+  "requestId": "req_011Cb24N715josQuZ6FCqwNb",
+  "type": "assistant",
+  "uuid": "6310f029-1307-4f03-b29d-df75274b151d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KkyBRugri54P6n56MMbVB9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 60587,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 60587,
+          "cache_creation_input_tokens": 1817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-14T07:22:35.276Z_
+
+发现 GPU 0 的 0% 利用率需要进一步排查。同时检查脚本和日志细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6310f029-1307-4f03-b29d-df75274b151d",
+  "isSidechain": false,
+  "requestId": "req_011Cb24N715josQuZ6FCqwNb",
+  "type": "assistant",
+  "uuid": "16b3d03e-7ee9-41b1-b4ae-043eca31b168",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KkyBRugri54P6n56MMbVB9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 60587,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 60587,
+          "cache_creation_input_tokens": 1817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T07:22:36.016Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LZLk9rKeGe49Lq7RLFtEVU`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep -c \"Generation\" /root/autodl-tmp/div_cal_verify/medium_random50_seed123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16b3d03e-7ee9-41b1-b4ae-043eca31b168",
+  "isSidechain": false,
+  "requestId": "req_011Cb24N715josQuZ6FCqwNb",
+  "type": "assistant",
+  "uuid": "4edf2a1e-abdd-4c8c-9be7-54f13a7a9663",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KkyBRugri54P6n56MMbVB9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 60587,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 60587,
+          "cache_creation_input_tokens": 1817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T07:22:36.469Z_
+
+<details><summary>↩ Tool result · `toolu_01LZLk9rKeGe49Lq7RLFtEVU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4edf2a1e-abdd-4c8c-9be7-54f13a7a9663",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "2ea1f789-3ab7-49e6-aa8c-fbc7681974c7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4edf2a1e-abdd-4c8c-9be7-54f13a7a9663",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T07:22:36.964Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015bz5khRXDbDAk2QAwqyRBp`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep \"Generation\\|gen_\" /root/autodl-tmp/div_cal_verify/medium_random50_seed123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ea1f789-3ab7-49e6-aa8c-fbc7681974c7",
+  "isSidechain": false,
+  "requestId": "req_011Cb24N715josQuZ6FCqwNb",
+  "type": "assistant",
+  "uuid": "06fcc547-fa9e-4eb8-854d-9f46c07be72f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KkyBRugri54P6n56MMbVB9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 60587,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 60587,
+          "cache_creation_input_tokens": 1817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T07:22:36.976Z_
+
+<details><summary>↩ Tool result · `toolu_015bz5khRXDbDAk2QAwqyRBp`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06fcc547-fa9e-4eb8-854d-9f46c07be72f",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "c342da45-1d2f-4a42-864d-54bc3a7ee93a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "06fcc547-fa9e-4eb8-854d-9f46c07be72f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T07:22:37.436Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XC7hhXigaczHdwEKh6qJec`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat /root/div_cal_verify/chain_cuda0_seed456.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c342da45-1d2f-4a42-864d-54bc3a7ee93a",
+  "isSidechain": false,
+  "requestId": "req_011Cb24N715josQuZ6FCqwNb",
+  "type": "assistant",
+  "uuid": "c0441ac3-bdd5-4644-84f2-9ae406219c68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KkyBRugri54P6n56MMbVB9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 60587,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 60587,
+          "cache_creation_input_tokens": 1817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T07:22:37.876Z_
+
+<details><summary>↩ Tool result · `toolu_01XC7hhXigaczHdwEKh6qJec`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Chain: medium_uncurated_seed456 → medium_rgds_seed456 → medium_random50_seed456\\n# 在 cuda:0 上串行执行\\ncd /root/div_cal_verify\\nsource env.sh\\n\\necho \\\"[$(date)] === Starting medium_uncurated_seed456 ===\\\"\\nbash run_medium_uncurated_seed456.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_uncurated_seed456.log\\necho \\\"[$(date)] === medium_uncurated_seed456 完成 ===\\\"\\n\\necho \\\"[$(date)] === Starting medium_rgds_seed456 ===\\\"\\nbash run_medium_rgds_seed456.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_rgds_seed456.log\\necho \\\"[$(date)] === medium_rgds_seed456 完成 ===\\\"\\n\\necho \\\"[$(date)] === Starting medium_random50_seed456 ===\\\"\\nbash run_medium_random50_seed456.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_random50_seed456.log\\necho \\\"[$(date)] === medium_random50_seed456 完成 ===\\\"\\n\\necho \\\"[$(date)] === ALL seed=456 cuda:0 实验完成 ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0441ac3-bdd5-4644-84f2-9ae406219c68",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "372caaa7-90d7-4e22-b6e0-bbb48d7860c9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Chain: medium_uncurated_seed456 → medium_rgds_seed456 → medium_random50_seed456\\\\n# 在 cuda:0 上串行执行\\\\ncd /root/div_cal_verify\\\\nsource env.sh\\\\n\\\\necho \\\\\\\"[$(date)] === Starting medium_uncurated_seed456 ===\\\\\\\"\\\\nbash run_medium_uncurated_seed456.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_uncurated_seed456.log\\\\necho \\\\\\\"[$(date)] === medium_uncurated_seed456 完成 ===\\\\\\\"\\\\n\\\\necho \\\\\\\"[$(date)] === Starting medium_rgds_seed456 ===\\\\\\\"\\\\nbash run_medium_rgds_seed456.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_rgds_seed456.log\\\\necho \\\\\\\"[$(date)] === medium_rgds_seed456 完成 ===\\\\\\\"\\\\n\\\\necho \\\\\\\"[$(date)] === Starting medium_random50_seed456 ===\\\\\\\"\\\\nbash run_medium_random50_seed456.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_random50_seed456.log\\\\necho \\\\\\\"[$(date)] === medium_random50_seed456 完成 ===\\\\\\\"\\\\n\\\\necho \\\\\\\"[$(date)] === ALL seed=456 cuda:0 实验完成 ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Chain: medium_uncurated_seed456 → medium_rgds_seed456 → medium_random50_seed456\\n# 在 cuda:0 上串行执行\\ncd /root/div_cal_verify\\nsource env.sh\\n\\necho \\\"[$(date)] === Starting medium_uncurated_seed456 ===\\\"\\nbash run_medium_uncurated_seed456.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_uncurated_seed456.log\\necho \\\"[$(date)] === medium_uncurated_seed456 完成 ===\\\"\\n\\necho \\\"[$(date)] === Starting medium_rgds_seed456 ===\\\"\\nbash run_medium_rgds_seed456.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_rgds_seed456.log\\necho \\\"[$(date)] === medium_rgds_seed456 完成 ===\\\"\\n\\necho \\\"[$(date)] === Starting medium_random50_seed456 ===\\\"\\nbash run_medium_random50_seed456.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_random50_seed456.log\\necho \\\"[$(date)] === medium_random50_seed456 完成 ===\\\"\\n\\necho \\\"[$(date)] === ALL seed=456 cuda:0 实验完成 ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c0441ac3-bdd5-4644-84f2-9ae406219c68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T07:22:38.059Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qn8GHigiSfj7DowW4MuwfM`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "ls -la /root/div_cal_verify/chain_cuda1_seed456*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "372caaa7-90d7-4e22-b6e0-bbb48d7860c9",
+  "isSidechain": false,
+  "requestId": "req_011Cb24N715josQuZ6FCqwNb",
+  "type": "assistant",
+  "uuid": "54961a9c-bfa2-4184-a066-7af32018e8ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KkyBRugri54P6n56MMbVB9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1817,
+      "cache_read_input_tokens": 60587,
+      "output_tokens": 1001,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1001,
+          "cache_read_input_tokens": 60587,
+          "cache_creation_input_tokens": 1817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T07:22:38.506Z_
+
+<details><summary>↩ Tool result · `toolu_01Qn8GHigiSfj7DowW4MuwfM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/div_cal_verify/chain_cuda1_seed456*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54961a9c-bfa2-4184-a066-7af32018e8ff",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "0df5300d-ecb8-48af-8acb-2f178c38b221",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/div_cal_verify/chain_cuda1_seed456*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/div_cal_verify/chain_cuda1_seed456*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "54961a9c-bfa2-4184-a066-7af32018e8ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-14T07:22:56.082Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Important findings:
+
+1. **chain_cuda1_seed456.sh doesn't exist** — only chain_cuda0_seed456.sh exists, which chains uncurated→rgds→random50 on cuda:0. The medium_external_seed456 is already running on cuda:1 separately. But there's no chain for cuda:1 to auto-chain after external_seed456 finishes. This might be intentional — external is standalone since there's nothing to chain after it on cuda:1.
+
+2. **medium_random50_seed123** has 4 "Generation" lines in the log, meaning it's around gen 3 (if logging happens at start of each gen) or just finishing gen 3. 
+
+The process has been running for about 52 minutes on GPU 0, but nvidia-smi is showing 0% utilization despite the process still being alive — this could be a momentary snapshot during data loading or evaluation, or potentially a stalled process. There's also a significant memory discrepancy: GPU 0 is using 71641 MiB total but the Python process only accounts for 22460 MiB, leaving roughly 49 GB unaccounted for, so I should check if other processes are consuming GPU 0 memory.
+
+Looking at the GPU UUID mappings, I can see only two processes using compute (PID 453372 with 22460 MiB and PID 462871 with 19252 MiB), but that still doesn't explain the 71641 MiB total on GPU 0. This discrepancy suggests PyTorch might be allocating memory differently than what the compute apps query is reporting.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0df5300d-ecb8-48af-8acb-2f178c38b221",
+  "isSidechain": false,
+  "requestId": "req_011Cb24PgV1PNyPgAGnyUbch",
+  "type": "assistant",
+  "uuid": "8770e4a9-673f-4781-875d-c6debfe26318",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GqZ9UK7pNULhjRU3nJTk1i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1859,
+      "cache_read_input_tokens": 62404,
+      "output_tokens": 899,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 899,
+          "cache_read_input_tokens": 62404,
+          "cache_creation_input_tokens": 1859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T07:22:56.086Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lx5DJ9AMfjrrjXXmxpBEK4`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "nvidia-smi --query-gpu=index,uuid --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8770e4a9-673f-4781-875d-c6debfe26318",
+  "isSidechain": false,
+  "requestId": "req_011Cb24PgV1PNyPgAGnyUbch",
+  "type": "assistant",
+  "uuid": "83b132d6-ce14-47cc-8b2f-ee6b7302f55a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GqZ9UK7pNULhjRU3nJTk1i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1859,
+      "cache_read_input_tokens": 62404,
+      "output_tokens": 899,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 899,
+          "cache_read_input_tokens": 62404,
+          "cache_creation_input_tokens": 1859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T07:22:56.567Z_
+
+<details><summary>↩ Tool result · `toolu_01Lx5DJ9AMfjrrjXXmxpBEK4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, GPU-ade8d9bb-4b1e-d9b7-5bb3-4ca87bc731f8\\n1, GPU-48463d2b-a292-1aa0-cf8b-fbc051619694\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83b132d6-ce14-47cc-8b2f-ee6b7302f55a",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "177db3e0-ad64-497c-adf9-ea7fede2b963",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, GPU-ade8d9bb-4b1e-d9b7-5bb3-4ca87bc731f8\\\\n1, GPU-48463d2b-a292-1aa0-cf8b-fbc051619694\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, GPU-ade8d9bb-4b1e-d9b7-5bb3-4ca87bc731f8\\n1, GPU-48463d2b-a292-1aa0-cf8b-fbc051619694\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  },
+  "sourceToolAssistantUUID": "83b132d6-ce14-47cc-8b2f-ee6b7302f55a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T07:22:57.089Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019B83o8rZ42VEHdab3aq1mJ`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep \"Generation\" /root/autodl-tmp/div_cal_verify/medium_random50_seed123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "177db3e0-ad64-497c-adf9-ea7fede2b963",
+  "isSidechain": false,
+  "requestId": "req_011Cb24PgV1PNyPgAGnyUbch",
+  "type": "assistant",
+  "uuid": "16726931-944f-4a14-bb84-5d7a732208cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GqZ9UK7pNULhjRU3nJTk1i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1859,
+      "cache_read_input_tokens": 62404,
+      "output_tokens": 899,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 899,
+          "cache_read_input_tokens": 62404,
+          "cache_creation_input_tokens": 1859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T07:22:57.536Z_
+
+<details><summary>↩ Tool result · `toolu_019B83o8rZ42VEHdab3aq1mJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Generation 0/7 | Method: random_50\\nGeneration 1/7 | Method: random_50\\nGeneration 2/7 | Method: random_50\\nGeneration 3/7 | Method: random_50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16726931-944f-4a14-bb84-5d7a732208cc",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "ea36e02b-8ad0-47f3-9d48-b13ca0cdbba7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Generation 0/7 | Method: random_50\\\\nGeneration 1/7 | Method: random_50\\\\nGeneration 2/7 | Method: random_50\\\\nGeneration 3/7 | Method: random_50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Generation 0/7 | Method: random_50\\nGeneration 1/7 | Method: random_50\\nGeneration 2/7 | Method: random_50\\nGeneration 3/7 | Method: random_50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "16726931-944f-4a14-bb84-5d7a732208cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-14T07:22:57.626Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TFmnfVkVzhRcpFo27UUfBe`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "tail -20 /root/autodl-tmp/div_cal_verify/medium_random50_seed123.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea36e02b-8ad0-47f3-9d48-b13ca0cdbba7",
+  "isSidechain": false,
+  "requestId": "req_011Cb24PgV1PNyPgAGnyUbch",
+  "type": "assistant",
+  "uuid": "ef9418d2-754e-402c-8155-ca0b43a57447",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GqZ9UK7pNULhjRU3nJTk1i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1859,
+      "cache_read_input_tokens": 62404,
+      "output_tokens": 899,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1859,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 899,
+          "cache_read_input_tokens": 62404,
+          "cache_creation_input_tokens": 1859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1859
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_setup_auto_chain_seed456_20260514T071943]: Worker worker_setup_auto_chain_seed456_20260514T071943 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "ef9418d2-754e-402c-8155-ca0b43a57447",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker setup and auto chain completion",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T07:22:58.130Z_
+
+<details><summary>↩ Tool result · `toolu_01TFmnfVkVzhRcpFo27UUfBe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Perplexity:     43.31\\n  RankMe:         417.48\\n  k-NN accuracy:  0.9880\\n  Rare n-gram:    0.022353944360884448\\n  Rank corr:      0.0079\\n  Time:           686s\\n\\n============================================================\\nGeneration 3/7 | Method: random_50\\n============================================================\\n\\n[1/5] Generating synthetic data...\\n  Generated 977 sequences\\n\\n[2/5] Selecting data (method=random_50)...\\n  Selected 488/977 sequences\\n  Selection diag: sel=0.0834 rej=0.0832 ratio=1.0026\\n  QF diag: would_remove=0, removed_rare=nan, kept_rare=nan\\n\\n[3/5] Training student (lr=5e-05, epochs=3)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef9418d2-754e-402c-8155-ca0b43a57447",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "fa5f6811-4803-4bbb-b332-0198184f4729",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Perplexity:     43.31\\\\n  RankMe:         417.48\\\\n  k-NN accuracy:  0.9880\\\\n  Rare n-gram:    0.022353944360884448\\\\n  Rank corr:      0.0079\\\\n  Time:           686s\\\\n\\\\n============================================================\\\\nGeneration 3/7 | Method: random_50\\\\n============================================================\\\\n\\\\n[1/5] Generating synthetic data...\\\\n  Generated 977 sequences\\\\n\\\\n[2/5] Selecting data (method=random_50)...\\\\n  Selected 488/977 sequences\\\\n  Selection diag: sel=0.0834 rej=0.0832 ratio=1.0026\\\\n  QF diag: would_remove=0, removed_rare=nan, kept_rare=nan\\\\n\\\\n[3/5] Training student (lr=5e-05, epochs=3)...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Perplexity:     43.31\\n  RankMe:         417.48\\n  k-NN accuracy:  0.9880\\n  Rare n-gram:    0.022353944360884448\\n  Rank corr:      0.0079\\n  Time:           686s\\n\\n============================================================\\nGeneration 3/7 | Method: random_50\\n============================================================\\n\\n[1/5] Generating synthetic data...\\n  Generated 977 sequences\\n\\n[2/5] Selecting data (method=random_50)...\\n  Selected 488/977 sequences\\n  Selection diag: sel=0.0834 rej=0.0832 ratio=1.0026\\n  QF diag: would_remove=0, removed_rare=nan, kept_rare=nan\\n\\n[3/5] Training student (lr=5e-05, epochs=3)...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ef9418d2-754e-402c-8155-ca0b43a57447",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-14T07:23:38.292Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have clarity:
+
+1. **GPU 0 UUID = GPU-ade8d9bb** → PID 453372 (medium_random50_seed123) using 22460 MiB
+   - GPU 0 shows 71641 MiB total used but only 22460 MiB from this process
+   - This could be PyTorch CUDA memory reservation (caching allocator)
+   - **0% GPU utilization** — the process is on Gen 3/7, currently in training step [3/5]. The 0% might be a transient snapshot during data loading or between batches
+   
+2. **GPU 1 UUID = GPU-48463d2b** → PID 462871 (medium_external_seed456) using 19252 MiB with 24% utilization, running smoothly since it started 10 minutes ago.
+
+The medium_random50_seed123 process is alive and progressing through Gen 3/7. The 0% utilization on GPU 0 is likely just a momentary snapshot, but that memory gap between total allocation and process usage is worth investigating — there might be orphaned GPU contexts from previous experiments still holding onto memory.
+
+The discrepancy between nvidia-smi's 71641 MiB and the compute apps' 22460 MiB is probably PyTorch's memory caching behavior — it reserves more than it actively uses, which is normal. Though a 49 GB gap does seem large for a gpt2-medium model. Each process should have its own CUDA context, so I'm wondering if prior processes in the chain left behind cached memory that wasn't properly freed.
+
+Let me look at the nvidia-smi output more carefully. I see GPU 0 shows 71641 MiB total, but when I check the compute apps, only PID 453372 is actually on GPU 0 with 22460 MiB. That's the main discrepancy I need to understand.
+
+The issue is that --query-compute-apps might only show processes actively doing computation, while nvidia-smi displays the total physical memory reserved by any process on the GPU, including memory that's allocated but not currently in use. PyTorch's CUDA caching allocator is likely reserving much more memory than what's actively being used. I should check if there are other processes on GPU 0 that aren't showing up in the compute apps list, or if the memory accounting is just different between these two tools.
+
+Now looking at the worker task audit: the worker created chain scripts for seed 456 and started medium_external_seed456 on cuda:1, but the three cuda:0 experiments are stuck in PREPARING state because cuda:0 is occupied by medium_random50_seed123, which is explicitly pinned to GPU 0 via --gpu_ids 0.
+
+There's a GPU mapping discrepancy I need to investigate — medium_external_seed456 shows --gpu_ids 0 in the command line but is physically running on GPU 1, so I should check if the run script is using CUDA_VISIBLE_DEVICES to remap the GPU assignment.
+
+Since external_only is the only seed 456 experiment on cuda:1, no separate chain script is needed there, and the cuda:0 chain will handle the other three experiments once that GPU becomes available.
+
+Looking at the timeline, medium_random50_seed123 is about halfway through at generation 3 of 7 with roughly 28 minutes remaining, but I'm noticing a potential issue — once it finishes, chain_cuda0_seed456.sh needs to start automatically, and I'm not sure if that's already configured or if it requires manual intervention or another worker to trigger it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa5f6811-4803-4bbb-b332-0198184f4729",
+  "isSidechain": false,
+  "requestId": "req_011Cb24R8PWWk6zEq7of2kJL",
+  "type": "assistant",
+  "uuid": "36e4b97b-2417-43e0-b264-b20679809c86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LT2N32uqoQuyTv6C5Vsmc2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1555,
+      "cache_read_input_tokens": 64263,
+      "output_tokens": 1868,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1555,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1868,
+          "cache_read_input_tokens": 64263,
+          "cache_creation_input_tokens": 1555,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1555
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T07:23:38.300Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013y5MQxC3gDELcGpbfcTCT2`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat /root/div_cal_verify/run_medium_external_seed456.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36e4b97b-2417-43e0-b264-b20679809c86",
+  "isSidechain": false,
+  "requestId": "req_011Cb24R8PWWk6zEq7of2kJL",
+  "type": "assistant",
+  "uuid": "29c793cb-9e2a-496a-974a-2d8d97d43b25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LT2N32uqoQuyTv6C5Vsmc2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1555,
+      "cache_read_input_tokens": 64263,
+      "output_tokens": 1868,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1555,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1868,
+          "cache_read_input_tokens": 64263,
+          "cache_creation_input_tokens": 1555,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1555
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T07:23:38.748Z_
+
+<details><summary>↩ Tool result · `toolu_013y5MQxC3gDELcGpbfcTCT2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# GPT2-medium (355M) external_only (50% Contriever frozen embedding selection) self-iterate experiment\\n# Model: gpt2-medium | Seed: 456 | 8 generations | 500K tokens/gen\\n# Training: lr=5e-5, epochs=3, batch_size=4, grad_accum=8 (effective=32)\\nset -e\\nsource /root/div_cal_verify/env.sh\\nexport TRANSFORMERS_OFFLINE=1\\n\\nGPU_ID=${1:-0}\\nexport CUDA_VISIBLE_DEVICES=$GPU_ID\\n\\necho \\\"===== GPT2-medium EXTERNAL_ONLY seed=456 =====\\\"\\necho \\\"GPU: $GPU_ID\\\"\\necho \\\"Start: $(date)\\\"\\n\\npython3 /root/div_cal_verify/run_mvp.py \\\\\\n    --method external_only \\\\\\n    --student_model gpt2-medium \\\\\\n    --self_iterate \\\\\\n    --no_quality_filter \\\\\\n    --data_dir /root/div_cal_verify/data_gpt2 \\\\\\n    --output_dir /root/autodl-tmp/div_cal_verify/results_medium_external_seed456 \\\\\\n    --num_generations 8 \\\\\\n    --gen_tokens 500000 \\\\\\n    --train_epochs 3 \\\\\\n    --train_lr 5e-5 \\\\\\n    --train_batch_size 4 \\\\\\n    --train_grad_accum 8 \\\\\\n    --seq_len 512 \\\\\\n    --gpu_ids 0 \\\\\\n    --seed 456\\n\\necho \\\"===== COMPLETE =====\\\"\\necho \\\"End: $(date)\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29c793cb-9e2a-496a-974a-2d8d97d43b25",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "924f2b8d-c685-4a6d-8059-895314b16be6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# GPT2-medium (355M) external_only (50% Contriever frozen embedding selection) self-iterate experiment\\\\n# Model: gpt2-medium | Seed: 456 | 8 generations | 500K tokens/gen\\\\n# Training: lr=5e-5, epochs=3, batch_size=4, grad_accum=8 (effective=32)\\\\nset -e\\\\nsource /root/div_cal_verify/env.sh\\\\nexport TRANSFORMERS_OFFLINE=1\\\\n\\\\nGPU_ID=${1:-0}\\\\nexport CUDA_VISIBLE_DEVICES=$GPU_ID\\\\n\\\\necho \\\\\\\"===== GPT2-medium EXTERNAL_ONLY seed=456 =====\\\\\\\"\\\\necho \\\\\\\"GPU: $GPU_ID\\\\\\\"\\\\necho \\\\\\\"Start: $(date)\\\\\\\"\\\\n\\\\npython3 /root/div_cal_verify/run_mvp.py \\\\\\\\\\\\n    --method external_only \\\\\\\\\\\\n    --student_model gpt2-medium \\\\\\\\\\\\n    --self_iterate \\\\\\\\\\\\n    --no_quality_filter \\\\\\\\\\\\n    --data_dir /root/div_cal_verify/data_gpt2 \\\\\\\\\\\\n    --output_dir /root/autodl-tmp/div_cal_verify/results_medium_external_seed456 \\\\\\\\\\\\n    --num_generations 8 \\\\\\\\\\\\n    --gen_tokens 500000 \\\\\\\\\\\\n    --train_epochs 3 \\\\\\\\\\\\n    --train_lr 5e-5 \\\\\\\\\\\\n    --train_batch_size 4 \\\\\\\\\\\\n    --train_grad_accum 8 \\\\\\\\\\\\n    --seq_len 512 \\\\\\\\\\\\n    --gpu_ids 0 \\\\\\\\\\\\n    --seed 456\\\\n\\\\necho \\\\\\\"===== COMPLETE =====\\\\\\\"\\\\necho \\\\\\\"End: $(date)\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# GPT2-medium (355M) external_only (50% Contriever frozen embedding selection) self-iterate experiment\\n# Model: gpt2-medium | Seed: 456 | 8 generations | 500K tokens/gen\\n# Training: lr=5e-5, epochs=3, batch_size=4, grad_accum=8 (effective=32)\\nset -e\\nsource /root/div_cal_verify/env.sh\\nexport TRANSFORMERS_OFFLINE=1\\n\\nGPU_ID=${1:-0}\\nexport CUDA_VISIBLE_DEVICES=$GPU_ID\\n\\necho \\\"===== GPT2-medium EXTERNAL_ONLY seed=456 =====\\\"\\necho \\\"GPU: $GPU_ID\\\"\\necho \\\"Start: $(date)\\\"\\n\\npython3 /root/div_cal_verify/run_mvp.py \\\\\\n    --method external_only \\\\\\n    --student_model gpt2-medium \\\\\\n    --self_iterate \\\\\\n    --no_quality_filter \\\\\\n    --data_dir /root/div_cal_verify/data_gpt2 \\\\\\n    --output_dir /root/autodl-tmp/div_cal_verify/results_medium_external_seed456 \\\\\\n    --num_generations 8 \\\\\\n    --gen_tokens 500000 \\\\\\n    --train_epochs 3 \\\\\\n    --train_lr 5e-5 \\\\\\n    --train_batch_size 4 \\\\\\n    --train_grad_accum 8 \\\\\\n    --seq_len 512 \\\\\\n    --gpu_ids 0 \\\\\\n    --seed 456\\n\\necho \\\"===== COMPLETE =====\\\"\\necho \\\"End: $(date)\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "29c793cb-9e2a-496a-974a-2d8d97d43b25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T07:23:39.065Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EV2T7y1WNaQ4gPqKY1bhRL`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "find /proc -maxdepth 2 -name status -path \"*/453372/*\" -exec head -3 {} \\;"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "924f2b8d-c685-4a6d-8059-895314b16be6",
+  "isSidechain": false,
+  "requestId": "req_011Cb24R8PWWk6zEq7of2kJL",
+  "type": "assistant",
+  "uuid": "ab0f9d8d-70dd-42be-9ea0-61389bc69129",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LT2N32uqoQuyTv6C5Vsmc2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1555,
+      "cache_read_input_tokens": 64263,
+      "output_tokens": 1868,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1555,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1868,
+          "cache_read_input_tokens": 64263,
+          "cache_creation_input_tokens": 1555,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1555
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T07:23:39.079Z_
+
+<details><summary>↩ Tool result · `toolu_01EV2T7y1WNaQ4gPqKY1bhRL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab0f9d8d-70dd-42be-9ea0-61389bc69129",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "e77aebe1-10cc-48c4-b6c6-de94da5bbb0b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ab0f9d8d-70dd-42be-9ea0-61389bc69129",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T07:23:39.403Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013WbtAZCUF9NLPRCjPfVhMS`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e77aebe1-10cc-48c4-b6c6-de94da5bbb0b",
+  "isSidechain": false,
+  "requestId": "req_011Cb24R8PWWk6zEq7of2kJL",
+  "type": "assistant",
+  "uuid": "34319b5d-7188-43a7-8653-dd6029122c00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LT2N32uqoQuyTv6C5Vsmc2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1555,
+      "cache_read_input_tokens": 64263,
+      "output_tokens": 1868,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1555,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1868,
+          "cache_read_input_tokens": 64263,
+          "cache_creation_input_tokens": 1555,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1555
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T07:23:39.944Z_
+
+<details><summary>↩ Tool result · `toolu_013WbtAZCUF9NLPRCjPfVhMS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 66 %, 71641 MiB\\n1, 98 %, 28737 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34319b5d-7188-43a7-8653-dd6029122c00",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "c4765e93-7c64-46cb-b890-15cf60a26e29",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 66 %, 71641 MiB\\\\n1, 98 %, 28737 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 66 %, 71641 MiB\\n1, 98 %, 28737 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  },
+  "sourceToolAssistantUUID": "34319b5d-7188-43a7-8653-dd6029122c00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65 · 2026-05-14T07:23:39.948Z_
+
+```json
+{
+  "parentUuid": "c4765e93-7c64-46cb-b890-15cf60a26e29",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4949e3b3-1509-4e93-8d1c-25014e137590",
+  "timestamp": "2026-05-14T07:23:39.948Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-14T07:24:15.177Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have much clearer picture:
+
+1. **GPU 0 utilization**: First read showed 0%, second read showed 66%. This was indeed a transient snapshot. GPU 0 is actively working. ✓
+
+2. **GPU 1 utilization**: 98% — very healthy. Memory increased from 19261 to 28737 MiB which makes sense as the experiment loads more data/model components.
+
+3. **run_medium_external_seed456.sh**: Confirms `CUDA_VISIBLE_DEVICES=$GPU_ID` where `GPU_ID=${1:-0}` — it was launched with argument `1`, so `CUDA_VISIBLE_DEVICES=1`. 
+
+The `--gpu_ids 0` flag in the Python command correctly maps to the first visible device, which is physical GPU 1. ✓ GPU 0 is holding 71641 MiB, and while that seems high compared to the 22460 MiB process memory, PyTorch's CUDA caching allocator likely accounts for the difference. For a gpt2-medium model with 355M parameters, even with gradient accumulation and FP32 precision, the memory footprint should be much smaller than 71GB, so I need to reconsider what's actually consuming that space.
+
+The token generation process is creating 500K tokens per generation, which involves caching embeddings and computing diversity scores. PyTorch's allocator reserves memory pools that persist until the process exits, so previous allocations could be inflating the reserved memory. The actual process memory of 22460 MiB is reasonable for this model, and the GPU utilization at 66% is healthy, so this appears to be cached but unused memory rather than a real problem.
+
+Now I'm moving on to the worker audit questions.
+
+For the worker_setup_auto_chain_seed456 task, I created 4 individual run scripts for the seed=456 medium experiments across different curation methods, set up a chaining script to run uncurated→rgds→random50 sequentially on cuda:0, and started the external experiment on cuda:1 which is currently running. The scripts look correct and the external job is on the right GPU, but the chain script hasn't started yet since cuda:0 is still occupied.
+
+Now I'm checking whether there's an auto-trigger mechanism—specifically, whether the seed=123 chain script will automatically launch the seed=456 chain when it finishes, or if I need to manually start it. Looking at the registry, I can see the seed=123 experiments are progressing through the chain on cuda:0, so I need to verify if there's a parent orchestration script that handles the sequential seed launches. seed=123 finishes. The worker that set up the auto chain created the scripts, but I need to verify whether chain_cuda0_seed123.sh actually triggers chain_cuda0_seed456.sh automatically, or if manual intervention is required. Let me look at the seed123 chain script to check if it's configured to auto-chain to seed456.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4949e3b3-1509-4e93-8d1c-25014e137590",
+  "isSidechain": false,
+  "requestId": "req_011Cb24UDD4rgDrBKa1gLcda",
+  "type": "assistant",
+  "uuid": "b8048034-ab88-44cc-bb75-649b27df00f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R2p3QtcpdHnZL8eiG4btqa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2821,
+      "cache_read_input_tokens": 65818,
+      "output_tokens": 1593,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1593,
+          "cache_read_input_tokens": 65818,
+          "cache_creation_input_tokens": 2821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-14T07:24:15.865Z_
+
+GPU 0 利用率恢复到 66%（首次 0% 是瞬态），GPU 1 是 98%。GPU 正常。现在检查 seed=123→456 自动衔接机制。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8048034-ab88-44cc-bb75-649b27df00f0",
+  "isSidechain": false,
+  "requestId": "req_011Cb24UDD4rgDrBKa1gLcda",
+  "type": "assistant",
+  "uuid": "58c74f8a-9db5-428c-bada-9bf68cd74bbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R2p3QtcpdHnZL8eiG4btqa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2821,
+      "cache_read_input_tokens": 65818,
+      "output_tokens": 1593,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1593,
+          "cache_read_input_tokens": 65818,
+          "cache_creation_input_tokens": 2821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-14T07:24:16.349Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DdDCoT1AiE3Up2kgQ8oU1B`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "cat /root/div_cal_verify/chain_cuda0_seed123.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58c74f8a-9db5-428c-bada-9bf68cd74bbf",
+  "isSidechain": false,
+  "requestId": "req_011Cb24UDD4rgDrBKa1gLcda",
+  "type": "assistant",
+  "uuid": "9168999d-4ab4-491a-8b79-c7a9b0ce4459",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R2p3QtcpdHnZL8eiG4btqa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2821,
+      "cache_read_input_tokens": 65818,
+      "output_tokens": 1593,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1593,
+          "cache_read_input_tokens": 65818,
+          "cache_creation_input_tokens": 2821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-14T07:24:16.851Z_
+
+<details><summary>↩ Tool result · `toolu_01DdDCoT1AiE3Up2kgQ8oU1B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Chain: medium_uncurated_seed123 → medium_rgds_seed123 → medium_random50_seed123\\n# 在 cuda:0 上串行执行\\ncd /root/div_cal_verify\\nsource env.sh\\n\\necho \\\"[$(date)] === Starting medium_uncurated_seed123 ===\\\"\\nbash run_medium_uncurated_seed123.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_uncurated_seed123.log\\necho \\\"[$(date)] === medium_uncurated_seed123 完成 ===\\\"\\n\\necho \\\"[$(date)] === Starting medium_rgds_seed123 ===\\\"\\nbash run_medium_rgds_seed123.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_rgds_seed123.log\\necho \\\"[$(date)] === medium_rgds_seed123 完成 ===\\\"\\n\\necho \\\"[$(date)] === Starting medium_random50_seed123 ===\\\"\\nbash run_medium_random50_seed123.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_random50_seed123.log\\necho \\\"[$(date)] === medium_random50_seed123 完成 ===\\\"\\n\\necho \\\"[$(date)] === ALL seed=123 cuda:0 实验完成 ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9168999d-4ab4-491a-8b79-c7a9b0ce4459",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "7dd11425-5c6d-458e-a675-daafeaae4502",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Chain: medium_uncurated_seed123 → medium_rgds_seed123 → medium_random50_seed123\\\\n# 在 cuda:0 上串行执行\\\\ncd /root/div_cal_verify\\\\nsource env.sh\\\\n\\\\necho \\\\\\\"[$(date)] === Starting medium_uncurated_seed123 ===\\\\\\\"\\\\nbash run_medium_uncurated_seed123.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_uncurated_seed123.log\\\\necho \\\\\\\"[$(date)] === medium_uncurated_seed123 完成 ===\\\\\\\"\\\\n\\\\necho \\\\\\\"[$(date)] === Starting medium_rgds_seed123 ===\\\\\\\"\\\\nbash run_medium_rgds_seed123.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_rgds_seed123.log\\\\necho \\\\\\\"[$(date)] === medium_rgds_seed123 完成 ===\\\\\\\"\\\\n\\\\necho \\\\\\\"[$(date)] === Starting medium_random50_seed123 ===\\\\\\\"\\\\nbash run_medium_random50_seed123.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_random50_seed123.log\\\\necho \\\\\\\"[$(date)] === medium_random50_seed123 完成 ===\\\\\\\"\\\\n\\\\necho \\\\\\\"[$(date)] === ALL seed=123 cuda:0 实验完成 ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Chain: medium_uncurated_seed123 → medium_rgds_seed123 → medium_random50_seed123\\n# 在 cuda:0 上串行执行\\ncd /root/div_cal_verify\\nsource env.sh\\n\\necho \\\"[$(date)] === Starting medium_uncurated_seed123 ===\\\"\\nbash run_medium_uncurated_seed123.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_uncurated_seed123.log\\necho \\\"[$(date)] === medium_uncurated_seed123 完成 ===\\\"\\n\\necho \\\"[$(date)] === Starting medium_rgds_seed123 ===\\\"\\nbash run_medium_rgds_seed123.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_rgds_seed123.log\\necho \\\"[$(date)] === medium_rgds_seed123 完成 ===\\\"\\n\\necho \\\"[$(date)] === Starting medium_random50_seed123 ===\\\"\\nbash run_medium_random50_seed123.sh 0 2>&1 | tee /root/autodl-tmp/div_cal_verify/medium_random50_seed123.log\\necho \\\"[$(date)] === medium_random50_seed123 完成 ===\\\"\\n\\necho \\\"[$(date)] === ALL seed=123 cuda:0 实验完成 ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9168999d-4ab4-491a-8b79-c7a9b0ce4459",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-14T07:24:17.032Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U8WATUKKuievvLNERoPzoh`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep -r \"seed456\" /root/div_cal_verify/chain_cuda0_seed123.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dd11425-5c6d-458e-a675-daafeaae4502",
+  "isSidechain": false,
+  "requestId": "req_011Cb24UDD4rgDrBKa1gLcda",
+  "type": "assistant",
+  "uuid": "d73597ed-9d76-41d0-b66e-b9392e754ff9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R2p3QtcpdHnZL8eiG4btqa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2821,
+      "cache_read_input_tokens": 65818,
+      "output_tokens": 1593,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1593,
+          "cache_read_input_tokens": 65818,
+          "cache_creation_input_tokens": 2821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_setup_auto_chain_seed456_20260514T071943]: Worker worker_setup_auto_chain_seed456_20260514T071943 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "d73597ed-9d76-41d0-b66e-b9392e754ff9",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review worker setup and auto chain completion",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T07:24:17.518Z_
+
+<details><summary>↩ Tool result · `toolu_01U8WATUKKuievvLNERoPzoh`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d73597ed-9d76-41d0-b66e-b9392e754ff9",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "73b1c1b9-76a1-4cfe-b822-1f34ff44a5c2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d73597ed-9d76-41d0-b66e-b9392e754ff9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-14T07:25:03.820Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now it's clear:
+
+1. **chain_cuda0_seed123.sh does NOT include a call to chain_cuda0_seed456.sh**. It ends after random50_seed123 completes.
+
+2. So when medium_random50_seed123 finishes (Gen 3/7, ~30 min remaining), cuda:0 will be idle. **No auto-chain to seed=456 is set up**.
+
+3. The worker name says "auto_chain" but it only created the scripts, it didn't modify chain_cuda0_seed123.sh to auto-kick off chain_cuda0_seed456.sh after completion.
+   
+This is a warning-level issue — cuda:0 will sit idle after the current job finishes unless someone manually kicks off the next chain, though medium_external_seed456 is already running on cuda:1 so it's not a complete blocker. The worker's purpose was to set up the auto-chaining infrastructure, but it seems to have only staged the scripts without actually wiring them together. So cuda:1 properly chained external_seed123 into external_seed456, but cuda:0 has nothing queued after random50_seed123 finishes. The three PREPARING experiments all depend on chain_cuda0_seed456.sh, which never gets triggered because the chain script wasn't updated to auto-start it. Now I'm reviewing what the worker actually accomplished correctly. 2. Created chain_cuda0_seed456.sh for cuda:0 serial execution
+3. Started medium_external_seed456 on cuda:1 immediately (good parallelism)
+4. Pre-registered experiments in registry
+
+### What's concerning:
+1. **No auto-trigger for chain_cuda0_seed456.sh** — when random50_seed123 finishes, cuda:0 will idle until someone starts it
+2. **Registry shows seed=456 experiments as PREPARING since 03:21 UTC** — they've been PREPARING for ~4 hours now
+
+### Other checks:
+- GPU boundary: ✅ Both processes on correct GPUs (project allows both cuda:0 and cuda:1)
+- Scripts: ✅ Parameters match registry specs
+
+This is a [severity: warning]. Not critical because the scripts are ready and the gap will likely be noticed, but there's a risk of GPU idle time.
+
+Now I'm auditing the registry entries for completeness. Most of the seed=456 experiments are missing their spec field entirely — medium_uncurated_seed456, medium_rgds_seed456, and medium_random50_seed456 all show PREPARING status with just hypothesis and parent fields. Only medium_external_seed456 has a proper spec with command, server, and GPU details, which is why it's already running. This one has a spec. ✓
+
+So the PREPARING experiments don't have specs yet, which is expected since they haven't been started. But it's good to note.
+
+Let me compile my audit findings now.
+
+Summary of the worker audit:
+
+1. [info] Worker correctly created seed=456 scripts and started external_seed456 on cuda:1
+2. [warning] chain_cuda0_seed456.sh exists but has no auto-trigger mechanism — when seed=123 chain finishes on cuda:0, someone needs to manually start it. Risk: GPU idle time.
+3. [info] GPU utilization healthy: GPU 0 at 66%, GPU 1 at 98%
+4. [info] GPU boundaries respected: both processes on correct GPUs
+5. [info] medium_random50_seed123 at Gen 3/7, ~30min to completion
+
+The memory discrepancy between GPU reporting and process reporting is just PyTorch's caching allocator at work, so that's not a real concern. Looking at the timing now — medium_random50_seed123 is progressing at about 7-10 minutes per generation, so with 4 gens remaining I'm looking at roughly 28-40 minutes until cuda:0 frees up around 15:50-16:00 UTC, which aligns with the roadmap's predicted completion around 16:15 CST for seed=123.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73b1c1b9-76a1-4cfe-b822-1f34ff44a5c2",
+  "isSidechain": false,
+  "requestId": "req_011Cb24Wyxg2HruwXJFkDKP7",
+  "type": "assistant",
+  "uuid": "66ee27c1-71f6-4cc6-bae0-394a27a0861e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNWRQGbcxHehcf1Ryey34i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2204,
+      "cache_read_input_tokens": 68639,
+      "output_tokens": 1848,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1848,
+          "cache_read_input_tokens": 68639,
+          "cache_creation_input_tokens": 2204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-14T07:25:04.444Z_
+
+关键发现：chain_cuda0_seed123.sh 完成后没有自动触发 chain_cuda0_seed456.sh。现在汇总审查结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66ee27c1-71f6-4cc6-bae0-394a27a0861e",
+  "isSidechain": false,
+  "requestId": "req_011Cb24Wyxg2HruwXJFkDKP7",
+  "type": "assistant",
+  "uuid": "cbee55a2-0526-4317-9c08-21a675115817",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNWRQGbcxHehcf1Ryey34i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2204,
+      "cache_read_input_tokens": 68639,
+      "output_tokens": 1848,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1848,
+          "cache_read_input_tokens": 68639,
+          "cache_creation_input_tokens": 2204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-14T07:25:05.097Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WcqNaCqpVD8Sz6z8ktLmzm`</summary>
+
+```json
+{
+  "server": "westd-11235",
+  "command": "grep \"Generation\" /root/autodl-tmp/div_cal_verify/medium_external_seed456.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbee55a2-0526-4317-9c08-21a675115817",
+  "isSidechain": false,
+  "requestId": "req_011Cb24Wyxg2HruwXJFkDKP7",
+  "type": "assistant",
+  "uuid": "fcffe162-5136-49d0-9fba-8f0d505da31d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNWRQGbcxHehcf1Ryey34i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2204,
+      "cache_read_input_tokens": 68639,
+      "output_tokens": 1848,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1848,
+          "cache_read_input_tokens": 68639,
+          "cache_creation_input_tokens": 2204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-14T07:25:05.590Z_
+
+<details><summary>↩ Tool result · `toolu_01WcqNaCqpVD8Sz6z8ktLmzm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fcffe162-5136-49d0-9fba-8f0d505da31d",
+  "isSidechain": false,
+  "promptId": "92d8301c-73f2-4d26-862c-d427c1413ade",
+  "type": "user",
+  "uuid": "a48fc807-2912-4939-a8ef-826e67ef3ca8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fcffe162-5136-49d0-9fba-8f0d505da31d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/div_cal_verify/.claude/sessions/reviewer_c30ff0fc",
+  "sessionId": "f05ff0ab-778e-47e6-9b0f-524c93b2b5b0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

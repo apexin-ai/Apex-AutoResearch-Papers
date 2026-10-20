@@ -1,0 +1,9438 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 130
+- **Recorded user turns:** 1
+- **Tool calls:** 40
+- **Original source:** `logs/chats/exported-trajectories/account-2/9a131fca-8dbe-4c8a-a4e1-149ff23b22d1.jsonl`
+- **Structured JSON:** [`fdb735a343295645c668.json`](../../sessions/fd/fdb735a343295645c668.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T00:42:41.407Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T00:42:41.407Z",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Machine Learning for NLP / Resources and Evaluation. Aligns with EMNLP 2026 special theme \"New Missions for NLP Research\" which explicitly calls for work on data contamination, synthetic data feedback loops, and data governance.\n\nDirection: Synthetic data quality, model collapse prevention, contamination detection. In-scope: synthetic data verification/filtering methods, detecting training data contamination in benchmarks, methods to break recursive data feedback loops, data mixing strategies that prevent quality degradation, principled synthetic data generation with quality guarantees.\n\nContribution type: METHOD ONLY. Must propose a concrete detection algorithm, filtering pipeline, or training recipe — not just an observation about model collapse. Method + analysis OK.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Model collapse experiments need multiple training iterations — budget for small models (1B-3B) across 3-5 generations.\n2. Time: ≤16 days. Use small open models (Pythia, OLMo-1B, Qwen-0.5B/1.8B) for iterative collapse experiments.\n3. Eval: perplexity degradation curves, downstream task quality (MMLU, HellaSwag), diversity metrics (self-BLEU, n-gram entropy), contamination detection accuracy.\n\nThis is a hot EMNLP 2026 special theme area with relatively few established methods — high novelty potential.\n\nTag: direction=data_governance, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 2/10)\n{\n  \"title\": \"ContamCal: Bayesian Calibration of Contamination-Adjusted Benchmark Scores via Provenance-Augmented Item Response Theory\",\n  \"core_problem\": \"Benchmark scores are increasingly unreliable because training data may contain semantic paraphrases of test items that evade n-gram decontamination, and RL post-training further conceals contamination signals. While recent work characterizes contamination effects (dose-response curves, detection methods, IRT-based item quality), no existing method provides a principled statistical framework that takes per-item contamination exposure estimates and outputs calibrated benchmark scores with uncertainty bounds—answering the question 'what would this model's score be if it had never seen the test data?'\",\n  \"opportunity\": \"Rephrased test items can inflate MMLU accuracy by 8-15 points while evading standard decontamination. RL post-training (GRPO) further amplifies contamination effects while concealing detection signals. PSN-IRT (AAAI 2026) demonstrated that IRT can identify low-quality benchmark items, but does not model contamination explicitly or produce adjusted scores. HiBayES showed hierarchical Bayesian models improve LLM evaluation with proper uncertainty, but ignores contamination. The dose-response curve paper (arXiv 2601.04301) characterizes how contamination scales with model size and dosage, but does not calibrate scores. Self-Critique (arXiv 2510.09259) detects RL contamination with 30% AUC improvement over baselines, but does not adjust scores. The clear gap: a contamination-augmented IRT framework that synthesizes detection signals into per-item exposure estimates and outputs Bayesian-calibrated scores with posterior credible intervals. With EMNLP 2026 explicitly inviting work on contamination and data governance (ARR deadline May 25, 2026), this fills a critical methodological gap.\",\n  \"landscape\": \"Seven detection paradigms are now recognized: time-based partition, Min-K%++ membership inference (ICLR 2025), Time Travel guided completion (ICLR 2024), ConStat performance gaps (NeurIPS 2024), BIG-Bench canary memorization, Self-Critique entropy collapse for RL contamination (arXiv 2510.09259), and hierarchical semantic detection (arXiv 2025, F1=0.76). For score adjustment, DCR (EMNLP 2025) produces adjusted accuracy via fuzzy inference but lacks uncertainty bounds and does not handle RL contamination. Inference-Time Decontamination (EMNLP 2024 Findings) rewrites leaked samples at test time but operates during inference rather than post-hoc. The dose-response paper (arXiv 2601.04301, NeurIPS 2025) fits scaling laws across contamination dosage (34M-344M models) but characterizes effects rather than calibrating scores. For psychometric evaluation, PSN-IRT (AAAI 2026 Oral) applies 4PL IRT with neural networks across 41,871 items on 11 benchmarks but does not model contamination as a covariate and provides point estimates without Bayesian uncertainty. ATLAS (arXiv 2511.04689) applies adaptive testing with IRT for efficient evaluation but does not address contamination. HiBayES (AISI, arXiv 2505.05602) demonstrates hierarchical Bayesian evaluation with credible intervals but ignores contamination. The fragility paper (arXiv 2510.02386) shows GRPO conceals contamination signals by collapsing log-probability distributions—Min-K%++ and ConStat fail post-GRPO, but Self-Critique's entropy-based signal survives because it exploits policy collapse rather than probability gaps. The ICML 2025 paper 'How Much Can We Forget about Data Contamination' shows contamination persists in small models following standard scaling laws, making controlled experiments on 1B-3B models tractable and informative. The clear remaining gap: a principled Bayesian framework that (1) synthesizes multiple contamination signals (including RL-robust ones) into per-item exposure estimates and (2) extends IRT with a contamination covariate to produce calibrated adjusted scores with posterior credible intervals.\",\n  \"approach\": \"We propose ContamCal, a two-stage framework for contamination-aware benchmark score calibration. Stage 1 (Multi-Signal Provenance Mapping): For each model-item pair, we compute contamination exposure scores by combining four complementary signals—(a) embedding-based semantic near-duplicate retrieval (FAISS + sentence transformers) against known training corpora, (b) Min-K%++ membership inference scores, (c) ConStat-style performance gap analysis between original and paraphrased items, and (d) Self-Critique entropy collapse detection for RL-post-trained models. These signals are aggregated into a composite per-item contamination exposure score via learned weights. Critically, we include a signal survival analysis: we systematically evaluate which detection signals remain reliable after SFT vs. after RL post-training, directly addressing the fragility problem (arXiv 2510.02386) by showing that Self-Critique compensates where Min-K%++ and ConStat degrade. Stage 2 (Contamination-Augmented Bayesian IRT): We fit a hierarchical Bayesian 4PL IRT model augmented with a contamination covariate: P(correct_ij = 1) = c_j + (d_j - c_j) · σ(a_j(θ_i - b_j) + γ · exposure_ij), where θ_i is model ability, (a_j, b_j, c_j, d_j) are item parameters, exposure_ij is the per-item contamination score from Stage 1, and γ captures the contamination effect. Bayesian inference (via Stan/PyMC) yields posterior distributions for all parameters, including γ. The calibrated score is computed by setting exposure = 0 and marginalizing: Acc_calibrated = E[P(correct | exposure=0)] with 95% credible intervals. This differs from PSN-IRT (which uses neural networks without contamination modeling or uncertainty), from DCR (which uses fuzzy inference without per-item tracking or uncertainty), and from HiBayES (which provides Bayesian uncertainty but ignores contamination). Validation: We use controlled SFT contamination injection on small models (Qwen2.5-0.5B/1.5B/3B, Pythia-1B/1.4B, OLMo-1B) at 5-8 dosage levels (0%, 1%, 5%, 10%, 25%, 50%, 75%, 100% of benchmark items mixed as paraphrases into SFT data). Ground-truth uncontaminated accuracy is known from clean baselines, allowing us to verify that calibrated scores recover true performance within predicted credible intervals. For RL contamination, we analyze existing instruction-tuned and RL-trained model families (Qwen2.5-Instruct, DeepSeek-R1-Distill-1.5B/7B) as observational data rather than performing GRPO training ourselves, applying Self-Critique to estimate their RL contamination exposure. We validate against DCR's adjusted accuracy on the same benchmarks (MMLU, GSM8K, ARC-Challenge) for external consistency.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~120-150h H100 (embedding generation + Min-K%++ inference ~25h; SFT contamination injection: 6 dosage levels × 3 model sizes × ~3h LoRA-SFT per run = ~54h; Self-Critique inference on existing RL models ~15h; benchmark evaluation ~20h; buffer ~10-20h)\",\n      \"gpu_utilization\": \"Moderate (~40-50%). Sequential SFT runs with analysis between batches. Could parallelize across model sizes for higher utilization.\",\n      \"timeline\": \"14-16 days\",\n      \"team\": \"1 researcher (ML + statistics background)\",\n      \"estimated_gpu_cost\": \"$180-225 (150h × $1.20-1.50/hr on mid-tier providers)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~160-190h H100 (agent explores 8 dosage levels, additional ablations on detection thresholds, systematic signal survival analysis across SFT vs RL models)\",\n      \"gpu_utilization\": \"Good (~60-70%). Agent dispatches SFT jobs and detection runs with minimal idle time. Human reviews Bayesian model specification and convergence diagnostics.\",\n      \"timeline\": \"10-14 days\",\n      \"team\": \"1 researcher, ~30min/day reviewing experimental design and Bayesian model convergence\",\n      \"claude_api_cost\": \"$150-250 (~1500-2500 turns at ~$0.10/turn for Opus)\",\n      \"estimated_gpu_cost\": \"$190-285 (190h × $1.00-1.50/hr)\",\n      \"risk_note\": \"Bayesian IRT model specification (prior selection for γ, item parameters) benefits from human statistical expertise for convergence diagnostics and prior sensitivity analysis.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200h H100 (full dosage grid: 8 levels × 6 model sizes × ~3h = ~144h; expanded detection threshold ablations ~30h; additional evaluation and replication ~26h)\",\n      \"gpu_utilization\": \"High (~80-85%). Agent pipelines SFT jobs and detection runs, running parallel jobs across 2-4 GPUs.\",\n      \"timeline\": \"8-12 days with 2-4 concurrent H100s\",\n      \"team\": \"0 (initial setup: define benchmark suite, configure model access, specify priors for Bayesian model)\",\n      \"claude_api_cost\": \"$300-500 (~3000-5000 turns)\",\n      \"estimated_gpu_cost\": \"$200-300 (200h × $1.00-1.50/hr)\",\n      \"speed_bottleneck\": \"GPU count for parallel SFT runs. Secondary: Stan/PyMC sampling time for hierarchical model with thousands of items × dozens of models.\",\n      \"risk_note\": \"Agent may struggle with Bayesian model convergence diagnostics (R-hat, divergent transitions) and prior sensitivity analysis without human guidance.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR deadline: May 25, 2026)\",\n    \"AAAI 2027 (expected deadline: Jul-Aug 2026)\",\n    \"ICLR 2027 (expected deadline: Sep 2026)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"DCR: Quantifying Data Contamination in LLMs Evaluation (EMNLP 2025)\",\n    \"Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models (ICLR 2025)\",\n    \"ConStat: Performance-Based Contamination Detection in Large Language Models (NeurIPS 2024)\",\n    \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory [PSN-IRT] (AAAI 2026 Oral)\",\n    \"Quantifying the Effect of Test Set Contamination on Generative Evaluations (arXiv 2601.04301, NeurIPS 2025)\",\n    \"Detecting Data Contamination from Reinforcement Learning Post-training [Self-Critique] (arXiv 2510.09259)\",\n    \"On The Fragility of Benchmark Contamination Detection in Reasoning Models (arXiv 2510.02386)\",\n    \"HiBayES: Improving LLM Evaluation with Hierarchical Bayesian Modelling (arXiv 2505.05602)\",\n    \"ATLAS: Adaptive Testing for LLM Evaluation (arXiv 2511.04689)\",\n    \"How Much Can We Forget about Data Contamination? (ICML 2025)\",\n    \"Inference-Time Decontamination: Reusing Leaked Benchmarks for LLM Evaluation (EMNLP 2024 Findings)\",\n    \"Time Travel in LLMs: Tracing Data Contamination in Large Language Models (ICLR 2024)\",\n    \"Detecting Pretraining Data from Large Language Models (ICLR 2024)\",\n    \"Rethinking Benchmark and Contamination for Language Models with Rephrased Samples (arXiv 2023)\",\n    \"The Impact of Post-training on Data Contamination (arXiv 2026)\",\n    \"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data (arXiv 2025)\",\n    \"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation (EMNLP 2025)\",\n    \"LiveBench: A Challenging, Contamination-Limited LLM Benchmark (arXiv 2024)\",\n    \"Quantifying Data Contamination in Psychometric Evaluations of LLMs (EACL 2026 Findings)\"\n  ],\n  \"description\": \"Benchmark scores for LLMs are increasingly inflated by training data contamination, yet no existing method produces contamination-adjusted scores with statistical uncertainty bounds. PSN-IRT (AAAI 2026) applies Item Response Theory to LLM benchmarking but does not model contamination; DCR (EMNLP 2025) produces adjusted accuracy via fuzzy inference but lacks uncertainty quantification; HiBayES provides Bayesian evaluation with credible intervals but ignores contamination; the dose-response paper (NeurIPS 2025) characterizes contamination scaling laws but does not calibrate scores. We propose ContamCal, a two-stage framework that fills this gap. Stage 1 applies multi-signal provenance mapping—combining embedding-based semantic retrieval, Min-K%++ membership inference, ConStat performance gaps, and Self-Critique entropy collapse detection (the only signal shown to survive RL post-training)—to produce per-item contamination exposure scores. Stage 2 fits a contamination-augmented hierarchical Bayesian 4PL IRT model that separates genuine capability (θ) from contamination-driven inflation (γ), outputting calibrated accuracy with posterior credible intervals. We validate via controlled SFT contamination injection at multiple dosage levels on small models (Qwen2.5-0.5B/1.5B/3B, Pythia-1B/1.4B, OLMo-1B) where ground-truth uncontaminated performance is known, and analyze existing RL-trained models (DeepSeek-R1-Distill, Qwen2.5-Instruct) as observational data. A novel signal survival analysis characterizes which detection signals remain reliable after SFT vs. RL post-training, directly addressing the fragility problem. The framework uniquely provides: (1) per-item contamination provenance rather than corpus-level scoring, (2) principled Bayesian uncertainty via IRT rather than fuzzy inference or neural point estimates, (3) explicit modeling of RL contamination amplification via Self-Critique integration, and (4) validated dose-response calibration verified against ground-truth clean baselines within 200 H100-hours on small models.\",\n  \"project_name\": \"contam_score_calibration\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"FATAL: Model size completely violates user constraints. User specified small models (1B-3B: Pythia, OLMo-1B, Qwen-0.5B/1.8B) but proposal uses Qwen 3.6-27B (dense) and Kimi K2.6 (1T MoE, 32B active). Fine-tuning these models with GRPO is impossible within 200 H100-hours.\", \"FATAL: Compute budget violation. Proposal's own minimum estimate (400h A100 manual mode) already pushes the boundary; GRPO fine-tuning on 27B+ models across multiple contamination dosages would require thousands of GPU hours per configuration. The 200h SFT+GRPO estimate is wildly unrealistic for these model sizes.\", \"FATAL: Timeline violation. All three modes exceed 16 days (manual: 3-5 months, HIL: 6-10 weeks, auto: 2-4 weeks). The pipeline scope (multi-signal detection + Bayesian model fitting + controlled injection experiments) is incompatible with a 16-day timeline.\", \"Missing critical competitor: 'Quantifying the Effect of Test Set Contamination on Generative Evaluations' (arXiv 2601.04301, Jan 2026) already fits dose-response curves for contamination across model scales, directly relevant to the calibration claim.\", \"Missing critical competitor: 'Detecting Data Contamination from Reinforcement Learning Post-training' (arXiv 2510.09259) introduces Self-Critique for RL contamination detection with 30% AUC improvement — directly relevant to the claimed GRPO contamination handling novelty.\", \"Missing relevant work: PSN-IRT (arXiv 2505.15055) already applies Item Response Theory to LLM benchmarking with item difficulty and model ability estimation — the Bayesian calibration model in Stage 2 is essentially IRT + contamination covariate, making it more incremental than presented.\", \"The fragility paper (arXiv 2510.02386) shows GRPO conceals contamination signals that most detection methods rely on. This directly threatens the multi-signal detection approach in Stage 1: if GRPO masks Min-K%++ and ConStat signals, the provenance mapping may fail precisely when it is most needed (post-GRPO models). The proposal does not address this vulnerability.\", \"GRPO cost massively underestimated. One published study reports ~3,800 A100-hours for GRPO on a 1.5B model. The proposal allocates ~200h total for contamination injection fine-tuning (SFT+GRPO) on 27B+ models across multiple dosage levels — off by 1-2 orders of magnitude.\", \"Resource estimates across modes are internally inconsistent with the proposed model sizes. Manual mode (400h A100) cannot accommodate even a single GRPO run on Qwen 3.6-27B, let alone the multiple dosage experiments across two model families described in Stage 3.\"]\nFeedback: The core idea — Bayesian calibration of contamination-adjusted benchmark scores with uncertainty bounds — is genuinely novel and timely for EMNLP 2026. However, the proposal must be fundamentally restructured to meet user constraints:\n\n1. **Replace models**: Use small models as specified — Qwen-0.5B/1.8B, OLMo-1B, Pythia-1B/1.4B for contamination injection experiments. These can be GRPO-fine-tuned within budget (a 1.5B model SFT takes ~10-50 A100-hours). Frame this as studying contamination calibration across small models where controlled experiments are tractable.\n\n2. **Simplify Stage 3 (Validation)**: Drop GRPO contamination injection entirely or limit to 1-2 SFT-only configurations. GRPO fine-tuning is too expensive and unstable for a 16-day timeline. Alternatively, use only SFT contamination injection (much cheaper) and analyze existing GRPO-trained models (Qwen-chat, etc.) as observational data rather than controlled experiments.\n\n3. **Reduce scope to 2 stages**: Merge provenance mapping and calibration into a tighter pipeline. The Bayesian calibration model can be validated against DCR's adjusted accuracy on the same benchmarks (no new fine-tuning needed for validation). Use the dose-response curve paper's methodology as inspiration for lightweight validation.\n\n4. **Cite missing competitors**: Add arXiv 2601.04301 (dose-response curves), arXiv 2510.09259 (Self-Critique for RL contamination), and arXiv 2505.15055 (PSN-IRT). Position your Bayesian calibration as complementary — you provide post-hoc score adjustment with uncertainty, they provide detection or characterization.\n\n5. **Address the fragility problem**: Acknowledge that GRPO conceals detection signals (arXiv 2510.02386) and discuss how your multi-signal approach mitigates or fails to mitigate this. This could actually strengthen the paper if framed as 'which detection signals survive GRPO?'\n\n6. **Revised compute budget**: With 1B-3B models, SFT contamination injection across 5-10 dosage levels × 2-3 model sizes ≈ 50-100 H100-hours. Embedding generation + Min-K%++ inference ≈ 20-30 H100-hours. Total ≈ 100-150 H100-hours, fitting within 200 H100-hours.\n\n7. **Revised timeline**: With small models and SFT-only experiments: Week 1 (days 1-5): implement provenance mapping pipeline + run contamination injection. Week 2 (days 6-10): fit Bayesian calibration model + run evaluations. Days 11-16: analysis, ablations, paper writing. Tight but feasible.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T00:42:41.413Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T00:42:41.413Z",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+## Round 1
+
+128 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T00:42:41.450Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Machine Learning for NLP / Resources and Evaluation. Aligns with EMNLP 2026 special theme "New Missions for NLP Research" which explicitly calls for work on data contamination, synthetic data feedback loops, and data governance.
+
+Direction: Synthetic data quality, model collapse prevention, contamination detection. In-scope: synthetic data verification/filtering methods, detecting training data contamination in benchmarks, methods to break recursive data feedback loops, data mixing strategies that prevent quality degradation, principled synthetic data generation with quality guarantees.
+
+Contribution type: METHOD ONLY. Must propose a concrete detection algorithm, filtering pipeline, or training recipe — not just an observation about model collapse. Method + analysis OK.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Model collapse experiments need multiple training iterations — budget for small models (1B-3B) across 3-5 generations.
+2. Time: ≤16 days. Use small open models (Pythia, OLMo-1B, Qwen-0.5B/1.8B) for iterative collapse experiments.
+3. Eval: perplexity degradation curves, downstream task quality (MMLU, HellaSwag), diversity metrics (self-BLEU, n-gram entropy), contamination detection accuracy.
+
+This is a hot EMNLP 2026 special theme area with relatively few established methods — high novelty potential.
+
+Tag: direction=data_governance, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 2/10)
+{
+  "title": "ContamCal: Bayesian Calibration of Contamination-Adjusted Benchmark Scores via Provenance-Augmented Item Response Theory",
+  "core_problem": "Benchmark scores are increasingly unreliable because training data may contain semantic paraphrases of test items that evade n-gram decontamination, and RL post-training further conceals contamination signals. While recent work characterizes contamination effects (dose-response curves, detection methods, IRT-based item quality), no existing method provides a principled statistical framework that takes per-item contamination exposure estimates and outputs calibrated benchmark scores with uncertainty bounds—answering the question 'what would this model's score be if it had never seen the test data?'",
+  "opportunity": "Rephrased test items can inflate MMLU accuracy by 8-15 points while evading standard decontamination. RL post-training (GRPO) further amplifies contamination effects while concealing detection signals. PSN-IRT (AAAI 2026) demonstrated that IRT can identify low-quality benchmark items, but does not model contamination explicitly or produce adjusted scores. HiBayES showed hierarchical Bayesian models improve LLM evaluation with proper uncertainty, but ignores contamination. The dose-response curve paper (arXiv 2601.04301) characterizes how contamination scales with model size and dosage, but does not calibrate scores. Self-Critique (arXiv 2510.09259) detects RL contamination with 30% AUC improvement over baselines, but does not adjust scores. The clear gap: a contamination-augmented IRT framework that synthesizes detection signals into per-item exposure estimates and outputs Bayesian-calibrated scores with posterior credible intervals. With EMNLP 2026 explicitly inviting work on contamination and data governance (ARR deadline May 25, 2026), this fills a critical methodological gap.",
+  "landscape": "Seven detection paradigms are now recognized: time-based partition, Min-K%++ membership inference (ICLR 2025), Time Travel guided completion (ICLR 2024), ConStat performance gaps (NeurIPS 2024), BIG-Bench canary memorization, Self-Critique entropy collapse for RL contamination (arXiv 2510.09259), and hierarchical semantic detection (arXiv 2025, F1=0.76). For score adjustment, DCR (EMNLP 2025) produces adjusted accuracy via fuzzy inference but lacks uncertainty bounds and does not handle RL contamination. Inference-Time Decontamination (EMNLP 2024 Findings) rewrites leaked samples at test time but operates during inference rather than post-hoc. The dose-response paper (arXiv 2601.04301, NeurIPS 2025) fits scaling laws across contamination dosage (34M-344M models) but characterizes effects rather than calibrating scores. For psychometric evaluation, PSN-IRT (AAAI 2026 Oral) applies 4PL IRT with neural networks across 41,871 items on 11 benchmarks but does not model contamination as a covariate and provides point estimates without Bayesian uncertainty. ATLAS (arXiv 2511.04689) applies adaptive testing with IRT for efficient evaluation but does not address contamination. HiBayES (AISI, arXiv 2505.05602) demonstrates hierarchical Bayesian evaluation with credible intervals but ignores contamination. The fragility paper (arXiv 2510.02386) shows GRPO conceals contamination signals by collapsing log-probability distributions—Min-K%++ and ConStat fail post-GRPO, but Self-Critique's entropy-based signal survives because it exploits policy collapse rather than probability gaps. The ICML 2025 paper 'How Much Can We Forget about Data Contamination' shows contamination persists in small models following standard scaling laws, making controlled experiments on 1B-3B models tractable and informative. The clear remaining gap: a principled Bayesian framework that (1) synthesizes multiple contamination signals (including RL-robust ones) into per-item exposure estimates and (2) extends IRT with a contamination covariate to produce calibrated adjusted scores with posterior credible intervals.",
+  "approach": "We propose ContamCal, a two-stage framework for contamination-aware benchmark score calibration. Stage 1 (Multi-Signal Provenance Mapping): For each model-item pair, we compute contamination exposure scores by combining four complementary signals—(a) embedding-based semantic near-duplicate retrieval (FAISS + sentence transformers) against known training corpora, (b) Min-K%++ membership inference scores, (c) ConStat-style performance gap analysis between original and paraphrased items, and (d) Self-Critique entropy collapse detection for RL-post-trained models. These signals are aggregated into a composite per-item contamination exposure score via learned weights. Critically, we include a signal survival analysis: we systematically evaluate which detection signals remain reliable after SFT vs. after RL post-training, directly addressing the fragility problem (arXiv 2510.02386) by showing that Self-Critique compensates where Min-K%++ and ConStat degrade. Stage 2 (Contamination-Augmented Bayesian IRT): We fit a hierarchical Bayesian 4PL IRT model augmented with a contamination covariate: P(correct_ij = 1) = c_j + (d_j - c_j) · σ(a_j(θ_i - b_j) + γ · exposure_ij), where θ_i is model ability, (a_j, b_j, c_j, d_j) are item parameters, exposure_ij is the per-item contamination score from Stage 1, and γ captures the contamination effect. Bayesian inference (via Stan/PyMC) yields posterior distributions for all parameters, including γ. The calibrated score is computed by setting exposure = 0 and marginalizing: Acc_calibrated = E[P(correct | exposure=0)] with 95% credible intervals. This differs from PSN-IRT (which uses neural networks without contamination modeling or uncertainty), from DCR (which uses fuzzy inference without per-item tracking or uncertainty), and from HiBayES (which provides Bayesian uncertainty but ignores contamination). Validation: We use controlled SFT contamination injection on small models (Qwen2.5-0.5B/1.5B/3B, Pythia-1B/1.4B, OLMo-1B) at 5-8 dosage levels (0%, 1%, 5%, 10%, 25%, 50%, 75%, 100% of benchmark items mixed as paraphrases into SFT data). Ground-truth uncontaminated accuracy is known from clean baselines, allowing us to verify that calibrated scores recover true performance within predicted credible intervals. For RL contamination, we analyze existing instruction-tuned and RL-trained model families (Qwen2.5-Instruct, DeepSeek-R1-Distill-1.5B/7B) as observational data rather than performing GRPO training ourselves, applying Self-Critique to estimate their RL contamination exposure. We validate against DCR's adjusted accuracy on the same benchmarks (MMLU, GSM8K, ARC-Challenge) for external consistency.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120-150h H100 (embedding generation + Min-K%++ inference ~25h; SFT contamination injection: 6 dosage levels × 3 model sizes × ~3h LoRA-SFT per run = ~54h; Self-Critique inference on existing RL models ~15h; benchmark evaluation ~20h; buffer ~10-20h)",
+      "gpu_utilization": "Moderate (~40-50%). Sequential SFT runs with analysis between batches. Could parallelize across model sizes for higher utilization.",
+      "timeline": "14-16 days",
+      "team": "1 researcher (ML + statistics background)",
+      "estimated_gpu_cost": "$180-225 (150h × $1.20-1.50/hr on mid-tier providers)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~160-190h H100 (agent explores 8 dosage levels, additional ablations on detection thresholds, systematic signal survival analysis across SFT vs RL models)",
+      "gpu_utilization": "Good (~60-70%). Agent dispatches SFT jobs and detection runs with minimal idle time. Human reviews Bayesian model specification and convergence diagnostics.",
+      "timeline": "10-14 days",
+      "team": "1 researcher, ~30min/day reviewing experimental design and Bayesian model convergence",
+      "claude_api_cost": "$150-250 (~1500-2500 turns at ~$0.10/turn for Opus)",
+      "estimated_gpu_cost": "$190-285 (190h × $1.00-1.50/hr)",
+      "risk_note": "Bayesian IRT model specification (prior selection for γ, item parameters) benefits from human statistical expertise for convergence diagnostics and prior sensitivity analysis."
+    },
+    "auto_research": {
+      "gpu_hours": "~200h H100 (full dosage grid: 8 levels × 6 model sizes × ~3h = ~144h; expanded detection threshold ablations ~30h; additional evaluation and replication ~26h)",
+      "gpu_utilization": "High (~80-85%). Agent pipelines SFT jobs and detection runs, running parallel jobs across 2-4 GPUs.",
+      "timeline": "8-12 days with 2-4 concurrent H100s",
+      "team": "0 (initial setup: define benchmark suite, configure model access, specify priors for Bayesian model)",
+      "claude_api_cost": "$300-500 (~3000-5000 turns)",
+      "estimated_gpu_cost": "$200-300 (200h × $1.00-1.50/hr)",
+      "speed_bottleneck": "GPU count for parallel SFT runs. Secondary: Stan/PyMC sampling time for hierarchical model with thousands of items × dozens of models.",
+      "risk_note": "Agent may struggle with Bayesian model convergence diagnostics (R-hat, divergent transitions) and prior sensitivity analysis without human guidance."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR deadline: May 25, 2026)",
+    "AAAI 2027 (expected deadline: Jul-Aug 2026)",
+    "ICLR 2027 (expected deadline: Sep 2026)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "DCR: Quantifying Data Contamination in LLMs Evaluation (EMNLP 2025)",
+    "Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models (ICLR 2025)",
+    "ConStat: Performance-Based Contamination Detection in Large Language Models (NeurIPS 2024)",
+    "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory [PSN-IRT] (AAAI 2026 Oral)",
+    "Quantifying the Effect of Test Set Contamination on Generative Evaluations (arXiv 2601.04301, NeurIPS 2025)",
+    "Detecting Data Contamination from Reinforcement Learning Post-training [Self-Critique] (arXiv 2510.09259)",
+    "On The Fragility of Benchmark Contamination Detection in Reasoning Models (arXiv 2510.02386)",
+    "HiBayES: Improving LLM Evaluation with Hierarchical Bayesian Modelling (arXiv 2505.05602)",
+    "ATLAS: Adaptive Testing for LLM Evaluation (arXiv 2511.04689)",
+    "How Much Can We Forget about Data Contamination? (ICML 2025)",
+    "Inference-Time Decontamination: Reusing Leaked Benchmarks for LLM Evaluation (EMNLP 2024 Findings)",
+    "Time Travel in LLMs: Tracing Data Contamination in Large Language Models (ICLR 2024)",
+    "Detecting Pretraining Data from Large Language Models (ICLR 2024)",
+    "Rethinking Benchmark and Contamination for Language Models with Rephrased Samples (arXiv 2023)",
+    "The Impact of Post-training on Data Contamination (arXiv 2026)",
+    "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data (arXiv 2025)",
+    "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation (EMNLP 2025)",
+    "LiveBench: A Challenging, Contamination-Limited LLM Benchmark (arXiv 2024)",
+    "Quantifying Data Contamination in Psychometric Evaluations of LLMs (EACL 2026 Findings)"
+  ],
+  "description": "Benchmark scores for LLMs are increasingly inflated by training data contamination, yet no existing method produces contamination-adjusted scores with statistical uncertainty bounds. PSN-IRT (AAAI 2026) applies Item Response Theory to LLM benchmarking but does not model contamination; DCR (EMNLP 2025) produces adjusted accuracy via fuzzy inference but lacks uncertainty quantification; HiBayES provides Bayesian evaluation with credible intervals but ignores contamination; the dose-response paper (NeurIPS 2025) characterizes contamination scaling laws but does not calibrate scores. We propose ContamCal, a two-stage framework that fills this gap. Stage 1 applies multi-signal provenance mapping—combining embedding-based semantic retrieval, Min-K%++ membership inference, ConStat performance gaps, and Self-Critique entropy collapse detection (the only signal shown to survive RL post-training)—to produce per-item contamination exposure scores. Stage 2 fits a contamination-augmented hierarchical Bayesian 4PL IRT model that separates genuine capability (θ) from contamination-driven inflation (γ), outputting calibrated accuracy with posterior credible intervals. We validate via controlled SFT contamination injection at multiple dosage levels on small models (Qwen2.5-0.5B/1.5B/3B, Pythia-1B/1.4B, OLMo-1B) where ground-truth uncontaminated performance is known, and analyze existing RL-trained models (DeepSeek-R1-Distill, Qwen2.5-Instruct) as observational data. A novel signal survival analysis characterizes which detection signals remain reliable after SFT vs. RL post-training, directly addressing the fragility problem. The framework uniquely provides: (1) per-item contamination provenance rather than corpus-level scoring, (2) principled Bayesian uncertainty via IRT rather than fuzzy inference or neural point estimates, (3) explicit modeling of RL contamination amplification via Self-Critique integration, and (4) validated dose-response calibration verified against ground-truth clean baselines within 200 H100-hours on small models.",
+  "project_name": "contam_score_calibration",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["FATAL: Model size completely violates user constraints. User specified small models (1B-3B: Pythia, OLMo-1B, Qwen-0.5B/1.8B) but proposal uses Qwen 3.6-27B (dense) and Kimi K2.6 (1T MoE, 32B active). Fine-tuning these models with GRPO is impossible within 200 H100-hours.", "FATAL: Compute budget violation. Proposal's own minimum estimate (400h A100 manual mode) already pushes the boundary; GRPO fine-tuning on 27B+ models across multiple contamination dosages would require thousands of GPU hours per configuration. The 200h SFT+GRPO estimate is wildly unrealistic for these model sizes.", "FATAL: Timeline violation. All three modes exceed 16 days (manual: 3-5 months, HIL: 6-10 weeks, auto: 2-4 weeks). The pipeline scope (multi-signal detection + Bayesian model fitting + controlled injection experiments) is incompatible with a 16-day timeline.", "Missing critical competitor: 'Quantifying the Effect of Test Set Contamination on Generative Evaluations' (arXiv 2601.04301, Jan 2026) already fits dose-response curves for contamination across model scales, directly relevant to the calibration claim.", "Missing critical competitor: 'Detecting Data Contamination from Reinforcement Learning Post-training' (arXiv 2510.09259) introduces Self-Critique for RL contamination detection with 30% AUC improvement — directly relevant to the claimed GRPO contamination handling novelty.", "Missing relevant work: PSN-IRT (arXiv 2505.15055) already applies Item Response Theory to LLM benchmarking with item difficulty and model ability estimation — the Bayesian calibration model in Stage 2 is essentially IRT + contamination covariate, making it more incremental than presented.", "The fragility paper (arXiv 2510.02386) shows GRPO conceals contamination signals that most detection methods rely on. This directly threatens the multi-signal detection approach in Stage 1: if GRPO masks Min-K%++ and ConStat signals, the provenance mapping may fail precisely when it is most needed (post-GRPO models). The proposal does not address this vulnerability.", "GRPO cost massively underestimated. One published study reports ~3,800 A100-hours for GRPO on a 1.5B model. The proposal allocates ~200h total for contamination injection fine-tuning (SFT+GRPO) on 27B+ models across multiple dosage levels — off by 1-2 orders of magnitude.", "Resource estimates across modes are internally inconsistent with the proposed model sizes. Manual mode (400h A100) cannot accommodate even a single GRPO run on Qwen 3.6-27B, let alone the multiple dosage experiments across two model families described in Stage 3."]
+Feedback: The core idea — Bayesian calibration of contamination-adjusted benchmark scores with uncertainty bounds — is genuinely novel and timely for EMNLP 2026. However, the proposal must be fundamentally restructured to meet user constraints:
+
+1. **Replace models**: Use small models as specified — Qwen-0.5B/1.8B, OLMo-1B, Pythia-1B/1.4B for contamination injection experiments. These can be GRPO-fine-tuned within budget (a 1.5B model SFT takes ~10-50 A100-hours). Frame this as studying contamination calibration across small models where controlled experiments are tractable.
+
+2. **Simplify Stage 3 (Validation)**: Drop GRPO contamination injection entirely or limit to 1-2 SFT-only configurations. GRPO fine-tuning is too expensive and unstable for a 16-day timeline. Alternatively, use only SFT contamination injection (much cheaper) and analyze existing GRPO-trained models (Qwen-chat, etc.) as observational data rather than controlled experiments.
+
+3. **Reduce scope to 2 stages**: Merge provenance mapping and calibration into a tighter pipeline. The Bayesian calibration model can be validated against DCR's adjusted accuracy on the same benchmarks (no new fine-tuning needed for validation). Use the dose-response curve paper's methodology as inspiration for lightweight validation.
+
+4. **Cite missing competitors**: Add arXiv 2601.04301 (dose-response curves), arXiv 2510.09259 (Self-Critique for RL contamination), and arXiv 2505.15055 (PSN-IRT). Position your Bayesian calibration as complementary — you provide post-hoc score adjustment with uncertainty, they provide detection or characterization.
+
+5. **Address the fragility problem**: Acknowledge that GRPO conceals detection signals (arXiv 2510.02386) and discuss how your multi-signal approach mitigates or fails to mitigate this. This could actually strengthen the paper if framed as 'which detection signals survive GRPO?'
+
+6. **Revised compute budget**: With 1B-3B models, SFT contamination injection across 5-10 dosage levels × 2-3 model sizes ≈ 50-100 H100-hours. Embedding generation + Min-K%++ inference ≈ 20-30 H100-hours. Total ≈ 100-150 H100-hours, fitting within 200 H100-hours.
+
+7. **Revised timeline**: With small models and SFT-only experiments: Week 1 (days 1-5): implement provenance mapping pipeline + run contamination injection. Week 2 (days 6-10): fit Bayesian calibration model + run evaluations. Days 11-16: analysis, ablations, paper writing. Tight but feasible.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "a6835086-fa1f-4322-b3a3-689301c47e4c",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T00:42:41.448Z_
+
+```json
+{
+  "parentUuid": "a6835086-fa1f-4322-b3a3-689301c47e4c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "da3060b1-1b49-4aea-9469-4bc87359b275",
+  "timestamp": "2026-05-12T00:42:41.448Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T00:42:41.448Z_
+
+```json
+{
+  "parentUuid": "da3060b1-1b49-4aea-9469-4bc87359b275",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "baf40062-f201-42bd-9cb4-017a17ce85e9",
+  "timestamp": "2026-05-12T00:42:41.448Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "baf40062-f201-42bd-9cb4-017a17ce85e9",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T00:42:46.724Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this revised idea (round 2) for ContamCal. The first round had FATAL issues around model sizes, compute budget, and timeline. Let me check if these have been addressed, and independently verify the claims.
+
+Let me start by searching for the key claims and competitors.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "baf40062-f201-42bd-9cb4-017a17ce85e9",
+  "isSidechain": false,
+  "requestId": "req_011CawkGwhFBWEXyRcVDc6U2",
+  "type": "assistant",
+  "uuid": "7b3c3676-928d-4bc4-b91f-61dbfb362b85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sd1Py7CxSbaF8pM6Ks9fZd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14327,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 195,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 195,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-12T00:42:47.729Z_
+
+I'll conduct an independent adversarial review of this revised ContamCal proposal. Let me systematically verify its claims, check for missing competitors, and assess feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b3c3676-928d-4bc4-b91f-61dbfb362b85",
+  "isSidechain": false,
+  "requestId": "req_011CawkGwhFBWEXyRcVDc6U2",
+  "type": "assistant",
+  "uuid": "8f457d47-4f7f-4bba-a893-17028d1bab9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sd1Py7CxSbaF8pM6Ks9fZd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14327,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 195,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 195,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T00:42:48.179Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PQanaioNWaKfpx3Eg1nia3`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f457d47-4f7f-4bba-a893-17028d1bab9b",
+  "isSidechain": false,
+  "requestId": "req_011CawkGwhFBWEXyRcVDc6U2",
+  "type": "assistant",
+  "uuid": "8a4e3179-e501-4c28-a055-4f3f03585058",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sd1Py7CxSbaF8pM6Ks9fZd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14327,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 195,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 195,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T00:42:48.186Z_
+
+<details><summary>↩ Tool result · `toolu_01PQanaioNWaKfpx3Eg1nia3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a4e3179-e501-4c28-a055-4f3f03585058",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "a57b5db7-ea99-41ab-9b12-1b49fdb1d0fc",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "8a4e3179-e501-4c28-a055-4f3f03585058",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-12T00:42:51.935Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now conduct systematic searches to verify the claims in this proposal. I'll start with multiple parallel searches covering different aspects.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a57b5db7-ea99-41ab-9b12-1b49fdb1d0fc",
+  "isSidechain": false,
+  "requestId": "req_011CawkHRd1krrf463J4SALK",
+  "type": "assistant",
+  "uuid": "b9561fbd-819a-4c6e-9a2e-62459a50a90e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SfHSrrtPDPYNhvWND8hxuC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 26168,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1215,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 26168,
+          "cache_creation_input_tokens": 1215,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1215
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-12T00:42:52.420Z_
+
+Starting my independent verification. Let me search across multiple dimensions simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9561fbd-819a-4c6e-9a2e-62459a50a90e",
+  "isSidechain": false,
+  "requestId": "req_011CawkHRd1krrf463J4SALK",
+  "type": "assistant",
+  "uuid": "8f4fef76-4218-40ea-bdaf-37263472822e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SfHSrrtPDPYNhvWND8hxuC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 26168,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1215,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 26168,
+          "cache_creation_input_tokens": 1215,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1215
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-12T00:42:53.160Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U2JrLjDEVKEArDj5k2dycR`</summary>
+
+```json
+{
+  "query": "PSN-IRT Item Response Theory LLM benchmark evaluation AAAI 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f4fef76-4218-40ea-bdaf-37263472822e",
+  "isSidechain": false,
+  "requestId": "req_011CawkHRd1krrf463J4SALK",
+  "type": "assistant",
+  "uuid": "a6deb069-eab3-4fe7-a45d-cb5d4fe480ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SfHSrrtPDPYNhvWND8hxuC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1215,
+      "cache_read_input_tokens": 26168,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1215,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 26168,
+          "cache_creation_input_tokens": 1215,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1215
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T00:43:00.134Z_
+
+<details><summary>↩ Tool result · `toolu_01U2JrLjDEVKEArDj5k2dycR`</summary>
+
+```text
+Web search results for query: "PSN-IRT Item Response Theory LLM benchmark evaluation AAAI 2026"
+
+Links: [{"title":"GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://github.com/Joe-Hall-Lee/PSN-IRT"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40814"},{"title":"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/abs/2505.15055"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40814/44775"},{"title":"[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models","url":"https://arxiv.org/abs/2605.07046"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v2"},{"title":"Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory","url":"https://arxiv.org/html/2605.00238"},{"title":"[Literature Review] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://www.themoonlight.io/en/review/lost-in-benchmarks-rethinking-large-language-model-benchmarking-with-item-response-theory"},{"title":"Leveraging LLM-Respondents for Item Evaluation: a Psychometric Analysis","url":"https://arxiv.org/html/2407.10899v1"},{"title":"Lifting the benchmark iceberg with item-response theory | OpenReview","url":"https://openreview.net/forum?id=ZyVQqK7mcP"}]
+
+Based on the search results, here's what I found about PSN-IRT and Item Response Theory for LLM benchmark evaluation at AAAI 2026:
+
+## Overview
+
+PSN-IRT was accepted as an oral presentation at AAAI 2026 for the paper "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory".
+
+## Key Methodology
+
+PSN-IRT is an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture. PSN-IRT processes model identifiers and item identifiers through independent neural network pathways that respectively estimate latent model ability and a rich set of item parameters.
+
+## Scope and Findings
+
+The evaluation includes results from 12 LLMs on 11 benchmarks, totaling 41,871 items. The analysis reveals significant and varied shortcomings in the measurement quality of LLM benchmarks.
+
+Key findings include that LLM benchmarks suffer from widespread saturation and insufficient difficulty ceilings, limiting their ability to challenge and accurately evaluate advanced models, and LLM benchmarks exhibit data contamination in numerous items, compromising their reliability.
+
+## Practical Applications
+
+PSN-IRT can be used to construct smaller benchmarks while maintaining stronger alignment with human preference. Model rankings derived from high-quality datasets selected by PSN-IRT are more consistent with human preference and offer stronger discriminability among top models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6deb069-eab3-4fe7-a45d-cb5d4fe480ce",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "9c606c02-aa15-4cf4-be1c-918ccc29891c",
+  "toolUseResult": {
+    "query": "PSN-IRT Item Response Theory LLM benchmark evaluation AAAI 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B7VYcnbvKHyAGXQkVeJmk8",
+        "content": [
+          {
+            "title": "GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://github.com/Joe-Hall-Lee/PSN-IRT"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40814"
+          },
+          {
+            "title": "[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/abs/2505.15055"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40814/44775"
+          },
+          {
+            "title": "[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models",
+            "url": "https://arxiv.org/abs/2605.07046"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v2"
+          },
+          {
+            "title": "Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory",
+            "url": "https://arxiv.org/html/2605.00238"
+          },
+          {
+            "title": "[Literature Review] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://www.themoonlight.io/en/review/lost-in-benchmarks-rethinking-large-language-model-benchmarking-with-item-response-theory"
+          },
+          {
+            "title": "Leveraging LLM-Respondents for Item Evaluation: a Psychometric Analysis",
+            "url": "https://arxiv.org/html/2407.10899v1"
+          },
+          {
+            "title": "Lifting the benchmark iceberg with item-response theory | OpenReview",
+            "url": "https://openreview.net/forum?id=ZyVQqK7mcP"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about PSN-IRT and Item Response Theory for LLM benchmark evaluation at AAAI 2026:\n\n## Overview\n\nPSN-IRT was accepted as an oral presentation at AAAI 2026 for the paper \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\".\n\n## Key Methodology\n\nPSN-IRT is an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture. PSN-IRT processes model identifiers and item identifiers through independent neural network pathways that respectively estimate latent model ability and a rich set of item parameters.\n\n## Scope and Findings\n\nThe evaluation includes results from 12 LLMs on 11 benchmarks, totaling 41,871 items. The analysis reveals significant and varied shortcomings in the measurement quality of LLM benchmarks.\n\nKey findings include that LLM benchmarks suffer from widespread saturation and insufficient difficulty ceilings, limiting their ability to challenge and accurately evaluate advanced models, and LLM benchmarks exhibit data contamination in numerous items, compromising their reliability.\n\n## Practical Applications\n\nPSN-IRT can be used to construct smaller benchmarks while maintaining stronger alignment with human preference. Model rankings derived from high-quality datasets selected by PSN-IRT are more consistent with human preference and offer stronger discriminability among top models."
+    ],
+    "durationSeconds": 6.969569500000001
+  },
+  "sourceToolAssistantUUID": "a6deb069-eab3-4fe7-a45d-cb5d4fe480ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-12T00:43:02.518Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K2WySUSeB64kQYb8uaBFnp`</summary>
+
+```json
+{
+  "query": "DCR data contamination report adjusted accuracy EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c606c02-aa15-4cf4-be1c-918ccc29891c",
+  "isSidechain": false,
+  "requestId": "req_011CawkJJSSvzZuY59FcCXVe",
+  "type": "assistant",
+  "uuid": "2922bec0-9d84-44f4-bffb-49322d2f1ecc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UH3cv65JixES5oLNRXqXTn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1052,
+      "cache_read_input_tokens": 27383,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1052,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 27383,
+          "cache_creation_input_tokens": 1052,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1052
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-12T00:43:10.235Z_
+
+<details><summary>↩ Tool result · `toolu_01K2WySUSeB64kQYb8uaBFnp`</summary>
+
+```text
+Web search results for query: "DCR data contamination report adjusted accuracy EMNLP 2025"
+
+Links: [{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1173/"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://aclanthology.org/2025.emnlp-main.1173.pdf"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/html/2507.11405"},{"title":"[2507.11405] DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/abs/2507.11405"},{"title":"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.511/"},{"title":"A Survey from Static to Dynamic Evaluation","url":"https://aclanthology.org/2025.emnlp-main.511.pdf"},{"title":"An Open-Source Data Contamination Report for Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.findings-emnlp.30/"},{"title":"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation","url":"https://arxiv.org/html/2502.17521v2"},{"title":"Semantic Contamination of LLM-Driven Fake News Detection","url":"https://aclanthology.org/2025.emnlp-main.744.pdf"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"}]
+
+Based on the search results, I found comprehensive information about the DCR paper from EMNLP 2025:
+
+## DCR: Quantifying Data Contamination in LLMs Evaluation
+
+The Data Contamination Risk (DCR) framework is a lightweight, interpretable pipeline designed to detect and quantify benchmark data contamination (BDC) risk across four granular levels: semantic, informational, data, and label. By synthesizing contamination scores via a fuzzy inference system, DCR produces a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance.
+
+### Key Results
+
+Validated on 9 LLMs (0.5B-72B) across sentiment analysis, fake news detection, and arithmetic reasoning tasks, the DCR framework reliably diagnoses contamination severity and with accuracy adjusted using the DCR Factor to within 4% average error across the three benchmarks compared to the uncontaminated baseline.
+
+### Purpose and Benefits
+
+The paper addresses concerns about benchmark data contamination (BDC), where models inadvertently memorize evaluation data during the training process, inflating performance metrics, and undermining genuine generalization assessment. The adjusted accuracy (Accadj) provides a contamination-aware performance metric, significantly enhancing the reliability and fairness of benchmark evaluations, incorporating BDC risk considerations.
+
+### Authors and Publication
+
+The paper was authored by Cheng Xu, Nan Yan, Shuhao Guan, Changhong Jin, Yuke Mei, Yibing Guo, and Tahar Kechadi, and was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages 23002–23020, Suzhou, China.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2922bec0-9d84-44f4-bffb-49322d2f1ecc",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "d5c7fca0-228f-4e1b-ac5a-3c527e4f0d00",
+  "toolUseResult": {
+    "query": "DCR data contamination report adjusted accuracy EMNLP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014PusPDPzQijAioBVzFeLSe",
+        "content": [
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173/"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173.pdf"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/html/2507.11405"
+          },
+          {
+            "title": "[2507.11405] DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/abs/2507.11405"
+          },
+          {
+            "title": "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.511/"
+          },
+          {
+            "title": "A Survey from Static to Dynamic Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.511.pdf"
+          },
+          {
+            "title": "An Open-Source Data Contamination Report for Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-emnlp.30/"
+          },
+          {
+            "title": "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation",
+            "url": "https://arxiv.org/html/2502.17521v2"
+          },
+          {
+            "title": "Semantic Contamination of LLM-Driven Fake News Detection",
+            "url": "https://aclanthology.org/2025.emnlp-main.744.pdf"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the DCR paper from EMNLP 2025:\n\n## DCR: Quantifying Data Contamination in LLMs Evaluation\n\nThe Data Contamination Risk (DCR) framework is a lightweight, interpretable pipeline designed to detect and quantify benchmark data contamination (BDC) risk across four granular levels: semantic, informational, data, and label. By synthesizing contamination scores via a fuzzy inference system, DCR produces a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance.\n\n### Key Results\n\nValidated on 9 LLMs (0.5B-72B) across sentiment analysis, fake news detection, and arithmetic reasoning tasks, the DCR framework reliably diagnoses contamination severity and with accuracy adjusted using the DCR Factor to within 4% average error across the three benchmarks compared to the uncontaminated baseline.\n\n### Purpose and Benefits\n\nThe paper addresses concerns about benchmark data contamination (BDC), where models inadvertently memorize evaluation data during the training process, inflating performance metrics, and undermining genuine generalization assessment. The adjusted accuracy (Accadj) provides a contamination-aware performance metric, significantly enhancing the reliability and fairness of benchmark evaluations, incorporating BDC risk considerations.\n\n### Authors and Publication\n\nThe paper was authored by Cheng Xu, Nan Yan, Shuhao Guan, Changhong Jin, Yuke Mei, Yibing Guo, and Tahar Kechadi, and was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages 23002–23020, Suzhou, China."
+    ],
+    "durationSeconds": 7.712476375999999
+  },
+  "sourceToolAssistantUUID": "2922bec0-9d84-44f4-bffb-49322d2f1ecc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-12T00:43:14.350Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BGWESKkgbjuvwsi3u8zo5s`</summary>
+
+```json
+{
+  "query": "HiBayES hierarchical Bayesian LLM evaluation credible intervals arXiv 2505.05602"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5c7fca0-228f-4e1b-ac5a-3c527e4f0d00",
+  "isSidechain": false,
+  "requestId": "req_011CawkK3bzzvgzW2FTF8514",
+  "type": "assistant",
+  "uuid": "b2083802-2ec7-4c4d-b7df-c84dd48f9d8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RCJpqEjBtras3oykeoQNhb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 975,
+      "cache_read_input_tokens": 28435,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 28435,
+          "cache_creation_input_tokens": 975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T00:43:20.676Z_
+
+<details><summary>↩ Tool result · `toolu_01BGWESKkgbjuvwsi3u8zo5s`</summary>
+
+```text
+Web search results for query: "HiBayES hierarchical Bayesian LLM evaluation credible intervals arXiv 2505.05602"
+
+Links: [{"title":"[2505.05602] HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics","url":"https://arxiv.org/abs/2505.05602"},{"title":"HiBayESA Hierarchical Bayesian Modeling Frameworkfor AI Evaluation Statistics","url":"https://arxiv.org/html/2505.05602"},{"title":"[2505.05602v2] HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics","url":"http://arxiv.org/abs/2505.05602v2"},{"title":"HIP-LLM: A Hierarchical Imprecise Probability Approach to Reliability Assessment of Large Language Models","url":"https://arxiv.org/html/2511.00527"},{"title":"(PDF) HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics","url":"https://www.researchgate.net/publication/391658520_HiBayES_A_Hierarchical_Bayesian_Modeling_Framework_for_AI_Evaluation_Statistics"},{"title":"Bayesian Evaluation of Large Language Model Behavior","url":"https://arxiv.org/html/2511.10661v1"},{"title":"HiBayES: Improving LLM evaluation with hierarchical Bayesian modelling | AISI Work","url":"https://www.aisi.gov.uk/blog/hibayes-improving-llm-evaluation-with-hierarchical-bayesian-modelling"},{"title":"Don’t Pass@𝑘: A Bayesian Framework for Large Language Model Evaluation","url":"https://arxiv.org/html/2510.04265v1"},{"title":"Beyond Markovian: Reflective Exploration via Bayes-Adaptive RL for LLM Reasoning","url":"https://arxiv.org/html/2505.20561v2"},{"title":"StatEval: A Comprehensive Benchmark for Large Language Models in Statistics","url":"https://arxiv.org/html/2510.09517v1"}]
+
+Based on the search results, here's what I found about the paper:
+
+## HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics
+
+HiBayES is a generalizable Hierarchical Bayesian modeling framework for AI Evaluation Statistics. The paper was authored by Lennart Luettgau and colleagues and is available as arXiv preprint 2505.05602.
+
+### Key Features
+
+The framework addresses the importance of robustly estimating LLM capabilities from inherently stochastic outputs while systematically quantifying uncertainty in these estimates. HiBayES supports robust inferences in classical question-answer benchmarks and advanced agentic evaluations, particularly in low-data scenarios (e.g., < 20 data points per evaluation).
+
+### Technical Approach
+
+Built on Generalized Linear Models (GLMs), Bayesian data analysis, and formal model comparison, HiBayES provides principled uncertainty quantification and robust parameter estimation. The framework uses credible intervals (referred to as HPDIs - Highest Posterior Density Intervals in the paper) to quantify uncertainty, which are derived from the Bayesian posterior distributions.
+
+### Implementation
+
+A HiBayES software package (Beta version) is provided for out-of-the-box implementation.
+
+The paper offers a comprehensive statistical framework that addresses limitations of conventional methods like t-tests when dealing with the hierarchical structure and complexity of modern AI evaluation scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b2083802-2ec7-4c4d-b7df-c84dd48f9d8a",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "dad04cba-bb96-435b-a86f-d4097611a944",
+  "toolUseResult": {
+    "query": "HiBayES hierarchical Bayesian LLM evaluation credible intervals arXiv 2505.05602",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MYpL2pXBPEjdwL9qNmZiS6",
+        "content": [
+          {
+            "title": "[2505.05602] HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics",
+            "url": "https://arxiv.org/abs/2505.05602"
+          },
+          {
+            "title": "HiBayESA Hierarchical Bayesian Modeling Frameworkfor AI Evaluation Statistics",
+            "url": "https://arxiv.org/html/2505.05602"
+          },
+          {
+            "title": "[2505.05602v2] HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics",
+            "url": "http://arxiv.org/abs/2505.05602v2"
+          },
+          {
+            "title": "HIP-LLM: A Hierarchical Imprecise Probability Approach to Reliability Assessment of Large Language Models",
+            "url": "https://arxiv.org/html/2511.00527"
+          },
+          {
+            "title": "(PDF) HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics",
+            "url": "https://www.researchgate.net/publication/391658520_HiBayES_A_Hierarchical_Bayesian_Modeling_Framework_for_AI_Evaluation_Statistics"
+          },
+          {
+            "title": "Bayesian Evaluation of Large Language Model Behavior",
+            "url": "https://arxiv.org/html/2511.10661v1"
+          },
+          {
+            "title": "HiBayES: Improving LLM evaluation with hierarchical Bayesian modelling | AISI Work",
+            "url": "https://www.aisi.gov.uk/blog/hibayes-improving-llm-evaluation-with-hierarchical-bayesian-modelling"
+          },
+          {
+            "title": "Don’t Pass@𝑘: A Bayesian Framework for Large Language Model Evaluation",
+            "url": "https://arxiv.org/html/2510.04265v1"
+          },
+          {
+            "title": "Beyond Markovian: Reflective Exploration via Bayes-Adaptive RL for LLM Reasoning",
+            "url": "https://arxiv.org/html/2505.20561v2"
+          },
+          {
+            "title": "StatEval: A Comprehensive Benchmark for Large Language Models in Statistics",
+            "url": "https://arxiv.org/html/2510.09517v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\n## HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics\n\nHiBayES is a generalizable Hierarchical Bayesian modeling framework for AI Evaluation Statistics. The paper was authored by Lennart Luettgau and colleagues and is available as arXiv preprint 2505.05602.\n\n### Key Features\n\nThe framework addresses the importance of robustly estimating LLM capabilities from inherently stochastic outputs while systematically quantifying uncertainty in these estimates. HiBayES supports robust inferences in classical question-answer benchmarks and advanced agentic evaluations, particularly in low-data scenarios (e.g., < 20 data points per evaluation).\n\n### Technical Approach\n\nBuilt on Generalized Linear Models (GLMs), Bayesian data analysis, and formal model comparison, HiBayES provides principled uncertainty quantification and robust parameter estimation. The framework uses credible intervals (referred to as HPDIs - Highest Posterior Density Intervals in the paper) to quantify uncertainty, which are derived from the Bayesian posterior distributions.\n\n### Implementation\n\nA HiBayES software package (Beta version) is provided for out-of-the-box implementation.\n\nThe paper offers a comprehensive statistical framework that addresses limitations of conventional methods like t-tests when dealing with the hierarchical structure and complexity of modern AI evaluation scenarios."
+    ],
+    "durationSeconds": 6.321166097000001
+  },
+  "sourceToolAssistantUUID": "b2083802-2ec7-4c4d-b7df-c84dd48f9d8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "dad04cba-bb96-435b-a86f-d4097611a944",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-12T00:43:23.132Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XbAD8KfdtDd4nt569aLbtJ`</summary>
+
+```json
+{
+  "query": "Self-Critique detecting data contamination reinforcement learning post-training arXiv 2510.09259"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dad04cba-bb96-435b-a86f-d4097611a944",
+  "isSidechain": false,
+  "requestId": "req_011CawkKpG6n5mpEP95QnPDv",
+  "type": "assistant",
+  "uuid": "5b65e6f3-9c8f-47d6-8729-888624e9b4d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKwR7dS64w6YwiFXFLuKU8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 957,
+      "cache_read_input_tokens": 29410,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 29410,
+          "cache_creation_input_tokens": 957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-12T00:43:29.969Z_
+
+<details><summary>↩ Tool result · `toolu_01XbAD8KfdtDd4nt569aLbtJ`</summary>
+
+```text
+Web search results for query: "Self-Critique detecting data contamination reinforcement learning post-training arXiv 2510.09259"
+
+Links: [{"title":"[2510.09259] Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/abs/2510.09259"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/html/2510.09259"},{"title":"detecting data contamination from reinforcement learning ...","url":"https://arxiv.org/pdf/2510.09259"},{"title":"Paper page - Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://huggingface.co/papers/2510.09259"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | OpenReview","url":"https://openreview.net/forum?id=EjiJmiA6ea"},{"title":"Computation and Language Oct 2025","url":"https://www.arxiv.org/list/cs.CL/2025-10?skip=675&show=250"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/396459308_Detecting_Data_Contamination_from_Reinforcement_Learning_Post-training_for_Large_Language_Models"},{"title":"Evaluating the Robustness of Large Language Model ...","url":"https://www.arxiv.org/pdf/2511.22047"},{"title":"DynaSolidGeo: A Dynamic Benchmark for Genuine Spatial Mathematical Reasoning of VLMs in Solid Geometry","url":"https://arxiv.org/html/2510.22340v2"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning | OpenReview","url":"https://openreview.net/forum?id=YlpaaYxx4t"}]
+
+I found the paper you're looking for. Here's a summary of the research:
+
+## Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models (arXiv 2510.09259)
+
+**Paper Overview:**
+Data contamination poses a significant threat to the reliable evaluation of Large Language Models, arising when benchmark samples may inadvertently appear in training sets and compromise the validity of reported performance.
+
+**Research Gap:**
+While detection methods have been developed for the pre-training and Supervised Fine-Tuning stages, a critical research gap exists for the increasingly significant phase of Reinforcement Learning post-training, as RL post-training becomes pivotal for advancing LLM reasoning.
+
+**The Self-Critique Method:**
+The researchers conduct the first systematic study of data detection within RL post-training and propose Self-Critique, motivated by a key observation that after the RL phase, the output entropy distribution of LLMs tends to collapse into highly specific and sparse modes. Self-Critique probes for the underlying policy collapse, the model's convergence to a narrow reasoning path, which causes this entropy reduction.
+
+**Results:**
+Self-Critique significantly outperforms baseline methods across multiple models and contamination tasks, achieving an AUC improvement of up to 30%, whereas existing methods are close to a random guess for RL-phase contamination.
+
+**Benchmark:**
+The researchers also introduce RL-MIA, a benchmark constructed to simulate this specific contamination scenario.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b65e6f3-9c8f-47d6-8729-888624e9b4d1",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "343fd431-af33-4b3f-8a99-db05f26a1263",
+  "toolUseResult": {
+    "query": "Self-Critique detecting data contamination reinforcement learning post-training arXiv 2510.09259",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01572sM1wzvthzFLUKzm2U1Y",
+        "content": [
+          {
+            "title": "[2510.09259] Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models",
+            "url": "https://arxiv.org/abs/2510.09259"
+          },
+          {
+            "title": "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models",
+            "url": "https://arxiv.org/html/2510.09259"
+          },
+          {
+            "title": "detecting data contamination from reinforcement learning ...",
+            "url": "https://arxiv.org/pdf/2510.09259"
+          },
+          {
+            "title": "Paper page - Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models",
+            "url": "https://huggingface.co/papers/2510.09259"
+          },
+          {
+            "title": "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=EjiJmiA6ea"
+          },
+          {
+            "title": "Computation and Language Oct 2025",
+            "url": "https://www.arxiv.org/list/cs.CL/2025-10?skip=675&show=250"
+          },
+          {
+            "title": "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/396459308_Detecting_Data_Contamination_from_Reinforcement_Learning_Post-training_for_Large_Language_Models"
+          },
+          {
+            "title": "Evaluating the Robustness of Large Language Model ...",
+            "url": "https://www.arxiv.org/pdf/2511.22047"
+          },
+          {
+            "title": "DynaSolidGeo: A Dynamic Benchmark for Genuine Spatial Mathematical Reasoning of VLMs in Solid Geometry",
+            "url": "https://arxiv.org/html/2510.22340v2"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=YlpaaYxx4t"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's a summary of the research:\n\n## Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models (arXiv 2510.09259)\n\n**Paper Overview:**\nData contamination poses a significant threat to the reliable evaluation of Large Language Models, arising when benchmark samples may inadvertently appear in training sets and compromise the validity of reported performance.\n\n**Research Gap:**\nWhile detection methods have been developed for the pre-training and Supervised Fine-Tuning stages, a critical research gap exists for the increasingly significant phase of Reinforcement Learning post-training, as RL post-training becomes pivotal for advancing LLM reasoning.\n\n**The Self-Critique Method:**\nThe researchers conduct the first systematic study of data detection within RL post-training and propose Self-Critique, motivated by a key observation that after the RL phase, the output entropy distribution of LLMs tends to collapse into highly specific and sparse modes. Self-Critique probes for the underlying policy collapse, the model's convergence to a narrow reasoning path, which causes this entropy reduction.\n\n**Results:**\nSelf-Critique significantly outperforms baseline methods across multiple models and contamination tasks, achieving an AUC improvement of up to 30%, whereas existing methods are close to a random guess for RL-phase contamination.\n\n**Benchmark:**\nThe researchers also introduce RL-MIA, a benchmark constructed to simulate this specific contamination scenario."
+    ],
+    "durationSeconds": 6.833158847000006
+  },
+  "sourceToolAssistantUUID": "5b65e6f3-9c8f-47d6-8729-888624e9b4d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-12T00:43:32.857Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015zoDiAG67yMhVsFCoJWzST`</summary>
+
+```json
+{
+  "query": "contamination-adjusted benchmark scores Bayesian IRT calibration LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "343fd431-af33-4b3f-8a99-db05f26a1263",
+  "isSidechain": false,
+  "requestId": "req_011CawkLVznBTzVpss9WoXy7",
+  "type": "assistant",
+  "uuid": "49b5fd57-1c28-4d9f-8aa0-1ad05b434ca8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MyJBmcQ83K8ctse3QHwQd8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 30367,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 30367,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-12T00:43:42.793Z_
+
+<details><summary>↩ Tool result · `toolu_015zoDiAG67yMhVsFCoJWzST`</summary>
+
+```text
+Web search results for query: "contamination-adjusted benchmark scores Bayesian IRT calibration LLM 2025 2026"
+
+Links: [{"title":"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/html/2604.12843"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/html/2511.04689"},{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"Are AI Benchmarks Reliable? The Data Contamination Problem | BenchLM.ai","url":"https://benchlm.ai/blog/posts/benchmark-reliability"},{"title":"How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://arxiv.org/html/2502.00678v1"},{"title":"When Benchmarks Lie: Why Contamination Breaks LLM Evaluation | by Anna Alexandra Grigoryan | Medium","url":"https://thegrigorian.medium.com/when-benchmarks-lie-why-contamination-breaks-llm-evaluation-1fa335706f32"},{"title":"LiveCodeBench Pro LLM Benchmark","url":"https://www.emergentmind.com/topics/livecodebench-pro"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://aclanthology.org/2025.emnlp-main.1173.pdf"},{"title":"Quantifying LLMs Uncertainty with Confidence Scores | by Faustin Pulvéric | Capgemini Invent Lab | Medium","url":"https://medium.com/capgemini-invent-lab/quantifying-llms-uncertainty-with-confidence-scores-6bb8a6712aa0"},{"title":"Evaluation data contamination in LLMs: how do we measure it and (when) does it matter?","url":"https://arxiv.org/html/2411.03923v1"}]
+
+Based on my search results, I found several relevant papers and resources addressing your query about contamination-adjusted benchmark scores, Bayesian IRT calibration, and LLM evaluation in 2025-2026:
+
+## Key Research Findings
+
+**Contamination-Adjusted Benchmark Scores:**
+
+Average scores tend to mask meaningful model differences and are often affected by contamination sensitivity, whereas IRT-based ability estimates provide form-invariant, uncertainty-aware alternatives that adjust for item difficulty and discrimination.
+
+**Bayesian IRT Calibration Frameworks:**
+
+A framework based on multidimensional Item Response Theory (IRT) uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed, supporting a realistic evaluation setting where datasets are introduced over time and models are evaluated only on available datasets while preserving score comparability.
+
+**Recent Advances in Adaptive Testing (2025-2026):**
+
+ATLAS (Adaptive Testing for LLM Ability Scoring) is an adaptive evaluation framework based on computerized adaptive testing that first calibrates benchmark items using three-parameter logistic (3PL) IRT models to estimate item difficulty, discrimination, and guessing parameters.
+
+**Data Contamination Risk Quantification:**
+
+The DCR (Data Contamination Risk) framework addresses key limitations in existing methods and is structured into two key stages for quantifying BDC (Benchmark Data Contamination) levels.
+
+The search results indicate active research in this area with multiple recent papers (from 2025-2026) proposing methods to adjust benchmark scores for contamination using Bayesian IRT approaches and adaptive testing methodologies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49b5fd57-1c28-4d9f-8aa0-1ad05b434ca8",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "2faaf792-7394-451a-b010-b56e94d7737e",
+  "toolUseResult": {
+    "query": "contamination-adjusted benchmark scores Bayesian IRT calibration LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mh5PQTUMpfFMvobH9nwsnj",
+        "content": [
+          {
+            "title": "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/html/2604.12843"
+          },
+          {
+            "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/html/2511.04689"
+          },
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "Are AI Benchmarks Reliable? The Data Contamination Problem | BenchLM.ai",
+            "url": "https://benchlm.ai/blog/posts/benchmark-reliability"
+          },
+          {
+            "title": "How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://arxiv.org/html/2502.00678v1"
+          },
+          {
+            "title": "When Benchmarks Lie: Why Contamination Breaks LLM Evaluation | by Anna Alexandra Grigoryan | Medium",
+            "url": "https://thegrigorian.medium.com/when-benchmarks-lie-why-contamination-breaks-llm-evaluation-1fa335706f32"
+          },
+          {
+            "title": "LiveCodeBench Pro LLM Benchmark",
+            "url": "https://www.emergentmind.com/topics/livecodebench-pro"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173.pdf"
+          },
+          {
+            "title": "Quantifying LLMs Uncertainty with Confidence Scores | by Faustin Pulvéric | Capgemini Invent Lab | Medium",
+            "url": "https://medium.com/capgemini-invent-lab/quantifying-llms-uncertainty-with-confidence-scores-6bb8a6712aa0"
+          },
+          {
+            "title": "Evaluation data contamination in LLMs: how do we measure it and (when) does it matter?",
+            "url": "https://arxiv.org/html/2411.03923v1"
+          }
+        ]
+      },
+      "Based on my search results, I found several relevant papers and resources addressing your query about contamination-adjusted benchmark scores, Bayesian IRT calibration, and LLM evaluation in 2025-2026:\n\n## Key Research Findings\n\n**Contamination-Adjusted Benchmark Scores:**\n\nAverage scores tend to mask meaningful model differences and are often affected by contamination sensitivity, whereas IRT-based ability estimates provide form-invariant, uncertainty-aware alternatives that adjust for item difficulty and discrimination.\n\n**Bayesian IRT Calibration Frameworks:**\n\nA framework based on multidimensional Item Response Theory (IRT) uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed, supporting a realistic evaluation setting where datasets are introduced over time and models are evaluated only on available datasets while preserving score comparability.\n\n**Recent Advances in Adaptive Testing (2025-2026):**\n\nATLAS (Adaptive Testing for LLM Ability Scoring) is an adaptive evaluation framework based on computerized adaptive testing that first calibrates benchmark items using three-parameter logistic (3PL) IRT models to estimate item difficulty, discrimination, and guessing parameters.\n\n**Data Contamination Risk Quantification:**\n\nThe DCR (Data Contamination Risk) framework addresses key limitations in existing methods and is structured into two key stages for quantifying BDC (Benchmark Data Contamination) levels.\n\nThe search results indicate active research in this area with multiple recent papers (from 2025-2026) proposing methods to adjust benchmark scores for contamination using Bayesian IRT approaches and adaptive testing methodologies."
+    ],
+    "durationSeconds": 9.931901272000003
+  },
+  "sourceToolAssistantUUID": "49b5fd57-1c28-4d9f-8aa0-1ad05b434ca8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-12T00:43:45.435Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019xdduiax96zqgwBrQVqZsa`</summary>
+
+```json
+{
+  "query": "\"dose-response\" contamination LLM benchmark arXiv 2601.04301 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2faaf792-7394-451a-b010-b56e94d7737e",
+  "isSidechain": false,
+  "requestId": "req_011CawkMSo5CY8XkzpNE7VXJ",
+  "type": "assistant",
+  "uuid": "8d0e908c-93ab-488e-ba67-0929f68e8f28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HN35vH78VkNzX674RdG29K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1010,
+      "cache_read_input_tokens": 31290,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 31290,
+          "cache_creation_input_tokens": 1010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-12T00:43:51.754Z_
+
+<details><summary>↩ Tool result · `toolu_019xdduiax96zqgwBrQVqZsa`</summary>
+
+```text
+Web search results for query: ""dose-response" contamination LLM benchmark arXiv 2601.04301 2026"
+
+Links: [{"title":"[2601.04301] Quantifying the Effect of Test Set Contamination on Generative Evaluations","url":"https://arxiv.org/abs/2601.04301"},{"title":"Quantifying the Effect of Test Set Contamination on Generative Evaluations","url":"https://arxiv.org/html/2601.04301"},{"title":"livebench:achallenging, contamination-limited llm benchmark","url":"https://arxiv.org/pdf/2406.19314"},{"title":"Rethinking Benchmark and Contamination for Language Models with","url":"https://arxiv.org/pdf/2311.04850"},{"title":"LiveBench: A Challenging, Contamination-Limited LLM Benchmark | OpenReview","url":"https://openreview.net/forum?id=sKYHBTAxVa"},{"title":"LiveBench: A Challenging, Contamination-Free LLM Benchmark","url":"https://livebench.ai/livebench.pdf"},{"title":"Benchmark Data Contamination of Large Language Models: A Survey","url":"https://arxiv.org/html/2406.04244v1"},{"title":"When Benchmarks Leak: Inference-Time Decontamination for LLMs","url":"https://arxiv.org/html/2601.19334v1"},{"title":"[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark","url":"https://arxiv.org/abs/2406.19314"},{"title":"[2601.13658] Beyond Known Facts: Generating Unseen Temporal Knowledge to Address Data Contamination in LLM Evaluation","url":"https://arxiv.org/abs/2601.13658"}]
+
+Based on my search results, I found the paper you're looking for. The paper (arXiv 2601.04301) quantitatively assesses the effect of test set contamination on generative evaluations through the language model lifecycle.
+
+Here are the key findings from this research:
+
+**Study Design**: The researchers pretrained language models on mixtures of web data and the MATH benchmark, sweeping model sizes and number of test set replicas contaminating the pretraining corpus; performance improves with contamination and model size.
+
+**Key Discovery**: Using scaling laws, the researchers made a surprising discovery: including even a single test set replica enables models to achieve lower loss than the irreducible error of training on the uncontaminated corpus.
+
+**Context**: While research has thoroughly investigated the impact of test set contamination on discriminative evaluations like multiple-choice question-answering, comparatively little research has studied the impact of test set contamination on generative evaluations.
+
+The paper was published in early 2026 (February 6, 2026) and examines how test set contamination affects language model performance in a dose-response manner across different scales and levels of contamination.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d0e908c-93ab-488e-ba67-0929f68e8f28",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "8f752555-36fd-4357-87ce-59a275510c24",
+  "toolUseResult": {
+    "query": "\"dose-response\" contamination LLM benchmark arXiv 2601.04301 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Dyz49NCaRVmopfsBcHCFHk",
+        "content": [
+          {
+            "title": "[2601.04301] Quantifying the Effect of Test Set Contamination on Generative Evaluations",
+            "url": "https://arxiv.org/abs/2601.04301"
+          },
+          {
+            "title": "Quantifying the Effect of Test Set Contamination on Generative Evaluations",
+            "url": "https://arxiv.org/html/2601.04301"
+          },
+          {
+            "title": "livebench:achallenging, contamination-limited llm benchmark",
+            "url": "https://arxiv.org/pdf/2406.19314"
+          },
+          {
+            "title": "Rethinking Benchmark and Contamination for Language Models with",
+            "url": "https://arxiv.org/pdf/2311.04850"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark | OpenReview",
+            "url": "https://openreview.net/forum?id=sKYHBTAxVa"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Free LLM Benchmark",
+            "url": "https://livebench.ai/livebench.pdf"
+          },
+          {
+            "title": "Benchmark Data Contamination of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2406.04244v1"
+          },
+          {
+            "title": "When Benchmarks Leak: Inference-Time Decontamination for LLMs",
+            "url": "https://arxiv.org/html/2601.19334v1"
+          },
+          {
+            "title": "[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark",
+            "url": "https://arxiv.org/abs/2406.19314"
+          },
+          {
+            "title": "[2601.13658] Beyond Known Facts: Generating Unseen Temporal Knowledge to Address Data Contamination in LLM Evaluation",
+            "url": "https://arxiv.org/abs/2601.13658"
+          }
+        ]
+      },
+      "Based on my search results, I found the paper you're looking for. The paper (arXiv 2601.04301) quantitatively assesses the effect of test set contamination on generative evaluations through the language model lifecycle.\n\nHere are the key findings from this research:\n\n**Study Design**: The researchers pretrained language models on mixtures of web data and the MATH benchmark, sweeping model sizes and number of test set replicas contaminating the pretraining corpus; performance improves with contamination and model size.\n\n**Key Discovery**: Using scaling laws, the researchers made a surprising discovery: including even a single test set replica enables models to achieve lower loss than the irreducible error of training on the uncontaminated corpus.\n\n**Context**: While research has thoroughly investigated the impact of test set contamination on discriminative evaluations like multiple-choice question-answering, comparatively little research has studied the impact of test set contamination on generative evaluations.\n\nThe paper was published in early 2026 (February 6, 2026) and examines how test set contamination affects language model performance in a dose-response manner across different scales and levels of contamination."
+    ],
+    "durationSeconds": 6.294112072000003
+  },
+  "sourceToolAssistantUUID": "8d0e908c-93ab-488e-ba67-0929f68e8f28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-12T00:43:55.319Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NUpJynrbH46EbqrVD6Fbdn`</summary>
+
+```json
+{
+  "query": "fragility benchmark contamination detection reasoning models GRPO arXiv 2510.02386"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f752555-36fd-4357-87ce-59a275510c24",
+  "isSidechain": false,
+  "requestId": "req_011CawkN78AWEbnt6VdSi9sH",
+  "type": "assistant",
+  "uuid": "006d9673-7f3c-48e0-8589-f0697a882035",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oEavM4zu7PTarzs1Mzqm8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 32300,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 819,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 32300,
+          "cache_creation_input_tokens": 819,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 819
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-12T00:44:02.414Z_
+
+<details><summary>↩ Tool result · `toolu_01NUpJynrbH46EbqrVD6Fbdn`</summary>
+
+```text
+Web search results for query: "fragility benchmark contamination detection reasoning models GRPO arXiv 2510.02386"
+
+Links: [{"title":"[2510.02386] On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/abs/2510.02386"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/html/2510.02386v1"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://www.researchgate.net/publication/396223620_On_The_Fragility_of_Benchmark_Contamination_Detection_in_Reasoning_Models"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=bhR00j6Mku"},{"title":"[PDF] On The Fragility of Benchmark Contamination Detection in Reasoning Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/On-The-Fragility-of-Benchmark-Contamination-in-Wang-Li/9a5bf5d3c7116cc4a104c06599fbcef2d1b5abf3"},{"title":"DynaSolidGeo: A Dynamic Benchmark for Genuine Spatial Mathematical Reasoning of VLMs in Solid Geometry","url":"https://arxiv.org/html/2510.22340v1"},{"title":"Unveiling the Spectrum of Data Contamination in Language Models: A Survey from Detection to Remediation","url":"https://arxiv.org/html/2406.14644v1"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/html/2510.09259"},{"title":"Evaluating and Enhancing the Vulnerability Reasoning Capabilities of Large Language Models","url":"https://arxiv.org/html/2602.06687v1"},{"title":"evaluation of reasoning in language models","url":"https://arxiv.org/pdf/2509.24210"}]
+
+I found the paper you were searching for. Here's what the research on arXiv 2510.02386 is about:
+
+## Overview
+
+The paper addresses how leaderboards for large reasoning models (LRMs) have created incentives for developers to optimize directly on benchmark suites, with a shortcut being to incorporate evaluation benchmarks into training data to yield inflated performance, known as benchmark contamination.
+
+## Key Finding
+
+The studies find that evading contamination detections for LRMs is alarmingly easy. Specifically, while contamination during supervised fine-tuning (SFT) can be originally identified by contamination detection methods, even brief GRPO training can markedly conceal contamination signals that most detection methods rely on.
+
+## Technical Analysis
+
+GRPO lowers the entropy of generated sequences and the log probability distribution of members and non-members converge after GRPO, which means GRPO may inherently suppress contamination evidence by rendering members and non-members indistinguishable.
+
+Further empirical experiments and theoretical analysis indicate that PPO style importance sampling and clipping objectives are the root cause of this detection concealment, indicating that a broad class of RL methods may inherently exhibit similar concealment capabilities.
+
+## Authors
+
+The paper is authored by Han Wang, Haoyu Li, Brian Ko, and Huan Zhang.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "006d9673-7f3c-48e0-8589-f0697a882035",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "babaeb30-88e5-4f00-9afc-27ca9c9b1d5a",
+  "toolUseResult": {
+    "query": "fragility benchmark contamination detection reasoning models GRPO arXiv 2510.02386",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C7c4r8SK8ALhwhhR1JRJxg",
+        "content": [
+          {
+            "title": "[2510.02386] On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/abs/2510.02386"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/html/2510.02386v1"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://www.researchgate.net/publication/396223620_On_The_Fragility_of_Benchmark_Contamination_Detection_in_Reasoning_Models"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models | OpenReview",
+            "url": "https://openreview.net/forum?id=bhR00j6Mku"
+          },
+          {
+            "title": "[PDF] On The Fragility of Benchmark Contamination Detection in Reasoning Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/On-The-Fragility-of-Benchmark-Contamination-in-Wang-Li/9a5bf5d3c7116cc4a104c06599fbcef2d1b5abf3"
+          },
+          {
+            "title": "DynaSolidGeo: A Dynamic Benchmark for Genuine Spatial Mathematical Reasoning of VLMs in Solid Geometry",
+            "url": "https://arxiv.org/html/2510.22340v1"
+          },
+          {
+            "title": "Unveiling the Spectrum of Data Contamination in Language Models: A Survey from Detection to Remediation",
+            "url": "https://arxiv.org/html/2406.14644v1"
+          },
+          {
+            "title": "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models",
+            "url": "https://arxiv.org/html/2510.09259"
+          },
+          {
+            "title": "Evaluating and Enhancing the Vulnerability Reasoning Capabilities of Large Language Models",
+            "url": "https://arxiv.org/html/2602.06687v1"
+          },
+          {
+            "title": "evaluation of reasoning in language models",
+            "url": "https://arxiv.org/pdf/2509.24210"
+          }
+        ]
+      },
+      "I found the paper you were searching for. Here's what the research on arXiv 2510.02386 is about:\n\n## Overview\n\nThe paper addresses how leaderboards for large reasoning models (LRMs) have created incentives for developers to optimize directly on benchmark suites, with a shortcut being to incorporate evaluation benchmarks into training data to yield inflated performance, known as benchmark contamination.\n\n## Key Finding\n\nThe studies find that evading contamination detections for LRMs is alarmingly easy. Specifically, while contamination during supervised fine-tuning (SFT) can be originally identified by contamination detection methods, even brief GRPO training can markedly conceal contamination signals that most detection methods rely on.\n\n## Technical Analysis\n\nGRPO lowers the entropy of generated sequences and the log probability distribution of members and non-members converge after GRPO, which means GRPO may inherently suppress contamination evidence by rendering members and non-members indistinguishable.\n\nFurther empirical experiments and theoretical analysis indicate that PPO style importance sampling and clipping objectives are the root cause of this detection concealment, indicating that a broad class of RL methods may inherently exhibit similar concealment capabilities.\n\n## Authors\n\nThe paper is authored by Han Wang, Haoyu Li, Brian Ko, and Huan Zhang."
+    ],
+    "durationSeconds": 7.091074634999997
+  },
+  "sourceToolAssistantUUID": "006d9673-7f3c-48e0-8589-f0697a882035",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-12T00:44:02.417Z_
+
+```json
+{
+  "parentUuid": "babaeb30-88e5-4f00-9afc-27ca9c9b1d5a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2253cdb4-4bbf-409f-a789-397ccd833078",
+  "timestamp": "2026-05-12T00:44:02.417Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2253cdb4-4bbf-409f-a789-397ccd833078",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-12T00:44:06.996Z_
+
+Good, key references verified. Now let me search for potential competitors the proposal might be missing, and verify feasibility claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2253cdb4-4bbf-409f-a789-397ccd833078",
+  "isSidechain": false,
+  "requestId": "req_011CawkNtgqKHG2BNMooZsnN",
+  "type": "assistant",
+  "uuid": "e20277a6-3919-4f24-b64a-18d292a6504c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pikm5J5xgR6nMhEYu6ALtW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 33119,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1027,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 33119,
+          "cache_creation_input_tokens": 1027,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1027
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-12T00:44:07.683Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012TKL8EgVmNfEGg6qEdcv8q`</summary>
+
+```json
+{
+  "query": "IRT contamination covariate benchmark score adjustment LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e20277a6-3919-4f24-b64a-18d292a6504c",
+  "isSidechain": false,
+  "requestId": "req_011CawkNtgqKHG2BNMooZsnN",
+  "type": "assistant",
+  "uuid": "a227db23-20a4-4673-9d63-d2308128c326",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pikm5J5xgR6nMhEYu6ALtW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 33119,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1027,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 33119,
+          "cache_creation_input_tokens": 1027,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1027
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-12T00:44:15.492Z_
+
+<details><summary>↩ Tool result · `toolu_012TKL8EgVmNfEGg6qEdcv8q`</summary>
+
+```text
+Web search results for query: "IRT contamination covariate benchmark score adjustment LLM 2025 2026"
+
+Links: [{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"LLM evaluation benchmarks and safety datasets for 2025 | RAIL Score Knowledge Hub","url":"https://responsibleailabs.ai/knowledge-hub/articles/llm-evaluation-benchmarks-2025"},{"title":"LLM benchmarks in 2026: What they prove and what your business actually needs | High-Quality AI Data to Power Innovation | LXT","url":"https://www.lxt.ai/blog/llm-benchmarks/"},{"title":"A Survey from Static to Dynamic Evaluation","url":"https://aclanthology.org/2025.emnlp-main.511.pdf"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning | OpenReview","url":"https://openreview.net/forum?id=YlpaaYxx4t"},{"title":"LiveBench: A Challenging, Contamination-Limited LLM Benchmark | OpenReview","url":"https://openreview.net/forum?id=sKYHBTAxVa"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"[2604.05766] The LLM Effect on IR Benchmarks: A Meta-Analysis of Effectiveness, Baselines, and Contamination","url":"https://arxiv.org/abs/2604.05766"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://aclanthology.org/2025.emnlp-main.1173.pdf"},{"title":"GitHub - LiveBench/LiveBench: LiveBench: A Challenging, Contamination-Free LLM Benchmark · GitHub","url":"https://github.com/LiveBench/LiveBench"}]
+
+Based on the search results, I found relevant information about LLM contamination, benchmark score adjustment, and related research from 2025-2026. Here's what the current research shows:
+
+## Key Findings on Contamination and Score Adjustment
+
+A 2026 paper titled "Quantifying the Effect of Test Set Contamination on Generative Evaluations" trained dozens of models on Qwen 3 architectures while sweeping the number of test set replicas in the pretraining corpus and fit a clean dose-response curve.
+
+Two parameters matter for contamination impact: capacity (model size) and incentive (the loss reduction the model gets from memorizing contaminated data), with larger models having steeper dose-response curves and needing a smaller dose to memorize.
+
+## Quantification Framework
+
+The DCR (Data Contamination Risk) framework was designed to address key limitations in existing methods for understanding contamination risks. DCR represents the calculated DCR Factor, with Acc being the evaluation result at baseline, and Accadj representing the result adjusted using the DCR Factor.
+
+## Detection Methods
+
+Five detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.
+
+The research shows that contamination-adjusted scoring is an active area of investigation, with frameworks being developed to quantify and adjust benchmark scores accordingly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a227db23-20a4-4673-9d63-d2308128c326",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "df956ff3-126c-4766-9fc5-aaf29ab3ac8a",
+  "toolUseResult": {
+    "query": "IRT contamination covariate benchmark score adjustment LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Nz2gZahWsAKMWCFD2dFadX",
+        "content": [
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "LLM evaluation benchmarks and safety datasets for 2025 | RAIL Score Knowledge Hub",
+            "url": "https://responsibleailabs.ai/knowledge-hub/articles/llm-evaluation-benchmarks-2025"
+          },
+          {
+            "title": "LLM benchmarks in 2026: What they prove and what your business actually needs | High-Quality AI Data to Power Innovation | LXT",
+            "url": "https://www.lxt.ai/blog/llm-benchmarks/"
+          },
+          {
+            "title": "A Survey from Static to Dynamic Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.511.pdf"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=YlpaaYxx4t"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark | OpenReview",
+            "url": "https://openreview.net/forum?id=sKYHBTAxVa"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "[2604.05766] The LLM Effect on IR Benchmarks: A Meta-Analysis of Effectiveness, Baselines, and Contamination",
+            "url": "https://arxiv.org/abs/2604.05766"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173.pdf"
+          },
+          {
+            "title": "GitHub - LiveBench/LiveBench: LiveBench: A Challenging, Contamination-Free LLM Benchmark · GitHub",
+            "url": "https://github.com/LiveBench/LiveBench"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about LLM contamination, benchmark score adjustment, and related research from 2025-2026. Here's what the current research shows:\n\n## Key Findings on Contamination and Score Adjustment\n\nA 2026 paper titled \"Quantifying the Effect of Test Set Contamination on Generative Evaluations\" trained dozens of models on Qwen 3 architectures while sweeping the number of test set replicas in the pretraining corpus and fit a clean dose-response curve.\n\nTwo parameters matter for contamination impact: capacity (model size) and incentive (the loss reduction the model gets from memorizing contaminated data), with larger models having steeper dose-response curves and needing a smaller dose to memorize.\n\n## Quantification Framework\n\nThe DCR (Data Contamination Risk) framework was designed to address key limitations in existing methods for understanding contamination risks. DCR represents the calculated DCR Factor, with Acc being the evaluation result at baseline, and Accadj representing the result adjusted using the DCR Factor.\n\n## Detection Methods\n\nFive detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.\n\nThe research shows that contamination-adjusted scoring is an active area of investigation, with frameworks being developed to quantify and adjust benchmark scores accordingly."
+    ],
+    "durationSeconds": 7.805712284000008
+  },
+  "sourceToolAssistantUUID": "a227db23-20a4-4673-9d63-d2308128c326",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-12T00:44:18.164Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013GTtFYppvTbD2vkKMnxEUh`</summary>
+
+```json
+{
+  "query": "\"quantifying data contamination\" psychometric evaluations LLMs EACL 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df956ff3-126c-4766-9fc5-aaf29ab3ac8a",
+  "isSidechain": false,
+  "requestId": "req_011CawkPrbc3uXNrFV9ie3n3",
+  "type": "assistant",
+  "uuid": "c51f4770-1005-4cf4-8e98-d0572c25a869",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQimtgEJ1cWpANosx18xiF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 34146,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 34146,
+          "cache_creation_input_tokens": 991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-12T00:44:25.204Z_
+
+<details><summary>↩ Tool result · `toolu_013GTtFYppvTbD2vkKMnxEUh`</summary>
+
+```text
+Web search results for query: ""quantifying data contamination" psychometric evaluations LLMs EACL 2026"
+
+Links: [{"title":"[2510.07175] Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/abs/2510.07175"},{"title":"Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/html/2510.07175"},{"title":"Quantifying Data Contamination in Psychometric ...","url":"https://aclanthology.org/2026.findings-eacl.319.pdf"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=3475&show=50"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://aclanthology.org/2025.emnlp-main.1173.pdf"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"Generalization or Memorization: Data Contamination and Trustworthy Evaluation for Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.findings-acl.716/"},{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"[2411.03923] Evaluation data contamination in LLMs: how do we measure it and (when) does it matter?","url":"https://arxiv.org/abs/2411.03923"},{"title":"Evaluation data contamination in LLMs: how do we measure it and (when) does it matter?","url":"https://arxiv.org/html/2411.03923v1"}]
+
+I found relevant results for your search query. Here are the key findings:
+
+## "Quantifying Data Contamination in Psychometric Evaluations of LLMs"
+
+A framework has been proposed to systematically measure data contamination in psychometric evaluations of LLMs, evaluating three aspects: (1) item memorization, (2) evaluation memorization, and (3) target score matching.
+
+Applying this framework to 21 models from major families and four widely used psychometric inventories, evidence shows that popular inventories such as the Big Five Inventory (BFI-44) and Portrait Values Questionnaire (PVQ-40) exhibit strong contamination, where models not only memorize items but can also adjust their responses to achieve specific target scores.
+
+### Publication Details
+
+The paper "Quantifying Data Contamination in Psychometric Evaluations of LLMs" by Jongwook Han, Woojung Song, Jonggeun Lee, and Yohan Jo has been accepted as an EACL 2026 Findings paper. The latest version was published on January 30, 2026.
+
+### Problem Context
+
+Although prior work has raised concerns about possible data contamination from psychometric inventories, which may threaten the reliability of such evaluations, there has been no systematic attempt to quantify the extent of this contamination.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c51f4770-1005-4cf4-8e98-d0572c25a869",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "80c0482c-e377-4e3a-9ce9-831111379f4e",
+  "toolUseResult": {
+    "query": "\"quantifying data contamination\" psychometric evaluations LLMs EACL 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K9u4E3PK1dej55ARx1bJsk",
+        "content": [
+          {
+            "title": "[2510.07175] Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/abs/2510.07175"
+          },
+          {
+            "title": "Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/html/2510.07175"
+          },
+          {
+            "title": "Quantifying Data Contamination in Psychometric ...",
+            "url": "https://aclanthology.org/2026.findings-eacl.319.pdf"
+          },
+          {
+            "title": "Machine Learning Oct 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-10?skip=3475&show=50"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173.pdf"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "Generalization or Memorization: Data Contamination and Trustworthy Evaluation for Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-acl.716/"
+          },
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "[2411.03923] Evaluation data contamination in LLMs: how do we measure it and (when) does it matter?",
+            "url": "https://arxiv.org/abs/2411.03923"
+          },
+          {
+            "title": "Evaluation data contamination in LLMs: how do we measure it and (when) does it matter?",
+            "url": "https://arxiv.org/html/2411.03923v1"
+          }
+        ]
+      },
+      "I found relevant results for your search query. Here are the key findings:\n\n## \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\"\n\nA framework has been proposed to systematically measure data contamination in psychometric evaluations of LLMs, evaluating three aspects: (1) item memorization, (2) evaluation memorization, and (3) target score matching.\n\nApplying this framework to 21 models from major families and four widely used psychometric inventories, evidence shows that popular inventories such as the Big Five Inventory (BFI-44) and Portrait Values Questionnaire (PVQ-40) exhibit strong contamination, where models not only memorize items but can also adjust their responses to achieve specific target scores.\n\n### Publication Details\n\nThe paper \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\" by Jongwook Han, Woojung Song, Jonggeun Lee, and Yohan Jo has been accepted as an EACL 2026 Findings paper. The latest version was published on January 30, 2026.\n\n### Problem Context\n\nAlthough prior work has raised concerns about possible data contamination from psychometric inventories, which may threaten the reliability of such evaluations, there has been no systematic attempt to quantify the extent of this contamination."
+    ],
+    "durationSeconds": 7.035990516000005
+  },
+  "sourceToolAssistantUUID": "c51f4770-1005-4cf4-8e98-d0572c25a869",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-12T00:44:27.817Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QaspkjjL6hjhBxdSSQEHdn`</summary>
+
+```json
+{
+  "query": "Bayesian item response theory contamination covariate psychometrics benchmark 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80c0482c-e377-4e3a-9ce9-831111379f4e",
+  "isSidechain": false,
+  "requestId": "req_011CawkQa9B58vNaNeZGsrVk",
+  "type": "assistant",
+  "uuid": "90f67110-86f6-4886-8b4a-72a30bb0c64e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PB69E3kUJvcw33gfbbzG3A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 35137,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 35137,
+          "cache_creation_input_tokens": 907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-12T00:44:35.107Z_
+
+<details><summary>↩ Tool result · `toolu_01QaspkjjL6hjhBxdSSQEHdn`</summary>
+
+```text
+Web search results for query: "Bayesian item response theory contamination covariate psychometrics benchmark 2025 2026 arxiv"
+
+Links: [{"title":"Item Response Theory – A Statistical Framework for ...","url":"https://arxiv.org/pdf/2108.08604"},{"title":"Item Response Theory | Columbia University Mailman School of Public Health","url":"https://www.publichealth.columbia.edu/research/population-health-methods/item-response-theory"},{"title":"Item response theory - Wikipedia","url":"https://en.wikipedia.org/wiki/Item_response_theory"},{"title":"A Bayesian Item Response Model for Examining Item Position Effects in Complex Survey Data - Matthias Trendtel, Alexander Robitzsch, 2021","url":"https://journals.sagepub.com/doi/10.3102/1076998620931016"},{"title":"Sparse Bayesian Multidimensional Item Response Theory","url":"https://arxiv.org/pdf/2310.17820"},{"title":"A tutorial on Bayesian item response theory: An illustration using the Teacher Stress Inventory-Short Form - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S002244052400147X"},{"title":"Item Response Theory Overview","url":"https://www.emergentmind.com/topics/item-response-theory-irt"},{"title":"Frontiers | A multidimensional Bayesian IRT method for discovering misconceptions from concept test data","url":"https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1506320/full"},{"title":"[1905.09501] Bayesian Item Response Modeling in R with brms and Stan","url":"https://arxiv.org/abs/1905.09501"},{"title":"Bayesian Modeling of Measurement Error in Predictor Variables Using Item Response Theory | Psychometrika | Cambridge Core","url":"https://www.cambridge.org/core/journals/psychometrika/article/abs/bayesian-modeling-of-measurement-error-in-predictor-variables-using-item-response-theory/A8E8AB6065464B49FFFCFE4184BAE16A"}]
+
+The web search returned several results related to Bayesian item response theory, psychometrics, and related topics. Here's what I found:
+
+## Search Results Summary
+
+The search yielded several relevant papers and resources on Bayesian Item Response Theory (IRT) and psychometrics:
+
+1. **ArXiv Paper on IRT Framework** (2108.08604): This paper discusses IRT models involving covariates, noting that covariates of individuals are sometimes collected together with item response data.
+
+2. **Sparse Bayesian Multidimensional IRT** (ArXiv 2310.17820): This paper addresses Bayesian approaches to multidimensional IRT models with various estimation techniques.
+
+3. **Recent Bayesian IRT Tutorial** (2025): IRT comprises a family of statistical latent trait models that are widely used in modern measurement research for psychometric purposes, including test construction, item analysis, and the scaling, diagnosis, and classification of test takers.
+
+4. **Bayesian Item Response Modeling in R** (ArXiv 1905.09501): This resource demonstrates how to use the R package brms together with Stan to specify and fit a wide range of Bayesian IRT models using flexible and intuitive multilevel formula syntax.
+
+5. **Recent Overview of IRT** (2025): Recent work includes federated, privacy-preserving inference extending FedIRT to more complex IRT models, integrating secure computation and differential privacy for multi-institutional collaborations.
+
+However, I did not find specific papers directly addressing "contamination covariate" in a benchmark context from 2025-2026 in these results. The search results focus more broadly on Bayesian IRT methods and covariate modeling rather than specifically on contamination effects as a research focus.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90f67110-86f6-4886-8b4a-72a30bb0c64e",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "62eea8b8-c414-43a6-96a9-4b132ef997be",
+  "toolUseResult": {
+    "query": "Bayesian item response theory contamination covariate psychometrics benchmark 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KKQtYAQMoBh8tMHgiBfYHg",
+        "content": [
+          {
+            "title": "Item Response Theory – A Statistical Framework for ...",
+            "url": "https://arxiv.org/pdf/2108.08604"
+          },
+          {
+            "title": "Item Response Theory | Columbia University Mailman School of Public Health",
+            "url": "https://www.publichealth.columbia.edu/research/population-health-methods/item-response-theory"
+          },
+          {
+            "title": "Item response theory - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Item_response_theory"
+          },
+          {
+            "title": "A Bayesian Item Response Model for Examining Item Position Effects in Complex Survey Data - Matthias Trendtel, Alexander Robitzsch, 2021",
+            "url": "https://journals.sagepub.com/doi/10.3102/1076998620931016"
+          },
+          {
+            "title": "Sparse Bayesian Multidimensional Item Response Theory",
+            "url": "https://arxiv.org/pdf/2310.17820"
+          },
+          {
+            "title": "A tutorial on Bayesian item response theory: An illustration using the Teacher Stress Inventory-Short Form - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S002244052400147X"
+          },
+          {
+            "title": "Item Response Theory Overview",
+            "url": "https://www.emergentmind.com/topics/item-response-theory-irt"
+          },
+          {
+            "title": "Frontiers | A multidimensional Bayesian IRT method for discovering misconceptions from concept test data",
+            "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1506320/full"
+          },
+          {
+            "title": "[1905.09501] Bayesian Item Response Modeling in R with brms and Stan",
+            "url": "https://arxiv.org/abs/1905.09501"
+          },
+          {
+            "title": "Bayesian Modeling of Measurement Error in Predictor Variables Using Item Response Theory | Psychometrika | Cambridge Core",
+            "url": "https://www.cambridge.org/core/journals/psychometrika/article/abs/bayesian-modeling-of-measurement-error-in-predictor-variables-using-item-response-theory/A8E8AB6065464B49FFFCFE4184BAE16A"
+          }
+        ]
+      },
+      "The web search returned several results related to Bayesian item response theory, psychometrics, and related topics. Here's what I found:\n\n## Search Results Summary\n\nThe search yielded several relevant papers and resources on Bayesian Item Response Theory (IRT) and psychometrics:\n\n1. **ArXiv Paper on IRT Framework** (2108.08604): This paper discusses IRT models involving covariates, noting that covariates of individuals are sometimes collected together with item response data.\n\n2. **Sparse Bayesian Multidimensional IRT** (ArXiv 2310.17820): This paper addresses Bayesian approaches to multidimensional IRT models with various estimation techniques.\n\n3. **Recent Bayesian IRT Tutorial** (2025): IRT comprises a family of statistical latent trait models that are widely used in modern measurement research for psychometric purposes, including test construction, item analysis, and the scaling, diagnosis, and classification of test takers.\n\n4. **Bayesian Item Response Modeling in R** (ArXiv 1905.09501): This resource demonstrates how to use the R package brms together with Stan to specify and fit a wide range of Bayesian IRT models using flexible and intuitive multilevel formula syntax.\n\n5. **Recent Overview of IRT** (2025): Recent work includes federated, privacy-preserving inference extending FedIRT to more complex IRT models, integrating secure computation and differential privacy for multi-institutional collaborations.\n\nHowever, I did not find specific papers directly addressing \"contamination covariate\" in a benchmark context from 2025-2026 in these results. The search results focus more broadly on Bayesian IRT methods and covariate modeling rather than specifically on contamination effects as a research focus."
+    ],
+    "durationSeconds": 7.284345588999989
+  },
+  "sourceToolAssistantUUID": "90f67110-86f6-4886-8b4a-72a30bb0c64e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-12T00:44:37.789Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EUCQka4iGQk6kh9VbYvdRy`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May 2026 special theme data contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62eea8b8-c414-43a6-96a9-4b132ef997be",
+  "isSidechain": false,
+  "requestId": "req_011CawkRJWMobj8YqTQy5Qkk",
+  "type": "assistant",
+  "uuid": "61c98379-7b46-4c0e-a970-006162268191",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgiYkTFB6EX8fSqybMGyz8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1040,
+      "cache_read_input_tokens": 36044,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1040,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 36044,
+          "cache_creation_input_tokens": 1040,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1040
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-12T00:44:45.244Z_
+
+<details><summary>↩ Tool result · `toolu_01EUCQka4iGQk6kh9VbYvdRy`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May 2026 special theme data contamination"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"}]
+
+Now let me search for information about the special theme on data contamination:
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"GitHub - acl-org/emnlp-2026: Repository for the EMNLP 2026 conference · GitHub","url":"https://github.com/acl-org/emnlp-2026"},{"title":"Allen School News » Allen School researchers earn EMNLP Best Paper Award for making Internet-scale texts efficiently searchable with infini-gram mini","url":"https://news.cs.washington.edu/2026/01/29/allen-school-researchers-earn-emnlp-best-paper-award/"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=883"},{"title":"EMNLP 2026: Conference on Empirical Methods in Natural Language Processing","url":"https://www.myhuiban.com/conference/424?lang=en_us"},{"title":"Empirical Methods in Natural Language Processing - Wikipedia","url":"https://en.wikipedia.org/wiki/Empirical_Methods_in_Natural_Language_Processing"},{"title":"EMNLP 2026 | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026"}]
+
+Based on the web search results, here's what I found about EMNLP 2026:
+
+## ARR Submission Deadline
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+## Special Theme and Data Contamination
+
+The EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era, addressing "New Missions for NLP Research." 
+
+Regarding data contamination specifically, the conference is interested in research on data scarcity and limits, contamination, and the consequences of synthetic data feedback loops, and new approaches to data creation, documentation, governance, and consent.
+
+## Important Submission Details
+
+For the ARR 2026 May cycle aligned with EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026. Additionally, all authors must complete the author registration form by May 27, 2026 EoD AoE.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61c98379-7b46-4c0e-a970-006162268191",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "527e4e56-2baf-4e3b-aff6-b353c8f4a254",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May 2026 special theme data contamination",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YKEduN3EmP7eQYxS9RwtEm",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          }
+        ]
+      },
+      "Now let me search for information about the special theme on data contamination:",
+      {
+        "tool_use_id": "srvtoolu_011SWPsAxjSTHLfw2pNbVDNo",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "GitHub - acl-org/emnlp-2026: Repository for the EMNLP 2026 conference · GitHub",
+            "url": "https://github.com/acl-org/emnlp-2026"
+          },
+          {
+            "title": "Allen School News » Allen School researchers earn EMNLP Best Paper Award for making Internet-scale texts efficiently searchable with infini-gram mini",
+            "url": "https://news.cs.washington.edu/2026/01/29/allen-school-researchers-earn-emnlp-best-paper-award/"
+          },
+          {
+            "title": "EMNLP 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FConference"
+          },
+          {
+            "title": "EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=883"
+          },
+          {
+            "title": "EMNLP 2026: Conference on Empirical Methods in Natural Language Processing",
+            "url": "https://www.myhuiban.com/conference/424?lang=en_us"
+          },
+          {
+            "title": "Empirical Methods in Natural Language Processing - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Empirical_Methods_in_Natural_Language_Processing"
+          },
+          {
+            "title": "EMNLP 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about EMNLP 2026:\n\n## ARR Submission Deadline\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026.\n\n## Special Theme and Data Contamination\n\nThe EMNLP 2026 special theme invites papers that articulate, test, and advance visions for NLP in this era, addressing \"New Missions for NLP Research.\" \n\nRegarding data contamination specifically, the conference is interested in research on data scarcity and limits, contamination, and the consequences of synthetic data feedback loops, and new approaches to data creation, documentation, governance, and consent.\n\n## Important Submission Details\n\nFor the ARR 2026 May cycle aligned with EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026. Additionally, all authors must complete the author registration form by May 27, 2026 EoD AoE."
+    ],
+    "durationSeconds": 7.451400250999999
+  },
+  "sourceToolAssistantUUID": "61c98379-7b46-4c0e-a970-006162268191",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "527e4e56-2baf-4e3b-aff6-b353c8f4a254",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-12T00:44:48.045Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XkmsHmg2WhPvoxDN7Eog56`</summary>
+
+```json
+{
+  "query": "LoRA SFT fine-tuning 1B 3B model GPU hours cost training time 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "527e4e56-2baf-4e3b-aff6-b353c8f4a254",
+  "isSidechain": false,
+  "requestId": "req_011CawkS3nMwsRrWc8pvuHUS",
+  "type": "assistant",
+  "uuid": "474d3db3-8b08-489c-bf6e-5f7e2fe91fad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTnUvqWbgpTdnwwuYg8jvM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1487,
+      "cache_read_input_tokens": 37084,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1487,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 37084,
+          "cache_creation_input_tokens": 1487,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1487
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-12T00:44:55.465Z_
+
+<details><summary>↩ Tool result · `toolu_01XkmsHmg2WhPvoxDN7Eog56`</summary>
+
+```text
+Web search results for query: "LoRA SFT fine-tuning 1B 3B model GPU hours cost training time 2025"
+
+Links: [{"title":"Efficient Fine-Tuning with LoRA: A Guide to Optimal Parameter Selection for Large Language Models","url":"https://www.databricks.com/blog/efficient-fine-tuning-lora-guide-llms"},{"title":"Fine-Tuning LLMs with LoRA on a small GPU | Niklas Heidloff","url":"https://heidloff.net/article/fine-tuning-llm-lora-small-gpu/"},{"title":"Fine-Tuning Infrastructure: LoRA, QLoRA, and PEFT at Scale | Introl Blog","url":"https://introl.com/blog/fine-tuning-infrastructure-lora-qlora-peft-scale-guide-2025"},{"title":"How LoRA Makes AI Fine-Tuning Faster, Cheaper, and More Practical | Exxact Bog","url":"https://www.exxactcorp.com/blog/deep-learning/ai-fine-tuning-with-lora"},{"title":"How can I fine-tune large language models on a budget using LoRA and QLoRA on cloud GPUs?","url":"https://www.runpod.io/articles/guides/how-to-fine-tune-large-language-models-on-a-budget"},{"title":"How to Fine-Tune LLMs in 2026: Costs, GPUs, and Code | Spheron Blog","url":"https://www.spheron.network/blog/how-to-fine-tune-llm-2026/"},{"title":"LLM Fine-Tuning Pricing 2026 — Compare Training Costs | Price Per Token","url":"https://pricepertoken.com/fine-tuning"},{"title":"LoRA Fine-Tuning Cost 2026 | Real Pricing + ROI Calculator - Stratagem Systems","url":"https://www.stratagem-systems.com/blog/lora-fine-tuning-cost-analysis-2026"},{"title":"The Complete Guide to GPU Requirements for LLM Fine-Tuning | Runpod Blog","url":"https://www.runpod.io/blog/llm-fine-tuning-gpu-guide"},{"title":"Fine-Tuning LLMs with LoRA: 2025 Guide | Amir Teymoori","url":"https://amirteymoori.com/fine-tuning-llms-with-lora-a-practical-guide-for-2025/"}]
+
+Based on the search results, here's what I found regarding LoRA SFT fine-tuning costs and training times for small models in 2025:
+
+## GPU Hours and Training Time
+
+QLoRA on a single H100 takes 8-12 hours with a cost of $10-16. For LoRA (16-bit base model), you need about 2 GB of GPU memory per 1B parameters, making smaller models like 1B and 3B very efficient to train.
+
+## Cost Breakdown for 2025
+
+Cloud GPU costs in 2025 are: H100 80GB: $2.50-4.00/hour, A100 80GB: $1.50-2.50/hour, RTX 4090: $0.40-0.80/hour.
+
+For broader context on LoRA fine-tuning costs, LoRA fine-tuning costs $50-$300 per training run.
+
+## Memory Requirements for Small Models
+
+For 1B and 3B models specifically, for LoRA you need about 2 GB of GPU memory per 1B parameters for model weights plus overhead. This means both 1B and 3B models can run on consumer-grade GPUs.
+
+## SFT Framework
+
+The latest high level abstraction from Hugging Face is the SFTTrainer class in the TRL library, which simplifies the implementation of supervised fine-tuning with LoRA.
+
+The search results show that fine-tuning small models (1B-3B) with LoRA in 2025 is quite affordable and can be completed in hours rather than days, making it accessible for most organizations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "474d3db3-8b08-489c-bf6e-5f7e2fe91fad",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "d0280887-c0f1-47b8-9417-a932bbc9d6b9",
+  "toolUseResult": {
+    "query": "LoRA SFT fine-tuning 1B 3B model GPU hours cost training time 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NXDExNjJxfykUvYGiWxZrs",
+        "content": [
+          {
+            "title": "Efficient Fine-Tuning with LoRA: A Guide to Optimal Parameter Selection for Large Language Models",
+            "url": "https://www.databricks.com/blog/efficient-fine-tuning-lora-guide-llms"
+          },
+          {
+            "title": "Fine-Tuning LLMs with LoRA on a small GPU | Niklas Heidloff",
+            "url": "https://heidloff.net/article/fine-tuning-llm-lora-small-gpu/"
+          },
+          {
+            "title": "Fine-Tuning Infrastructure: LoRA, QLoRA, and PEFT at Scale | Introl Blog",
+            "url": "https://introl.com/blog/fine-tuning-infrastructure-lora-qlora-peft-scale-guide-2025"
+          },
+          {
+            "title": "How LoRA Makes AI Fine-Tuning Faster, Cheaper, and More Practical | Exxact Bog",
+            "url": "https://www.exxactcorp.com/blog/deep-learning/ai-fine-tuning-with-lora"
+          },
+          {
+            "title": "How can I fine-tune large language models on a budget using LoRA and QLoRA on cloud GPUs?",
+            "url": "https://www.runpod.io/articles/guides/how-to-fine-tune-large-language-models-on-a-budget"
+          },
+          {
+            "title": "How to Fine-Tune LLMs in 2026: Costs, GPUs, and Code | Spheron Blog",
+            "url": "https://www.spheron.network/blog/how-to-fine-tune-llm-2026/"
+          },
+          {
+            "title": "LLM Fine-Tuning Pricing 2026 — Compare Training Costs | Price Per Token",
+            "url": "https://pricepertoken.com/fine-tuning"
+          },
+          {
+            "title": "LoRA Fine-Tuning Cost 2026 | Real Pricing + ROI Calculator - Stratagem Systems",
+            "url": "https://www.stratagem-systems.com/blog/lora-fine-tuning-cost-analysis-2026"
+          },
+          {
+            "title": "The Complete Guide to GPU Requirements for LLM Fine-Tuning | Runpod Blog",
+            "url": "https://www.runpod.io/blog/llm-fine-tuning-gpu-guide"
+          },
+          {
+            "title": "Fine-Tuning LLMs with LoRA: 2025 Guide | Amir Teymoori",
+            "url": "https://amirteymoori.com/fine-tuning-llms-with-lora-a-practical-guide-for-2025/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding LoRA SFT fine-tuning costs and training times for small models in 2025:\n\n## GPU Hours and Training Time\n\nQLoRA on a single H100 takes 8-12 hours with a cost of $10-16. For LoRA (16-bit base model), you need about 2 GB of GPU memory per 1B parameters, making smaller models like 1B and 3B very efficient to train.\n\n## Cost Breakdown for 2025\n\nCloud GPU costs in 2025 are: H100 80GB: $2.50-4.00/hour, A100 80GB: $1.50-2.50/hour, RTX 4090: $0.40-0.80/hour.\n\nFor broader context on LoRA fine-tuning costs, LoRA fine-tuning costs $50-$300 per training run.\n\n## Memory Requirements for Small Models\n\nFor 1B and 3B models specifically, for LoRA you need about 2 GB of GPU memory per 1B parameters for model weights plus overhead. This means both 1B and 3B models can run on consumer-grade GPUs.\n\n## SFT Framework\n\nThe latest high level abstraction from Hugging Face is the SFTTrainer class in the TRL library, which simplifies the implementation of supervised fine-tuning with LoRA.\n\nThe search results show that fine-tuning small models (1B-3B) with LoRA in 2025 is quite affordable and can be completed in hours rather than days, making it accessible for most organizations."
+    ],
+    "durationSeconds": 7.416407403999997
+  },
+  "sourceToolAssistantUUID": "474d3db3-8b08-489c-bf6e-5f7e2fe91fad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-12T00:44:59.254Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014tvdNwP7d5UesXspfvWkys`</summary>
+
+```json
+{
+  "query": "model collapse synthetic data prevention detection method 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0280887-c0f1-47b8-9417-a932bbc9d6b9",
+  "isSidechain": false,
+  "requestId": "req_011CawkSoX9YHL3ontPmBgGA",
+  "type": "assistant",
+  "uuid": "e416d55f-3fd9-4f46-9c1f-d69298060f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Y5DYQXFtEQmwG3GHssumK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1109,
+      "cache_read_input_tokens": 38571,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 38571,
+          "cache_creation_input_tokens": 1109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-12T00:45:06.921Z_
+
+<details><summary>↩ Tool result · `toolu_014tvdNwP7d5UesXspfvWkys`</summary>
+
+```text
+Web search results for query: "model collapse synthetic data prevention detection method 2025 2026 arxiv"
+
+Links: [{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.","url":"https://arxiv.org/html/2510.16657v1"},{"title":"[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence","url":"https://arxiv.org/abs/2510.16657"},{"title":"Escaping Model Collapse via Synthetic Data Verification:","url":"https://arxiv.org/pdf/2510.16657"},{"title":"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World | OpenReview","url":"https://openreview.net/forum?id=Xr5iINA3zU"},{"title":"[2404.01413] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/abs/2404.01413"},{"title":"[2410.16713] Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World","url":"https://arxiv.org/abs/2410.16713"},{"title":"[2406.07515] Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification","url":"https://arxiv.org/abs/2406.07515"},{"title":"Preventing Model Collapse in the Synthetic-Data Era","url":"https://cseweb.ucsd.edu/~yuxiangw/classes/AIsafety-2025Fall/Lectures/preventing_model_collapse_suraj.pdf"},{"title":"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data","url":"https://arxiv.org/html/2404.01413v2"},{"title":"Strong Model Collapse | OpenReview","url":"https://openreview.net/forum?id=et5l9qPUhm"}]
+
+I've completed the web search for your query about model collapse, synthetic data prevention, and detection methods from 2025-2026 on arXiv. Here are the key findings:
+
+## Recent Research on Model Collapse Prevention (2025-2026)
+
+**Main Prevention/Detection Approaches:**
+
+1. **Synthetic Data Verification/Filtering**: By injecting information through an external synthetic data verifier, whether a human or a better model, synthetic retraining will not cause model collapse. Research investigates the use of verification on synthesized data to prevent model collapse, considering that it is easier for both humans and machines to tell between good and bad examples than to generate high-quality samples.
+
+2. **Data Accumulation Strategy**: Accumulating generated data with real data can indeed avoid model collapse. If you accumulate synthetic data with a non-shrinking real-data anchor, you avoid collapse.
+
+3. **Watermarking and Detection Methods**: Imperceptible markers can be embedded in LLM outputs that identify them as synthetic, designed to be invisible to humans but detectable by algorithms. Another approach attaches metadata to every data point indicating its source (real vs. synthetic), generation date, and the model used to generate it.
+
+**Key ArXiv Papers:**
+- "Escaping Model Collapse via Synthetic Data Verification" was updated in March 2026 (arXiv:2510.16657)
+- A paper on "Collapse or Thrive?" was updated in March 2025 (arXiv:2410.16713)
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e416d55f-3fd9-4f46-9c1f-d69298060f08",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "e89b7835-8fd8-4928-85e6-41450ce30a83",
+  "toolUseResult": {
+    "query": "model collapse synthetic data prevention detection method 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018kfjn4k3kBuBPuYhXfj7gC",
+        "content": [
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.",
+            "url": "https://arxiv.org/html/2510.16657v1"
+          },
+          {
+            "title": "[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence",
+            "url": "https://arxiv.org/abs/2510.16657"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification:",
+            "url": "https://arxiv.org/pdf/2510.16657"
+          },
+          {
+            "title": "Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World | OpenReview",
+            "url": "https://openreview.net/forum?id=Xr5iINA3zU"
+          },
+          {
+            "title": "[2404.01413] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/abs/2404.01413"
+          },
+          {
+            "title": "[2410.16713] Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World",
+            "url": "https://arxiv.org/abs/2410.16713"
+          },
+          {
+            "title": "[2406.07515] Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification",
+            "url": "https://arxiv.org/abs/2406.07515"
+          },
+          {
+            "title": "Preventing Model Collapse in the Synthetic-Data Era",
+            "url": "https://cseweb.ucsd.edu/~yuxiangw/classes/AIsafety-2025Fall/Lectures/preventing_model_collapse_suraj.pdf"
+          },
+          {
+            "title": "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data",
+            "url": "https://arxiv.org/html/2404.01413v2"
+          },
+          {
+            "title": "Strong Model Collapse | OpenReview",
+            "url": "https://openreview.net/forum?id=et5l9qPUhm"
+          }
+        ]
+      },
+      "I've completed the web search for your query about model collapse, synthetic data prevention, and detection methods from 2025-2026 on arXiv. Here are the key findings:\n\n## Recent Research on Model Collapse Prevention (2025-2026)\n\n**Main Prevention/Detection Approaches:**\n\n1. **Synthetic Data Verification/Filtering**: By injecting information through an external synthetic data verifier, whether a human or a better model, synthetic retraining will not cause model collapse. Research investigates the use of verification on synthesized data to prevent model collapse, considering that it is easier for both humans and machines to tell between good and bad examples than to generate high-quality samples.\n\n2. **Data Accumulation Strategy**: Accumulating generated data with real data can indeed avoid model collapse. If you accumulate synthetic data with a non-shrinking real-data anchor, you avoid collapse.\n\n3. **Watermarking and Detection Methods**: Imperceptible markers can be embedded in LLM outputs that identify them as synthetic, designed to be invisible to humans but detectable by algorithms. Another approach attaches metadata to every data point indicating its source (real vs. synthetic), generation date, and the model used to generate it.\n\n**Key ArXiv Papers:**\n- \"Escaping Model Collapse via Synthetic Data Verification\" was updated in March 2026 (arXiv:2510.16657)\n- A paper on \"Collapse or Thrive?\" was updated in March 2025 (arXiv:2410.16713)"
+    ],
+    "durationSeconds": 7.662680844999995
+  },
+  "sourceToolAssistantUUID": "e416d55f-3fd9-4f46-9c1f-d69298060f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-12T00:45:09.756Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AX7xNp3J8pAaF79QZoqqJE`</summary>
+
+```json
+{
+  "query": "concurrent work contamination calibration score correction benchmark LLM 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e89b7835-8fd8-4928-85e6-41450ce30a83",
+  "isSidechain": false,
+  "requestId": "req_011CawkTeUxHn18U9CzGp2HQ",
+  "type": "assistant",
+  "uuid": "14398581-c8df-4747-95b0-90abd7b73f72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015UDJyp2ZJ9nnMVZXxcCT7Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1044,
+      "cache_read_input_tokens": 39680,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 39680,
+          "cache_creation_input_tokens": 1044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-12T00:45:19.100Z_
+
+<details><summary>↩ Tool result · `toolu_01AX7xNp3J8pAaF79QZoqqJE`</summary>
+
+```text
+Web search results for query: "concurrent work contamination calibration score correction benchmark LLM 2026 arxiv"
+
+Links: [{"title":"[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark","url":"https://arxiv.org/abs/2406.19314"},{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"livebench:achallenging, contamination-limited llm benchmark","url":"https://arxiv.org/pdf/2406.19314"},{"title":"LiveBench: A Challenging, Contamination-Limited LLM Benchmark | OpenReview","url":"https://openreview.net/forum?id=sKYHBTAxVa"},{"title":"Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks","url":"https://arxiv.org/html/2603.21636"},{"title":"[2502.00678] How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://ar5iv.labs.arxiv.org/html/2502.00678v1"},{"title":"How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://arxiv.org/html/2502.00678"},{"title":"LiveBench: A Challenging, Contamination-Free LLM Benchmark | Request PDF","url":"https://www.researchgate.net/publication/381770568_LiveBench_A_Challenging_Contamination-Free_LLM_Benchmark"},{"title":"Benchmark Data Contamination of Large Language Models: A Survey","url":"https://arxiv.org/html/2406.04244v1"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"}]
+
+Based on the web search results, here are the most relevant findings related to your query on concurrent work involving contamination calibration, score correction, benchmarks, and LLMs in 2026:
+
+## Key Findings
+
+### LiveBench: Contamination-Limited LLM Benchmark
+
+LiveBench addresses test set contamination in LLM evaluation and is designed to be resistant to both test set contamination and the pitfalls of LLM judging and human crowdsourcing. The benchmark contains frequently-updated questions from recent information sources, scores answers automatically according to objective ground-truth values, and includes a wide variety of challenging tasks spanning math, coding, reasoning, and other domains.
+
+### 2026 Standards for Contamination-Resistant Benchmarks
+
+The 2026 standard is to use contamination-resistant benchmarks (LiveCodeBench, FrontierMath, MMLU-Pro) instead. Detection methods that work in 2026 include time-based partition, Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.
+
+### Silicon Bureaucracy and Score Confidence Framework (2026)
+
+Recent 2026 research explores the credibility of benchmark scores themselves. The framework transforms the question of "what benchmark scores actually measure" into an audit problem that can be computed, compared, and used for model evaluation and selection. This work seeks to reconsider the meaning of benchmark scores: once benchmarks have evolved into institutionalized examination and selection devices, what exactly do these scores measure, and how credible are they as indicators of genuine generalization ability.
+
+### Dataset Contamination Measurement
+
+Dataset contamination occurs where evaluation datasets overlap with the pretraining data of the model, and this overlap artificially inflates reported performance metrics and obscures true generalization capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14398581-c8df-4747-95b0-90abd7b73f72",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "b92a6f16-19be-43f1-acdf-6693951c9646",
+  "toolUseResult": {
+    "query": "concurrent work contamination calibration score correction benchmark LLM 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HSsidxwB1gJNqxCeF98Sv8",
+        "content": [
+          {
+            "title": "[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark",
+            "url": "https://arxiv.org/abs/2406.19314"
+          },
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "livebench:achallenging, contamination-limited llm benchmark",
+            "url": "https://arxiv.org/pdf/2406.19314"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark | OpenReview",
+            "url": "https://openreview.net/forum?id=sKYHBTAxVa"
+          },
+          {
+            "title": "Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks",
+            "url": "https://arxiv.org/html/2603.21636"
+          },
+          {
+            "title": "[2502.00678] How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://ar5iv.labs.arxiv.org/html/2502.00678v1"
+          },
+          {
+            "title": "How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://arxiv.org/html/2502.00678"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Free LLM Benchmark | Request PDF",
+            "url": "https://www.researchgate.net/publication/381770568_LiveBench_A_Challenging_Contamination-Free_LLM_Benchmark"
+          },
+          {
+            "title": "Benchmark Data Contamination of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2406.04244v1"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          }
+        ]
+      },
+      "Based on the web search results, here are the most relevant findings related to your query on concurrent work involving contamination calibration, score correction, benchmarks, and LLMs in 2026:\n\n## Key Findings\n\n### LiveBench: Contamination-Limited LLM Benchmark\n\nLiveBench addresses test set contamination in LLM evaluation and is designed to be resistant to both test set contamination and the pitfalls of LLM judging and human crowdsourcing. The benchmark contains frequently-updated questions from recent information sources, scores answers automatically according to objective ground-truth values, and includes a wide variety of challenging tasks spanning math, coding, reasoning, and other domains.\n\n### 2026 Standards for Contamination-Resistant Benchmarks\n\nThe 2026 standard is to use contamination-resistant benchmarks (LiveCodeBench, FrontierMath, MMLU-Pro) instead. Detection methods that work in 2026 include time-based partition, Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.\n\n### Silicon Bureaucracy and Score Confidence Framework (2026)\n\nRecent 2026 research explores the credibility of benchmark scores themselves. The framework transforms the question of \"what benchmark scores actually measure\" into an audit problem that can be computed, compared, and used for model evaluation and selection. This work seeks to reconsider the meaning of benchmark scores: once benchmarks have evolved into institutionalized examination and selection devices, what exactly do these scores measure, and how credible are they as indicators of genuine generalization ability.\n\n### Dataset Contamination Measurement\n\nDataset contamination occurs where evaluation datasets overlap with the pretraining data of the model, and this overlap artificially inflates reported performance metrics and obscures true generalization capabilities."
+    ],
+    "durationSeconds": 9.340147769000003
+  },
+  "sourceToolAssistantUUID": "14398581-c8df-4747-95b0-90abd7b73f72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-12T00:45:22.442Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AydAPc9wfX2Bd7UNqAi3HW`</summary>
+
+```json
+{
+  "query": "\"Silicon Bureaucracy\" contamination sensitivity score confidence LLM benchmarks arxiv 2603"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b92a6f16-19be-43f1-acdf-6693951c9646",
+  "isSidechain": false,
+  "requestId": "req_011CawkUYezWkZo2GvNkKkA3",
+  "type": "assistant",
+  "uuid": "69900cdb-beaf-479c-b367-bd3cbc160c0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015PovttF68WK224Vw2bxLFN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1043,
+      "cache_read_input_tokens": 40724,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1043,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 40724,
+          "cache_creation_input_tokens": 1043,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1043
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-12T00:45:30.473Z_
+
+<details><summary>↩ Tool result · `toolu_01AydAPc9wfX2Bd7UNqAi3HW`</summary>
+
+```text
+Web search results for query: ""Silicon Bureaucracy" contamination sensitivity score confidence LLM benchmarks arxiv 2603"
+
+Links: [{"title":"[2603.21636] Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks","url":"https://arxiv.org/abs/2603.21636"},{"title":"Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks","url":"https://arxiv.org/html/2603.21636"},{"title":"MT-Bench-101: A Fine-Grained Benchmark for Evaluating Large Language Models in Multi-Turn Dialogues | Request PDF","url":"https://www.researchgate.net/publication/384215139_MT-Bench-101_A_Fine-Grained_Benchmark_for_Evaluating_Large_Language_Models_in_Multi-Turn_Dialogues"},{"title":"Rescaling Confidence: What Scale Design Reveals About LLM Metacognition","url":"https://arxiv.org/html/2603.09309"},{"title":"A Comprehensive Survey of Contamination Detection Methods in Large Language Models","url":"https://arxiv.org/html/2404.00699v4"},{"title":"Assessing LLM-Driven Verilog Coding for Data ...","url":"https://arxiv.org/pdf/2503.13572"},{"title":"Benchmark Data Contamination of Large Language Models: A Survey","url":"https://arxiv.org/html/2406.04244v1"},{"title":"Are Large Language Models Truly Smarter Than Humans? Benchmark Contamination, Surface-Pattern Reliance, and Behavioral Memorization Across Six Frontier Models","url":"https://arxiv.org/html/2603.16197"},{"title":"A Survey on Data Contamination for Large Language Models","url":"https://arxiv.org/html/2502.14425v2"},{"title":"[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark","url":"https://arxiv.org/abs/2406.19314"}]
+
+I found the paper you were looking for! The arxiv paper 2603.21636 is titled "Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks".
+
+Here are the key details about the paper:
+
+**Main Concept:**
+The paper frames the benchmark-centered regime as "Silicon Bureaucracy and AI Test-Oriented Education," arguing that it rests on a fragile assumption: that benchmark scores directly reflect genuine generalization.
+
+**Problem Addressed:**
+The paper argues that benchmark scores may conflate exam-oriented competence with principled capability, especially when contamination and semantic leakage are difficult to exclude from modern training pipelines.
+
+**Methodology:**
+The researchers use a router-worker setup, comparing a clean-control condition with noisy conditions in which benchmark problems are systematically deleted, rewritten, and perturbed before being passed downstream. For a genuinely clean benchmark, noisy conditions should not consistently outperform the clean-control baseline.
+
+**Key Findings:**
+The router-worker-based audit method identifies sensitivity to potential contamination cues by comparing deviations between clean-control and noisy conditions, and across multiple models, anomalous gains are widespread but heterogeneous, implying that even similar benchmark scores may differ substantially in credibility.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69900cdb-beaf-479c-b367-bd3cbc160c0b",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "6be7f56d-9e48-417c-8ed2-77112f1beb24",
+  "toolUseResult": {
+    "query": "\"Silicon Bureaucracy\" contamination sensitivity score confidence LLM benchmarks arxiv 2603",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SNvMoqQCMhwGacbWcNi8td",
+        "content": [
+          {
+            "title": "[2603.21636] Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks",
+            "url": "https://arxiv.org/abs/2603.21636"
+          },
+          {
+            "title": "Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks",
+            "url": "https://arxiv.org/html/2603.21636"
+          },
+          {
+            "title": "MT-Bench-101: A Fine-Grained Benchmark for Evaluating Large Language Models in Multi-Turn Dialogues | Request PDF",
+            "url": "https://www.researchgate.net/publication/384215139_MT-Bench-101_A_Fine-Grained_Benchmark_for_Evaluating_Large_Language_Models_in_Multi-Turn_Dialogues"
+          },
+          {
+            "title": "Rescaling Confidence: What Scale Design Reveals About LLM Metacognition",
+            "url": "https://arxiv.org/html/2603.09309"
+          },
+          {
+            "title": "A Comprehensive Survey of Contamination Detection Methods in Large Language Models",
+            "url": "https://arxiv.org/html/2404.00699v4"
+          },
+          {
+            "title": "Assessing LLM-Driven Verilog Coding for Data ...",
+            "url": "https://arxiv.org/pdf/2503.13572"
+          },
+          {
+            "title": "Benchmark Data Contamination of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2406.04244v1"
+          },
+          {
+            "title": "Are Large Language Models Truly Smarter Than Humans? Benchmark Contamination, Surface-Pattern Reliance, and Behavioral Memorization Across Six Frontier Models",
+            "url": "https://arxiv.org/html/2603.16197"
+          },
+          {
+            "title": "A Survey on Data Contamination for Large Language Models",
+            "url": "https://arxiv.org/html/2502.14425v2"
+          },
+          {
+            "title": "[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark",
+            "url": "https://arxiv.org/abs/2406.19314"
+          }
+        ]
+      },
+      "I found the paper you were looking for! The arxiv paper 2603.21636 is titled \"Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks\".\n\nHere are the key details about the paper:\n\n**Main Concept:**\nThe paper frames the benchmark-centered regime as \"Silicon Bureaucracy and AI Test-Oriented Education,\" arguing that it rests on a fragile assumption: that benchmark scores directly reflect genuine generalization.\n\n**Problem Addressed:**\nThe paper argues that benchmark scores may conflate exam-oriented competence with principled capability, especially when contamination and semantic leakage are difficult to exclude from modern training pipelines.\n\n**Methodology:**\nThe researchers use a router-worker setup, comparing a clean-control condition with noisy conditions in which benchmark problems are systematically deleted, rewritten, and perturbed before being passed downstream. For a genuinely clean benchmark, noisy conditions should not consistently outperform the clean-control baseline.\n\n**Key Findings:**\nThe router-worker-based audit method identifies sensitivity to potential contamination cues by comparing deviations between clean-control and noisy conditions, and across multiple models, anomalous gains are widespread but heterogeneous, implying that even similar benchmark scores may differ substantially in credibility."
+    ],
+    "durationSeconds": 8.027513422999997
+  },
+  "sourceToolAssistantUUID": "69900cdb-beaf-479c-b367-bd3cbc160c0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "6be7f56d-9e48-417c-8ed2-77112f1beb24",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-12T00:45:37.996Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is an important finding - "Silicon Bureaucracy" (arXiv 2603.21636, March 2026) is a very recent paper that provides contamination sensitivity analysis and score confidence measures for LLM benchmarks. This is potentially a close competitor to ContamCal. Let me fetch more details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6be7f56d-9e48-417c-8ed2-77112f1beb24",
+  "isSidechain": false,
+  "requestId": "req_011CawkVPBkd9ZNipMpfg24c",
+  "type": "assistant",
+  "uuid": "51fe29c6-987f-47ff-923d-44f306b11afa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Essz2FC2cKMMYqGeyMBFW9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 41767,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 41767,
+          "cache_creation_input_tokens": 920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-12T00:45:37.997Z_
+
+This is a potentially important competitor. Let me dig deeper into it and search for more concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51fe29c6-987f-47ff-923d-44f306b11afa",
+  "isSidechain": false,
+  "requestId": "req_011CawkVPBkd9ZNipMpfg24c",
+  "type": "assistant",
+  "uuid": "2f8f557f-fb89-4864-b314-ca0f193f6d96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Essz2FC2cKMMYqGeyMBFW9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 41767,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 41767,
+          "cache_creation_input_tokens": 920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-12T00:45:40.032Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PUHXgkyJ1vD2a7EyDRyxei`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.21636",
+  "prompt": "Extract the full abstract, key methods, and main contributions. Does this paper: (1) produce adjusted/calibrated benchmark scores accounting for contamination? (2) provide uncertainty bounds or confidence intervals on scores? (3) use Item Response Theory? (4) combine multiple contamination detection signals? What exactly does it propose vs. just analyze?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f8f557f-fb89-4864-b314-ca0f193f6d96",
+  "isSidechain": false,
+  "requestId": "req_011CawkVPBkd9ZNipMpfg24c",
+  "type": "assistant",
+  "uuid": "19c6c6b7-4a59-4593-aef8-df4e5cc0b009",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Essz2FC2cKMMYqGeyMBFW9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 41767,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 41767,
+          "cache_creation_input_tokens": 920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-12T00:45:47.325Z_
+
+<details><summary>↩ Tool result · `toolu_01PUHXgkyJ1vD2a7EyDRyxei`</summary>
+
+```text
+# Paper Analysis: Silicon Bureaucracy and AI Test-Oriented Education
+
+## Full Abstract
+"Public benchmarks increasingly govern how large language models (LLMs) are ranked, selected, and deployed. We frame this benchmark-centered regime as Silicon Bureaucracy and AI Test-Oriented Education, and argue that it rests on a fragile assumption: that benchmark scores directly reflect genuine generalization. In practice, however, such scores may conflate exam-oriented competence with principled capability, especially when contamination and semantic leakage are difficult to exclude from modern training pipelines. We therefore propose an audit framework for analyzing contamination sensitivity and score confidence in LLM benchmarks. Using a router-worker setup, we compare a clean-control condition with noisy conditions in which benchmark problems are systematically deleted, rewritten, and perturbed before being passed downstream. For a genuinely clean benchmark, noisy conditions should not consistently outperform the clean-control baseline. Yet across multiple models, we find widespread but heterogeneous above-baseline gains under noisy conditions, indicating that benchmark-related cues may be reassembled and can reactivate contamination-related memory. These results suggest that similar benchmark scores may carry substantially different levels of confidence. Rather than rejecting benchmarks altogether, we argue that benchmark-based evaluation should be supplemented with explicit audits of contamination sensitivity and score confidence."
+
+## Answering Your Specific Questions
+
+**(1) Adjusted/calibrated scores accounting for contamination?**
+No. The paper audits but does not recalibrate scores.
+
+**(2) Uncertainty bounds or confidence intervals?**
+No explicit statistical bounds provided, though the concept of "score confidence" is discussed qualitatively.
+
+**(3) Item Response Theory?**
+No mention in the available content.
+
+**(4) Multiple contamination detection signals?**
+No—the framework uses a single methodology: systematic perturbation (deletion, rewriting, perturbation) of benchmark items.
+
+## Main Contributions
+The paper primarily **analyzes rather than prescribes**. It introduces an audit framework testing whether models gain performance under modified benchmark conditions (suggesting contamination vulnerability), but stops short of proposing corrective measures for scores themselves.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19c6c6b7-4a59-4593-aef8-df4e5cc0b009",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "95f78f37-04b2-422c-a0b6-e28c043cd3b5",
+  "toolUseResult": {
+    "bytes": 48005,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: Silicon Bureaucracy and AI Test-Oriented Education\n\n## Full Abstract\n\"Public benchmarks increasingly govern how large language models (LLMs) are ranked, selected, and deployed. We frame this benchmark-centered regime as Silicon Bureaucracy and AI Test-Oriented Education, and argue that it rests on a fragile assumption: that benchmark scores directly reflect genuine generalization. In practice, however, such scores may conflate exam-oriented competence with principled capability, especially when contamination and semantic leakage are difficult to exclude from modern training pipelines. We therefore propose an audit framework for analyzing contamination sensitivity and score confidence in LLM benchmarks. Using a router-worker setup, we compare a clean-control condition with noisy conditions in which benchmark problems are systematically deleted, rewritten, and perturbed before being passed downstream. For a genuinely clean benchmark, noisy conditions should not consistently outperform the clean-control baseline. Yet across multiple models, we find widespread but heterogeneous above-baseline gains under noisy conditions, indicating that benchmark-related cues may be reassembled and can reactivate contamination-related memory. These results suggest that similar benchmark scores may carry substantially different levels of confidence. Rather than rejecting benchmarks altogether, we argue that benchmark-based evaluation should be supplemented with explicit audits of contamination sensitivity and score confidence.\"\n\n## Answering Your Specific Questions\n\n**(1) Adjusted/calibrated scores accounting for contamination?**\nNo. The paper audits but does not recalibrate scores.\n\n**(2) Uncertainty bounds or confidence intervals?**\nNo explicit statistical bounds provided, though the concept of \"score confidence\" is discussed qualitatively.\n\n**(3) Item Response Theory?**\nNo mention in the available content.\n\n**(4) Multiple contamination detection signals?**\nNo—the framework uses a single methodology: systematic perturbation (deletion, rewriting, perturbation) of benchmark items.\n\n## Main Contributions\nThe paper primarily **analyzes rather than prescribes**. It introduces an audit framework testing whether models gain performance under modified benchmark conditions (suggesting contamination vulnerability), but stops short of proposing corrective measures for scores themselves.",
+    "durationMs": 7289,
+    "url": "https://arxiv.org/abs/2603.21636"
+  },
+  "sourceToolAssistantUUID": "19c6c6b7-4a59-4593-aef8-df4e5cc0b009",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-12T00:45:47.333Z_
+
+```json
+{
+  "parentUuid": "95f78f37-04b2-422c-a0b6-e28c043cd3b5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f1f49216-415d-46c5-b8f8-332fcff78b5a",
+  "timestamp": "2026-05-12T00:45:47.333Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-12T00:45:50.465Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ThG7iKtjK4dsJNqju5ayHu`</summary>
+
+```json
+{
+  "query": "\"kernel divergence\" benchmark contamination quantifying dataset leakage LLM 2025 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1f49216-415d-46c5-b8f8-332fcff78b5a",
+  "isSidechain": false,
+  "requestId": "req_011CawkWdR3YWR5jNZzL1zmH",
+  "type": "assistant",
+  "uuid": "60ec5b4f-2d9f-4a8f-aba9-1eca2406c9ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013hfHQYSu42mzzEL2DRTiJt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 852,
+      "cache_read_input_tokens": 42687,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 42687,
+          "cache_creation_input_tokens": 852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-12T00:45:57.045Z_
+
+<details><summary>↩ Tool result · `toolu_01ThG7iKtjK4dsJNqju5ayHu`</summary>
+
+```text
+Web search results for query: ""kernel divergence" benchmark contamination quantifying dataset leakage LLM 2025 arxiv"
+
+Links: [{"title":"[2502.00678] How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://arxiv.org/abs/2502.00678"},{"title":"[2502.00678] How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://ar5iv.labs.arxiv.org/html/2502.00678v1"},{"title":"How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://arxiv.org/html/2502.00678v1"},{"title":"How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://arxiv.org/html/2502.00678v2"},{"title":"How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence | OpenReview","url":"https://openreview.net/forum?id=wVDR2qmE28"},{"title":"GitHub - deeplearning-wisc/kernel-divergence-score: Official implementation of ICML 2025 paper, \"How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence\" · GitHub","url":"https://github.com/deeplearning-wisc/kernel-divergence-score"},{"title":"ICML Poster How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://icml.cc/virtual/2025/poster/43619"},{"title":"Maintaining MTEB: Towards Long Term Usability and Reproducibility of Embedding Benchmarks","url":"https://arxiv.org/html/2506.21182v1"},{"title":"Benchmark Data Contamination of Large Language Models: A Survey","url":"https://arxiv.org/html/2406.04244v1"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"}]
+
+I found the paper you're searching for! Here are the key details:
+
+## Paper Overview
+
+The paper is titled "How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence" and was published at ICML 2025 by Hyeong Kyu Choi, Maxim Khanov, Hongxin Wei, and Yixuan Li.
+
+## Core Contribution
+
+The authors propose Kernel Divergence Score (KDS), a novel method that evaluates dataset contamination by computing the divergence between the kernel similarity matrix of sample embeddings, before and after fine-tuning on the benchmark dataset.
+
+## Problem Addressed
+
+Dataset contamination, where evaluation datasets overlap with pre-training corpora, inflates performance metrics and undermines the reliability of model evaluations. Measuring dataset contamination becomes essential to ensure that performance evaluations genuinely reflect a model's ability to generalize to unseen data, rather than relying on memorized examples.
+
+## Key Results
+
+Leveraging the insight that fine-tuning affects unseen samples more significantly than seen ones, KDS provides a reliable measure of contamination. Through extensive experiments on controlled contamination scenarios, KDS demonstrates a near-perfect correlation with contamination levels and outperforms existing baselines.
+
+The paper is available on arXiv as document 2502.00678, and there is also an official GitHub implementation available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60ec5b4f-2d9f-4a8f-aba9-1eca2406c9ee",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "36301853-fd97-45d9-9705-5ded3e1b7633",
+  "toolUseResult": {
+    "query": "\"kernel divergence\" benchmark contamination quantifying dataset leakage LLM 2025 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E14kTYokoHM3n2gmw8kj1f",
+        "content": [
+          {
+            "title": "[2502.00678] How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://arxiv.org/abs/2502.00678"
+          },
+          {
+            "title": "[2502.00678] How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://ar5iv.labs.arxiv.org/html/2502.00678v1"
+          },
+          {
+            "title": "How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://arxiv.org/html/2502.00678v1"
+          },
+          {
+            "title": "How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://arxiv.org/html/2502.00678v2"
+          },
+          {
+            "title": "How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence | OpenReview",
+            "url": "https://openreview.net/forum?id=wVDR2qmE28"
+          },
+          {
+            "title": "GitHub - deeplearning-wisc/kernel-divergence-score: Official implementation of ICML 2025 paper, \"How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence\" · GitHub",
+            "url": "https://github.com/deeplearning-wisc/kernel-divergence-score"
+          },
+          {
+            "title": "ICML Poster How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://icml.cc/virtual/2025/poster/43619"
+          },
+          {
+            "title": "Maintaining MTEB: Towards Long Term Usability and Reproducibility of Embedding Benchmarks",
+            "url": "https://arxiv.org/html/2506.21182v1"
+          },
+          {
+            "title": "Benchmark Data Contamination of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2406.04244v1"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here are the key details:\n\n## Paper Overview\n\nThe paper is titled \"How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence\" and was published at ICML 2025 by Hyeong Kyu Choi, Maxim Khanov, Hongxin Wei, and Yixuan Li.\n\n## Core Contribution\n\nThe authors propose Kernel Divergence Score (KDS), a novel method that evaluates dataset contamination by computing the divergence between the kernel similarity matrix of sample embeddings, before and after fine-tuning on the benchmark dataset.\n\n## Problem Addressed\n\nDataset contamination, where evaluation datasets overlap with pre-training corpora, inflates performance metrics and undermines the reliability of model evaluations. Measuring dataset contamination becomes essential to ensure that performance evaluations genuinely reflect a model's ability to generalize to unseen data, rather than relying on memorized examples.\n\n## Key Results\n\nLeveraging the insight that fine-tuning affects unseen samples more significantly than seen ones, KDS provides a reliable measure of contamination. Through extensive experiments on controlled contamination scenarios, KDS demonstrates a near-perfect correlation with contamination levels and outperforms existing baselines.\n\nThe paper is available on arXiv as document 2502.00678, and there is also an official GitHub implementation available."
+    ],
+    "durationSeconds": 6.574925816000003
+  },
+  "sourceToolAssistantUUID": "60ec5b4f-2d9f-4a8f-aba9-1eca2406c9ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-12T00:45:59.827Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GpwSL9qwV6nkvmyv8tn8gu`</summary>
+
+```json
+{
+  "query": "contamination score adjustment correction calibration uncertainty bounds LLM benchmark 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36301853-fd97-45d9-9705-5ded3e1b7633",
+  "isSidechain": false,
+  "requestId": "req_011CawkXLmDBP2Q2JZrKXFAA",
+  "type": "assistant",
+  "uuid": "921b0a48-204f-4b05-ba81-8d395c421665",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LiazfEBEL68g6cu7pDsRZy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 43539,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 43539,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-12T00:46:09.516Z_
+
+<details><summary>↩ Tool result · `toolu_01GpwSL9qwV6nkvmyv8tn8gu`</summary>
+
+```text
+Web search results for query: "contamination score adjustment correction calibration uncertainty bounds LLM benchmark 2026"
+
+Links: [{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"LLM benchmarks in 2026: What they prove and what your business actually needs | High-Quality AI Data to Power Innovation | LXT","url":"https://www.lxt.ai/blog/llm-benchmarks/"},{"title":"Benchmarking LLM Uncertainty and Calibration with ...","url":"https://aclanthology.org/2026.eacl-long.106.pdf"},{"title":"LLM Benchmarks 2026 - Compare AI Benchmarks and Tests","url":"https://llm-stats.com/benchmarks"},{"title":"What LLM Benchmarks Don't Measure - Contamination, Saturation, Blind Spots","url":"https://benchmarkingagents.com/what-these-benchmarks-miss/"},{"title":"LLM evaluation benchmarks and safety datasets for 2025 | RAIL Score Knowledge Hub","url":"https://responsibleailabs.ai/knowledge-hub/articles/llm-evaluation-benchmarks-2025"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://aclanthology.org/2025.emnlp-main.1173.pdf"},{"title":"A Survey from Static to Dynamic Evaluation","url":"https://aclanthology.org/2025.emnlp-main.511.pdf"},{"title":"GitHub - smartyfh/LLM-Uncertainty-Bench: Benchmarking LLMs via Uncertainty Quantification · GitHub","url":"https://github.com/smartyfh/LLM-Uncertainty-Bench"}]
+
+Based on the search results, here's what I found regarding contamination score adjustment, correction, calibration, and uncertainty bounds in LLM benchmarks for 2026:
+
+## Key Findings on Data Contamination in LLM Benchmarks (2026)
+
+### Contamination Problem Overview
+Training-data contamination occurs when test questions from a benchmark appear in a model's training data, causing models to solve benchmark problems by recalling memorized answers rather than by reasoning through them. At current frontier model performance levels, a one-point improvement could come from real capability or from tiny shifts in contamination, and the signal-to-noise ratio is gone.
+
+### Detection Methods
+Five detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.
+
+### Adjustment and Correction Approaches
+For each LLM, DCR represents the calculated DCR Factor, Acc is the evaluation result at baseline, and Accadj represents the result adjusted using the DCR Factor, with the absolute error produced by Accadj relative to baseline measured in experiments. This represents a systematic approach to quantifying and adjusting for contamination effects.
+
+A 2026 paper on quantifying the effect of test set contamination trained dozens of models while sweeping the number of test set replicas in the pretraining corpus, fitting a clean dose-response curve where capacity (model size) and incentive (the loss reduction from memorizing contaminated data) matter, with larger models having steeper dose-response curves.
+
+### Calibration and Uncertainty Bounds
+Research on uncertainty estimation for clinical QA across LLMs features AUROC (discrimination) vs. ECE (calibration), with the desirable region (top left) highlighting low calibration error and high discrimination.
+
+### 2026 Standard Solutions
+The 2026 standard is to use contamination-resistant benchmarks including LiveCodeBench, FrontierMath, MMLU-Pro, and LiveBench instead.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "921b0a48-204f-4b05-ba81-8d395c421665",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "3e9d050f-75bf-4043-9dc6-d095782a6fb6",
+  "toolUseResult": {
+    "query": "contamination score adjustment correction calibration uncertainty bounds LLM benchmark 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NX7ufFpwcyJYhvETaAwaUa",
+        "content": [
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "LLM benchmarks in 2026: What they prove and what your business actually needs | High-Quality AI Data to Power Innovation | LXT",
+            "url": "https://www.lxt.ai/blog/llm-benchmarks/"
+          },
+          {
+            "title": "Benchmarking LLM Uncertainty and Calibration with ...",
+            "url": "https://aclanthology.org/2026.eacl-long.106.pdf"
+          },
+          {
+            "title": "LLM Benchmarks 2026 - Compare AI Benchmarks and Tests",
+            "url": "https://llm-stats.com/benchmarks"
+          },
+          {
+            "title": "What LLM Benchmarks Don't Measure - Contamination, Saturation, Blind Spots",
+            "url": "https://benchmarkingagents.com/what-these-benchmarks-miss/"
+          },
+          {
+            "title": "LLM evaluation benchmarks and safety datasets for 2025 | RAIL Score Knowledge Hub",
+            "url": "https://responsibleailabs.ai/knowledge-hub/articles/llm-evaluation-benchmarks-2025"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173.pdf"
+          },
+          {
+            "title": "A Survey from Static to Dynamic Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.511.pdf"
+          },
+          {
+            "title": "GitHub - smartyfh/LLM-Uncertainty-Bench: Benchmarking LLMs via Uncertainty Quantification · GitHub",
+            "url": "https://github.com/smartyfh/LLM-Uncertainty-Bench"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding contamination score adjustment, correction, calibration, and uncertainty bounds in LLM benchmarks for 2026:\n\n## Key Findings on Data Contamination in LLM Benchmarks (2026)\n\n### Contamination Problem Overview\nTraining-data contamination occurs when test questions from a benchmark appear in a model's training data, causing models to solve benchmark problems by recalling memorized answers rather than by reasoning through them. At current frontier model performance levels, a one-point improvement could come from real capability or from tiny shifts in contamination, and the signal-to-noise ratio is gone.\n\n### Detection Methods\nFive detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.\n\n### Adjustment and Correction Approaches\nFor each LLM, DCR represents the calculated DCR Factor, Acc is the evaluation result at baseline, and Accadj represents the result adjusted using the DCR Factor, with the absolute error produced by Accadj relative to baseline measured in experiments. This represents a systematic approach to quantifying and adjusting for contamination effects.\n\nA 2026 paper on quantifying the effect of test set contamination trained dozens of models while sweeping the number of test set replicas in the pretraining corpus, fitting a clean dose-response curve where capacity (model size) and incentive (the loss reduction from memorizing contaminated data) matter, with larger models having steeper dose-response curves.\n\n### Calibration and Uncertainty Bounds\nResearch on uncertainty estimation for clinical QA across LLMs features AUROC (discrimination) vs. ECE (calibration), with the desirable region (top left) highlighting low calibration error and high discrimination.\n\n### 2026 Standard Solutions\nThe 2026 standard is to use contamination-resistant benchmarks including LiveCodeBench, FrontierMath, MMLU-Pro, and LiveBench instead."
+    ],
+    "durationSeconds": 9.685947341000022
+  },
+  "sourceToolAssistantUUID": "921b0a48-204f-4b05-ba81-8d395c421665",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-12T00:46:14.463Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AGtUtjf6yHhohXKgMQecTM`</summary>
+
+```json
+{
+  "query": "\"impact of post-training\" data contamination LLM 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e9d050f-75bf-4043-9dc6-d095782a6fb6",
+  "isSidechain": false,
+  "requestId": "req_011CawkYG9v8tZ9JuTW9ENak",
+  "type": "assistant",
+  "uuid": "dbaba5d8-54ba-4bc4-b7b9-17cc85d337e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ChzZpTjy8VZFwTdW9JidMT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1081,
+      "cache_read_input_tokens": 44547,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1081,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 44547,
+          "cache_creation_input_tokens": 1081,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1081
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-12T00:46:23.192Z_
+
+<details><summary>↩ Tool result · `toolu_01AGtUtjf6yHhohXKgMQecTM`</summary>
+
+```text
+Web search results for query: ""impact of post-training" data contamination LLM 2026 arxiv"
+
+Links: [{"title":"[2510.09259] Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/abs/2510.09259"},{"title":"Overestimation in LLM Evaluation: A Controlled Large-Scale Study on Data Contamination’s Impact on Machine Translation","url":"https://arxiv.org/html/2501.18771v1"},{"title":"[2601.06103] The Impact of Post-training on Data Contamination","url":"https://arxiv.org/abs/2601.06103"},{"title":"The Impact of Post-training on Data Contamination","url":"https://arxiv.org/html/2601.06103"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"The Impact of Post-training on Data Contamination - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260106103Y/abstract"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/html/2510.09259v1"},{"title":"A Survey on Data Contamination for Large Language Models","url":"https://arxiv.org/html/2502.14425v2"},{"title":"detecting data contamination from reinforcement learning ...","url":"https://arxiv.org/pdf/2510.09259"},{"title":"Investigating Data Contamination for Pre-training Language Models","url":"https://arxiv.org/html/2401.06059v1"}]
+
+I found several relevant arxiv papers on the impact of post-training data contamination for LLMs from 2026. Here are the key findings:
+
+## Key Research Papers
+
+**"The Impact of Post-training on Data Contamination"** (2026)
+
+This paper presents a controlled study of how dataset contamination interacts with post-training stages in LLM training pipelines, using clean checkpoints of Qwen2.5 and Gemma3 models, injecting test items into pre-training datasets, then comparing contaminated and clean models after supervised fine-tuning and reinforcement learning with group relative policy optimization.
+
+The study found three consistent patterns:
+
+1. Contamination causes performance spikes that are gradually diminished with continued pre-training, and after even 25B tokens the apparent performance inflation can become close to zero.
+
+2. Both SFT and GRPO resurface the leaked information, but with different external validity: SFT inflates scores only on the contaminated tasks, whereas GRPO also inflates performance on uncontaminated counterparts.
+
+3. Model scale amplifies these tendencies, with larger Supervised Fine Tuned models memorizing more, while larger GRPO models translate leakage into more generalizable capabilities.
+
+The results underscore the need for contamination audits after post-training and suggest that RL-based post-training can help alleviate contamination-related over-estimation problems.
+
+## Detection Methods
+
+Another 2026 paper addresses the critical research gap for the increasingly significant phase of Reinforcement Learning (RL) post-training, as detection methods have been developed for pre-training and Supervised Fine-Tuning stages but not for RL. The proposed Self-Critique method significantly outperforms baseline methods, achieving an AUC improvement of up to 30%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dbaba5d8-54ba-4bc4-b7b9-17cc85d337e8",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "99b1bef1-265f-4ec1-a082-37d76011bb76",
+  "toolUseResult": {
+    "query": "\"impact of post-training\" data contamination LLM 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q4JqikfaUamgZr9LKe7QAn",
+        "content": [
+          {
+            "title": "[2510.09259] Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models",
+            "url": "https://arxiv.org/abs/2510.09259"
+          },
+          {
+            "title": "Overestimation in LLM Evaluation: A Controlled Large-Scale Study on Data Contamination’s Impact on Machine Translation",
+            "url": "https://arxiv.org/html/2501.18771v1"
+          },
+          {
+            "title": "[2601.06103] The Impact of Post-training on Data Contamination",
+            "url": "https://arxiv.org/abs/2601.06103"
+          },
+          {
+            "title": "The Impact of Post-training on Data Contamination",
+            "url": "https://arxiv.org/html/2601.06103"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "The Impact of Post-training on Data Contamination - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260106103Y/abstract"
+          },
+          {
+            "title": "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models",
+            "url": "https://arxiv.org/html/2510.09259v1"
+          },
+          {
+            "title": "A Survey on Data Contamination for Large Language Models",
+            "url": "https://arxiv.org/html/2502.14425v2"
+          },
+          {
+            "title": "detecting data contamination from reinforcement learning ...",
+            "url": "https://arxiv.org/pdf/2510.09259"
+          },
+          {
+            "title": "Investigating Data Contamination for Pre-training Language Models",
+            "url": "https://arxiv.org/html/2401.06059v1"
+          }
+        ]
+      },
+      "I found several relevant arxiv papers on the impact of post-training data contamination for LLMs from 2026. Here are the key findings:\n\n## Key Research Papers\n\n**\"The Impact of Post-training on Data Contamination\"** (2026)\n\nThis paper presents a controlled study of how dataset contamination interacts with post-training stages in LLM training pipelines, using clean checkpoints of Qwen2.5 and Gemma3 models, injecting test items into pre-training datasets, then comparing contaminated and clean models after supervised fine-tuning and reinforcement learning with group relative policy optimization.\n\nThe study found three consistent patterns:\n\n1. Contamination causes performance spikes that are gradually diminished with continued pre-training, and after even 25B tokens the apparent performance inflation can become close to zero.\n\n2. Both SFT and GRPO resurface the leaked information, but with different external validity: SFT inflates scores only on the contaminated tasks, whereas GRPO also inflates performance on uncontaminated counterparts.\n\n3. Model scale amplifies these tendencies, with larger Supervised Fine Tuned models memorizing more, while larger GRPO models translate leakage into more generalizable capabilities.\n\nThe results underscore the need for contamination audits after post-training and suggest that RL-based post-training can help alleviate contamination-related over-estimation problems.\n\n## Detection Methods\n\nAnother 2026 paper addresses the critical research gap for the increasingly significant phase of Reinforcement Learning (RL) post-training, as detection methods have been developed for pre-training and Supervised Fine-Tuning stages but not for RL. The proposed Self-Critique method significantly outperforms baseline methods, achieving an AUC improvement of up to 30%."
+    ],
+    "durationSeconds": 8.723980813999981
+  },
+  "sourceToolAssistantUUID": "dbaba5d8-54ba-4bc4-b7b9-17cc85d337e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "99b1bef1-265f-4ec1-a082-37d76011bb76",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-12T00:46:28.972Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VcJbHek1q3frXZj5qhsJDQ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.06103",
+  "prompt": "Extract the full abstract and key findings. Does this paper: (1) produce adjusted/calibrated benchmark scores? (2) use IRT or Bayesian methods? (3) combine multiple detection signals? (4) provide uncertainty bounds? What models/scales are used? How does GRPO affect contamination detection? This is very important - what are the paper's main conclusions about how post-training transforms contamination signals?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99b1bef1-265f-4ec1-a082-37d76011bb76",
+  "isSidechain": false,
+  "requestId": "req_011CawkZGak4JGtktQsWg1Fy",
+  "type": "assistant",
+  "uuid": "a4372e8a-afcc-42b5-ad70-667689561fde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JH3TfVxADyTkCJmhtLdLez",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 945,
+      "cache_read_input_tokens": 45628,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 45628,
+          "cache_creation_input_tokens": 945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-12T00:46:43.516Z_
+
+<details><summary>↩ Tool result · `toolu_01VcJbHek1q3frXZj5qhsJDQ`</summary>
+
+```text
+# Analysis of arXiv:2601.06103
+
+## Full Abstract
+The paper presents a controlled study examining how dataset contamination interacts with post-training in LLM pipelines. Starting from clean Qwen2.5 (0.5B/1.5B) and Gemma3 (1B/4B) checkpoints, researchers injected five copies of GSM8K and MBPP test items into the first 2B tokens of a 25B token pre-training dataset. They compared contaminated vs. clean models after pre-training, supervised fine-tuning (SFT), and reinforcement learning with group relative policy optimization (GRPO).
+
+## Methodology Questions
+
+**(1) Adjusted/calibrated benchmark scores?** No evidence in the provided content.
+
+**(2) IRT or Bayesian methods?** Not mentioned in this excerpt.
+
+**(3) Multiple detection signals?** The study uses multiple benchmarks (math and coding) and compares across contaminated and uncontaminated variants (GSM8K vs. GSMPlus; MBPP vs. HumanEval).
+
+**(4) Uncertainty bounds?** Not discussed in the abstract.
+
+## Key Findings on Post-training's Effect
+
+Three consistent patterns emerged:
+
+1. **Pre-training diminishes contamination effects:** "Contamination causes performance spikes that are gradually diminished with continued pre-training."
+
+2. **SFT resurfaces leakage narrowly:** "SFT inflates scores only on the contaminated tasks."
+
+3. **GRPO generalizes leakage broader:** "GRPO also inflates performance on uncontaminated counterparts."
+
+## Main Conclusion on GRPO
+
+The critical insight: larger GRPO models "translate leakage into more generalizable capabilities," while larger SFT models "memorize more." The paper recommends contamination audits occur *after* post-training, noting RL-based methods can help alleviate over-estimation problems despite not being immune.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4372e8a-afcc-42b5-ad70-667689561fde",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "5f76e314-1012-4a32-ba5e-749a7b739c8a",
+  "toolUseResult": {
+    "bytes": 47302,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of arXiv:2601.06103\n\n## Full Abstract\nThe paper presents a controlled study examining how dataset contamination interacts with post-training in LLM pipelines. Starting from clean Qwen2.5 (0.5B/1.5B) and Gemma3 (1B/4B) checkpoints, researchers injected five copies of GSM8K and MBPP test items into the first 2B tokens of a 25B token pre-training dataset. They compared contaminated vs. clean models after pre-training, supervised fine-tuning (SFT), and reinforcement learning with group relative policy optimization (GRPO).\n\n## Methodology Questions\n\n**(1) Adjusted/calibrated benchmark scores?** No evidence in the provided content.\n\n**(2) IRT or Bayesian methods?** Not mentioned in this excerpt.\n\n**(3) Multiple detection signals?** The study uses multiple benchmarks (math and coding) and compares across contaminated and uncontaminated variants (GSM8K vs. GSMPlus; MBPP vs. HumanEval).\n\n**(4) Uncertainty bounds?** Not discussed in the abstract.\n\n## Key Findings on Post-training's Effect\n\nThree consistent patterns emerged:\n\n1. **Pre-training diminishes contamination effects:** \"Contamination causes performance spikes that are gradually diminished with continued pre-training.\"\n\n2. **SFT resurfaces leakage narrowly:** \"SFT inflates scores only on the contaminated tasks.\"\n\n3. **GRPO generalizes leakage broader:** \"GRPO also inflates performance on uncontaminated counterparts.\"\n\n## Main Conclusion on GRPO\n\nThe critical insight: larger GRPO models \"translate leakage into more generalizable capabilities,\" while larger SFT models \"memorize more.\" The paper recommends contamination audits occur *after* post-training, noting RL-based methods can help alleviate over-estimation problems despite not being immune.",
+    "durationMs": 14539,
+    "url": "https://arxiv.org/abs/2601.06103"
+  },
+  "sourceToolAssistantUUID": "a4372e8a-afcc-42b5-ad70-667689561fde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-12T00:46:50.921Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0143wJodQqZEz51oJvF2jdX7`</summary>
+
+```json
+{
+  "query": "hierarchical contamination detection synthetic training data arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f76e314-1012-4a32-ba5e-749a7b739c8a",
+  "isSidechain": false,
+  "requestId": "req_011Cawkb5tcUh6oKUJ9Sn7qE",
+  "type": "assistant",
+  "uuid": "50e1a768-31c0-4412-b056-42abb4f8df58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PieWjzhvA4k5oXrVkPrQry",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 633,
+      "cache_read_input_tokens": 46573,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 46573,
+          "cache_creation_input_tokens": 633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-12T00:46:57.170Z_
+
+<details><summary>↩ Tool result · `toolu_0143wJodQqZEz51oJvF2jdX7`</summary>
+
+```text
+Web search results for query: "hierarchical contamination detection synthetic training data arxiv 2025"
+
+Links: [{"title":"[2511.17602] Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models","url":"https://arxiv.org/abs/2511.17602"},{"title":"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models","url":"https://arxiv.org/html/2511.17602v1"},{"title":"Hierarchical Contamination Detection for Synthetic ...","url":"https://www.arxiv.org/pdf/2511.17602"},{"title":"(PDF) Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models","url":"https://www.researchgate.net/publication/397933312_Beyond_Surface-Level_Similarity_Hierarchical_Contamination_Detection_for_Synthetic_Training_Data_in_Foundation_Models"},{"title":"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models | Article Information | J-GLOBAL","url":"https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202502216067314793"},{"title":"A Survey on Data Contamination for Large Language Models","url":"https://arxiv.org/html/2502.14425v2"},{"title":"A Comprehensive Survey of Contamination Detection Meth","url":"https://arxiv.org/pdf/2404.00699"},{"title":"A Comprehensive Survey of Contamination Detection Methods in Large Language Models","url":"https://arxiv.org/html/2404.00699v4"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning","url":"https://arxiv.org/html/2510.27055v1"}]
+
+I found relevant results for your search on hierarchical contamination detection. Here's what I found:
+
+## Key Research
+
+A hierarchical contamination detection framework has been proposed that operates at four levels: token level, semantic level, reasoning pattern, and performance cliff detection.
+
+### The Problem It Addresses
+
+Existing detection methods identify token-level overlap, but they fail to detect semantic-level contamination where synthetic data conceptually resemble benchmarks without lexical overlap. This gap is critical as foundation models increasingly train on synthetic data that may implicitly encode benchmark knowledge.
+
+### Performance Results
+
+Through controlled experiments on MMLU, GSM8K and HumanEval, semantic-level contamination evades existing methods (F1=0.17-0.49) but is effectively detected by the hierarchical approach (F1 = 0.76), with an average improvement of 26.5% over state-of-the-art baselines.
+
+### Application
+
+The framework provides practitioners with practical tools for audit pipelines and enables responsible deployment of synthetic training data.
+
+This research (arXiv 2511.17602, published November 18, 2025) specifically targets the challenge of detecting contamination in synthetic training data that may not have obvious lexical similarities but could still encode benchmark knowledge at a semantic level.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50e1a768-31c0-4412-b056-42abb4f8df58",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "bcc72a99-e9a9-4a32-9c48-61e71cf3e203",
+  "toolUseResult": {
+    "query": "hierarchical contamination detection synthetic training data arxiv 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QY8YjdissqGNZZsc3GJHbA",
+        "content": [
+          {
+            "title": "[2511.17602] Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+            "url": "https://arxiv.org/abs/2511.17602"
+          },
+          {
+            "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+            "url": "https://arxiv.org/html/2511.17602v1"
+          },
+          {
+            "title": "Hierarchical Contamination Detection for Synthetic ...",
+            "url": "https://www.arxiv.org/pdf/2511.17602"
+          },
+          {
+            "title": "(PDF) Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+            "url": "https://www.researchgate.net/publication/397933312_Beyond_Surface-Level_Similarity_Hierarchical_Contamination_Detection_for_Synthetic_Training_Data_in_Foundation_Models"
+          },
+          {
+            "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models | Article Information | J-GLOBAL",
+            "url": "https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202502216067314793"
+          },
+          {
+            "title": "A Survey on Data Contamination for Large Language Models",
+            "url": "https://arxiv.org/html/2502.14425v2"
+          },
+          {
+            "title": "A Comprehensive Survey of Contamination Detection Meth",
+            "url": "https://arxiv.org/pdf/2404.00699"
+          },
+          {
+            "title": "A Comprehensive Survey of Contamination Detection Methods in Large Language Models",
+            "url": "https://arxiv.org/html/2404.00699v4"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+            "url": "https://arxiv.org/html/2510.27055v1"
+          }
+        ]
+      },
+      "I found relevant results for your search on hierarchical contamination detection. Here's what I found:\n\n## Key Research\n\nA hierarchical contamination detection framework has been proposed that operates at four levels: token level, semantic level, reasoning pattern, and performance cliff detection.\n\n### The Problem It Addresses\n\nExisting detection methods identify token-level overlap, but they fail to detect semantic-level contamination where synthetic data conceptually resemble benchmarks without lexical overlap. This gap is critical as foundation models increasingly train on synthetic data that may implicitly encode benchmark knowledge.\n\n### Performance Results\n\nThrough controlled experiments on MMLU, GSM8K and HumanEval, semantic-level contamination evades existing methods (F1=0.17-0.49) but is effectively detected by the hierarchical approach (F1 = 0.76), with an average improvement of 26.5% over state-of-the-art baselines.\n\n### Application\n\nThe framework provides practitioners with practical tools for audit pipelines and enables responsible deployment of synthetic training data.\n\nThis research (arXiv 2511.17602, published November 18, 2025) specifically targets the challenge of detecting contamination in synthetic training data that may not have obvious lexical similarities but could still encode benchmark knowledge at a semantic level."
+    ],
+    "durationSeconds": 6.244462709000014
+  },
+  "sourceToolAssistantUUID": "50e1a768-31c0-4412-b056-42abb4f8df58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-12T00:47:01.132Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QxrVgxAjuo65C2pUPsg4hR`</summary>
+
+```json
+{
+  "query": "ICML 2025 \"how much can we forget about data contamination\" scaling laws small models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcc72a99-e9a9-4a32-9c48-61e71cf3e203",
+  "isSidechain": false,
+  "requestId": "req_011CawkbmrBzRCVh9bAfhkTU",
+  "type": "assistant",
+  "uuid": "1b110ee7-c51b-4c37-b2ed-49d1885a018c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0117HTgrC62YysY52sRsMLkE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 880,
+      "cache_read_input_tokens": 47206,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 47206,
+          "cache_creation_input_tokens": 880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-12T00:47:09.759Z_
+
+<details><summary>↩ Tool result · `toolu_01QxrVgxAjuo65C2pUPsg4hR`</summary>
+
+```text
+Web search results for query: "ICML 2025 "how much can we forget about data contamination" scaling laws small models"
+
+Links: [{"title":"ICML Poster How Much Can We Forget about Data Contamination?","url":"https://icml.cc/virtual/2025/poster/45377"},{"title":"How much can we Forget about Data Contamination? | OpenReview","url":"https://openreview.net/forum?id=Nsms7NeU2x"},{"title":"How Much Can We Forget about Data Contamination?","url":"https://arxiv.org/html/2410.03249v4"},{"title":"[2410.03249] How Much Can We Forget about Data Contamination?","url":"https://arxiv.org/abs/2410.03249"},{"title":"GitHub - tml-tuebingen/forgetting-contamination: How much can we forget about Data Contamination? (ICML 2025)","url":"https://github.com/tml-tuebingen/forgetting-contamination"},{"title":"Peer Review — How Much Can We Forget about Data Contamination? | by Journal of Landing Across Linguistic Foreground | Feb, 2026 | Medium","url":"https://medium.com/@jolalf/peer-review-how-much-can-we-forget-about-data-contamination-9ad217d6d948"},{"title":"How much can we forget about data contamination? | Proceedings of the 42nd International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3780338.3780525"},{"title":"Apple Machine Learning Research at ICML 2025 - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/icml-2025"},{"title":"(PDF) How Much Can We Forget about Data Contamination?","url":"https://www.researchgate.net/publication/384680534_How_much_can_we_forget_about_Data_Contamination"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a91869936a63d814971b6423990ecf6e-Paper-Conference.pdf"}]
+
+I found excellent results for your search query. Here's a summary of the key findings from the ICML 2025 paper "How Much Can We Forget about Data Contamination?":
+
+## Main Research Question
+
+The paper addresses the concern of "data contamination" in training large language models - when a test question accidentally appears in the training data - and conducts controlled experiments where LLMs are deliberately provided with answers to evaluation questions.
+
+## Key Findings on Scaling Laws
+
+The researchers found that the effect of contamination depends strongly on the training setup, varying based on how often questions were seen during training, the number of model parameters, and the overall size of the training data.
+
+**Critical Result:** If model and data follow the Chinchilla scaling laws, minor contamination leads to overfitting. However, even 144 times of contamination can be forgotten if the training data is scaled beyond five times Chinchilla, a regime characteristic of many modern LLMs.
+
+## Theoretical Contributions
+
+The researchers derived a simple theory of example forgetting via cumulative weight decay, which allows them to bound the number of gradient steps required to forget past data for any training run where the hyperparameters of AdamW are known.
+
+## Empirical Validation
+
+Continual pre-training of OLMo-7B corroborated these results. The analysis indicates that many LLMs, including Llama 3 405B, have forgotten the data seen at the beginning of training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1b110ee7-c51b-4c37-b2ed-49d1885a018c",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "b348249e-80cc-4c4a-a8de-858686651dac",
+  "toolUseResult": {
+    "query": "ICML 2025 \"how much can we forget about data contamination\" scaling laws small models",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JCUe1j1XCBaxPJuZKCN39H",
+        "content": [
+          {
+            "title": "ICML Poster How Much Can We Forget about Data Contamination?",
+            "url": "https://icml.cc/virtual/2025/poster/45377"
+          },
+          {
+            "title": "How much can we Forget about Data Contamination? | OpenReview",
+            "url": "https://openreview.net/forum?id=Nsms7NeU2x"
+          },
+          {
+            "title": "How Much Can We Forget about Data Contamination?",
+            "url": "https://arxiv.org/html/2410.03249v4"
+          },
+          {
+            "title": "[2410.03249] How Much Can We Forget about Data Contamination?",
+            "url": "https://arxiv.org/abs/2410.03249"
+          },
+          {
+            "title": "GitHub - tml-tuebingen/forgetting-contamination: How much can we forget about Data Contamination? (ICML 2025)",
+            "url": "https://github.com/tml-tuebingen/forgetting-contamination"
+          },
+          {
+            "title": "Peer Review — How Much Can We Forget about Data Contamination? | by Journal of Landing Across Linguistic Foreground | Feb, 2026 | Medium",
+            "url": "https://medium.com/@jolalf/peer-review-how-much-can-we-forget-about-data-contamination-9ad217d6d948"
+          },
+          {
+            "title": "How much can we forget about data contamination? | Proceedings of the 42nd International Conference on Machine Learning",
+            "url": "https://dl.acm.org/doi/10.5555/3780338.3780525"
+          },
+          {
+            "title": "Apple Machine Learning Research at ICML 2025 - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/icml-2025"
+          },
+          {
+            "title": "(PDF) How Much Can We Forget about Data Contamination?",
+            "url": "https://www.researchgate.net/publication/384680534_How_much_can_we_forget_about_Data_Contamination"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a91869936a63d814971b6423990ecf6e-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "I found excellent results for your search query. Here's a summary of the key findings from the ICML 2025 paper \"How Much Can We Forget about Data Contamination?\":\n\n## Main Research Question\n\nThe paper addresses the concern of \"data contamination\" in training large language models - when a test question accidentally appears in the training data - and conducts controlled experiments where LLMs are deliberately provided with answers to evaluation questions.\n\n## Key Findings on Scaling Laws\n\nThe researchers found that the effect of contamination depends strongly on the training setup, varying based on how often questions were seen during training, the number of model parameters, and the overall size of the training data.\n\n**Critical Result:** If model and data follow the Chinchilla scaling laws, minor contamination leads to overfitting. However, even 144 times of contamination can be forgotten if the training data is scaled beyond five times Chinchilla, a regime characteristic of many modern LLMs.\n\n## Theoretical Contributions\n\nThe researchers derived a simple theory of example forgetting via cumulative weight decay, which allows them to bound the number of gradient steps required to forget past data for any training run where the hyperparameters of AdamW are known.\n\n## Empirical Validation\n\nContinual pre-training of OLMo-7B corroborated these results. The analysis indicates that many LLMs, including Llama 3 405B, have forgotten the data seen at the beginning of training."
+    ],
+    "durationSeconds": 8.624362099999999
+  },
+  "sourceToolAssistantUUID": "1b110ee7-c51b-4c37-b2ed-49d1885a018c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-12T00:47:13.340Z_
+
+Now let me search for the most critical potential competitors — any work that combines IRT with contamination modeling, or produces contamination-adjusted scores with Bayesian uncertainty.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b348249e-80cc-4c4a-a8de-858686651dac",
+  "isSidechain": false,
+  "requestId": "req_011CawkchfChtAa8zgY9xoCD",
+  "type": "assistant",
+  "uuid": "7b511538-303b-4dd8-884d-2cd33abae8a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sxz129wA4Z4RRAwKTXBp7a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 48086,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 48086,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-12T00:47:14.294Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PAh8RYpkXsyvhyJYGBi8Zn`</summary>
+
+```json
+{
+  "query": "item response theory contamination covariate LLM evaluation Bayesian adjusted score 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b511538-303b-4dd8-884d-2cd33abae8a0",
+  "isSidechain": false,
+  "requestId": "req_011CawkchfChtAa8zgY9xoCD",
+  "type": "assistant",
+  "uuid": "04a9c2ac-5783-41e1-8e6a-b90c34a354a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sxz129wA4Z4RRAwKTXBp7a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 48086,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 48086,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-12T00:47:20.613Z_
+
+<details><summary>↩ Tool result · `toolu_01PAh8RYpkXsyvhyJYGBi8Zn`</summary>
+
+```text
+Web search results for query: "item response theory contamination covariate LLM evaluation Bayesian adjusted score 2025 2026"
+
+Links: [{"title":"Item Response Theory | Columbia University Mailman School of Public Health","url":"https://www.publichealth.columbia.edu/research/population-health-methods/item-response-theory"},{"title":"LLM evaluation benchmarks and safety datasets for 2025 | RAIL Score Knowledge Hub","url":"https://knowledge.responsibleailabs.ai/knowledge-hub/research/llm-evaluation-benchmarks-2025"},{"title":"Using Generative AI to Develop a Common Metric in Item ...","url":"https://aclanthology.org/2025.aimecon-main.30.pdf"},{"title":"Item response theory - Wikipedia","url":"https://en.wikipedia.org/wiki/Item_response_theory"},{"title":"Leveraging LLM respondents for item evaluation: A psychometric analysis - Liu - 2025 - British Journal of Educational Technology - Wiley Online Library","url":"https://bera-journals.onlinelibrary.wiley.com/doi/pdf/10.1111/bjet.13570"},{"title":"Top 15 LLM Evaluation Metrics to Explore in 2026","url":"https://www.analyticsvidhya.com/blog/2025/03/llm-evaluation-metrics/"},{"title":"Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/html/2510.07175"},{"title":"Reliable and Efficient Amortized Model-Based Evaluation","url":"https://crfm.stanford.edu/2025/06/04/reliable-and-efficient-evaluation.html"},{"title":"Validating LLM simulations as behavioral evidence","url":"https://mucollective.northwestern.edu/files/Hullman-llm-behavioral.pdf"},{"title":"Item Response Scaling Laws: A Measurement Theory Approach to Generalizable Neural Performance Prediction | OpenReview","url":"https://openreview.net/forum?id=pIfopX18D1"}]
+
+Based on the web search results, I found several relevant recent publications (2025-2026) that address aspects of your query:
+
+## Key Findings
+
+**Data Contamination in LLM Psychometric Evaluation:**
+Recent work has addressed concerns about data contamination from psychometric inventories used to evaluate LLMs, proposing a framework to systematically measure data contamination by evaluating item memorization, evaluation memorization, and target score matching.
+
+**Item Response Theory Applications to LLM Evaluation:**
+The Rasch model from Item Response Theory has been applied to LLM evaluation, capturing how LLM ability and question difficulty affect correctness at the resolution of each LLM-question pair. Results show that the Rasch model achieves an AUC-ROC of 0.83 on test sets on average, indicating it reliably reflects LLMs' performance across a wide range of questions.
+
+**IRT Extensions for LLM Evaluation:**
+Recent work has proposed extending IRT with a Beta loss on empirical probability responses, yielding Item Response Scaling Laws. IRT-based approaches provide reliable and efficient estimates of scaling behavior while remaining interpretable and generalizable.
+
+**Covariate-Related Concerns:**
+LLM errors that are correlated with covariates of interest can create bias issues that cannot be easily overcome through standard parameter estimation approaches.
+
+The search results show active research combining item response theory, contamination detection, and Bayesian/statistical adjustment methods for LLM evaluation in the 2025-2026 timeframe.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04a9c2ac-5783-41e1-8e6a-b90c34a354a4",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "b04f0c89-55c1-4182-96f6-3cdbccfc4048",
+  "toolUseResult": {
+    "query": "item response theory contamination covariate LLM evaluation Bayesian adjusted score 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Uy7XYzLT7zU44uppBwXGEU",
+        "content": [
+          {
+            "title": "Item Response Theory | Columbia University Mailman School of Public Health",
+            "url": "https://www.publichealth.columbia.edu/research/population-health-methods/item-response-theory"
+          },
+          {
+            "title": "LLM evaluation benchmarks and safety datasets for 2025 | RAIL Score Knowledge Hub",
+            "url": "https://knowledge.responsibleailabs.ai/knowledge-hub/research/llm-evaluation-benchmarks-2025"
+          },
+          {
+            "title": "Using Generative AI to Develop a Common Metric in Item ...",
+            "url": "https://aclanthology.org/2025.aimecon-main.30.pdf"
+          },
+          {
+            "title": "Item response theory - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Item_response_theory"
+          },
+          {
+            "title": "Leveraging LLM respondents for item evaluation: A psychometric analysis - Liu - 2025 - British Journal of Educational Technology - Wiley Online Library",
+            "url": "https://bera-journals.onlinelibrary.wiley.com/doi/pdf/10.1111/bjet.13570"
+          },
+          {
+            "title": "Top 15 LLM Evaluation Metrics to Explore in 2026",
+            "url": "https://www.analyticsvidhya.com/blog/2025/03/llm-evaluation-metrics/"
+          },
+          {
+            "title": "Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/html/2510.07175"
+          },
+          {
+            "title": "Reliable and Efficient Amortized Model-Based Evaluation",
+            "url": "https://crfm.stanford.edu/2025/06/04/reliable-and-efficient-evaluation.html"
+          },
+          {
+            "title": "Validating LLM simulations as behavioral evidence",
+            "url": "https://mucollective.northwestern.edu/files/Hullman-llm-behavioral.pdf"
+          },
+          {
+            "title": "Item Response Scaling Laws: A Measurement Theory Approach to Generalizable Neural Performance Prediction | OpenReview",
+            "url": "https://openreview.net/forum?id=pIfopX18D1"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant recent publications (2025-2026) that address aspects of your query:\n\n## Key Findings\n\n**Data Contamination in LLM Psychometric Evaluation:**\nRecent work has addressed concerns about data contamination from psychometric inventories used to evaluate LLMs, proposing a framework to systematically measure data contamination by evaluating item memorization, evaluation memorization, and target score matching.\n\n**Item Response Theory Applications to LLM Evaluation:**\nThe Rasch model from Item Response Theory has been applied to LLM evaluation, capturing how LLM ability and question difficulty affect correctness at the resolution of each LLM-question pair. Results show that the Rasch model achieves an AUC-ROC of 0.83 on test sets on average, indicating it reliably reflects LLMs' performance across a wide range of questions.\n\n**IRT Extensions for LLM Evaluation:**\nRecent work has proposed extending IRT with a Beta loss on empirical probability responses, yielding Item Response Scaling Laws. IRT-based approaches provide reliable and efficient estimates of scaling behavior while remaining interpretable and generalizable.\n\n**Covariate-Related Concerns:**\nLLM errors that are correlated with covariates of interest can create bias issues that cannot be easily overcome through standard parameter estimation approaches.\n\nThe search results show active research combining item response theory, contamination detection, and Bayesian/statistical adjustment methods for LLM evaluation in the 2025-2026 timeframe."
+    ],
+    "durationSeconds": 6.313509673000023
+  },
+  "sourceToolAssistantUUID": "04a9c2ac-5783-41e1-8e6a-b90c34a354a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b04f0c89-55c1-4182-96f6-3cdbccfc4048",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-12T00:47:23.443Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NBwMs8mtx63v6aCMrxT2Bz`</summary>
+
+```json
+{
+  "query": "inference-time decontamination rewriting leaked samples EMNLP 2024 findings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b04f0c89-55c1-4182-96f6-3cdbccfc4048",
+  "isSidechain": false,
+  "requestId": "req_011CawkdW6hei7kFoizYWrAq",
+  "type": "assistant",
+  "uuid": "a98dbf8a-3e50-4e6f-bbb1-48e1992a5714",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xdt6QLccuFVEoqk5e9bkyt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 49064,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 49064,
+          "cache_creation_input_tokens": 991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-12T00:47:29.765Z_
+
+<details><summary>↩ Tool result · `toolu_01NBwMs8mtx63v6aCMrxT2Bz`</summary>
+
+```text
+Web search results for query: "inference-time decontamination rewriting leaked samples EMNLP 2024 findings"
+
+Links: [{"title":"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation - ACL Anthology","url":"https://aclanthology.org/2024.findings-emnlp.532/"},{"title":"Reusing Leaked Benchmarks for Large Language Model ...","url":"https://aclanthology.org/2024.findings-emnlp.532.pdf"},{"title":"[Quick Review] Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation","url":"https://liner.com/review/inferencetime-decontamination-reusing-leaked-benchmarks-for-large-language-model-evaluation"},{"title":"[2406.13990] Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation","url":"https://arxiv.org/abs/2406.13990"},{"title":"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation","url":"https://arxiv.org/html/2406.13990v1"},{"title":"When Benchmarks Leak: Inference-Time Decontamination for LLMs","url":"https://arxiv.org/html/2601.19334"},{"title":"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation | Request PDF","url":"https://www.researchgate.net/publication/386183526_Inference-Time_Decontamination_Reusing_Leaked_Benchmarks_for_Large_Language_Model_Evaluation"},{"title":"Findings - EMNLP 2024","url":"https://2024.emnlp.org/program/accepted_findings/"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240613990Z/abstract"}]
+
+Based on the search results, here are the key findings from the EMNLP 2024 paper on Inference-Time Decontamination:
+
+## Overview
+
+Inference-Time Decontamination (ITD) detects and rewrites leaked samples without altering their difficulties. ITD can mitigate performance inflation caused by memorizing leaked benchmarks.
+
+## Key Findings
+
+ITD reduces inflated accuracy by 22.9% on GSM8K and 19.0% on MMLU. On MMLU, using Inference-time Decontamination can lead to a decrease in the results of Phi3 and Mistral by 6.7% and 3.6% respectively.
+
+## Methodology
+
+The approach involves two main components:
+
+1. **Detection**: ITD incorporates a detection stage using MinKProb to identify potentially leaked samples, followed by a rewriting stage that modifies these samples without changing their inherent difficulty.
+
+2. **Rewriting**: For mathematical reasoning tasks like GSM8K, ITD redesigns problem scenarios while preserving computational logic and answers, whereas for knowledge-based tasks like MMLU, it performs synonymous rewrites of questions and options.
+
+## Limitations
+
+The significant accuracy loss observed with MinKProb (only detecting 62.7% and 82.1% of intentionally leaked data) indicates that while ITD's rewriting mechanism is effective, the overall success of inference-time decontamination heavily relies on improving the accuracy of the initial detection stage.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a98dbf8a-3e50-4e6f-bbb1-48e1992a5714",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "55164d8d-5041-49bd-bdd8-1c191ec787a4",
+  "toolUseResult": {
+    "query": "inference-time decontamination rewriting leaked samples EMNLP 2024 findings",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E6GqD17p1xG2uGHwixmsa1",
+        "content": [
+          {
+            "title": "Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-emnlp.532/"
+          },
+          {
+            "title": "Reusing Leaked Benchmarks for Large Language Model ...",
+            "url": "https://aclanthology.org/2024.findings-emnlp.532.pdf"
+          },
+          {
+            "title": "[Quick Review] Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation",
+            "url": "https://liner.com/review/inferencetime-decontamination-reusing-leaked-benchmarks-for-large-language-model-evaluation"
+          },
+          {
+            "title": "[2406.13990] Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation",
+            "url": "https://arxiv.org/abs/2406.13990"
+          },
+          {
+            "title": "Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation",
+            "url": "https://arxiv.org/html/2406.13990v1"
+          },
+          {
+            "title": "When Benchmarks Leak: Inference-Time Decontamination for LLMs",
+            "url": "https://arxiv.org/html/2601.19334"
+          },
+          {
+            "title": "Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation | Request PDF",
+            "url": "https://www.researchgate.net/publication/386183526_Inference-Time_Decontamination_Reusing_Leaked_Benchmarks_for_Large_Language_Model_Evaluation"
+          },
+          {
+            "title": "Findings - EMNLP 2024",
+            "url": "https://2024.emnlp.org/program/accepted_findings/"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240613990Z/abstract"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings from the EMNLP 2024 paper on Inference-Time Decontamination:\n\n## Overview\n\nInference-Time Decontamination (ITD) detects and rewrites leaked samples without altering their difficulties. ITD can mitigate performance inflation caused by memorizing leaked benchmarks.\n\n## Key Findings\n\nITD reduces inflated accuracy by 22.9% on GSM8K and 19.0% on MMLU. On MMLU, using Inference-time Decontamination can lead to a decrease in the results of Phi3 and Mistral by 6.7% and 3.6% respectively.\n\n## Methodology\n\nThe approach involves two main components:\n\n1. **Detection**: ITD incorporates a detection stage using MinKProb to identify potentially leaked samples, followed by a rewriting stage that modifies these samples without changing their inherent difficulty.\n\n2. **Rewriting**: For mathematical reasoning tasks like GSM8K, ITD redesigns problem scenarios while preserving computational logic and answers, whereas for knowledge-based tasks like MMLU, it performs synonymous rewrites of questions and options.\n\n## Limitations\n\nThe significant accuracy loss observed with MinKProb (only detecting 62.7% and 82.1% of intentionally leaked data) indicates that while ITD's rewriting mechanism is effective, the overall success of inference-time decontamination heavily relies on improving the accuracy of the initial detection stage."
+    ],
+    "durationSeconds": 6.319267845000024
+  },
+  "sourceToolAssistantUUID": "a98dbf8a-3e50-4e6f-bbb1-48e1992a5714",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-12T00:47:32.552Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UQHqFqLS8rRjasr1bYrdVs`</summary>
+
+```json
+{
+  "query": "\"when benchmarks leak\" inference-time decontamination 2026 arxiv 2601.19334"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55164d8d-5041-49bd-bdd8-1c191ec787a4",
+  "isSidechain": false,
+  "requestId": "req_011CawkeBCBvZ5Ye7voG4S54",
+  "type": "assistant",
+  "uuid": "e05ed358-29c5-409f-be28-8dacf8070ecc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AJnH3Hed2Mih7Gwgu74M5P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1018,
+      "cache_read_input_tokens": 50055,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1018,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 50055,
+          "cache_creation_input_tokens": 1018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1018
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-12T00:47:39.705Z_
+
+<details><summary>↩ Tool result · `toolu_01UQHqFqLS8rRjasr1bYrdVs`</summary>
+
+```text
+Web search results for query: ""when benchmarks leak" inference-time decontamination 2026 arxiv 2601.19334"
+
+Links: [{"title":"[2601.19334] When Benchmarks Leak: Inference-Time Decontamination for LLMs","url":"https://arxiv.org/abs/2601.19334"},{"title":"When Benchmarks Leak: Inference-Time Decontamination for LLMs","url":"https://arxiv.org/html/2601.19334"},{"title":"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation","url":"https://arxiv.org/html/2406.13990v1"},{"title":"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240613990Z/abstract"},{"title":"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/inference-time-decontamination-reusing-leaked-benchmarks-large"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"Reusing Leaked Benchmarks for Large Language Model ...","url":"https://aclanthology.org/2024.findings-emnlp.532.pdf"},{"title":"[2502.00678] How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://ar5iv.labs.arxiv.org/html/2502.00678v1"},{"title":"[2406.13990] Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation","url":"https://arxiv.org/abs/2406.13990"},{"title":"How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence","url":"https://arxiv.org/html/2502.00678"}]
+
+Based on the search results, here's the information about the paper with arxiv ID 2601.19334:
+
+## "When Benchmarks Leak: Inference-Time Decontamination for LLMs"
+
+Benchmark-based evaluation is the de facto standard for comparing large language models (LLMs). However, its reliability is increasingly threatened by test set contamination, where test samples or their close variants leak into training data and artificially inflate reported performance.
+
+Prior work has explored two main lines of mitigation. One line attempts to identify and remove contaminated benchmark items before evaluation, but this inevitably alters the evaluation set itself and becomes unreliable when contamination is moderate or severe. The other line preserves the benchmark and instead suppresses contaminated behavior at evaluation time; however, such interventions often interfere with normal inference and lead to noticeable performance degradation on clean inputs.
+
+### The Proposed Solution
+
+The paper proposes DeconIEP, a decontamination framework that operates entirely during evaluation by applying small, bounded perturbations in the input embedding space. Guided by a relatively less-contaminated reference model, DeconIEP learns an instance-adaptive perturbation generator that steers the evaluated model away from memorization-driven shortcut pathways.
+
+### Results
+
+Across multiple open-weight LLMs and benchmarks, extensive empirical results show that DeconIEP achieves strong decontamination effectiveness while incurring only minimal degradation in benign utility.
+
+The paper was submitted on January 27, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e05ed358-29c5-409f-be28-8dacf8070ecc",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "3077bd2d-2856-4dcc-b555-c39d236ed94a",
+  "toolUseResult": {
+    "query": "\"when benchmarks leak\" inference-time decontamination 2026 arxiv 2601.19334",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QbHdfEUJAhfomaVosvq1FQ",
+        "content": [
+          {
+            "title": "[2601.19334] When Benchmarks Leak: Inference-Time Decontamination for LLMs",
+            "url": "https://arxiv.org/abs/2601.19334"
+          },
+          {
+            "title": "When Benchmarks Leak: Inference-Time Decontamination for LLMs",
+            "url": "https://arxiv.org/html/2601.19334"
+          },
+          {
+            "title": "Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation",
+            "url": "https://arxiv.org/html/2406.13990v1"
+          },
+          {
+            "title": "Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240613990Z/abstract"
+          },
+          {
+            "title": "Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/inference-time-decontamination-reusing-leaked-benchmarks-large"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "Reusing Leaked Benchmarks for Large Language Model ...",
+            "url": "https://aclanthology.org/2024.findings-emnlp.532.pdf"
+          },
+          {
+            "title": "[2502.00678] How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://ar5iv.labs.arxiv.org/html/2502.00678v1"
+          },
+          {
+            "title": "[2406.13990] Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation",
+            "url": "https://arxiv.org/abs/2406.13990"
+          },
+          {
+            "title": "How Contaminated Is Your Benchmark? Measuring Dataset Leakage in Large Language Models with Kernel Divergence",
+            "url": "https://arxiv.org/html/2502.00678"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the paper with arxiv ID 2601.19334:\n\n## \"When Benchmarks Leak: Inference-Time Decontamination for LLMs\"\n\nBenchmark-based evaluation is the de facto standard for comparing large language models (LLMs). However, its reliability is increasingly threatened by test set contamination, where test samples or their close variants leak into training data and artificially inflate reported performance.\n\nPrior work has explored two main lines of mitigation. One line attempts to identify and remove contaminated benchmark items before evaluation, but this inevitably alters the evaluation set itself and becomes unreliable when contamination is moderate or severe. The other line preserves the benchmark and instead suppresses contaminated behavior at evaluation time; however, such interventions often interfere with normal inference and lead to noticeable performance degradation on clean inputs.\n\n### The Proposed Solution\n\nThe paper proposes DeconIEP, a decontamination framework that operates entirely during evaluation by applying small, bounded perturbations in the input embedding space. Guided by a relatively less-contaminated reference model, DeconIEP learns an instance-adaptive perturbation generator that steers the evaluated model away from memorization-driven shortcut pathways.\n\n### Results\n\nAcross multiple open-weight LLMs and benchmarks, extensive empirical results show that DeconIEP achieves strong decontamination effectiveness while incurring only minimal degradation in benign utility.\n\nThe paper was submitted on January 27, 2026."
+    ],
+    "durationSeconds": 7.147672405999969
+  },
+  "sourceToolAssistantUUID": "e05ed358-29c5-409f-be28-8dacf8070ecc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 82 · 2026-05-12T00:47:39.713Z_
+
+```json
+{
+  "parentUuid": "3077bd2d-2856-4dcc-b555-c39d236ed94a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4fafad4f-5462-4637-960c-45d29b3b9add",
+  "timestamp": "2026-05-12T00:47:39.713Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-12T00:47:44.214Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Important finding: DeconIEP (arXiv 2601.19334, Jan 2026) is another approach to decontamination at inference time. This is relevant but operates during inference rather than post-hoc, so it's a different approach from ContamCal.
+
+Now let me check some more potential competitors and verify the feasibility claims more carefully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fafad4f-5462-4637-960c-45d29b3b9add",
+  "isSidechain": false,
+  "requestId": "req_011CawkeujHiUAcTaS7ieUT2",
+  "type": "assistant",
+  "uuid": "b53d6e55-6044-42f6-8719-4818fbb4a9a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1qMMfYdkGRc3Kb3DqHrqC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1114,
+      "cache_read_input_tokens": 51073,
+      "output_tokens": 185,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1114,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 185,
+          "cache_read_input_tokens": 51073,
+          "cache_creation_input_tokens": 1114,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1114
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-12T00:47:44.651Z_
+
+Let me now check for more potential concurrent work and verify feasibility claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b53d6e55-6044-42f6-8719-4818fbb4a9a0",
+  "isSidechain": false,
+  "requestId": "req_011CawkeujHiUAcTaS7ieUT2",
+  "type": "assistant",
+  "uuid": "4449e5ca-99ca-4831-b787-503748d2b02d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1qMMfYdkGRc3Kb3DqHrqC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1114,
+      "cache_read_input_tokens": 51073,
+      "output_tokens": 185,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1114,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 185,
+          "cache_read_input_tokens": 51073,
+          "cache_creation_input_tokens": 1114,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1114
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-12T00:47:45.544Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DoyePWdNZAxAUDqx2NerXw`</summary>
+
+```json
+{
+  "query": "growing pains extensible efficient LLM benchmarking fixed parameter calibration IRT arxiv 2604"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4449e5ca-99ca-4831-b787-503748d2b02d",
+  "isSidechain": false,
+  "requestId": "req_011CawkeujHiUAcTaS7ieUT2",
+  "type": "assistant",
+  "uuid": "98cdf466-27e7-460e-a0b1-f588d5e95eac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S1qMMfYdkGRc3Kb3DqHrqC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1114,
+      "cache_read_input_tokens": 51073,
+      "output_tokens": 185,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1114,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 185,
+          "cache_read_input_tokens": 51073,
+          "cache_creation_input_tokens": 1114,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1114
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-12T00:47:55.906Z_
+
+<details><summary>↩ Tool result · `toolu_01DoyePWdNZAxAUDqx2NerXw`</summary>
+
+```text
+Web search results for query: "growing pains extensible efficient LLM benchmarking fixed parameter calibration IRT arxiv 2604"
+
+Links: [{"title":"[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/abs/2604.12843"},{"title":"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/html/2604.12843"},{"title":"[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models","url":"https://arxiv.org/abs/2605.07046"},{"title":"An Interpretable and Scalable Framework for Evaluating Large Language Models","url":"https://arxiv.org/html/2605.07046"},{"title":"Agent Psychometrics: Task-Level Performance Prediction in Agentic Coding Benchmarks","url":"https://arxiv.org/html/2604.00594v1"},{"title":"HWE-Bench: Benchmarking LLM Agents on Real-World Hardware Bug Repair Tasks","url":"https://arxiv.org/html/2604.14709v1"},{"title":"Benchmarking Fine-Grained Image-Text Alignment in Interleaved Multimodal Contexts","url":"https://arxiv.org/html/2604.27389"},{"title":"Scalable Parameter and Memory Efficient Pretraining for LLM: Recent Algorithmic Advances and Benchmarking","url":"https://arxiv.org/html/2505.22922v1"},{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/new?skip=550&show=1000"},{"title":"Data Efficient Evaluation of Large Language Models and Text-to-Image Models via Adaptive Sampling","url":"https://arxiv.org/html/2406.15527v1"}]
+
+I found the paper! Here are the search results for your query:
+
+## Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration
+
+The paper is arXiv preprint 2604.12843, titled "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration".
+
+**Overview:**
+The problem addresses how the rapid release of both language models and benchmarks makes it increasingly costly to evaluate every model on every dataset.
+
+**Key Contribution:**
+The authors propose a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed.
+
+**Approach:**
+Their approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly.
+
+**Results:**
+In large-scale experiments on more than 400 models, their framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ ≥ 0.9 for ranking preservation.
+
+Code is available at https://github.com/eliyahabba/growing-pains/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98cdf466-27e7-460e-a0b1-f588d5e95eac",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "ddbb769a-91e9-43e7-93a9-2fe3c542695b",
+  "toolUseResult": {
+    "query": "growing pains extensible efficient LLM benchmarking fixed parameter calibration IRT arxiv 2604",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TbxD5oA4z5KFLou72g9hza",
+        "content": [
+          {
+            "title": "[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/abs/2604.12843"
+          },
+          {
+            "title": "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/html/2604.12843"
+          },
+          {
+            "title": "[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models",
+            "url": "https://arxiv.org/abs/2605.07046"
+          },
+          {
+            "title": "An Interpretable and Scalable Framework for Evaluating Large Language Models",
+            "url": "https://arxiv.org/html/2605.07046"
+          },
+          {
+            "title": "Agent Psychometrics: Task-Level Performance Prediction in Agentic Coding Benchmarks",
+            "url": "https://arxiv.org/html/2604.00594v1"
+          },
+          {
+            "title": "HWE-Bench: Benchmarking LLM Agents on Real-World Hardware Bug Repair Tasks",
+            "url": "https://arxiv.org/html/2604.14709v1"
+          },
+          {
+            "title": "Benchmarking Fine-Grained Image-Text Alignment in Interleaved Multimodal Contexts",
+            "url": "https://arxiv.org/html/2604.27389"
+          },
+          {
+            "title": "Scalable Parameter and Memory Efficient Pretraining for LLM: Recent Algorithmic Advances and Benchmarking",
+            "url": "https://arxiv.org/html/2505.22922v1"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://www.arxiv.org/list/cs/new?skip=550&show=1000"
+          },
+          {
+            "title": "Data Efficient Evaluation of Large Language Models and Text-to-Image Models via Adaptive Sampling",
+            "url": "https://arxiv.org/html/2406.15527v1"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for your query:\n\n## Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\n\nThe paper is arXiv preprint 2604.12843, titled \"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\".\n\n**Overview:**\nThe problem addresses how the rapid release of both language models and benchmarks makes it increasingly costly to evaluate every model on every dataset.\n\n**Key Contribution:**\nThe authors propose a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed.\n\n**Approach:**\nTheir approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly.\n\n**Results:**\nIn large-scale experiments on more than 400 models, their framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ ≥ 0.9 for ranking preservation.\n\nCode is available at https://github.com/eliyahabba/growing-pains/."
+    ],
+    "durationSeconds": 10.357774060000025
+  },
+  "sourceToolAssistantUUID": "98cdf466-27e7-460e-a0b1-f588d5e95eac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-12T00:48:01.075Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01G9Z8QpZTe5R2T2Mx2Gnxg6`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.12843",
+  "prompt": "Extract the full abstract. Does this paper address contamination at all? Does it model contamination as a covariate in IRT? Does it provide contamination-adjusted scores or uncertainty bounds? How does it relate to IRT-based benchmark evaluation — is it purely about efficiency/extensibility, or does it also address data quality issues?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddbb769a-91e9-43e7-93a9-2fe3c542695b",
+  "isSidechain": false,
+  "requestId": "req_011Cawkg6xW2Mw82d9tKbtfR",
+  "type": "assistant",
+  "uuid": "acd2bc67-b0ae-4197-b253-7994cb90ca85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MEyKvey9rejBd8pV8jv5mT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1005,
+      "cache_read_input_tokens": 52187,
+      "output_tokens": 152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 152,
+          "cache_read_input_tokens": 52187,
+          "cache_creation_input_tokens": 1005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-12T00:48:07.221Z_
+
+<details><summary>↩ Tool result · `toolu_01G9Z8QpZTe5R2T2Mx2Gnxg6`</summary>
+
+```text
+# Analysis of "Growing Pains" Paper on LLM Benchmarking
+
+## Full Abstract
+
+"The rapid release of both language models and benchmarks makes it increasingly costly to evaluate every model on every dataset. In practice, models are often evaluated on different samples, making scores difficult to compare across studies. To address this, we propose a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed. Our approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly. In large-scale experiments on more than 400 models, our framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ ≥ 0.9 for ranking preservation, showing that it is possible to extend benchmark suites over time while preserving score comparability, at a constant evaluation cost per new dataset."
+
+## Key Findings
+
+**Contamination:** The abstract does not mention data contamination, test set leakage, or related quality concerns.
+
+**IRT Application:** The paper applies IRT exclusively to address **efficiency and extensibility**—specifically, enabling fair comparison of models evaluated on different datasets over time using anchor items.
+
+**Focus:** This work is purely about practical scalability and score comparability, not about modeling data quality issues or providing contamination-adjusted metrics or uncertainty bounds.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "acd2bc67-b0ae-4197-b253-7994cb90ca85",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "ee77b60a-e2c5-42cf-a6b8-7dd23f862c85",
+  "toolUseResult": {
+    "bytes": 47190,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Growing Pains\" Paper on LLM Benchmarking\n\n## Full Abstract\n\n\"The rapid release of both language models and benchmarks makes it increasingly costly to evaluate every model on every dataset. In practice, models are often evaluated on different samples, making scores difficult to compare across studies. To address this, we propose a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed. Our approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly. In large-scale experiments on more than 400 models, our framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ ≥ 0.9 for ranking preservation, showing that it is possible to extend benchmark suites over time while preserving score comparability, at a constant evaluation cost per new dataset.\"\n\n## Key Findings\n\n**Contamination:** The abstract does not mention data contamination, test set leakage, or related quality concerns.\n\n**IRT Application:** The paper applies IRT exclusively to address **efficiency and extensibility**—specifically, enabling fair comparison of models evaluated on different datasets over time using anchor items.\n\n**Focus:** This work is purely about practical scalability and score comparability, not about modeling data quality issues or providing contamination-adjusted metrics or uncertainty bounds.",
+    "durationMs": 6142,
+    "url": "https://arxiv.org/abs/2604.12843"
+  },
+  "sourceToolAssistantUUID": "acd2bc67-b0ae-4197-b253-7994cb90ca85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ee77b60a-e2c5-42cf-a6b8-7dd23f862c85",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-12T00:48:11.398Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0136V4e9tdXE6fjuQDHR55Sr`</summary>
+
+```json
+{
+  "query": "Stan PyMC hierarchical Bayesian IRT 4PL model convergence LLM thousands items"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee77b60a-e2c5-42cf-a6b8-7dd23f862c85",
+  "isSidechain": false,
+  "requestId": "req_011CawkgwTmdGnvKzH6ak1yv",
+  "type": "assistant",
+  "uuid": "f41e03e8-b24d-4c83-9404-6c237b30ac26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQ5vuQ1P4S25vL8uskop1f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 53192,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 53192,
+          "cache_creation_input_tokens": 513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-12T00:48:21.310Z_
+
+<details><summary>↩ Tool result · `toolu_0136V4e9tdXE6fjuQDHR55Sr`</summary>
+
+```text
+Web search results for query: "Stan PyMC hierarchical Bayesian IRT 4PL model convergence LLM thousands items"
+
+Links: [{"title":"Notebook 4: Hierarchical Models — Bayesian Inference with PyMC","url":"https://allendowney.github.io/BayesianInferencePyMC/04_hierarchical.html"},{"title":"Bayesian Estimation of Latent Space Item Response Models with JAGS, Stan, and NIMBLE in R","url":"https://www.mdpi.com/2624-8611/5/2/27"},{"title":"1.11 Item-Response Theory Models | Stan User’s Guide","url":"https://mc-stan.org/docs/2_20/stan-users-guide/item-response-models-section.html"},{"title":"Using the Stan Program for Bayesian Item Response Theory - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC6096466/"},{"title":"Home | Education research using Stan","url":"https://education-stan.github.io/"},{"title":"In the spotlight: Bayesian IRT–4PL model | Stata News","url":"https://www.stata.com/stata-news/news31-1/bayesian-irt/"},{"title":"Bridging Item Response Theory and Factor Analysis","url":"https://arxiv.org/pdf/2407.04071"},{"title":"An Optimized Bayesian Hierarchical Two-Parameter Logistic Model for Small-Sample Item Calibration - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7262992/"},{"title":"(PDF) Using the Stan Program for Bayesian Item Response Theory","url":"https://www.researchgate.net/publication/313897601_Using_the_Stan_Program_for_Bayesian_Item_Response_Theory"},{"title":"[1905.09501] Bayesian Item Response Modeling in R with brms and Stan","url":"https://arxiv.org/abs/1905.09501"}]
+
+I've completed the web search for your query. Here are the key findings:
+
+## Search Results Summary
+
+The search returned relevant information about hierarchical Bayesian Item Response Theory (IRT) models, particularly related to Stan and PyMC implementations:
+
+**Key Findings:**
+
+1. **Convergence in Stan IRT Models**: For dichotomous IRT models, Stan needs approximately 200 iterations to reach model convergence.
+
+2. **4PL Model Implementation**: A Bayesian 4PL model has been demonstrated using statistical software with 800 student responses to 9 test questions. Additionally, hierarchical Bayesian model specification introduces hyperparameters to model means and variances of the normal prior distribution.
+
+3. **PyMC and JAGS for 4PL Models**: The PyMC implementation provides a useful benchmark and flexibility for Python-based workflows for IRT modeling, with comparisons made against the 4PL IRT model estimated via the EM algorithm in the mirt package.
+
+4. **Hierarchical Bayesian Approaches**: Hierarchical Bayesian approaches are frequently proposed to reduce the sample size requirements of the 2PL, and they also apply to more complex models.
+
+5. **Stan's Computational Advantages**: Traditional sampling algorithms have limitations with long computation time required for model convergence due to their inefficiency in exploring the posterior parameter space, which is where Stan offers improvements.
+
+The search results provide practical guidance on implementing hierarchical Bayesian IRT models, though specific information about scaling to thousands of items with language learning models was not prominently featured in the results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f41e03e8-b24d-4c83-9404-6c237b30ac26",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "d2823d4d-2379-4432-96f8-e84a42abf82a",
+  "toolUseResult": {
+    "query": "Stan PyMC hierarchical Bayesian IRT 4PL model convergence LLM thousands items",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CeEmFa1EisCqQWDK6GjdZu",
+        "content": [
+          {
+            "title": "Notebook 4: Hierarchical Models — Bayesian Inference with PyMC",
+            "url": "https://allendowney.github.io/BayesianInferencePyMC/04_hierarchical.html"
+          },
+          {
+            "title": "Bayesian Estimation of Latent Space Item Response Models with JAGS, Stan, and NIMBLE in R",
+            "url": "https://www.mdpi.com/2624-8611/5/2/27"
+          },
+          {
+            "title": "1.11 Item-Response Theory Models | Stan User’s Guide",
+            "url": "https://mc-stan.org/docs/2_20/stan-users-guide/item-response-models-section.html"
+          },
+          {
+            "title": "Using the Stan Program for Bayesian Item Response Theory - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6096466/"
+          },
+          {
+            "title": "Home | Education research using Stan",
+            "url": "https://education-stan.github.io/"
+          },
+          {
+            "title": "In the spotlight: Bayesian IRT–4PL model | Stata News",
+            "url": "https://www.stata.com/stata-news/news31-1/bayesian-irt/"
+          },
+          {
+            "title": "Bridging Item Response Theory and Factor Analysis",
+            "url": "https://arxiv.org/pdf/2407.04071"
+          },
+          {
+            "title": "An Optimized Bayesian Hierarchical Two-Parameter Logistic Model for Small-Sample Item Calibration - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7262992/"
+          },
+          {
+            "title": "(PDF) Using the Stan Program for Bayesian Item Response Theory",
+            "url": "https://www.researchgate.net/publication/313897601_Using_the_Stan_Program_for_Bayesian_Item_Response_Theory"
+          },
+          {
+            "title": "[1905.09501] Bayesian Item Response Modeling in R with brms and Stan",
+            "url": "https://arxiv.org/abs/1905.09501"
+          }
+        ]
+      },
+      "I've completed the web search for your query. Here are the key findings:\n\n## Search Results Summary\n\nThe search returned relevant information about hierarchical Bayesian Item Response Theory (IRT) models, particularly related to Stan and PyMC implementations:\n\n**Key Findings:**\n\n1. **Convergence in Stan IRT Models**: For dichotomous IRT models, Stan needs approximately 200 iterations to reach model convergence.\n\n2. **4PL Model Implementation**: A Bayesian 4PL model has been demonstrated using statistical software with 800 student responses to 9 test questions. Additionally, hierarchical Bayesian model specification introduces hyperparameters to model means and variances of the normal prior distribution.\n\n3. **PyMC and JAGS for 4PL Models**: The PyMC implementation provides a useful benchmark and flexibility for Python-based workflows for IRT modeling, with comparisons made against the 4PL IRT model estimated via the EM algorithm in the mirt package.\n\n4. **Hierarchical Bayesian Approaches**: Hierarchical Bayesian approaches are frequently proposed to reduce the sample size requirements of the 2PL, and they also apply to more complex models.\n\n5. **Stan's Computational Advantages**: Traditional sampling algorithms have limitations with long computation time required for model convergence due to their inefficiency in exploring the posterior parameter space, which is where Stan offers improvements.\n\nThe search results provide practical guidance on implementing hierarchical Bayesian IRT models, though specific information about scaling to thousands of items with language learning models was not prominently featured in the results."
+    ],
+    "durationSeconds": 9.908831866999972
+  },
+  "sourceToolAssistantUUID": "f41e03e8-b24d-4c83-9404-6c237b30ac26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-12T00:48:23.867Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017MBnJ2BMVow9uhrraYk5Hj`</summary>
+
+```json
+{
+  "query": "Bayesian IRT scale thousands items computational cost sampling time Stan large datasets"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2823d4d-2379-4432-96f8-e84a42abf82a",
+  "isSidechain": false,
+  "requestId": "req_011CawkhydGw7MNvkGDvFNC5",
+  "type": "assistant",
+  "uuid": "f05954dd-4bf9-4689-ae2e-cd116ace8e52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MpgHqtWUqHDFpGuaQ6AikS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 53705,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 53705,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-12T00:48:31.794Z_
+
+<details><summary>↩ Tool result · `toolu_017MBnJ2BMVow9uhrraYk5Hj`</summary>
+
+```text
+Web search results for query: "Bayesian IRT scale thousands items computational cost sampling time Stan large datasets"
+
+Links: [{"title":"Using the Stan Program for Bayesian Item Response Theory - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC6096466/"},{"title":"Evaluating Stan’s Variational Bayes Algorithm for Estimating Multidimensional IRT Models","url":"https://www.mdpi.com/2624-8611/4/1/7"},{"title":"(PDF) Using the Stan Program for Bayesian Item Response Theory","url":"https://www.researchgate.net/publication/313897601_Using_the_Stan_Program_for_Bayesian_Item_Response_Theory"},{"title":"Comparison between pystan and numpyro in Bayesian item response theory: evaluation of agreement of estimated latent parameters and sampling performance - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/37869462/"},{"title":"Fitting Bayesian item response models in Stata and Stan","url":"https://sites.stat.columbia.edu/gelman/research/published/stan_v_stata_IRT.pdf"},{"title":"[1905.09501] Bayesian Item Response Modeling in R with brms and Stan","url":"https://arxiv.org/abs/1905.09501"},{"title":"(PDF) Evaluating Stan’s Variational Bayes Algorithm for Estimating Multidimensional IRT Models","url":"https://www.researchgate.net/publication/358374955_Evaluating_Stan's_Variational_Bayes_Algorithm_for_Estimating_Multidimensional_IRT_Models"},{"title":"Bayesian Item Response Modeling in R with brms and Stan | Journal of Statistical Software","url":"https://www.jstatsoft.org/article/view/v100i05"},{"title":"Bayesian IRT | Model Estimation by Example","url":"https://m-clark.github.io/models-by-example/bayesian-irt.html"},{"title":"PeerJ Comparison between pystan and numpyro in Bayesian item response theory: evaluation of agreement of estimated latent parameters and sampling performance","url":"https://peerj.com/articles/cs-1620/"}]
+
+Based on the web search results, I found substantial research addressing your query about Bayesian IRT scaling, computational costs, and sampling performance with Stan on large datasets:
+
+## Computational Challenges with Bayesian IRT
+
+Bayesian estimation of multidimensional item response theory (IRT) models in large data sets may come with impractical computational burdens when general-purpose Markov chain Monte Carlo (MCMC) samplers are employed. A problem of MCMC algorithms is that they can be very computationally demanding, especially when researchers draw on general-purpose samplers instead of samplers tailored to the specific model employed, and while general-purpose samplers make Bayesian estimation techniques easily accessible, their computation times can become unbearable when sample sizes are large.
+
+## Stan's Performance for IRT
+
+For researchers who want to fit more complex IRT models to their data using MCMC algorithm but are not satisfied with the computational speed of the Gibbs sampler and Metropolis algorithm in BUGS and other MCMC packages, Stan may be an attractive alternative. In one empirical example, three chains were run with 3,000 iterations for each chain with the first 1,500 iterations discarded as burnin, and the computation took 45 minutes on a desktop computer with an Intel Xeon E5 processor.
+
+## Sampling Time and Data Size Trade-offs
+
+In most cases, the sampling time using the Markov chain Monte Carlo method was shorter in numpyro than that in pystan, and when large-sized simulation data were used, numpyro with a graphics processing unit was useful for reducing the sampling time.
+
+## Alternative Approaches
+
+Variational Bayes (VB) is a deterministic method for approximating the posterior distribution that trades off the performance guarantees of MCMC-based Bayesian estimation against speed and may be a real alternative for researchers aiming to draw on Bayesian techniques for estimating complex models in large data sets that could alleviate the potentially infeasible computation times of general-purpose MCMC samplers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f05954dd-4bf9-4689-ae2e-cd116ace8e52",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "160937b2-bf27-489a-81c5-777592339d34",
+  "toolUseResult": {
+    "query": "Bayesian IRT scale thousands items computational cost sampling time Stan large datasets",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XjJLFk6pbNi8KsNCJQoWic",
+        "content": [
+          {
+            "title": "Using the Stan Program for Bayesian Item Response Theory - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6096466/"
+          },
+          {
+            "title": "Evaluating Stan’s Variational Bayes Algorithm for Estimating Multidimensional IRT Models",
+            "url": "https://www.mdpi.com/2624-8611/4/1/7"
+          },
+          {
+            "title": "(PDF) Using the Stan Program for Bayesian Item Response Theory",
+            "url": "https://www.researchgate.net/publication/313897601_Using_the_Stan_Program_for_Bayesian_Item_Response_Theory"
+          },
+          {
+            "title": "Comparison between pystan and numpyro in Bayesian item response theory: evaluation of agreement of estimated latent parameters and sampling performance - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37869462/"
+          },
+          {
+            "title": "Fitting Bayesian item response models in Stata and Stan",
+            "url": "https://sites.stat.columbia.edu/gelman/research/published/stan_v_stata_IRT.pdf"
+          },
+          {
+            "title": "[1905.09501] Bayesian Item Response Modeling in R with brms and Stan",
+            "url": "https://arxiv.org/abs/1905.09501"
+          },
+          {
+            "title": "(PDF) Evaluating Stan’s Variational Bayes Algorithm for Estimating Multidimensional IRT Models",
+            "url": "https://www.researchgate.net/publication/358374955_Evaluating_Stan's_Variational_Bayes_Algorithm_for_Estimating_Multidimensional_IRT_Models"
+          },
+          {
+            "title": "Bayesian Item Response Modeling in R with brms and Stan | Journal of Statistical Software",
+            "url": "https://www.jstatsoft.org/article/view/v100i05"
+          },
+          {
+            "title": "Bayesian IRT | Model Estimation by Example",
+            "url": "https://m-clark.github.io/models-by-example/bayesian-irt.html"
+          },
+          {
+            "title": "PeerJ Comparison between pystan and numpyro in Bayesian item response theory: evaluation of agreement of estimated latent parameters and sampling performance",
+            "url": "https://peerj.com/articles/cs-1620/"
+          }
+        ]
+      },
+      "Based on the web search results, I found substantial research addressing your query about Bayesian IRT scaling, computational costs, and sampling performance with Stan on large datasets:\n\n## Computational Challenges with Bayesian IRT\n\nBayesian estimation of multidimensional item response theory (IRT) models in large data sets may come with impractical computational burdens when general-purpose Markov chain Monte Carlo (MCMC) samplers are employed. A problem of MCMC algorithms is that they can be very computationally demanding, especially when researchers draw on general-purpose samplers instead of samplers tailored to the specific model employed, and while general-purpose samplers make Bayesian estimation techniques easily accessible, their computation times can become unbearable when sample sizes are large.\n\n## Stan's Performance for IRT\n\nFor researchers who want to fit more complex IRT models to their data using MCMC algorithm but are not satisfied with the computational speed of the Gibbs sampler and Metropolis algorithm in BUGS and other MCMC packages, Stan may be an attractive alternative. In one empirical example, three chains were run with 3,000 iterations for each chain with the first 1,500 iterations discarded as burnin, and the computation took 45 minutes on a desktop computer with an Intel Xeon E5 processor.\n\n## Sampling Time and Data Size Trade-offs\n\nIn most cases, the sampling time using the Markov chain Monte Carlo method was shorter in numpyro than that in pystan, and when large-sized simulation data were used, numpyro with a graphics processing unit was useful for reducing the sampling time.\n\n## Alternative Approaches\n\nVariational Bayes (VB) is a deterministic method for approximating the posterior distribution that trades off the performance guarantees of MCMC-based Bayesian estimation against speed and may be a real alternative for researchers aiming to draw on Bayesian techniques for estimating complex models in large data sets that could alleviate the potentially infeasible computation times of general-purpose MCMC samplers."
+    ],
+    "durationSeconds": 7.922042444000021
+  },
+  "sourceToolAssistantUUID": "f05954dd-4bf9-4689-ae2e-cd116ace8e52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-12T00:48:34.976Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QreEUaa3ciaJerwor2Jote`</summary>
+
+```json
+{
+  "query": "Qwen2.5 0.5B 1.5B 3B SFT LoRA fine-tuning benchmark contamination injection experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "160937b2-bf27-489a-81c5-777592339d34",
+  "isSidechain": false,
+  "requestId": "req_011CawkikQ54UjzMZ8wR82mq",
+  "type": "assistant",
+  "uuid": "6bfa74a4-f56e-47f0-a81a-55ae020a7c54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Q62jKTQTDtqXF2Y24fqpE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1104,
+      "cache_read_input_tokens": 54659,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1104,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 54659,
+          "cache_creation_input_tokens": 1104,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1104
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-12T00:48:42.647Z_
+
+<details><summary>↩ Tool result · `toolu_01QreEUaa3ciaJerwor2Jote`</summary>
+
+```text
+Web search results for query: "Qwen2.5 0.5B 1.5B 3B SFT LoRA fine-tuning benchmark contamination injection experiment"
+
+Links: [{"title":"Small Models Struggle to Learn from Strong Reasoners","url":"https://arxiv.org/html/2502.12143v1"},{"title":"2025-01-06 Qwen2.5 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2412.15115"},{"title":"GRPO Llama-1B · GitHub","url":"https://gist.github.com/willccbb/4676755236bb08cab5f4e54a0475d6fb?permalink_comment_id=5417594"},{"title":"Fine-Tuning Qwen2.5-3B-Instruct (GRPO, PEFT)","url":"https://www.kaggle.com/code/ksmooi/fine-tuning-qwen2-5-3b-instruct-grpo-peft"},{"title":"PH-LLM: Public Health Large Language Models for Infoveillance | medRxiv","url":"https://www.medrxiv.org/content/10.1101/2025.02.08.25321587v1.full"},{"title":"Fine-Tune and Deploy Qwen2.5 - Coder with SFT & DPO on PAI - Alibaba Cloud","url":"https://www.alibabacloud.com/help/en/pai/use-cases/training-evaluation-compression-and-deployment-of-qwen2-5-coder-model"},{"title":"Complete Guide to Fine-tuning Qwen2.5 VL Model - F22 Labs","url":"https://www.f22labs.com/blogs/complete-guide-to-fine-tuning-qwen2-5-vl-model/"},{"title":"Qwen2.5 QLoRA, LoRA, and Full Fine-tuning on Your Computer","url":"https://kaitchup.substack.com/p/qwen25-qlora-lora-and-full-fine-tuning"},{"title":"Fine Tuning Qwen 1.5 for Coding","url":"https://debuggercafe.com/fine-tuning-qwen-1-5-for-coding/"},{"title":"Qwen2.5-1.5B Transformer Model","url":"https://www.emergentmind.com/topics/qwen2-5-1-5b-model"}]
+
+Based on the web search results, I found relevant information about Qwen2.5 models and fine-tuning approaches, though the specific experiment you mentioned with benchmark contamination injection doesn't appear in these results.
+
+Here's what I found related to your query:
+
+## Qwen2.5 Model Sizes and Fine-tuning
+
+Qwen2.5 brings back the 0.5B, 1.5B, and 3B models, which are more cost-effective for resource-limited scenarios, in addition to larger variants.
+
+## SFT and LoRA Fine-tuning
+
+Several studies demonstrate SFT (Supervised Fine-Tuning) and LoRA approaches with Qwen2.5:
+
+- PH-LLM was trained using quantized low-rank adapters (QLoRA) and LoRA plus, leveraging Qwen 2.5, with models of six different sizes: 0.5B, 1.5B, 3B, 7B, 14B, and 32B
+
+- SleepCoT fine-tunes Qwen2.5-1.5B using LoRA adapters on synthetic chain-of-thought data
+
+## Related Research on Small Models and Fine-tuning
+
+On the MATH and AMC benchmarks, student model Qwen2.5-1.5B-Instruct performs over 10 points lower when fine-tuned with long CoT data, showing that smaller models may not be able to effectively learn and utilize the long CoT paradigm.
+
+The specific "benchmark contamination injection experiment" you're asking about doesn't appear in these search results. If you're looking for research on data contamination or benchmark leakage detection in fine-tuning experiments, you may want to search for more specific papers or technical reports on that topic.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6bfa74a4-f56e-47f0-a81a-55ae020a7c54",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "436cdd06-ec8e-4193-a19a-656d6cd11dae",
+  "toolUseResult": {
+    "query": "Qwen2.5 0.5B 1.5B 3B SFT LoRA fine-tuning benchmark contamination injection experiment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F6DwsbT9rBq8rgBb6PqUNE",
+        "content": [
+          {
+            "title": "Small Models Struggle to Learn from Strong Reasoners",
+            "url": "https://arxiv.org/html/2502.12143v1"
+          },
+          {
+            "title": "2025-01-06 Qwen2.5 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2412.15115"
+          },
+          {
+            "title": "GRPO Llama-1B · GitHub",
+            "url": "https://gist.github.com/willccbb/4676755236bb08cab5f4e54a0475d6fb?permalink_comment_id=5417594"
+          },
+          {
+            "title": "Fine-Tuning Qwen2.5-3B-Instruct (GRPO, PEFT)",
+            "url": "https://www.kaggle.com/code/ksmooi/fine-tuning-qwen2-5-3b-instruct-grpo-peft"
+          },
+          {
+            "title": "PH-LLM: Public Health Large Language Models for Infoveillance | medRxiv",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.02.08.25321587v1.full"
+          },
+          {
+            "title": "Fine-Tune and Deploy Qwen2.5 - Coder with SFT & DPO on PAI - Alibaba Cloud",
+            "url": "https://www.alibabacloud.com/help/en/pai/use-cases/training-evaluation-compression-and-deployment-of-qwen2-5-coder-model"
+          },
+          {
+            "title": "Complete Guide to Fine-tuning Qwen2.5 VL Model - F22 Labs",
+            "url": "https://www.f22labs.com/blogs/complete-guide-to-fine-tuning-qwen2-5-vl-model/"
+          },
+          {
+            "title": "Qwen2.5 QLoRA, LoRA, and Full Fine-tuning on Your Computer",
+            "url": "https://kaitchup.substack.com/p/qwen25-qlora-lora-and-full-fine-tuning"
+          },
+          {
+            "title": "Fine Tuning Qwen 1.5 for Coding",
+            "url": "https://debuggercafe.com/fine-tuning-qwen-1-5-for-coding/"
+          },
+          {
+            "title": "Qwen2.5-1.5B Transformer Model",
+            "url": "https://www.emergentmind.com/topics/qwen2-5-1-5b-model"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about Qwen2.5 models and fine-tuning approaches, though the specific experiment you mentioned with benchmark contamination injection doesn't appear in these results.\n\nHere's what I found related to your query:\n\n## Qwen2.5 Model Sizes and Fine-tuning\n\nQwen2.5 brings back the 0.5B, 1.5B, and 3B models, which are more cost-effective for resource-limited scenarios, in addition to larger variants.\n\n## SFT and LoRA Fine-tuning\n\nSeveral studies demonstrate SFT (Supervised Fine-Tuning) and LoRA approaches with Qwen2.5:\n\n- PH-LLM was trained using quantized low-rank adapters (QLoRA) and LoRA plus, leveraging Qwen 2.5, with models of six different sizes: 0.5B, 1.5B, 3B, 7B, 14B, and 32B\n\n- SleepCoT fine-tunes Qwen2.5-1.5B using LoRA adapters on synthetic chain-of-thought data\n\n## Related Research on Small Models and Fine-tuning\n\nOn the MATH and AMC benchmarks, student model Qwen2.5-1.5B-Instruct performs over 10 points lower when fine-tuned with long CoT data, showing that smaller models may not be able to effectively learn and utilize the long CoT paradigm.\n\nThe specific \"benchmark contamination injection experiment\" you're asking about doesn't appear in these search results. If you're looking for research on data contamination or benchmark leakage detection in fine-tuning experiments, you may want to search for more specific papers or technical reports on that topic."
+    ],
+    "durationSeconds": 7.664516750999959
+  },
+  "sourceToolAssistantUUID": "6bfa74a4-f56e-47f0-a81a-55ae020a7c54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-12T00:48:45.843Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MQqrJmwgQoKiU6MVi1qZR5`</summary>
+
+```json
+{
+  "query": "ARR May 2026 deadline submission date EMNLP 2026 commitment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "436cdd06-ec8e-4193-a19a-656d6cd11dae",
+  "isSidechain": false,
+  "requestId": "req_011CawkjYqKpMnVEWNL4hSkC",
+  "type": "assistant",
+  "uuid": "ddc748a5-71c5-4612-84d6-72338a68f70a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X78JfFRJdgnHb5V3xn8XzW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1160,
+      "cache_read_input_tokens": 55763,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 55763,
+          "cache_creation_input_tokens": 1160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-12T00:48:50.892Z_
+
+<details><summary>↩ Tool result · `toolu_01MQqrJmwgQoKiU6MVi1qZR5`</summary>
+
+```text
+Web search results for query: "ARR May 2026 deadline submission date EMNLP 2026 commitment"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X","url":"https://x.com/emnlpmeeting/status/1892259536137785419"}]
+
+Based on the search results, here are the key details about the ARR May 2026 deadline and EMNLP 2026 commitment:
+
+## ARR Submission Deadline
+
+The ARR submission deadline is May 25, 2026.
+
+## EMNLP 2026 Commitment Deadline
+
+The EMNLP commitment deadline is August 2, 2026.
+
+## Important Policy for May 2026 Submissions
+
+There is a critical binding requirement for papers submitted in the ARR May 2026 cycle: Authors submitting to the ARR 2026 May cycle must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026—ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+However, this policy does NOT apply to any papers submitted and reviewed in prior ARR cycles that wish to commit to EMNLP.
+
+## Author Registration
+
+After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddc748a5-71c5-4612-84d6-72338a68f70a",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "eb747bce-fc7f-434b-a613-bbf2ccaf08e9",
+  "toolUseResult": {
+    "query": "ARR May 2026 deadline submission date EMNLP 2026 commitment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QZocK4WK66mEKNYDB173gY",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1892259536137785419"
+          }
+        ]
+      },
+      "Based on the search results, here are the key details about the ARR May 2026 deadline and EMNLP 2026 commitment:\n\n## ARR Submission Deadline\n\nThe ARR submission deadline is May 25, 2026.\n\n## EMNLP 2026 Commitment Deadline\n\nThe EMNLP commitment deadline is August 2, 2026.\n\n## Important Policy for May 2026 Submissions\n\nThere is a critical binding requirement for papers submitted in the ARR May 2026 cycle: Authors submitting to the ARR 2026 May cycle must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026—ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\nHowever, this policy does NOT apply to any papers submitted and reviewed in prior ARR cycles that wish to commit to EMNLP.\n\n## Author Registration\n\nAfter submission, all authors must complete the author registration form by May 27, 2026 EoD AoE."
+    ],
+    "durationSeconds": 5.0445957879999765
+  },
+  "sourceToolAssistantUUID": "ddc748a5-71c5-4612-84d6-72338a68f70a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "eb747bce-fc7f-434b-a613-bbf2ccaf08e9",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-12T00:48:55.505Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SNbWQ2rZvmb4nwhJ6vj6zG`</summary>
+
+```json
+{
+  "query": "multi-signal contamination detection ensemble combining membership inference performance gap approach 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb747bce-fc7f-434b-a613-bbf2ccaf08e9",
+  "isSidechain": false,
+  "requestId": "req_011CawkkA6NXJkHKUby1pipR",
+  "type": "assistant",
+  "uuid": "4c9f3f9b-1dbb-4d6e-b098-4f52cc3cb72c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113Gkxt4hrZYzxjy7P2rzZN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1043,
+      "cache_read_input_tokens": 56923,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1043,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 56923,
+          "cache_creation_input_tokens": 1043,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1043
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-12T00:49:02.372Z_
+
+<details><summary>↩ Tool result · `toolu_01SNbWQ2rZvmb4nwhJ6vj6zG`</summary>
+
+```text
+Web search results for query: "multi-signal contamination detection ensemble combining membership inference performance gap approach 2025 2026"
+
+Links: [{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"A Method to Facilitate Membership Inference Attacks in ...","url":"https://www.ndss-symposium.org/wp-content/uploads/2025-41-paper.pdf"},{"title":"A Comprehensive Survey of Contamination Detection Methods in Large Language Models","url":"https://arxiv.org/html/2404.00699v4"},{"title":"A Survey on Data Contamination for Large Language Models","url":"https://openreview.net/pdf?id=O3rnGt7DK7"},{"title":"Machine Learning Sep 2025","url":"https://arxiv.org/list/cs.LG/2025-09?skip=550&show=2000"},{"title":"Multi-Signal Detection Framework: A Deep Learning Based ...","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC9147498/"},{"title":"IEEE SENSORS 2025 CONFERENCE PROGRAM","url":"https://confcats-siteplex.s3.us-east-1.amazonaws.com/sensors25/SENSORS_2025_Program_Final_f10d3b0e4f.pdf"},{"title":"NDSS 2025 - A Method To Facilitate Membership Inference Attacks In Deep Learning Models - Security Boulevard","url":"https://securityboulevard.com/2026/02/ndss-2025-a-method-to-facilitate-membership-inference-attacks-in-deep-learning-models/"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"}]
+
+I've searched for information on multi-signal contamination detection ensemble combining membership inference performance gap approach for 2025-2026. The search results reveal relevant research in this area:
+
+## Key Findings
+
+ReCaLL (Relative Conditional Log-Likelihood) achieves state-of-the-art performance on the WikiMIA dataset and can be further improved using an ensemble approach. This work represents recent advances in membership inference attacks that could be combined in ensemble methods.
+
+SimMIA, introduced recently (January 2026), is a simple yet effective membership inference attack on LLMs under a strictly black-box setting, showing ongoing development in this field.
+
+More broadly, a comprehensive survey provides an overview of current contamination detection papers as of early 2025, reviewing more than 50 detection techniques and more than 100 relevant papers. Methods for assessing closed-data contamination range from membership-inference attacks, which assess the presence of an entire data point in the pre-training set, to memorization of spans of text by the model, and methods analyzing model confidence on specific tokens.
+
+The search results show active research in contamination detection and membership inference for 2025-2026, particularly around ensemble methods and multi-faceted detection approaches, though the specific paper you're looking for may require more targeted searching with additional keywords or authors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c9f3f9b-1dbb-4d6e-b098-4f52cc3cb72c",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "f671ae7a-6377-45a3-b9e4-0329c96db69c",
+  "toolUseResult": {
+    "query": "multi-signal contamination detection ensemble combining membership inference performance gap approach 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MukrL5eXRNPF2UY4bc4f1r",
+        "content": [
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "A Method to Facilitate Membership Inference Attacks in ...",
+            "url": "https://www.ndss-symposium.org/wp-content/uploads/2025-41-paper.pdf"
+          },
+          {
+            "title": "A Comprehensive Survey of Contamination Detection Methods in Large Language Models",
+            "url": "https://arxiv.org/html/2404.00699v4"
+          },
+          {
+            "title": "A Survey on Data Contamination for Large Language Models",
+            "url": "https://openreview.net/pdf?id=O3rnGt7DK7"
+          },
+          {
+            "title": "Machine Learning Sep 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-09?skip=550&show=2000"
+          },
+          {
+            "title": "Multi-Signal Detection Framework: A Deep Learning Based ...",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9147498/"
+          },
+          {
+            "title": "IEEE SENSORS 2025 CONFERENCE PROGRAM",
+            "url": "https://confcats-siteplex.s3.us-east-1.amazonaws.com/sensors25/SENSORS_2025_Program_Final_f10d3b0e4f.pdf"
+          },
+          {
+            "title": "NDSS 2025 - A Method To Facilitate Membership Inference Attacks In Deep Learning Models - Security Boulevard",
+            "url": "https://securityboulevard.com/2026/02/ndss-2025-a-method-to-facilitate-membership-inference-attacks-in-deep-learning-models/"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://iclr.cc/virtual/2025/papers.html"
+          }
+        ]
+      },
+      "I've searched for information on multi-signal contamination detection ensemble combining membership inference performance gap approach for 2025-2026. The search results reveal relevant research in this area:\n\n## Key Findings\n\nReCaLL (Relative Conditional Log-Likelihood) achieves state-of-the-art performance on the WikiMIA dataset and can be further improved using an ensemble approach. This work represents recent advances in membership inference attacks that could be combined in ensemble methods.\n\nSimMIA, introduced recently (January 2026), is a simple yet effective membership inference attack on LLMs under a strictly black-box setting, showing ongoing development in this field.\n\nMore broadly, a comprehensive survey provides an overview of current contamination detection papers as of early 2025, reviewing more than 50 detection techniques and more than 100 relevant papers. Methods for assessing closed-data contamination range from membership-inference attacks, which assess the presence of an entire data point in the pre-training set, to memorization of spans of text by the model, and methods analyzing model confidence on specific tokens.\n\nThe search results show active research in contamination detection and membership inference for 2025-2026, particularly around ensemble methods and multi-faceted detection approaches, though the specific paper you're looking for may require more targeted searching with additional keywords or authors."
+    ],
+    "durationSeconds": 6.863331414000014
+  },
+  "sourceToolAssistantUUID": "4c9f3f9b-1dbb-4d6e-b098-4f52cc3cb72c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-12T00:49:05.193Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G4sQeToRXy2gArKGd3Wng4`</summary>
+
+```json
+{
+  "query": "FAISS sentence transformers training data retrieval contamination detection LLM benchmark near duplicate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f671ae7a-6377-45a3-b9e4-0329c96db69c",
+  "isSidechain": false,
+  "requestId": "req_011Cawkm199AePR7VxZz6sYH",
+  "type": "assistant",
+  "uuid": "3a48b290-571a-4eb0-bdd7-9205ec5421e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LEN4eCGLkbFNMdFVWbwB2s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 57966,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 57966,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-12T00:49:12.066Z_
+
+<details><summary>↩ Tool result · `toolu_01G4sQeToRXy2gArKGd3Wng4`</summary>
+
+```text
+Web search results for query: "FAISS sentence transformers training data retrieval contamination detection LLM benchmark near duplicate"
+
+Links: [{"title":"LLM Retrievers Compared: BM25, FAISS, ScaNN | by Codastra | Medium","url":"https://medium.com/@2nick2patel2/llm-retrievers-compared-bm25-faiss-scann-ac419bcbbd43"},{"title":"Master Semantic Search at Scale: Index Millions of Documents with Lightning-Fast Inference Times... | Towards Data Science","url":"https://towardsdatascience.com/master-semantic-search-at-scale-index-millions-of-documents-with-lightning-fast-inference-times-fa395e4efd88/"},{"title":"A Step-by-Step Guide to Building a Semantic Search Engine with Sentence Transformers, FAISS, and all-MiniLM-L6-v2 - MarkTechPost","url":"https://www.marktechpost.com/2025/03/20/a-step-by-step-guide-to-building-a-semantic-search-engine-with-sentence-transformers-faiss-and-all-minilm-l6-v2/"},{"title":"FAISS and sentence-transformers in 5 Minutes","url":"https://www.stephendiehl.com/posts/faiss/"},{"title":"Billion-scale semantic similarity search with FAISS+SBERT | Towards Data Science","url":"https://towardsdatascience.com/billion-scale-semantic-similarity-search-with-faiss-sbert-c845614962e2/"},{"title":"LLM-based Semantic Search for Conversational Queries in E-commerce","url":"https://arxiv.org/html/2601.16492"},{"title":"Unveiling the Spectrum of Data Contamination in Language Models: A Survey from Detection to Remediation","url":"https://arxiv.org/html/2406.14644v1"},{"title":"Build your own semantic search web app with Sentence Transformers and FAISS | by Sumit | Operations Research Bit | Medium","url":"https://medium.com/operations-research-bit/build-your-own-semantic-search-web-app-with-sentence-transformers-and-faiss-c304e04ca3c9"},{"title":"Semantic search with FAISS · Hugging Face","url":"https://huggingface.co/learn/llm-course/chapter5/6"},{"title":"🧭 Next-Gen Document Intelligence: Combining FAISS, Sentence Transformers, and Ollama LLMs | by Pradeep Marimuthu | Medium","url":"https://medium.com/@bgipradeep123/next-gen-document-intelligence-combining-faiss-sentence-transformers-and-ollama-llms-3536f7101c4b"}]
+
+Based on my search, I found relevant information about these topics. Here's what the results show:
+
+## FAISS and Sentence Transformers
+
+FAISS is used with Sentence Transformers for encoding sentences and indexing them for efficient searching. FAISS is a library designed for the fast retrieval of nearest neighbors in high-dimensional spaces, enabling quick semantic nearest neighbor search even at a large scale.
+
+## Training Data Retrieval and Contamination Detection
+
+The search results include a relevant academic survey on this topic. Retrieval-based detection methods search the training data for instances of evaluation data, typically employing n-gram tokenization and string-matching for detection. Detecting data contamination can be viewed as recalling memorized information to compare it with benchmark data.
+
+## LLM Benchmarks
+
+One straightforward approach to detecting contamination is searching the training data for examples that appear in a benchmark, which can be approached from the perspective of model developers and the academic community, with GPT-3 being among the first LLMs that incorporated a detailed approach to detecting data contamination.
+
+## Near Duplicate Detection
+
+While the search results don't specifically address "near duplicate" detection methods in the context of contamination detection, the retrieval-based approaches using FAISS with sentence embeddings would naturally be applicable for finding near-duplicate content through similarity search.
+
+The results suggest that detecting training data contamination in LLMs is an active research area with both retrieval-based approaches (using exact matching) and more sophisticated methods for indirect detection.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3a48b290-571a-4eb0-bdd7-9205ec5421e0",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "d865943d-9dd3-4a47-8381-e345769b06b1",
+  "toolUseResult": {
+    "query": "FAISS sentence transformers training data retrieval contamination detection LLM benchmark near duplicate",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013U93qX8hYQKqRbtCJnqaAH",
+        "content": [
+          {
+            "title": "LLM Retrievers Compared: BM25, FAISS, ScaNN | by Codastra | Medium",
+            "url": "https://medium.com/@2nick2patel2/llm-retrievers-compared-bm25-faiss-scann-ac419bcbbd43"
+          },
+          {
+            "title": "Master Semantic Search at Scale: Index Millions of Documents with Lightning-Fast Inference Times... | Towards Data Science",
+            "url": "https://towardsdatascience.com/master-semantic-search-at-scale-index-millions-of-documents-with-lightning-fast-inference-times-fa395e4efd88/"
+          },
+          {
+            "title": "A Step-by-Step Guide to Building a Semantic Search Engine with Sentence Transformers, FAISS, and all-MiniLM-L6-v2 - MarkTechPost",
+            "url": "https://www.marktechpost.com/2025/03/20/a-step-by-step-guide-to-building-a-semantic-search-engine-with-sentence-transformers-faiss-and-all-minilm-l6-v2/"
+          },
+          {
+            "title": "FAISS and sentence-transformers in 5 Minutes",
+            "url": "https://www.stephendiehl.com/posts/faiss/"
+          },
+          {
+            "title": "Billion-scale semantic similarity search with FAISS+SBERT | Towards Data Science",
+            "url": "https://towardsdatascience.com/billion-scale-semantic-similarity-search-with-faiss-sbert-c845614962e2/"
+          },
+          {
+            "title": "LLM-based Semantic Search for Conversational Queries in E-commerce",
+            "url": "https://arxiv.org/html/2601.16492"
+          },
+          {
+            "title": "Unveiling the Spectrum of Data Contamination in Language Models: A Survey from Detection to Remediation",
+            "url": "https://arxiv.org/html/2406.14644v1"
+          },
+          {
+            "title": "Build your own semantic search web app with Sentence Transformers and FAISS | by Sumit | Operations Research Bit | Medium",
+            "url": "https://medium.com/operations-research-bit/build-your-own-semantic-search-web-app-with-sentence-transformers-and-faiss-c304e04ca3c9"
+          },
+          {
+            "title": "Semantic search with FAISS · Hugging Face",
+            "url": "https://huggingface.co/learn/llm-course/chapter5/6"
+          },
+          {
+            "title": "🧭 Next-Gen Document Intelligence: Combining FAISS, Sentence Transformers, and Ollama LLMs | by Pradeep Marimuthu | Medium",
+            "url": "https://medium.com/@bgipradeep123/next-gen-document-intelligence-combining-faiss-sentence-transformers-and-ollama-llms-3536f7101c4b"
+          }
+        ]
+      },
+      "Based on my search, I found relevant information about these topics. Here's what the results show:\n\n## FAISS and Sentence Transformers\n\nFAISS is used with Sentence Transformers for encoding sentences and indexing them for efficient searching. FAISS is a library designed for the fast retrieval of nearest neighbors in high-dimensional spaces, enabling quick semantic nearest neighbor search even at a large scale.\n\n## Training Data Retrieval and Contamination Detection\n\nThe search results include a relevant academic survey on this topic. Retrieval-based detection methods search the training data for instances of evaluation data, typically employing n-gram tokenization and string-matching for detection. Detecting data contamination can be viewed as recalling memorized information to compare it with benchmark data.\n\n## LLM Benchmarks\n\nOne straightforward approach to detecting contamination is searching the training data for examples that appear in a benchmark, which can be approached from the perspective of model developers and the academic community, with GPT-3 being among the first LLMs that incorporated a detailed approach to detecting data contamination.\n\n## Near Duplicate Detection\n\nWhile the search results don't specifically address \"near duplicate\" detection methods in the context of contamination detection, the retrieval-based approaches using FAISS with sentence embeddings would naturally be applicable for finding near-duplicate content through similarity search.\n\nThe results suggest that detecting training data contamination in LLMs is an active research area with both retrieval-based approaches (using exact matching) and more sophisticated methods for indirect detection."
+    ],
+    "durationSeconds": 6.869013468999998
+  },
+  "sourceToolAssistantUUID": "3a48b290-571a-4eb0-bdd7-9205ec5421e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-12T00:49:19.110Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UbJc9gJEPVMbhxqyrSCWQB`</summary>
+
+```json
+{
+  "query": "Min-K%++ ICLR 2025 membership inference LLM pretraining data detection"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d865943d-9dd3-4a47-8381-e345769b06b1",
+  "isSidechain": false,
+  "requestId": "req_011CawkmigDmwbZA2hDckj7z",
+  "type": "assistant",
+  "uuid": "06927967-eadd-4fd7-8089-4c4b13abf3a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QLxUpjppY36h9RceHPsRyu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1134,
+      "cache_read_input_tokens": 58851,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 58851,
+          "cache_creation_input_tokens": 1134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-12T00:49:25.657Z_
+
+<details><summary>↩ Tool result · `toolu_01UbJc9gJEPVMbhxqyrSCWQB`</summary>
+
+```text
+Web search results for query: "Min-K%++ ICLR 2025 membership inference LLM pretraining data detection"
+
+Links: [{"title":"MIN-K%++: IMPROVED BASELINE FOR DETECTING PRE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a2e3b4132ab2e0b7a21e6e75da7f91a9-Paper-Conference.pdf"},{"title":"GitHub - zjysteven/mink-plus-plus: [ICLR'25 Spotlight] Min-K%++: Improved baseline for detecting pre-training data of LLMs","url":"https://github.com/zjysteven/mink-plus-plus"},{"title":"min-k%++: improved baseline for detecting pre-training ...","url":"https://arxiv.org/pdf/2404.02936"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/98cda3e39e4ca2da449092a99c485e1a-Paper-Conference.pdf"},{"title":"Min-K%++: Improved Baseline for Detecting Pre-Training ...","url":"https://iclr.cc/media/iclr-2025/Slides/29228.pdf"},{"title":"DETECTING PRETRAINING DATA FROM LARGE LAN","url":"https://openreview.net/pdf?id=zWqr3MQuNs"},{"title":"Detecting Pretraining Data from Large Language Models | OpenReview","url":"https://openreview.net/forum?id=zWqr3MQuNs"},{"title":"ICLR Poster Infilling Score: A Pretraining Data Detection Algorithm for Large Language Models","url":"https://iclr.cc/virtual/2025/poster/30693"},{"title":"Min-K%++: Improved Baseline for Pre-Training Data Detection from Large Language Models | OpenReview","url":"https://openreview.net/forum?id=ZGkfoufDaU"},{"title":"Pretraining Data Detection for Large Language Models","url":"https://aclanthology.org/2024.emnlp-main.300.pdf"}]
+
+I found relevant information about Min-K%++ and its ICLR 2025 publication. Here are the key findings:
+
+## Min-K%++ - ICLR 2025 Paper
+
+Min-K%++ is a Membership Inference Attack method for detecting pre-training data of LLMs, which achieves SOTA results among reference-free methods. The paper was published at the Thirteenth International Conference on Learning Representations in 2025, appearing as a Spotlight presentation.
+
+### Method Overview
+
+The work proposes a novel and theoretically motivated methodology for pre-training data detection named Min-K%++, with the key insight that training samples tend to be local maxima of the modeled distribution along each input dimension through maximum likelihood training, which allows them to translate the problem into identification of local maxima.
+
+### Technical Approach
+
+Min-K%++ calibrates the next token log likelihood with two calibration factors, and uniquely leverages statistics that can be readily computed with the target model only, rather than using external references like an extra LLM.
+
+### Performance
+
+The method demonstrates remarkable improvements over existing methods on established benchmarks. The implementation is available on the WikiMIA benchmark.
+
+The paper addresses the important problem of detecting whether specific texts were part of an LLM's pretraining data, which has implications for copyright violation detection and test data contamination identification.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06927967-eadd-4fd7-8089-4c4b13abf3a6",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "afb17e5b-7bbe-4c4f-aa4e-886377cf3d14",
+  "toolUseResult": {
+    "query": "Min-K%++ ICLR 2025 membership inference LLM pretraining data detection",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ex8xSAasL8KvAJbQmdBZkx",
+        "content": [
+          {
+            "title": "MIN-K%++: IMPROVED BASELINE FOR DETECTING PRE ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a2e3b4132ab2e0b7a21e6e75da7f91a9-Paper-Conference.pdf"
+          },
+          {
+            "title": "GitHub - zjysteven/mink-plus-plus: [ICLR'25 Spotlight] Min-K%++: Improved baseline for detecting pre-training data of LLMs",
+            "url": "https://github.com/zjysteven/mink-plus-plus"
+          },
+          {
+            "title": "min-k%++: improved baseline for detecting pre-training ...",
+            "url": "https://arxiv.org/pdf/2404.02936"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/98cda3e39e4ca2da449092a99c485e1a-Paper-Conference.pdf"
+          },
+          {
+            "title": "Min-K%++: Improved Baseline for Detecting Pre-Training ...",
+            "url": "https://iclr.cc/media/iclr-2025/Slides/29228.pdf"
+          },
+          {
+            "title": "DETECTING PRETRAINING DATA FROM LARGE LAN",
+            "url": "https://openreview.net/pdf?id=zWqr3MQuNs"
+          },
+          {
+            "title": "Detecting Pretraining Data from Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=zWqr3MQuNs"
+          },
+          {
+            "title": "ICLR Poster Infilling Score: A Pretraining Data Detection Algorithm for Large Language Models",
+            "url": "https://iclr.cc/virtual/2025/poster/30693"
+          },
+          {
+            "title": "Min-K%++: Improved Baseline for Pre-Training Data Detection from Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=ZGkfoufDaU"
+          },
+          {
+            "title": "Pretraining Data Detection for Large Language Models",
+            "url": "https://aclanthology.org/2024.emnlp-main.300.pdf"
+          }
+        ]
+      },
+      "I found relevant information about Min-K%++ and its ICLR 2025 publication. Here are the key findings:\n\n## Min-K%++ - ICLR 2025 Paper\n\nMin-K%++ is a Membership Inference Attack method for detecting pre-training data of LLMs, which achieves SOTA results among reference-free methods. The paper was published at the Thirteenth International Conference on Learning Representations in 2025, appearing as a Spotlight presentation.\n\n### Method Overview\n\nThe work proposes a novel and theoretically motivated methodology for pre-training data detection named Min-K%++, with the key insight that training samples tend to be local maxima of the modeled distribution along each input dimension through maximum likelihood training, which allows them to translate the problem into identification of local maxima.\n\n### Technical Approach\n\nMin-K%++ calibrates the next token log likelihood with two calibration factors, and uniquely leverages statistics that can be readily computed with the target model only, rather than using external references like an extra LLM.\n\n### Performance\n\nThe method demonstrates remarkable improvements over existing methods on established benchmarks. The implementation is available on the WikiMIA benchmark.\n\nThe paper addresses the important problem of detecting whether specific texts were part of an LLM's pretraining data, which has implications for copyright violation detection and test data contamination identification."
+    ],
+    "durationSeconds": 6.542573428999982
+  },
+  "sourceToolAssistantUUID": "06927967-eadd-4fd7-8089-4c4b13abf3a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 107 · 2026-05-12T00:49:25.660Z_
+
+```json
+{
+  "parentUuid": "afb17e5b-7bbe-4c4f-aa4e-886377cf3d14",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d0ce18b8-e483-4e68-ab98-dd1b6aeed54c",
+  "timestamp": "2026-05-12T00:49:25.660Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 108 · 2026-05-12T00:49:28.683Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now look for more potential competitors that the proposal might have missed, particularly any very recent work (2026) that combines contamination detection with score adjustment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0ce18b8-e483-4e68-ab98-dd1b6aeed54c",
+  "isSidechain": false,
+  "requestId": "req_011CawknigzHBW3sWmkzkkfG",
+  "type": "assistant",
+  "uuid": "24b04e90-36bb-4fdc-a7b8-2b6b5d47c541",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFBtRWqwAXfwyUVYd4HHb1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 59985,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 59985,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-12T00:49:29.648Z_
+
+Let me check for a few more critical items — recent concurrent work and feasibility validation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24b04e90-36bb-4fdc-a7b8-2b6b5d47c541",
+  "isSidechain": false,
+  "requestId": "req_011CawknigzHBW3sWmkzkkfG",
+  "type": "assistant",
+  "uuid": "ed679846-46db-4cb5-8d64-e5aacbcaf50e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFBtRWqwAXfwyUVYd4HHb1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 59985,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 59985,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-12T00:49:30.357Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012HQ1txt5ivDL1sVqEhyGd6`</summary>
+
+```json
+{
+  "query": "benchmark score decontamination post-hoc correction statistical adjustment LLM evaluation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed679846-46db-4cb5-8d64-e5aacbcaf50e",
+  "isSidechain": false,
+  "requestId": "req_011CawknigzHBW3sWmkzkkfG",
+  "type": "assistant",
+  "uuid": "931c821b-ac59-43ad-9941-0fc89d20ef4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AFBtRWqwAXfwyUVYd4HHb1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 59985,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 59985,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-12T00:49:37.775Z_
+
+<details><summary>↩ Tool result · `toolu_012HQ1txt5ivDL1sVqEhyGd6`</summary>
+
+```text
+Web search results for query: "benchmark score decontamination post-hoc correction statistical adjustment LLM evaluation 2026"
+
+Links: [{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"Rethinking Benchmark and Contamination for Language Models with","url":"https://arxiv.org/pdf/2311.04850"},{"title":"LLM benchmarks in 2026: What they prove and what your business actually needs | High-Quality AI Data to Power Innovation | LXT","url":"https://www.lxt.ai/blog/llm-benchmarks/"},{"title":"A Survey from Static to Dynamic Evaluation","url":"https://aclanthology.org/2025.emnlp-main.511.pdf"},{"title":"LLM Benchmarks 2026 - Compare AI Benchmarks and Tests","url":"https://llm-stats.com/benchmarks"},{"title":"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation","url":"https://arxiv.org/html/2502.17521v2"},{"title":"LLM evaluation benchmarks and safety datasets for 2025 | RAIL Score Knowledge Hub","url":"https://responsibleailabs.ai/knowledge-hub/articles/llm-evaluation-benchmarks-2025"},{"title":"The Emperor's New Clothes in Benchmarking? A Rigorous Examination of Mitigation Strategies for LLM Benchmark Data Contamination | OpenReview","url":"https://openreview.net/forum?id=TuvDxubEfE"},{"title":"Benchmark Data Contamination of Large Language Models: A Survey","url":"https://arxiv.org/html/2406.04244v1"}]
+
+I've performed a web search for your query about benchmark score decontamination, post-hoc correction, and statistical adjustment in LLM evaluation for 2026. Here are the key findings:
+
+## Current Research on LLM Benchmark Decontamination
+
+Post-hoc contamination detection has been proposed as an enhancement to static evaluation methods, though these enhancements have seen limited adoption due to inherent limitations of static methods such as unverifiable data exposure.
+
+## Detection and Mitigation Strategies
+
+Five detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.
+
+Inference-Time Decontamination (ITD) detects and rewrites leaked samples without altering their difficulties to mitigate performance inflation caused by memorizing leaked benchmarks. ITD reduces inflated accuracy by 22.9% on GSM8K and 19.0% on MMLU.
+
+## Assessment of Mitigation Strategies
+
+Recent work designs a systematic and controlled pipeline with two novel metrics—fidelity and contamination resistance—to provide a fine-grained and comprehensive assessment of existing benchmark data contamination mitigation strategies.
+
+## Shift Toward Dynamic Evaluation
+
+Dynamic methods aim to reduce contamination risk either by continuously updating benchmark datasets based on LLM training timestamps, or by regenerating test data to reconstruct and replace original benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "931c821b-ac59-43ad-9941-0fc89d20ef4b",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "5b9fc02a-be7a-4279-8502-e203c9c83753",
+  "toolUseResult": {
+    "query": "benchmark score decontamination post-hoc correction statistical adjustment LLM evaluation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017A9uvzaDvDe8znZG5uwuvD",
+        "content": [
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "Rethinking Benchmark and Contamination for Language Models with",
+            "url": "https://arxiv.org/pdf/2311.04850"
+          },
+          {
+            "title": "LLM benchmarks in 2026: What they prove and what your business actually needs | High-Quality AI Data to Power Innovation | LXT",
+            "url": "https://www.lxt.ai/blog/llm-benchmarks/"
+          },
+          {
+            "title": "A Survey from Static to Dynamic Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.511.pdf"
+          },
+          {
+            "title": "LLM Benchmarks 2026 - Compare AI Benchmarks and Tests",
+            "url": "https://llm-stats.com/benchmarks"
+          },
+          {
+            "title": "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation",
+            "url": "https://arxiv.org/html/2502.17521v2"
+          },
+          {
+            "title": "LLM evaluation benchmarks and safety datasets for 2025 | RAIL Score Knowledge Hub",
+            "url": "https://responsibleailabs.ai/knowledge-hub/articles/llm-evaluation-benchmarks-2025"
+          },
+          {
+            "title": "The Emperor's New Clothes in Benchmarking? A Rigorous Examination of Mitigation Strategies for LLM Benchmark Data Contamination | OpenReview",
+            "url": "https://openreview.net/forum?id=TuvDxubEfE"
+          },
+          {
+            "title": "Benchmark Data Contamination of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2406.04244v1"
+          }
+        ]
+      },
+      "I've performed a web search for your query about benchmark score decontamination, post-hoc correction, and statistical adjustment in LLM evaluation for 2026. Here are the key findings:\n\n## Current Research on LLM Benchmark Decontamination\n\nPost-hoc contamination detection has been proposed as an enhancement to static evaluation methods, though these enhancements have seen limited adoption due to inherent limitations of static methods such as unverifiable data exposure.\n\n## Detection and Mitigation Strategies\n\nFive detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.\n\nInference-Time Decontamination (ITD) detects and rewrites leaked samples without altering their difficulties to mitigate performance inflation caused by memorizing leaked benchmarks. ITD reduces inflated accuracy by 22.9% on GSM8K and 19.0% on MMLU.\n\n## Assessment of Mitigation Strategies\n\nRecent work designs a systematic and controlled pipeline with two novel metrics—fidelity and contamination resistance—to provide a fine-grained and comprehensive assessment of existing benchmark data contamination mitigation strategies.\n\n## Shift Toward Dynamic Evaluation\n\nDynamic methods aim to reduce contamination risk either by continuously updating benchmark datasets based on LLM training timestamps, or by regenerating test data to reconstruct and replace original benchmarks."
+    ],
+    "durationSeconds": 7.413938274000015
+  },
+  "sourceToolAssistantUUID": "931c821b-ac59-43ad-9941-0fc89d20ef4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5b9fc02a-be7a-4279-8502-e203c9c83753",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-12T00:49:40.846Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011DatsrHcxwNG6gcG9HZphx`</summary>
+
+```json
+{
+  "query": "\"contamination-augmented\" OR \"contamination covariate\" IRT evaluation LLM benchmark arxiv 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b9fc02a-be7a-4279-8502-e203c9c83753",
+  "isSidechain": false,
+  "requestId": "req_011CawkocWCdrKwJBoAK8nWm",
+  "type": "assistant",
+  "uuid": "3242cc06-bcad-4695-be7c-c1b93b249ea9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7bMNJwxEycJrMkxBtVmJq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 61043,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 61043,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-12T00:49:47.371Z_
+
+<details><summary>↩ Tool result · `toolu_011DatsrHcxwNG6gcG9HZphx`</summary>
+
+```text
+Web search results for query: ""contamination-augmented" OR "contamination covariate" IRT evaluation LLM benchmark arxiv 2025 2026"
+
+Links: [{"title":"Detecting Data Contamination in LLMs via In-Context Learning","url":"https://arxiv.org/html/2510.27055v1"},{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2410.10783"},{"title":"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation","url":"https://arxiv.org/html/2502.17521v2"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.24210"},{"title":"A Survey on Data Contamination for Large Language Models","url":"https://arxiv.org/html/2502.14425v2"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://aclanthology.org/2025.emnlp-main.1173.pdf"},{"title":"[2411.03923] Evaluation data contamination in LLMs: how do we measure it and (when) does it matter?","url":"https://arxiv.org/abs/2411.03923"},{"title":"[2604.05766] The LLM Effect on IR Benchmarks: A Meta-Analysis of Effectiveness, Baselines, and Contamination","url":"https://arxiv.org/abs/2604.05766"},{"title":"A Survey from Static to Dynamic Evaluation","url":"https://aclanthology.org/2025.emnlp-main.511.pdf"}]
+
+Based on my search results, I found several relevant papers and resources related to contamination and LLM benchmark evaluation:
+
+## Key Findings:
+
+**IRT-Based Evaluation Methods:**
+Recent work such as tinyBenchmarks and PromptEval propose using Item Response Theory (IRT) to estimate the performance of LLMs on unseen samples, making efficient evaluation possible.
+
+**Contamination-Augmented Approaches:**
+The search results reference contamination-related research, though I didn't find a paper specifically titled with "contamination-augmented" in that exact format. However, there is relevant work on:
+
+1. LiveXiv, which uses IRT models to predict LLM performance on both full and partial benchmark versions.
+
+2. Traditional contamination detection methods may lack effectiveness in detecting augmentation-based contamination, suggesting this is an active research area.
+
+**Recent Survey Work:**
+To mitigate data contamination in LLM benchmarking, researchers have proposed enhancements including data encryption and post-hoc contamination detection.
+
+The search results show active research on using IRT for efficient LLM evaluation and various approaches to detecting and handling contamination in benchmarks. However, if you're looking for a specific paper with those exact terms, you may want to search directly on arXiv or provide additional context about the authors or publication date.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3242cc06-bcad-4695-be7c-c1b93b249ea9",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "53602bf2-67b7-4719-9f6f-9f7da9f94ef1",
+  "toolUseResult": {
+    "query": "\"contamination-augmented\" OR \"contamination covariate\" IRT evaluation LLM benchmark arxiv 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HkjaCSGDfaLZv1hVDVX8xk",
+        "content": [
+          {
+            "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+            "url": "https://arxiv.org/html/2510.27055v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2410.10783"
+          },
+          {
+            "title": "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation",
+            "url": "https://arxiv.org/html/2502.17521v2"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.24210"
+          },
+          {
+            "title": "A Survey on Data Contamination for Large Language Models",
+            "url": "https://arxiv.org/html/2502.14425v2"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173.pdf"
+          },
+          {
+            "title": "[2411.03923] Evaluation data contamination in LLMs: how do we measure it and (when) does it matter?",
+            "url": "https://arxiv.org/abs/2411.03923"
+          },
+          {
+            "title": "[2604.05766] The LLM Effect on IR Benchmarks: A Meta-Analysis of Effectiveness, Baselines, and Contamination",
+            "url": "https://arxiv.org/abs/2604.05766"
+          },
+          {
+            "title": "A Survey from Static to Dynamic Evaluation",
+            "url": "https://aclanthology.org/2025.emnlp-main.511.pdf"
+          }
+        ]
+      },
+      "Based on my search results, I found several relevant papers and resources related to contamination and LLM benchmark evaluation:\n\n## Key Findings:\n\n**IRT-Based Evaluation Methods:**\nRecent work such as tinyBenchmarks and PromptEval propose using Item Response Theory (IRT) to estimate the performance of LLMs on unseen samples, making efficient evaluation possible.\n\n**Contamination-Augmented Approaches:**\nThe search results reference contamination-related research, though I didn't find a paper specifically titled with \"contamination-augmented\" in that exact format. However, there is relevant work on:\n\n1. LiveXiv, which uses IRT models to predict LLM performance on both full and partial benchmark versions.\n\n2. Traditional contamination detection methods may lack effectiveness in detecting augmentation-based contamination, suggesting this is an active research area.\n\n**Recent Survey Work:**\nTo mitigate data contamination in LLM benchmarking, researchers have proposed enhancements including data encryption and post-hoc contamination detection.\n\nThe search results show active research on using IRT for efficient LLM evaluation and various approaches to detecting and handling contamination in benchmarks. However, if you're looking for a specific paper with those exact terms, you may want to search directly on arXiv or provide additional context about the authors or publication date."
+    ],
+    "durationSeconds": 6.515055487999984
+  },
+  "sourceToolAssistantUUID": "3242cc06-bcad-4695-be7c-c1b93b249ea9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-12T00:49:51.242Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019qPkouHHEkSD8YPUzq4dvJ`</summary>
+
+```json
+{
+  "query": "ConStat performance-based contamination detection NeurIPS 2024 rephrased samples original paraphrased"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53602bf2-67b7-4719-9f6f-9f7da9f94ef1",
+  "isSidechain": false,
+  "requestId": "req_011CawkpMbHWbp5W5REhs3eE",
+  "type": "assistant",
+  "uuid": "c11af0db-d4c9-4ad3-8874-f46e9fb31e59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cfd9dijC1VdAXgKywPs153",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 881,
+      "cache_read_input_tokens": 62051,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 881,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 62051,
+          "cache_creation_input_tokens": 881,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 881
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-12T00:49:57.674Z_
+
+<details><summary>↩ Tool result · `toolu_019qPkouHHEkSD8YPUzq4dvJ`</summary>
+
+```text
+Web search results for query: "ConStat performance-based contamination detection NeurIPS 2024 rephrased samples original paraphrased"
+
+Links: [{"title":"ConStat: Performance-Based Contamination Detection in Large Language Models","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/a7f89793b9e6f8c6568dbbb6ff727b9b-Paper-Conference.pdf"},{"title":"NeurIPS Poster ConStat: Performance-Based Contamination Detection in Large Language Models","url":"https://neurips.cc/virtual/2024/poster/96266"},{"title":"ConStat: Performance-Based Contamination Detection in Large Language Models | SRI Lab","url":"https://www.sri.inf.ethz.ch/publications/dekoninck2024constat"},{"title":"NeurIPS Poster ConStat: Performance-Based Contamination Detection in Large Language Models","url":"https://nips.cc/virtual/2024/poster/96266"},{"title":"ConStat: Performance-Based Contamination Detection in LLMs - YouTube","url":"https://www.youtube.com/watch?v=dgvU0jDFa0c"},{"title":"ConStat: Performance-Based Contamination Detection in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=ALISPmDPCq"},{"title":"[2405.16281] ConStat: Performance-Based Contamination Detection in Large Language Models","url":"https://arxiv.org/abs/2405.16281"},{"title":"ConStat: Performance-Based Contamination Detection in Large Language Models","url":"https://arxiv.org/html/2405.16281v1"},{"title":"[Quick Review] ConStat: Performance-Based Contamination Detection in Large Language Models","url":"https://liner.com/review/constat-performancebased-contamination-detection-in-large-language-models"},{"title":"ConStat: Performance-Based Contamination Detection in Large Language Models - Research Collection","url":"https://www.research-collection.ethz.ch/handle/20.500.11850/719939?show=full"}]
+
+I found comprehensive information about ConStat from the NeurIPS 2024 paper. Here are the key findings:
+
+## ConStat: Performance-Based Contamination Detection
+
+ConStat is a statistical framework designed to detect contamination and estimate its effect on model performance, based on a novel performance-based definition of contamination that compares performance with various reference benchmarks to obtain a detailed contamination analysis distinguishing between syntax-, sample-, and benchmark-specific contamination.
+
+### Core Approach
+
+The method proposes a novel definition of contamination as artificially inflated and non-generalizing benchmark performance instead of the inclusion of benchmark samples in the training data, enabling detection of any model with inflated performance that does not generalize to rephrased samples, synthetic samples from the same distribution, or different benchmarks for the same task.
+
+### Key Results
+
+ConStat outperforms prior methods in detecting and quantifying contamination across a range of intentionally contaminated models. Specifically, ConStat detects 89.1% of syntax-specifically contaminated models and identifies 98.4% of sample-specifically contaminated models, significantly higher than baseline methods.
+
+The research found very high levels of contamination in Mistral-7b-v0.1 and Yi-34b and high levels of contamination in Llama-3-70b and Llama-2-Instruct-70b.
+
+### Comparison to Rephrased Benchmarks
+
+Prior work by Zhu et al. measured model performance on rephrased benchmarks instead of original benchmarks, but results varied significantly across benchmarks, they did not provide a statistical framework for contamination detection, and only demonstrated that evaluating on rephrased samples partially recovers the results of uncontaminated base models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c11af0db-d4c9-4ad3-8874-f46e9fb31e59",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "a952cc57-415f-4c4a-a56e-f5d6284038c6",
+  "toolUseResult": {
+    "query": "ConStat performance-based contamination detection NeurIPS 2024 rephrased samples original paraphrased",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X9Czr27Ha5t4wZ9kgF82a1",
+        "content": [
+          {
+            "title": "ConStat: Performance-Based Contamination Detection in Large Language Models",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/a7f89793b9e6f8c6568dbbb6ff727b9b-Paper-Conference.pdf"
+          },
+          {
+            "title": "NeurIPS Poster ConStat: Performance-Based Contamination Detection in Large Language Models",
+            "url": "https://neurips.cc/virtual/2024/poster/96266"
+          },
+          {
+            "title": "ConStat: Performance-Based Contamination Detection in Large Language Models | SRI Lab",
+            "url": "https://www.sri.inf.ethz.ch/publications/dekoninck2024constat"
+          },
+          {
+            "title": "NeurIPS Poster ConStat: Performance-Based Contamination Detection in Large Language Models",
+            "url": "https://nips.cc/virtual/2024/poster/96266"
+          },
+          {
+            "title": "ConStat: Performance-Based Contamination Detection in LLMs - YouTube",
+            "url": "https://www.youtube.com/watch?v=dgvU0jDFa0c"
+          },
+          {
+            "title": "ConStat: Performance-Based Contamination Detection in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=ALISPmDPCq"
+          },
+          {
+            "title": "[2405.16281] ConStat: Performance-Based Contamination Detection in Large Language Models",
+            "url": "https://arxiv.org/abs/2405.16281"
+          },
+          {
+            "title": "ConStat: Performance-Based Contamination Detection in Large Language Models",
+            "url": "https://arxiv.org/html/2405.16281v1"
+          },
+          {
+            "title": "[Quick Review] ConStat: Performance-Based Contamination Detection in Large Language Models",
+            "url": "https://liner.com/review/constat-performancebased-contamination-detection-in-large-language-models"
+          },
+          {
+            "title": "ConStat: Performance-Based Contamination Detection in Large Language Models - Research Collection",
+            "url": "https://www.research-collection.ethz.ch/handle/20.500.11850/719939?show=full"
+          }
+        ]
+      },
+      "I found comprehensive information about ConStat from the NeurIPS 2024 paper. Here are the key findings:\n\n## ConStat: Performance-Based Contamination Detection\n\nConStat is a statistical framework designed to detect contamination and estimate its effect on model performance, based on a novel performance-based definition of contamination that compares performance with various reference benchmarks to obtain a detailed contamination analysis distinguishing between syntax-, sample-, and benchmark-specific contamination.\n\n### Core Approach\n\nThe method proposes a novel definition of contamination as artificially inflated and non-generalizing benchmark performance instead of the inclusion of benchmark samples in the training data, enabling detection of any model with inflated performance that does not generalize to rephrased samples, synthetic samples from the same distribution, or different benchmarks for the same task.\n\n### Key Results\n\nConStat outperforms prior methods in detecting and quantifying contamination across a range of intentionally contaminated models. Specifically, ConStat detects 89.1% of syntax-specifically contaminated models and identifies 98.4% of sample-specifically contaminated models, significantly higher than baseline methods.\n\nThe research found very high levels of contamination in Mistral-7b-v0.1 and Yi-34b and high levels of contamination in Llama-3-70b and Llama-2-Instruct-70b.\n\n### Comparison to Rephrased Benchmarks\n\nPrior work by Zhu et al. measured model performance on rephrased benchmarks instead of original benchmarks, but results varied significantly across benchmarks, they did not provide a statistical framework for contamination detection, and only demonstrated that evaluating on rephrased samples partially recovers the results of uncontaminated base models."
+    ],
+    "durationSeconds": 6.426948275999981
+  },
+  "sourceToolAssistantUUID": "c11af0db-d4c9-4ad3-8874-f46e9fb31e59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 118 · 2026-05-12T00:50:01.397Z_
+
+Now let me do a final critical search — looking for any work that directly combines contamination detection with IRT score adjustment.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a952cc57-415f-4c4a-a56e-f5d6284038c6",
+  "isSidechain": false,
+  "requestId": "req_011Cawkq5bPvmrNoEZy7zHrx",
+  "type": "assistant",
+  "uuid": "71519134-2d8d-4c11-9005-d245b23e7bcd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCe5RKY9X2zsSGhBJEKSgb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1023,
+      "cache_read_input_tokens": 62932,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1023,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 62932,
+          "cache_creation_input_tokens": 1023,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1023
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-12T00:50:01.948Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ChmV9Cmcm23xQdjdrcLRYM`</summary>
+
+```json
+{
+  "query": "\"item response theory\" \"data contamination\" benchmark LLM score calibrate adjust arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71519134-2d8d-4c11-9005-d245b23e7bcd",
+  "isSidechain": false,
+  "requestId": "req_011Cawkq5bPvmrNoEZy7zHrx",
+  "type": "assistant",
+  "uuid": "b24ebf34-2f8e-4a3a-8750-47aaaf47d91b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCe5RKY9X2zsSGhBJEKSgb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1023,
+      "cache_read_input_tokens": 62932,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1023,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 62932,
+          "cache_creation_input_tokens": 1023,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1023
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-12T00:50:09.645Z_
+
+<details><summary>↩ Tool result · `toolu_01ChmV9Cmcm23xQdjdrcLRYM`</summary>
+
+```text
+Web search results for query: ""item response theory" "data contamination" benchmark LLM score calibrate adjust arxiv 2026"
+
+Links: [{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v2"},{"title":"[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models","url":"https://arxiv.org/abs/2605.07046"},{"title":"[2605.05973] Towards Reliable LLM Evaluation: Correcting the Winner's Curse in Adaptive Benchmarking","url":"https://arxiv.org/abs/2605.05973"},{"title":"[2605.00238] Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory","url":"https://arxiv.org/abs/2605.00238"},{"title":"Benchmark Data Contamination of Large Language Models: A Survey","url":"https://arxiv.org/html/2406.04244v1"},{"title":"Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks","url":"https://arxiv.org/html/2603.21636"},{"title":"Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory","url":"https://arxiv.org/html/2605.00238"},{"title":"[2604.05766] The LLM Effect on IR Benchmarks: A Meta-Analysis of Effectiveness, Baselines, and Contamination","url":"https://arxiv.org/abs/2604.05766"},{"title":"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/abs/2505.15055"},{"title":"Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/html/2510.07175v2"}]
+
+I found several highly relevant papers on this topic from arXiv in 2026. Here are the key results:
+
+## Most Relevant Papers
+
+**1. "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory"** (arXiv:2505.15055)
+
+This paper introduces PSN-IRT, a framework combining psychometrics with neural networks to provide comprehensive analyses of LLM benchmarks, demonstrating that current benchmarks often suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination. The researchers find that model rankings derived from high-quality datasets selected by PSN-IRT are more consistent with human preference and offer stronger discriminability among top models.
+
+**2. "An Interpretable and Scalable Framework for Evaluating Large Language Models"** (arXiv:2605.07046)
+
+This paper addresses the fact that Item Response Theory offers a principled framework for modeling latent model abilities and item characteristics, but conventional methods are computationally expensive and numerically unstable. The authors propose an interpretable and scalable framework based on the majorization-minimization principle that reformulates the problem as a sequence of constrained matrix factorization subproblems, enabling stable and efficient parameter estimation.
+
+**3. "Quantifying Data Contamination in Psychometric Evaluations of LLMs"** (arXiv:2510.07175)
+
+This paper proposes a framework to systematically measure data contamination in psychometric evaluations of LLMs, evaluating three aspects: (1) item memorization, (2) evaluation memorization, and (3) target score matching.
+
+These papers directly address your query about using Item Response Theory to detect, analyze, and adjust for data contamination in LLM benchmarks, with recent work from 2026 focusing on score calibration and reliable model ranking.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b24ebf34-2f8e-4a3a-8750-47aaaf47d91b",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "9e7860d2-ec77-4b8a-9364-a6af50390a30",
+  "toolUseResult": {
+    "query": "\"item response theory\" \"data contamination\" benchmark LLM score calibrate adjust arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015LfKL6LJr3nbiuqEcCMWtg",
+        "content": [
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v2"
+          },
+          {
+            "title": "[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models",
+            "url": "https://arxiv.org/abs/2605.07046"
+          },
+          {
+            "title": "[2605.05973] Towards Reliable LLM Evaluation: Correcting the Winner's Curse in Adaptive Benchmarking",
+            "url": "https://arxiv.org/abs/2605.05973"
+          },
+          {
+            "title": "[2605.00238] Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory",
+            "url": "https://arxiv.org/abs/2605.00238"
+          },
+          {
+            "title": "Benchmark Data Contamination of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2406.04244v1"
+          },
+          {
+            "title": "Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks",
+            "url": "https://arxiv.org/html/2603.21636"
+          },
+          {
+            "title": "Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory",
+            "url": "https://arxiv.org/html/2605.00238"
+          },
+          {
+            "title": "[2604.05766] The LLM Effect on IR Benchmarks: A Meta-Analysis of Effectiveness, Baselines, and Contamination",
+            "url": "https://arxiv.org/abs/2604.05766"
+          },
+          {
+            "title": "[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/abs/2505.15055"
+          },
+          {
+            "title": "Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/html/2510.07175v2"
+          }
+        ]
+      },
+      "I found several highly relevant papers on this topic from arXiv in 2026. Here are the key results:\n\n## Most Relevant Papers\n\n**1. \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"** (arXiv:2505.15055)\n\nThis paper introduces PSN-IRT, a framework combining psychometrics with neural networks to provide comprehensive analyses of LLM benchmarks, demonstrating that current benchmarks often suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination. The researchers find that model rankings derived from high-quality datasets selected by PSN-IRT are more consistent with human preference and offer stronger discriminability among top models.\n\n**2. \"An Interpretable and Scalable Framework for Evaluating Large Language Models\"** (arXiv:2605.07046)\n\nThis paper addresses the fact that Item Response Theory offers a principled framework for modeling latent model abilities and item characteristics, but conventional methods are computationally expensive and numerically unstable. The authors propose an interpretable and scalable framework based on the majorization-minimization principle that reformulates the problem as a sequence of constrained matrix factorization subproblems, enabling stable and efficient parameter estimation.\n\n**3. \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\"** (arXiv:2510.07175)\n\nThis paper proposes a framework to systematically measure data contamination in psychometric evaluations of LLMs, evaluating three aspects: (1) item memorization, (2) evaluation memorization, and (3) target score matching.\n\nThese papers directly address your query about using Item Response Theory to detect, analyze, and adjust for data contamination in LLM benchmarks, with recent work from 2026 focusing on score calibration and reliable model ranking."
+    ],
+    "durationSeconds": 7.69302816300001
+  },
+  "sourceToolAssistantUUID": "b24ebf34-2f8e-4a3a-8750-47aaaf47d91b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-12T00:50:12.363Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KPnTewaUh76MBHB11VhnyP`</summary>
+
+```json
+{
+  "query": "\"correcting the winner's curse\" adaptive benchmarking LLM arxiv 2605"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e7860d2-ec77-4b8a-9364-a6af50390a30",
+  "isSidechain": false,
+  "requestId": "req_011CawkqxmeiJrJupNVuKCpS",
+  "type": "assistant",
+  "uuid": "264a0de7-a269-422d-bcc9-1654c15ea4df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XajJoJyhZaB1psE5KLKKT3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 63955,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 63955,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-12T00:50:19.187Z_
+
+<details><summary>↩ Tool result · `toolu_01KPnTewaUh76MBHB11VhnyP`</summary>
+
+```text
+Web search results for query: ""correcting the winner's curse" adaptive benchmarking LLM arxiv 2605"
+
+Links: [{"title":"[2605.05973] Towards Reliable LLM Evaluation: Correcting the Winner's Curse in Adaptive Benchmarking","url":"https://arxiv.org/abs/2605.05973"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=865&show=500"},{"title":"Asymptotically Log-Optimal Bayes-Assisted Confidence Sequences for Bounded Means","url":"https://arxiv.org/html/2605.07964"},{"title":"LLMs Uncertainty Quantification via Adaptive Conformal Semantic Entropy","url":"https://arxiv.org/html/2605.04295"},{"title":"Adaptive Consensus in LLM Ensembles via Sequential Evidence Accumulation: Automatic Budget Identification and Calibrated Commit Signals","url":"https://arxiv.org/html/2605.04236"},{"title":"From 0-Order Selection to 2-Order Judgment: Combinatorial Hardening Exposes Compositional Failures in Frontier LLMs","url":"https://arxiv.org/html/2605.07268"},{"title":"Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies","url":"https://arxiv.org/html/2605.03596"},{"title":"[2605.04236] Adaptive Consensus in LLM Ensembles via Sequential Evidence Accumulation: Automatic Budget Identification and Calibrated Commit Signals","url":"https://arxiv.org/abs/2605.04236"},{"title":"[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models","url":"https://arxiv.org/abs/2605.07046"},{"title":"Delving into the Reversal Curse: How Far Can Large Language Models Generalize?","url":"https://arxiv.org/html/2410.18808v1"}]
+
+I found the paper you're looking for! Here are the results:
+
+The paper is titled "Towards Reliable LLM Evaluation: Correcting the Winner's Curse in Adaptive Benchmarking" with authors Yang Xu and 5 others. It's available on arXiv as arXiv:2605.05973.
+
+**Key findings from the abstract:**
+
+Adaptive prompt and program search makes LLM evaluation selection-sensitive. Once benchmark items are reused inside tuning, the observed winner's score need not estimate the fresh-data performance of the full tune-then-deploy procedure.
+
+The authors propose SIREN, a selection-aware repeated-split reporting protocol that freezes the post-search shortlist, separates splitwise selection from held-out evaluation, and uses an item-level Gaussian multiplier bootstrap for uncertainty quantification.
+
+In a fixed-shortlist regime with smooth stabilized selection, the estimator admits a first-order item-level representation, and the bootstrap yields valid simultaneous inference on a finite budget grid. This supports confidence intervals for procedure-performance curves and pre-specified equal-budget and cross-budget comparisons.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "264a0de7-a269-422d-bcc9-1654c15ea4df",
+  "isSidechain": false,
+  "promptId": "f7452bba-2c2b-4f76-941f-39aafd8da13b",
+  "type": "user",
+  "uuid": "afaa5cd3-f89f-4b8c-a4d4-cb8b88d4d1eb",
+  "toolUseResult": {
+    "query": "\"correcting the winner's curse\" adaptive benchmarking LLM arxiv 2605",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016QTd7yH9jjnAR4dBLFLVMZ",
+        "content": [
+          {
+            "title": "[2605.05973] Towards Reliable LLM Evaluation: Correcting the Winner's Curse in Adaptive Benchmarking",
+            "url": "https://arxiv.org/abs/2605.05973"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=865&show=500"
+          },
+          {
+            "title": "Asymptotically Log-Optimal Bayes-Assisted Confidence Sequences for Bounded Means",
+            "url": "https://arxiv.org/html/2605.07964"
+          },
+          {
+            "title": "LLMs Uncertainty Quantification via Adaptive Conformal Semantic Entropy",
+            "url": "https://arxiv.org/html/2605.04295"
+          },
+          {
+            "title": "Adaptive Consensus in LLM Ensembles via Sequential Evidence Accumulation: Automatic Budget Identification and Calibrated Commit Signals",
+            "url": "https://arxiv.org/html/2605.04236"
+          },
+          {
+            "title": "From 0-Order Selection to 2-Order Judgment: Combinatorial Hardening Exposes Compositional Failures in Frontier LLMs",
+            "url": "https://arxiv.org/html/2605.07268"
+          },
+          {
+            "title": "Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies",
+            "url": "https://arxiv.org/html/2605.03596"
+          },
+          {
+            "title": "[2605.04236] Adaptive Consensus in LLM Ensembles via Sequential Evidence Accumulation: Automatic Budget Identification and Calibrated Commit Signals",
+            "url": "https://arxiv.org/abs/2605.04236"
+          },
+          {
+            "title": "[2605.07046] An Interpretable and Scalable Framework for Evaluating Large Language Models",
+            "url": "https://arxiv.org/abs/2605.07046"
+          },
+          {
+            "title": "Delving into the Reversal Curse: How Far Can Large Language Models Generalize?",
+            "url": "https://arxiv.org/html/2410.18808v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the results:\n\nThe paper is titled \"Towards Reliable LLM Evaluation: Correcting the Winner's Curse in Adaptive Benchmarking\" with authors Yang Xu and 5 others. It's available on arXiv as arXiv:2605.05973.\n\n**Key findings from the abstract:**\n\nAdaptive prompt and program search makes LLM evaluation selection-sensitive. Once benchmark items are reused inside tuning, the observed winner's score need not estimate the fresh-data performance of the full tune-then-deploy procedure.\n\nThe authors propose SIREN, a selection-aware repeated-split reporting protocol that freezes the post-search shortlist, separates splitwise selection from held-out evaluation, and uses an item-level Gaussian multiplier bootstrap for uncertainty quantification.\n\nIn a fixed-shortlist regime with smooth stabilized selection, the estimator admits a first-order item-level representation, and the bootstrap yields valid simultaneous inference on a finite budget grid. This supports confidence intervals for procedure-performance curves and pre-specified equal-budget and cross-budget comparisons."
+    ],
+    "durationSeconds": 6.816161981000041
+  },
+  "sourceToolAssistantUUID": "264a0de7-a269-422d-bcc9-1654c15ea4df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 123_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "afaa5cd3-f89f-4b8c-a4d4-cb8b88d4d1eb",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 125 · 2026-05-12T00:52:09.266Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now analyze what I've found so far and prepare the review. Let me check a couple more critical items.
+
+Key findings from my search:
+1. **PSN-IRT (AAAI 2026 Oral)** - Confirmed as real. Applies 4PL IRT to LLM benchmarks. Does NOT model contamination as a covariate and provides point estimates without Bayesian uncertainty. However, it does identify contaminated items as part of its quality analysis.
+
+2. **DCR (EMNLP 2025)** - Confirmed. Produces adjusted accuracy via fuzzy inference. No uncertainty bounds.
+
+
+3. **HiBayES (AISI)** - Confirmed. Hierarchical Bayesian evaluation with credible intervals. Does NOT address contamination.
+4. **Self-Critique (arXiv 2510.09259)** - Confirmed. Detects RL contamination with 30% AUC improvement.
+5. **Fragility paper (arXiv 2510.02386)** - Confirmed. Shows GRPO conceals contamination signals.
+6. **Dose-response (arXiv 2601.04301)** - Confirmed. Fits dose-response curves for contamination, though the NeurIPS 2025 claim needs verification.
+7. **Impact of post-training (arXiv 2601.06103)** - January 2026 paper showing how SFT and GRPO have different effects on contamination, using small models like Qwen2.5 and Gemma3 variants, which validates that these experiments are feasible at smaller scales.
+8. **DeconIEP (arXiv 2601.19334)** - January 2026 approach for decontamination at inference time through embedding perturbations, distinct from ContamCal's post-hoc calibration strategy.
+9. **Silicon Bureaucracy (arXiv 2603.21636)** - March 2026 work that audits contamination sensitivity but lacks adjusted scores or uncertainty quantification.
+10. **Growing Pains** - Still reviewing...
+
+Now looking at the remaining papers and the revised proposal. KDS offers another contamination detection signal, and there's an EACL 2026 findings paper on psychometric contamination that the proposal mentions. Checking the improvements in round 2 - the models are now correctly specified as Qwen2.5 variants, Pythia, and OLMo at 1B scale, and the approach has shifted to SFT-only contamination injection while treating existing RL models as observational data rather than training new ones.
+
+The compute and timeline constraints are satisfied with 120-150 hours on H100s for manual work and 200 hours for automation, fitting within the 16-day window. All the missing competitors from the first round have been added, and the proposal now addresses the fragility problem through signal survival analysis.
+
+The novelty here is compelling - combining multi-signal contamination detection with IRT calibration while treating contamination as a covariate is genuinely novel. Existing approaches handle pieces of this (PSN-IRT does IRT but ignores contamination, DCR adjusts scores without uncertainty quantification, HiBayES provides Bayesian uncertainty but overlooks contamination) but none integrate all four elements together.
+
+The feasibility checks out too. LoRA SFT on smaller models runs in 2-3 hours per iteration on H100, so 6 dosage levels across 3 model sizes comes to roughly 54 hours, embedding and inference adds another 25 hours, and self-critique on existing RL models takes about 15 hours - all within the 120-150 hour budget. The arXiv paper 2601.06103 validates this is achievable, having successfully used similar model sizes like Qwen2.5 and Gemma3 for controlled contamination experiments.
+
+But there are some real concerns I need to think through. The Bayesian IRT fitting could be a bottleneck - fitting a hierarchical 4PL model across thousands of items and dozens of models with Stan MCMC might take hours or days, and I'd need to carefully monitor convergence diagnostics like R-hat and divergent transitions, which requires statistical expertise. The proposal mentions this risk but doesn't budget specific compute time for it.
+
+There's also a circularity problem with signal aggregation. I'm learning weights to combine four contamination signals, but I need labeled ground-truth data to validate this. The only labels I have come from my own controlled injection experiments, so I'm essentially validating the aggregation on data I created - which doesn't tell me how well it generalizes to real-world contamination patterns.
+
+And the per-item contamination exposure score itself needs scrutiny. from Stage 1 is the foundation of Stage 2. If these scores are noisy (which they will be for real-world models where ground truth is unknown), the Bayesian calibration will inherit that noise. The uncertainty bounds from the posterior will capture parameter uncertainty but not model misspecification.
+
+4. **DCR comparison**: The proposal claims to validate against DCR's adjusted accuracy, but DCR operates at a different granularity (corpus-level vs per-item). The comparison might not be straightforward.
+
+5. **Self-Critique on small models**: Self-Critique was developed for RL-post-trained models. The proposal correctly uses existing RL models (DeepSeek-R1-Distill, Qwen2.5-Instruct) as observational data, but these are not models the authors control, so ground-truth contamination status is unknown.
+
+6. **Missing competitor: KDS (ICML 2025)**: Kernel Divergence Score is a relevant detection method, though it functions as a detection approach rather than a score adjustment method, so it could complement Stage 1 as an additional signal.
+
+7. **Timeline tightness**: 14-16 days for a single researcher is extremely tight. The Bayesian IRT fitting, MCMC convergence diagnostics, and paper writing all need to happen in the final 5-6 days. This is feasible only if everything goes smoothly.
+
+8. The proposal is well-structured and comprehensively addresses all Round 1 feedback. Looking at the scoring: the combination of multi-signal contamination detection with contamination-augmented Bayesian IRT is genuinely novel and no existing work combines these elements (4/5 for novelty), while the revised compute budget fits within constraints and small models are appropriate, though the 14-16 day timeline is quite tight (feasibility concerns remain). MCMC convergence is a real risk. Score: 3.5/5
+
+Clarity: The proposal is well-structured with clear mathematical formulation. The two-stage framework is logical. Score: 4/5
+
+Impact: Addresses a real problem (contaminated benchmarks) with a principled statistical approach. Aligns with EMNLP 2026 special theme. Could become a standard tool for benchmark evaluation. Score: 4/5
+
+Average: (4 + 3.5 + 4 + 4) / 4 = 3.875
+
+This is close to the 4.0 threshold but not quite there. The feasibility concern about timeline and Bayesian model convergence is significant but potentially manageable.
+
+Let me reconsider feasibility more carefully. The compute budget aligns with prior work and is realistic, the timeline of 14-16 days is tight but within the stated constraint, and the self-contained nature of the work—no GRPO training or complex observational RL—actually makes it more tractable. The Bayesian model fitting remains the main risk, though variational inference or modern samplers could help mitigate it. I'd rate feasibility at 3.5 given the timeline pressure, but the core issues are addressable.
+
+The average sits at 3.875, just below the 4.0 threshold, with feasibility being the limiting factor. The problems identified are relatively minor and fixable, so this feels like it could go either way.
+
+Actually, I should reconsider novelty more carefully. The core question is whether adding a contamination covariate to IRT is sufficiently novel beyond PSN-IRT. PSN-IRT already handles 4PL IRT for LLM benchmarking and identifies contaminated items as low-quality. ContamCal adds an explicit contamination covariate with multi-signal detection and Bayesian uncertainty quantification. Adding a covariate to an IRT model is standard psychometrics, so the novelty hinges on the combination with multi-signal contamination detection and the specific application to benchmark calibration.
+
+The signal survival analysis from RL post-training does add a nice contribution. I think a novelty rating of 4 is fair given the principled combination of detection, calibration, and uncertainty quantification. For EMNLP 2026 with its special theme on data contamination, this is well-positioned for Findings, with a shot at the main conference if execution is strong. The main concern is the tight timeline—14-16 days leaves little room for error, especially with the complexity of implementing Bayesian 4PL IRT with contamination covariates.
+
+Looking at the remaining issues: the MCMC convergence risk on thousands of items, potential circularity in signal aggregation validation, missing KDS as a detection signal, and the lack of ground-truth validation for self-critique on observational RL models are all fixable with minor adjustments. The proposal has already addressed the critical issues from the previous round, so I'm inclined toward a "revise" verdict with targeted feedback. Recalculating the scores—novelty at 4, feasibility at 3.5 due to timeline and MCMC risks, clarity at 4, and impact at 4—brings the average to 3.875, which is solid.
+
+But I'm reconsidering the feasibility score. The 4PL IRT model with 40K items and 20 models would create a massive parameter space for MCMC, but they're likely not running this on the full PSN-IRT dataset—they'd probably focus on controlled experiments with just a few benchmarks like MMLU, GSM8K, and ARC-Challenge, totaling around 4K items across 6-18 model instances, which is much more tractable.
+
+With roughly 4K items, 30-40 models (accounting for different dosage levels), and ~16K total parameters, Stan can handle this with variational inference or NUTS sampling in a matter of hours rather than days. So I think I was being too pessimistic about the feasibility—I'd bump that up to a 4.
+
+The real constraint is the 14-16 day timeline. A single researcher would need to implement the provenance mapping pipeline, run the contamination injection across multiple dosages and model sizes, and then fit the Bayesian IRT model, which is genuinely ambitious for that window.
+
+The SFT runs are the main sequential bottleneck—18 total runs across different model sizes and dosages—but since each LoRA fine-tune takes only 2-3 hours on smaller models, I can parallelize across GPUs to compress that down significantly. Most of the other phases can overlap too.
+
+Given the tight timeline, I'll set feasibility at 3.5. That brings the average to around 3.875, which is just under the 4.0 revision threshold, but the issues are concrete enough that I should provide specific, actionable feedback rather than just flagging it for revision.
+
+Now I'm weighing whether to actually recommend passing or revising. The core idea is genuinely novel—combining IRT with contamination covariates and Bayesian uncertainty quantification hasn't been done before—and all the fatal issues from the first round are resolved. The compute budget is realistic, the landscape coverage is solid, and the timing aligns well with EMNLP 2026's special theme. But the average score sits below threshold, the timeline is genuinely tight, there are some implementation risks around MCMC convergence, and there's a minor gap where KDS wasn't included as a competitor. The signal aggregation validation also has a slight circularity issue.
+
+I think I should go with revise, though I'd note that with solid execution this would likely land in Findings anyway. But let me double-check my novelty score one more time to make sure I'm being fair.
+
+The IRT plus contamination covariate plus Bayesian uncertainty combination is genuinely novel, and the signal survival analysis adds another novel angle. The individual pieces are known, but this is a synthesis paper, and at EMNLP that kind of integration with strong experiments can be quite valuable. A 4 feels right—solid novelty without being revolutionary. Feasibility is the real constraint here. The timeline is tight, but I'm noticing that a similar post-training paper used the same experimental setup with comparable model sizes and managed to pull it off, which suggests the approach is actually more feasible than I initially thought.
+
+Still, adding the Bayesian IRT layer introduces real complexity—MCMC fitting, convergence diagnostics, prior sensitivity analysis—and that's where things could get tight in 16 days. I should build in a fallback strategy: if MCMC becomes a bottleneck, I can pivot to variational inference or approximate Bayesian methods, both of which Stan supports. I'm also going to trim the experimental scope slightly, dropping from 6 dosage levels down to 5 across the 3 model sizes, which saves roughly 9 hours of GPU time without sacrificing the core findings. And I need to incorporate KDS as a baseline comparison.
+
+The signal aggregation concern is real too—I should be more explicit about how the learned weights transfer to unseen contamination patterns. On the writing side, I can start drafting the introduction and related work while experiments are running, which helps with the timeline pressure.
+
+These are all fixable without rethinking the approach, but the bar for top venues is high. For EMNLP Main or Findings, this could work if executed well, though I'm sitting at 3.875 average and the threshold is 4.0. I'm genuinely on the fence between accept and minor revisions.
+
+Given the user's top-venue requirement, I'll recommend revise—these issues matter enough that addressing them strengthens the submission without requiring fundamental changes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afaa5cd3-f89f-4b8c-a4d4-cb8b88d4d1eb",
+  "isSidechain": false,
+  "requestId": "req_011CawkrfbpJBHvZbCzUPFNq",
+  "type": "assistant",
+  "uuid": "df8488a2-2edb-4568-9ea0-2b7bb0abdb19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013LvLuYi37bPPkLMKMrDcYD",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 857,
+      "cache_read_input_tokens": 65014,
+      "output_tokens": 6199,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6199,
+          "cache_read_input_tokens": 65014,
+          "cache_creation_input_tokens": 857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 126 · 2026-05-12T00:52:51.734Z_
+
+I've completed extensive independent verification across 18+ searches. Let me now compile my assessment.
+
+Key findings from my research:
+- All major references verified as real
+- The gap claim (IRT + contamination covariate + Bayesian uncertainty) appears genuinely unfilled
+- Round 1 FATAL issues have been comprehensively addressed
+- Found several additional relevant papers (DeconIEP, Silicon Bureaucracy, KDS, arXiv 2601.06103)
+- The arXiv 2601.06103 paper validates the experimental approach using the same model scales
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "The combination of multi-signal contamination detection + contamination-augmented Bayesian 4PL IRT is genuinely novel — no existing work I found unifies IRT contamination covariates, per-item exposure scores from multiple detection signals, and Bayesian posterior credible intervals. PSN-IRT, DCR, and HiBayES each cover only one dimension. The signal survival analysis across SFT vs. RL is also a novel empirical contribution."},
+    "feasibility": {"score": 3, "rationale": "Compute budget (120-150h H100) is realistic and validated by arXiv 2601.06103 which ran comparable experiments on Qwen2.5-0.5B/1.5B + Gemma3-1B/4B. However, the 14-16 day timeline is dangerously tight for a single researcher implementing a two-stage pipeline + Bayesian model fitting + convergence diagnostics + paper writing. Hierarchical Bayesian 4PL IRT with ~16K+ parameters on Stan/PyMC could hit MCMC convergence issues (divergent transitions, slow mixing) that consume days to diagnose, and no fallback is specified."},
+    "clarity": {"score": 4, "rationale": "The mathematical formulation is precise and the two-stage decomposition is clean. The IRT augmentation formula P(correct) = c + (d-c)·σ(a(θ-b) + γ·exposure) is well-specified. The description clearly differentiates from PSN-IRT, DCR, and HiBayES along concrete dimensions."},
+    "impact": {"score": 4, "rationale": "Directly addresses EMNLP 2026 special theme on data contamination and data governance. Contamination-adjusted benchmark scores with uncertainty bounds would be a practical tool for the community. The calibrated score answering 'what would this model's score be if it had never seen the test data?' is a question many practitioners care about."}
+  },
+  "issues": [
+    "TIMELINE RISK: 14-16 days for one researcher to implement provenance mapping, run 18 SFT jobs, run 4 detection signals, fit Bayesian IRT, run evaluations, and write a paper is at the absolute limit. There is zero margin for debugging or unexpected issues. The proposal lacks a contingency plan if MCMC convergence fails (e.g., fallback to variational inference, which Stan supports via ADVI).",
+    "BAYESIAN MODEL CONVERGENCE RISK: Hierarchical 4PL IRT with a contamination covariate means ~4×N_items + N_models + 1 parameters. Even with ~4K items and ~36 model instances, this is ~16K+ parameters. Stan's NUTS sampler can struggle with this scale, producing divergent transitions. The risk note mentions this but offers no mitigation strategy. Prior sensitivity analysis for γ (the contamination effect parameter) requires multiple model fits, adding time.",
+    "SIGNAL AGGREGATION CIRCULARITY: The 'learned weights' for combining four detection signals require labeled contamination ground truth. This comes from the controlled injection experiments — but then validation of the aggregation is on the same distribution as training. How the weights generalize to wild/observational models (where contamination mode differs from controlled SFT injection) is unaddressed.",
+    "MISSING COMPETITOR: Kernel Divergence Score (KDS, ICML 2025) by Choi et al. achieves near-perfect correlation with contamination levels and outperforms existing baselines including Min-K%++. This should be cited and either incorporated as a 5th signal or discussed as a related detection method.",
+    "MISSING COMPETITOR: 'The Impact of Post-training on Data Contamination' (arXiv 2601.06103, Jan 2026) uses the exact same experimental setup (Qwen2.5-0.5B/1.5B, controlled contamination injection into SFT) and provides key insights about how SFT vs GRPO differentially affect contamination. This is both a validation of your approach's feasibility AND a competitor that characterizes contamination effects — it should be prominently cited.",
+    "RL VALIDATION WEAKNESS: Self-Critique applied to existing RL models (DeepSeek-R1-Distill, Qwen2.5-Instruct) as observational data lacks ground-truth contamination labels. Without knowing whether these models are actually contaminated, the exposure scores from Stage 1 cannot be validated for the RL case. The calibrated scores for RL models will have unverifiable accuracy.",
+    "MINOR: GPU utilization estimate of 40-50% for manual mode seems low for sequential SFT runs. With proper job queuing and overlapping detection signal computation with SFT training, utilization could be higher. This doesn't affect feasibility but makes cost estimates slightly conservative."
+  ],
+  "feedback": "The revised proposal has comprehensively addressed all FATAL issues from Round 1 — model sizes, compute budget, and timeline are now within constraints. The core idea is genuinely novel and well-positioned for EMNLP 2026. To push over the pass threshold:\n\n1. **Add MCMC fallback**: Explicitly state that if Stan/PyMC NUTS sampling produces divergent transitions or fails to converge within 24h, you will fall back to Stan's ADVI (Automatic Differentiation Variational Inference) or use PyMC's variational approximation. This eliminates the single biggest timeline risk.\n\n2. **Tighten the timeline**: Add a concrete day-by-day plan showing parallelization. Key insight: paper writing (intro, related work, method section) can begin on Day 1 in parallel with implementation. Detection signal computation can overlap with SFT training. Show this explicitly to demonstrate the 14-16 day timeline is feasible.\n\n3. **Cite KDS (ICML 2025)** and **arXiv 2601.06103**: These are both highly relevant. KDS could be discussed as an alternative/additional detection signal. arXiv 2601.06103 validates your experimental setup and provides a natural comparison point.\n\n4. **Address signal aggregation generalization**: Acknowledge that learned weights are trained on controlled SFT injection. Propose a simple mitigation: use leave-one-model-out cross-validation for weight learning, or use a simple average/rank-based fusion that doesn't require training.\n\n5. **Acknowledge RL validation limitation explicitly**: Frame the RL analysis as 'observational case study' rather than validation. The validated contribution is the SFT contamination calibration; the RL extension is a demonstration of the framework's applicability.\n\n6. **Consider reducing scope slightly**: 5 dosage levels × 3 model sizes = 15 runs instead of 6×3=18 saves ~9 GPU-hours and provides more timeline buffer. The dose-response curve is still well-characterized with 5 points.",
+  "reason": "Core idea is novel and well-motivated (avg 3.75), but timeline feasibility risk and lack of MCMC fallback strategy keep it below the 4.0 pass threshold — fixable with specific mitigations."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df8488a2-2edb-4568-9ea0-2b7bb0abdb19",
+  "isSidechain": false,
+  "requestId": "req_011CawkrfbpJBHvZbCzUPFNq",
+  "type": "assistant",
+  "uuid": "3ca901cf-bb3d-4269-bf67-b27c195353b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013LvLuYi37bPPkLMKMrDcYD",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 857,
+      "cache_read_input_tokens": 65014,
+      "output_tokens": 6199,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6199,
+          "cache_read_input_tokens": 65014,
+          "cache_creation_input_tokens": 857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 127_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3ca901cf-bb3d-4269-bf67-b27c195353b9",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 128_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 129_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3ca901cf-bb3d-4269-bf67-b27c195353b9",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 130_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-adjusted benchmark calibration via Bayesian IRT",
+  "sessionId": "9a131fca-8dbe-4c8a-a4e1-149ff23b22d1"
+}
+```
+
+---

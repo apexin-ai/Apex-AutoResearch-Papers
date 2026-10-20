@@ -1,0 +1,2285 @@
+# Research conversation: You are helping me review a research proposal. I need to verify several claims about existing work that uses Multiplicat
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-ab6062399a0f03605.jsonl`
+- **Structured JSON:** [`61ef1d765e347d814a95.json`](../../sessions/61/61ef1d765e347d814a95.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+34 recorded events
+
+### User
+
+_source line 1 · 2026-05-12T00:30:51.065Z_
+
+You are helping me review a research proposal. I need to verify several claims about existing work that uses Multiplicative Weights Update (MWU) / exponentiated gradient for data selection in LLM training. The proposal claims to cite and differentiate from all of these.
+
+Please search for and verify:
+
+1. **DoReMi (NeurIPS 2023, arXiv:2305.10429)** — Does it use exponentiated gradient α_t ← α_{t-1}·exp(η·λ_t)/Z? Does it have an "Iterated DoReMi" variant? What exactly does it optimize?
+
+2. **ODM (arXiv:2312.02406)** — Does it use EXP3 for online data mixing during pretraining?
+
+3. **PiKE (arXiv:2502.06244)** — Does it use mirror descent for adaptive multi-task data mixing?
+
+4. **AutoMixAlign (ACL 2025, arXiv:2506.00569)** — Does it use EXP3 and Group DRO for adaptive multi-task preference optimization?
+
+5. **LASeR (NeurIPS 2025, arXiv:2410.01735)** — Does it use multi-armed bandit for adaptive reward model selection during iterative LLM training?
+
+For each, use WebSearch to verify the paper exists, its venue, and its core method. Also check if "Iterated DoReMi" is a real thing or fabricated.
+
+Also search for: "Fixed Share" extension by Herbster & Warmuth 1998 — verify this is a real algorithm for tracking the best expert in non-stationary environments with switching regret bounds.
+
+Report your findings concisely — what's real, what's fabricated, what's mischaracterized.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "9efb0483-7b23-46e0-a638-ee0a9106f622",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T00:30:51.069Z_
+
+```json
+{
+  "parentUuid": "9efb0483-7b23-46e0-a638-ee0a9106f622",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "4f8d3908-5155-4bf9-a5ae-0dc17b22c475",
+  "timestamp": "2026-05-12T00:30:51.069Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-12T00:30:53.549Z_
+
+
+
+I'll systematically verify each claim. Let me start by loading the WebSearch tool and then searching for all papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f8d3908-5155-4bf9-a5ae-0dc17b22c475",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjNZKe8htJYuRzAkzfs",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4dc476b6-10f5-41c9-97c7-c92c8a17adc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRqxevt6Yt95N3mtL7YpMw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9189,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9189,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-12T00:30:54.084Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UQSurSyAWiMVSzWDHohPaz`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4dc476b6-10f5-41c9-97c7-c92c8a17adc3",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjNZKe8htJYuRzAkzfs",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e920ed02-5148-41da-8cf7-7655b1b96137",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRqxevt6Yt95N3mtL7YpMw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9189,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 9189
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 9189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 9189,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-12T00:30:54.088Z_
+
+<details><summary>↩ Tool result · `toolu_01UQSurSyAWiMVSzWDHohPaz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e920ed02-5148-41da-8cf7-7655b1b96137",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "fe460e94-df18-4c9c-b66e-84bc8da6a307",
+  "sourceToolAssistantUUID": "e920ed02-5148-41da-8cf7-7655b1b96137",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-12T00:30:56.923Z_
+
+
+
+Now let me search for all the papers and claims in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe460e94-df18-4c9c-b66e-84bc8da6a307",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjNnVeehy7BSPYAXfdw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a9945f90-76e3-4b74-9a09-1a4f9acc5b97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCHk3cdx5JMUcXjgyGUXMv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 9189,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1420,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-12T00:30:57.700Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J8dXbg1cbVmwLs5JR7fXPQ`</summary>
+
+```json
+{
+  "query": "DoReMi NeurIPS 2023 arXiv 2305.10429 exponentiated gradient data mixing LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9945f90-76e3-4b74-9a09-1a4f9acc5b97",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjNnVeehy7BSPYAXfdw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "db905314-cd6f-463a-827f-c2398fb302dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCHk3cdx5JMUcXjgyGUXMv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1420,
+      "cache_read_input_tokens": 9189,
+      "output_tokens": 97,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1420
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 97,
+          "cache_read_input_tokens": 9189,
+          "cache_creation_input_tokens": 1420,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1420,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-12T00:31:02.999Z_
+
+<details><summary>↩ Tool result · `toolu_01J8dXbg1cbVmwLs5JR7fXPQ`</summary>
+
+```text
+Web search results for query: "DoReMi NeurIPS 2023 arXiv 2305.10429 exponentiated gradient data mixing LLM"
+
+Links: [{"title":"[2305.10429] DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://arxiv.org/abs/2305.10429"},{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/dcba6be91359358c2355cd920da3fcbd-Paper-Conference.pdf"},{"title":"GitHub - sangmichaelxie/doremi: Pytorch implementation of DoReMi, a method for optimizing the data mixture weights in language modeling datasets · GitHub","url":"https://github.com/sangmichaelxie/doremi"},{"title":"DoReMi: Optimizing Data Mixtures for LM Pretraining","url":"https://hunterheidenreich.com/notes/natural-language-processing/language-models/doremi-data-mixture-optimization/"},{"title":"Paper page - DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://huggingface.co/papers/2305.10429"},{"title":"[PDF] DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DoReMi:-Optimizing-Data-Mixtures-Speeds-Up-Language-Xie-Pham/9b4f7c97c0b83a80c32bc0b93595cbcfb4ecb16d"},{"title":"Efficient Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/html/2312.02406v2"},{"title":"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance","url":"https://arxiv.org/html/2403.16952v1"},{"title":"NeurIPS 2023 LLM Efficiency Fine-tuning Competition","url":"https://arxiv.org/html/2503.13507v1"},{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining | OpenReview","url":"https://openreview.net/forum?id=lXuByUeHhd"}]
+
+Based on the search results, here's what I found about DoReMi:
+
+## Overview
+
+DoReMi (Domain Reweighting with Minimax Optimization) first trains a small proxy model using group distributionally robust optimization (Group DRO) over domains to produce domain weights (mixture proportions) without knowledge of downstream tasks.
+
+## Key Technical Details
+
+The Group DRO optimizer works by interleaving exponentiated gradient ascent updates on domain weights with gradient updates on the proxy model weights over training steps. The inner maximization upweights domains with high excess loss via exponentiated gradient ascent, while the outer minimization trains the proxy on those upweighted domains.
+
+## Methodology and Results
+
+DoReMi uses a 280M-parameter proxy model to set the domain weights for training an 8B-parameter model (30x larger) more efficiently, and improves perplexity across all domains. DoReMi improves average few-shot downstream accuracy by 6.5% points over a baseline model trained using The Pile's default domain weights and reaches the baseline accuracy with 2.6x fewer training steps.
+
+The paper was presented at the 37th Conference on Neural Information Processing Systems (NeurIPS 2023) and is published on arXiv as 2305.10429.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db905314-cd6f-463a-827f-c2398fb302dc",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "cac14197-f6ce-4b6e-bdd9-23c9290a085b",
+  "sourceToolAssistantUUID": "db905314-cd6f-463a-827f-c2398fb302dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-12T00:31:05.567Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XJscRiAw3SPk8cemsoDA1G`</summary>
+
+```json
+{
+  "query": "ODM arXiv 2312.02406 EXP3 online data mixing pretraining"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cac14197-f6ce-4b6e-bdd9-23c9290a085b",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjPSH1VDJf7mrXEtZF9",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f5bea17b-7da0-48db-84d9-00ac59126c80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GR1r7gkMnHnED5jfxGV1ZU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 10609,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1027
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 10609,
+          "cache_creation_input_tokens": 1027,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1027,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-12T00:31:13.039Z_
+
+<details><summary>↩ Tool result · `toolu_01XJscRiAw3SPk8cemsoDA1G`</summary>
+
+```text
+Web search results for query: "ODM arXiv 2312.02406 EXP3 online data mixing pretraining"
+
+Links: [{"title":"Efficient Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/html/2312.02406"},{"title":"[2312.02406] Efficient Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/abs/2312.02406"},{"title":"RegMix: Data Mixture as Regression for Language Model Pre-training","url":"https://arxiv.org/html/2407.01492v1"},{"title":"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance","url":"https://arxiv.org/html/2403.16952v1"},{"title":"Optimizing Pre-Training Data Mixtures with Mixtures of Data Expert Models","url":"https://arxiv.org/html/2502.15950v1"},{"title":"Actor-Critic based Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/html/2505.23878"},{"title":"Scaling Laws for Optimal Data Mixtures","url":"https://arxiv.org/html/2507.09404v1"},{"title":"Data Mixing Agent: Learning to Re-weight Domains for Continual Pre-training","url":"https://arxiv.org/html/2507.15640"},{"title":"Optimizing Pretraining Data Mixtures with LLM-Estimated Utility","url":"https://arxiv.org/html/2501.11747v2"},{"title":"Efficient Online Data Mixing For Language Model","url":"https://www.researchhub.com/paper/5635135/efficient-online-data-mixing-for-language-model-pre-training"}]
+
+Based on the search results, here's what I found about arXiv paper 2312.02406:
+
+## Efficient Online Data Mixing for Language Model Pre-Training
+
+The paper develops an efficient algorithm for Online Data Mixing (ODM) that combines elements from both data selection and data mixing.
+
+**Problem Being Addressed:**
+The data used to pretrain large language models has a decisive impact on a model's downstream performance, and existing data selection methods suffer from slow and computationally expensive processes, a problem amplified by the increasing size of models and of pretraining datasets. Additionally, data mixing proportions are typically fixed before training and therefore cannot adapt to changing training dynamics.
+
+**Technical Approach:**
+The online data mixing problem is formulated under the multi-armed bandit (MAB) setting, with a reward function which measures information gain and is very efficient to compute. The main deviation of the method from Exp3 is the use of a moving average estimated reward instead of a cumulative estimated reward. Under normal MAB settings, rewards at each turn are weighted equally, but in their setting they care most about recent rewards. Thus, they still account for past rewards through the use of a moving average, but rewards from the past are weighted less and less moving further into the past.
+
+**Results:**
+The online data mixing algorithm is the most effective, reaching the final validation perplexity of the next best method with 19% fewer iterations and improving on 5-shot MMLU performance by 3% relative accuracy over the baseline. Additionally, the method is computationally efficient, introducing a minuscule 0.000007% overhead.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5bea17b-7da0-48db-84d9-00ac59126c80",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "3a956ea9-0c16-43f4-ad79-4533e95c92a9",
+  "sourceToolAssistantUUID": "f5bea17b-7da0-48db-84d9-00ac59126c80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-12T00:31:15.487Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MQXUVQ8KvcZ16ADGxJkp8A`</summary>
+
+```json
+{
+  "query": "PiKE arXiv 2502.06244 mirror descent adaptive multi-task data mixing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a956ea9-0c16-43f4-ad79-4533e95c92a9",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjQBLrsiX1N8MQbizsE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d342abb6-9d00-4057-9167-2c7b4c04d66a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GnZdAFJYVSNwwrnJPvdHdr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 11636,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 892,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T00:31:21.871Z_
+
+<details><summary>↩ Tool result · `toolu_01MQXUVQ8KvcZ16ADGxJkp8A`</summary>
+
+```text
+Web search results for query: "PiKE arXiv 2502.06244 mirror descent adaptive multi-task data mixing"
+
+Links: [{"title":"PiKE: Adaptive Data Mixing for Multi-Task Learning ...","url":"https://arxiv.org/pdf/2502.06244"},{"title":"[2502.06244] PiKE: Adaptive Data Mixing for Large-Scale Multi-Task Learning Under Low Gradient Conflicts","url":"https://arxiv.org/abs/2502.06244"},{"title":"PiKE: Adaptive Data Mixing for Large-Scale Multi-Task Learning Under Low Gradient Conflicts","url":"https://arxiv.org/html/2502.06244"},{"title":"PiKE: Adaptive Data Mixing for Multi-Task Learning Under Low Gradient Conflicts","url":"https://arxiv.org/html/2502.06244v1"},{"title":"Sampling and Loss Weights in Multi-Domain Training","url":"https://arxiv.org/html/2511.06913v1"},{"title":"PiKE: Adaptive Data Mixing for Multi-Task Learning Under Low Gradient Conflicts | OpenReview","url":"https://openreview.net/forum?id=nvfxLXAN3x"},{"title":"Computer Science Feb 2025","url":"https://arxiv.org/list/cs/2025-02?skip=3025&show=2000"},{"title":"More Data or Better Data? A Critical Analysis of Data Selection and Synthesis for Mathematical Reasoning","url":"https://arxiv.org/html/2510.07169v1"},{"title":"PiKE: Adaptive Data Mixing for Large-Scale Multi-Task Learning Under Low Gradient Conflicts | OpenReview","url":"https://openreview.net/forum?id=xNJenVNmzL"},{"title":"Modeling Multi-Task Model Merging as Adaptive Projective Gradient Descent","url":"https://arxiv.org/html/2501.01230v1"}]
+
+I found comprehensive information about the PiKE paper (arXiv 2502.06244). Here's what the search reveals:
+
+## Overview
+
+PiKE (Positive gradient interaction-based K-task weights Estimator) is an adaptive data mixing algorithm that dynamically adjusts sampling weights during training, exploiting nonconflicting gradient interactions to minimize a near-tight upper bound on the average loss decrease.
+
+## Key Motivation
+
+While prior work in multi-task learning has emphasized mitigating gradient conflicts, the paper observes that large-scale pretraining scenarios—such as multilingual or multi-domain training—often exhibit little to no gradient conflict.
+
+## Technical Approach
+
+The paper uses mirror descent as part of its optimization strategy. The algorithm updates task weights using a single mirror descent step, ensuring gradual adjustments. In practice, PiKE uses tunable constant coefficients for variance and gradient norm terms, simplifying implementation.
+
+## Empirical Results
+
+Across different scales (110M, 270M, 750M, and 1B parameters) and scenarios, PiKE consistently outperforms existing static and heuristic data mixing methods, with multilingual pretraining for 1B models improving average downstream accuracy by 3.4%. PiKE achieves these improvements with only negligible additional computational overhead.
+
+## Authors
+
+The paper is authored by Zeman Li, Yuan Deng, Peilin Zhong, Meisam Razaviyayn, and Vahab Mirrokni.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d342abb6-9d00-4057-9167-2c7b4c04d66a",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "bc39dda1-5a4c-4c7c-b675-52321f3a4ba3",
+  "sourceToolAssistantUUID": "d342abb6-9d00-4057-9167-2c7b4c04d66a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T00:31:25.187Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AQnDRJZSkRhwBptGiZk3sM`</summary>
+
+```json
+{
+  "query": "AutoMixAlign arXiv 2506.00569 EXP3 Group DRO preference optimization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc39dda1-5a4c-4c7c-b675-52321f3a4ba3",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjQq9TLS8k2J4PiQu24",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "99cb510f-e392-4aec-9756-1954a58ea0a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EcdGTwAWVbgfPrhfnSgUYL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 921,
+      "cache_read_input_tokens": 12528,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 921
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 12528,
+          "cache_creation_input_tokens": 921,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 921,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T00:31:34.332Z_
+
+<details><summary>↩ Tool result · `toolu_01AQnDRJZSkRhwBptGiZk3sM`</summary>
+
+```text
+Web search results for query: "AutoMixAlign arXiv 2506.00569 EXP3 Group DRO preference optimization"
+
+Links: [{"title":"[2506.00569] AutoMixAlign: Adaptive Data Mixing for Multi-Task Preference Optimization in LLMs","url":"https://arxiv.org/abs/2506.00569"},{"title":"arXiv:2506.00569v1 [cs.LG] 31 May 2025","url":"https://arxiv.org/pdf/2506.00569"},{"title":"AutoMixAlign: Adaptive Data Mixing for Multi-Task Preference Optimization in LLMs","url":"https://arxiv.org/html/2506.00569"},{"title":"AutoMixAlign: Adaptive Data Mixing for Multi-Task Preference Optimization in LLMs - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250600569C/abstract"},{"title":"Machine Learning Jun 2025","url":"https://arxiv.org/list/cs.LG/2025-06?skip=25&show=2000"},{"title":"AutoMixAlign: Adaptive Data Mixing for Multi-Task Preference Optimization in LLMs - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.990/"},{"title":"Value-Free Policy Optimization via Reward Partitioning","url":"https://arxiv.org/html/2506.13702"},{"title":"MixMax: Distributional Robustness in Function Space via Optimal Data Mixtures","url":"https://arxiv.org/html/2406.01477v3"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning","url":"https://arxiv.org/html/2408.14037v1"},{"title":"[2407.07880] Towards Robust Alignment of Language Models: Distributionally Robustifying Direct Preference Optimization","url":"https://arxiv.org/abs/2407.07880"}]
+
+Based on the search results, I found comprehensive information about the AutoMixAlign paper you queried:
+
+## Summary
+
+AutoMixAlign (AMA) is a theoretically-grounded algorithm that adaptively mixes datasets during training to balance performance across tasks in the setting of preference optimization via DPO.
+
+## Algorithm Design
+
+AMA first trains specialist models for each task to determine losses that correspond to strong task performance, then trains a generalist model using a novel minimax optimization that prioritizes tasks for which generalist model losses deviate most from specialist model losses.
+
+The method proposes two algorithms: (1) AMA-R, which adaptively reweights the objective to prioritize tasks, and (2) AMA-S, which adaptively adjusts how much data is sampled from each task to prioritize tasks.
+
+## Theoretical Results
+
+Both algorithms achieve a convergence rate of O(1/√T) in the convex case, with AMA-R's convergence result following from Sagawa et al. (2019), and a convergence proof for AMA-S using online learning techniques such as EXP3.
+
+## Connection to Group DRO
+
+GroupDRO minimizes the worst-case loss across multiple tasks (i.e., groups) by reweighting the loss function to put more weight on tasks with larger loss. AMA differs in that it focuses on alignment rather than pretraining, and optimizes the clipped excess loss during model updates rather than the loss or excess loss.
+
+## Experimental Results
+
+AMA improves average performance over standard DPO with uniform data mixing by up to 9.42% while maintaining robust performance across each task.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99cb510f-e392-4aec-9756-1954a58ea0a0",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "94e967be-c88b-4a61-8040-83cb75bdc657",
+  "sourceToolAssistantUUID": "99cb510f-e392-4aec-9756-1954a58ea0a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-12T00:31:37.528Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016Af2FcMH2aXqpPPNspAot4`</summary>
+
+```json
+{
+  "query": "LASeR arXiv 2410.01735 multi-armed bandit reward model selection iterative LLM training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94e967be-c88b-4a61-8040-83cb75bdc657",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjRkHXnNvpxrNsWNPT1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a82b4dcc-ad0e-4a25-b881-2470b5aab927",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019jMZKhPvAxa1nrxAixekto",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 969,
+      "cache_read_input_tokens": 13449,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 969
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 13449,
+          "cache_creation_input_tokens": 969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 969,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T00:31:44.196Z_
+
+<details><summary>↩ Tool result · `toolu_016Af2FcMH2aXqpPPNspAot4`</summary>
+
+```text
+Web search results for query: "LASeR arXiv 2410.01735 multi-armed bandit reward model selection iterative LLM training"
+
+Links: [{"title":"[2410.01735] LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits","url":"https://arxiv.org/abs/2410.01735"},{"title":"LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits","url":"https://arxiv.org/html/2410.01735"},{"title":"Multi-Armed Bandits With Machine Learning-Generated Surrogate Rewards","url":"https://arxiv.org/html/2506.16658v1"},{"title":"LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/laser-learning-to-adaptively-select-reward-models"},{"title":"LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits | OpenReview","url":"https://openreview.net/forum?id=fDcn3S8oAt"},{"title":"[2506.16658] Multi-Armed Bandits With Machine Learning-Generated Surrogate Rewards","url":"https://arxiv.org/abs/2506.16658"},{"title":"Robust Performance Incentivizing Algorithms for Multi-Armed Bandits with Strategic Agents","url":"https://arxiv.org/html/2312.07929"},{"title":"Large Language Model-Enhanced Multi-Armed Bandits","url":"https://arxiv.org/html/2502.01118v1"},{"title":"[2506.16658v1] Multi-Armed Bandits With Machine Learning-Generated Surrogate Rewards","url":"https://arxiv.org/abs/2506.16658v1"},{"title":"Optimal Streaming Algorithms for Multi-Armed Bandits","url":"https://arxiv.org/html/2410.17835"}]
+
+I found the paper you're looking for! Here's what the search revealed:
+
+## LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits
+
+LASeR (Learning to Adaptively Select Rewards) frames reward model selection as a multi-armed bandit problem, efficiently and iteratively training LLMs using multiple RMs by selecting the most well-suited RM for each instance.
+
+**The Problem It Addresses:**
+Reward Models (RMs) are crucial to aligning large language models (LLMs), but the degree to which an RM specialized to one task generalizes to new tasks is often not known a priori, making using only one fixed RM to train LLMs suboptimal. Additionally, optimizing LLMs with multiple RMs simultaneously can incur prohibitively high computational cost and lead to conflicting signals from different RMs that may degrade performance.
+
+**Results:**
+On commonsense and math reasoning tasks, LASeR boosts iterative LLM training, improving the absolute average accuracy of Llama-3-8B over three datasets by 2.67% over an ensemble of RM scores while also showing superior efficiency (e.g., a 2x speedup).
+
+The paper was submitted on October 2, 2024, with the latest revision on October 22, 2025. Authors include Duy Nguyen, Archiki Prasad, Elias Stengel-Eskin, and Mohit Bansal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a82b4dcc-ad0e-4a25-b881-2470b5aab927",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "9ba2e201-725b-45f9-9d3a-a30dd3db8857",
+  "sourceToolAssistantUUID": "a82b4dcc-ad0e-4a25-b881-2470b5aab927",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-12T00:31:47.006Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0118hR1Bg12aoDnihh7ZY7bL`</summary>
+
+```json
+{
+  "query": "\"Iterated DoReMi\" data mixing LLM pretraining"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ba2e201-725b-45f9-9d3a-a30dd3db8857",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjSUTK7D53TDMUJYvjX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e7bfdef1-716a-41b6-88a3-f20e8563acd7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018H7N2G9j2aTurmGu4h2N4y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 14418,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 928
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 14418,
+          "cache_creation_input_tokens": 928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 928,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T00:31:54.776Z_
+
+<details><summary>↩ Tool result · `toolu_0118hR1Bg12aoDnihh7ZY7bL`</summary>
+
+```text
+Web search results for query: ""Iterated DoReMi" data mixing LLM pretraining"
+
+Links: [{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/dcba6be91359358c2355cd920da3fcbd-Paper-Conference.pdf"},{"title":"DoReMi: Optimizing Data Mixtures for LM Pretraining","url":"https://hunterheidenreich.com/notes/natural-language-processing/language-models/doremi-data-mixture-optimization/"},{"title":"[2305.10429] DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://arxiv.org/abs/2305.10429"},{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining | OpenReview","url":"https://openreview.net/forum?id=lXuByUeHhd"},{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://arxiv.org/pdf/2305.10429"},{"title":"GitHub - sangmichaelxie/doremi: Pytorch implementation of DoReMi, a method for optimizing the data mixture weights in language modeling datasets · GitHub","url":"https://github.com/sangmichaelxie/doremi"},{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://dmlr.ai/assets/accepted-papers/15/CameraReady/ICML_workshop_DoReMi%20(5)%20(1).pdf"},{"title":"Efficient Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/html/2312.02406v2"},{"title":"[PDF] DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DoReMi:-Optimizing-Data-Mixtures-Speeds-Up-Language-Xie-Pham/9b4f7c97c0b83a80c32bc0b93595cbcfb4ecb16d"},{"title":"DoReMi: optimizing data mixtures speeds up language ...","url":"https://dl.acm.org/doi/10.5555/3666122.3669181"}]
+
+Here are the search results for "Iterated DoReMi" data mixing LLM pretraining:
+
+## Overview
+
+DoReMi is a method that introduces Domain Reweighting with Minimax Optimization, an algorithm for automatically tuning the mixture proportions of pretraining data domains. DoReMi first trains a small proxy model using group distributionally robust optimization (Group DRO) over domains to produce domain weights (mixture proportions) without knowledge of downstream tasks.
+
+## Iterated DoReMi Specifically
+
+Iterated DoReMi extends this by running multiple rounds, using the previous round's optimized weights as the next round's reference weights. This converges within 3 rounds on the GLaM dataset. The entire iterated process still only uses small models for tuning domain weights.
+
+## Performance Results
+
+DoReMi improves average few-shot downstream accuracy by 6.5% points over a baseline model trained using The Pile's default domain weights and reaches the baseline accuracy with 2.6x fewer training steps. On the GLaM dataset, iterated DoReMi (round 2) matches the performance of domain weights that were tuned directly on downstream task performance, despite having no knowledge of downstream tasks.
+
+## Computational Efficiency
+
+The domain weight optimization cost (training two 280M models) is 8% of the compute for the 8B main model. DoReMi uses a 280M-parameter proxy model to set the domain weights for training an 8B-parameter model (30x larger) more efficiently.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7bfdef1-716a-41b6-88a3-f20e8563acd7",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "2a4ccd7d-9f7f-4117-b66d-f3f4f67ab0ad",
+  "sourceToolAssistantUUID": "e7bfdef1-716a-41b6-88a3-f20e8563acd7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-12T00:31:57.323Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VexaFung5U2fJadN2XzfH6`</summary>
+
+```json
+{
+  "query": "Herbster Warmuth 1998 \"Fixed Share\" tracking best expert switching regret"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a4ccd7d-9f7f-4117-b66d-f3f4f67ab0ad",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjTFicuYGzupgssDWzF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3d9a6e02-5a09-4f5b-a19d-554d0ac7de0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LKqrGkASWaudntVQB7Jw2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1060,
+      "cache_read_input_tokens": 15346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1060,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T00:32:07.159Z_
+
+<details><summary>↩ Tool result · `toolu_01VexaFung5U2fJadN2XzfH6`</summary>
+
+```text
+Web search results for query: "Herbster Warmuth 1998 "Fixed Share" tracking best expert switching regret"
+
+Links: [{"title":"A Closer Look at Adaptive Regret","url":"https://jmlr.org/papers/volume17/13-533/13-533.pdf"},{"title":"(PDF) Mirror Descent Meets Fixed Share (and feels no regret)","url":"https://www.researchgate.net/publication/221664391_Mirror_Descent_Meets_Fixed_Share_and_feels_no_regret"},{"title":"A Closer Look at Adaptive Regret","url":"https://cris.brighton.ac.uk/ws/files/402560/JMLR-13-533-2.pdf"},{"title":"[1202.3323v1] A new look at shifting regret","url":"https://arxiv.org/abs/1202.3323v1"},{"title":"Tracking the Best Expert","url":"https://link.springer.com/content/pdf/10.1023/A:1007424614876.pdf"},{"title":"[PDF] Tracking the Best Expert | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Tracking-the-Best-Expert-Herbster-Warmuth/27ed61309cb8558181dc6158b052f0270ed49cc6"},{"title":"Improved Regret Bounds for Tracking Experts with Memory | OpenReview","url":"https://openreview.net/forum?id=V08W9xadLPV"},{"title":"A new look at shifting regret - Inria - Institut national de recherche en sciences et technologies du numérique","url":"https://inria.hal.science/hal-00670514v1"},{"title":"A new look at shifting regret - Archive ouverte HAL","url":"https://hal.science/hal-00670514v1"},{"title":"Efficient tracking of a growing number of experts","url":"https://hal.science/hal-01615424/document"}]
+
+I found search results related to your query. Here's what the results show about Herbster and Warmuth's 1998 work on "Fixed Share":
+
+The Fixed Share algorithm was introduced by Herbster and Warmuth in 1998. This fixed-share algorithm uses weight sharing schemes to perform as well as the best sequence of experts with a limited number of changes.
+
+In the context of tracking the best expert, regularity is measured as the number of times the expert changes (referred to as "hard shifts"). The tracking regret bound by Herbster and Warmuth (1998) for Fixed Share with constant switching rate applies to any reference sequence of experts with m blocks and m−1 switches.
+
+The research shows that weight sharing schemes were designed to perform well as the best sequence of experts with limited changes, and the analysis demonstrates that weight sharing achieves much more than what it was originally designed for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d9a6e02-5a09-4f5b-a19d-554d0ac7de0a",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "0ee27694-e3e1-4def-b8a5-279da1ed9f9b",
+  "sourceToolAssistantUUID": "3d9a6e02-5a09-4f5b-a19d-554d0ac7de0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-12T00:32:10.179Z_
+
+Now let me do a few more targeted searches to verify specific details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ee27694-e3e1-4def-b8a5-279da1ed9f9b",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjUAoE3LbwEw5NxQhSb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "590eb0a0-476b-4f58-bd4e-f2702e48c6c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTRPUFUN1xVERyQN4tZVeZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 16406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 781,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-12T00:32:10.684Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NvFpS8iDCeTaW4n6LWraaC`</summary>
+
+```json
+{
+  "query": "LASeR NeurIPS 2025 \"Learning to Adaptively Select Reward Models\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "590eb0a0-476b-4f58-bd4e-f2702e48c6c2",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjUAoE3LbwEw5NxQhSb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bd84f091-fc39-4b39-8f31-79c7cf0bd8a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTRPUFUN1xVERyQN4tZVeZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 16406,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 781
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 16406,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 781,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-12T00:32:17.755Z_
+
+<details><summary>↩ Tool result · `toolu_01NvFpS8iDCeTaW4n6LWraaC`</summary>
+
+```text
+Web search results for query: "LASeR NeurIPS 2025 "Learning to Adaptively Select Reward Models""
+
+Links: [{"title":"[2410.01735] LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits","url":"https://arxiv.org/abs/2410.01735"},{"title":"LASeR: Learning to Adaptively Select Reward Models with Multi-Arm Bandits | OpenReview","url":"https://openreview.net/forum?id=tSpWkTFASC"},{"title":"NeurIPS Poster LASeR: Learning to Adaptively Select Reward Models with Multi-Arm Bandits","url":"https://neurips.cc/virtual/2025/poster/115591"},{"title":"LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits","url":"https://openreview.net/pdf?id=tSpWkTFASC"},{"title":"Duy Nguyen - Homepage","url":"https://duykhuongnguyen.github.io/"},{"title":"LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits","url":"https://arxiv.org/html/2410.01735"},{"title":"LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits | OpenReview","url":"https://openreview.net/forum?id=fDcn3S8oAt"},{"title":"LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/laser-learning-to-adaptively-select-reward-models"},{"title":"GitHub - duykhuongnguyen/LASeR-MAB: Code for paper: \"LASeR: Learning to Adaptively Select Reward Models with Multi-Arm Bandits\"","url":"https://github.com/duykhuongnguyen/LASeR-MAB"}]
+
+I found comprehensive information about LASeR at NeurIPS 2025. Here's what the search revealed:
+
+## LASeR: Learning to Adaptively Select Reward Models
+
+LASeR was accepted to NeurIPS 2025 as a poster presentation.
+
+### Overview
+
+LASeR frames reward model selection as a multi-armed bandit problem, efficiently and iteratively training LLMs using multiple RMs by selecting the most well-suited RM for each instance.
+
+### Problem Statement
+
+Reward Models (RMs) are crucial to aligning large language models (LLMs), but the degree to which an RM specialized to one task (e.g. writing) generalizes to new tasks (e.g. math) is often not known a priori, often making using only one fixed RM to train LLMs suboptimal. Additionally, optimizing LLMs with multiple RMs simultaneously can incur a prohibitively high computational cost and lead to conflicting signals from different RMs that may degrade performance.
+
+### Results
+
+On commonsense and math reasoning tasks, LASeR boosts iterative LLM training, improving the absolute average accuracy of Llama-3-8B over three datasets by 2.67% over an ensemble of RM scores while also showing superior efficiency (e.g., a 2x speedup).
+
+On WildChat (open-ended instruction-following tasks), LASeR leads to a 72.69% AlpacaEval win rate over the RM score ensemble baseline.
+
+### Authors
+
+The paper was authored by Duy Nguyen*, Archiki Prasad*, Elias Stengel-Eskin, and Mohit Bansal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd84f091-fc39-4b39-8f31-79c7cf0bd8a2",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "9f5430f8-2272-4e7a-8ea0-30be260979fa",
+  "sourceToolAssistantUUID": "bd84f091-fc39-4b39-8f31-79c7cf0bd8a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-12T00:32:20.052Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VLB6Vb77tDFrEDxg4gLGSG`</summary>
+
+```json
+{
+  "query": "AutoMixAlign ACL 2025 venue publication"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f5430f8-2272-4e7a-8ea0-30be260979fa",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjUwxqbBuYo7GXxP36H",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ef4ace5d-4876-4570-9cb3-30f4dcb1c3c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6gB1jM1nqt5oD7nDZT2Gv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 987,
+      "cache_read_input_tokens": 17187,
+      "output_tokens": 63,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 987
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 63,
+          "cache_read_input_tokens": 17187,
+          "cache_creation_input_tokens": 987,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 987,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-12T00:32:25.768Z_
+
+<details><summary>↩ Tool result · `toolu_01VLB6Vb77tDFrEDxg4gLGSG`</summary>
+
+```text
+Web search results for query: "AutoMixAlign ACL 2025 venue publication"
+
+Links: [{"title":"AutoMixAlign: Adaptive Data Mixing for Multi-Task Preference Optimization in LLMs - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.990/"},{"title":"AutoMixAlign: Adaptive Data Mixing for Multi-Task Preference Optimization in LLMs - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250600569C/abstract"},{"title":"ACL 2025 - Amazon Science","url":"https://www.amazon.science/conferences-and-events/acl-2025"},{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"The 63rd Annual Meeting of the Association for Computational Linguistics - ACL 2025","url":"https://2025.aclweb.org/"},{"title":"2025 Annual Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics - NAACL-HLT 2025","url":"https://2025.naacl.org/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"2025 ACL Conference Registration","url":"https://acl.swoogo.com/acl2025"},{"title":"ACL Anthology","url":"https://aclanthology.org/"},{"title":"Information for Submitters - ACL Anthology","url":"https://aclanthology.org/info/contrib/"}]
+
+Based on the search results, here's the information about AutoMixAlign and its ACL 2025 publication:
+
+**Publication Details:**
+AutoMixAlign: Adaptive Data Mixing for Multi-Task Preference Optimization in LLMs was published in the Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 20234–20258.
+
+**Venue:**
+The paper was published at ACL 2025, which took place in Vienna, Austria.
+
+**Authors:**
+The paper was authored by Nicholas E. Corrado, Julian Katz-Samuels, Adithya M Devraj, Hyokun Yun, Chao Zhang, Yi Xu, Yi Pan, Bing Yin, and Trishul Chilimbi.
+
+**Research Focus:**
+The paper introduces AutoMixAlign (AMA), a theoretically-grounded algorithm that adaptively mixes datasets during training to balance performance across tasks in preference optimization via DPO.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef4ace5d-4876-4570-9cb3-30f4dcb1c3c7",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "22fdefa0-128f-43dc-af91-8328f35dfec3",
+  "sourceToolAssistantUUID": "ef4ace5d-4876-4570-9cb3-30f4dcb1c3c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-12T00:32:28.985Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TzNkmGwdqH6YPhC3a7bRcj`</summary>
+
+```json
+{
+  "query": "DoReMi paper \"exponentiated gradient\" update formula alpha exp eta lambda"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22fdefa0-128f-43dc-af91-8328f35dfec3",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjVYF6TKFmXs1PYpgPK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d710426c-1b3c-41cf-8df0-542d41d65f0d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P3tGqsmSL1bYFNPi7oCHL4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 752,
+      "cache_read_input_tokens": 18174,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 752
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 18174,
+          "cache_creation_input_tokens": 752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 752,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-12T00:32:34.210Z_
+
+<details><summary>↩ Tool result · `toolu_01TzNkmGwdqH6YPhC3a7bRcj`</summary>
+
+```text
+Web search results for query: "DoReMi paper "exponentiated gradient" update formula alpha exp eta lambda"
+
+Links: [{"title":"DoReMi: Optimizing Data Mixtures for LM Pretraining","url":"https://hunterheidenreich.com/notes/natural-language-processing/language-models/doremi-data-mixture-optimization/"},{"title":"Online Portfolio Selection - Exponentiated Gradient | Sudeep Raja","url":"https://sudeepraja.github.io/OPS3/"},{"title":"[2406.00655] Generalized Exponentiated Gradient Algorithms and Their Application to On-Line Portfolio Selection","url":"https://arxiv.org/abs/2406.00655"},{"title":"Exponential Gradient Descent","url":"https://www.emergentmind.com/topics/exponential-gradient-descent-optimization"},{"title":"Exponentiated Gradient Descent","url":"https://homes.cs.washington.edu/~sham/courses/stat928/lectures/lecture22.pdf"},{"title":"Generalized Exponentiated Gradient Adaptive Algorithm Using the Euler Two-Parameter Logarithm","url":"https://arxiv.org/html/2502.17500"},{"title":"Generalized Exponentiated Gradient Algorithms and Their Application to On-Line Portfolio Selection","url":"https://arxiv.org/html/2406.00655"},{"title":"Exponentiated Gradient - Wiki for On-Line Prediction","url":"https://onlineprediction.net/index.html?n=Main.ExponentiatedGradient"},{"title":"Matrix Exponentiated Gradient Updates for On-line Learning and Bregman Projection","url":"https://jmlr.org/papers/v6/tsuda05a.html"},{"title":"Matrix Exponentiated Gradient Updates for On-line Learning ...","url":"https://jmlr.csail.mit.edu/papers/volume6/tsuda05a/tsuda05a.pdf"}]
+
+I found the information! Here's what the DoReMi paper specifies for the exponentiated gradient update formula:
+
+At each training step, the domain weights update as: α'_t ← α_{t-1} exp(η λ_t), where λ_t[i] is the per-domain excess loss (clipped at zero), followed by renormalization and smoothing with a uniform component: α_t ← (1-c)(α'_t / Σ_i α'_t[i]) + cu, with c = 10^{-3}.
+
+The final domain weights are the average over all training steps: ᾱ = (1/T)Σ_{t=1}^T α_t.
+
+In this formula:
+- **α** represents the domain weights
+- **η** (eta) is the step size for the exponentiated gradient ascent
+- **λ** (lambda) represents the per-domain excess loss
+- The exponentiated gradient ascent upweights domains with high excess loss in an inner optimization loop
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d710426c-1b3c-41cf-8df0-542d41d65f0d",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "a7c8eaa1-8980-4cc3-ac67-e53bc2bd9ec6",
+  "sourceToolAssistantUUID": "d710426c-1b3c-41cf-8df0-542d41d65f0d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-12T00:32:36.725Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T6b5e8d93Vm5q1BhFmfajx`</summary>
+
+```json
+{
+  "query": "DoReMi \"worst-case excess loss\" OR \"minimax optimization\" Group DRO objective"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7c8eaa1-8980-4cc3-ac67-e53bc2bd9ec6",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjWAGYASey6zbTsVPmi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f0973f12-4d12-4899-a934-911f6aae0218",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C3QUoUZb36Kj5LkN1aHqW3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 18926,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 818
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 18926,
+          "cache_creation_input_tokens": 818,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 818,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-12T00:32:43.728Z_
+
+<details><summary>↩ Tool result · `toolu_01T6b5e8d93Vm5q1BhFmfajx`</summary>
+
+```text
+Web search results for query: "DoReMi "worst-case excess loss" OR "minimax optimization" Group DRO objective"
+
+Links: [{"title":"DoReMi: Optimizing Data Mixtures for LM Pretraining","url":"https://hunterheidenreich.com/notes/natural-language-processing/language-models/doremi-data-mixture-optimization/"},{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://arxiv.org/pdf/2305.10429"},{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/dcba6be91359358c2355cd920da3fcbd-Paper-Conference.pdf"},{"title":"[2305.10429] DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://ar5iv.labs.arxiv.org/html/2305.10429"},{"title":"[Quick Review] DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://liner.com/review/doremi-optimizing-data-mixtures-speeds-up-language-model-pretraining"},{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language ...","url":"https://crfm.stanford.edu/2023/09/14/doremi.html"},{"title":"Re-Mix: Optimizing Data Mixtures for Large Scale Imitation Learning","url":"https://arxiv.org/html/2408.14037v1"},{"title":"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining","url":"https://dmlr.ai/assets/accepted-papers/15/CameraReady/ICML_workshop_DoReMi%20(5)%20(1).pdf"},{"title":"Sharp minimax bounds for DRO with optimal transport discrepancy","url":"https://www.emergentmind.com/open-problems/sharp-minimax-bounds-for-ot-dro-estimators"},{"title":"Finding Optimally Robust Data Mixtures via Concave Maximization","url":"https://arxiv.org/html/2406.01477v1"}]
+
+Based on the search results, here's what I found about DoReMi and its connection to worst-case excess loss and minimax optimization with Group DRO:
+
+## DoReMi Overview
+
+DoReMi (Domain Reweighting with Minimax Optimization) is an algorithm for automatically tuning the mixture proportions of pretraining data domains.
+
+## Core Concept: Minimax Optimization and Worst-Case Excess Loss
+
+DoReMi's core insight is to frame data mixture optimization as a minimax problem: find domain weights that minimize the worst-case excess loss across all domains. The objective aims to minimize the worst-case excess loss across domains because the inner maximization over α puts all the weight on the domain with the highest excess loss.
+
+## Group DRO Implementation
+
+Rather than relying on heuristics or expensive downstream-task-based tuning, DoReMi uses a small proxy model trained with group distributionally robust optimization (Group DRO) to produce domain weights that transfer to much larger models.
+
+The specific minimax objective that DoReMi optimizes is: $\min_{\theta} \max_{\alpha \in \Delta^{k}} \sum_{i=1}^{k} \alpha_{i} \cdot \left[ \frac{1}{\sum_{x \in D_{i}} |x|} \sum_{x \in D_{i}} \ell_{\theta}(x) - \ell_{\text{ref}}(x) \right]$ where $\ell_{\theta}(x) = -\log p_{\theta}(x)$ and $\ell_{\text{ref}}(x) = -\log p_{\text{ref}}(x)$.
+
+## Excess Loss Interpretation
+
+The excess loss $\ell_{\theta}(x) - \ell_{\text{ref}}(x)$ measures how much headroom the proxy has to improve on each example relative to the reference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0973f12-4d12-4899-a934-911f6aae0218",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "e2f22ed2-f7a0-4f5a-be27-c7fcf0d78f4a",
+  "sourceToolAssistantUUID": "f0973f12-4d12-4899-a934-911f6aae0218",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-12T00:32:46.301Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bba7iyVNfRyduQdAgeGKFg`</summary>
+
+```json
+{
+  "query": "ODM online data mixing paper venue publication conference 2312.02406"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2f22ed2-f7a0-4f5a-be27-c7fcf0d78f4a",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjWs1F26bYSSXapm77W",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "50af20aa-a66a-4342-839d-2f9773f24ce5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRw78YbtKfQGpZaqqagAH5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1123,
+      "cache_read_input_tokens": 19744,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1123
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 19744,
+          "cache_creation_input_tokens": 1123,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1123,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-12T00:32:52.149Z_
+
+<details><summary>↩ Tool result · `toolu_01Bba7iyVNfRyduQdAgeGKFg`</summary>
+
+```text
+Web search results for query: "ODM online data mixing paper venue publication conference 2312.02406"
+
+Links: [{"title":"[2312.02406] Efficient Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/abs/2312.02406"},{"title":"Efficient Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/html/2312.02406"},{"title":"Efficient Online Data Mixing For Language Model Pre-Training","url":"https://aiwithmike.substack.com/p/efficient-online-data-mixing-for"},{"title":"Actor-Critic based Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/html/2505.23878"},{"title":"ODM | CDISC","url":"https://www.cdisc.org/standards/data-exchange/odm"},{"title":"[2307.02406] Mixing of the symmetric beta-binomial splitting process on arbitrary graphs","url":"https://arxiv.org/abs/2307.02406"},{"title":"AC-ODM: Actor–Critic Online Data Mixing for Sample-Efficient LLM Pretraining | OpenReview","url":"https://openreview.net/forum?id=mRjzWksbGR"},{"title":"Efficient Online Data Mixing For Language Model","url":"https://www.researchhub.com/paper/5635135/efficient-online-data-mixing-for-language-model-pre-training"},{"title":"Standardizing data exchange for clinical research protocols and case report forms: An assessment of the suitability of the Clinical Data Interchange Standards Consortium (CDISC) Operational Data Model (ODM) - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1532046415001331"},{"title":"Multilingual Medical Data Models in ODM Format: A Novel Form-based Approach to Semantic Interoperability between Routine Healthcare and Clinical Research - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC3613023/"}]
+
+Based on the search results, here's what I found about paper 2312.02406:
+
+**Paper Title:** Efficient Online Data Mixing For Language Model Pre-Training
+
+**Authors:** Alon Albalak, Liangming Pan, Colin Raffel, and William Yang Wang
+
+**Publication Details:** The paper was submitted on December 5, 2023 (v1) and last revised on December 9, 2023 (v2)
+
+**Venue:** This appears to be an arXiv paper (identifier: 2312.02406), published on the arXiv preprint server. The search results do not indicate publication in a specific peer-reviewed conference proceedings.
+
+**Summary:** The paper develops an efficient algorithm for Online Data Mixing (ODM) that combines elements from both data selection and data mixing. Based on multi-armed bandit algorithms, their online approach optimizes the data mixing proportions during training. The method trains a model that reaches the final perplexity of the next best method with 19% fewer training iterations, and improves performance on the 5-shot MMLU benchmark by 1.9% relative accuracy, while adding negligible wall-clock time during pretraining.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50af20aa-a66a-4342-839d-2f9773f24ce5",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "f6dfd103-3497-4c0f-8447-e894346fa28b",
+  "sourceToolAssistantUUID": "50af20aa-a66a-4342-839d-2f9773f24ce5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-12T00:32:54.946Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R4pFxrn5AbiBKLnUSttTGE`</summary>
+
+```json
+{
+  "query": "Herbster Warmuth 1998 \"Tracking the Best Expert\" Machine Learning journal Fixed-Share algorithm"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6dfd103-3497-4c0f-8447-e894346fa28b",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjXUzC8AL9wicmzbeG2",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "01650553-c1b4-44bf-97c6-b5fb79fb0bce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRNhbPPD4rM8tmkjytHZuq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 874,
+      "cache_read_input_tokens": 20867,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 874
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 20867,
+          "cache_creation_input_tokens": 874,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 874,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-12T00:33:01.638Z_
+
+<details><summary>↩ Tool result · `toolu_01R4pFxrn5AbiBKLnUSttTGE`</summary>
+
+```text
+Web search results for query: "Herbster Warmuth 1998 "Tracking the Best Expert" Machine Learning journal Fixed-Share algorithm"
+
+Links: [{"title":"Tracking the Best Expert | Machine Learning | Springer Nature Link","url":"https://link.springer.com/article/10.1023/A:1007424614876"},{"title":"Tracking the Best Expert | Machine Language","url":"https://dl.acm.org/doi/10.1023/A%3A1007424614876"},{"title":"Journal of Machine Learning Research 17 (2016) 1-21","url":"https://jmlr.org/papers/volume17/13-533/13-533.pdf"},{"title":"Tracking the Best Expert","url":"https://cseweb.ucsd.edu//~kamalika/teaching/CSE291W11/mar2.pdf"},{"title":"(PDF) Mirror Descent Meets Fixed Share (and feels no regret)","url":"https://www.researchgate.net/publication/221664391_Mirror_Descent_Meets_Fixed_Share_and_feels_no_regret"},{"title":"Journal of Machine Learning Research 76:1–23, 2017","url":"https://hal.science/hal-01615424/document"},{"title":"(PDF) Tracking a Small Set of Experts by Mixing Past Posteriors","url":"https://www.researchgate.net/publication/2377300_Tracking_a_Small_Set_of_Experts_by_Mixing_Past_Posteriors"},{"title":"Journal of Machine Learning Research 3 (2002) 363-396","url":"https://jmlr.org/papers/volume3/bousquet02b/bousquet02b.pdf"},{"title":"Machine Learning, 32, 151–178 (1998)","url":"https://link.springer.com/content/pdf/10.1023/A:1007424614876.pdf"},{"title":"Tracking the best linear predictor | The Journal of Machine Learning Research","url":"https://dl.acm.org/doi/10.1162/153244301753683726"}]
+
+I found information about the Herbster and Warmuth 1998 paper. Here are the key results:
+
+## Publication Details
+
+Herbster and Warmuth published "Tracking the Best Expert" in Machine Learning volume 32, pages 151–178 (1998).
+
+## Main Contribution
+
+The paper generalizes relative loss bounds for on-line algorithms where the additional loss of the algorithm on the whole sequence of examples over the loss of the best expert is bounded. The generalization allows the sequence to be partitioned into segments, and the goal is to bound the additional loss of the algorithm over the sum of the losses of the best experts for each segment. This models situations in which the examples change and different experts are best for certain segments of the sequence of examples.
+
+## The Fixed-Share Algorithm
+
+The bound by Herbster and Warmuth (1998) for Fixed Share with constant switching rate states that for any reference sequence of experts with m blocks. These algorithms use weight sharing schemes to perform as well as the best sequence of experts with a limited number of changes.
+
+The paper is particularly influential in the online learning literature and has been extensively cited in subsequent work on expert tracking and adaptive algorithms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01650553-c1b4-44bf-97c6-b5fb79fb0bce",
+  "isSidechain": true,
+  "promptId": "11214615-cac4-4479-a5a8-01c4e2b82c2a",
+  "agentId": "ab6062399a0f03605",
+  "type": "user",
+  "uuid": "544e91e9-c80a-42b5-8574-50f266a79d6e",
+  "sourceToolAssistantUUID": "01650553-c1b4-44bf-97c6-b5fb79fb0bce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-12T00:33:49.362Z_
+
+Now I have all the information needed. Here is my consolidated report:
+
+---
+
+## Verification Results
+
+### 1. DoReMi (NeurIPS 2023, arXiv:2305.10429)
+
+**Verdict: ALL CLAIMS VERIFIED**
+
+- **Venue**: Confirmed -- published at NeurIPS 2023 (37th Conference on Neural Information Processing Systems).
+- **Exponentiated gradient update**: Confirmed. The domain weight update rule is exactly `alpha'_t <- alpha_{t-1} * exp(eta * lambda_t)`, followed by renormalization and smoothing with a uniform component. This matches the claimed formula `alpha_t <- alpha_{t-1} * exp(eta * lambda_t) / Z`.
+- **"Iterated DoReMi" variant**: Confirmed as real. The paper describes running multiple rounds where the previous round's optimized weights become the next round's reference weights. It converges within 3 rounds on the GLaM dataset.
+- **What it optimizes**: It optimizes a minimax objective -- minimizing the worst-case excess loss across domains via Group DRO. The proxy model is trained with inner exponentiated gradient ascent on domain weights and outer gradient descent on model parameters. The excess loss is measured relative to a reference model.
+
+### 2. ODM (arXiv:2312.02406)
+
+**Verdict: PARTIALLY ACCURATE -- minor nuance**
+
+- **Paper exists**: Confirmed. "Efficient Online Data Mixing For Language Model Pre-Training" by Albalak, Pan, Raffel, and Wang.
+- **Uses EXP3**: Partially accurate. The paper formulates online data mixing as a multi-armed bandit problem and builds on the EXP3 framework, but with a key modification: it uses a **moving average estimated reward** instead of EXP3's cumulative estimated reward, since recent rewards matter more than distant past ones. So calling it "EXP3" is a simplification -- it is EXP3-inspired but modified.
+- **Venue**: This appears to be an **arXiv preprint only** -- I found no evidence of peer-reviewed conference publication. The proposal should not attribute a venue to it unless one exists.
+
+### 3. PiKE (arXiv:2502.06244)
+
+**Verdict: VERIFIED**
+
+- **Paper exists**: Confirmed. "PiKE: Adaptive Data Mixing for Large-Scale Multi-Task Learning Under Low Gradient Conflicts."
+- **Uses mirror descent**: Confirmed. PiKE updates task weights using a single mirror descent step to ensure gradual adjustments.
+- **Adaptive multi-task data mixing**: Confirmed. It dynamically adjusts sampling weights during training, exploiting nonconflicting gradient interactions.
+- **Venue**: Found on OpenReview but no specific top-venue acceptance confirmed in search results. The proposal should verify if it claims a specific venue.
+
+### 4. AutoMixAlign (ACL 2025, arXiv:2506.00569)
+
+**Verdict: VERIFIED**
+
+- **Paper exists**: Confirmed. "AutoMixAlign: Adaptive Data Mixing for Multi-Task Preference Optimization in LLMs."
+- **Venue**: Confirmed at **ACL 2025** (63rd Annual Meeting of the ACL, Vienna, Austria), published in Volume 1: Long Papers, pages 20234-20258.
+- **Uses EXP3**: Confirmed. AMA-S (the sampling variant) uses EXP3-based online learning for adaptive data sampling, with a convergence proof.
+- **Uses Group DRO**: Confirmed but nuanced. AMA-R (the reweighting variant) follows the Group DRO framework from Sagawa et al. (2019), but the paper distinguishes itself by optimizing **clipped excess loss** rather than raw loss or standard excess loss, and focuses on alignment/preference optimization rather than pretraining.
+- **Multi-task preference optimization**: Confirmed. It operates in the DPO (Direct Preference Optimization) setting.
+
+### 5. LASeR (NeurIPS 2025, arXiv:2410.01735)
+
+**Verdict: VERIFIED**
+
+- **Paper exists**: Confirmed. "LASeR: Learning to Adaptively Select Reward Models with Multi-Armed Bandits."
+- **Venue**: Confirmed at **NeurIPS 2025** (poster presentation).
+- **Multi-armed bandit for reward model selection**: Confirmed. LASeR frames reward model selection as a MAB problem, selecting the most suitable RM for each instance during iterative LLM training.
+- **Iterative LLM training**: Confirmed. It is used during iterative training with multiple reward models.
+
+### 6. Fixed Share (Herbster & Warmuth, 1998)
+
+**Verdict: VERIFIED**
+
+- **Paper exists**: Confirmed. "Tracking the Best Expert," published in *Machine Learning*, vol. 32, pp. 151-178, 1998.
+- **Non-stationary environments**: Confirmed. The algorithm handles sequences that can be partitioned into segments where different experts are best for different segments.
+- **Switching regret bounds**: Confirmed. The Fixed-Share algorithm provides regret bounds relative to the best sequence of experts with a limited number of switches (m blocks, m-1 switches). This is indeed switching regret.
+- **Tracking the best expert**: Confirmed. This is the paper's explicit framing -- generalizing expert bounds to track the best expert over time as conditions change.
+
+---
+
+## Summary
+
+| Claim | Real? | Accurate? |
+|-------|-------|-----------|
+| DoReMi at NeurIPS 2023 with exp. gradient | Yes | Yes |
+| Iterated DoReMi | Yes | Yes (multi-round, converges in ~3 rounds) |
+| ODM uses EXP3 | Yes | Mostly (EXP3-inspired with moving avg modification) |
+| ODM venue not specified in proposal? | -- | Paper is arXiv-only, verify no false venue claim |
+| PiKE uses mirror descent | Yes | Yes |
+| AutoMixAlign at ACL 2025 with EXP3+DRO | Yes | Yes (two variants: AMA-R for DRO, AMA-S for EXP3) |
+| LASeR at NeurIPS 2025 with MAB | Yes | Yes |
+| Herbster & Warmuth Fixed Share 1998 | Yes | Yes |
+
+**Nothing is fabricated.** All papers, venues, and core methods check out. The only item warranting caution is the ODM/EXP3 characterization -- it is EXP3-derived but not vanilla EXP3 -- and you should ensure the proposal does not claim a peer-reviewed venue for ODM beyond arXiv.
+
+Sources:
+- [DoReMi - arXiv](https://arxiv.org/abs/2305.10429)
+- [DoReMi - NeurIPS 2023 PDF](https://proceedings.neurips.cc/paper_files/paper/2023/file/dcba6be91359358c2355cd920da3fcbd-Paper-Conference.pdf)
+- [DoReMi summary (Heidenreich)](https://hunterheidenreich.com/notes/natural-language-processing/language-models/doremi-data-mixture-optimization/)
+- [ODM - arXiv](https://arxiv.org/abs/2312.02406)
+- [ODM - HTML](https://arxiv.org/html/2312.02406)
+- [PiKE - arXiv](https://arxiv.org/abs/2502.06244)
+- [PiKE - HTML](https://arxiv.org/html/2502.06244)
+- [AutoMixAlign - arXiv](https://arxiv.org/abs/2506.00569)
+- [AutoMixAlign - ACL Anthology](https://aclanthology.org/2025.acl-long.990/)
+- [LASeR - arXiv](https://arxiv.org/abs/2410.01735)
+- [LASeR - NeurIPS 2025 poster](https://neurips.cc/virtual/2025/poster/115591)
+- [Herbster & Warmuth 1998 - Springer](https://link.springer.com/article/10.1023/A:1007424614876)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "544e91e9-c80a-42b5-8574-50f266a79d6e",
+  "isSidechain": true,
+  "agentId": "ab6062399a0f03605",
+  "requestId": "req_011CawjYBYjbD3F6Rp6uMTmh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8f8c2410-83c3-434b-8f4e-22c283fc4ca2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "09589d30-26b3-42aa-a96c-6ee36f3b68ef",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAQdz3Ze9tWstsMszf7uX1",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 21741,
+      "output_tokens": 1994,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 866
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1994,
+          "cache_read_input_tokens": 21741,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 866,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

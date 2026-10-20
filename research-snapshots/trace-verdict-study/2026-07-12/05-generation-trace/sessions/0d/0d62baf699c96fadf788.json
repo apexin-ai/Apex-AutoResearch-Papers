@@ -1,0 +1,1067 @@
+{
+  "schema_version": "1.0",
+  "id": "0d62baf699c96fadf788",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for and verify the paper \"Data Selection via Optimal Control for Language Models\" (arXiv:2410.07064). It's claime",
+  "task_key": "agent-ab14a02b19efc99e2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ab14a02b19efc99e2.jsonl",
+    "occurrence": 1,
+    "bytes": 47035,
+    "sha256": "9f3665585d816b58ec56ef288964ea710d95d3396ccbfe19901de7698d3da7d8"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T21:05:56.293Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for and verify the paper \"Data Selection via Optimal Control for Language Models\" (arXiv:2410.07064). It's claimed to be an ICLR 2025 Oral.\n\n1. Search for \"Data Selection via Optimal Control ICLR 2025\" and \"arxiv 2410.07064\"\n2. If you find the paper, use WebFetch to read the abstract from https://arxiv.org/abs/2410.07064\n3. Determine: Does this paper use Pontryagin's Maximum Principle for data selection? Is it offline or online? Does it target collapse prevention specifically? Does it use spectral indicators?\n\nThis matters because a proposal about \"PI control for adaptive synthetic-to-real data mixing\" should probably cite this paper if it uses control theory for data selection. I need to know if the overlap is fundamental or superficial.\n\nReport: the paper's exact method, whether it's online/offline, what signals it uses, and whether it's ICLR 2025 accepted."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "fe24a34c-543e-403b-9702-f4fed720de8d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T21:05:56.298Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "fe24a34c-543e-403b-9702-f4fed720de8d",
+                "isSidechain": true,
+                "agentId": "ab14a02b19efc99e2",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "68cd518d-1190-49b6-ba0c-0e24bd1b873c",
+                "timestamp": "2026-05-10T21:05:56.298Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T21:06:02.935Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GnBkKgZUpx3D4mdoRhFdEV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68cd518d-1190-49b6-ba0c-0e24bd1b873c",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011CauZwLp4cd2zq2fmioKPT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d1361afc-fb03-48e3-badf-2ba36eac31a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G6f8NixJcGi5Qv19i3A2Pd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 776
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 776,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 776,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T21:06:02.941Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GnBkKgZUpx3D4mdoRhFdEV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1361afc-fb03-48e3-badf-2ba36eac31a2",
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "fb3a1342-243d-413a-a875-523cc29d8083",
+            "sourceToolAssistantUUID": "d1361afc-fb03-48e3-badf-2ba36eac31a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T21:06:06.869Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MzUPLZB7wKeYzFUGt5KsQo",
+              "name": "WebSearch",
+              "input": {
+                "query": "Data Selection via Optimal Control ICLR 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb3a1342-243d-413a-a875-523cc29d8083",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011CauZwqQXLaBKs8r3efuXP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "690afb9c-b0d0-4c27-82db-de2a908bd95c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DT5ENnQLgeHyYSafzFj4NX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 8999,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T21:06:06.944Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TXAJeLAcGn4GM54XTywww6",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2410.07064 Data Selection Optimal Control Language Models"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "690afb9c-b0d0-4c27-82db-de2a908bd95c",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011CauZwqQXLaBKs8r3efuXP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e782b219-0ea6-4942-8d83-7990773712cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DT5ENnQLgeHyYSafzFj4NX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 8999,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T21:06:12.476Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TXAJeLAcGn4GM54XTywww6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2410.07064 Data Selection Optimal Control Language Models\"\n\nLinks: [{\"title\":\"[2410.07064] Data Selection via Optimal Control for Language Models\",\"url\":\"https://arxiv.org/abs/2410.07064\"},{\"title\":\"data selection via optimal control for language models\",\"url\":\"https://arxiv.org/pdf/2410.07064\"},{\"title\":\"Paper page - Data Selection via Optimal Control for Language Models\",\"url\":\"https://huggingface.co/papers/2410.07064\"},{\"title\":\"Data Selection via Optimal Control for Language Models | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/data-selection-via-optimal-control-language-models\"},{\"title\":\"[Literature Review] Data Selection via Optimal Control for Language Models\",\"url\":\"https://www.themoonlight.io/en/review/data-selection-via-optimal-control-for-language-models\"},{\"title\":\"(PDF) Data Selection via Optimal Control for Language Models\",\"url\":\"https://www.researchgate.net/publication/384770316_Data_Selection_via_Optimal_Control_for_Language_Models\"},{\"title\":\"Data-Selection/PDS-1.7B · Hugging Face\",\"url\":\"https://huggingface.co/Data-Selection/PDS-1.7B\"},{\"title\":\"Data Selection via Optimal Control for Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=dhAL5fy8wS\"},{\"title\":\"Data Efficacy for Language Model Training\",\"url\":\"https://arxiv.org/html/2506.21545v1\"},{\"title\":\"ICLR 2025 Data Selection via Optimal Control for Language Models Oral\",\"url\":\"https://iclr.cc/virtual/2025/oral/31812\"}]\n\nI found the paper arxiv 2410.07064 on data selection for language models. Here are the key details:\n\n**Title:** Data Selection via Optimal Control for Language Models\n\n**Authors:** Yuxian Gu, Li Dong, Hongning Wang, Yaru Hao, Qingxiu Dong, Furu Wei, Minlie Huang\n\n**Main Contribution:** This work investigates the selection of high-quality pre-training data from massive corpora to enhance LMs' capabilities for downstream usage.\n\n**Methodology:** The authors formulate data selection as a generalized Optimal Control problem, which can be solved theoretically by Pontryagin's Maximum Principle (PMP), yielding a set of necessary conditions that characterize the relationship between optimal data selection and LM training dynamics.\n\n**Framework:** Based on these theoretical results, they introduce PMP-based Data Selection (PDS), a framework that approximates optimal data selection by solving the PMP conditions.\n\n**Results:** In their experiments, they adopt PDS to select data from CommonCrawl and show that the PDS-selected corpus accelerates the learning of LMs and constantly boosts their performance on a wide range of downstream tasks across various model sizes. The benefits of PDS extend to ~400B models trained on ~10T tokens, as evidenced by the extrapolation of the test loss curves according to the Scaling Laws.\n\n**Publication:** The paper was published as a conference paper at ICLR 2025\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e782b219-0ea6-4942-8d83-7990773712cc",
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "49b19b52-48f4-45c8-9561-48bb8cef73e7",
+            "sourceToolAssistantUUID": "e782b219-0ea6-4942-8d83-7990773712cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T21:06:16.165Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MzUPLZB7wKeYzFUGt5KsQo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Data Selection via Optimal Control ICLR 2025\"\n\nLinks: [{\"title\":\"DATA SELECTION VIA OPTIMAL CONTROL FOR ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/9ad4891facabf17aa11580686bacfe4e-Paper-Conference.pdf\"},{\"title\":\"ICLR 2025 Data Selection via Optimal Control for Language Models Oral\",\"url\":\"https://iclr.cc/virtual/2025/oral/31812\"},{\"title\":\"Data Selection via Optimal Control for Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=dhAL5fy8wS\"},{\"title\":\"data selection via optimal control for language models\",\"url\":\"https://arxiv.org/pdf/2410.07064\"},{\"title\":\"ICLR Poster Data Selection via Optimal Control for Language Models\",\"url\":\"https://iclr.cc/virtual/2025/poster/28972\"},{\"title\":\"About me - Yuxian Gu\",\"url\":\"https://t1101675.github.io/\"},{\"title\":\"[2410.07064] Data Selection via Optimal Control for Language Models\",\"url\":\"https://arxiv.org/abs/2410.07064\"},{\"title\":\"ICLR 2025 Oral Papers - Yan Lin's Blog\",\"url\":\"https://blog.yanlincs.com/conf-paper/iclr-2025-oral\"},{\"title\":\"ICLR 2025 oral notes\",\"url\":\"https://liu-qilong.github.io/note/iclr-2025-oral-notes\"},{\"title\":\"ICLR 2025 Papers\",\"url\":\"https://iclr.cc/virtual/2025/papers.html\"}]\n\nBased on the search results, here's information about \"Data Selection via Optimal Control for Language Models\" at ICLR 2025:\n\n## Paper Overview\n\nThis paper was published as a conference paper at ICLR 2025 by Yuxian Gu, Li Dong, Hongning Wang, Yaru Hao, Qingxiu Dong, Furu Wei, and Minlie Huang from Tsinghua University, Microsoft Research, and Peking University.\n\n## Main Contribution\n\nThe paper formulates data selection as a generalized Optimal Control problem, which can be solved theoretically by Pontryagin's Maximum Principle (PMP), yielding a set of necessary conditions that characterize the relationship between optimal data selection and LM training dynamics.\n\n## Proposed Framework\n\nBased on these theoretical results, the authors introduce PMP-based Data Selection (PDS), a framework that approximates optimal data selection by solving the PMP conditions.\n\n## Key Advantages\n\nUnlike previous pre-training data selection methods based on deduplication, pattern matching, or single checkpoint performance that are agnostic to the pre-training process of LMs, PDS exploits the highly dynamic nature of LM pre-training through the theoretical optimal control perspective, and it operates offline, before training begins, which avoids additional training-time computation overhead.\n\n## Experimental Results\n\nIn experiments, PDS selected data from CommonCrawl and showed that the PDS-selected corpus accelerates the learning of LMs and constantly boosts their performance on a wide range of downstream tasks across various model sizes.\n\nThe paper was selected as an ICLR 2025 Oral presentation (top 1.8%).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "690afb9c-b0d0-4c27-82db-de2a908bd95c",
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "3095adee-74d4-412d-b500-61a648de24c0",
+            "sourceToolAssistantUUID": "690afb9c-b0d0-4c27-82db-de2a908bd95c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T21:06:21.409Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U7u3uWczSG3WuSmJ24Taz2",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2410.07064",
+                "prompt": "Extract the full abstract of this paper. Also note: does it mention Pontryagin's Maximum Principle? Is the method offline or online? Does it mention collapse prevention? Does it use spectral indicators or eigenvalue-based signals? What specific signals/objectives does it optimize for?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3095adee-74d4-412d-b500-61a648de24c0",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011CauZxojqZ8w4oSh1q75D5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6981f33d-ce0e-4a3a-96c5-a7cf61688639",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N7kdpPz9GcrrYqDdvC4iZg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 821,
+                "cache_creation_input_tokens": 967,
+                "cache_read_input_tokens": 10887,
+                "output_tokens": 142,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 967
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 821,
+                    "output_tokens": 142,
+                    "cache_read_input_tokens": 10887,
+                    "cache_creation_input_tokens": 967,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 967,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T21:06:28.339Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U7u3uWczSG3WuSmJ24Taz2",
+              "type": "tool_result",
+              "content": "# Paper Analysis: Data Selection via Optimal Control for Language Models\n\n## Full Abstract\n\"This work investigates the selection of high-quality pre-training data from massive corpora to enhance LMs' capabilities for downstream usage. We formulate data selection as a generalized Optimal Control problem, which can be solved theoretically by Pontryagin's Maximum Principle (PMP), yielding a set of necessary conditions that characterize the relationship between optimal data selection and LM training dynamics. Based on these theoretical results, we introduce PMP-based Data Selection (PDS), a framework that approximates optimal data selection by solving the PMP conditions. In our experiments, we adopt PDS to select data from CommmonCrawl and show that the PDS-selected corpus accelerates the learning of LMs and constantly boosts their performance on a wide range of downstream tasks across various model sizes. Moreover, the benefits of PDS extend to ~400B models trained on ~10T tokens, as evidenced by the extrapolation of the test loss curves according to the Scaling Laws. PDS also improves data utilization when the pre-training data is limited, by reducing the data demand by 1.8 times, which helps mitigate the quick exhaustion of available web-crawled corpora.\"\n\n## Key Questions Answered\n\n**Pontryagin's Maximum Principle?** Yes, explicitly mentioned as the theoretical foundation for solving the optimal control formulation.\n\n**Offline or Online?** The content indicates an **offline approach**—data is selected from CommonCrawl before training.\n\n**Collapse Prevention?** Not mentioned in the abstract or visible page content.\n\n**Spectral Indicators/Eigenvalue Signals?** Not mentioned in the provided content.\n\n**Specific Signals/Objectives:** The method optimizes for downstream task performance and accelerated learning, with improvement measured through test loss curves aligned with scaling laws."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6981f33d-ce0e-4a3a-96c5-a7cf61688639",
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "1cad3d2a-6712-4ef0-890b-4214f424e482",
+            "sourceToolAssistantUUID": "6981f33d-ce0e-4a3a-96c5-a7cf61688639",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T21:06:33.987Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XUhaSxUB56ZSwhGZqQADBn",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=dhAL5fy8wS",
+                "prompt": "What is the acceptance status of this paper? Is it an oral? What are the key technical details of the method - specifically: what is the costate/adjoint variable, how does it solve the PMP conditions in practice, is it online or offline, what proxy signals does it use to score data? Does it mention spectral methods, eigenvalues, or collapse prevention?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1cad3d2a-6712-4ef0-890b-4214f424e482",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011CauZyhjTrwPifa9pD7gca",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2a63524f-fef9-41bc-9af3-89381c58bdbd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fh6oDPbqA2qTr3ZzAoBLdX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1384,
+                "cache_read_input_tokens": 11854,
+                "output_tokens": 167,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1384
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 167,
+                    "cache_read_input_tokens": 11854,
+                    "cache_creation_input_tokens": 1384,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1384,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T21:06:38.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XUhaSxUB56ZSwhGZqQADBn",
+              "type": "tool_result",
+              "content": "# Analysis of Paper Acceptance and Technical Details\n\n## Acceptance Status\nYes, this paper was accepted as an **oral presentation** at ICLR 2025, as indicated by the \"ICLR 2025 Oral\" designation on the webpage.\n\n## Technical Details\nBased on the provided content, the webpage offers **limited technical specifics**. Here's what is available:\n\n**Method Overview:**\nThe paper formulates data selection as an \"Optimal Control problem, which can be solved theoretically by Pontryagin's Maximum Principle (PMP).\" The framework (PDS) aims to approximate optimal data selection by solving the PMP conditions.\n\n**What the Webpage Does NOT Contain:**\nThe abstract and metadata provided do not detail:\n- Specific costate or adjoint variable formulations\n- Practical implementation procedures for solving PMP conditions\n- Whether the approach is online or offline\n- Specific proxy signals or scoring mechanisms\n- Any discussion of spectral methods, eigenvalues, or collapse prevention\n\n## Key Results\nThe paper demonstrates that \"PDS-selected corpus accelerates the learning of LMs\" across various model sizes, and benefits extend to models with ~400B parameters trained on ~10T tokens. Additionally, it \"reduces the data demand by 1.8 times.\"\n\n**For complete technical details**, you would need to access the full PDF available through the OpenReview link."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a63524f-fef9-41bc-9af3-89381c58bdbd",
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "fb4b6cfd-bfcc-47aa-bb82-53034b8596d7",
+            "sourceToolAssistantUUID": "2a63524f-fef9-41bc-9af3-89381c58bdbd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T21:06:44.740Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LNf8GJoK8qQPcBaDmX5Lwb",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/pdf/2410.07064",
+                "prompt": "I need the technical details of how PDS works in practice. Specifically: 1) What is the costate/adjoint variable and how is it computed? 2) Is data selection done offline (before training) or online (during training)? 3) What signal does PDS use to score/select data - is it based on loss, gradients, or something else? 4) Does the paper mention spectral indicators, eigenvalues, or Hessian-based signals? 5) Does the paper address collapse prevention or training instability? 6) What is the practical algorithm - how does it approximate PMP? Please extract the key method section details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb4b6cfd-bfcc-47aa-bb82-53034b8596d7",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011CauZzTfADJTNGztkcKVXv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e2c8fee5-964c-4b71-9668-5697d2620442",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GebVk8aPm362WtENrZebCc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 483,
+                "cache_read_input_tokens": 13238,
+                "output_tokens": 224,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 483
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 224,
+                    "cache_read_input_tokens": 13238,
+                    "cache_creation_input_tokens": 483,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 483,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T21:06:50.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LNf8GJoK8qQPcBaDmX5Lwb",
+              "type": "tool_result",
+              "content": "# Technical Details of PDS (Pontryagin Data Selection)\n\nI've reviewed the PDF content provided, which appears to be a research document with figures and mathematical notation. However, the document is heavily compressed in PDF format, making it difficult to extract precise technical details about the PDS methodology.\n\nBased on what can be discerned from the structure, here's what I can identify:\n\n## Observable from Document Structure:\n\n**1) Costate/Adjoint Variables:**\nThe document contains mathematical formulations typical of optimal control theory, suggesting adjoint-based computation, though specific algorithmic details are obscured by the PDF compression.\n\n**2) Data Selection Timing:**\nReferences to scaling and harness figures suggest analysis of training dynamics, indicating this likely addresses **online selection during training** rather than offline preprocessing.\n\n**3) Selection Signal:**\nThe presence of \"theory.pdf\" as a figure element suggests theoretical foundations, possibly involving gradient or loss-based scoring mechanisms common in curriculum learning approaches.\n\n**4) Spectral Indicators:**\nWhile the document structure includes mathematical content that could involve Hessian analysis, I cannot extract explicit mention of eigenvalues or spectral methods from the compressed content.\n\n**5) Collapse Prevention:**\nThe document appears to address training stability through structured data selection, though explicit collapse-prevention mechanisms aren't clearly legible.\n\n**6) PMP Approximation Algorithm:**\nThe core algorithm description is inaccessible due to PDF compression limitations.\n\n**Recommendation:** Please provide the source paper in text or HTML format for precise extraction of the method section details you're requesting.\n\n[Binary content (application/pdf, 1.1MB) also saved to /home/ubuntu/.claude-account-1/projects/-/afb7a545-a0ba-4e71-a393-62297003c9c7/tool-results/webfetch-1778447204758-lkz0n3.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2c8fee5-964c-4b71-9668-5697d2620442",
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "fa845237-81f6-4da6-88f6-af5fa30a12e2",
+            "sourceToolAssistantUUID": "e2c8fee5-964c-4b71-9668-5697d2620442",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T21:06:55.034Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FhvM2vx1XYBRotHxPgjzz7",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"PMP-based Data Selection\" PDS method costate adjoint offline \"Pontryagin\" language model training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa845237-81f6-4da6-88f6-af5fa30a12e2",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011Caua1JuaiKMiq2ydAVkv5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8257b730-de56-4b46-81ec-9253c5af101b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RPzYuD8xXkEg8qHhkbxdNF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 659,
+                "cache_read_input_tokens": 13721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 659,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T21:06:55.258Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q6b9vovhnUvLMFu6Eefazh",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2410.07064 PDS algorithm offline data selection proxy model scoring"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8257b730-de56-4b46-81ec-9253c5af101b",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011Caua1JuaiKMiq2ydAVkv5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f40b7bcb-98e5-47d0-b23d-e37177aa003a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RPzYuD8xXkEg8qHhkbxdNF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 659,
+                "cache_read_input_tokens": 13721,
+                "output_tokens": 129,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 659
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 129,
+                    "cache_read_input_tokens": 13721,
+                    "cache_creation_input_tokens": 659,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 659,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T21:07:02.568Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q6b9vovhnUvLMFu6Eefazh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2410.07064 PDS algorithm offline data selection proxy model scoring\"\n\nLinks: [{\"title\":\"data selection via optimal control for language models\",\"url\":\"https://arxiv.org/pdf/2410.07064\"},{\"title\":\"[2410.07064] Data Selection via Optimal Control for Language Models\",\"url\":\"https://arxiv.org/abs/2410.07064\"},{\"title\":\"Paper page - Data Selection via Optimal Control for Language Models\",\"url\":\"https://huggingface.co/papers/2410.07064\"},{\"title\":\"[1906.11829v2] Selection via Proxy: Efficient Data Selection for Deep Learning\",\"url\":\"https://arxiv.org/abs/1906.11829v2\"},{\"title\":\"[2004.00827] Approximate Selection with Guarantees using Proxies\",\"url\":\"https://arxiv.org/abs/2004.00827\"},{\"title\":\"BLISS: A Lightweight Bilevel Influence Scoring Method for Data Selection in Language Model Pretraining\",\"url\":\"https://arxiv.org/html/2510.06048\"},{\"title\":\"[2410.11820] Adaptive Data Optimization: Dynamic Sample Selection with Scaling Laws\",\"url\":\"https://arxiv.org/abs/2410.11820\"},{\"title\":\"[1906.11829] Selection via Proxy: Efficient Data Selection for Deep Learning\",\"url\":\"https://ar5iv.labs.arxiv.org/html/1906.11829\"},{\"title\":\"Adaptive Data Optimization: Dynamic Sample Selection with Scaling Laws\",\"url\":\"https://arxiv.org/html/2410.11820\"},{\"title\":\"[2511.21056] A Unified Understanding of Offline Data Selection and Online Self-refining Generation for Post-training LLMs\",\"url\":\"https://arxiv.org/abs/2511.21056\"}]\n\nBased on the search results, I found information about arxiv paper 2410.07064 on data selection for language models. Here's what the paper describes:\n\n## PDS (PMP-based Data Selection) Algorithm\n\nThe paper formulates data selection as a generalized Optimal Control problem, which can be solved theoretically by Pontryagin's Maximum Principle (PMP), yielding a set of necessary conditions that characterize the relationship between optimal data selection and LM training dynamics. Based on these theoretical results, PDS introduces a framework that approximates optimal data selection by solving the PMP conditions.\n\n## Framework Components\n\nTo balance effectiveness and efficiency, PDS first uniformly samples a proxy dataset from the pre-training corpus. Algorithm 1, derived from the PMP conditions, is then applied to the proxy dataset to compute data quality scores for each instance.\n\nA data scorer, typically a small LM, is fine-tuned to predict the quality scores based on the instances in the proxy dataset. The learnt data scorer is subsequently applied to infer quality scores on the entire pre-training corpus.\n\nFinally, the instances with large scores are selected to form a high-quality corpus, which is used to pre-train LMs with any size.\n\n## Key Advantages\n\nUnlike recent online data selection approaches, PDS selects the pre-training corpus offline. This allows PDS to be run only once and used for pre-training multiple LMs of any sizes, without incurring additional computational overhead.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f40b7bcb-98e5-47d0-b23d-e37177aa003a",
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "4f905229-3375-4153-9ac5-3225c7797dd0",
+            "sourceToolAssistantUUID": "f40b7bcb-98e5-47d0-b23d-e37177aa003a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T21:07:04.315Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FhvM2vx1XYBRotHxPgjzz7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"PMP-based Data Selection\" PDS method costate adjoint offline \"Pontryagin\" language model training\"\n\nLinks: [{\"title\":\"Data Selection via Optimal Control for Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=dhAL5fy8wS\"},{\"title\":\"Data Selection via Optimal Control for Language Models\",\"url\":\"https://arxiv.org/html/2410.07064v1\"},{\"title\":\"[2410.07064] Data Selection via Optimal Control for Language Models\",\"url\":\"https://arxiv.org/abs/2410.07064\"},{\"title\":\"Paper page - Data Selection via Optimal Control for Language Models\",\"url\":\"https://huggingface.co/papers/2410.07064\"},{\"title\":\"DATA SELECTION VIA OPTIMAL CONTROL FOR ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/9ad4891facabf17aa11580686bacfe4e-Paper-Conference.pdf\"},{\"title\":\"Data Selection via Optimal Control for Language Models | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/data-selection-via-optimal-control-language-models\"},{\"title\":\"ICLR 2025 Data Selection via Optimal Control for Language Models Oral\",\"url\":\"https://iclr.cc/virtual/2025/oral/31812\"},{\"title\":\"(PDF) Data Selection via Optimal Control for Language Models\",\"url\":\"https://www.researchgate.net/publication/384770316_Data_Selection_via_Optimal_Control_for_Language_Models\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=data+selection\"},{\"title\":\"Pontryagin Maximum Principle (PMP)\",\"url\":\"https://www.emergentmind.com/topics/pontryagin-maximum-principle-pmp\"}]\n\nBased on the search results, here's information about the PMP-based Data Selection (PDS) method:\n\n## Overview\n\nPDS investigates the selection of high-quality pre-training data from massive corpora to enhance language models' capabilities for downstream usage.\n\n## Theoretical Foundation\n\nThe method formulates data selection as a generalized Optimal Control problem, which can be solved theoretically by Pontryagin's Maximum Principle (PMP), yielding a set of necessary conditions that characterize the relationship between optimal data selection and LM training dynamics.\n\n## Framework\n\nPMP-based Data Selection (PDS) is a framework that approximates optimal data selection by solving the PMP conditions. The approach connects data selection with classical Optimal Control theory, where control variables in a dynamic system are optimized to achieve desired objectives. By treating data selection as the control variables (whether a data point is included in pre-training), the LM pre-training process as the dynamic system, and the LM's downstream performance as the objective, the framework leverages Pontryagin's Maximum Principle to derive the necessary conditions for optimal data selection in theory.\n\n## Offline Nature and Practical Implementation\n\nThe control variables are constrained to be time-invariant due to the offline nature of data selection in this setting. To balance effectiveness and efficiency, PDS first uniformly samples a proxy dataset from the pre-training corpus. Algorithm 1, derived from the PMP conditions, is then applied to compute data quality scores for each instance. A data scorer, typically a small LM, is fine-tuned to predict the quality scores based on the instances. The learnt data scorer is subsequently applied to infer quality scores on the entire pre-training corpus, and finally, the instances with large scores are selected to form a high-quality corpus.\n\n## Experimental Results\n\nIn experiments, PDS is adopted to select data from CommmonCrawl and shows that the PDS-selected corpus accelerates the learning of LMs and constantly boosts their performance on a wide range of downstream tasks across various model sizes.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8257b730-de56-4b46-81ec-9253c5af101b",
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "c04562c9-ee91-4cab-b2b3-b880608015b2",
+            "sourceToolAssistantUUID": "8257b730-de56-4b46-81ec-9253c5af101b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T21:07:10.816Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xm5ZerAvw8n2zRKXHfZSPE",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2410.07064v1",
+                "prompt": "I need the technical details of the PDS method. Specifically: 1) What is the costate/adjoint variable in their formulation? How is it computed? 2) How are data quality scores computed from the PMP conditions (Algorithm 1)? What signal is used - loss reduction, gradient alignment, something else? 3) Does the paper mention spectral indicators, eigenvalues, Hessian, or any stability-related signals? 4) Does the paper discuss collapse prevention, training instability, or mode collapse? 5) Is this purely offline (select data before training starts) or does it adapt during training? 6) What is the objective function being optimized - downstream task loss, perplexity, or something else?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c04562c9-ee91-4cab-b2b3-b880608015b2",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011Caua2MaM4sMsZDSyGMa8K",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0723e1ea-03e7-4b26-a91d-5f57b9a32d2b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L7vEj3A5VHHg7PmiysEP1f",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 805,
+                "cache_creation_input_tokens": 1085,
+                "cache_read_input_tokens": 14380,
+                "output_tokens": 245,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1085
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 805,
+                    "output_tokens": 245,
+                    "cache_read_input_tokens": 14380,
+                    "cache_creation_input_tokens": 1085,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1085,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T21:07:18.538Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xm5ZerAvw8n2zRKXHfZSPE",
+              "type": "tool_result",
+              "content": "# Technical Details of the PDS Method\n\n## 1) Costate/Adjoint Variable Computation\n\nThe costate variable is **λ_t*** (called the \"target vector\"). It's computed via backward recursion:\n\n\"λ_t* = λ_{t+1}* + ∇J(θ_t*) − η∇²L(θ_t*, γ*)λ_{t+1}*\" with boundary condition \"λ_T* = ∇J(θ_T*)\".\n\nThis aggregates downstream loss gradients and Hessian information backward through training steps.\n\n## 2) Data Quality Score Computation\n\nQuality scores come from alignment between instance gradients and the costate:\n\n\"γ_n ← γ_n + α∑_{t=0}^{T-1} λ_{t+1}^T ∇l(x_n, θ_t)\"\n\nThe signal is **gradient alignment**: instances whose gradients align with the optimal \"target direction\" (λ_t*) receive higher scores. No spectral indicators or eigenvalues mentioned.\n\n## 3) Stability-Related Signals\n\n**No mention of spectral properties, eigenvalues, Hessian eigenvalues, or stability indicators.** The Hessian appears only in the adjoint equation (Eq. 5) for computing dynamics, not for stability assessment.\n\n## 4) Collapse Prevention\n\n**No discussion of collapse prevention, training instability, or mode collapse.** The paper focuses on data quality without addressing training stability concerns.\n\n## 5) Offline vs. Adaptive\n\n**Purely offline.** \"PDS operates offline, before the training begins, which avoids additional training-time computation overhead.\" Data is selected once from a proxy corpus and reused for any LM size.\n\n## 6) Objective Function\n\n**Area Under the Curve (AUC) of downstream loss over time:**\n\n\"min_γ ∑_{t=1}^T J(θ_t)\" where J(θ) is downstream task loss (computed on LIMA training split).\n\nThis captures cumulative convergence speed rather than final performance alone."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0723e1ea-03e7-4b26-a91d-5f57b9a32d2b",
+            "isSidechain": true,
+            "promptId": "4dda2a4b-380c-4285-b547-9faea07a14da",
+            "agentId": "ab14a02b19efc99e2",
+            "type": "user",
+            "uuid": "76967ab6-3e47-42b4-80c2-868f897feb22",
+            "sourceToolAssistantUUID": "0723e1ea-03e7-4b26-a91d-5f57b9a32d2b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T21:07:49.853Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive technical details about the paper. Here is my report:\n\n---\n\n## Report: \"Data Selection via Optimal Control for Language Models\" (arXiv:2410.07064)\n\n### Confirmation of Status\n\nThe paper is **confirmed as an ICLR 2025 Oral** (top ~1.8% of submissions). It appears on the official ICLR proceedings and OpenReview with oral designation.\n\n### Authors\nYuxian Gu, Li Dong, Hongning Wang, Yaru Hao, Qingxiu Dong, Furu Wei, Minlie Huang (Tsinghua, Microsoft Research, Peking University)\n\n### Exact Method\n\nThe paper introduces **PDS (PMP-based Data Selection)**:\n\n1. **Formulation**: Data selection is cast as an optimal control problem where the control variable is gamma_n (binary inclusion of each data point), the dynamic system is LM pre-training (SGD updates), and the objective is minimizing cumulative downstream loss over training (area under the curve of J(theta_t)).\n\n2. **Pontryagin's Maximum Principle**: They apply PMP to derive necessary optimality conditions. The key object is the **costate/adjoint variable** lambda_t*, computed via backward recursion:\n   - lambda_t* = lambda_{t+1}* + nabla J(theta_t*) - eta * nabla^2 L(theta_t*, gamma*) * lambda_{t+1}*\n   - Boundary condition: lambda_T* = nabla J(theta_T*)\n\n3. **Data scoring signal**: **Gradient alignment** -- each instance is scored by how well its per-step gradient aligns with the costate (target direction): gamma_n += alpha * sum_t lambda_{t+1}^T nabla l(x_n, theta_t). Instances whose gradients point in the direction that reduces downstream loss fastest get the highest scores.\n\n4. **Practical pipeline**: (a) Sample a proxy dataset from the corpus, (b) run Algorithm 1 on a small proxy model to compute quality scores, (c) train a small scorer LM to predict these scores, (d) apply the scorer to the full corpus, (e) select top-scoring data, (f) train any size LM on the selected data.\n\n### Online vs. Offline\n\n**Purely offline.** Data is selected before training begins. The method is run once on a proxy model and the resulting corpus is reused for training models of any size. It explicitly contrasts itself with online data selection methods, noting the advantage of no additional training-time computation.\n\n### Signals Used\n\n- **Gradient alignment with costate** (the costate aggregates downstream loss gradients backward through time)\n- The Hessian appears in the adjoint equation but only for computing dynamics, **not** as a stability signal\n- **No spectral indicators, eigenvalues, or Hessian-eigenvalue-based signals**\n- **No collapse prevention or training instability discussion**\n\n### What It Does NOT Do\n\n- Does **not** address collapse prevention or training instability\n- Does **not** use spectral/eigenvalue-based monitoring\n- Does **not** adapt the data mixture during training (purely offline)\n- Does **not** deal with synthetic-vs-real data mixing\n- Does **not** use PI/PID control or any feedback control during training\n\n### Relevance to a \"PI Control for Adaptive Synthetic-to-Real Data Mixing\" Proposal\n\nThe overlap is **conceptually significant but methodologically superficial**:\n\n| Dimension | PDS (this paper) | PI control proposal |\n|-----------|------------------|---------------------|\n| Control theory? | Yes (Pontryagin/optimal control) | Yes (PI feedback control) |\n| Online/offline? | Offline | Online (adaptive during training) |\n| What's controlled? | Static data subset selection | Dynamic mixing ratio |\n| Signal used? | Gradient alignment with adjoint | Spectral indicators (collapse) |\n| Goal? | Maximize downstream performance | Prevent collapse/instability |\n| Data type? | Filter from web crawl | Mix synthetic vs. real |\n\n**You should cite this paper.** The connection is at the level of \"using control theory for data selection in LM training\" -- the same problem family. However, the methods are fundamentally different: PDS is offline optimal control (open-loop), while PI control for mixing is online feedback control (closed-loop). A proper framing would be: \"Gu et al. (2025) showed that optimal control theory can improve data selection for LM pre-training via offline PMP-based scoring; we address the complementary online problem of adaptively adjusting the synthetic-to-real ratio during training using closed-loop PI control with spectral stability signals.\"\n\nThe overlap is real enough to warrant citation (same intellectual lineage of control theory applied to data selection) but different enough that the contributions are clearly distinct (offline/open-loop vs. online/closed-loop; performance optimization vs. collapse prevention; gradient alignment vs. spectral indicators).\n\nSources:\n- [arXiv:2410.07064](https://arxiv.org/abs/2410.07064)\n- [ICLR 2025 Oral page](https://iclr.cc/virtual/2025/oral/31812)\n- [OpenReview](https://openreview.net/forum?id=dhAL5fy8wS)\n- [HTML version with full method details](https://arxiv.org/html/2410.07064v1)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76967ab6-3e47-42b4-80c2-868f897feb22",
+            "isSidechain": true,
+            "agentId": "ab14a02b19efc99e2",
+            "requestId": "req_011Caua3QhPdjP3bG5qmuyKp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c9066cda-0bbb-4e45-a24d-2641940af08c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "afb7a545-a0ba-4e71-a393-62297003c9c7",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JnZmZgA2XftS4hNkCQD4bz",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1556,
+                "cache_read_input_tokens": 15465,
+                "output_tokens": 1279,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1556
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1279,
+                    "cache_read_input_tokens": 15465,
+                    "cache_creation_input_tokens": 1556,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1556,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-and-verify-the-paper-data-selection-via-optimal-control-for-languag.md"
+}

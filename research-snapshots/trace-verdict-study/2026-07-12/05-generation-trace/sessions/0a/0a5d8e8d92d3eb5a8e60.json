@@ -1,0 +1,1882 @@
+{
+  "schema_version": "1.0",
+  "id": "0a5d8e8d92d3eb5a8e60",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-",
+  "task_key": "agent-a65d7c070a640340a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a65d7c070a640340a.jsonl",
+    "occurrence": 1,
+    "bytes": 111574,
+    "sha256": "1f27f5dd0840fe2e577cf98c4b1585b27bd806697c6d06218e3aa9e38d867890"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T22:58:38.042Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt\n\nThis is a JSON file with schema {result: string} where result is itself a JSON string.\n\nI need you to extract and return:\n1. All experiments with status RUNNING or PREPARING — full details\n2. All experiments with status QUEUED or PENDING — full details  \n3. A summary table of ALL experiments: exp_id, status, conclusion, hypothesis (first 80 chars), server, gpu info, any PID/tmux info\n4. Any experiments that have spec fields — show their spec\n\nReturn all of this as structured text. Be thorough — I need every experiment."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "53ea3be7-feee-49e5-9fd7-df1e6e50e98c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T22:58:38.046Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "53ea3be7-feee-49e5-9fd7-df1e6e50e98c",
+                "isSidechain": true,
+                "agentId": "a65d7c070a640340a",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__allocate_and_submit",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__approve_worker",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_worker",
+                    "mcp__agent-ml-research__check_job_status",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_alert",
+                    "mcp__agent-ml-research__feishu_send_approval_card",
+                    "mcp__agent-ml-research__feishu_send_result_card",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_baseline_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__main_agent_post_to_director",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__poll_cron",
+                    "mcp__agent-ml-research__poll_secret_request",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reconcile_crons",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__register_cron",
+                    "mcp__agent-ml-research__request_secret",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__submit_on_allocated",
+                    "mcp__agent-ml-research__submit_training_job",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__tail_training_logs",
+                    "mcp__agent-ml-research__update_baseline",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_registry",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__allocate_and_submit",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__approve_worker",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_worker",
+                    "mcp__agent-ml-research__check_job_status",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_alert",
+                    "mcp__agent-ml-research__feishu_send_approval_card",
+                    "mcp__agent-ml-research__feishu_send_result_card",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_baseline_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__main_agent_post_to_director",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__poll_cron",
+                    "mcp__agent-ml-research__poll_secret_request",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reconcile_crons",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__register_cron",
+                    "mcp__agent-ml-research__request_secret",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__submit_on_allocated",
+                    "mcp__agent-ml-research__submit_training_job",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__tail_training_logs",
+                    "mcp__agent-ml-research__update_baseline",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_registry",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f8ec78f5-0d63-4dad-a966-cb0af5ae4445",
+                "timestamp": "2026-05-15T22:58:38.046Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+                "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T22:58:41.205Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013QXPJMLvAE4MK9uyjCg56w",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8ec78f5-0d63-4dad-a966-cb0af5ae4445",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BaMhHoFXkJDA4cXXeM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c6c9e33c-33e7-4eac-bd7c-39dfb0976381",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ZSaFdJ5xpDZJBSAFWZcPC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18979,
+                "cache_read_input_tokens": 7667,
+                "output_tokens": 154,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18979
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 154,
+                    "cache_read_input_tokens": 7667,
+                    "cache_creation_input_tokens": 18979,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 18979,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T22:58:41.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_013QXPJMLvAE4MK9uyjCg56w"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6c9e33c-33e7-4eac-bd7c-39dfb0976381",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "682bfe75-caf5-4571-91f8-04788ac06f68",
+            "toolUseResult": "Error: File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "c6c9e33c-33e7-4eac-bd7c-39dfb0976381",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T22:58:44.924Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MjwDgp7XXMu2FJznEChYzH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+                "offset": 0,
+                "limit": 500
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "682bfe75-caf5-4571-91f8-04788ac06f68",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5Bacajga9czzhf9Pzhn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "04b2fd4b-28b6-4cb0-9a3b-8420a70da74d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XqJtPHHU5EotwpNBMhYBqM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1055,
+                "cache_read_input_tokens": 26646,
+                "output_tokens": 187,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1055
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 187,
+                    "cache_read_input_tokens": 26646,
+                    "cache_creation_input_tokens": 1055,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1055,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T22:58:45.210Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01MjwDgp7XXMu2FJznEChYzH"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04b2fd4b-28b6-4cb0-9a3b-8420a70da74d",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "d8309582-2971-4a83-aa81-b118b5a80eed",
+            "toolUseResult": "Error: File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "04b2fd4b-28b6-4cb0-9a3b-8420a70da74d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T22:58:48.864Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Nesz3mo9jdmWCf8gTrKJ2",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+                "offset": 0,
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8309582-2971-4a83-aa81-b118b5a80eed",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BatKHbSoQFfCCcr8DY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "628b7303-cbc3-4ffc-acc6-28aefc6b8b21",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013z23P5RpURPZPaEsM8TKkY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 27701,
+                "output_tokens": 187,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 248
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 187,
+                    "cache_read_input_tokens": 27701,
+                    "cache_creation_input_tokens": 248,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 248,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T22:58:49.129Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_013Nesz3mo9jdmWCf8gTrKJ2"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "628b7303-cbc3-4ffc-acc6-28aefc6b8b21",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "34a9e526-5775-4128-b031-1675a15db7d7",
+            "toolUseResult": "Error: File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "628b7303-cbc3-4ffc-acc6-28aefc6b8b21",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T22:58:52.423Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0146xSHeixfW9A2sn48fv4Rf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+                "offset": 0,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34a9e526-5775-4128-b031-1675a15db7d7",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BbB6LVQiD8CW4hpEFS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dcd7d3ff-ef9d-43f4-b49a-b52583ae059d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X1Qci4uSunnBprqPhpEa1i",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 27949,
+                "output_tokens": 187,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 248
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 187,
+                    "cache_read_input_tokens": 27949,
+                    "cache_creation_input_tokens": 248,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 248,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T22:58:52.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_0146xSHeixfW9A2sn48fv4Rf"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dcd7d3ff-ef9d-43f4-b49a-b52583ae059d",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "d87f28be-2bf5-4fdf-a387-b7d2a009ebb4",
+            "toolUseResult": "Error: File content (26134 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "dcd7d3ff-ef9d-43f4-b49a-b52583ae059d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T22:58:55.402Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is very large. Let me use bash to read it in chunks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d87f28be-2bf5-4fdf-a387-b7d2a009ebb4",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BbSZktQScx6DTBNEeY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8ffd5e88-d294-4782-93dc-8e5007c3bbb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Law391kyHTFZcgsqEzhXBH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 28197,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 248,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T22:58:56.572Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011szYXX77XvDyjBZmG53EiD",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt\"",
+                "description": "Check line count of the registry file"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ffd5e88-d294-4782-93dc-8e5007c3bbb9",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BbSZktQScx6DTBNEeY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aa37f850-1a23-4474-83a2-42f5eccd8eb7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Law391kyHTFZcgsqEzhXBH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 28197,
+                "output_tokens": 197,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 248
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 197,
+                    "cache_read_input_tokens": 28197,
+                    "cache_creation_input_tokens": 248,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 248,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T22:58:56.783Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011szYXX77XvDyjBZmG53EiD",
+              "type": "tool_result",
+              "content": "0 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa37f850-1a23-4474-83a2-42f5eccd8eb7",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "d918c3c7-a2b6-42f7-ace0-fb33407107be",
+            "sourceToolAssistantUUID": "aa37f850-1a23-4474-83a2-42f5eccd8eb7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T22:59:00.463Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tjsq8ks4skkBDxfDUFR7Ry",
+              "name": "Bash",
+              "input": {
+                "command": "wc -c \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt\"",
+                "description": "Check byte count of the registry file"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d918c3c7-a2b6-42f7-ace0-fb33407107be",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5Bbjsoh398knF8q5Wpr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "898f537b-5851-4098-9ede-70f9a34d7cd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EnG6kmGh8bZAKgx9cZYgSY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 312,
+                "cache_read_input_tokens": 28445,
+                "output_tokens": 180,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 312
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 180,
+                    "cache_read_input_tokens": 28445,
+                    "cache_creation_input_tokens": 312,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 312,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T22:59:00.524Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tjsq8ks4skkBDxfDUFR7Ry",
+              "type": "tool_result",
+              "content": "64663 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "898f537b-5851-4098-9ede-70f9a34d7cd6",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "802a8bc0-3d5a-4ca7-a7a9-1afe894045cc",
+            "sourceToolAssistantUUID": "898f537b-5851-4098-9ede-70f9a34d7cd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T22:59:03.265Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "It's a single-line JSON file (~64KB). Let me parse it with Python."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "802a8bc0-3d5a-4ca7-a7a9-1afe894045cc",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5Bc1oGe9EQBonvdv33N",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "62e5431f-75e3-42b0-83d5-a708f54eeb26",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BTkSK6KW33oH6aLkzBGfjZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 296,
+                "cache_read_input_tokens": 28757,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 296,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T22:59:06.599Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017R8hTq7SWyu4fZUPw8tpLF",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\n# The schema is {result: string} where result is itself a JSON string\ninner = json.loads(raw['result'])\n\n# Check structure\nprint('Top-level keys:', list(inner.keys()) if isinstance(inner, dict) else type(inner))\nif isinstance(inner, dict):\n    for k in inner:\n        v = inner[k]\n        if isinstance(v, list):\n            print(f'  {k}: list of {len(v)} items')\n        elif isinstance(v, dict):\n            print(f'  {k}: dict with keys {list(v.keys())[:10]}')\n        else:\n            print(f'  {k}: {type(v).__name__} = {str(v)[:100]}')\n\"\n",
+                "description": "Parse the JSON structure of the registry file"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62e5431f-75e3-42b0-83d5-a708f54eeb26",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5Bc1oGe9EQBonvdv33N",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ebdff2af-0a03-476a-8cd4-c7ccd93c9bf7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BTkSK6KW33oH6aLkzBGfjZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 296,
+                "cache_read_input_tokens": 28757,
+                "output_tokens": 399,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 296
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 399,
+                    "cache_read_input_tokens": 28757,
+                    "cache_creation_input_tokens": 296,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 296,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T22:59:06.705Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017R8hTq7SWyu4fZUPw8tpLF",
+              "type": "tool_result",
+              "content": "Top-level keys: ['success', 'data', 'error', 'metadata']\n  success: bool = True\n  data: dict with keys ['experiments', 'count', 'total', 'baseline']\n  error: NoneType = None\n  metadata: dict with keys ['elapsed_seconds']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ebdff2af-0a03-476a-8cd4-c7ccd93c9bf7",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "30aca567-02f3-49b4-a24d-cc111bf7afb3",
+            "sourceToolAssistantUUID": "ebdff2af-0a03-476a-8cd4-c7ccd93c9bf7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T22:59:12.135Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JBae9koiUURy2Z923SG31V",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\nprint(f'Total experiments: {len(experiments)}')\nprint()\n\n# Show all experiment IDs and statuses\nfor exp in experiments:\n    eid = exp.get('exp_id', 'N/A')\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', '')\n    print(f'  {eid}: status={status}, conclusion={conclusion}')\n\"\n",
+                "description": "List all experiments with their statuses"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30aca567-02f3-49b4-a24d-cc111bf7afb3",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BcUDFn1NXgWYfde47j",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "307c174d-354c-478d-b852-466897048120",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014zM1PqgvPKUpM9yYRS7NsC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 481,
+                "cache_read_input_tokens": 29053,
+                "output_tokens": 323,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 481
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 323,
+                    "cache_read_input_tokens": 29053,
+                    "cache_creation_input_tokens": 481,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 481,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T22:59:12.371Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    eid = exp.get('exp_id', 'N/A')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 37",
+              "is_error": true,
+              "tool_use_id": "toolu_01JBae9koiUURy2Z923SG31V"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "307c174d-354c-478d-b852-466897048120",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "88398976-3da4-4b60-b94b-e6a4b47a1779",
+            "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    eid = exp.get('exp_id', 'N/A')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 37",
+            "sourceToolAssistantUUID": "307c174d-354c-478d-b852-466897048120",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T22:59:18.951Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QHvUdon9yjNC84hW1KS546",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Check if experiments is a dict (key -> value)\nprint(type(experiments))\nif isinstance(experiments, dict):\n    keys = list(experiments.keys())\n    print(f'Keys (first 5): {keys[:5]}')\n    # Show first experiment\n    first_key = keys[0]\n    first_val = experiments[first_key]\n    print(f'Type of value: {type(first_val)}')\n    if isinstance(first_val, str):\n        print(f'First value (truncated): {first_val[:500]}')\n    else:\n        print(json.dumps(first_val, indent=2)[:500])\nelif isinstance(experiments, list):\n    print(f'First element type: {type(experiments[0])}')\n    if isinstance(experiments[0], str):\n        print(f'First element: {experiments[0][:500]}')\n    else:\n        print(json.dumps(experiments[0], indent=2)[:500])\n\"\n",
+                "description": "Inspect the structure of experiments data"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88398976-3da4-4b60-b94b-e6a4b47a1779",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BctTmoTTFK7Npq4sMS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bc1e47f5-4f5d-4048-a5cb-ed6be3c7c9f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JrhK46MpCkvvzknQ7MHfg1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 418,
+                "cache_read_input_tokens": 29534,
+                "output_tokens": 459,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 418
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 459,
+                    "cache_read_input_tokens": 29534,
+                    "cache_creation_input_tokens": 418,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 418,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T22:59:19.042Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QHvUdon9yjNC84hW1KS546",
+              "type": "tool_result",
+              "content": "<class 'dict'>\nKeys (first 5): ['full_trace_2048tok_seed42', 'full_trace_1024tok_seed42', 'full_trace_512tok_seed42', 'full_trace_256tok_seed42', 'deepseek_vota_seed42']\nType of value: <class 'dict'>\n{\n  \"status\": \"QUEUED\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:27:19.848Z\",\n  \"updated_at\": \"2026-05-15T22:46:28.903Z\",\n  \"spec\": {\n    \"hypothesis\": \"plan_006: trace length ablation - 2048 tokens. Control condition matching full_trace_seed42_v5 max_seq_length.\",\n    \"notes\": \"plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=2048, all other hyperparams identical. Expected to match full_trace_seed42_v5 since original traces average ~1811 tokens.\",\n    \"model_name\": \"Qwen/Qwen2",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc1e47f5-4f5d-4048-a5cb-ed6be3c7c9f9",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "fef53335-4e9e-4494-881c-9a5d934bce4f",
+            "sourceToolAssistantUUID": "bc1e47f5-4f5d-4048-a5cb-ed6be3c7c9f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T22:59:21.542Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I can see the structure. Let me extract everything systematically."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fef53335-4e9e-4494-881c-9a5d934bce4f",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BdNyWm5EamDzkWwLPo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "44e53013-3fe8-456e-9e33-9f72b2479cad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01254oWR78ziDMj3tmq5X8wu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 748,
+                "cache_read_input_tokens": 29952,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 748,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T22:59:25.902Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FwNDn2H5WCHA6M6auaTgRo",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# 1. RUNNING or PREPARING experiments - full details\nprint(\"=\" * 100)\nprint(\"SECTION 1: RUNNING or PREPARING experiments (full details)\")\nprint(\"=\" * 100)\nfor eid, exp in experiments.items():\n    if exp.get('status') in ('RUNNING', 'PREPARING'):\n        print(f\"\\n--- {eid} ---\")\n        print(json.dumps(exp, indent=2))\n\n# 2. QUEUED or PENDING experiments - full details\nprint(\"\\n\" + \"=\" * 100)\nprint(\"SECTION 2: QUEUED or PENDING experiments (full details)\")\nprint(\"=\" * 100)\nfor eid, exp in experiments.items():\n    if exp.get('status') in ('QUEUED', 'PENDING'):\n        print(f\"\\n--- {eid} ---\")\n        print(json.dumps(exp, indent=2))\n\nPYEOF\n",
+                "description": "Extract RUNNING/PREPARING and QUEUED/PENDING experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44e53013-3fe8-456e-9e33-9f72b2479cad",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BdNyWm5EamDzkWwLPo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "39a57f00-ead7-48ab-9383-54613ae433d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01254oWR78ziDMj3tmq5X8wu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 748,
+                "cache_read_input_tokens": 29952,
+                "output_tokens": 471,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 748
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 471,
+                    "cache_read_input_tokens": 29952,
+                    "cache_creation_input_tokens": 748,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 748,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T22:59:26.007Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FwNDn2H5WCHA6M6auaTgRo",
+              "type": "tool_result",
+              "content": "====================================================================================================\nSECTION 1: RUNNING or PREPARING experiments (full details)\n====================================================================================================\n\n--- deepseek_full_trace_seed42_v3 ---\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T18:40:07.877Z\",\n  \"updated_at\": \"2026-05-15T20:59:06.798Z\",\n  \"hypothesis\": \"DeepSeek full_trace v3: retrain with label-preserving truncation fix in to_chat_text(). v1/v2 collapsed due to DeepSeek tokenizer producing >2048 tokens \\u2192 SFTTrainer right-truncated labels. Tests if full_trace shows intermediate performance on DeepSeek (plan_004, 4th condition).\",\n  \"parent\": \"\",\n  \"notes\": \"Director \\u5ba1\\u6279\\u901a\\u8fc7\\u3002\\u7b49 cuda:0 \\u91ca\\u653e\\uff08deepseek_eo_seed123 \\u5b8c\\u6210\\u540e\\uff09\\u7acb\\u5373\\u63d0\\u4ea4\\u3002\\u552f\\u4e00\\u4ee3\\u7801\\u53d8\\u5316: to_chat_text() label-preserving truncation\\u3002\\u7528\\u65e7\\u4ee3\\u7801\\uff08load_best_model_at_end \\u5df2\\u6ce8\\u91ca\\uff09\\u3002\",\n  \"spec\": {\n    \"command\": \"python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6.7b-instruct --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42_v3\",\n    \"server\": \"westd-11235\",\n    \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\",\n    \"data_count\": 4720,\n    \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\",\n    \"seed\": 42\n  }\n}\n\n====================================================================================================\nSECTION 2: QUEUED or PENDING experiments (full details)\n====================================================================================================\n\n--- full_trace_2048tok_seed42 ---\n{\n  \"status\": \"QUEUED\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:27:19.848Z\",\n  \"updated_at\": \"2026-05-15T22:46:28.903Z\",\n  \"spec\": {\n    \"hypothesis\": \"plan_006: trace length ablation - 2048 tokens. Control condition matching full_trace_seed42_v5 max_seq_length.\",\n    \"notes\": \"plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=2048, all other hyperparams identical. Expected to match full_trace_seed42_v5 since original traces average ~1811 tokens.\",\n    \"model_name\": \"Qwen/Qwen2.5-Coder-7B-Instruct\",\n    \"seed\": 42\n  }\n}\n\n--- full_trace_1024tok_seed42 ---\n{\n  \"status\": \"QUEUED\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:27:17.607Z\",\n  \"updated_at\": \"2026-05-15T22:46:26.245Z\",\n  \"spec\": {\n    \"hypothesis\": \"plan_006: trace length ablation - 1024 tokens. Tests accuracy with extended trace context.\",\n    \"notes\": \"plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=1024, all other hyperparams identical.\",\n    \"model_name\": \"Qwen/Qwen2.5-Coder-7B-Instruct\",\n    \"seed\": 42\n  }\n}\n\n--- full_trace_512tok_seed42 ---\n{\n  \"status\": \"QUEUED\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:27:16.130Z\",\n  \"updated_at\": \"2026-05-15T22:46:23.561Z\",\n  \"spec\": {\n    \"hypothesis\": \"plan_006: trace length ablation - 512 tokens. Tests accuracy with moderate trace length.\",\n    \"notes\": \"plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=512, all other hyperparams identical.\",\n    \"model_name\": \"Qwen/Qwen2.5-Coder-7B-Instruct\",\n    \"seed\": 42\n  }\n}\n\n--- full_trace_256tok_seed42 ---\n{\n  \"status\": \"QUEUED\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T22:27:14.119Z\",\n  \"updated_at\": \"2026-05-15T22:46:18.239Z\",\n  \"spec\": {\n    \"hypothesis\": \"plan_006: trace length ablation - 256 tokens. Tests if minimal trace context suffices for verdict prediction.\",\n    \"notes\": \"plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=256, all other hyperparams identical.\",\n    \"model_name\": \"Qwen/Qwen2.5-Coder-7B-Instruct\",\n    \"seed\": 42\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39a57f00-ead7-48ab-9383-54613ae433d9",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "9608f402-b2cb-4d0e-90e5-332bed5d74e3",
+            "sourceToolAssistantUUID": "39a57f00-ead7-48ab-9383-54613ae433d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T22:59:34.278Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BWeGuwLAmvmktfmpaGFdR4",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# 3. Summary table of ALL experiments\nprint(\"=\" * 100)\nprint(\"SECTION 3: SUMMARY TABLE — ALL EXPERIMENTS\")\nprint(\"=\" * 100)\nprint()\nprint(f\"{'EXP_ID':<45} {'STATUS':<12} {'CONCLUSION':<12} {'SERVER':<15} {'GPU':<8} {'PID':<8} {'TMUX':<20} HYPOTHESIS (first 80 chars)\")\nprint(\"-\" * 210)\n\nfor eid, exp in experiments.items():\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    hypothesis = exp.get('hypothesis', '') or ''\n    if not hypothesis and exp.get('spec', {}).get('hypothesis'):\n        hypothesis = exp['spec']['hypothesis']\n    hypothesis = hypothesis[:80]\n    \n    server = exp.get('server', '') or ''\n    if not server and exp.get('spec', {}).get('server'):\n        server = exp['spec']['server']\n    \n    gpu = exp.get('gpu', '') or ''\n    if not gpu and exp.get('spec', {}).get('gpu'):\n        gpu = str(exp['spec']['gpu'])\n    gpu = str(gpu) if gpu else ''\n    \n    pid = exp.get('pid', '') or ''\n    pid = str(pid) if pid else ''\n    \n    tmux = exp.get('tmux_session', '') or ''\n    \n    print(f\"{eid:<45} {status:<12} {conclusion:<12} {server:<15} {gpu:<8} {pid:<8} {tmux:<20} {hypothesis}\")\n\nPYEOF\n",
+                "description": "Generate summary table of all experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9608f402-b2cb-4d0e-90e5-332bed5d74e3",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BdtpdaJAPYGuxfi8GZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4f5ea4f4-c80d-4039-a463-66d1ed0a7236",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BPWdc4P3oeu316BiQQCuHz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1997,
+                "cache_read_input_tokens": 30700,
+                "output_tokens": 621,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1997
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 621,
+                    "cache_read_input_tokens": 30700,
+                    "cache_creation_input_tokens": 1997,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1997,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T22:59:34.435Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BWeGuwLAmvmktfmpaGFdR4",
+              "type": "tool_result",
+              "content": "====================================================================================================\nSECTION 3: SUMMARY TABLE — ALL EXPERIMENTS\n====================================================================================================\n\nEXP_ID                                        STATUS       CONCLUSION   SERVER          GPU      PID      TMUX                 HYPOTHESIS (first 80 chars)\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nfull_trace_2048tok_seed42                     QUEUED                                                                           plan_006: trace length ablation - 2048 tokens. Control condition matching full_t\nfull_trace_1024tok_seed42                     QUEUED                                                                           plan_006: trace length ablation - 1024 tokens. Tests accuracy with extended trac\nfull_trace_512tok_seed42                      QUEUED                                                                           plan_006: trace length ablation - 512 tokens. Tests accuracy with moderate trace\nfull_trace_256tok_seed42                      QUEUED                                                                           plan_006: trace length ablation - 256 tokens. Tests if minimal trace context suf\ndeepseek_vota_seed42                          DONE         success      westd-11235     ['cuda:0']                               Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests i\ndeepseek_exception_only_seed456               DONE         success      westd-11235                                            Cross-model seed robustness: exception_only seed=456 on DeepSeek-Coder-6.7B. Thi\nvota_seed456_v2                               DONE         success      westd-11235                                            Seed robustness: VOTA with seed=456, retry with --gradient_checkpointing (v1 OOM\ndeepseek_full_trace_seed42_v3                 RUNNING                   westd-11235                                            DeepSeek full_trace v3: retrain with label-preserving truncation fix in to_chat_\ndeepseek_exception_only_seed123               DONE         negative     westd-11235     ['cuda:0']                               Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B\nno_trace_seed42                               DONE         killed       westd-11235     ['cuda:0']                               \nno_trace_seed42_v2                            DONE         killed       westd-11235     ['cuda:0']                               \nvota_seed42                                   DONE         killed       westd-11235     ['cuda:1']                               \nvota_seed42_v2                                DONE         killed       westd-11235     ['cuda:1']                               \nvota_seed456                                  DONE         failed       westd-11235     ['cuda:1']                               Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is \ndeepseek_full_trace_seed42_v2                 DONE         killed       westd-11235                                            DeepSeek full_trace v2: retrain with v5 code (chat-template-aware truncation pre\ndeepseek_full_trace_seed42                    DONE         negative     westd-11235     ['cuda:0']                               Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Ins\nexception_only_seed123                        DONE         success      westd-11235     cuda:1   124197                        Seed robustness: exception_only with seed=123 on Qwen-2.5-Coder-7B (plan_008). V\nexception_only_seed456                        DONE         success      westd-11235     cuda:0   129476                        Seed robustness: exception_only with seed=456 on Qwen-2.5-Coder-7B (plan_008). V\nvota_exception_only_seed42_v2                 DONE         success      westd-11235     ['cuda:1']                               VOTA component ablation: exception_only condition — retry with --gradient_checkp\nvota_seed123                                  DONE         failed       westd-11235     cuda:1                                 Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is \nfull_trace_label_only_seed42                  DONE         success                                                             Label-only loss on full_trace fixes gradient dilution collapse (plan_002: loss o\nvota_no_ae_seed42                             DONE         success      westd-11235     ['cuda:1']                               VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine\nvota_loop_only_seed42                         DONE         success      westd-11235     ['cuda:0']                               VOTA component ablation: loop_only condition — only loop compression summaries, \nvota_ae_only_seed42                           DONE         success      westd-11235                                            VOTA component ablation: ae_only condition — only actual/expected values, no exc\ndeepseek_exception_only_seed42                DONE         success      westd-11235     ['cuda:1']                               Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004\nfull_trace_seed42_v5                          DONE         success                                                             Full execution trace with chat-template-aware truncation provides verdict accura\nno_trace_seed42_v5                            DONE         success      westd-11235                                            Baseline: verdict accuracy without execution trace (v5: same code version as vot\nvota_seed42_v5                                DONE         success      westd-11235     ['cuda:1']                               VOTA trace provides verdict accuracy lift over no-trace baseline (v5: fixed chat\ndeepseek_no_trace_seed42                      DONE         negative     westd-11235     ['cuda:0']                               Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruc\ncalibration_analysis_seed42                   DONE         success      westd-11235                                            Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_tr\nvota_exception_only_seed42                    DONE         failed       westd-11235                                            VOTA component ablation: exception_only condition — only exception summaries, no\nvota_seed42_v4                                DONE         success                                                             VOTA trace provides verdict accuracy lift over no-trace baseline (v4: removed ma\nfull_trace_seed42_v2                          DONE         negative                                                            Full execution trace with smart truncation (label preserved) provides verdict ac\nno_trace_seed42_v4                            DONE         success                                                             Baseline: verdict accuracy without execution trace (v4: fixed label truncation)\nfull_trace_seed42                             DONE         killed       westd-11235     ['cuda:0']                               Full execution trace (line-by-line Scratchpad format) provides verdict accuracy \nno_trace_seed42_v3                            DONE         killed       westd-11235     ['cuda:0']                               Baseline: verdict accuracy without execution trace\nvota_seed42_v3                                DONE         killed       westd-11235     ['cuda:1']                               VOTA trace provides significant verdict accuracy lift over no-trace baseline",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f5ea4f4-c80d-4039-a463-66d1ed0a7236",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "4f18860e-09c5-4325-a3cc-c74af0511b31",
+            "sourceToolAssistantUUID": "4f5ea4f4-c80d-4039-a463-66d1ed0a7236",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T22:59:39.483Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011zN4FiPcAyevfjNM3srXNy",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# 4. Experiments with spec fields\nprint(\"=\" * 100)\nprint(\"SECTION 4: EXPERIMENTS WITH SPEC FIELDS\")\nprint(\"=\" * 100)\n\nfor eid, exp in experiments.items():\n    spec = exp.get('spec')\n    if spec:\n        print(f\"\\n--- {eid} (status={exp.get('status','?')}, conclusion={exp.get('conclusion','')}) ---\")\n        print(json.dumps(spec, indent=2))\n\nPYEOF\n",
+                "description": "Extract all experiments that have spec fields"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f18860e-09c5-4325-a3cc-c74af0511b31",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5BeWo6JrCJb58QqGG1U",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fad81a5f-38d3-4ff4-aee0-74f990578cbe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hc5H3Dyyc8gisf6mHzCbJa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2421,
+                "cache_read_input_tokens": 32697,
+                "output_tokens": 348,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2421
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 348,
+                    "cache_read_input_tokens": 32697,
+                    "cache_creation_input_tokens": 2421,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2421,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T22:59:39.635Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011zN4FiPcAyevfjNM3srXNy",
+              "type": "tool_result",
+              "content": "====================================================================================================\nSECTION 4: EXPERIMENTS WITH SPEC FIELDS\n====================================================================================================\n\n--- full_trace_2048tok_seed42 (status=QUEUED, conclusion=) ---\n{\n  \"hypothesis\": \"plan_006: trace length ablation - 2048 tokens. Control condition matching full_trace_seed42_v5 max_seq_length.\",\n  \"notes\": \"plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=2048, all other hyperparams identical. Expected to match full_trace_seed42_v5 since original traces average ~1811 tokens.\",\n  \"model_name\": \"Qwen/Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42\n}\n\n--- full_trace_1024tok_seed42 (status=QUEUED, conclusion=) ---\n{\n  \"hypothesis\": \"plan_006: trace length ablation - 1024 tokens. Tests accuracy with extended trace context.\",\n  \"notes\": \"plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=1024, all other hyperparams identical.\",\n  \"model_name\": \"Qwen/Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42\n}\n\n--- full_trace_512tok_seed42 (status=QUEUED, conclusion=) ---\n{\n  \"hypothesis\": \"plan_006: trace length ablation - 512 tokens. Tests accuracy with moderate trace length.\",\n  \"notes\": \"plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=512, all other hyperparams identical.\",\n  \"model_name\": \"Qwen/Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42\n}\n\n--- full_trace_256tok_seed42 (status=QUEUED, conclusion=) ---\n{\n  \"hypothesis\": \"plan_006: trace length ablation - 256 tokens. Tests if minimal trace context suffices for verdict prediction.\",\n  \"notes\": \"plan_006. Parent: full_trace_seed42_v5. max_trace_tokens=256, all other hyperparams identical.\",\n  \"model_name\": \"Qwen/Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42\n}\n\n--- deepseek_vota_seed42 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"93484\",\n  \"log_path\": \"~/runs/trace-verdict-study/deepseek_vota_seed42.log\",\n  \"submitted_at\": \"2026-05-15T10:45:36.891Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\",\n  \"seed\": 42,\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\",\n  \"wall_clock_seconds\": 8839.9,\n  \"gpu_hours\": 2.46\n}\n\n--- deepseek_exception_only_seed456 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456 --gradient_checkpointing --gpu 0 --seed 456 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed456\",\n  \"server\": \"westd-11235\",\n  \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\",\n  \"seed\": 456,\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"checkpoint_source\": \"N/A - training run\",\n  \"eval_data\": \"N/A - training run\"\n}\n\n--- vota_seed456_v2 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456_v2\",\n  \"server\": \"westd-11235\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 456,\n  \"checkpoint_source\": \"N/A (training, not eval)\",\n  \"eval_data\": \"N/A (training, not eval)\"\n}\n\n--- deepseek_full_trace_seed42_v3 (status=RUNNING, conclusion=) ---\n{\n  \"command\": \"python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6.7b-instruct --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42_v3\",\n  \"server\": \"westd-11235\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\",\n  \"seed\": 42\n}\n\n--- deepseek_exception_only_seed123 (status=DONE, conclusion=negative) ---\n{\n  \"command\": \"bash -c \\\"... train_sft.py --condition exception_only --seed 123 + evaluate.py\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"144507\",\n  \"log_path\": \"~/runs/trace-verdict-study/deepseek_exception_only_seed123.log\",\n  \"submitted_at\": \"2026-05-15T18:14:56.180Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"plan_id\": \"plan_008\",\n  \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\",\n  \"seed\": 123,\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"wall_clock_seconds\": 6785.9,\n  \"gpu_hours\": 1.88\n}\n\n--- no_trace_seed42 (status=DONE, conclusion=killed) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"709277\",\n  \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42.log\",\n  \"submitted_at\": \"2026-05-14T17:58:31.124Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"wall_clock_seconds\": 93295.0,\n  \"gpu_hours\": 25.92\n}\n\n--- no_trace_seed42_v2 (status=DONE, conclusion=killed) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"709781\",\n  \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v2.log\",\n  \"submitted_at\": \"2026-05-14T17:59:53.485Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"wall_clock_seconds\": 93211.7,\n  \"gpu_hours\": 25.89\n}\n\n--- vota_seed42 (status=DONE, conclusion=killed) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:1\"\n  ],\n  \"pid\": \"709357\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_seed42.log\",\n  \"submitted_at\": \"2026-05-14T17:58:32.964Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"wall_clock_seconds\": 93291.0,\n  \"gpu_hours\": 25.91\n}\n\n--- vota_seed42_v2 (status=DONE, conclusion=killed) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:1\"\n  ],\n  \"pid\": \"709863\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v2.log\",\n  \"submitted_at\": \"2026-05-14T17:59:55.513Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"wall_clock_seconds\": 93207.3,\n  \"gpu_hours\": 25.89\n}\n\n--- vota_seed456 (status=DONE, conclusion=failed) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json --save_predictions --max_length 2048\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:1\"\n  ],\n  \"pid\": \"146582\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_seed456.log\",\n  \"submitted_at\": \"2026-05-15T18:31:33.049Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"wall_clock_seconds\": 87.5,\n  \"gpu_hours\": 0.02\n}\n\n--- deepseek_full_trace_seed42_v2 (status=DONE, conclusion=killed) ---\n{\n  \"plan_id\": \"plan_004\",\n  \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\",\n  \"seed\": 42,\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"server\": \"westd-11235\",\n  \"command\": \"train_sft.py --condition full_trace + evaluate.py\",\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2\"\n}\n\n--- deepseek_full_trace_seed42 (status=DONE, conclusion=negative) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"112289\",\n  \"log_path\": \"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\",\n  \"submitted_at\": \"2026-05-15T13:47:47.241Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\",\n  \"seed\": 42,\n  \"wall_clock_seconds\": 10254.4,\n  \"gpu_hours\": 2.85\n}\n\n--- exception_only_seed123 (status=DONE, conclusion=success) ---\n{\n  \"plan_id\": \"plan_008a\",\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 123,\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"server\": \"westd-11235\"\n}\n\n--- exception_only_seed456 (status=DONE, conclusion=success) ---\n{\n  \"plan_id\": \"plan_008a\",\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 456,\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"server\": \"westd-11235\"\n}\n\n--- vota_exception_only_seed42_v2 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42_v2 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json\\\"\",\n  \"server\": \"westd-11235\",\n  \"data_path\": \"exception_only\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42,\n  \"pid\": \"79633\",\n  \"gpu\": [\n    \"cuda:1\"\n  ],\n  \"submitted_at\": \"2026-05-15T15:15:14Z\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42_v2.log\",\n  \"account\": \"root\",\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\"\n}\n\n--- vota_seed123 (status=DONE, conclusion=failed) ---\n{\n  \"plan_id\": \"plan_008b\",\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 123,\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"server\": \"westd-11235\"\n}\n\n--- full_trace_label_only_seed42 (status=DONE, conclusion=success) ---\n{\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final\",\n  \"log_path\": \"~/runs/trace-verdict-study/full_trace_label_only_seed42.log\"\n}\n\n--- vota_no_ae_seed42 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota_no_ae --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_no_ae_seed42\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:1\"\n  ],\n  \"pid\": \"953133\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_no_ae_seed42.log\",\n  \"submitted_at\": \"2026-05-15T04:21:27.215Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_no_ae_train.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42,\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final\",\n  \"wall_clock_seconds\": 6902.4,\n  \"gpu_hours\": 1.92\n}\n\n--- vota_loop_only_seed42 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_loop_only_seed42 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final --gpu 0\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"82362\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_loop_only_seed42.log\",\n  \"submitted_at\": \"2026-05-15T07:58:06.023Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/loop_only_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42,\n  \"wall_clock_seconds\": 7952.5,\n  \"gpu_hours\": 2.21\n}\n\n--- vota_ae_only_seed42 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\",\n  \"server\": \"westd-11235\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42\n}\n\n--- deepseek_exception_only_seed42 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:1\"\n  ],\n  \"pid\": \"107188\",\n  \"log_path\": \"~/runs/trace-verdict-study/deepseek_exception_only_seed42.log\",\n  \"submitted_at\": \"2026-05-15T13:10:32.405Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\",\n  \"seed\": 42,\n  \"wall_clock_seconds\": 7358.8,\n  \"gpu_hours\": 2.04\n}\n\n--- full_trace_seed42_v5 (status=DONE, conclusion=success) ---\n{\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\",\n  \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v5.log\",\n  \"wall_clock_seconds\": 7852,\n  \"gpu_hours\": 2.18\n}\n\n--- no_trace_seed42_v5 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"python train/train_sft.py --condition no_trace --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42_v5\",\n  \"server\": \"westd-11235\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42,\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\",\n  \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v5.log\"\n}\n\n--- vota_seed42_v5 (status=DONE, conclusion=success) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42_v5\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:1\"\n  ],\n  \"pid\": \"940786\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v5.log\",\n  \"submitted_at\": \"2026-05-15T01:46:03.990Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42,\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\",\n  \"wall_clock_seconds\": 8443,\n  \"gpu_hours\": 2.35\n}\n\n--- deepseek_no_trace_seed42 (status=DONE, conclusion=negative) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"106822\",\n  \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\",\n  \"submitted_at\": \"2026-05-15T13:09:35.611Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\",\n  \"seed\": 42,\n  \"wall_clock_seconds\": 1791.4,\n  \"gpu_hours\": 0.5\n}\n\n--- calibration_analysis_seed42 (status=DONE, conclusion=success) ---\n{\n  \"plan_id\": \"plan_007\",\n  \"command\": \"python eval/calibration_analysis.py\",\n  \"server\": \"westd-11235\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/\",\n  \"data_count\": 1190,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42\n}\n\n--- vota_exception_only_seed42 (status=DONE, conclusion=failed) ---\n{\n  \"command\": \"python train/train_sft.py --condition exception_only --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1\",\n  \"server\": \"westd-11235\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\",\n  \"data_count\": {\n    \"train\": 4720,\n    \"test\": 1190\n  },\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42,\n  \"checkpoint_path\": \"N/A\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42.log\",\n  \"failure_reason\": \"OOM at step 8/444 \\u2014 missing --gradient_checkpointing flag\"\n}\n\n--- vota_seed42_v4 (status=DONE, conclusion=success) ---\n{\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v4.log\",\n  \"wall_clock_seconds\": 8160,\n  \"gpu_hours\": 2.27\n}\n\n--- full_trace_seed42_v2 (status=DONE, conclusion=negative) ---\n{\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\",\n  \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v2.log\",\n  \"wall_clock_seconds\": 7860,\n  \"gpu_hours\": 2.18\n}\n\n--- no_trace_seed42_v4 (status=DONE, conclusion=success) ---\n{\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\",\n  \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v4.log\",\n  \"wall_clock_seconds\": 1274.7,\n  \"gpu_hours\": 0.35\n}\n\n--- full_trace_seed42 (status=DONE, conclusion=killed) ---\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name full_trace_seed42\\\"\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"712469\",\n  \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42.log\",\n  \"submitted_at\": \"2026-05-14T18:38:06.317Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42,\n  \"hypothesis\": \"Full execution trace (line-by-line Scratchpad format) provides verdict accuracy lift vs no-trace baseline\",\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\",\n  \"wall_clock_seconds\": 11247.5,\n  \"gpu_hours\": 3.12\n}\n\n--- no_trace_seed42_v3 (status=DONE, conclusion=killed) ---\n{\n  \"command\": \"python train/train_sft.py --condition no_trace --gpu 0\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"710523\",\n  \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v3.log\",\n  \"submitted_at\": \"2026-05-14T18:01:02.641Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42,\n  \"hypothesis\": \"Baseline: verdict accuracy without execution trace\",\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\",\n  \"wall_clock_seconds\": 4617.5,\n  \"gpu_hours\": 1.28\n}\n\n--- vota_seed42_v3 (status=DONE, conclusion=killed) ---\n{\n  \"command\": \"python train/train_sft.py --condition vota --gpu 1\",\n  \"server\": \"westd-11235\",\n  \"gpu\": [\n    \"cuda:1\"\n  ],\n  \"pid\": \"710601\",\n  \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v3.log\",\n  \"submitted_at\": \"2026-05-14T18:01:04.338Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\",\n  \"data_count\": 4720,\n  \"model_name\": \"Qwen2.5-Coder-7B-Instruct\",\n  \"seed\": 42,\n  \"hypothesis\": \"VOTA trace provides significant verdict accuracy lift over no-trace baseline\",\n  \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\",\n  \"wall_clock_seconds\": 13468.8,\n  \"gpu_hours\": 3.74\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fad81a5f-38d3-4ff4-aee0-74f990578cbe",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "77603cea-960b-4b5b-a80e-ec673d6bbd04",
+            "sourceToolAssistantUUID": "fad81a5f-38d3-4ff4-aee0-74f990578cbe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T22:59:42.898Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check for any remaining fields on experiments that I might have missed (like metrics, tmux_session, etc.):"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77603cea-960b-4b5b-a80e-ec673d6bbd04",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5Beu4YVTUutu3v3K8n9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "07ad0ee3-f186-4b13-8adb-8011e07a7909",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SWgsXJRKCK6S95XKHQMbsi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10729,
+                "cache_read_input_tokens": 35118,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10729,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T22:59:53.341Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BGGKuePxD1RNgRYbdCHkAX",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study--claude-sessions-agent-300681c9/675f4029-4261-4f48-afaf-a7b7ebc8b7ae/tool-results/mcp-agent-ml-research-read_registry-1778885907286.txt') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Collect all unique keys across all experiments (excluding spec)\nall_keys = set()\nfor eid, exp in experiments.items():\n    all_keys.update(exp.keys())\n\nprint(\"All unique top-level keys across experiments:\")\nfor k in sorted(all_keys):\n    print(f\"  {k}\")\n\n# Check for metrics or tmux_session fields\nprint(\"\\n\\nExperiments with 'metrics' field:\")\nfor eid, exp in experiments.items():\n    if 'metrics' in exp and exp['metrics']:\n        print(f\"  {eid}: {json.dumps(exp['metrics'])[:200]}\")\n\nprint(\"\\nExperiments with 'tmux_session' field:\")\nfor eid, exp in experiments.items():\n    if 'tmux_session' in exp and exp['tmux_session']:\n        print(f\"  {eid}: {exp['tmux_session']}\")\n\nprint(\"\\nExperiments with 'pid' field (top-level, not in spec):\")\nfor eid, exp in experiments.items():\n    if 'pid' in exp and exp['pid']:\n        print(f\"  {eid}: pid={exp['pid']}\")\n\nprint(\"\\nExperiments with 'server' field (top-level):\")\nfor eid, exp in experiments.items():\n    if 'server' in exp and exp['server']:\n        print(f\"  {eid}: server={exp['server']}\")\n\nprint(\"\\nExperiments with 'gpu' field (top-level):\")\nfor eid, exp in experiments.items():\n    if 'gpu' in exp and exp['gpu']:\n        print(f\"  {eid}: gpu={exp['gpu']}\")\n\n# Also show the baseline data\nprint(\"\\n\\nBaseline data:\")\nbaseline = inner['data'].get('baseline')\nif baseline:\n    print(json.dumps(baseline, indent=2))\nelse:\n    print(\"  (none)\")\nPYEOF\n",
+                "description": "Extract all unique fields, metrics, tmux, pid, and baseline data"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07ad0ee3-f186-4b13-8adb-8011e07a7909",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5Beu4YVTUutu3v3K8n9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "afbafb35-34e7-4eff-a5f0-80f58795cba9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SWgsXJRKCK6S95XKHQMbsi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10729,
+                "cache_read_input_tokens": 35118,
+                "output_tokens": 734,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10729
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 734,
+                    "cache_read_input_tokens": 35118,
+                    "cache_creation_input_tokens": 10729,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10729,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T22:59:53.440Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BGGKuePxD1RNgRYbdCHkAX",
+              "type": "tool_result",
+              "content": "All unique top-level keys across experiments:\n  account\n  checkpoint_path\n  completed_at\n  conclusion\n  created_at\n  extra\n  failure_reason\n  gpu\n  hypothesis\n  log_path\n  metrics\n  notes\n  parent\n  pid\n  reproduce\n  retry_count\n  server\n  spec\n  status\n  updated_at\n  wandb_run_id\n\n\nExperiments with 'metrics' field:\n  deepseek_vota_seed42: {\"accuracy\": 0.8445, \"majority_baseline\": 0.7151, \"lift\": 0.1294, \"accuracy_ci\": [0.826, 0.864], \"pass_precision\": 0.821, \"pass_recall\": 1, \"pass_f1\": 0.902, \"fail_precision\": 1, \"fail_recall\": 0.454,\n  deepseek_exception_only_seed456: {\"accuracy\": 0.9933, \"majority_baseline\": 0.7151, \"lift\": 0.2782, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9906, \"pass_f1\": 0.9953, \"fail_precision\": 0.9769, \"fail_recall\": 1, \"fail_f1\": 0.988\n  vota_seed456_v2: {\"accuracy\": 0.9908, \"pass_precision\": 1, \"pass_recall\": 0.987, \"pass_f1\": 0.993, \"fail_precision\": 0.969, \"fail_recall\": 1, \"fail_f1\": 0.984, \"ci_95\": [0.985, 0.996]}\n  deepseek_exception_only_seed123: {\"accuracy\": 0.9109, \"pass_precision\": 1, \"pass_recall\": 0.993, \"pass_f1\": 0.996, \"fail_precision\": 0.976, \"fail_recall\": 0.705, \"fail_f1\": 0.818, \"ci_95\": [0.894, 0.926], \"train_loss\": 0.122, \"train_\n  deepseek_full_trace_seed42: {\"accuracy_no_truncation\": 0.2849, \"accuracy_with_truncation_fix\": 0.1059, \"accuracy_with_truncation_fix_ci\": [0.089, 0.123], \"majority_baseline\": 0.7151, \"n\": 1190, \"note\": \"Both evals show model fai\n  exception_only_seed123: {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_\n  exception_only_seed456: {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_\n  vota_exception_only_seed42_v2: {\"accuracy\": 0.9983, \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.998, \"pass_f1\": 0.999, \"fail_precision\": 0.994, \"fail_recall\": 1, \"fail_f1\": 0.997, \"\n  full_trace_label_only_seed42: {\"accuracy\": 0.8622, \"accuracy_ci_lower\": 0.8437, \"accuracy_ci_upper\": 0.8807, \"majority_baseline\": 0.7151, \"lift\": 0.1471, \"n\": 1190, \"pass_precision\": 0.8821, \"pass_recall\": 0.9318, \"pass_f1\": 0.906\n  vota_no_ae_seed42: {\"accuracy\": 0.994, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_f1\": 0.996, \"fail_f1\": 0.989, \"accuracy_ci_lower\": 0.989, \"accuracy_ci_upper\": 0.998, \"lift_vs_notrace\": 0.243, \"lift_v\n  vota_loop_only_seed42: {\"accuracy\": 0.8563, \"majority_baseline\": 0.7151, \"lift\": 0.1412, \"n\": 1190, \"pass_precision\": 0.9239, \"pass_recall\": 0.8707, \"pass_f1\": 0.8966, \"fail_precision\": 0.7165, \"fail_recall\": 0.8201, \"fail_\n  vota_ae_only_seed42: {\"accuracy\": 0.9992, \"accuracy_ci\": [0.9975, 1], \"bootstrap_pairwise\": {\"ae_only_vs_no_trace\": {\"diff\": 0.2479, \"ci\": [0.2235, 0.2731], \"p_value\": 0, \"significant\": true}, \"ae_only_vs_exception_only\":\n  deepseek_exception_only_seed42: {\"accuracy\": 0.9933, \"majority_baseline\": 0.7151, \"lift\": 0.2782, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9906, \"pass_f1\": 0.9953, \"fail_precision\": 0.9769, \"fail_recall\": 1, \"fail_f1\": 0.988\n  full_trace_seed42_v5: {\"accuracy\": 0.8176, \"majority_baseline\": 0.7151, \"lift\": 0.1025, \"n\": 1190, \"pass_precision\": 0.8774, \"pass_recall\": 0.866, \"pass_f1\": 0.8717, \"fail_precision\": 0.6743, \"fail_recall\": 0.6962, \"fail_f\n  no_trace_seed42_v5: {\"accuracy\": 0.7513, \"accuracy_ci_lower\": 0.7277, \"accuracy_ci_upper\": 0.7748, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"lift_ci_lower\": 0.0042, \"lift_ci_upper\": 0.0706, \"n\": 1190, \"pass_precision\n  vota_seed42_v5: {\"accuracy\": 0.9941, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9882, \"pass_f1\": 0.9941, \"fail_precision\": 0.9714, \"fail_recall\": 1, \"fail_f1\": 0.9855\n  deepseek_no_trace_seed42: {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": \n  calibration_analysis_seed42: {\"no_trace\": {\"ece\": 0.171476, \"mce\": 0.475643, \"brier_score\": 0.197152, \"accuracy\": 0.751261, \"n_samples\": 1190}, \"full_trace\": {\"ece\": 0.095817, \"mce\": 0.249061, \"brier_score\": 0.143924, \"accuracy\":\n  vota_seed42_v4: {\"accuracy\": 0.9563, \"majority_baseline\": 0.7151, \"lift\": 0.2412, \"n\": 1190, \"pass_precision\": 0.944, \"pass_recall\": 0.998, \"pass_f1\": 0.97, \"fail_precision\": 0.993, \"fail_recall\": 0.853, \"fail_f1\": 0\n  full_trace_seed42_v2: {\"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.4311, \"n\": 1190, \"pass_precision\": 0.923, \"pass_recall\": 0.085, \"pass_f1\": 0.155, \"fail_precision\": 0.445, \"fail_recall\": 0.785, \"fail_f1\": \n  no_trace_seed42_v4: {\"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272\n  full_trace_seed42: {\"train_loss\": 0.037, \"eval_loss\": 0.084, \"eval_mean_token_accuracy\": 0.984, \"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.431, \"pass_precision\": 0.88, \"pass_recall\": 0.08, \"pass_f1\": 0.1\n  no_trace_seed42_v3: {\"train_loss\": 0.18, \"eval_loss\": 0.645, \"eval_mean_token_accuracy\": 0.89, \"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": \n  vota_seed42_v3: {\"train_loss\": 0.046, \"eval_loss\": 0.085, \"eval_mean_token_accuracy\": 0.983, \"accuracy\": 0.992, \"majority_baseline\": 0.7151, \"lift\": 0.276, \"pass_precision\": 0.99, \"pass_recall\": 0.99, \"pass_f1\": 0.99\n\nExperiments with 'tmux_session' field:\n\nExperiments with 'pid' field (top-level, not in spec):\n  exception_only_seed123: pid=124197\n  exception_only_seed456: pid=129476\n\nExperiments with 'server' field (top-level):\n  exception_only_seed123: server=westd-11235\n  exception_only_seed456: server=westd-11235\n  vota_seed123: server=westd-11235\n\nExperiments with 'gpu' field (top-level):\n  exception_only_seed123: gpu=cuda:1\n  exception_only_seed456: gpu=cuda:0\n  vota_seed123: gpu=cuda:1\n\n\nBaseline data:\n  (none)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afbafb35-34e7-4eff-a5f0-80f58795cba9",
+            "isSidechain": true,
+            "promptId": "e16001f9-cbfb-4b4f-90d7-7c2e70e7a4c7",
+            "agentId": "a65d7c070a640340a",
+            "type": "user",
+            "uuid": "e832cf68-dedf-4457-a632-41aa013191b8",
+            "sourceToolAssistantUUID": "afbafb35-34e7-4eff-a5f0-80f58795cba9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T23:00:48.552Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete extraction from the registry file:\n\n---\n\n## SECTION 1: RUNNING Experiments (1 total)\n\n**deepseek_full_trace_seed42_v3** — `RUNNING`\n- **hypothesis**: DeepSeek full_trace v3: retrain with label-preserving truncation fix in to_chat_text(). v1/v2 collapsed due to DeepSeek tokenizer producing >2048 tokens → SFTTrainer right-truncated labels. Tests if full_trace shows intermediate performance on DeepSeek (plan_004, 4th condition).\n- **parent**: (empty)\n- **notes**: Director 审批通过。等 cuda:0 释放（deepseek_eo_seed123 完成后）立即提交。唯一代码变化: to_chat_text() label-preserving truncation。用旧代码（load_best_model_at_end 已注释）。\n- **created_at**: 2026-05-15T18:40:07.877Z\n- **updated_at**: 2026-05-15T20:59:06.798Z\n- **spec**: command=`python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6.7b-instruct --gradient_checkpointing --gpu 0 --seed 42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42_v3`, server=westd-11235, data_path=`/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl`, data_count=4720, model_name=deepseek-ai/deepseek-coder-6.7b-instruct, seed=42\n- **No metrics yet, no PID/tmux at top level, no completion info**\n\nNo experiments in PREPARING status.\n\n---\n\n## SECTION 2: QUEUED Experiments (4 total)\n\nAll are plan_006 trace length ablation experiments on Qwen/Qwen2.5-Coder-7B-Instruct, seed=42:\n\n| exp_id | hypothesis | notes |\n|--------|-----------|-------|\n| **full_trace_2048tok_seed42** | plan_006: trace length ablation - 2048 tokens. Control condition matching full_trace_seed42_v5 max_seq_length. | Expected to match full_trace_seed42_v5 since original traces average ~1811 tokens. |\n| **full_trace_1024tok_seed42** | plan_006: trace length ablation - 1024 tokens. Tests accuracy with extended trace context. | Parent: full_trace_seed42_v5. max_trace_tokens=1024 |\n| **full_trace_512tok_seed42** | plan_006: trace length ablation - 512 tokens. Tests accuracy with moderate trace length. | Parent: full_trace_seed42_v5. max_trace_tokens=512 |\n| **full_trace_256tok_seed42** | plan_006: trace length ablation - 256 tokens. Tests if minimal trace context suffices for verdict prediction. | Parent: full_trace_seed42_v5. max_trace_tokens=256 |\n\nAll created 2026-05-15T22:27, no GPU/server/PID assigned yet. No PENDING experiments.\n\n---\n\n## SECTION 3: Summary Table — All 37 Experiments\n\n| exp_id | status | conclusion | server | gpu | pid | hypothesis (first 80 chars) |\n|--------|--------|-----------|--------|-----|-----|---------------------------|\n| full_trace_2048tok_seed42 | QUEUED | | | | | plan_006: trace length ablation - 2048 tokens. Control condition matching full_t... |\n| full_trace_1024tok_seed42 | QUEUED | | | | | plan_006: trace length ablation - 1024 tokens. Tests accuracy with extended trac... |\n| full_trace_512tok_seed42 | QUEUED | | | | | plan_006: trace length ablation - 512 tokens. Tests accuracy with moderate trace... |\n| full_trace_256tok_seed42 | QUEUED | | | | | plan_006: trace length ablation - 256 tokens. Tests if minimal trace context suf... |\n| deepseek_vota_seed42 | DONE | success | westd-11235 | cuda:0 | 93484 | Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004) |\n| deepseek_exception_only_seed456 | DONE | success | westd-11235 | | | Cross-model seed robustness: exception_only seed=456 on DeepSeek-Coder-6.7B |\n| vota_seed456_v2 | DONE | success | westd-11235 | | | Seed robustness: VOTA with seed=456, retry with --gradient_checkpointing |\n| **deepseek_full_trace_seed42_v3** | **RUNNING** | | westd-11235 | | | DeepSeek full_trace v3: retrain with label-preserving truncation fix |\n| deepseek_exception_only_seed123 | DONE | negative | westd-11235 | cuda:0 | 144507 | Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B |\n| no_trace_seed42 | DONE | killed | westd-11235 | cuda:0 | 709277 | (none) |\n| no_trace_seed42_v2 | DONE | killed | westd-11235 | cuda:0 | 709781 | (none) |\n| vota_seed42 | DONE | killed | westd-11235 | cuda:1 | 709357 | (none) |\n| vota_seed42_v2 | DONE | killed | westd-11235 | cuda:1 | 709863 | (none) |\n| vota_seed456 | DONE | failed | westd-11235 | cuda:1 | 146582 | Seed robustness: VOTA with seed=456 (plan_008) |\n| deepseek_full_trace_seed42_v2 | DONE | killed | westd-11235 | | | DeepSeek full_trace v2: retrain with v5 code |\n| deepseek_full_trace_seed42 | DONE | negative | westd-11235 | cuda:0 | 112289 | Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B |\n| exception_only_seed123 | DONE | success | westd-11235 | cuda:1 | 124197 | Seed robustness: exception_only with seed=123 on Qwen-2.5-Coder-7B (plan_008) |\n| exception_only_seed456 | DONE | success | westd-11235 | cuda:0 | 129476 | Seed robustness: exception_only with seed=456 on Qwen-2.5-Coder-7B (plan_008) |\n| vota_exception_only_seed42_v2 | DONE | success | westd-11235 | cuda:1 | 79633 | VOTA component ablation: exception_only condition — retry with --gradient_checkp... |\n| vota_seed123 | DONE | failed | westd-11235 | cuda:1 | | Seed robustness: VOTA with seed=123 (plan_008) |\n| full_trace_label_only_seed42 | DONE | success | | | | Label-only loss on full_trace fixes gradient dilution collapse (plan_002) |\n| vota_no_ae_seed42 | DONE | success | westd-11235 | cuda:1 | 953133 | VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine... |\n| vota_loop_only_seed42 | DONE | success | westd-11235 | cuda:0 | 82362 | VOTA component ablation: loop_only condition |\n| vota_ae_only_seed42 | DONE | success | westd-11235 | | | VOTA component ablation: ae_only condition |\n| deepseek_exception_only_seed42 | DONE | success | westd-11235 | cuda:1 | 107188 | Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004) |\n| full_trace_seed42_v5 | DONE | success | | | | Full execution trace with chat-template-aware truncation |\n| no_trace_seed42_v5 | DONE | success | westd-11235 | | | Baseline: verdict accuracy without execution trace (v5) |\n| vota_seed42_v5 | DONE | success | westd-11235 | cuda:1 | 940786 | VOTA trace provides verdict accuracy lift over no-trace baseline (v5) |\n| deepseek_no_trace_seed42 | DONE | negative | westd-11235 | cuda:0 | 106822 | Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B |\n| calibration_analysis_seed42 | DONE | success | westd-11235 | | | Calibration analysis: ECE + reliability diagrams |\n| vota_exception_only_seed42 | DONE | failed | westd-11235 | | | VOTA component ablation: exception_only condition (OOM) |\n| vota_seed42_v4 | DONE | success | | | | VOTA trace provides verdict accuracy lift over no-trace baseline (v4) |\n| full_trace_seed42_v2 | DONE | negative | | | | Full execution trace with smart truncation (label preserved) |\n| no_trace_seed42_v4 | DONE | success | | | | Baseline: verdict accuracy without execution trace (v4) |\n| full_trace_seed42 | DONE | killed | westd-11235 | cuda:0 | 712469 | Full execution trace (line-by-line Scratchpad format) |\n| no_trace_seed42_v3 | DONE | killed | westd-11235 | cuda:0 | 710523 | Baseline: verdict accuracy without execution trace |\n| vota_seed42_v3 | DONE | killed | westd-11235 | cuda:1 | 710601 | VOTA trace provides significant verdict accuracy lift over no-trace baseline |\n\n**Status breakdown**: RUNNING=1, QUEUED=4, DONE=32 (success=20, negative=4, killed=8, failed=3)\n\n---\n\n## SECTION 4: Experiments with Spec Fields (31 of 37 have specs)\n\nAll specs were printed in full above. Key observations:\n\n- **All server references**: westd-11235\n- **Two model families**: Qwen/Qwen2.5-Coder-7B-Instruct (Qwen) and deepseek-ai/deepseek-coder-6.7b-instruct (DeepSeek)\n- **Consistent data_count**: 4720 (train) across all training experiments, 1190 (test) where noted\n- **Experiments with `wall_clock_seconds` / `gpu_hours`**: 20 experiments have timing data; total recorded GPU-hours across those is approximately 131 hours\n- **The sole RUNNING experiment** (deepseek_full_trace_seed42_v3) has no PID or tmux_session at the top level — only spec-level info (command, server, data_path, etc.)\n- **4 QUEUED experiments** (trace length ablation series) have only partial specs (hypothesis, notes, model_name, seed) — no command, server, gpu, or pid yet\n\n**Metrics highlights for key completed experiments:**\n\n| exp_id | accuracy | lift over baseline |\n|--------|---------|-------------------|\n| vota_seed42_v5 | 0.9941 | +0.279 |\n| vota_seed456_v2 | 0.9908 | — |\n| vota_ae_only_seed42 | 0.9992 | — |\n| vota_no_ae_seed42 | 0.994 | +0.279 |\n| vota_exception_only_seed42_v2 | 0.9983 | +0.2832 |\n| exception_only_seed123 | 0.9983 | +0.2832 |\n| exception_only_seed456 | 0.9983 | +0.2832 |\n| deepseek_exception_only_seed42 | 0.9933 | +0.2782 |\n| deepseek_vota_seed42 | 0.8445 | +0.1294 |\n| full_trace_seed42_v5 | 0.8176 | +0.1025 |\n| no_trace_seed42_v5 | 0.7513 | +0.0361 |\n| deepseek_no_trace_seed42 | 0.7336 | +0.0185 |\n| full_trace_seed42_v2 | 0.284 | -0.4311 (negative) |\n| deepseek_full_trace_seed42 | 0.2849 | — (negative, collapsed) |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e832cf68-dedf-4457-a632-41aa013191b8",
+            "isSidechain": true,
+            "agentId": "a65d7c070a640340a",
+            "requestId": "req_011Cb5Bfv4bg9GAdWoiqW4B6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1dd50cd3-0f75-4210-84e6-4ef8c554096d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/agent_300681c9",
+            "sessionId": "675f4029-4261-4f48-afaf-a7b7ebc8b7ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0162gnN2BeEKA8pic1chUdEg",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3544,
+                "cache_read_input_tokens": 45847,
+                "output_tokens": 3444,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3544
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3444,
+                    "cache_read_input_tokens": 45847,
+                    "cache_creation_input_tokens": 3544,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3544,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-file-at-home-ubuntu-claude-account-3-projects-home-ubuntu-agent-ml-re.md"
+}

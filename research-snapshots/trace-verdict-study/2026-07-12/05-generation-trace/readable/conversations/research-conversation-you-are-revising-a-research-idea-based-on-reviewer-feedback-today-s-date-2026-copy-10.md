@@ -1,0 +1,3755 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-1/6c6ca700-bae4-4204-af44-f073fa9dc2dc.jsonl`
+- **Structured JSON:** [`d993d9267ddb767f5eb7.json`](../../sessions/d9/d993d9267ddb767f5eb7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T06:41:31.073Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T06:41:31.073Z",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignment\",\n  \"core_problem\": \"Cross-lingual fine-tuning systematically destroys culturally-grounded, language-specific knowledge while improving factual transfer—a phenomenon called 'cultural erasure.' No training-time method prevents this, forcing practitioners to choose between cross-lingual capability and cultural authenticity.\",\n  \"opportunity\": \"'Rethinking Cross-lingual Alignment' (arXiv 2510.26024, Oct 2025) rigorously demonstrates that every tested cross-lingual alignment approach degrades cultural localization across all six languages, and proposes Surgical Steering as a remedy—but only at inference time, requiring per-query layer manipulation and offering no prevention during training. The finding that factual transfer and cultural localization are optimally steerable at *different model layers* is actionable: applying LoRA selectively to factual-transfer layers while freezing cultural-knowledge layers during instruction fine-tuning would prevent erasure at the source, and is feasible with any open-source multilingual model via a lightweight probing step.\",\n  \"landscape\": \"INCLINE (arXiv 2410.12462, ACL 2025 outstanding paper) aligns internal representations from low-resource to high-resource languages via learned projection matrices derived from parallel sentences, improving cross-lingual task performance but not distinguishing factual from cultural knowledge. AlignX (arXiv 2509.24338, EMNLP 2025) and CM-Align (arXiv 2509.08541) apply two-stage and consistency-based multilingual alignment respectively, both optimizing convergence without a cultural preservation objective. Language Surgery/ITLC (arXiv 2506.12450) disentangles language-specific from agnostic information through latent injection at inference time, but does not train models to preserve this distinction. Alignment through steering (arXiv 2505.12584) adds a learned residual-stream vector at a single layer; it outperforms many baselines but still does not model the factual-cultural layer split. Surgical Steering (arXiv 2510.26024) is the only method addressing the cultural erasure problem, and is strictly an inference-time patch over an already-erased model. Concurrent work arXiv 2504.10191 ('Localized Cultural Knowledge is Conserved and Controllable in LLMs', April 2025) confirms via activation patching that cultural knowledge survives in specific deeper layers even after fine-tuning and can be steered—supporting our premise but addressing control at inference time, not prevention during training.\",\n  \"approach\": \"We propose Cultural-Layer-Selective LoRA (CLS-LoRA), a training-time method that prevents cultural erasure without sacrificing factual cross-lingual transfer. The pipeline begins with a layer profiling step: lightweight linear probes (one per transformer layer) are trained on a small parallel corpus of factual QA pairs and culture-specific benchmark items to produce per-layer factual-transfer and cultural-localization accuracy scores, yielding a principled layer partition—typically middle layers for factual transfer and deeper layers for cultural knowledge, as identified in arXiv 2510.26024 and corroborated by arXiv 2504.10191. LoRA adapters (via Hugging Face PEFT `target_modules`) are then inserted exclusively into factual-transfer layers and trained with standard instruction fine-tuning loss on multilingual instruction data, while cultural-knowledge layers remain fully frozen. An optional auxiliary KL-divergence penalty on a held-out cultural probe set discourages residual drift in frozen layers' downstream activations. We experiment on Qwen3-8B and LLaMA 4 Scout across six typologically diverse languages, evaluating on the transfer-localization plane framework from arXiv 2510.26024, CulturalBench, and SemEval-2026 Task 7, comparing against full-LoRA, Surgical Steering, and INCLINE baselines to demonstrate that CLS-LoRA Pareto-dominates prior methods in the transfer-localization trade-off space.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~220h A100 80GB\",\n      \"gpu_utilization\": \"~30–40% effective; GPU idles while the researcher inspects probe accuracy heatmaps to select layer partition boundaries, designs ablation grids, and iterates on training scripts between runs\",\n      \"timeline\": \"4–6 months\",\n      \"team\": \"1–2 researchers\",\n      \"estimated_gpu_cost\": \"~$330–460 (A100 at $1.49–2.06/hr via RunPod/Lambda)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150h A100 80GB\",\n      \"gpu_utilization\": \"~60–70% effective; agent queues probing and LoRA sweep experiments overnight, researcher reviews layer partition heatmaps and approves next ablation tier once daily, cutting idle time ~50% vs. manual\",\n      \"timeline\": \"6–8 weeks\",\n      \"team\": \"1 researcher, ~30min/day check-in\",\n      \"claude_api_cost\": \"$150–250 (~1000–1500 conversation turns at $0.10–0.15/turn with Opus)\",\n      \"estimated_gpu_cost\": \"~$220–310 (A100 at $1.49–2.06/hr)\",\n      \"risk_note\": \"Key risk: agent may commit to a suboptimal layer partition if probe accuracy curves are bimodal or noisy; daily human review of the partition heatmap before LoRA runs is the essential gate\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~600h A100 80GB (broader sweep: 4 LoRA rank values × 3 layer partition thresholds × 2 model families × 5 regularization strengths × 3 seeds)\",\n      \"gpu_utilization\": \"~85–90% effective; agent continuously queues the next experiment upon completion with no human approval bottleneck—idle only during brief checkpoint evaluation transitions\",\n      \"timeline\": \"5–10 days with 4–8 concurrent A100 GPUs\",\n      \"team\": \"0 (2–3h of initial harness setup and config-space definition)\",\n      \"claude_api_cost\": \"$350–550 (~2500–4000 turns across experiment planning, result parsing, and ablation branching)\",\n      \"estimated_gpu_cost\": \"~$900–1240 (A100 at $1.49–2.06/hr)\",\n      \"speed_bottleneck\": \"Number of concurrent A100s and the ~4–5h sequential cultural benchmark evaluation per checkpoint; evaluation cannot be parallelized across checkpoints sharing the same GPU\",\n      \"risk_note\": \"Without human oversight the agent cannot resolve ambiguous bimodal probe distributions and may allocate large fractions of the GPU budget to degenerate layer partitions before detecting degradation in evaluation metrics\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)\",\n    \"EACL 2027 (ARR submission deadline August 3, 2026)\",\n    \"AAAI 2027 (submission deadline expected July–August 2026, TBC)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs (arXiv 2510.26024, 2025)\",\n    \"Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention / INCLINE (ACL 2025, arXiv 2410.12462)\",\n    \"AlignX: Advancing Multilingual Large Language Models with Multilingual Representation Alignment (EMNLP 2025, arXiv 2509.24338)\",\n    \"CM-Align: Consistency-based Multilingual Alignment for Large Language Models (arXiv 2509.08541, 2025)\",\n    \"Language Surgery in Multilingual Large Language Models / ITLC (arXiv 2506.12450, 2025)\",\n    \"Improving Multilingual Language Models by Aligning Representations through Steering (arXiv 2505.12584, 2025)\",\n    \"Localized Cultural Knowledge is Conserved and Controllable in Large Language Models (arXiv 2504.10191, 2025)\",\n    \"LoRA: Low-Rank Adaptation of Large Language Models (ICLR 2022, arXiv 2106.09685)\"\n  ],\n  \"description\": \"Cross-lingual instruction fine-tuning demonstrably erases culturally-localized knowledge across all tested alignment approaches—yet no training-time prevention exists. We propose Cultural-Layer-Selective LoRA (CLS-LoRA), which prevents cultural erasure by first running lightweight linear probes on every transformer layer of a pretrained multilingual model (Qwen3-8B or LLaMA 4 Scout, supporting 119+ languages) to partition layers into factual-transfer clusters (middle layers, per arXiv 2510.26024) and cultural-knowledge clusters (deeper layers, corroborated by arXiv 2504.10191). LoRA adapters are applied exclusively to factual-transfer layers during cross-lingual instruction fine-tuning while cultural-knowledge layers remain frozen; an optional KL-divergence regularizer further anchors cultural-layer outputs to their pretrained distribution. The approach requires only a small parallel corpus and cultural probe set, and is implementable through standard PEFT target_modules configuration with no custom infrastructure. Experiments across six typologically diverse languages use the transfer-localization plane from Surgical Steering as the primary metric alongside CulturalBench and SemEval-2026 Task 7. Unlike Surgical Steering—an inference-time patch over an already-erased model—CLS-LoRA eliminates erasure at the source, targeting a Pareto improvement across the full transfer-localization trade-off.\",\n  \"project_name\": \"cls_lora_cultural_preservation\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 1)\nIssues: [\"INCLINE (arXiv:2410.12462) is described as an 'ACL 2025 outstanding paper' — no evidence of this award was found in any ACL 2025 outstanding-paper announcement. This factual error will damage reviewer credibility; the claim should be removed or corrected.\", \"Critical missing related work: MLAS-LoRA (ACL 2025, aclanthology.org/2025.acl-long.762) introduces language-aware neuron detection followed by a multiple language-specific LoRA architecture — conceptually the same probe-then-selective-LoRA pipeline as CLS-LoRA, applied to multilingual MT. This overlap must be cited and the differentiation made explicit or reviewers will flag it as unacknowledged prior art.\", \"Critical missing related work: Source-Shielded Updates (arXiv:2512.04844, Nov 2025) proposes column-wise parameter freezing to shield source-language knowledge during target-language adaptation — directly related to the 'freeze knowledge layers' component of CLS-LoRA. Must be cited.\", \"Auto-research mode estimates 600h A100 (≈ 300–400h H100 equivalent), which violates the user's hard ≤200 H100-hour compute constraint. The sweep (4 ranks × 3 partition thresholds × 2 model families × 5 regularization strengths × 3 seeds = 360 runs) must be trimmed or the auto mode dropped.\", \"LLaMA 4 Scout is a 48-block, 16-expert MoE model (109B total parameters). The factual-vs-cultural layer partition established in arXiv:2510.26024 was discovered on dense models; MoE expert routing changes the functional semantics of 'layer,' making the partition methodology directly inapplicable without separate validation. Either replace LLaMA 4 Scout with a dense multilingual model (e.g., Aya-23-8B, BLOOM-7B, mT5-XXL) or explicitly add a MoE-adaptation step to the probe procedure.\", \"The transfer-localization plane evaluation framework from arXiv:2510.26024 is the primary metric, but that paper is under review (OpenReview) and its evaluation code may not be publicly released. If the implementation is not available, re-implementing the framework is a hidden engineering cost that could consume days of the 16-day timeline.\", \"The paper reports cultural knowledge 'surviving' in deeper layers even after fine-tuning (arXiv:2504.10191), which complicates the erasure narrative: if knowledge is structurally preserved but behaviorally suppressed, freezing deeper layers may not be the right intervention — the issue may be in the output layers, not in middle-vs-deep storage. This mechanistic ambiguity should be addressed.\"]\nFeedback: The core idea is viable and the training-time gap is real, but the paper needs three structural fixes before it can pass review:\n\n1. **Cite and differentiate MLAS-LoRA.** This is the most urgent issue. The Generator should search ACL 2025 Anthology for 'MLAS-LoRA' and add a paragraph in Related Work explaining why CLS-LoRA's factual-vs-cultural layer distinction makes it categorically different from MLAS-LoRA's language-pair-specific neuron selection. The key differentiator is the *cultural-preservation objective*, not the selective-LoRA mechanism itself. Also add Source-Shielded Updates (arXiv:2512.04844).\n\n2. **Drop LLaMA 4 Scout; replace with a dense multilingual model.** The MoE architecture invalidates the layer-partition premise from 2510.26024 and makes compute estimates unreliable. Use Qwen3-8B (confirmed dense, 119 languages) as the primary model and add mT5-XXL or Aya-23-8B as the second model family for cross-architecture generalization. This also brings auto-research mode within the 200h H100 budget if you trim the sweep to ≤3 ablation dimensions.\n\n3. **Address the structural-vs-behavioral erasure ambiguity.** The paper should explicitly test whether the cultural knowledge 'erasure' is representational (information is gone from activations) or behavioral (information exists but the model won't surface it). If arXiv:2504.10191 is correct that cultural knowledge persists structurally, CLS-LoRA's value is in behavioral preservation during fine-tuning — which needs to be measured differently than simple layer probing. A single ablation running full-LoRA training then measuring layer-wise cultural probe accuracy (before vs. after) would resolve this and strengthen the paper's mechanistic story.\n\nSecondary fixes: Remove the 'outstanding paper' label from INCLINE, verify the transfer-localization plane code availability from arXiv:2510.26024 authors before committing to it as primary metric, and reduce auto-research sweep to ≤200h H100.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T06:41:31.078Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T06:41:31.078Z",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+## Round 1
+
+54 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T06:41:31.115Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignment",
+  "core_problem": "Cross-lingual fine-tuning systematically destroys culturally-grounded, language-specific knowledge while improving factual transfer—a phenomenon called 'cultural erasure.' No training-time method prevents this, forcing practitioners to choose between cross-lingual capability and cultural authenticity.",
+  "opportunity": "'Rethinking Cross-lingual Alignment' (arXiv 2510.26024, Oct 2025) rigorously demonstrates that every tested cross-lingual alignment approach degrades cultural localization across all six languages, and proposes Surgical Steering as a remedy—but only at inference time, requiring per-query layer manipulation and offering no prevention during training. The finding that factual transfer and cultural localization are optimally steerable at *different model layers* is actionable: applying LoRA selectively to factual-transfer layers while freezing cultural-knowledge layers during instruction fine-tuning would prevent erasure at the source, and is feasible with any open-source multilingual model via a lightweight probing step.",
+  "landscape": "INCLINE (arXiv 2410.12462, ACL 2025 outstanding paper) aligns internal representations from low-resource to high-resource languages via learned projection matrices derived from parallel sentences, improving cross-lingual task performance but not distinguishing factual from cultural knowledge. AlignX (arXiv 2509.24338, EMNLP 2025) and CM-Align (arXiv 2509.08541) apply two-stage and consistency-based multilingual alignment respectively, both optimizing convergence without a cultural preservation objective. Language Surgery/ITLC (arXiv 2506.12450) disentangles language-specific from agnostic information through latent injection at inference time, but does not train models to preserve this distinction. Alignment through steering (arXiv 2505.12584) adds a learned residual-stream vector at a single layer; it outperforms many baselines but still does not model the factual-cultural layer split. Surgical Steering (arXiv 2510.26024) is the only method addressing the cultural erasure problem, and is strictly an inference-time patch over an already-erased model. Concurrent work arXiv 2504.10191 ('Localized Cultural Knowledge is Conserved and Controllable in LLMs', April 2025) confirms via activation patching that cultural knowledge survives in specific deeper layers even after fine-tuning and can be steered—supporting our premise but addressing control at inference time, not prevention during training.",
+  "approach": "We propose Cultural-Layer-Selective LoRA (CLS-LoRA), a training-time method that prevents cultural erasure without sacrificing factual cross-lingual transfer. The pipeline begins with a layer profiling step: lightweight linear probes (one per transformer layer) are trained on a small parallel corpus of factual QA pairs and culture-specific benchmark items to produce per-layer factual-transfer and cultural-localization accuracy scores, yielding a principled layer partition—typically middle layers for factual transfer and deeper layers for cultural knowledge, as identified in arXiv 2510.26024 and corroborated by arXiv 2504.10191. LoRA adapters (via Hugging Face PEFT `target_modules`) are then inserted exclusively into factual-transfer layers and trained with standard instruction fine-tuning loss on multilingual instruction data, while cultural-knowledge layers remain fully frozen. An optional auxiliary KL-divergence penalty on a held-out cultural probe set discourages residual drift in frozen layers' downstream activations. We experiment on Qwen3-8B and LLaMA 4 Scout across six typologically diverse languages, evaluating on the transfer-localization plane framework from arXiv 2510.26024, CulturalBench, and SemEval-2026 Task 7, comparing against full-LoRA, Surgical Steering, and INCLINE baselines to demonstrate that CLS-LoRA Pareto-dominates prior methods in the transfer-localization trade-off space.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~220h A100 80GB",
+      "gpu_utilization": "~30–40% effective; GPU idles while the researcher inspects probe accuracy heatmaps to select layer partition boundaries, designs ablation grids, and iterates on training scripts between runs",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$330–460 (A100 at $1.49–2.06/hr via RunPod/Lambda)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150h A100 80GB",
+      "gpu_utilization": "~60–70% effective; agent queues probing and LoRA sweep experiments overnight, researcher reviews layer partition heatmaps and approves next ablation tier once daily, cutting idle time ~50% vs. manual",
+      "timeline": "6–8 weeks",
+      "team": "1 researcher, ~30min/day check-in",
+      "claude_api_cost": "$150–250 (~1000–1500 conversation turns at $0.10–0.15/turn with Opus)",
+      "estimated_gpu_cost": "~$220–310 (A100 at $1.49–2.06/hr)",
+      "risk_note": "Key risk: agent may commit to a suboptimal layer partition if probe accuracy curves are bimodal or noisy; daily human review of the partition heatmap before LoRA runs is the essential gate"
+    },
+    "auto_research": {
+      "gpu_hours": "~600h A100 80GB (broader sweep: 4 LoRA rank values × 3 layer partition thresholds × 2 model families × 5 regularization strengths × 3 seeds)",
+      "gpu_utilization": "~85–90% effective; agent continuously queues the next experiment upon completion with no human approval bottleneck—idle only during brief checkpoint evaluation transitions",
+      "timeline": "5–10 days with 4–8 concurrent A100 GPUs",
+      "team": "0 (2–3h of initial harness setup and config-space definition)",
+      "claude_api_cost": "$350–550 (~2500–4000 turns across experiment planning, result parsing, and ablation branching)",
+      "estimated_gpu_cost": "~$900–1240 (A100 at $1.49–2.06/hr)",
+      "speed_bottleneck": "Number of concurrent A100s and the ~4–5h sequential cultural benchmark evaluation per checkpoint; evaluation cannot be parallelized across checkpoints sharing the same GPU",
+      "risk_note": "Without human oversight the agent cannot resolve ambiguous bimodal probe distributions and may allocate large fractions of the GPU budget to degenerate layer partitions before detecting degradation in evaluation metrics"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026)",
+    "EACL 2027 (ARR submission deadline August 3, 2026)",
+    "AAAI 2027 (submission deadline expected July–August 2026, TBC)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs (arXiv 2510.26024, 2025)",
+    "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention / INCLINE (ACL 2025, arXiv 2410.12462)",
+    "AlignX: Advancing Multilingual Large Language Models with Multilingual Representation Alignment (EMNLP 2025, arXiv 2509.24338)",
+    "CM-Align: Consistency-based Multilingual Alignment for Large Language Models (arXiv 2509.08541, 2025)",
+    "Language Surgery in Multilingual Large Language Models / ITLC (arXiv 2506.12450, 2025)",
+    "Improving Multilingual Language Models by Aligning Representations through Steering (arXiv 2505.12584, 2025)",
+    "Localized Cultural Knowledge is Conserved and Controllable in Large Language Models (arXiv 2504.10191, 2025)",
+    "LoRA: Low-Rank Adaptation of Large Language Models (ICLR 2022, arXiv 2106.09685)"
+  ],
+  "description": "Cross-lingual instruction fine-tuning demonstrably erases culturally-localized knowledge across all tested alignment approaches—yet no training-time prevention exists. We propose Cultural-Layer-Selective LoRA (CLS-LoRA), which prevents cultural erasure by first running lightweight linear probes on every transformer layer of a pretrained multilingual model (Qwen3-8B or LLaMA 4 Scout, supporting 119+ languages) to partition layers into factual-transfer clusters (middle layers, per arXiv 2510.26024) and cultural-knowledge clusters (deeper layers, corroborated by arXiv 2504.10191). LoRA adapters are applied exclusively to factual-transfer layers during cross-lingual instruction fine-tuning while cultural-knowledge layers remain frozen; an optional KL-divergence regularizer further anchors cultural-layer outputs to their pretrained distribution. The approach requires only a small parallel corpus and cultural probe set, and is implementable through standard PEFT target_modules configuration with no custom infrastructure. Experiments across six typologically diverse languages use the transfer-localization plane from Surgical Steering as the primary metric alongside CulturalBench and SemEval-2026 Task 7. Unlike Surgical Steering—an inference-time patch over an already-erased model—CLS-LoRA eliminates erasure at the source, targeting a Pareto improvement across the full transfer-localization trade-off.",
+  "project_name": "cls_lora_cultural_preservation",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 1)
+Issues: ["INCLINE (arXiv:2410.12462) is described as an 'ACL 2025 outstanding paper' — no evidence of this award was found in any ACL 2025 outstanding-paper announcement. This factual error will damage reviewer credibility; the claim should be removed or corrected.", "Critical missing related work: MLAS-LoRA (ACL 2025, aclanthology.org/2025.acl-long.762) introduces language-aware neuron detection followed by a multiple language-specific LoRA architecture — conceptually the same probe-then-selective-LoRA pipeline as CLS-LoRA, applied to multilingual MT. This overlap must be cited and the differentiation made explicit or reviewers will flag it as unacknowledged prior art.", "Critical missing related work: Source-Shielded Updates (arXiv:2512.04844, Nov 2025) proposes column-wise parameter freezing to shield source-language knowledge during target-language adaptation — directly related to the 'freeze knowledge layers' component of CLS-LoRA. Must be cited.", "Auto-research mode estimates 600h A100 (≈ 300–400h H100 equivalent), which violates the user's hard ≤200 H100-hour compute constraint. The sweep (4 ranks × 3 partition thresholds × 2 model families × 5 regularization strengths × 3 seeds = 360 runs) must be trimmed or the auto mode dropped.", "LLaMA 4 Scout is a 48-block, 16-expert MoE model (109B total parameters). The factual-vs-cultural layer partition established in arXiv:2510.26024 was discovered on dense models; MoE expert routing changes the functional semantics of 'layer,' making the partition methodology directly inapplicable without separate validation. Either replace LLaMA 4 Scout with a dense multilingual model (e.g., Aya-23-8B, BLOOM-7B, mT5-XXL) or explicitly add a MoE-adaptation step to the probe procedure.", "The transfer-localization plane evaluation framework from arXiv:2510.26024 is the primary metric, but that paper is under review (OpenReview) and its evaluation code may not be publicly released. If the implementation is not available, re-implementing the framework is a hidden engineering cost that could consume days of the 16-day timeline.", "The paper reports cultural knowledge 'surviving' in deeper layers even after fine-tuning (arXiv:2504.10191), which complicates the erasure narrative: if knowledge is structurally preserved but behaviorally suppressed, freezing deeper layers may not be the right intervention — the issue may be in the output layers, not in middle-vs-deep storage. This mechanistic ambiguity should be addressed."]
+Feedback: The core idea is viable and the training-time gap is real, but the paper needs three structural fixes before it can pass review:
+
+1. **Cite and differentiate MLAS-LoRA.** This is the most urgent issue. The Generator should search ACL 2025 Anthology for 'MLAS-LoRA' and add a paragraph in Related Work explaining why CLS-LoRA's factual-vs-cultural layer distinction makes it categorically different from MLAS-LoRA's language-pair-specific neuron selection. The key differentiator is the *cultural-preservation objective*, not the selective-LoRA mechanism itself. Also add Source-Shielded Updates (arXiv:2512.04844).
+
+2. **Drop LLaMA 4 Scout; replace with a dense multilingual model.** The MoE architecture invalidates the layer-partition premise from 2510.26024 and makes compute estimates unreliable. Use Qwen3-8B (confirmed dense, 119 languages) as the primary model and add mT5-XXL or Aya-23-8B as the second model family for cross-architecture generalization. This also brings auto-research mode within the 200h H100 budget if you trim the sweep to ≤3 ablation dimensions.
+
+3. **Address the structural-vs-behavioral erasure ambiguity.** The paper should explicitly test whether the cultural knowledge 'erasure' is representational (information is gone from activations) or behavioral (information exists but the model won't surface it). If arXiv:2504.10191 is correct that cultural knowledge persists structurally, CLS-LoRA's value is in behavioral preservation during fine-tuning — which needs to be measured differently than simple layer probing. A single ablation running full-LoRA training then measuring layer-wise cultural probe accuracy (before vs. after) would resolve this and strengthen the paper's mechanistic story.
+
+Secondary fixes: Remove the 'outstanding paper' label from INCLINE, verify the transfer-localization plane code availability from arXiv:2510.26024 authors before committing to it as primary metric, and reduce auto-research sweep to ≤200h H100.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "21636bcd-27a0-45f0-a4c2-acb28e69662e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T06:41:31.114Z_
+
+```json
+{
+  "parentUuid": "21636bcd-27a0-45f0-a4c2-acb28e69662e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "899f52f8-5da1-4653-9c36-150c904b2c64",
+  "timestamp": "2026-05-10T06:41:31.114Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T06:41:31.114Z_
+
+```json
+{
+  "parentUuid": "899f52f8-5da1-4653-9c36-150c904b2c64",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7760f5af-36f5-48e9-b8a2-f28a9e3d9b8e",
+  "timestamp": "2026-05-10T06:41:31.114Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignme…",
+  "leafUuid": "7760f5af-36f5-48e9-b8a2-f28a9e3d9b8e",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CLS-LoRA for MLAS-LoRA overlap and MoE handling",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T06:41:42.550Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research approach before revising the idea.
+
+## Key Issues to Address:
+
+1. **INCLINE "outstanding paper" claim** - Remove this unverified award claim
+2. **MLAS-LoRA missing citation** - Critical overlap, need to read and differentiate
+3. **Source-Shielded Updates (arXiv:2512.04844)** - Need to cite this
+4. **Auto-research compute constraint** - Must trim to ≤200h H100
+5. **LLaMA 4 Scout MoE problem** - Replace with dense multilingual model
+
+
+6. **Transfer-localization plane code availability** - Need to check
+7. **Structural vs behavioral erasure ambiguity** - Need to address mechanistically
+
+Now I need to pull the key papers the reviewers flagged to understand the overlaps and fill in the gaps. I'll start with MLAS-LoRA from ACL 2025, the Source-Shielded Updates preprint, and the papers on cultural knowledge localization and surgical steering to see how they relate to my approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7760f5af-36f5-48e9-b8a2-f28a9e3d9b8e",
+  "isSidechain": false,
+  "requestId": "req_011CatS29QRNETWqobJbBcgZ",
+  "type": "assistant",
+  "uuid": "a0cd9608-ee69-4d3a-949c-92c9df6263e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Gm8w7aPAvgiyRBNmbZVYC1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9925,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 9925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T06:41:43.353Z_
+
+I'll start by fetching the key papers the reviewer flagged, running searches in parallel to build a complete picture before revising.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0cd9608-ee69-4d3a-949c-92c9df6263e9",
+  "isSidechain": false,
+  "requestId": "req_011CatS29QRNETWqobJbBcgZ",
+  "type": "assistant",
+  "uuid": "4918293b-4127-4519-84d9-d2fa584b53ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Gm8w7aPAvgiyRBNmbZVYC1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9925,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 9925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T06:41:43.527Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Xi9PSX7PNGP5uCHgiZvYeF`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4918293b-4127-4519-84d9-d2fa584b53ea",
+  "isSidechain": false,
+  "requestId": "req_011CatS29QRNETWqobJbBcgZ",
+  "type": "assistant",
+  "uuid": "b2a4f265-84a9-4e53-bf62-e8197159db84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Gm8w7aPAvgiyRBNmbZVYC1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9925,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 9925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T06:41:43.534Z_
+
+<details><summary>↩ Tool result · `toolu_01Xi9PSX7PNGP5uCHgiZvYeF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b2a4f265-84a9-4e53-bf62-e8197159db84",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "7890e40d-e465-4b43-a7f5-0c62a55cb7a8",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "b2a4f265-84a9-4e53-bf62-e8197159db84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T06:41:45.972Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch all the key papers and search for relevant information in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7890e40d-e465-4b43-a7f5-0c62a55cb7a8",
+  "isSidechain": false,
+  "requestId": "req_011CatS34DezrykkpSByMu62",
+  "type": "assistant",
+  "uuid": "556b32f5-d755-41c0-b2c7-7f3d660fb059",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HMYqV5ySYTUPmzXQRkvNe4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 21556,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 21556,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T06:41:46.401Z_
+
+Now let me fetch all the critical papers and run searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "556b32f5-d755-41c0-b2c7-7f3d660fb059",
+  "isSidechain": false,
+  "requestId": "req_011CatS34DezrykkpSByMu62",
+  "type": "assistant",
+  "uuid": "c0cb93b8-e80b-4ab3-b159-9d537b58a552",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HMYqV5ySYTUPmzXQRkvNe4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 21556,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 21556,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T06:41:48.947Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011dhnaVQ2oe2323m5AmSrJc`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2025.acl-long.762",
+  "prompt": "Extract the full title, authors, abstract, and method description of this paper. What is the core approach? Does it use probing to identify language-specific neurons/layers then apply selective LoRA? What is the training objective and how does it handle multiple languages?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0cb93b8-e80b-4ab3-b159-9d537b58a552",
+  "isSidechain": false,
+  "requestId": "req_011CatS34DezrykkpSByMu62",
+  "type": "assistant",
+  "uuid": "5897a4e6-da27-4c73-a4ac-eb81d13baed4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HMYqV5ySYTUPmzXQRkvNe4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 21556,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 21556,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T06:41:50.911Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016femBFn3xzkSRExe337DpU`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.04844",
+  "prompt": "Extract title, authors, abstract, and key methodology. What does \"Source-Shielded Updates\" do? How does it freeze parameters to preserve source-language knowledge? What is the mechanism (column-wise freezing, row-wise, etc.)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5897a4e6-da27-4c73-a4ac-eb81d13baed4",
+  "isSidechain": false,
+  "requestId": "req_011CatS34DezrykkpSByMu62",
+  "type": "assistant",
+  "uuid": "fd78ff6c-7cab-4f7b-be81-4dd3f3c4c074",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HMYqV5ySYTUPmzXQRkvNe4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 21556,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 21556,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T06:41:52.886Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016drztnZPib7mwq5ieYHQPy`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.10191",
+  "prompt": "Extract title, authors, abstract, and methodology. What does the paper find about cultural knowledge localization in LLMs? Is cultural knowledge structurally preserved after fine-tuning? What is the distinction between structural preservation and behavioral suppression? Which layers contain cultural knowledge?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd78ff6c-7cab-4f7b-be81-4dd3f3c4c074",
+  "isSidechain": false,
+  "requestId": "req_011CatS34DezrykkpSByMu62",
+  "type": "assistant",
+  "uuid": "40237ac1-d9ad-41a0-a354-05bb27b31d17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HMYqV5ySYTUPmzXQRkvNe4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 21556,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 21556,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T06:41:54.610Z_
+
+<details><summary>↩ Tool result · `toolu_011dhnaVQ2oe2323m5AmSrJc`</summary>
+
+```text
+# MLAS-LoRA Paper Analysis
+
+## Title and Authors
+**Full Title:** "MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer for Multilingual Machine Translation"
+
+**Authors:** Tianyu Dong, Bo Li, Jinsong Liu, Shaolin Zhu, and Deyi Xiong
+
+## Abstract
+The researchers propose a framework addressing "parameter interference, which arises from the conflicting demands of different language pairs" in fine-tuning large language models for translation tasks.
+
+## Core Approach
+
+Yes, the method uses selective identification followed by targeted parameter updates. The approach involves:
+
+1. **Neuron Awareness Evaluation**: The team "evaluates the awareness of neurons and extracts linguistic knowledge in the teacher model to both the general MT task and specific language pairs."
+
+2. **Language-Specific Architecture**: They "propose a multiple language-specific LoRA architecture to inject the extracted knowledge into the student model."
+
+3. **Selective Training**: "During fine-tuning, only the parameters of the relevant language-general and language-specific LoRA modules are updated."
+
+## Performance
+The method demonstrates significant improvements, achieving "+1.7 BLEU on average" compared to standard fine-tuning and other parameter-efficient approaches.
+
+The framework uses knowledge distillation from a larger teacher model to optimize a smaller student model through strategically targeted LoRA modules based on identified linguistic parameters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5897a4e6-da27-4c73-a4ac-eb81d13baed4",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "a748c712-7049-4979-90a1-377eb5883ef6",
+  "toolUseResult": {
+    "bytes": 41341,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MLAS-LoRA Paper Analysis\n\n## Title and Authors\n**Full Title:** \"MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer for Multilingual Machine Translation\"\n\n**Authors:** Tianyu Dong, Bo Li, Jinsong Liu, Shaolin Zhu, and Deyi Xiong\n\n## Abstract\nThe researchers propose a framework addressing \"parameter interference, which arises from the conflicting demands of different language pairs\" in fine-tuning large language models for translation tasks.\n\n## Core Approach\n\nYes, the method uses selective identification followed by targeted parameter updates. The approach involves:\n\n1. **Neuron Awareness Evaluation**: The team \"evaluates the awareness of neurons and extracts linguistic knowledge in the teacher model to both the general MT task and specific language pairs.\"\n\n2. **Language-Specific Architecture**: They \"propose a multiple language-specific LoRA architecture to inject the extracted knowledge into the student model.\"\n\n3. **Selective Training**: \"During fine-tuning, only the parameters of the relevant language-general and language-specific LoRA modules are updated.\"\n\n## Performance\nThe method demonstrates significant improvements, achieving \"+1.7 BLEU on average\" compared to standard fine-tuning and other parameter-efficient approaches.\n\nThe framework uses knowledge distillation from a larger teacher model to optimize a smaller student model through strategically targeted LoRA modules based on identified linguistic parameters.",
+    "durationMs": 5659,
+    "url": "https://aclanthology.org/2025.acl-long.762"
+  },
+  "sourceToolAssistantUUID": "5897a4e6-da27-4c73-a4ac-eb81d13baed4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-10T06:41:54.966Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XLmav328mjrWrgy3X9dyYq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.26024",
+  "prompt": "Extract title, authors, abstract, and methodology. What is the Surgical Steering method? What does the paper find about which layers handle factual transfer vs cultural localization? Is the evaluation code (transfer-localization plane) publicly available? Any GitHub links?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a748c712-7049-4979-90a1-377eb5883ef6",
+  "isSidechain": false,
+  "requestId": "req_011CatS34DezrykkpSByMu62",
+  "type": "assistant",
+  "uuid": "2ed175c0-c53e-4869-8ce2-1fd0e96dcad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HMYqV5ySYTUPmzXQRkvNe4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 21556,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 21556,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T06:41:55.521Z_
+
+<details><summary>↩ Tool result · `toolu_016femBFn3xzkSRExe337DpU`</summary>
+
+```text
+# Paper Summary
+
+**Title:** Mitigating Catastrophic Forgetting in Target Language Adaptation of LLMs via Source-Shielded Updates
+
+**Authors:** Atsuki Yamaguchi, Terufumi Morishita, Aline Villavicencio, Nikolaos Aletras
+
+**Abstract:** The paper addresses expanding linguistic diversity in instruction-tuned LLMs while working within low-resource constraints. The researchers propose adapting models using only unlabeled target language data while preventing performance degradation on source languages.
+
+## Source-Shielded Updates (SSU)
+
+**What it does:** SSU is "a selective parameter update strategy that proactively preserves source knowledge." The method reduces performance loss on source-language tasks to 3.4% (7B models) and 2.8% (13B models), compared to 20.3% and 22.3% respectively when using full fine-tuning.
+
+**Mechanism:** The approach employs a "column-wise freezing strategy" to protect critical parameters. Specifically, SSU:
+- Uses a small source language dataset alongside parameter importance scoring
+- Identifies which parameters are essential for maintaining source language abilities
+- Applies column-wise parameter freezing before adaptation begins
+
+This selective freezing approach allows the model to adapt to target languages while maintaining previously learned source language capabilities.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd78ff6c-7cab-4f7b-be81-4dd3f3c4c074",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "c1bb5c4a-f931-4d48-9a9e-d8b5ee627370",
+  "toolUseResult": {
+    "bytes": 46783,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary\n\n**Title:** Mitigating Catastrophic Forgetting in Target Language Adaptation of LLMs via Source-Shielded Updates\n\n**Authors:** Atsuki Yamaguchi, Terufumi Morishita, Aline Villavicencio, Nikolaos Aletras\n\n**Abstract:** The paper addresses expanding linguistic diversity in instruction-tuned LLMs while working within low-resource constraints. The researchers propose adapting models using only unlabeled target language data while preventing performance degradation on source languages.\n\n## Source-Shielded Updates (SSU)\n\n**What it does:** SSU is \"a selective parameter update strategy that proactively preserves source knowledge.\" The method reduces performance loss on source-language tasks to 3.4% (7B models) and 2.8% (13B models), compared to 20.3% and 22.3% respectively when using full fine-tuning.\n\n**Mechanism:** The approach employs a \"column-wise freezing strategy\" to protect critical parameters. Specifically, SSU:\n- Uses a small source language dataset alongside parameter importance scoring\n- Identifies which parameters are essential for maintaining source language abilities\n- Applies column-wise parameter freezing before adaptation begins\n\nThis selective freezing approach allows the model to adapt to target languages while maintaining previously learned source language capabilities.",
+    "durationMs": 4609,
+    "url": "https://arxiv.org/abs/2512.04844"
+  },
+  "sourceToolAssistantUUID": "fd78ff6c-7cab-4f7b-be81-4dd3f3c4c074",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-10T06:41:55.734Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LSCvKUTZHdeVqMCkCNZMpJ`</summary>
+
+```json
+{
+  "query": "MLAS-LoRA language-aware neuron detection selective LoRA multilingual ACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1bb5c4a-f931-4d48-9a9e-d8b5ee627370",
+  "isSidechain": false,
+  "requestId": "req_011CatS34DezrykkpSByMu62",
+  "type": "assistant",
+  "uuid": "964b93d5-66f3-46d0-bcef-fcf2f6f4a544",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HMYqV5ySYTUPmzXQRkvNe4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 21556,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 21556,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-10T06:41:55.863Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SbwtVMktDgXcFB1YaeZH66`</summary>
+
+```json
+{
+  "query": "ACL 2025 outstanding papers best paper awards list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "964b93d5-66f3-46d0-bcef-fcf2f6f4a544",
+  "isSidechain": false,
+  "requestId": "req_011CatS34DezrykkpSByMu62",
+  "type": "assistant",
+  "uuid": "0c8c9fa6-ccd9-4739-bd55-2153cb4982df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HMYqV5ySYTUPmzXQRkvNe4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1498,
+      "cache_read_input_tokens": 21556,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 21556,
+          "cache_creation_input_tokens": 1498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T06:41:57.514Z_
+
+<details><summary>↩ Tool result · `toolu_016drztnZPib7mwq5ieYHQPy`</summary>
+
+```text
+# Research Paper Summary
+
+**Title:** Localized Cultural Knowledge is Conserved and Controllable in Large Language Models
+
+**Authors:** Veniamin Veselovsky, Berke Argin, Benedikt Stroebl, Chris Wendler, Robert West, James Evans, Thomas L. Griffiths, Arvind Narayanan
+
+## Key Findings
+
+The research demonstrates that LLMs retain cultural knowledge within their parameters, though it may not surface naturally. The authors identify an "explicit-implicit localization gap"—models perform significantly better when cultural context is explicitly provided in prompts. However, explicit prompting reduces response diversity and increases stereotyping.
+
+## Critical Discovery
+
+The researchers identify "an explicit cultural customization vector, conserved across all non-English languages" that can steer models from English-centric outputs toward culturally localized responses while maintaining diversity and reducing stereotypes.
+
+## Methodology
+
+The abstract indicates the approach involved:
+- Testing prompt-based cultural context injection
+- Measuring performance differences with/without explicit cultural framing
+- Identifying and applying cultural customization vectors across multiple languages
+
+## Important Limitation
+
+The provided content does not address questions about structural preservation after fine-tuning, distinctions between structural preservation versus behavioral suppression, or which specific layers contain cultural knowledge. These details would require accessing the full paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40237ac1-d9ad-41a0-a354-05bb27b31d17",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "37210f75-7bfc-4b4b-9f6f-2c67356c2af1",
+  "toolUseResult": {
+    "bytes": 47021,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Paper Summary\n\n**Title:** Localized Cultural Knowledge is Conserved and Controllable in Large Language Models\n\n**Authors:** Veniamin Veselovsky, Berke Argin, Benedikt Stroebl, Chris Wendler, Robert West, James Evans, Thomas L. Griffiths, Arvind Narayanan\n\n## Key Findings\n\nThe research demonstrates that LLMs retain cultural knowledge within their parameters, though it may not surface naturally. The authors identify an \"explicit-implicit localization gap\"—models perform significantly better when cultural context is explicitly provided in prompts. However, explicit prompting reduces response diversity and increases stereotyping.\n\n## Critical Discovery\n\nThe researchers identify \"an explicit cultural customization vector, conserved across all non-English languages\" that can steer models from English-centric outputs toward culturally localized responses while maintaining diversity and reducing stereotypes.\n\n## Methodology\n\nThe abstract indicates the approach involved:\n- Testing prompt-based cultural context injection\n- Measuring performance differences with/without explicit cultural framing\n- Identifying and applying cultural customization vectors across multiple languages\n\n## Important Limitation\n\nThe provided content does not address questions about structural preservation after fine-tuning, distinctions between structural preservation versus behavioral suppression, or which specific layers contain cultural knowledge. These details would require accessing the full paper.",
+    "durationMs": 4626,
+    "url": "https://arxiv.org/abs/2504.10191"
+  },
+  "sourceToolAssistantUUID": "40237ac1-d9ad-41a0-a354-05bb27b31d17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-10T06:42:01.175Z_
+
+<details><summary>↩ Tool result · `toolu_01XLmav328mjrWrgy3X9dyYq`</summary>
+
+```text
+# Research Paper Summary
+
+**Title:** Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs
+
+**Authors:** HyoJung Han, Sweta Agrawal, Eleftheria Briakou
+
+**Abstract Summary:**
+The researchers investigate a tension in multilingual language models: while cross-lingual alignment enables knowledge transfer across languages, it may simultaneously cause "cultural erasure"—the loss of culturally appropriate, language-specific responses. They introduce an evaluation framework called the "transfer-localization plane" to measure this tradeoff.
+
+## Key Findings
+
+**Layer-Specific Processing:**
+The paper reveals that "universal factual transfer and culturally-specific knowledge are optimally steerable at different model layers," indicating the model architecture itself separates these functions.
+
+**Surgical Steering Method:**
+This inference-time technique uses "targeted activation steering to distinct layers" to disentangle factual transfer from cultural localization, achieving better balance between the competing objectives without retraining.
+
+**Main Discovery:**
+Current cross-lingual alignment approaches "consistently improve factual transfer at the direct cost of cultural localization across all six languages studied."
+
+## Availability
+
+The provided content contains no GitHub links or information about publicly available evaluation code. The paper was submitted October 29, 2025, and PDF access is available through arXiv's standard distribution channels.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ed175c0-c53e-4869-8ce2-1fd0e96dcad4",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "74a6d646-9053-42d9-930e-bf86d3b45d39",
+  "toolUseResult": {
+    "bytes": 46238,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Paper Summary\n\n**Title:** Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs\n\n**Authors:** HyoJung Han, Sweta Agrawal, Eleftheria Briakou\n\n**Abstract Summary:**\nThe researchers investigate a tension in multilingual language models: while cross-lingual alignment enables knowledge transfer across languages, it may simultaneously cause \"cultural erasure\"—the loss of culturally appropriate, language-specific responses. They introduce an evaluation framework called the \"transfer-localization plane\" to measure this tradeoff.\n\n## Key Findings\n\n**Layer-Specific Processing:**\nThe paper reveals that \"universal factual transfer and culturally-specific knowledge are optimally steerable at different model layers,\" indicating the model architecture itself separates these functions.\n\n**Surgical Steering Method:**\nThis inference-time technique uses \"targeted activation steering to distinct layers\" to disentangle factual transfer from cultural localization, achieving better balance between the competing objectives without retraining.\n\n**Main Discovery:**\nCurrent cross-lingual alignment approaches \"consistently improve factual transfer at the direct cost of cultural localization across all six languages studied.\"\n\n## Availability\n\nThe provided content contains no GitHub links or information about publicly available evaluation code. The paper was submitted October 29, 2025, and PDF access is available through arXiv's standard distribution channels.",
+    "durationMs": 6205,
+    "url": "https://arxiv.org/abs/2510.26024"
+  },
+  "sourceToolAssistantUUID": "2ed175c0-c53e-4869-8ce2-1fd0e96dcad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignme…",
+  "leafUuid": "74a6d646-9053-42d9-930e-bf86d3b45d39",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CLS-LoRA for MLAS-LoRA overlap and MoE handling",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T06:42:02.822Z_
+
+<details><summary>↩ Tool result · `toolu_01LSCvKUTZHdeVqMCkCNZMpJ`</summary>
+
+```text
+Web search results for query: "MLAS-LoRA language-aware neuron detection selective LoRA multilingual ACL 2025"
+
+Links: [{"title":"MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer for Multilingual Machine Translation - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.762/"},{"title":"MLAS-LoRA: Language-Aware Parameters Detection and ...","url":"https://aclanthology.org/2025.acl-long.762.pdf"},{"title":"Mixture of LoRA Experts for Continual Information ...","url":"https://aclanthology.org/2025.findings-emnlp.718.pdf"},{"title":"Adaptive LoRA Merge with Parameter Pruning for Low- ...","url":"https://aclanthology.org/2025.findings-acl.990.pdf"},{"title":"Progressive LoRA for Multimodal Continual Instruction ...","url":"https://aclanthology.org/2025.findings-acl.143.pdf"},{"title":"Hierarchical-Task-Aware Multi-modal Mixture of ...","url":"https://aclanthology.org/2025.acl-long.1379.pdf"},{"title":"arXiv:2506.01808v1 [cs.CL] 2 Jun 2025 June, 2025","url":"https://arxiv.org/pdf/2506.01808"},{"title":"GitHub - chrisliu298/awesome-llm-unlearning: A resource repository for machine unlearning in large language models · GitHub","url":"https://github.com/chrisliu298/awesome-llm-unlearning"},{"title":"Conditions for Catastrophic Forgetting in Multilingual ...","url":"https://aclanthology.org/2025.mrl-main.23.pdf"},{"title":"Challenges in Adapting Multilingual LLMs to Low-Resource Languages using LoRA PEFT Tuning - ACL Anthology","url":"https://aclanthology.org/2025.chipsal-1.22/"}]
+
+Based on the search results, I found detailed information about the MLAS-LoRA paper:
+
+## MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer
+
+MLAS-LoRA is a paper presented at the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025) in Vienna, Austria, authored by Tianyu Dong, Bo Li, Jinsong Liu, Shaolin Zhu, and Deyi Xiong.
+
+### Research Focus
+MLAS-LoRA efficiently adapts large language models (LLMs) to machine translation (MT) by selectively transferring knowledge from a large teacher to a small student model. The approach addresses the challenge of parameter interference, which arises from the conflicting demands of different language pairs and the risk of overwriting pre-trained knowledge.
+
+### Methodology
+The approach first evaluates the awareness of neurons and extracts linguistic knowledge in the teacher model to both the general MT task and specific language pairs, then proposes a multiple language-specific LoRA architecture to inject the extracted knowledge into the student model. During fine-tuning, only the parameters of the relevant language-general and language-specific LoRA modules are updated.
+
+### Results
+Experimental results on diverse multilingual language pairs demonstrate that MLAS-LoRA significantly outperforms strong baselines by +1.7 BLEU on average, including standard fine-tuning and other parameter-efficient methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "964b93d5-66f3-46d0-bcef-fcf2f6f4a544",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "4f4c9498-cd53-443f-b1f8-349a5edbfe02",
+  "toolUseResult": {
+    "query": "MLAS-LoRA language-aware neuron detection selective LoRA multilingual ACL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ToVBaLVSK62EVSVUgE5nqF",
+        "content": [
+          {
+            "title": "MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer for Multilingual Machine Translation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.762/"
+          },
+          {
+            "title": "MLAS-LoRA: Language-Aware Parameters Detection and ...",
+            "url": "https://aclanthology.org/2025.acl-long.762.pdf"
+          },
+          {
+            "title": "Mixture of LoRA Experts for Continual Information ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.718.pdf"
+          },
+          {
+            "title": "Adaptive LoRA Merge with Parameter Pruning for Low- ...",
+            "url": "https://aclanthology.org/2025.findings-acl.990.pdf"
+          },
+          {
+            "title": "Progressive LoRA for Multimodal Continual Instruction ...",
+            "url": "https://aclanthology.org/2025.findings-acl.143.pdf"
+          },
+          {
+            "title": "Hierarchical-Task-Aware Multi-modal Mixture of ...",
+            "url": "https://aclanthology.org/2025.acl-long.1379.pdf"
+          },
+          {
+            "title": "arXiv:2506.01808v1 [cs.CL] 2 Jun 2025 June, 2025",
+            "url": "https://arxiv.org/pdf/2506.01808"
+          },
+          {
+            "title": "GitHub - chrisliu298/awesome-llm-unlearning: A resource repository for machine unlearning in large language models · GitHub",
+            "url": "https://github.com/chrisliu298/awesome-llm-unlearning"
+          },
+          {
+            "title": "Conditions for Catastrophic Forgetting in Multilingual ...",
+            "url": "https://aclanthology.org/2025.mrl-main.23.pdf"
+          },
+          {
+            "title": "Challenges in Adapting Multilingual LLMs to Low-Resource Languages using LoRA PEFT Tuning - ACL Anthology",
+            "url": "https://aclanthology.org/2025.chipsal-1.22/"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the MLAS-LoRA paper:\n\n## MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer\n\nMLAS-LoRA is a paper presented at the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025) in Vienna, Austria, authored by Tianyu Dong, Bo Li, Jinsong Liu, Shaolin Zhu, and Deyi Xiong.\n\n### Research Focus\nMLAS-LoRA efficiently adapts large language models (LLMs) to machine translation (MT) by selectively transferring knowledge from a large teacher to a small student model. The approach addresses the challenge of parameter interference, which arises from the conflicting demands of different language pairs and the risk of overwriting pre-trained knowledge.\n\n### Methodology\nThe approach first evaluates the awareness of neurons and extracts linguistic knowledge in the teacher model to both the general MT task and specific language pairs, then proposes a multiple language-specific LoRA architecture to inject the extracted knowledge into the student model. During fine-tuning, only the parameters of the relevant language-general and language-specific LoRA modules are updated.\n\n### Results\nExperimental results on diverse multilingual language pairs demonstrate that MLAS-LoRA significantly outperforms strong baselines by +1.7 BLEU on average, including standard fine-tuning and other parameter-efficient methods."
+    ],
+    "durationSeconds": 7.084457567999998
+  },
+  "sourceToolAssistantUUID": "964b93d5-66f3-46d0-bcef-fcf2f6f4a544",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T06:42:04.576Z_
+
+<details><summary>↩ Tool result · `toolu_01SbwtVMktDgXcFB1YaeZH66`</summary>
+
+```text
+Web search results for query: "ACL 2025 outstanding papers best paper awards list"
+
+Links: [{"title":"Awards - ACL 2025","url":"https://2025.aclweb.org/program/awards/"},{"title":"ACL 2026 on X: \"Congratulations to all the outstanding and best paper award winners at #ACL2025NLP! [A few randomly selected photos from the awards session] https://t.co/r0sepRvcD7\" / X","url":"https://x.com/aclmeeting/status/1950745647214161930"},{"title":"DeepSeek's Liang Wenfeng & Peking University's Yang Yaodong's Team Win Best Paper Award at ACL 2025 with NSA Paper","url":"https://eu.36kr.com/en/p/3401632759482502"},{"title":"ACL 2025 on X: \"🏆 ACL Best Paper Awards: - Mission: Impossible Language Models by Kallini et al. - Semisupervised Neural Proto-Language Reconstruction by Lu et al. - Why are Sensitive Functions Hard for Transformers? By Hahn et al. #NLProc #ACL2024NLP\" / X","url":"https://x.com/aclmeeting/status/1823664612581273959?lang=en"},{"title":"ACL Conference Awards Policy - Admin Wiki","url":"https://www.aclweb.org/adminwiki/index.php/ACL_Conference_Awards_Policy"},{"title":"GippLab wins ACL Best Paper Awards - Prof. Dr. Bela Gipp, University of Göttingen, GippLab","url":"https://gipplab.uni-goettingen.de/gipplab-wins-acl-best-paper-awards/"},{"title":"DeepSeek's Next-Generation Technology Wins the ACL 2025 Best Paper Award, Enhancing Long-Text Processing Efficiency by 11 Times!","url":"https://news.aibase.com/news/20107"},{"title":"DeepSeek founder shares best paper award at top global AI research conference | South China Morning Post","url":"https://www.scmp.com/tech/big-tech/article/3320255/deepseek-founder-shares-best-paper-award-top-global-ai-research-conference"},{"title":"Announcing the TACL 2025 paper awards | Transactions of the Association for Computational Linguistics","url":"https://transacl.org/index.php/tacl/announcement/view/117"},{"title":"Announcement of the 2025 ACL Test-of-Time Paper Award | ACL Member Portal","url":"https://www.aclweb.org/portal/content/announcement-2025-acl-test-time-paper-award"}]
+
+Based on the search results, here's information about the ACL 2025 awards:
+
+## Best Paper Awards
+
+The "Native Sparse Attention: Hardware-Aligned and Natively Trainable Sparse Attention" paper won a best paper award, with Liang Wenfeng, founder of DeepSeek, as one of the co-authors. Among the four best papers recognized by ACL, two author teams were from China, including Liang's DeepSeek team and Yang Yaodong's team from Peking University.
+
+## Outstanding Papers
+
+There were 26 Outstanding Papers at ACL 2025. Some of the notable outstanding papers include:
+
+
+- A New Formulation of Zipf's Meaning - Frequency Law through Contextual Diversity
+- All That Glitters is Not Novel: Plagiarism in AI Generated Research
+- Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases
+- Beyond N-Grams: Rethinking Evaluation Metrics and Strategies for Multilingual Abstractive Summarization
+- Bridging the Language Gaps in Large Language Models with inference-Time Cross-Lingual Intervention
+- Byte Latent Transformer: Patches Scale Better Than Tokens
+- Capability Salience Vector: Fine-grained Alignment of Loss and Capabilities
+
+
+## Other Notable Awards
+
+GippLab's work on multilingual resources won Best Resource Paper and Best SemEval Task awards at ACL 2025.
+
+You can find the complete list of awards on the official ACL 2025 awards page at https://2025.aclweb.org/program/awards/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c8c9fa6-ccd9-4739-bd55-2153cb4982df",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "f4119665-2019-4e47-b442-cd6d5f95c177",
+  "toolUseResult": {
+    "query": "ACL 2025 outstanding papers best paper awards list",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vaucs1wgQXV6xQH2SLUyXb",
+        "content": [
+          {
+            "title": "Awards - ACL 2025",
+            "url": "https://2025.aclweb.org/program/awards/"
+          },
+          {
+            "title": "ACL 2026 on X: \"Congratulations to all the outstanding and best paper award winners at #ACL2025NLP! [A few randomly selected photos from the awards session] https://t.co/r0sepRvcD7\" / X",
+            "url": "https://x.com/aclmeeting/status/1950745647214161930"
+          },
+          {
+            "title": "DeepSeek's Liang Wenfeng & Peking University's Yang Yaodong's Team Win Best Paper Award at ACL 2025 with NSA Paper",
+            "url": "https://eu.36kr.com/en/p/3401632759482502"
+          },
+          {
+            "title": "ACL 2025 on X: \"🏆 ACL Best Paper Awards: - Mission: Impossible Language Models by Kallini et al. - Semisupervised Neural Proto-Language Reconstruction by Lu et al. - Why are Sensitive Functions Hard for Transformers? By Hahn et al. #NLProc #ACL2024NLP\" / X",
+            "url": "https://x.com/aclmeeting/status/1823664612581273959?lang=en"
+          },
+          {
+            "title": "ACL Conference Awards Policy - Admin Wiki",
+            "url": "https://www.aclweb.org/adminwiki/index.php/ACL_Conference_Awards_Policy"
+          },
+          {
+            "title": "GippLab wins ACL Best Paper Awards - Prof. Dr. Bela Gipp, University of Göttingen, GippLab",
+            "url": "https://gipplab.uni-goettingen.de/gipplab-wins-acl-best-paper-awards/"
+          },
+          {
+            "title": "DeepSeek's Next-Generation Technology Wins the ACL 2025 Best Paper Award, Enhancing Long-Text Processing Efficiency by 11 Times!",
+            "url": "https://news.aibase.com/news/20107"
+          },
+          {
+            "title": "DeepSeek founder shares best paper award at top global AI research conference | South China Morning Post",
+            "url": "https://www.scmp.com/tech/big-tech/article/3320255/deepseek-founder-shares-best-paper-award-top-global-ai-research-conference"
+          },
+          {
+            "title": "Announcing the TACL 2025 paper awards | Transactions of the Association for Computational Linguistics",
+            "url": "https://transacl.org/index.php/tacl/announcement/view/117"
+          },
+          {
+            "title": "Announcement of the 2025 ACL Test-of-Time Paper Award | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/announcement-2025-acl-test-time-paper-award"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the ACL 2025 awards:\n\n## Best Paper Awards\n\nThe \"Native Sparse Attention: Hardware-Aligned and Natively Trainable Sparse Attention\" paper won a best paper award, with Liang Wenfeng, founder of DeepSeek, as one of the co-authors. Among the four best papers recognized by ACL, two author teams were from China, including Liang's DeepSeek team and Yang Yaodong's team from Peking University.\n\n## Outstanding Papers\n\nThere were 26 Outstanding Papers at ACL 2025. Some of the notable outstanding papers include:\n\n\n- A New Formulation of Zipf's Meaning - Frequency Law through Contextual Diversity\n- All That Glitters is Not Novel: Plagiarism in AI Generated Research\n- Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases\n- Beyond N-Grams: Rethinking Evaluation Metrics and Strategies for Multilingual Abstractive Summarization\n- Bridging the Language Gaps in Large Language Models with inference-Time Cross-Lingual Intervention\n- Byte Latent Transformer: Patches Scale Better Than Tokens\n- Capability Salience Vector: Fine-grained Alignment of Loss and Capabilities\n\n\n## Other Notable Awards\n\nGippLab's work on multilingual resources won Best Resource Paper and Best SemEval Task awards at ACL 2025.\n\nYou can find the complete list of awards on the official ACL 2025 awards page at https://2025.aclweb.org/program/awards/"
+    ],
+    "durationSeconds": 8.710667710000001
+  },
+  "sourceToolAssistantUUID": "0c8c9fa6-ccd9-4739-bd55-2153cb4982df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-10T06:42:26.541Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have good information now. Let me analyze what I've found:
+
+1. **INCLINE "outstanding paper" status**: The ACL 2025 outstanding papers list includes "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention" - this IS INCLINE (arXiv 2410.12462)! So the claim is actually CORRECT - INCLINE IS an ACL 2025 outstanding paper. The reviewer was wrong about this being a factual error. Let me verify this.
+
+Actually, looking at the search results more carefully: "Bridging the Language Gaps in Large Language Models with inference-Time Cross-Lingual Intervention" - yes, this is the paper titled INCLINE from arXiv:2410.12462. 
+
+So the reviewer's claim that "no evidence of this award was found" turns out to be incorrect. The paper is indeed listed as an outstanding paper at ACL 2025, which means the award claim is valid and the reviewer missed this evidence.
+
+Now I'm checking the other papers mentioned. MLAS-LoRA is confirmed at ACL 2025, and while it also deals with multilingual adaptation using LoRA, it's distinct from CLS-LoRA in several ways: it focuses on language-pair-specific neuron detection for machine translation with knowledge distillation, whereas CLS-LoRA partitions layers by factual versus cultural content to preserve cultural knowledge during instruction fine-tuning. They're addressing different problems in different domains. I'm also looking at Source-Shielded Updates from a recent arXiv preprint.
+
+Source-Shielded Updates uses column-wise parameter freezing to maintain source-language knowledge when adapting to target languages, which is related but distinct—it's about preserving source abilities rather than cultural knowledge, and it relies on parameter importance scoring instead of probing. Then there's arXiv:2504.10191, which shows cultural knowledge can be steered through customization vectors at inference time, revealing an explicit-implicit localization gap, though it doesn't directly address structural versus behavioral preservation after fine-tuning the way I was hoping. And arXiv:2510.26024 confirms layer-specific processing for factual versus cultural knowledge but doesn't mention public evaluation code.
+
+I need to check the full ACL 2025 awards page to verify INCLINE's status and search for additional relevant work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4119665-2019-4e47-b442-cd6d5f95c177",
+  "isSidechain": false,
+  "requestId": "req_011CatS4btBqo7Mg1D49vPBS",
+  "type": "assistant",
+  "uuid": "8eb67bb8-1713-4d77-afb6-deed0291f338",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017ectcXRaoeGYt7cC6eXdKH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3975,
+      "cache_read_input_tokens": 23054,
+      "output_tokens": 1178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1178,
+          "cache_read_input_tokens": 23054,
+          "cache_creation_input_tokens": 3975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-10T06:42:26.942Z_
+
+Let me fetch the ACL 2025 awards page to verify INCLINE's status, and search for the dense model alternatives and evaluation code availability.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8eb67bb8-1713-4d77-afb6-deed0291f338",
+  "isSidechain": false,
+  "requestId": "req_011CatS4btBqo7Mg1D49vPBS",
+  "type": "assistant",
+  "uuid": "2c6913cf-23a5-435b-9f24-a94f25c8f46b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017ectcXRaoeGYt7cC6eXdKH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3975,
+      "cache_read_input_tokens": 23054,
+      "output_tokens": 1178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1178,
+          "cache_read_input_tokens": 23054,
+          "cache_creation_input_tokens": 3975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-10T06:42:28.113Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01H7VxxhP2CsAeV1SKg3YTCD`</summary>
+
+```json
+{
+  "url": "https://2025.aclweb.org/program/awards/",
+  "prompt": "List all outstanding papers and best papers at ACL 2025. Is \"Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention\" (INCLINE, arXiv 2410.12462) listed as an outstanding paper?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c6913cf-23a5-435b-9f24-a94f25c8f46b",
+  "isSidechain": false,
+  "requestId": "req_011CatS4btBqo7Mg1D49vPBS",
+  "type": "assistant",
+  "uuid": "dbd5a29e-2e87-45b3-87e9-65a2f3a351e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017ectcXRaoeGYt7cC6eXdKH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3975,
+      "cache_read_input_tokens": 23054,
+      "output_tokens": 1178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1178,
+          "cache_read_input_tokens": 23054,
+          "cache_creation_input_tokens": 3975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T06:42:28.932Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G8Xskyc6N5SasfnCpKipyE`</summary>
+
+```json
+{
+  "query": "Aya-23-8B multilingual model dense architecture languages supported 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbd5a29e-2e87-45b3-87e9-65a2f3a351e5",
+  "isSidechain": false,
+  "requestId": "req_011CatS4btBqo7Mg1D49vPBS",
+  "type": "assistant",
+  "uuid": "5a7d3358-eee1-4390-8fa9-291eb47084dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017ectcXRaoeGYt7cC6eXdKH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3975,
+      "cache_read_input_tokens": 23054,
+      "output_tokens": 1178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1178,
+          "cache_read_input_tokens": 23054,
+          "cache_creation_input_tokens": 3975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-10T06:42:29.754Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011ocGS4Vx2M2kkPwBL3NnAt`</summary>
+
+```json
+{
+  "query": "arXiv 2510.26024 \"Rethinking Cross-lingual Alignment\" GitHub code transfer-localization evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a7d3358-eee1-4390-8fa9-291eb47084dd",
+  "isSidechain": false,
+  "requestId": "req_011CatS4btBqo7Mg1D49vPBS",
+  "type": "assistant",
+  "uuid": "07285947-d726-40f4-832f-cf295b2df497",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017ectcXRaoeGYt7cC6eXdKH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3975,
+      "cache_read_input_tokens": 23054,
+      "output_tokens": 1178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1178,
+          "cache_read_input_tokens": 23054,
+          "cache_creation_input_tokens": 3975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T06:42:30.008Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013rNzSrVNUjysCPrHYAWKV9`</summary>
+
+```json
+{
+  "query": "cultural erasure multilingual LLM fine-tuning layer-selective training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07285947-d726-40f4-832f-cf295b2df497",
+  "isSidechain": false,
+  "requestId": "req_011CatS4btBqo7Mg1D49vPBS",
+  "type": "assistant",
+  "uuid": "cf7ae19a-1d8a-44bc-a28b-0d782ae0af72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017ectcXRaoeGYt7cC6eXdKH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3975,
+      "cache_read_input_tokens": 23054,
+      "output_tokens": 1178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1178,
+          "cache_read_input_tokens": 23054,
+          "cache_creation_input_tokens": 3975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-10T06:42:34.783Z_
+
+<details><summary>↩ Tool result · `toolu_01H7VxxhP2CsAeV1SKg3YTCD`</summary>
+
+```text
+# ACL 2025 Outstanding and Best Papers
+
+## Best Papers (4 total)
+1. "A Theory of Response Sampling in LLMs: Part Descriptive and Part Prescriptive"
+2. "Fairness through Difference Awareness: Measuring Desired Group Discrimination in LLMs"
+3. "Language Models Resist Alignment: Evidence From Data Compression"
+4. "Native Sparse Attention: Hardware-Aligned and Natively Trainable Sparse Attention"
+
+## Outstanding Papers (26 total)
+The outstanding papers section lists numerous works, including one titled "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention" by Weixuan Wang and colleagues.
+
+**Yes, the paper you mentioned is listed as an outstanding paper** at ACL 2025. It appears in the Outstanding Papers section alongside 25 other recognized works addressing topics spanning language models, multilingual NLP, and computational linguistics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dbd5a29e-2e87-45b3-87e9-65a2f3a351e5",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "35600530-1940-43e4-9f7f-faec7fcca78b",
+  "toolUseResult": {
+    "bytes": 35471,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ACL 2025 Outstanding and Best Papers\n\n## Best Papers (4 total)\n1. \"A Theory of Response Sampling in LLMs: Part Descriptive and Part Prescriptive\"\n2. \"Fairness through Difference Awareness: Measuring Desired Group Discrimination in LLMs\"\n3. \"Language Models Resist Alignment: Evidence From Data Compression\"\n4. \"Native Sparse Attention: Hardware-Aligned and Natively Trainable Sparse Attention\"\n\n## Outstanding Papers (26 total)\nThe outstanding papers section lists numerous works, including one titled \"Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention\" by Weixuan Wang and colleagues.\n\n**Yes, the paper you mentioned is listed as an outstanding paper** at ACL 2025. It appears in the Outstanding Papers section alongside 25 other recognized works addressing topics spanning language models, multilingual NLP, and computational linguistics.",
+    "durationMs": 6665,
+    "url": "https://2025.aclweb.org/program/awards/"
+  },
+  "sourceToolAssistantUUID": "dbd5a29e-2e87-45b3-87e9-65a2f3a351e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T06:42:35.336Z_
+
+<details><summary>↩ Tool result · `toolu_01G8Xskyc6N5SasfnCpKipyE`</summary>
+
+```text
+Web search results for query: "Aya-23-8B multilingual model dense architecture languages supported 2025"
+
+Links: [{"title":"Aya 23: New Open-Source Multilingual Language Models by Cohere | by My Social | 𝐀𝐈 𝐦𝐨𝐧𝐤𝐬.𝐢𝐨 | Medium","url":"https://medium.com/aimonks/aya-23-new-open-source-multilingual-language-models-by-cohere-47403d9e7470"},{"title":"CohereLabs/aya-23-8B · Hugging Face","url":"https://huggingface.co/CohereLabs/aya-23-8B"},{"title":"CohereLabs/aya-23-8B Free Chat Online - skywork.ai - Skywork ai","url":"https://skywork.ai/blog/models/coherelabs-aya-23-8b-free-chat-online-skywork-ai/"},{"title":"Aya 23: Open Weight Releases to Further Multilingual Progress","url":"https://arxiv.org/html/2405.15032v1"},{"title":"C4AI Launches Aya 23, 8B and 35B Parameter Open Weights Release","url":"https://cohere.com/blog/aya23"},{"title":"aya","url":"https://ollama.com/library/aya"},{"title":"Cohere Releases \"Aya Expanse\" Multilingual AI Models | MultiLingual","url":"https://multilingual.com/cohere-releases-aya-expanse-multilingual-ai-models/"},{"title":"Cohere introduces Aya model that speaks 23 languages - Techzine Global","url":"https://www.techzine.eu/news/analytics/120328/cohere-introduces-aya-model-that-speaks-23-languages/"},{"title":"Aya-Expanse 8B: Scalable Multilingual LLM","url":"https://www.emergentmind.com/topics/aya-expanse-8b-model"},{"title":"Aya 23 is a New State-of-the-Art, Multilingual, Open Weights Model from Cohere","url":"https://www.maginative.com/article/cohere-releases-aya-23/"}]
+
+Based on the search results, here's what I found about the Aya-23-8B multilingual model:
+
+## Model Architecture
+
+The model utilizes an optimized transformer architecture specifically designed for high performance, efficiency, and scalability across multilingual tasks. More specifically, Aya-23-8B uses grouped-query attention where each KV head shares multiple Q heads to reduce inference-time memory footprint.
+
+## Supported Languages
+
+The model covers 23 languages: Arabic, Chinese (simplified & traditional), Czech, Dutch, English, French, German, Greek, Hebrew, Hindi, Indonesian, Italian, Japanese, Korean, Persian, Polish, Portuguese, Romanian, Russian, Spanish, Turkish, Ukrainian, and Vietnamese.
+
+## Key Specifications
+
+Aya-23–8B features 8 billion parameters and is optimized for generating accurate, contextually relevant text across supported languages while requiring fewer resources than the larger model. Additionally, the model supports a context length of up to 8,192 tokens.
+
+## Dense vs. Sparse Architecture
+
+The search results indicate that Aya-23-8B uses a dense transformer architecture—there is no mention of it being a sparse mixture-of-experts model, unlike some competitors like Mixtral which uses sparse architecture.
+
+## Development Context
+
+Aya 23 is an open weights research release of an instruction fine-tuned model with highly advanced multilingual capabilities. The Aya project represents an unprecedented global collaboration involving over 3,000 researchers from 119 countries, focusing on expanding language coverage and improving AI accessibility for underserved languages worldwide.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a7d3358-eee1-4390-8fa9-291eb47084dd",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "b61a5e08-1695-4f3f-a2f8-d72a838b4e17",
+  "toolUseResult": {
+    "query": "Aya-23-8B multilingual model dense architecture languages supported 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BjtVg2mLVtaMNxfL5EWzDs",
+        "content": [
+          {
+            "title": "Aya 23: New Open-Source Multilingual Language Models by Cohere | by My Social | 𝐀𝐈 𝐦𝐨𝐧𝐤𝐬.𝐢𝐨 | Medium",
+            "url": "https://medium.com/aimonks/aya-23-new-open-source-multilingual-language-models-by-cohere-47403d9e7470"
+          },
+          {
+            "title": "CohereLabs/aya-23-8B · Hugging Face",
+            "url": "https://huggingface.co/CohereLabs/aya-23-8B"
+          },
+          {
+            "title": "CohereLabs/aya-23-8B Free Chat Online - skywork.ai - Skywork ai",
+            "url": "https://skywork.ai/blog/models/coherelabs-aya-23-8b-free-chat-online-skywork-ai/"
+          },
+          {
+            "title": "Aya 23: Open Weight Releases to Further Multilingual Progress",
+            "url": "https://arxiv.org/html/2405.15032v1"
+          },
+          {
+            "title": "C4AI Launches Aya 23, 8B and 35B Parameter Open Weights Release",
+            "url": "https://cohere.com/blog/aya23"
+          },
+          {
+            "title": "aya",
+            "url": "https://ollama.com/library/aya"
+          },
+          {
+            "title": "Cohere Releases \"Aya Expanse\" Multilingual AI Models | MultiLingual",
+            "url": "https://multilingual.com/cohere-releases-aya-expanse-multilingual-ai-models/"
+          },
+          {
+            "title": "Cohere introduces Aya model that speaks 23 languages - Techzine Global",
+            "url": "https://www.techzine.eu/news/analytics/120328/cohere-introduces-aya-model-that-speaks-23-languages/"
+          },
+          {
+            "title": "Aya-Expanse 8B: Scalable Multilingual LLM",
+            "url": "https://www.emergentmind.com/topics/aya-expanse-8b-model"
+          },
+          {
+            "title": "Aya 23 is a New State-of-the-Art, Multilingual, Open Weights Model from Cohere",
+            "url": "https://www.maginative.com/article/cohere-releases-aya-23/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Aya-23-8B multilingual model:\n\n## Model Architecture\n\nThe model utilizes an optimized transformer architecture specifically designed for high performance, efficiency, and scalability across multilingual tasks. More specifically, Aya-23-8B uses grouped-query attention where each KV head shares multiple Q heads to reduce inference-time memory footprint.\n\n## Supported Languages\n\nThe model covers 23 languages: Arabic, Chinese (simplified & traditional), Czech, Dutch, English, French, German, Greek, Hebrew, Hindi, Indonesian, Italian, Japanese, Korean, Persian, Polish, Portuguese, Romanian, Russian, Spanish, Turkish, Ukrainian, and Vietnamese.\n\n## Key Specifications\n\nAya-23–8B features 8 billion parameters and is optimized for generating accurate, contextually relevant text across supported languages while requiring fewer resources than the larger model. Additionally, the model supports a context length of up to 8,192 tokens.\n\n## Dense vs. Sparse Architecture\n\nThe search results indicate that Aya-23-8B uses a dense transformer architecture—there is no mention of it being a sparse mixture-of-experts model, unlike some competitors like Mixtral which uses sparse architecture.\n\n## Development Context\n\nAya 23 is an open weights research release of an instruction fine-tuned model with highly advanced multilingual capabilities. The Aya project represents an unprecedented global collaboration involving over 3,000 researchers from 119 countries, focusing on expanding language coverage and improving AI accessibility for underserved languages worldwide."
+    ],
+    "durationSeconds": 6.401565854
+  },
+  "sourceToolAssistantUUID": "5a7d3358-eee1-4390-8fa9-291eb47084dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignme…",
+  "leafUuid": "b61a5e08-1695-4f3f-a2f8-d72a838b4e17",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CLS-LoRA for MLAS-LoRA overlap and MoE handling",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-10T06:42:35.758Z_
+
+<details><summary>↩ Tool result · `toolu_011ocGS4Vx2M2kkPwBL3NnAt`</summary>
+
+```text
+Web search results for query: "arXiv 2510.26024 "Rethinking Cross-lingual Alignment" GitHub code transfer-localization evaluation"
+
+Links: [{"title":"[2510.26024] Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs","url":"https://arxiv.org/abs/2510.26024"},{"title":"Under review RETHINKING CROSS-LINGUAL ALIGNMENT:","url":"https://arxiv.org/pdf/2510.26024"},{"title":"Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs | Request PDF","url":"https://www.researchgate.net/publication/397089048_Rethinking_Cross-lingual_Alignment_Balancing_Transfer_and_Cultural_Erasure_in_Multilingual_LLMs"},{"title":"Understanding Cross-Lingual Alignment—A Survey","url":"https://arxiv.org/html/2404.06228v2"},{"title":"Probing the Emergence of Cross-lingual Alignment during LLM Training","url":"https://arxiv.org/html/2406.13229v1"},{"title":"PreAlign: Boosting Cross-Lingual Transfer by Early Establishment of Multilingual Alignment","url":"https://arxiv.org/html/2407.16222v1"},{"title":"LANGUAGES ARE MODALITIES CROSS-LINGUAL ALIGNMENT VIA ENCODER INJECTION","url":"https://arxiv.org/pdf/2510.27254"},{"title":"A Survey of Cross-Lingual Alignment: Definitions, Methods, Future","url":"https://arxiv.org/html/2404.06228v1"},{"title":"Rethinking what Matters: Effective and Robust Multilingual Realignment for Low-Resource Languages","url":"https://arxiv.org/html/2511.06497"},{"title":"Middle-Layer Representation Alignment for Cross-Lingual ...","url":"https://aclanthology.org/2025.acl-long.778.pdf"}]
+
+Based on my search results, I found information about the arXiv paper 2510.26024. Here's what I found:
+
+## Paper Overview
+
+Cross-lingual alignment (CLA) aims to align multilingual representations, enabling Large Language Models (LLMs) to seamlessly transfer knowledge across languages. However, this pursuit of representational convergence can inadvertently cause "cultural erasure", the functional loss of providing culturally-situated responses that should diverge based on the query language.
+
+## Evaluation Framework
+
+The paper introduces a holistic evaluation framework, the transfer-localization plane, which quantifies both desirable knowledge transfer and undesirable cultural erasure. Using this framework, the researchers re-evaluate recent CLA approaches and find that they consistently improve factual transfer at the direct cost of cultural localization across all six languages studied.
+
+## Authors
+
+The paper is authored by HyoJung Han, Sweta Agrawal, and Eleftheria Briakou, and was submitted on October 29, 2025.
+
+**Note on GitHub Code:** While the search results confirmed the arXiv paper details and evaluation framework, I did not find specific information about a GitHub repository with code for this paper in the search results. You may want to check the paper's arXiv page directly or the authors' institutional repositories for code availability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07285947-d726-40f4-832f-cf295b2df497",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "7ed6c5d7-2ac8-4dc5-9250-23917f4af54c",
+  "toolUseResult": {
+    "query": "arXiv 2510.26024 \"Rethinking Cross-lingual Alignment\" GitHub code transfer-localization evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011nFshjobckwe1fTJJakoGT",
+        "content": [
+          {
+            "title": "[2510.26024] Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs",
+            "url": "https://arxiv.org/abs/2510.26024"
+          },
+          {
+            "title": "Under review RETHINKING CROSS-LINGUAL ALIGNMENT:",
+            "url": "https://arxiv.org/pdf/2510.26024"
+          },
+          {
+            "title": "Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/397089048_Rethinking_Cross-lingual_Alignment_Balancing_Transfer_and_Cultural_Erasure_in_Multilingual_LLMs"
+          },
+          {
+            "title": "Understanding Cross-Lingual Alignment—A Survey",
+            "url": "https://arxiv.org/html/2404.06228v2"
+          },
+          {
+            "title": "Probing the Emergence of Cross-lingual Alignment during LLM Training",
+            "url": "https://arxiv.org/html/2406.13229v1"
+          },
+          {
+            "title": "PreAlign: Boosting Cross-Lingual Transfer by Early Establishment of Multilingual Alignment",
+            "url": "https://arxiv.org/html/2407.16222v1"
+          },
+          {
+            "title": "LANGUAGES ARE MODALITIES CROSS-LINGUAL ALIGNMENT VIA ENCODER INJECTION",
+            "url": "https://arxiv.org/pdf/2510.27254"
+          },
+          {
+            "title": "A Survey of Cross-Lingual Alignment: Definitions, Methods, Future",
+            "url": "https://arxiv.org/html/2404.06228v1"
+          },
+          {
+            "title": "Rethinking what Matters: Effective and Robust Multilingual Realignment for Low-Resource Languages",
+            "url": "https://arxiv.org/html/2511.06497"
+          },
+          {
+            "title": "Middle-Layer Representation Alignment for Cross-Lingual ...",
+            "url": "https://aclanthology.org/2025.acl-long.778.pdf"
+          }
+        ]
+      },
+      "Based on my search results, I found information about the arXiv paper 2510.26024. Here's what I found:\n\n## Paper Overview\n\nCross-lingual alignment (CLA) aims to align multilingual representations, enabling Large Language Models (LLMs) to seamlessly transfer knowledge across languages. However, this pursuit of representational convergence can inadvertently cause \"cultural erasure\", the functional loss of providing culturally-situated responses that should diverge based on the query language.\n\n## Evaluation Framework\n\nThe paper introduces a holistic evaluation framework, the transfer-localization plane, which quantifies both desirable knowledge transfer and undesirable cultural erasure. Using this framework, the researchers re-evaluate recent CLA approaches and find that they consistently improve factual transfer at the direct cost of cultural localization across all six languages studied.\n\n## Authors\n\nThe paper is authored by HyoJung Han, Sweta Agrawal, and Eleftheria Briakou, and was submitted on October 29, 2025.\n\n**Note on GitHub Code:** While the search results confirmed the arXiv paper details and evaluation framework, I did not find specific information about a GitHub repository with code for this paper in the search results. You may want to check the paper's arXiv page directly or the authors' institutional repositories for code availability."
+    ],
+    "durationSeconds": 6.000830296
+  },
+  "sourceToolAssistantUUID": "07285947-d726-40f4-832f-cf295b2df497",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-10T06:42:37.403Z_
+
+<details><summary>↩ Tool result · `toolu_013rNzSrVNUjysCPrHYAWKV9`</summary>
+
+```text
+Web search results for query: "cultural erasure multilingual LLM fine-tuning layer-selective training 2025 2026"
+
+Links: [{"title":"Balancing Transfer and Cultural Erasure in Multilingual LLMs","url":"https://arxiv.org/pdf/2510.26024"},{"title":"Opportunities and Challenges of Large Language Models for","url":"https://arxiv.org/pdf/2412.04497"},{"title":"CultureLLM: Incorporating Cultural Differences into Large Language Models | OpenReview","url":"https://openreview.net/forum?id=sIsbOkQmBL"},{"title":"Improving Multilingual Capabilities with Cultural and Local Knowledge in Large Language Models While Enhancing Native Performance","url":"https://arxiv.org/html/2504.09753"},{"title":"M-DaQ: Retrieving Samples with Multilingual Diversity and Quality for Instruction Fine-Tuning Datasets","url":"https://arxiv.org/html/2509.15549"},{"title":"CultureLLM: Incorporating Cultural Differences into Large Language Models","url":"https://arxiv.org/pdf/2402.10946"},{"title":"Final Report - Fine Tuning Methods for Low-resource Languages","url":"https://arxiv.org/html/2510.04139v1"},{"title":"Bridging the Gap: Enhancing LLM Performance for Low-Resource African Languages with New Benchmarks, Fine-Tuning, and Cultural Adjustments","url":"https://arxiv.org/html/2412.12417v1"},{"title":"Beyond Training for Cultural Awareness: The Role of Dataset Linguistic Structure in Large Language Models","url":"https://arxiv.org/html/2602.01161"},{"title":"[2402.10946] CultureLLM: Incorporating Cultural Differences into Large Language Models","url":"https://arxiv.org/abs/2402.10946"}]
+
+I've completed a web search on your query about cultural erasure in multilingual LLM fine-tuning with layer-selective training approaches. Here are the key findings:
+
+## Primary Research Discovery
+
+The most directly relevant finding is research on balancing transfer and cultural erasure in multilingual LLMs, which distinguishes between universal questions that should converge across languages versus culturally-specific questions that should result in localized answers reflecting cultural context.
+
+## Core Technical Insight
+
+Cross-lingual transfer is better realized within a model's middle layers, while cultural localization is predominantly encoded in the deeper layers. This layer-specific distinction is crucial for understanding how to preserve cultural knowledge during fine-tuning.
+
+## The Cultural Erasure Problem
+
+Researchers have identified an undesirable quadrant where high transfer is achieved at the cost of cultural erasure—a regression in the model's ability to adapt. LLMs process multilingual inputs by mapping them to a shared, language-agnostic semantic space often heavily biased towards English, and the degree of alignment between English and non-English representations has become a reliable proxy for multilingual capability.
+
+## Recent Fine-Tuning Approaches (2025-2026)
+
+Multiple recent papers address this through efficient fine-tuning: Some approaches employ computationally efficient fine-tuning methods such as Supervised Fine-Tuning (SFT) with Low-Rank Adaptation (LoRA) rather than resource-intensive methods like vocabulary expansion or block expansion.
+
+Research indicates that pre-training linguistic properties of datasets can be informative for cultural alignment, but their effects are strongly model-dependent rather than universal, motivating model-aware, dataset-centric strategies for multilingual cultural awareness in LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf7ae19a-1d8a-44bc-a28b-0d782ae0af72",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "47d18114-8ae8-4e5c-bf06-b2248d7128b9",
+  "toolUseResult": {
+    "query": "cultural erasure multilingual LLM fine-tuning layer-selective training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015RCZELRDc97dZnXnqocZxo",
+        "content": [
+          {
+            "title": "Balancing Transfer and Cultural Erasure in Multilingual LLMs",
+            "url": "https://arxiv.org/pdf/2510.26024"
+          },
+          {
+            "title": "Opportunities and Challenges of Large Language Models for",
+            "url": "https://arxiv.org/pdf/2412.04497"
+          },
+          {
+            "title": "CultureLLM: Incorporating Cultural Differences into Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=sIsbOkQmBL"
+          },
+          {
+            "title": "Improving Multilingual Capabilities with Cultural and Local Knowledge in Large Language Models While Enhancing Native Performance",
+            "url": "https://arxiv.org/html/2504.09753"
+          },
+          {
+            "title": "M-DaQ: Retrieving Samples with Multilingual Diversity and Quality for Instruction Fine-Tuning Datasets",
+            "url": "https://arxiv.org/html/2509.15549"
+          },
+          {
+            "title": "CultureLLM: Incorporating Cultural Differences into Large Language Models",
+            "url": "https://arxiv.org/pdf/2402.10946"
+          },
+          {
+            "title": "Final Report - Fine Tuning Methods for Low-resource Languages",
+            "url": "https://arxiv.org/html/2510.04139v1"
+          },
+          {
+            "title": "Bridging the Gap: Enhancing LLM Performance for Low-Resource African Languages with New Benchmarks, Fine-Tuning, and Cultural Adjustments",
+            "url": "https://arxiv.org/html/2412.12417v1"
+          },
+          {
+            "title": "Beyond Training for Cultural Awareness: The Role of Dataset Linguistic Structure in Large Language Models",
+            "url": "https://arxiv.org/html/2602.01161"
+          },
+          {
+            "title": "[2402.10946] CultureLLM: Incorporating Cultural Differences into Large Language Models",
+            "url": "https://arxiv.org/abs/2402.10946"
+          }
+        ]
+      },
+      "I've completed a web search on your query about cultural erasure in multilingual LLM fine-tuning with layer-selective training approaches. Here are the key findings:\n\n## Primary Research Discovery\n\nThe most directly relevant finding is research on balancing transfer and cultural erasure in multilingual LLMs, which distinguishes between universal questions that should converge across languages versus culturally-specific questions that should result in localized answers reflecting cultural context.\n\n## Core Technical Insight\n\nCross-lingual transfer is better realized within a model's middle layers, while cultural localization is predominantly encoded in the deeper layers. This layer-specific distinction is crucial for understanding how to preserve cultural knowledge during fine-tuning.\n\n## The Cultural Erasure Problem\n\nResearchers have identified an undesirable quadrant where high transfer is achieved at the cost of cultural erasure—a regression in the model's ability to adapt. LLMs process multilingual inputs by mapping them to a shared, language-agnostic semantic space often heavily biased towards English, and the degree of alignment between English and non-English representations has become a reliable proxy for multilingual capability.\n\n## Recent Fine-Tuning Approaches (2025-2026)\n\nMultiple recent papers address this through efficient fine-tuning: Some approaches employ computationally efficient fine-tuning methods such as Supervised Fine-Tuning (SFT) with Low-Rank Adaptation (LoRA) rather than resource-intensive methods like vocabulary expansion or block expansion.\n\nResearch indicates that pre-training linguistic properties of datasets can be informative for cultural alignment, but their effects are strongly model-dependent rather than universal, motivating model-aware, dataset-centric strategies for multilingual cultural awareness in LLMs."
+    ],
+    "durationSeconds": 7.392768334
+  },
+  "sourceToolAssistantUUID": "cf7ae19a-1d8a-44bc-a28b-0d782ae0af72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40 · 2026-05-10T06:42:37.407Z_
+
+```json
+{
+  "parentUuid": "47d18114-8ae8-4e5c-bf06-b2248d7128b9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8fd0d536-4a21-417e-8fbc-1f47c5f43a93",
+  "timestamp": "2026-05-10T06:42:37.407Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-10T06:43:02.583Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key information. Let me analyze it:
+
+1. **INCLINE "outstanding paper" status**: CONFIRMED - "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention" IS listed as an ACL 2025 outstanding paper. The reviewer was WRONG. The original idea's claim was correct. I should KEEP this claim in the revision.
+
+2. **MLAS-LoRA differentiation**:
+   - MLAS-LoRA: language-pair-specific neuron detection for machine translation (MT) + teacher-student knowledge distillation
+   - CLS-LoRA: factual-vs-cultural LAYER partition for cultural preservation during instruction fine-tuning
+   - The core distinction is that MLAS-LoRA targets translation quality through language-pair specificity and distillation, while CLS-LoRA preserves cultural knowledge through factual-cultural layer separation during instruction tuning—these are fundamentally different problems and approaches that need explicit differentiation in the related work.
+
+3. **Source-Shielded Updates (arXiv:2512.04844)**: This addresses catastrophic forgetting of source-language abilities through column-wise parameter freezing, which is distinct from CLS-LoRA's focus on preserving cultural knowledge through factual-cultural partitioning rather than source-language preservation.
+
+4. **arXiv:2504.10191 (Localized Cultural Knowledge)**: This work focuses on inference-time steering through explicit-implicit localization gaps and cultural customization vectors, which is different from the structural vs behavioral preservation question—though the reviewer's concern about erasure during adaptation still applies, just framed around knowledge steering rather than parameter structure.
+
+5. **LLaMA 4 Scout**: The reviewer correctly points out this is a mixture-of-experts model with 109B total parameters, so I should replace it with a dense multilingual baseline like Qwen3-8B, which is already in the proposal and covers 119 languages, or consider Aya-23-8B for better cultural coverage despite its smaller language set.
+
+6. **Transfer-localization plane code availability**: No public GitHub repository exists for this method, which is a significant risk I need to acknowledge and address.
+
+7. **Structural vs behavioral erasure**: The reviewer's insight is that if cultural knowledge persists structurally (as the arXiv paper suggests through controllable steering), then CLS-LoRA's deep-layer freezing might prevent behavioral suppression rather than representational loss—so I need to add an ablation measuring probe accuracy before and after full-LoRA training to distinguish between these two mechanisms.
+
+Now I'm checking whether INCLINE is the complete name for that paper and looking for any more recent work in this space I might have overlooked.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fd0d536-4a21-417e-8fbc-1f47c5f43a93",
+  "isSidechain": false,
+  "requestId": "req_011CatS72GwPGE7SWz7rZy9t",
+  "type": "assistant",
+  "uuid": "cb5229fb-3de5-4e32-b974-e27aaf76db84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QordWzMePeJNQPz2w3eJq4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4227,
+      "cache_read_input_tokens": 27029,
+      "output_tokens": 1012,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1012,
+          "cache_read_input_tokens": 27029,
+          "cache_creation_input_tokens": 4227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-10T06:43:02.595Z_
+
+Now let me do a few more targeted searches to fill in remaining gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb5229fb-3de5-4e32-b974-e27aaf76db84",
+  "isSidechain": false,
+  "requestId": "req_011CatS72GwPGE7SWz7rZy9t",
+  "type": "assistant",
+  "uuid": "9e58f9f7-09b3-4d17-90de-5b4029e48c53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QordWzMePeJNQPz2w3eJq4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4227,
+      "cache_read_input_tokens": 27029,
+      "output_tokens": 1012,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1012,
+          "cache_read_input_tokens": 27029,
+          "cache_creation_input_tokens": 4227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-10T06:43:02.624Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LYzKDBDXcmoe5PuQBsgUET`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2410.12462",
+  "prompt": "What is the full title and acronym of this paper? Is it called INCLINE? Is it an ACL 2025 outstanding paper?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e58f9f7-09b3-4d17-90de-5b4029e48c53",
+  "isSidechain": false,
+  "requestId": "req_011CatS72GwPGE7SWz7rZy9t",
+  "type": "assistant",
+  "uuid": "b304642b-0235-4beb-b882-4eeff3d9b70b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QordWzMePeJNQPz2w3eJq4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4227,
+      "cache_read_input_tokens": 27029,
+      "output_tokens": 1012,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1012,
+          "cache_read_input_tokens": 27029,
+          "cache_creation_input_tokens": 4227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-10T06:43:02.632Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018cZmHk4t5ifYaXyFqyzi2o`</summary>
+
+```json
+{
+  "query": "Qwen3-8B dense transformer architecture 2025 parameters multilingual"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b304642b-0235-4beb-b882-4eeff3d9b70b",
+  "isSidechain": false,
+  "requestId": "req_011CatS72GwPGE7SWz7rZy9t",
+  "type": "assistant",
+  "uuid": "a543a638-29a7-4e48-aa1e-a487def6c970",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QordWzMePeJNQPz2w3eJq4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4227,
+      "cache_read_input_tokens": 27029,
+      "output_tokens": 1012,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1012,
+          "cache_read_input_tokens": 27029,
+          "cache_creation_input_tokens": 4227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-10T06:43:03.352Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E3FiokRZL4QmLXckwxeKKa`</summary>
+
+```json
+{
+  "query": "cultural knowledge layer localization LLM probing structural behavioral fine-tuning 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a543a638-29a7-4e48-aa1e-a487def6c970",
+  "isSidechain": false,
+  "requestId": "req_011CatS72GwPGE7SWz7rZy9t",
+  "type": "assistant",
+  "uuid": "f69c9f02-3501-47d9-91c1-fd0c9b958b2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QordWzMePeJNQPz2w3eJq4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4227,
+      "cache_read_input_tokens": 27029,
+      "output_tokens": 1012,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1012,
+          "cache_read_input_tokens": 27029,
+          "cache_creation_input_tokens": 4227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-10T06:43:04.621Z_
+
+<details><summary>↩ Tool result · `toolu_01LYzKDBDXcmoe5PuQBsgUET`</summary>
+
+```text
+# Paper Title and Acronym
+
+The full title is **"Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention,"** and yes, it is referred to by the acronym **INCLINE**.
+
+# ACL 2025 Status
+
+Based on the provided content, there is no information indicating this paper was designated as an ACL 2025 outstanding paper. The webpage shows it was submitted to arXiv on October 16, 2024, but contains no mention of ACL 2025 recognition or awards.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b304642b-0235-4beb-b882-4eeff3d9b70b",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "a42e132f-27a9-4091-9a1d-b004d223b950",
+  "toolUseResult": {
+    "bytes": 46211,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Title and Acronym\n\nThe full title is **\"Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention,\"** and yes, it is referred to by the acronym **INCLINE**.\n\n# ACL 2025 Status\n\nBased on the provided content, there is no information indicating this paper was designated as an ACL 2025 outstanding paper. The webpage shows it was submitted to arXiv on October 16, 2024, but contains no mention of ACL 2025 recognition or awards.",
+    "durationMs": 1993,
+    "url": "https://arxiv.org/abs/2410.12462"
+  },
+  "sourceToolAssistantUUID": "b304642b-0235-4beb-b882-4eeff3d9b70b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-10T06:43:11.873Z_
+
+<details><summary>↩ Tool result · `toolu_01E3FiokRZL4QmLXckwxeKKa`</summary>
+
+```text
+Web search results for query: "cultural knowledge layer localization LLM probing structural behavioral fine-tuning 2025"
+
+Links: [{"title":"Localized Cultural Knowledge is Conserved and Controllable in Large Language Models","url":"https://arxiv.org/html/2504.10191v1"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"},{"title":"arXiv:2504.13816v3 [cs.CL] 24 Jun 2025","url":"https://arxiv.org/pdf/2504.13816"},{"title":"A resource-efficient framework for cultural alignment in large language models (LLMs): The Chinese context - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S3050741326000029"},{"title":"[2508.07414] Grounding Multilingual Multimodal LLMs With Cultural Knowledge","url":"https://arxiv.org/abs/2508.07414"},{"title":"Bridging the Culture Gap: A Framework for LLM-Driven Socio-Cultural Localization of Math Word Problems in Low-Resource Languages","url":"https://arxiv.org/html/2508.14913"},{"title":"Grounding Multilingual Multimodal LLMs With Cultural Knowledge","url":"https://arxiv.org/pdf/2508.07414"},{"title":"LOFIT: Localized Fine-tuning on LLM Representations Fangcong Yin","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/122ea6470232ee5e79a2649243348005-Paper-Conference.pdf"},{"title":"Identity-Aware Large Language Models require Cultural Reasoning","url":"https://arxiv.org/html/2510.18510v1"},{"title":"Knowledge Boundary of Large Language Models: A Survey","url":"https://arxiv.org/html/2412.12472v2"}]
+
+I found several highly relevant research papers and resources on cultural knowledge localization in large language models. Here are the key findings:
+
+## Primary Research
+
+Recent work uses mechanistic interpretability tools to explore where cultural localization happens within LLMs, identifying the most relevant layers using activation patching analysis and computing linear steering vectors on these layers to culturally localize model responses without explicit prompting.
+
+These cultural steering vectors are effective at culturally localizing generations while being both language and task agnostic, remaining effective across different languages and generalizing across different localization tasks.
+
+## Key 2025 Research Directions
+
+**Cultural Knowledge Grounding:** A data-centric approach grounds multimodal LLMs in cultural knowledge by leveraging knowledge graphs from Wikidata and generating synthetic multilingual visual question answering data, resulting in the CulturalGround dataset comprising 22 million culturally-rich VQA pairs spanning 42 countries and 39 languages.
+
+**Fine-tuning Approaches:** A Human-AI cultural alignment design framework enhances cultural understanding in LLMs with a focus on optimizing cultural values, improving comprehension of culturally specific content, and enhancing reasoning and conversational logic design. This approach uses LoRA fine-tuning, Retrieval-Augmented Generation, and Chain-of-Thought prompting to address cultural dimensions.
+
+**Localization and Probing:** An automated framework for socio-cultural localization of math word problems in low-resource languages has been proposed, as benchmark datasets created using translation often fail to study appropriately socio-culturally grounded content.
+
+## Cultural Reasoning Challenges
+
+While LLMs today are not reliably culturally adaptive, research shows they possess areas of cultural knowledge and can mimic some cultural differences, but lack generalized competence to reason as a local across the world's many cultures.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f69c9f02-3501-47d9-91c1-fd0c9b958b2d",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "9c4aa458-c96f-4cf8-b567-ffb76875cfd3",
+  "toolUseResult": {
+    "query": "cultural knowledge layer localization LLM probing structural behavioral fine-tuning 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VvxwinyvDCGKjxTv4fXYmq",
+        "content": [
+          {
+            "title": "Localized Cultural Knowledge is Conserved and Controllable in Large Language Models",
+            "url": "https://arxiv.org/html/2504.10191v1"
+          },
+          {
+            "title": "Accepted Main Conference Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/main_papers/"
+          },
+          {
+            "title": "arXiv:2504.13816v3 [cs.CL] 24 Jun 2025",
+            "url": "https://arxiv.org/pdf/2504.13816"
+          },
+          {
+            "title": "A resource-efficient framework for cultural alignment in large language models (LLMs): The Chinese context - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S3050741326000029"
+          },
+          {
+            "title": "[2508.07414] Grounding Multilingual Multimodal LLMs With Cultural Knowledge",
+            "url": "https://arxiv.org/abs/2508.07414"
+          },
+          {
+            "title": "Bridging the Culture Gap: A Framework for LLM-Driven Socio-Cultural Localization of Math Word Problems in Low-Resource Languages",
+            "url": "https://arxiv.org/html/2508.14913"
+          },
+          {
+            "title": "Grounding Multilingual Multimodal LLMs With Cultural Knowledge",
+            "url": "https://arxiv.org/pdf/2508.07414"
+          },
+          {
+            "title": "LOFIT: Localized Fine-tuning on LLM Representations Fangcong Yin",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/122ea6470232ee5e79a2649243348005-Paper-Conference.pdf"
+          },
+          {
+            "title": "Identity-Aware Large Language Models require Cultural Reasoning",
+            "url": "https://arxiv.org/html/2510.18510v1"
+          },
+          {
+            "title": "Knowledge Boundary of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2412.12472v2"
+          }
+        ]
+      },
+      "I found several highly relevant research papers and resources on cultural knowledge localization in large language models. Here are the key findings:\n\n## Primary Research\n\nRecent work uses mechanistic interpretability tools to explore where cultural localization happens within LLMs, identifying the most relevant layers using activation patching analysis and computing linear steering vectors on these layers to culturally localize model responses without explicit prompting.\n\nThese cultural steering vectors are effective at culturally localizing generations while being both language and task agnostic, remaining effective across different languages and generalizing across different localization tasks.\n\n## Key 2025 Research Directions\n\n**Cultural Knowledge Grounding:** A data-centric approach grounds multimodal LLMs in cultural knowledge by leveraging knowledge graphs from Wikidata and generating synthetic multilingual visual question answering data, resulting in the CulturalGround dataset comprising 22 million culturally-rich VQA pairs spanning 42 countries and 39 languages.\n\n**Fine-tuning Approaches:** A Human-AI cultural alignment design framework enhances cultural understanding in LLMs with a focus on optimizing cultural values, improving comprehension of culturally specific content, and enhancing reasoning and conversational logic design. This approach uses LoRA fine-tuning, Retrieval-Augmented Generation, and Chain-of-Thought prompting to address cultural dimensions.\n\n**Localization and Probing:** An automated framework for socio-cultural localization of math word problems in low-resource languages has been proposed, as benchmark datasets created using translation often fail to study appropriately socio-culturally grounded content.\n\n## Cultural Reasoning Challenges\n\nWhile LLMs today are not reliably culturally adaptive, research shows they possess areas of cultural knowledge and can mimic some cultural differences, but lack generalized competence to reason as a local across the world's many cultures."
+    ],
+    "durationSeconds": 8.517545481999987
+  },
+  "sourceToolAssistantUUID": "f69c9f02-3501-47d9-91c1-fd0c9b958b2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignme…",
+  "leafUuid": "9c4aa458-c96f-4cf8-b567-ffb76875cfd3",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CLS-LoRA for MLAS-LoRA overlap and MoE handling",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-10T06:43:13.050Z_
+
+<details><summary>↩ Tool result · `toolu_018cZmHk4t5ifYaXyFqyzi2o`</summary>
+
+```text
+Web search results for query: "Qwen3-8B dense transformer architecture 2025 parameters multilingual"
+
+Links: [{"title":"Qwen/Qwen3-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"Qwen3-8B LLM: Architecture & Efficiency","url":"https://www.emergentmind.com/topics/qwen3-8b-model"},{"title":"Qwen3 Technical Report","url":"https://arxiv.org/html/2505.09388v1"},{"title":"Qwen3 8B | Open Laboratory","url":"https://openlaboratory.com/models/qwen3-8b/"},{"title":"Qwen-3-8B: Dense LLM with Unified Thinking","url":"https://www.emergentmind.com/topics/qwen-3-8b-model"},{"title":"Qwen/Qwen3-8B-Base · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B-Base"},{"title":"Qwen3-4B-Instruct Transformer","url":"https://www.emergentmind.com/topics/qwen3-4b-instruct"},{"title":"GitHub - QwenLM/Qwen3-Embedding · GitHub","url":"https://github.com/QwenLM/Qwen3-Embedding"},{"title":"Qwen3 8B: A High-Performance LLM Backbone","url":"https://www.emergentmind.com/topics/qwen3-8b-f68ed6bc-583b-42f6-9ed4-45cf8f7172cb"}]
+
+Based on the search results, here's comprehensive information about Qwen3-8B's dense transformer architecture and its multilingual capabilities:
+
+## Architecture Overview
+
+Qwen3-8B is a dense transformer-based model with 8.2 billion parameters—6.95 billion of which are non-embedding parameters—spanning 36 layers. Qwen3-8B employs a dense autoregressive transformer backbone.
+
+## Key Architectural Components
+
+The architecture of the Qwen3 dense models is similar to Qwen2.5, including using Grouped Query Attention (GQA), SwiGLU, Rotary Positional Embeddings (RoPE), and RMSNorm with pre-normalization. The model employs 32 attention heads for queries and 8 for key/value, supported by Grouped Query Attention (GQA), which optimizes efficiency and scaling.
+
+## Context Length
+
+Qwen3-8B natively processes contexts up to 32,768 tokens, extendable to 131,072 tokens through the Yet another RoPE extension (YaRN) approach for handling long sequences.
+
+## Multilingual Capabilities
+
+Qwen3-8B supports 100+ languages and dialects with strong capabilities for multilingual instruction following and translation. More specifically, all Qwen3 models are trained on a large and diverse dataset consisting of 119 languages and dialects, with a total of 36 trillion tokens. The model's coverage of 119 languages and dialects opens opportunities in multilingual instruction, translation, and global applications.
+
+## Training and Innovation
+
+A key innovation in Qwen3 is the integration of thinking mode (for complex, multi-step reasoning) and non-thinking mode (for rapid, context-driven responses) into a unified framework. This eliminates the need to switch between different models—such as chat-optimized models (e.g., GPT-4o) and dedicated reasoning models (e.g., QwQ-32B)—and enables dynamic mode switching based on user queries or chat templates.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a543a638-29a7-4e48-aa1e-a487def6c970",
+  "isSidechain": false,
+  "promptId": "dfc946f7-cf59-43e5-bfa1-2728a486d3a8",
+  "type": "user",
+  "uuid": "d328f252-fc2e-465f-b073-0053d25dca4c",
+  "toolUseResult": {
+    "query": "Qwen3-8B dense transformer architecture 2025 parameters multilingual",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011t61ckrscQzF4p3PVgHvyE",
+        "content": [
+          {
+            "title": "Qwen/Qwen3-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "Qwen3-8B LLM: Architecture & Efficiency",
+            "url": "https://www.emergentmind.com/topics/qwen3-8b-model"
+          },
+          {
+            "title": "Qwen3 Technical Report",
+            "url": "https://arxiv.org/html/2505.09388v1"
+          },
+          {
+            "title": "Qwen3 8B | Open Laboratory",
+            "url": "https://openlaboratory.com/models/qwen3-8b/"
+          },
+          {
+            "title": "Qwen-3-8B: Dense LLM with Unified Thinking",
+            "url": "https://www.emergentmind.com/topics/qwen-3-8b-model"
+          },
+          {
+            "title": "Qwen/Qwen3-8B-Base · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B-Base"
+          },
+          {
+            "title": "Qwen3-4B-Instruct Transformer",
+            "url": "https://www.emergentmind.com/topics/qwen3-4b-instruct"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3-Embedding · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3-Embedding"
+          },
+          {
+            "title": "Qwen3 8B: A High-Performance LLM Backbone",
+            "url": "https://www.emergentmind.com/topics/qwen3-8b-f68ed6bc-583b-42f6-9ed4-45cf8f7172cb"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about Qwen3-8B's dense transformer architecture and its multilingual capabilities:\n\n## Architecture Overview\n\nQwen3-8B is a dense transformer-based model with 8.2 billion parameters—6.95 billion of which are non-embedding parameters—spanning 36 layers. Qwen3-8B employs a dense autoregressive transformer backbone.\n\n## Key Architectural Components\n\nThe architecture of the Qwen3 dense models is similar to Qwen2.5, including using Grouped Query Attention (GQA), SwiGLU, Rotary Positional Embeddings (RoPE), and RMSNorm with pre-normalization. The model employs 32 attention heads for queries and 8 for key/value, supported by Grouped Query Attention (GQA), which optimizes efficiency and scaling.\n\n## Context Length\n\nQwen3-8B natively processes contexts up to 32,768 tokens, extendable to 131,072 tokens through the Yet another RoPE extension (YaRN) approach for handling long sequences.\n\n## Multilingual Capabilities\n\nQwen3-8B supports 100+ languages and dialects with strong capabilities for multilingual instruction following and translation. More specifically, all Qwen3 models are trained on a large and diverse dataset consisting of 119 languages and dialects, with a total of 36 trillion tokens. The model's coverage of 119 languages and dialects opens opportunities in multilingual instruction, translation, and global applications.\n\n## Training and Innovation\n\nA key innovation in Qwen3 is the integration of thinking mode (for complex, multi-step reasoning) and non-thinking mode (for rapid, context-driven responses) into a unified framework. This eliminates the need to switch between different models—such as chat-optimized models (e.g., GPT-4o) and dedicated reasoning models (e.g., QwQ-32B)—and enables dynamic mode switching based on user queries or chat templates."
+    ],
+    "durationSeconds": 10.41445813
+  },
+  "sourceToolAssistantUUID": "a543a638-29a7-4e48-aa1e-a487def6c970",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-10T06:45:02.063Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have enough information to make my revisions. Let me analyze the key points:
+
+1. **INCLINE "outstanding paper" status**: CONFIRMED - the ACL 2025 awards page explicitly lists "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention" as an outstanding paper. The arXiv page doesn't mention it, but the official ACL 2025 awards page confirms it. I should keep this claim. The reviewer was wrong.
+
+2. **MLAS-LoRA differentiation**: 
+   - MLAS-LoRA: neuron-level language-pair detection for MT, teacher-student distillation
+   - CLS-LoRA: layer-level factual-vs-cultural partition for instruction fine-tuning cultural preservation
+   - Key differentiators: (a) culturally-grounded preservation objective vs translation quality, (b) cross-lingual factual/cultural dimension vs language-pair specificity, (c) layer-level vs neuron-level granularity, (d) instruction fine-tuning vs MT
+
+3. **Source-Shielded Updates (arXiv:2512.04844)**: Must cite. Different because SSU prevents cross-lingual catastrophic forgetting of source-language task performance while CLS-LoRA prevents cultural erasure during cross-lingual instruction—fundamentally different preservation targets.
+
+4. **Model selection**: Qwen3-8B remains the primary choice with its 119-language coverage and 36 layers, though I'm weighing whether Aya-23-8B's cross-architecture generalization benefits outweigh its limited 23-language scope.
+
+5. **Transfer-localization plane code**: No public implementation exists, so I need to flag this as a risk and propose alternatives like implementing from the paper, contacting authors, or deriving equivalent metrics from existing benchmarks.
+
+6. **Knowledge persistence vs behavioral suppression**: Recent work suggests cultural knowledge may remain structurally intact but gets behaviorally suppressed through vector steering, which I need to account for in the erasure analysis.
+
+7. **Compute feasibility**: Switching to Qwen3-8B and Aya-23-8B (both 8B dense models) instead of including a large MoE variant significantly reduces the experimental scope—down to 72 runs from 360—making the full ablation study feasible within the 200-hour H100 budget.
+
+Now I'm refining the core narrative: keeping the INCLINE claim since the reviewer's concern was unfounded, explicitly positioning MLAS-LoRA and Source-Shielded Updates in the related work, replacing LLaMA 4 Scout with Aya-23-8B for better linguistic diversity, and clarifying the distinction between structural and behavioral erasure to address the ambiguity around what LoRA actually suppresses. The key distinction is whether we're looking at representational loss or behavioral suppression—the ablation comparing full-LoRA probe accuracy before and after fine-tuning would clarify this. I'm realizing there's a potential coherence issue: if one paper shows cultural knowledge survives fine-tuning while another claims erasure, they might be measuring different phenomena entirely—one behavioral (model outputs), one representational (internal activations). This actually strengthens the CLS-LoRA framing: we're preventing behavioral erasure by preserving the structural pathway that lets cultural knowledge reach the outputs, so freezing those layers protects both representational integrity and behavioral expression.
+
+Now I'm working through the compute requirements more carefully for the auto-research setup, looking at the specific model sizes and breaking down the probing time, sweep parameters across different LoRA ranks and partition thresholds, and regularization strengths.
+
+For the human-in-loop mode, I'm scaling back to a more targeted approach with fewer LoRA ranks and a single partition threshold, which should reduce the computational footprint significantly.
+
+Now I'm realizing the timeline is actually critical here—we're looking at May 25, 2026 as the ARR deadline, which is only 15 days away. The human-in-loop mode would need 6-8 weeks to properly execute, so that's completely infeasible. The auto-research approach claiming 5-10 days might be our only realistic option to hit this deadline.
+
+Given the scope of changes needed—swapping out the base model, adding the MLAS-LoRA differentiation, incorporating the new source-shielded updates work—this is shaping up to be a major revision. I should probably note that we might need to target a later venue like EACL 2027 or AAAI 2027 instead, but I'll keep the current venues in mind while documenting this constraint.
+
+Now I'm writing out the full revised JSON with all the key updates: confirming the INCLINE outstanding paper claim (the ACL 2025 awards page backs it up), replacing LLaMA 4 Scout with Aya-23-8B, folding in MLAS-LoRA and Source-Shielded Updates to the related work, trimming the auto-research compute budget to stay under 200 hours on H100s, adding the structural versus behavioral erasure ablation to the methodology, and including a contingency plan for the transfer-localization code availability issue.
+
+For the landscape section, I'm carefully ordering the papers by relevance: starting with the surgical steering motivation, then the INCLINE work as a key related effort, followed by AlignX, CM-Align, Language Surgery, and the alignment-through-steering papers, with localized cultural knowledge as supporting evidence.
+
+I need to add two critical new papers—MLAS-LoRA which has significant overlap with our approach and requires clear differentiation, and Source-Shielded Updates as related work.
+
+For the approach, I'm keeping the CLS-LoRA pipeline but swapping in Aya-23-8B instead of LLaMA 4 Scout, adding a mechanistic ablation that measures probe accuracy before and after full-LoRA training, and addressing the code availability risk around the transfer-localization plane while trimming compute costs.
+
+The description section needs updating to reflect the model change, include the mechanistic ablation, and better distinguish between structural and behavioral erasure.
+
+For resources, I'm estimating around 4-6 months with 2 researchers, roughly 200 A100 hours, and $300-400 in costs.
+
+Structuring the JSON now...
+
+For the human-in-loop variant, I'm looking at 6-8 weeks with about 120 A100 hours at similar costs. The auto-research path is tighter—the reviewer flagged that our original 600 A100 hours translates to roughly 300-400 H100 hours, which exceeds the 200 H100 constraint. With just 8B models in a trimmed sweep, probing across 2 models takes around 6 A100 hours or 3 H100 hours, and I'm calculating the main training costs now.
+
+The sweep itself involves 72 runs across different rank and partition configurations, each taking 2.5-3.5 A100 hours, which comes to about 216 A100 hours or 108 H100 hours. Adding in the baselines, structural ablations, and steering comparisons brings the total to roughly 258 A100 hours or around 129 H100 hours—well under the 200 H100 target.
+
+Actually, I should be more conservative and trim the regularization strengths down to 2 instead of 3, which reduces the sweep to 48 runs. That brings the main experiments down to 144 A100 hours or 72 H100 hours, and with baselines and ablations included, I'm looking at about 112 H100 hours total—comfortably within budget.
+
+On the outstanding paper claim, the reviewer says there's no evidence, but the ACL 2025 awards page confirms it's legitimate, so I'll keep the claim as is and note in my analysis that the reviewer was mistaken here. The core contribution still holds: I'm preventing cultural erasure at training time through layer-specific LoRA rather than trying to fix it at inference, which is genuinely novel compared to existing remediation approaches.
+
+The distinction from MLAS-LoRA is clear—they work on language-pair specificity at the neuron level for machine translation, while CLS-LoRA targets the factual-cultural knowledge dimension at the layer level for instruction fine-tuning. These are fundamentally different axes of variation, so the differentiation is solid.
+
+Now I need to systematically construct the JSON output. I'm also recalculating the compute for the auto-research experiments—the original breakdown was 4 ranks, 3 partition thresholds, 2 model families, 5 regularization strengths, and 3 seeds totaling 360 runs...
+
+I'm trimming that down to 3 ranks, 2 partition thresholds, 2 model families, 2 regularization strengths, and 2 seeds for 48 runs total, which is much more reasonable. For the H100 conversion, I'm accounting for the roughly 3x speedup in TFLOPS compared to A100s, so 600 hours on A100 becomes around 200 hours on H100. The trimmed experiments would need about 48 hours on H100, plus another 80 for baselines and ablations.
+
+Actually, let me recalculate more carefully—instruction fine-tuning on 8B models is more memory-bound, so the speedup is closer to 2x rather than 3x. That puts the 48-run sweep at around 72 hours on H100, with baselines and ablations adding another 40 hours, for a total of roughly 112 hours. But thinking about it differently, the original 600-hour estimate for 360 runs scales down to about 80 hours for my 48-run sweep, which divided by 2 gives 40 hours on H100 for just the core experiments. Adding in everything else, I'm looking at somewhere between 150-180 hours total on H100.
+
+Now breaking down the per-run costs more carefully: probing takes about 3 hours as a one-time cost per model, LoRA training on 8B with 1000 steps runs roughly 1.5-2 hours, and evaluation across the benchmarks adds another hour, so each run is around 2.5-3 hours on A100. Multiplying 48 runs by 2.75 hours average gives 132 hours, then adding 6 hours for probing on two models, 12 hours for the baseline full-LoRA runs, and 10 hours for structural ablations—this is all comfortably under 200 hours on H100. I need to update the description with several key changes: swapping out LLaMA 4 Scout for Aya-23-8B, adding MLAS-LoRA differentiation and structural-behavioral ablation details, and noting the transfer-localization contingency. The core framing stays solid, but I'm revising the landscape section to include new methods like Source-Shielded Updates, updating the approach with the ablation study, and trimming the auto-research sweep. I'm leaning toward marking this as a major change since the model family swap and new citations reshape the experimental setup.
+
+The reviewer's point about structural versus behavioral erasure actually strengthens the opportunity framing—arXiv:2504.10191 shows cultural knowledge often persists structurally after fine-tuning but gets behaviorally suppressed, which means the real issue is pathway disruption rather than representational loss. This clarifies exactly how CLS-LoRA works: by freezing cultural-knowledge layers, we maintain both the representational encoding and the behavioral routing that lets cultural knowledge influence outputs.
+
+Now I'm structuring the response as JSON...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d328f252-fc2e-465f-b073-0053d25dca4c",
+  "isSidechain": false,
+  "requestId": "req_011CatS9efkkMe14VMHjK2pd",
+  "type": "assistant",
+  "uuid": "6d8b5dc6-ef28-496e-ad0d-b2bff7f8dbf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RcV5qgGoJrNGHxbokYkb9b",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 945,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 31256,
+      "output_tokens": 14697,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2153,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 945,
+          "output_tokens": 14697,
+          "cache_read_input_tokens": 31256,
+          "cache_creation_input_tokens": 2153,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2153
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-10T06:47:24.295Z_
+
+I now have all the information I need. Let me compile my analysis before writing the revision:
+
+**Key findings:**
+1. INCLINE IS confirmed as an ACL 2025 outstanding paper — the official ACL 2025 awards page lists "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention." The reviewer was incorrect; keep the claim.
+2. MLAS-LoRA (ACL 2025): probe-then-selective-LoRA for multilingual MT via teacher-student distillation + language-pair-specific neuron detection. Different dimension from CLS-LoRA (language-pair specificity vs factual-cultural distinction).
+3. Source-Shielded Updates: column-wise freezing to prevent source-language task catastrophic forgetting — not about cultural knowledge per se.
+4. Qwen3-8B: confirmed dense (36 layers, 8.2B params, 119 languages). Aya-23-8B: confirmed dense (23 languages) — good second model.
+5. Transfer-localization plane: no public GitHub found — this is a real risk.
+6. arXiv:2504.10191 finding: cultural knowledge exists as explicit customization vectors, pointing to behavioral suppression rather than full representational erasure — this actually refines (not undermines) CLS-LoRA's story.
+7. Auto-research compute: trimming to 3 ranks × 2 partition thresholds × 2 model families × 2 regularization strengths × 2 seeds = 48 runs ≈ 280-320h A100 ≈ 110-130h H100 — within the 200h H100 constraint.
+
+Now writing the complete revised JSON:
+
+```json
+{
+  "title": "Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignment",
+  "change_type": "major",
+  "project_name": "cls_lora_cultural_preservation",
+  "source": "web_research",
+  "level": "solid",
+
+  "core_problem": "Cross-lingual fine-tuning systematically suppresses culturally-grounded, language-specific knowledge while improving factual transfer—a phenomenon called 'cultural erasure.' Recent mechanistic work (arXiv:2504.10191) reveals the suppression is often behavioral rather than purely representational: cultural knowledge frequently survives as recoverable activations in deeper layers but is no longer surfaced in model outputs after fine-tuning. No training-time method prevents this dual representational-and-behavioral suppression, forcing practitioners to choose between cross-lingual capability and cultural authenticity.",
+
+  "opportunity": "'Rethinking Cross-lingual Alignment' (arXiv:2510.26024, Oct 2025) rigorously demonstrates that every tested cross-lingual alignment approach degrades cultural localization across all six languages, and proposes Surgical Steering as a remedy—but only at inference time, requiring per-query layer manipulation and offering no prevention during training. The finding that factual transfer and cultural localization are optimally steerable at different model layers is actionable: applying LoRA selectively to factual-transfer layers while freezing cultural-knowledge layers during instruction fine-tuning would prevent erasure at the source. arXiv:2504.10191 corroborates this by showing cultural knowledge is conserved as steerable activation-space vectors in specific deeper layers. Crucially, this means CLS-LoRA's freezing strategy serves a dual purpose: it preserves both the representational encoding of cultural knowledge AND the behavioral routing pathway through which that knowledge reaches outputs—preventing both failure modes simultaneously. This is feasible with any open-source multilingual dense model via a lightweight per-layer probing step.",
+
+  "landscape": "INCLINE (arXiv:2410.12462, ACL 2025 outstanding paper) aligns internal representations from low-resource to high-resource languages via learned projection matrices derived from parallel sentences, improving cross-lingual task performance but not distinguishing factual from cultural knowledge. AlignX (arXiv:2509.24338, EMNLP 2025) and CM-Align (arXiv:2509.08541) apply two-stage and consistency-based multilingual alignment respectively, both optimizing convergence without a cultural preservation objective. Language Surgery/ITLC (arXiv:2506.12450) disentangles language-specific from agnostic information through latent injection at inference time, but does not train models to preserve this distinction. Alignment through steering (arXiv:2505.12584) adds a learned residual-stream vector at a single layer; it outperforms many baselines but still does not model the factual-cultural layer split. Surgical Steering (arXiv:2510.26024) is the only method addressing the cultural erasure problem, and is strictly an inference-time patch over an already-erased model. arXiv:2504.10191 ('Localized Cultural Knowledge is Conserved and Controllable in LLMs', April 2025) confirms via cultural customization vectors that cultural knowledge survives in specific deeper layers and can be steered—supporting our premise but addressing control at inference time, not prevention during training.\n\nTwo directly related selective-LoRA methods require explicit differentiation. MLAS-LoRA (ACL 2025, aclanthology.org/2025.acl-long.762) detects language-aware neurons in a teacher model and injects the extracted knowledge into language-pair-specific LoRA modules in a student model for multilingual machine translation, achieving +1.7 BLEU on average. While MLAS-LoRA and CLS-LoRA both use a probe-then-selective-LoRA pipeline, they differ on three critical axes: (1) task domain—MLAS-LoRA targets MT translation quality whereas CLS-LoRA targets cultural knowledge preservation during instruction fine-tuning; (2) partition dimension—MLAS-LoRA partitions along language-pair specificity (English↔French vs English↔Korean neurons) whereas CLS-LoRA partitions along the factual-transfer vs cultural-localization semantic axis, which cuts across language pairs; and (3) objective—MLAS-LoRA optimizes translation accuracy via teacher-student distillation whereas CLS-LoRA optimizes a cultural-preservation objective with no distillation component. The cultural-preservation objective is the categorical novelty: no prior selective-LoRA method defines a 'keep culturally-grounded outputs intact' training signal. Source-Shielded Updates (arXiv:2512.04844, Nov 2025) proposes column-wise parameter freezing to prevent catastrophic forgetting of source-language task performance during target-language adaptation—addressing cross-lingual interference but not the factual-vs-cultural layer distinction or cultural knowledge preservation as a first-class objective.",
+
+  "approach": "We propose Cultural-Layer-Selective LoRA (CLS-LoRA), a training-time method that prevents cultural erasure without sacrificing factual cross-lingual transfer. The pipeline has four stages.\n\n**Stage 1 — Structural diagnostic (new):** Before any training, we run full-LoRA instruction fine-tuning on a held-out model checkpoint and measure per-layer cultural probe accuracy before and after. If probe accuracy is maintained post-training (consistent with arXiv:2504.10191), erasure is confirmed as behavioral (pathway disruption); if probe accuracy drops, erasure is partly representational. This ablation sharpens the mechanistic story and validates the layer-freezing strategy regardless of which failure mode dominates.\n\n**Stage 2 — Layer profiling:** Lightweight linear probes (one per transformer layer) are trained on a small parallel corpus of factual QA pairs and culture-specific benchmark items to produce per-layer factual-transfer and cultural-localization accuracy scores, yielding a principled layer partition—typically middle layers for factual transfer and deeper layers for cultural knowledge, as established in arXiv:2510.26024 and corroborated by arXiv:2504.10191. Bimodal or noisy probe curves are resolved by a secondary entropy-based partition rule rather than requiring human intervention, reducing the auto-research failure mode identified in prior review.\n\n**Stage 3 — Selective LoRA training:** LoRA adapters (via Hugging Face PEFT `target_modules`) are inserted exclusively into factual-transfer layers and trained with standard instruction fine-tuning loss on multilingual instruction data, while cultural-knowledge layers remain fully frozen. An optional auxiliary KL-divergence penalty on a held-out cultural probe set discourages residual drift in frozen layers' downstream activations.\n\n**Stage 4 — Evaluation:** We experiment on Qwen3-8B (primary: confirmed dense, 36 transformer layers, 119 languages and dialects, 8.2B parameters) and Aya-23-8B (secondary: confirmed dense decoder-only, 23 languages, 8B parameters) for cross-architecture generalization. LLaMA 4 Scout is excluded as its 48-block, 16-expert MoE architecture makes the factual-vs-cultural layer partition from arXiv:2510.26024—established on dense models—methodologically inapplicable without separate MoE-specific validation. Evaluation uses CulturalBench and SemEval-2026 Task 7 as primary cultural metrics, with the transfer-localization plane from arXiv:2510.26024 used where possible. To mitigate the risk that the transfer-localization plane evaluation code is not publicly released (no GitHub repository was found as of May 2026), we define an equivalent fallback: a 2D scatter plot of cross-lingual factual accuracy (XQUAD/TyDiQA) vs cultural localization accuracy (CulturalBench) across languages, normalized to the pre-fine-tuning baseline, yielding the same interpretive framework without requiring proprietary code. We compare against full-LoRA, Surgical Steering, INCLINE, MLAS-LoRA (MT→instruction-FT transposition), and Source-Shielded Updates baselines to demonstrate that CLS-LoRA Pareto-dominates prior methods in the transfer-localization trade-off space.",
+
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100 80GB (~80h H100 equivalent)",
+      "gpu_utilization": "~30–40% effective; GPU idles while the researcher inspects probe accuracy heatmaps to select layer partition boundaries, designs ablation grids, and iterates on training scripts between runs",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$300–410 (A100 at $1.49–2.06/hr via RunPod/Lambda)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~130h A100 80GB (~52h H100 equivalent)",
+      "gpu_utilization": "~60–70% effective; agent queues probing and LoRA sweep experiments overnight, researcher reviews layer partition heatmaps and approves next ablation tier once daily, cutting idle time ~50% vs. manual",
+      "timeline": "6–8 weeks",
+      "team": "1 researcher, ~30min/day check-in",
+      "claude_api_cost": "$150–250 (~1000–1500 conversation turns at $0.10–0.15/turn with Opus)",
+      "estimated_gpu_cost": "~$190–270 (A100 at $1.49–2.06/hr)",
+      "risk_note": "Key risk: agent may commit to a suboptimal layer partition if probe accuracy curves are bimodal or noisy; the secondary entropy-based partition fallback reduces (but does not eliminate) this risk; daily human review of the partition heatmap before LoRA runs remains the essential gate"
+    },
+    "auto_research": {
+      "gpu_hours": "~280–320h A100 80GB (~110–130h H100 equivalent); within the ≤200h H100 hard constraint",
+      "gpu_utilization": "~85–90% effective; agent continuously queues the next experiment upon completion with no human approval bottleneck—idle only during brief checkpoint evaluation transitions",
+      "sweep": "3 LoRA rank values (8, 16, 32) × 2 layer partition thresholds × 2 model families (Qwen3-8B, Aya-23-8B) × 2 regularization strengths × 2 seeds = 48 training runs; plus ~12 baseline runs (full-LoRA, Surgical Steering, INCLINE) and Stage 1 structural diagnostic runs",
+      "timeline": "5–8 days with 4–6 concurrent A100 GPUs (or 3–5 days with H100s)",
+      "team": "0 (2–3h of initial harness setup and config-space definition)",
+      "claude_api_cost": "$200–350 (~1500–2500 turns across experiment planning, result parsing, and ablation branching)",
+      "estimated_gpu_cost": "~$420–660 (A100 at $1.49–2.06/hr)",
+      "speed_bottleneck": "Number of concurrent GPUs and the ~1h cultural benchmark evaluation per checkpoint; evaluation can be partially parallelized across checkpoints on separate GPUs",
+      "risk_note": "Bimodal probe distributions are now handled by an automated entropy-based partition fallback, reducing the degenerate-partition risk identified in prior review. The structural diagnostic (Stage 1) also provides an early signal: if cultural probe accuracy is unaffected by full-LoRA training, the layer-freezing strategy is validated before the main sweep begins."
+    }
+  },
+
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026) — viable only with auto-research mode given the 15-day window from May 10, 2026",
+    "EACL 2027 (ARR submission deadline August 3, 2026) — primary target for human-in-loop or manual mode",
+    "AAAI 2027 (submission deadline expected July–August 2026, TBC)"
+  ],
+
+  "key_references": [
+    "Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs (arXiv:2510.26024, 2025)",
+    "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention / INCLINE (ACL 2025 Outstanding Paper, arXiv:2410.12462)",
+    "MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer for Multilingual Machine Translation (ACL 2025, aclanthology.org/2025.acl-long.762)",
+    "Mitigating Catastrophic Forgetting in Target Language Adaptation of LLMs via Source-Shielded Updates (arXiv:2512.04844, Nov 2025)",
+    "AlignX: Advancing Multilingual Large Language Models with Multilingual Representation Alignment (EMNLP 2025, arXiv:2509.24338)",
+    "CM-Align: Consistency-based Multilingual Alignment for Large Language Models (arXiv:2509.08541, 2025)",
+    "Language Surgery in Multilingual Large Language Models / ITLC (arXiv:2506.12450, 2025)",
+    "Improving Multilingual Language Models by Aligning Representations through Steering (arXiv:2505.12584, 2025)",
+    "Localized Cultural Knowledge is Conserved and Controllable in Large Language Models (arXiv:2504.10191, 2025)",
+    "LoRA: Low-Rank Adaptation of Large Language Models (ICLR 2022, arXiv:2106.09685)"
+  ],
+
+  "description": "Cross-lingual instruction fine-tuning demonstrably erases culturally-localized knowledge across all tested alignment approaches—yet no training-time prevention exists. Recent mechanistic work (arXiv:2504.10191) reveals this erasure is often behavioral (pathway disruption) rather than purely representational, since cultural knowledge frequently persists as recoverable activation-space vectors in deeper layers. We propose Cultural-Layer-Selective LoRA (CLS-LoRA), which prevents both failure modes by first running a structural diagnostic to characterize the erasure type, then running lightweight linear probes on every transformer layer to partition layers into factual-transfer clusters (middle layers, per arXiv:2510.26024) and cultural-knowledge clusters (deeper layers, corroborated by arXiv:2504.10191). LoRA adapters are applied exclusively to factual-transfer layers during cross-lingual instruction fine-tuning while cultural-knowledge layers remain frozen; an optional KL-divergence regularizer further anchors cultural-layer outputs to their pretrained distribution. We experiment on two confirmed-dense multilingual models: Qwen3-8B (primary, 36 layers, 119 languages) and Aya-23-8B (secondary, 23 languages) for cross-architecture generalization. LLaMA 4 Scout is excluded because its MoE architecture invalidates the layer-partition methodology without separate validation. Evaluation uses CulturalBench, SemEval-2026 Task 7, and the transfer-localization plane from arXiv:2510.26024 (with a defined fallback metric in case evaluation code is not publicly released). The approach is explicitly differentiated from MLAS-LoRA (ACL 2025), which applies probe-then-selective-LoRA for MT translation quality via language-pair-specific neuron detection and teacher-student distillation—a categorically different partition dimension and objective from CLS-LoRA's factual-vs-cultural axis and cultural-preservation signal. Unlike Surgical Steering—an inference-time patch over an already-erased model—CLS-LoRA eliminates erasure at the source. The auto-research sweep is trimmed to 48 runs (3 ranks × 2 partition thresholds × 2 models × 2 regularization × 2 seeds ≈ 110–130h H100), within the ≤200h H100 hard constraint.",
+
+  "reviewer_notes": {
+    "INCLINE_outstanding_paper": "The reviewer claimed no evidence for this award was found, but the official ACL 2025 awards page (2025.aclweb.org/program/awards/) explicitly lists 'Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention' as an outstanding paper. The original claim is correct and has been retained.",
+    "MLAS_LoRA": "Added to landscape with a three-axis differentiation (task domain, partition dimension, objective). The cultural-preservation objective—absent from MLAS-LoRA and all prior selective-LoRA work—is now foregrounded as the categorical novelty.",
+    "Source_Shielded_Updates": "Added to landscape. Differentiated: SSU prevents source-language task catastrophic forgetting via parameter importance scoring and column-wise freezing; CLS-LoRA prevents cultural knowledge erasure via layer-level probing and LoRA placement with a cultural-preservation objective.",
+    "compute_constraint": "Auto-research sweep reduced from 360 runs (600h A100 / ~300h H100) to 48 core runs + ~12 baselines (~280–320h A100 / ~110–130h H100), within the ≤200h H100 constraint.",
+    "LLaMA_4_Scout": "Replaced with Aya-23-8B (confirmed dense, 23 languages) as the second model family. Explicit note added explaining MoE exclusion.",
+    "transfer_localization_code": "Acknowledged as a risk; fallback metric defined (2D XQUAD/TyDiQA vs CulturalBench scatter plot normalized to pre-FT baseline).",
+    "structural_vs_behavioral_erasure": "Added Stage 1 structural diagnostic ablation. The finding that erasure is often behavioral is incorporated into the core_problem and opportunity framing, strengthening rather than undermining the CLS-LoRA story."
+  }
+}
+```
+
+Here is the complete revised idea as a JSON object:
+
+```json
+{
+  "title": "Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignment",
+  "change_type": "major",
+  "project_name": "cls_lora_cultural_preservation",
+  "source": "web_research",
+  "level": "solid",
+  "core_problem": "Cross-lingual fine-tuning systematically suppresses culturally-grounded, language-specific knowledge while improving factual transfer—a phenomenon called 'cultural erasure.' Recent mechanistic work (arXiv:2504.10191) reveals the suppression is often behavioral rather than purely representational: cultural knowledge frequently survives as recoverable activations in deeper layers but is no longer surfaced in model outputs after fine-tuning. No training-time method prevents this dual representational-and-behavioral suppression, forcing practitioners to choose between cross-lingual capability and cultural authenticity.",
+  "opportunity": "'Rethinking Cross-lingual Alignment' (arXiv:2510.26024, Oct 2025) rigorously demonstrates that every tested cross-lingual alignment approach degrades cultural localization across all six languages, and proposes Surgical Steering as a remedy—but only at inference time, requiring per-query layer manipulation and offering no prevention during training. The finding that factual transfer and cultural localization are optimally steerable at different model layers is actionable: applying LoRA selectively to factual-transfer layers while freezing cultural-knowledge layers during instruction fine-tuning would prevent erasure at the source. arXiv:2504.10191 corroborates this by showing cultural knowledge is conserved as steerable activation-space vectors in specific deeper layers. Crucially, this means CLS-LoRA's freezing strategy serves a dual purpose—it preserves both the representational encoding of cultural knowledge AND the behavioral routing pathway through which that knowledge reaches outputs—preventing both failure modes simultaneously. This is feasible with any open-source dense multilingual model via a lightweight per-layer probing step.",
+  "landscape": "INCLINE (arXiv:2410.12462, ACL 2025 outstanding paper) aligns internal representations from low-resource to high-resource languages via learned projection matrices derived from parallel sentences, improving cross-lingual task performance but not distinguishing factual from cultural knowledge. AlignX (arXiv:2509.24338, EMNLP 2025) and CM-Align (arXiv:2509.08541) apply two-stage and consistency-based multilingual alignment respectively, both optimizing convergence without a cultural preservation objective. Language Surgery/ITLC (arXiv:2506.12450) disentangles language-specific from agnostic information through latent injection at inference time, but does not train models to preserve this distinction. Alignment through steering (arXiv:2505.12584) adds a learned residual-stream vector at a single layer; it outperforms many baselines but still does not model the factual-cultural layer split. Surgical Steering (arXiv:2510.26024) is the only method addressing the cultural erasure problem, and is strictly an inference-time patch over an already-erased model. arXiv:2504.10191 ('Localized Cultural Knowledge is Conserved and Controllable in LLMs', April 2025) confirms via cultural customization vectors that cultural knowledge survives in specific deeper layers and can be steered—supporting our premise but addressing control at inference time, not prevention during training.\n\nTwo directly related selective-LoRA methods require explicit differentiation. MLAS-LoRA (ACL 2025, aclanthology.org/2025.acl-long.762) detects language-aware neurons in a teacher model and injects extracted knowledge into language-pair-specific LoRA modules in a student model for multilingual machine translation, achieving +1.7 BLEU on average. While MLAS-LoRA and CLS-LoRA both employ a probe-then-selective-LoRA pipeline, they differ on three critical axes: (1) task domain—MLAS-LoRA targets MT translation quality whereas CLS-LoRA targets cultural knowledge preservation during instruction fine-tuning; (2) partition dimension—MLAS-LoRA partitions along language-pair specificity (language-A vs language-B neurons) whereas CLS-LoRA partitions along the factual-transfer vs cultural-localization semantic axis, which cuts across language pairs; and (3) objective—MLAS-LoRA optimizes translation accuracy via teacher-student knowledge distillation whereas CLS-LoRA optimizes a cultural-preservation signal with no distillation component. The cultural-preservation objective is the categorical novelty: no prior selective-LoRA work defines a 'keep culturally-grounded outputs intact' training signal. Source-Shielded Updates (arXiv:2512.04844, Nov 2025) proposes column-wise parameter freezing to prevent catastrophic forgetting of source-language task performance during target-language adaptation—addressing cross-lingual interference but not the factual-vs-cultural layer distinction or cultural knowledge preservation as a first-class objective.",
+  "approach": "We propose Cultural-Layer-Selective LoRA (CLS-LoRA), a training-time method that prevents cultural erasure without sacrificing factual cross-lingual transfer. The pipeline has four stages.\n\nStage 1 — Structural diagnostic: Before the main sweep, we run full-LoRA instruction fine-tuning on a held-out model checkpoint and measure per-layer cultural probe accuracy before and after. If probe accuracy is maintained post-training (consistent with arXiv:2504.10191), erasure is confirmed as behavioral (pathway disruption); if probe accuracy drops, erasure is partly representational. This ablation sharpens the mechanistic story and validates the layer-freezing strategy regardless of which failure mode dominates. An automated entropy-based partition fallback replaces human inspection when probe curves are bimodal or noisy, reducing the agent failure mode from prior review.\n\nStage 2 — Layer profiling: Lightweight linear probes (one per transformer layer) are trained on a small parallel corpus of factual QA pairs and culture-specific benchmark items to produce per-layer factual-transfer and cultural-localization accuracy scores, yielding a principled layer partition—typically middle layers for factual transfer and deeper layers for cultural knowledge, as established in arXiv:2510.26024 and corroborated by arXiv:2504.10191.\n\nStage 3 — Selective LoRA training: LoRA adapters (via Hugging Face PEFT target_modules) are inserted exclusively into factual-transfer layers and trained with standard instruction fine-tuning loss on multilingual instruction data, while cultural-knowledge layers remain fully frozen. An optional auxiliary KL-divergence penalty on a held-out cultural probe set discourages residual drift in frozen layers' downstream activations.\n\nStage 4 — Evaluation: Experiments run on Qwen3-8B (primary: confirmed dense, 36 transformer layers, 119 languages and dialects, 8.2B parameters) and Aya-23-8B (secondary: confirmed dense decoder-only, 23 languages, 8B parameters) for cross-architecture generalization. LLaMA 4 Scout is excluded—its 48-block, 16-expert MoE architecture makes the factual-vs-cultural layer partition from arXiv:2510.26024, established on dense models, methodologically inapplicable without separate MoE-specific validation. Evaluation uses CulturalBench and SemEval-2026 Task 7 as primary cultural metrics. The transfer-localization plane from arXiv:2510.26024 is used where possible; if evaluation code is not publicly released (no GitHub repository found as of May 2026), we employ a defined fallback—a 2D scatter of cross-lingual factual accuracy (XQUAD/TyDiQA) vs cultural localization accuracy (CulturalBench) across languages, normalized to the pre-fine-tuning baseline, yielding the same interpretive framework. We compare against full-LoRA, Surgical Steering, INCLINE, MLAS-LoRA (adapted to the instruction-FT setting), and Source-Shielded Updates baselines to demonstrate that CLS-LoRA Pareto-dominates prior methods in the transfer-localization trade-off space.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100 80GB (~80h H100 equivalent)",
+      "gpu_utilization": "~30–40% effective; GPU idles while the researcher inspects probe accuracy heatmaps to select layer partition boundaries, designs ablation grids, and iterates on training scripts between runs",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$300–410 (A100 at $1.49–2.06/hr via RunPod/Lambda)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~130h A100 80GB (~52h H100 equivalent)",
+      "gpu_utilization": "~60–70% effective; agent queues probing and LoRA sweep experiments overnight, researcher reviews layer partition heatmaps and approves next ablation tier once daily, cutting idle time ~50% vs. manual",
+      "timeline": "6–8 weeks",
+      "team": "1 researcher, ~30min/day check-in",
+      "claude_api_cost": "$150–250 (~1000–1500 conversation turns at $0.10–0.15/turn with Opus)",
+      "estimated_gpu_cost": "~$190–270 (A100 at $1.49–2.06/hr)",
+      "risk_note": "Key risk: agent may commit to a suboptimal layer partition if probe accuracy curves are bimodal or noisy; the automated entropy-based partition fallback reduces (but does not eliminate) this risk; daily human review of the partition heatmap before LoRA runs remains the essential gate"
+    },
+    "auto_research": {
+      "gpu_hours": "~280–320h A100 80GB (~110–130h H100 equivalent); within the ≤200h H100 hard constraint",
+      "gpu_utilization": "~85–90% effective; agent continuously queues the next experiment upon completion with no human approval bottleneck—idle only during brief checkpoint evaluation transitions",
+      "sweep": "3 LoRA rank values (8, 16, 32) × 2 layer partition thresholds × 2 model families (Qwen3-8B, Aya-23-8B) × 2 regularization strengths × 2 seeds = 48 core training runs; plus ~12 baseline runs (full-LoRA, Surgical Steering, INCLINE, Source-Shielded Updates) and Stage 1 structural diagnostic runs",
+      "timeline": "5–8 days with 4–6 concurrent A100 GPUs (or 3–5 days with H100s)",
+      "team": "0 (2–3h of initial harness setup and config-space definition)",
+      "claude_api_cost": "$200–350 (~1500–2500 turns across experiment planning, result parsing, and ablation branching)",
+      "estimated_gpu_cost": "~$420–660 (A100 at $1.49–2.06/hr)",
+      "speed_bottleneck": "Number of concurrent GPUs and the ~1h cultural benchmark evaluation per checkpoint; evaluation can be partially parallelized across checkpoints on separate GPUs",
+      "risk_note": "Bimodal probe distributions are now handled by an automated entropy-based partition fallback. The Stage 1 structural diagnostic also provides an early signal: if cultural probe accuracy is unaffected by full-LoRA training, the layer-freezing strategy is validated before the main sweep begins, allowing early termination of degenerate configurations."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026; commitment deadline August 2, 2026) — viable only with auto-research mode given the 15-day window from May 10, 2026",
+    "EACL 2027 (ARR submission deadline August 3, 2026) — primary target for human-in-loop or manual mode",
+    "AAAI 2027 (submission deadline expected July–August 2026, TBC)"
+  ],
+  "key_references": [
+    "Rethinking Cross-lingual Alignment: Balancing Transfer and Cultural Erasure in Multilingual LLMs (arXiv:2510.26024, 2025)",
+    "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention / INCLINE (ACL 2025 Outstanding Paper, arXiv:2410.12462)",
+    "MLAS-LoRA: Language-Aware Parameters Detection and LoRA-Based Knowledge Transfer for Multilingual Machine Translation (ACL 2025, aclanthology.org/2025.acl-long.762)",
+    "Mitigating Catastrophic Forgetting in Target Language Adaptation of LLMs via Source-Shielded Updates (arXiv:2512.04844, Nov 2025)",
+    "AlignX: Advancing Multilingual Large Language Models with Multilingual Representation Alignment (EMNLP 2025, arXiv:2509.24338)",
+    "CM-Align: Consistency-based Multilingual Alignment for Large Language Models (arXiv:2509.08541, 2025)",
+    "Language Surgery in Multilingual Large Language Models / ITLC (arXiv:2506.12450, 2025)",
+    "Improving Multilingual Language Models by Aligning Representations through Steering (arXiv:2505.12584, 2025)",
+    "Localized Cultural Knowledge is Conserved and Controllable in Large Language Models (arXiv:2504.10191, 2025)",
+    "LoRA: Low-Rank Adaptation of Large Language Models (ICLR 2022, arXiv:2106.09685)"
+  ],
+  "description": "Cross-lingual instruction fine-tuning demonstrably erases culturally-localized knowledge across all tested alignment approaches—yet no training-time prevention exists. Recent mechanistic work (arXiv:2504.10191) reveals this erasure is often behavioral (pathway disruption) rather than purely representational, since cultural knowledge frequently persists as recoverable activation-space vectors in deeper layers. We propose Cultural-Layer-Selective LoRA (CLS-LoRA), which prevents both failure modes by first running a structural diagnostic ablation (characterizing whether erasure is representational or behavioral), then running lightweight linear probes on every transformer layer to partition layers into factual-transfer clusters (middle layers, per arXiv:2510.26024) and cultural-knowledge clusters (deeper layers, corroborated by arXiv:2504.10191). LoRA adapters are applied exclusively to factual-transfer layers during cross-lingual instruction fine-tuning while cultural-knowledge layers remain frozen; an optional KL-divergence regularizer further anchors cultural-layer outputs to their pretrained distribution. We experiment on Qwen3-8B (primary: confirmed dense, 36 layers, 119 languages) and Aya-23-8B (secondary: confirmed dense, 23 languages) for cross-architecture generalization; LLaMA 4 Scout is excluded because its MoE architecture invalidates the layer-partition methodology. Evaluation uses CulturalBench, SemEval-2026 Task 7, and the transfer-localization plane from arXiv:2510.26024 (with a defined fallback metric—XQUAD/TyDiQA vs CulturalBench scatter normalized to pre-FT baseline—if evaluation code is not publicly released). CLS-LoRA is explicitly differentiated from MLAS-LoRA (ACL 2025), which applies probe-then-selective-LoRA for MT translation quality via language-pair-specific neuron detection and teacher-student distillation—a categorically different partition axis and objective. The auto-research sweep is trimmed to 48 core runs (3 ranks × 2 partition thresholds × 2 models × 2 regularization × 2 seeds ≈ 110–130h H100), within the ≤200h H100 hard constraint. Unlike Surgical Steering—an inference-time patch over an already-erased model—CLS-LoRA eliminates erasure at the source, targeting a Pareto improvement across the full transfer-localization trade-off."
+}
+```
+
+---
+
+**Summary of changes (change_type: major):**
+
+| Issue | Resolution |
+|---|---|
+| INCLINE "outstanding paper" | **Retained** — ACL 2025 awards page confirms it; reviewer was incorrect |
+| MLAS-LoRA missing citation | Added to landscape with 3-axis differentiation (domain, partition dimension, objective) |
+| Source-Shielded Updates missing | Added to landscape and references |
+| LLaMA 4 Scout MoE problem | Replaced with Aya-23-8B (dense, 23 languages); explicit exclusion rationale added |
+| Auto-research compute > 200h H100 | Trimmed 360→48 core runs; ~110–130h H100, within constraint |
+| Transfer-localization code unavailable | Acknowledged; fallback metric defined (XQUAD+CulturalBench 2D scatter) |
+| Structural vs behavioral erasure | Reframed in core_problem and opportunity; Stage 1 structural diagnostic ablation added to approach |
+
+**One nuance the reviewer missed:** The structural-vs-behavioral finding from arXiv:2504.10191 actually *strengthens* CLS-LoRA's story rather than undermining it. If cultural knowledge persists representationally but is behaviorally suppressed, freezing cultural layers during fine-tuning is *exactly* the right intervention — it preserves the activation pathway through which that knowledge reaches outputs. This reframing is now explicit in the `core_problem` and `opportunity` sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d8b5dc6-ef28-496e-ad0d-b2bff7f8dbf1",
+  "isSidechain": false,
+  "requestId": "req_011CatS9efkkMe14VMHjK2pd",
+  "type": "assistant",
+  "uuid": "793b1261-3a7e-47f0-bfcd-8324475059c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RcV5qgGoJrNGHxbokYkb9b",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 945,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 31256,
+      "output_tokens": 14697,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2153,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 945,
+          "output_tokens": 14697,
+          "cache_read_input_tokens": 31256,
+          "cache_creation_input_tokens": 2153,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2153
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignme…",
+  "leafUuid": "793b1261-3a7e-47f0-bfcd-8324475059c9",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CLS-LoRA for MLAS-LoRA overlap and MoE handling",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Layer-Selective LoRA Against Cultural Erasure in Cross-Lingual Alignme…",
+  "leafUuid": "793b1261-3a7e-47f0-bfcd-8324475059c9",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CLS-LoRA for MLAS-LoRA overlap and MoE handling",
+  "sessionId": "6c6ca700-bae4-4204-af44-f073fa9dc2dc"
+}
+```
+
+---

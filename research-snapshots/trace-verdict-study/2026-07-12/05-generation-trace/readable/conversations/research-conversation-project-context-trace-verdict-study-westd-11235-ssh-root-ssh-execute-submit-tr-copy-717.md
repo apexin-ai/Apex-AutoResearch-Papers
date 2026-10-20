@@ -1,0 +1,2080 @@
+# Research conversation: <project_context> # 项目: trace-verdict-study ## 运行环境 - 服务器名: westd-11235 - SSH 账户: root（调用 ssh_execute / submit_training_
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 1
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-3/8b3d853c-27fa-4ab2-8e4b-06c802523536.jsonl`
+- **Structured JSON:** [`e8f0eac9037edbb12e3a.json`](../../sessions/e8/e8f0eac9037edbb12e3a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T21:03:58.730Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T21:03:58.730Z",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "content": "&lt;project_context>\n# 项目: trace-verdict-study\n\n## 运行环境\n- 服务器名: westd-11235\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/trace-verdict-study\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：整理论文数据表格\n\n为即将启动的 Paper Agent 准备完整的实验数据表格。读取 registry 中所有 DONE 实验的 metrics，按论文需要的格式整理。\n\n### 需要产出的表格（写入 artifacts/paper_data_tables.md）\n\n#### Table 1: Main Results — Qwen-2.5-Coder-7B (seed42)\n列: Condition | Accuracy | 95% CI | Pass F1 | Fail F1 | ECE | Brier | Lift vs no_trace\n行: no_trace, full_trace, label_only, loop_only, ae_only, exception_only, VOTA_no_ae, VOTA\n\n数据来源：registry 中对应实验的 metrics 字段。\n\n#### Table 2: Cross-Model Comparison — DeepSeek-Coder-6.7B\n列: Condition | Qwen Accuracy | DeepSeek Accuracy | Cross-model Gap\n行: no_trace, full_trace (Qwen only, DeepSeek v3 pending), VOTA, exception_only (seed42 epoch1 & epoch3)\n\n数据来源：\n- Qwen: registry 中 v5 版本实验\n- DeepSeek: deepseek_vota_seed42, deepseek_no_trace_seed42, deepseek_exception_only_seed42\n\n#### Table 3: Seed Robustness — Qwen exception_only (3 seeds)\n列: Seed | Accuracy | 95% CI | Errors | Error Sample IDs\n行: 42, 123, 456\n\n数据来源：exception_only_seed42 (vota_exception_only_seed42_v2), exception_only_seed123, exception_only_seed456\n\n#### Table 4: DeepSeek exception_only Seed Comparison (provisional, seed456 pending)\n列: Seed | Epoch 1 Acc | Epoch 3 Acc | Δ | fail_recall\n行: 42, 123, (456 placeholder)\n\n数据来源：deepseek_exception_only_seed42, deepseek_exception_only_seed123\n\n#### Table 5: Calibration Summary\n列: Condition | ECE ↓ | MCE | Brier ↓\n数据来源：calibration_analysis_seed42 的 metrics\n\n### 操作\n1. 用 read_registry 读取所有 DONE 实验的 metrics\n2. 整理成 markdown 表格\n3. 写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/paper_data_tables.md`\n4. 用 register_artifact 注册产出\n\n### 注意\n- 所有数字必须直接来自 registry，不要编造\n- DeepSeek full_trace v3 和 seed456 标注为 \"pending\"\n- 指标精度保持 registry 原始精度（通常 4 位小数）\n- 表格格式要 Paper Agent 可以直接复制使用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T21:03:58.734Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T21:03:58.734Z",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+## Round 1
+
+39 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T21:03:58.771Z_
+
+&lt;project_context>
+# 项目: trace-verdict-study
+
+## 运行环境
+- 服务器名: westd-11235
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/trace-verdict-study
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：整理论文数据表格
+
+为即将启动的 Paper Agent 准备完整的实验数据表格。读取 registry 中所有 DONE 实验的 metrics，按论文需要的格式整理。
+
+### 需要产出的表格（写入 artifacts/paper_data_tables.md）
+
+#### Table 1: Main Results — Qwen-2.5-Coder-7B (seed42)
+列: Condition | Accuracy | 95% CI | Pass F1 | Fail F1 | ECE | Brier | Lift vs no_trace
+行: no_trace, full_trace, label_only, loop_only, ae_only, exception_only, VOTA_no_ae, VOTA
+
+数据来源：registry 中对应实验的 metrics 字段。
+
+#### Table 2: Cross-Model Comparison — DeepSeek-Coder-6.7B
+列: Condition | Qwen Accuracy | DeepSeek Accuracy | Cross-model Gap
+行: no_trace, full_trace (Qwen only, DeepSeek v3 pending), VOTA, exception_only (seed42 epoch1 & epoch3)
+
+数据来源：
+- Qwen: registry 中 v5 版本实验
+- DeepSeek: deepseek_vota_seed42, deepseek_no_trace_seed42, deepseek_exception_only_seed42
+
+#### Table 3: Seed Robustness — Qwen exception_only (3 seeds)
+列: Seed | Accuracy | 95% CI | Errors | Error Sample IDs
+行: 42, 123, 456
+
+数据来源：exception_only_seed42 (vota_exception_only_seed42_v2), exception_only_seed123, exception_only_seed456
+
+#### Table 4: DeepSeek exception_only Seed Comparison (provisional, seed456 pending)
+列: Seed | Epoch 1 Acc | Epoch 3 Acc | Δ | fail_recall
+行: 42, 123, (456 placeholder)
+
+数据来源：deepseek_exception_only_seed42, deepseek_exception_only_seed123
+
+#### Table 5: Calibration Summary
+列: Condition | ECE ↓ | MCE | Brier ↓
+数据来源：calibration_analysis_seed42 的 metrics
+
+### 操作
+1. 用 read_registry 读取所有 DONE 实验的 metrics
+2. 整理成 markdown 表格
+3. 写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/paper_data_tables.md`
+4. 用 register_artifact 注册产出
+
+### 注意
+- 所有数字必须直接来自 registry，不要编造
+- DeepSeek full_trace v3 和 seed456 标注为 "pending"
+- 指标精度保持 registry 原始精度（通常 4 位小数）
+- 表格格式要 Paper Agent 可以直接复制使用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "38ddc84c-fdd2-4c5d-ae30-61d26589980f",
+  "type": "user",
+  "uuid": "0b07ee0a-6684-4ac4-8b6a-3e8009e11d28",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T21:03:58.771Z_
+
+```json
+{
+  "parentUuid": "0b07ee0a-6684-4ac4-8b6a-3e8009e11d28",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7b7cb3fd-4803-456c-87e9-1d1bf21a248f",
+  "timestamp": "2026-05-15T21:03:58.771Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T21:03:58.771Z_
+
+```json
+{
+  "parentUuid": "7b7cb3fd-4803-456c-87e9-1d1bf21a248f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "cdfa1a5c-c326-4fdc-ae46-0a8de4e67149",
+  "timestamp": "2026-05-15T21:03:58.771Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T21:03:58.771Z_
+
+```json
+{
+  "parentUuid": "cdfa1a5c-c326-4fdc-ae46-0a8de4e67149",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "19c6289d-7b86-4313-91a9-824f6e30469c",
+  "timestamp": "2026-05-15T21:03:58.771Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper data tables from experiment registry",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T21:04:01.475Z_
+
+I'll read the registry to get all experiment metrics, then assemble the tables.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19c6289d-7b86-4313-91a9-824f6e30469c",
+  "isSidechain": false,
+  "requestId": "req_011Cb52qFqSB2VZ3kYjCWD3s",
+  "type": "assistant",
+  "uuid": "4c5049d1-5e69-40b9-9cf3-b31d71d4eee3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015BwUwo6Q69DrihYy6FNvmx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11582,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11582,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 104,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11582,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11582
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T21:04:02.148Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Ms81gL4Pc3nhWcjUFVv4St`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c5049d1-5e69-40b9-9cf3-b31d71d4eee3",
+  "isSidechain": false,
+  "requestId": "req_011Cb52qFqSB2VZ3kYjCWD3s",
+  "type": "assistant",
+  "uuid": "873ff525-a2f9-4755-886b-d39203f6964d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015BwUwo6Q69DrihYy6FNvmx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11582,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11582,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 104,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11582,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11582
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T21:04:02.155Z_
+
+<details><summary>↩ Tool result · `toolu_01Ms81gL4Pc3nhWcjUFVv4St`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "873ff525-a2f9-4755-886b-d39203f6964d",
+  "isSidechain": false,
+  "promptId": "38ddc84c-fdd2-4c5d-ae30-61d26589980f",
+  "type": "user",
+  "uuid": "28ae20d7-6d2b-41c2-9254-5aabbd79cc5c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 25
+  },
+  "sourceToolAssistantUUID": "873ff525-a2f9-4755-886b-d39203f6964d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-15T21:04:04.931Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry to get all DONE experiments with their metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28ae20d7-6d2b-41c2-9254-5aabbd79cc5c",
+  "isSidechain": false,
+  "requestId": "req_011Cb52qWTWPKF4qymsqgMJg",
+  "type": "assistant",
+  "uuid": "00110736-c2d4-401b-ae70-cc25500f607b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LVKRP6JLY9NDUoL2dFQK8P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 466,
+      "cache_read_input_tokens": 23423,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 466,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 23423,
+          "cache_creation_input_tokens": 466,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 466
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T21:04:05.358Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01UsBXYAiE7ph9UqpnquFzxK`</summary>
+
+```json
+{
+  "filters": {
+    "status": "DONE"
+  },
+  "project": "trace-verdict-study",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00110736-c2d4-401b-ae70-cc25500f607b",
+  "isSidechain": false,
+  "requestId": "req_011Cb52qWTWPKF4qymsqgMJg",
+  "type": "assistant",
+  "uuid": "4220397c-b95a-4155-8dd4-77fa41b02c94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LVKRP6JLY9NDUoL2dFQK8P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 466,
+      "cache_read_input_tokens": 23423,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 466,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 23423,
+          "cache_creation_input_tokens": 466,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 466
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T21:04:05.726Z_
+
+<details><summary>↩ Tool result · `toolu_01UsBXYAiE7ph9UqpnquFzxK`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (53.6KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/8b3d853c-27fa-4ab2-8e4b-06c802523536/tool-results/toolu_01UsBXYAiE7ph9UqpnquFzxK.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek_exception_only_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:31:02.686Z\", \"updated_at\": \"2026-05-15T20:08:03.280Z\", \"spec\": {\"command\": \"bash -c \\\"... train_sft.py --condition exception_only --seed 123 + evaluate.py\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"144507\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_exception_only_seed123.log\", \"submitted_at\": \"2026-05-15T18:14:56.180Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"plan_id\": \"plan_008\", \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"wall_clock_seconds\": 6785.9, \"gpu_hours\": 1.88}, \"hypothesis\": \"Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B (plan_008). Further validates exception signal cross-model generalization (99.33% seed42).\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:04:43.247Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:04:44.489564+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9109, \"pass_precision\": 1, \"pass_recall\": 0.993, \"pass_f1\": 0.996, \"fail_precision\": 0.976, \"fail_recall\": 0.705, \"fail_f1\": 0.818, \"ci_95\": [0.894, 0.926], \"train_loss\": 0.122, \"train_runtime_sec\": 6384}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final/predictions.jsonl\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T20:08:02.101Z\", \"notes\": \"NEGATIVE: accuracy 91.09% vs seed42 99.83% (-8.74pp). fail_recall=0.705, train_loss=0.122 偏高。DeepSeek exception_onl
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4220397c-b95a-4155-8dd4-77fa41b02c94",
+  "isSidechain": false,
+  "promptId": "38ddc84c-fdd2-4c5d-ae30-61d26589980f",
+  "type": "user",
+  "uuid": "a42e92ae-c59b-41e8-afe8-53bada74f79e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"deepseek_exception_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:31:02.686Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:08:03.280Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"... train_sft.py --condition exception_only --seed 123 + evaluate.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"144507\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_exception_only_seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:14:56.180Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"plan_id\\\": \\\"plan_008\\\", \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"wall_clock_seconds\\\": 6785.9, \\\"gpu_hours\\\": 1.88}, \\\"hypothesis\\\": \\\"Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B (plan_008). Further validates exception signal cross-model generalization (99.33% seed42).\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T20:04:43.247Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T20:04:44.489564+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9109, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.993, \\\"pass_f1\\\": 0.996, \\\"fail_precision\\\": 0.976, \\\"fail_recall\\\": 0.705, \\\"fail_f1\\\": 0.818, \\\"ci_95\\\": [0.894, 0.926], \\\"train_loss\\\": 0.122, \\\"train_runtime_sec\\\": 6384}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final/predictions.jsonl\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-15T20:08:02.101Z\\\", \\\"notes\\\": \\\"NEGATIVE: accuracy 91.09% vs seed42 99.83% (-8.74pp). fail_recall=0.705, train_loss=0.122 偏高。DeepSeek exception_only 对 seed 不鲁棒，seed42 的 99.83% 可能是 LoRA 初始化运气。Exception signal 仍有效（+19.6pp over baseline）但跨模型稳定性不成立。\\\"}, \\\"no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:58:31.125Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:53:26.153Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"709277\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:58:31.124Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 93295.0, \\\"gpu_hours\\\": 25.92}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T19:53:26.153Z\\\"}, \\\"no_trace_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:59:53.488Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:53:25.181Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"709781\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:59:53.485Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 93211.7, \\\"gpu_hours\\\": 25.89}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T19:53:25.181Z\\\"}, \\\"vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:58:32.967Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:53:23.979Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"709357\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:58:32.964Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 93291.0, \\\"gpu_hours\\\": 25.91}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T19:53:23.979Z\\\"}, \\\"vota_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:59:55.517Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:53:22.853Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"709863\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:59:55.513Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 93207.3, \\\"gpu_hours\\\": 25.89}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T19:53:22.853Z\\\"}, \\\"vota_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:38:51.823Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:38:53.768Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json --save_predictions --max_length 2048\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"146582\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:31:33.049Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 87.5, \\\"gpu_hours\\\": 0.02}, \\\"hypothesis\\\": \\\"Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\\", \\\"notes\\\": \\\"Original PID 145908 OOM'd ~3min after start. Auto-retried as v2 (PID 146592) with --gradient_checkpointing on cuda:1. Step 15/444 (3.4%) at 18:37 UTC, ~2h to complete. W&B run: vota_seed456_v2. Director 决策: 低优先级，exception_only seed robustness 优先。\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T18:33:00.592Z\\\"}, \\\"deepseek_full_trace_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:13:29.181Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:27:46.453Z\\\", \\\"hypothesis\\\": \\\"DeepSeek full_trace v2: retrain with v5 code (chat-template-aware truncation preserving labels). v1 collapsed to 28.49% due to label truncation during training.\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_004\\\", \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"server\\\": \\\"westd-11235\\\", \\\"command\\\": \\\"train_sft.py --condition full_trace + evaluate.py\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T18:27:40.446Z\\\", \\\"notes\\\": \\\"Killed by worker_ops_kill_and_submit_vota_seed456 to free cuda:1 for vota_seed456. Training incomplete — needs re-run after GPU available. PID 144864 killed at ~18:24 UTC.\\\"}, \\\"deepseek_full_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.756Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:23:42.993Z\\\", \\\"hypothesis\\\": \\\"Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"112289\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:47:47.241Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 10254.4, \\\"gpu_hours\\\": 2.85}, \\\"notes\\\": \\\"INVALIDATED: train-eval truncation mismatch。旧 eval (无截断): 28.49% (all predict fail)。修复后 eval (截断到 2048): 10.59% (模型输出垃圾 token: '{', 'execution', '{}', 'assert' 等, 从未输出 'pass')。结论：LoRA 本身训练失败，不仅是 eval 问题。truncation fix 暴露了更深层问题——训练时 label 被截断导致 LoRA 未学到有效分类行为。v2 重训已提交 (deepseek_full_trace_seed42_v2)。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T16:36:17.857Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T16:36:19.211594+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy_no_truncation\\\": 0.2849, \\\"accuracy_with_truncation_fix\\\": 0.1059, \\\"accuracy_with_truncation_fix_ci\\\": [0.089, 0.123], \\\"majority_baseline\\\": 0.7151, \\\"n\\\": 1190, \\\"note\\\": \\\"Both evals show model failure. No-truncation: all predict fail. With-truncation: garbage tokens. LoRA training itself failed due to label truncation during training.\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\\\", \\\"completed_at\\\": \\\"2026-05-15T16:38:41.604Z\\\"}, \\\"exception_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:31:01.555Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:03:37.166Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_008a\\\", \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"server\\\": \\\"westd-11235\\\"}, \\\"hypothesis\\\": \\\"Seed robustness: exception_only with seed=123 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T15:54:06.157Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed123 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/eval_results.json\\\\\\\"\\\", \\\"wandb_run_id\\\": \\\"exception_only_seed123\\\", \\\"finished_at\\\": \\\"2026-05-15T18:00:50.835Z\\\", \\\"training_hours\\\": 2.11}, \\\"pid\\\": \\\"124197\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/exception_only_seed123.log\\\", \\\"wandb_run_id\\\": \\\"exception_only_seed123\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:00:52.169672+00:00\\\"}]}, \\\"notes\\\": \\\"Seed robustness 结论: exception_only 99.83% ± 0.00 (seeds 42/123/456), 每 seed 恰好 2/1190 errors。极大概率同一组 irreducible 样本。\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"accuracy_ci\\\": [0.9958, 1], \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9976, \\\"pass_f1\\\": 0.9988, \\\"fail_precision\\\": 0.9941, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9971, \\\"train_loss\\\": 0.1096, \\\"train_runtime_sec\\\": 7507, \\\"epochs\\\": 3, \\\"seed_comparison\\\": {\\\"seed42_accuracy\\\": 0.9983, \\\"seed456_accuracy\\\": 0.9983, \\\"seed123_accuracy\\\": 0.9983, \\\"max_diff\\\": 0, \\\"note\\\": \\\"identical accuracy to 4 decimal places across all 3 seeds (42/456/123); each has exactly 2/1190 errors; exception_only fully seed-robust\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:03:37.166Z\\\"}, \\\"exception_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:31:02.005Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:02:52.070Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_008a\\\", \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 456, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"server\\\": \\\"westd-11235\\\"}, \\\"hypothesis\\\": \\\"Seed robustness: exception_only with seed=456 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T16:38:44.142Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed456 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final/eval_results.json\\\\\\\"\\\", \\\"wandb_run_id\\\": \\\"exception_only_seed456\\\", \\\"finished_at\\\": \\\"2026-05-15T17:56:16.196Z\\\", \\\"training_hours\\\": 1.29}, \\\"pid\\\": \\\"129476\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/exception_only_seed456.log\\\", \\\"wandb_run_id\\\": \\\"exception_only_seed456\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:56:17.874949+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"accuracy_ci\\\": [0.9958, 1], \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9976, \\\"pass_f1\\\": 0.9988, \\\"fail_precision\\\": 0.9941, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9971, \\\"vs_seed42\\\": {\\\"seed42_accuracy\\\": 0.9983, \\\"seed456_accuracy\\\": 0.9983, \\\"diff\\\": 0, \\\"note\\\": \\\"identical accuracy to 4 decimal places; no predictions.jsonl for paired bootstrap\\\"}, \\\"train_loss\\\": 0.1087, \\\"eval_loss\\\": 0.4629, \\\"train_runtime_sec\\\": 4541, \\\"epochs\\\": 3}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T17:58:25.389Z\\\", \\\"notes\\\": \\\"Seed robustness 结论: exception_only 99.83% ± 0.00 (seeds 42/123/456), 每 seed 恰好 2/1190 errors。极大概率同一组 irreducible 样本。\\\"}, \\\"vota_exception_only_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:16:14.602Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:02:36.534Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42_v2 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"exception_only\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"79633\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"submitted_at\\\": \\\"2026-05-15T15:15:14Z\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_exception_only_seed42_v2.log\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\\\"}, \\\"hypothesis\\\": \\\"VOTA component ablation: exception_only condition — retry with --gradient_checkpointing (v1 OOM at step 8). Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.998, \\\"pass_f1\\\": 0.999, \\\"fail_precision\\\": 0.994, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.997, \\\"lift_vs_notrace\\\": 0.2471, \\\"lift_vs_notrace_ci_lower\\\": 0.2227, \\\"lift_vs_notrace_ci_upper\\\": 0.2714, \\\"lift_vs_fulltrace\\\": 0.1807, \\\"lift_vs_fulltrace_ci_lower\\\": 0.1588, \\\"lift_vs_fulltrace_ci_upper\\\": 0.2034, \\\"lift_vs_vota\\\": 0.0067, \\\"lift_vs_vota_ci_lower\\\": 0.0017, \\\"lift_vs_vota_ci_upper\\\": 0.0126, \\\"lift_vs_vota_pvalue\\\": 0.01}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T09:35:01.676Z\\\", \\\"notes\\\": \\\"Seed robustness confirmed: exception_only 99.83% ± 0.00 across seeds 42/123/456. Each seed has exactly 2/1190 errors. High probability same irreducible samples. [re-eval] 修复后 evaluate.py 重跑 Δ=0。\\\"}, \\\"vota_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-15T12:38:48.954Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:58:40.507Z\\\", \\\"hypothesis\\\": \\\"Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T12:39:38.117Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123 --wandb_project trace-verdict-study --wandb_run_name vota_seed123_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T12:59:09.843Z\\\", \\\"training_hours\\\": 0.33, \\\"wandb_run_id\\\": \\\"vota_seed123_v2\\\"}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, this process has 24.48 GiB memory in use. Of the allocated m\\\", \\\"completed_at\\\": \\\"2026-05-15T12:42:01.260Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:42:02.205055+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:59:14.689674+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"conclusion\\\": \\\"failed\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_008b\\\", \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"server\\\": \\\"westd-11235\\\"}}, \\\"full_trace_label_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:01:29.625Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:36:05.917Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_label_only_seed42.log\\\"}, \\\"hypothesis\\\": \\\"Label-only loss on full_trace fixes gradient dilution collapse (plan_002: loss only on pass/fail token, not trace tokens)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T07:15:28.991Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T07:15:30.057513+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8622, \\\"accuracy_ci_lower\\\": 0.8437, \\\"accuracy_ci_upper\\\": 0.8807, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1471, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8821, \\\"pass_recall\\\": 0.9318, \\\"pass_f1\\\": 0.9063, \\\"fail_precision\\\": 0.8007, \\\"fail_recall\\\": 0.6873, \\\"fail_f1\\\": 0.7397, \\\"train_loss\\\": 0.2505, \\\"eval_loss\\\": 0.3205, \\\"lift_vs_notrace\\\": 0.1109, \\\"lift_vs_notrace_ci_lower\\\": 0.0849, \\\"lift_vs_notrace_ci_upper\\\": 0.137, \\\"lift_vs_standard_fulltrace\\\": 0.0445, \\\"lift_vs_standard_fulltrace_ci_lower\\\": 0.0235, \\\"lift_vs_standard_fulltrace_ci_upper\\\": 0.0655, \\\"lift_vs_standard_fulltrace_pvalue\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T07:23:57.111Z\\\", \\\"notes\\\": \\\"Label-only loss 将 full_trace 从 81.8% 提升到 86.2% (+4.4pp)，确认 gradient dilution 是 full_trace 性能受限的部分原因。但 86.2% vs VOTA 99.2% 仍有 13pp gap，说明 gradient dilution 只是部分解释——trace 信息密度（VOTA 的 decision-relevant compression）才是主因。[2026-05-15 re-eval] 用修复后 evaluate.py + --condition full_trace 重跑，accuracy 不变 (86.22% → 86.22%, Δ=0)，predictions.jsonl 1190行已生成。训练确认使用 full_trace 格式数据，label_only 仅改变 loss mask。\\\"}, \\\"vota_no_ae_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:21:27.279Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:25:20.610Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota_no_ae --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_no_ae_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"953133\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_no_ae_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T04:21:27.215Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_no_ae_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final\\\", \\\"wall_clock_seconds\\\": 6902.4, \\\"gpu_hours\\\": 1.92}, \\\"hypothesis\\\": \\\"VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine behavioral understanding vs trivial string comparison (plan_001)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T06:10:18.839Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T06:10:19.847891+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.994, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.279, \\\"n\\\": 1190, \\\"pass_f1\\\": 0.996, \\\"fail_f1\\\": 0.989, \\\"accuracy_ci_lower\\\": 0.989, \\\"accuracy_ci_upper\\\": 0.998, \\\"lift_vs_notrace\\\": 0.243, \\\"lift_vs_notrace_ci_lower\\\": 0.218, \\\"lift_vs_notrace_ci_upper\\\": 0.268, \\\"train_loss\\\": 0.0908, \\\"eval_loss\\\": 0.2215, \\\"wall_clock_seconds\\\": 6397.88}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T06:16:29.587Z\\\", \\\"notes\\\": \\\"✅ Eval verified: accuracy 99.4% [98.9, 99.8] confirmed by evaluate.py + bootstrap. 去掉 actual/expected 后性能不降（vs VOTA v5 99.2%），证明 VOTA 效果来自 trace 行为模式理解而非 trivial string comparison。Claim 1 走 full positive framing。[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (99.41% → 99.41%, Δ=0)，predictions.jsonl 1190行已生成。\\\"}, \\\"vota_loop_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:02:41.201Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:25:16.352Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: loop_only condition — only loop compression summaries, no actual/expected or exception. Tests loop behavioral pattern contribution to VOTA 99.2% accuracy (plan_003 sub-c)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_loop_only_seed42 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"82362\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_loop_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:58:06.023Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/loop_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 7952.5, \\\"gpu_hours\\\": 2.21}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T10:04:53.052Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T10:04:54.341040+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8563, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1412, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.9239, \\\"pass_recall\\\": 0.8707, \\\"pass_f1\\\": 0.8966, \\\"fail_precision\\\": 0.7165, \\\"fail_recall\\\": 0.8201, \\\"fail_f1\\\": 0.7648, \\\"accuracy_ci\\\": [0.8353, 0.8756], \\\"bootstrap_vs_no_trace\\\": {\\\"diff\\\": 0.105, \\\"ci\\\": [0.0824, 0.1286], \\\"significant\\\": true}, \\\"bootstrap_vs_vota\\\": {\\\"diff\\\": -0.1378, \\\"ci\\\": [-0.1571, -0.1185], \\\"significant\\\": true}, \\\"bootstrap_vs_full_trace\\\": {\\\"diff\\\": 0.0387, \\\"ci\\\": [0.0185, 0.0597], \\\"significant\\\": true}, \\\"train_loss\\\": 0.0718, \\\"wall_clock_seconds\\\": 7425.65}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/eval_results.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T10:10:38.549Z\\\", \\\"notes\\\": \\\"[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (85.63% → 85.63%, Δ=0)，predictions.jsonl 1190行已生成。\\\"}, \\\"vota_ae_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:11:44.999Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:25:14.973Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\\\", \\\"notes\\\": \\\"ae_only accuracy 99.92% [99.75%, 100%]。与 exception_only (99.83%) 统计等价，均为 Tier 1 diagnostic-moment signals。88% 样本含 fallback locals 行（无信息量的模块命名空间导入），85% 样本含 [ASSERT] 行的 actual/expected 对比（合法诊断信息）。Reviewer 核实 fallback locals 不含 verdict 信号，不构成 data leakage（D013 裁定）。Train: 3 epochs, 444 steps, final train_loss=0.022, eval_loss=0.166, eval_token_acc=96.76%。[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (99.92% → 99.92%, Δ=0)，predictions.jsonl 1190行已生成。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:13:36.539Z\\\"}, \\\"failure_reason\\\": \\\"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:13:37.756005+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9992, \\\"accuracy_ci\\\": [0.9975, 1], \\\"bootstrap_pairwise\\\": {\\\"ae_only_vs_no_trace\\\": {\\\"diff\\\": 0.2479, \\\"ci\\\": [0.2235, 0.2731], \\\"p_value\\\": 0, \\\"significant\\\": true}, \\\"ae_only_vs_exception_only\\\": {\\\"diff\\\": 0.0008, \\\"ci\\\": [-0.0017, 0.0034], \\\"p_value\\\": 0.8002, \\\"significant\\\": false}, \\\"ae_only_vs_vota\\\": {\\\"diff\\\": 0.005, \\\"ci\\\": [0.0017, 0.0092], \\\"p_value\\\": 0.0046, \\\"significant\\\": true}}, \\\"config\\\": {\\\"n_bootstrap\\\": 10000, \\\"seed\\\": 42, \\\"method\\\": \\\"paired_bootstrap\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_ae_only_seed42.log\\\"}, \\\"deepseek_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:17:07.674Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:22:48.401Z\\\", \\\"hypothesis\\\": \\\"Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"107188\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_exception_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:10:32.405Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 7358.8, \\\"gpu_hours\\\": 2.04}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T15:06:51.643Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T15:06:52.877301+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9933, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2782, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9906, \\\"pass_f1\\\": 0.9953, \\\"fail_precision\\\": 0.9769, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9883, \\\"epoch1_checkpoint_eval\\\": {\\\"accuracy\\\": 0.9983, \\\"fail_recall\\\": 1, \\\"fail_precision\\\": 0.9941, \\\"pass_recall\\\": 0.9976, \\\"conclusion\\\": \\\"epoch1_better_by_0.50pp\\\"}}, \\\"completed_at\\\": \\\"2026-05-15T15:13:11.215Z\\\", \\\"notes\\\": \\\"epoch 1 (step 148) accuracy = 99.83%，高于 final (epoch 3) 的 99.33%。eval_loss epoch 2→3 从 0.413 涨到 0.476 (+15%)。continued training 导致 token-level 过拟合，verdict accuracy 从 99.83% 降到 99.33% (-0.50pp)。这是 eval_loss/accuracy 解耦的又一例证——但此处 eval_loss 上升确实伴随 accuracy 下降，与 DeepSeek VOTA 的趋势相反。Epoch 1 的 99.83% 与 Qwen exception_only (99.83%) 完全一致——跨模型 gap = 0pp（在最佳 checkpoint 下）。\\\"}, \\\"full_trace_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:46:03.068Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:50:39.179Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_seed42_v5.log\\\", \\\"wall_clock_seconds\\\": 7852, \\\"gpu_hours\\\": 2.18}, \\\"hypothesis\\\": \\\"Full execution trace with chat-template-aware truncation provides verdict accuracy lift vs no-trace baseline (v5: fixed chat template overhead)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:58:14.030Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:58:14.897249+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8176, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1025, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8774, \\\"pass_recall\\\": 0.866, \\\"pass_f1\\\": 0.8717, \\\"fail_precision\\\": 0.6743, \\\"fail_recall\\\": 0.6962, \\\"fail_f1\\\": 0.6851, \\\"accuracy_ci_lower\\\": 0.797, \\\"accuracy_ci_upper\\\": 0.839, \\\"lift_vs_notrace\\\": 0.0664, \\\"lift_vs_notrace_ci_lower\\\": 0.0437, \\\"lift_vs_notrace_ci_upper\\\": 0.0899, \\\"train_loss\\\": 0.05, \\\"eval_loss\\\": 0.0867, \\\"wall_clock_seconds\\\": 7852, \\\"epoch_level\\\": {\\\"epoch1_accuracy\\\": 0.8303, \\\"epoch2_accuracy\\\": 0.763, \\\"final_accuracy\\\": 0.8176, \\\"trend\\\": \\\"non_monotonic_epoch1_best_epoch2_collapse\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T04:06:20.880Z\\\", \\\"notes\\\": \\\"✅ Paired bootstrap CI (2026-05-15): lift vs no_trace = +6.6pp [4.4, 9.0]pp (significant, N=10000). lift_ci in registry [7.4, 13.2] was vs majority, not vs no_trace — now corrected.\\\"}, \\\"no_trace_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:46:17.948Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:50:35.449Z\\\", \\\"hypothesis\\\": \\\"Baseline: verdict accuracy without execution trace (v5: same code version as vota_v5/full_trace_v5 for fair comparison)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition no_trace --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42_v5\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v5.log\\\"}, \\\"completed_at\\\": \\\"2026-05-15T06:45:11.265Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7513, \\\"accuracy_ci_lower\\\": 0.7277, \\\"accuracy_ci_upper\\\": 0.7748, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"lift_ci_lower\\\": 0.0042, \\\"lift_ci_upper\\\": 0.0706, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272, \\\"epoch_level\\\": {\\\"epoch1_accuracy\\\": 0.7429, \\\"epoch2_accuracy\\\": 0.763, \\\"final_accuracy\\\": 0.7513, \\\"trend\\\": \\\"non_monotonic_epoch2_best\\\"}}}, \\\"vota_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:46:04.015Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:50:32.123Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42_v5\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"940786\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T01:46:03.990Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\\\", \\\"wall_clock_seconds\\\": 8443, \\\"gpu_hours\\\": 2.35}, \\\"hypothesis\\\": \\\"VOTA trace provides verdict accuracy lift over no-trace baseline (v5: fixed chat template overhead, all labels preserved)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T04:08:40.446Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T04:08:41.358997+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9941, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.279, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9882, \\\"pass_f1\\\": 0.9941, \\\"fail_precision\\\": 0.9714, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9855, \\\"lift_vs_notrace\\\": 0.2428, \\\"lift_vs_notrace_ci_lower\\\": 0.2185, \\\"lift_vs_notrace_ci_upper\\\": 0.2681, \\\"accuracy_ci_lower\\\": 0.9882, \\\"accuracy_ci_upper\\\": 0.9983, \\\"train_loss\\\": 0.05, \\\"eval_loss\\\": 0.0867, \\\"eval_mean_token_accuracy\\\": 0.9828, \\\"wall_clock_seconds\\\": 8443, \\\"epoch_level\\\": {\\\"epoch1_accuracy\\\": 0.9933, \\\"epoch2_accuracy\\\": 0.9941, \\\"final_accuracy\\\": 0.9941, \\\"trend\\\": \\\"monotonic_increasing_then_stable\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T04:21:27.059Z\\\"}, \\\"deepseek_vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:39.391Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:03:12.364Z\\\", \\\"hypothesis\\\": \\\"Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"93484\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_vota_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:45:36.891Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\\\", \\\"wall_clock_seconds\\\": 8839.9, \\\"gpu_hours\\\": 2.46}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:06:46.525Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:06:47.175122+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8445, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1294, \\\"accuracy_ci\\\": [0.826, 0.864], \\\"pass_precision\\\": 0.821, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 0.902, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 0.454, \\\"fail_f1\\\": 0.625, \\\"eval_loss_epoch1\\\": 0.0679, \\\"eval_loss_epoch2\\\": 0.095, \\\"eval_loss_epoch3\\\": 0.1121, \\\"final_train_loss\\\": 0.0522, \\\"epoch1_checkpoint_eval\\\": {\\\"accuracy\\\": 0.7815, \\\"accuracy_ci\\\": [0.76, 0.803], \\\"fail_recall\\\": 0.233, \\\"fail_precision\\\": 1, \\\"pass_recall\\\": 1, \\\"pass_precision\\\": 0.766, \\\"fail_f1\\\": 0.378, \\\"pass_f1\\\": 0.867, \\\"conclusion\\\": \\\"epoch3_final_is_better\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/runs/trace-verdict-study/deepseek_vota_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\\\", \\\"completed_at\\\": \\\"2026-05-15T13:12:56.838Z\\\"}, \\\"deepseek_no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.004Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:43:54.081Z\\\", \\\"hypothesis\\\": \\\"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"106822\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:09:35.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 1791.4, \\\"gpu_hours\\\": 0.5}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:37:07.125Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:37:08.315605+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7336, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0185, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.817, \\\"pass_recall\\\": 0.808, \\\"pass_f1\\\": 0.813, \\\"fail_precision\\\": 0.532, \\\"fail_recall\\\": 0.546, \\\"fail_f1\\\": 0.539, \\\"accuracy_ci\\\": [0.708, 0.757], \\\"lift_ci\\\": [-0.009, 0.046]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"completed_at\\\": \\\"2026-05-15T13:39:27.031Z\\\", \\\"notes\\\": \\\"Negative: lift +1.85pp over majority, 95% CI [-0.93, +4.63] crosses 0. DeepSeek-Coder-6.7B no-trace verdict prediction is not statistically different from majority baseline. Within-model VOTA lift: +11.09pp (84.45% - 73.36%).\\\"}, \\\"calibration_analysis_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:27:04.073Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:09:52.711Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_007\\\", \\\"command\\\": \\\"python eval/calibration_analysis.py\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/\\\", \\\"data_count\\\": 1190, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"no_trace\\\": {\\\"ece\\\": 0.171476, \\\"mce\\\": 0.475643, \\\"brier_score\\\": 0.197152, \\\"accuracy\\\": 0.751261, \\\"n_samples\\\": 1190}, \\\"full_trace\\\": {\\\"ece\\\": 0.095817, \\\"mce\\\": 0.249061, \\\"brier_score\\\": 0.143924, \\\"accuracy\\\": 0.817647, \\\"n_samples\\\": 1190}, \\\"label_only\\\": {\\\"ece\\\": 0.110686, \\\"mce\\\": 0.417124, \\\"brier_score\\\": 0.120144, \\\"accuracy\\\": 0.862185, \\\"n_samples\\\": 1190}, \\\"loop_only\\\": {\\\"ece\\\": 0.083085, \\\"mce\\\": 0.183406, \\\"brier_score\\\": 0.118335, \\\"accuracy\\\": 0.856303, \\\"n_samples\\\": 1190}, \\\"ae_only\\\": {\\\"ece\\\": 0.000415, \\\"mce\\\": 0.000415, \\\"brier_score\\\": 0.000847, \\\"accuracy\\\": 0.99916, \\\"n_samples\\\": 1190}, \\\"exception_only\\\": {\\\"ece\\\": 0.002717, \\\"mce\\\": 0.835484, \\\"brier_score\\\": 0.001311, \\\"accuracy\\\": 0.998319, \\\"n_samples\\\": 1190}, \\\"vota\\\": {\\\"ece\\\": 0.00541, \\\"mce\\\": 0.622459, \\\"brier_score\\\": 0.005234, \\\"accuracy\\\": 0.994118, \\\"n_samples\\\": 1190}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics.json\\\", \\\"completed_at\\\": \\\"2026-05-15T12:36:49.992Z\\\"}, \\\"vota_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:02:39.821Z\\\", \\\"updated_at\\\": \\\"2026-05-15T07:16:20.123Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: exception_only condition — only exception summaries, no actual/expected or loop compression. Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition exception_only --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": {\\\"train\\\": 4720, \\\"test\\\": 1190}, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_exception_only_seed42.log\\\", \\\"failure_reason\\\": \\\"OOM at step 8/444 — missing --gradient_checkpointing flag\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T07:16:20.123Z\\\"}, \\\"vota_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:12:38.660Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:37:13.355Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v4.log\\\", \\\"wall_clock_seconds\\\": 8160, \\\"gpu_hours\\\": 2.27}, \\\"hypothesis\\\": \\\"VOTA trace provides verdict accuracy lift over no-trace baseline (v4: removed match leakage + fixed label truncation)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9563, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2412, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.944, \\\"pass_recall\\\": 0.998, \\\"pass_f1\\\": 0.97, \\\"fail_precision\\\": 0.993, \\\"fail_recall\\\": 0.853, \\\"fail_f1\\\": 0.917, \\\"lift_vs_notrace\\\": 0.205, \\\"lift_vs_notrace_ci_lower\\\": 0.177, \\\"lift_vs_notrace_ci_upper\\\": 0.234, \\\"train_loss\\\": 0.046, \\\"eval_loss\\\": 0.0842}, \\\"completed_at\\\": \\\"2026-05-15T01:10:45.307Z\\\"}, \\\"full_trace_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:12:46.333Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:10:45.707Z\\\", \\\"hypothesis\\\": \\\"Full execution trace with smart truncation (label preserved) provides verdict accuracy lift vs no-trace baseline\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_seed42_v2.log\\\", \\\"wall_clock_seconds\\\": 7860, \\\"gpu_hours\\\": 2.18}, \\\"metrics\\\": {\\\"accuracy\\\": 0.284, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": -0.4311, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.923, \\\"pass_recall\\\": 0.085, \\\"pass_f1\\\": 0.155, \\\"fail_precision\\\": 0.445, \\\"fail_recall\\\": 0.785, \\\"fail_f1\\\": 0.568, \\\"train_loss\\\": 0.0373, \\\"eval_loss\\\": 0.082, \\\"eval_mean_token_accuracy\\\": 0.984}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-15T01:10:45.708Z\\\"}, \\\"no_trace_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:12:37.755Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:39:32.197Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v4.log\\\", \\\"wall_clock_seconds\\\": 1274.7, \\\"gpu_hours\\\": 0.35}, \\\"hypothesis\\\": \\\"Baseline: verdict accuracy without execution trace (v4: fixed label truncation)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T22:34:36.523Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T22:34:37.283133+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7513, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272, \\\"train_loss\\\": 0.18, \\\"eval_loss\\\": 0.6454, \\\"eval_mean_token_accuracy\\\": 0.8897}, \\\"completed_at\\\": \\\"2026-05-14T22:39:12.249Z\\\"}, \\\"full_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:38:06.325Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:12:18.859Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name full_trace_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"712469\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:38:06.317Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Full execution trace (line-by-line Scratchpad format) provides verdict accuracy lift vs no-trace baseline\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\\\", \\\"wall_clock_seconds\\\": 11247.5, \\\"gpu_hours\\\": 3.12}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.037, \\\"eval_loss\\\": 0.084, \\\"eval_mean_token_accuracy\\\": 0.984, \\\"accuracy\\\": 0.284, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": -0.431, \\\"pass_precision\\\": 0.88, \\\"pass_recall\\\": 0.08, \\\"pass_f1\\\": 0.16, \\\"fail_precision\\\": 0.31, \\\"fail_recall\\\": 0.97, \\\"fail_f1\\\": 0.57}, \\\"completed_at\\\": \\\"2026-05-14T21:45:33.847Z\\\"}, \\\"no_trace_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:01:02.647Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:12:18.583Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition no_trace --gpu 0\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"710523\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:01:02.641Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Baseline: verdict accuracy without execution trace\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\\\", \\\"wall_clock_seconds\\\": 4617.5, \\\"gpu_hours\\\": 1.28}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.18, \\\"eval_loss\\\": 0.645, \\\"eval_mean_token_accuracy\\\": 0.89, \\\"accuracy\\\": 0.7513, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272}, \\\"completed_at\\\": \\\"2026-05-14T19:18:00.158Z\\\"}, \\\"vota_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:01:04.345Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:51:40.917Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition vota --gpu 1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"710601\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:01:04.338Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"VOTA trace provides significant verdict accuracy lift over no-trace baseline\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\\\", \\\"wall_clock_seconds\\\": 13468.8, \\\"gpu_hours\\\": 3.74}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.046, \\\"eval_loss\\\": 0.085, \\\"eval_mean_token_accuracy\\\": 0.983, \\\"accuracy\\\": 0.992, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.276, \\\"pass_precision\\\": 0.99, \\\"pass_recall\\\": 0.99, \\\"pass_f1\\\": 0.99, \\\"fail_precision\\\": 0.99, \\\"fail_recall\\\": 0.99, \\\"fail_f1\\\": 0.99}, \\\"completed_at\\\": \\\"2026-05-14T21:45:33.135Z\\\"}}, \\\"count\\\": 30, \\\"total\\\": 30, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1051}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"deepseek_exception_only_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:31:02.686Z\", \"updated_at\": \"2026-05-15T20:08:03.280Z\", \"spec\": {\"command\": \"bash -c \\\"... train_sft.py --condition exception_only --seed 123 + evaluate.py\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"144507\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_exception_only_seed123.log\", \"submitted_at\": \"2026-05-15T18:14:56.180Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"plan_id\": \"plan_008\", \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"wall_clock_seconds\": 6785.9, \"gpu_hours\": 1.88}, \"hypothesis\": \"Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B (plan_008). Further validates exception signal cross-model generalization (99.33% seed42).\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:04:43.247Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:04:44.489564+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9109, \"pass_precision\": 1, \"pass_recall\": 0.993, \"pass_f1\": 0.996, \"fail_precision\": 0.976, \"fail_recall\": 0.705, \"fail_f1\": 0.818, \"ci_95\": [0.894, 0.926], \"train_loss\": 0.122, \"train_runtime_sec\": 6384}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final/predictions.jsonl\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T20:08:02.101Z\", \"notes\": \"NEGATIVE: accuracy 91.09% vs seed42 99.83% (-8.74pp). fail_recall=0.705, train_loss=0.122 偏高。DeepSeek exception_only 对 seed 不鲁棒，seed42 的 99.83% 可能是 LoRA 初始化运气。Exception signal 仍有效（+19.6pp over baseline）但跨模型稳定性不成立。\"}, \"no_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:58:31.125Z\", \"updated_at\": \"2026-05-15T19:53:26.153Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"709277\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42.log\", \"submitted_at\": \"2026-05-14T17:58:31.124Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 93295.0, \"gpu_hours\": 25.92}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:53:26.153Z\"}, \"no_trace_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:53.488Z\", \"updated_at\": \"2026-05-15T19:53:25.181Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"709781\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v2.log\", \"submitted_at\": \"2026-05-14T17:59:53.485Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 93211.7, \"gpu_hours\": 25.89}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:53:25.181Z\"}, \"vota_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:58:32.967Z\", \"updated_at\": \"2026-05-15T19:53:23.979Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"709357\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42.log\", \"submitted_at\": \"2026-05-14T17:58:32.964Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 93291.0, \"gpu_hours\": 25.91}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:53:23.979Z\"}, \"vota_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:55.517Z\", \"updated_at\": \"2026-05-15T19:53:22.853Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"709863\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v2.log\", \"submitted_at\": \"2026-05-14T17:59:55.513Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 93207.3, \"gpu_hours\": 25.89}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:53:22.853Z\"}, \"vota_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:38:51.823Z\", \"updated_at\": \"2026-05-15T18:38:53.768Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json --save_predictions --max_length 2048\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"146582\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed456.log\", \"submitted_at\": \"2026-05-15T18:31:33.049Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 87.5, \"gpu_hours\": 0.02}, \"hypothesis\": \"Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\", \"notes\": \"Original PID 145908 OOM'd ~3min after start. Auto-retried as v2 (PID 146592) with --gradient_checkpointing on cuda:1. Step 15/444 (3.4%) at 18:37 UTC, ~2h to complete. W&B run: vota_seed456_v2. Director 决策: 低优先级，exception_only seed robustness 优先。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T18:33:00.592Z\"}, \"deepseek_full_trace_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:13:29.181Z\", \"updated_at\": \"2026-05-15T18:27:46.453Z\", \"hypothesis\": \"DeepSeek full_trace v2: retrain with v5 code (chat-template-aware truncation preserving labels). v1 collapsed to 28.49% due to label truncation during training.\", \"spec\": {\"plan_id\": \"plan_004\", \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\", \"data_count\": 4720, \"server\": \"westd-11235\", \"command\": \"train_sft.py --condition full_trace + evaluate.py\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T18:27:40.446Z\", \"notes\": \"Killed by worker_ops_kill_and_submit_vota_seed456 to free cuda:1 for vota_seed456. Training incomplete — needs re-run after GPU available. PID 144864 killed at ~18:24 UTC.\"}, \"deepseek_full_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.756Z\", \"updated_at\": \"2026-05-15T18:23:42.993Z\", \"hypothesis\": \"Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"112289\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:47:47.241Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"wall_clock_seconds\": 10254.4, \"gpu_hours\": 2.85}, \"notes\": \"INVALIDATED: train-eval truncation mismatch。旧 eval (无截断): 28.49% (all predict fail)。修复后 eval (截断到 2048): 10.59% (模型输出垃圾 token: '{', 'execution', '{}', 'assert' 等, 从未输出 'pass')。结论：LoRA 本身训练失败，不仅是 eval 问题。truncation fix 暴露了更深层问题——训练时 label 被截断导致 LoRA 未学到有效分类行为。v2 重训已提交 (deepseek_full_trace_seed42_v2)。\", \"reproduce\": {\"finished_at\": \"2026-05-15T16:36:17.857Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T16:36:19.211594+00:00\"}]}, \"metrics\": {\"accuracy_no_truncation\": 0.2849, \"accuracy_with_truncation_fix\": 0.1059, \"accuracy_with_truncation_fix_ci\": [0.089, 0.123], \"majority_baseline\": 0.7151, \"n\": 1190, \"note\": \"Both evals show model failure. No-truncation: all predict fail. With-truncation: garbage tokens. LoRA training itself failed due to label truncation during training.\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\", \"completed_at\": \"2026-05-15T16:38:41.604Z\"}, \"exception_only_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:31:01.555Z\", \"updated_at\": \"2026-05-15T18:03:37.166Z\", \"spec\": {\"plan_id\": \"plan_008a\", \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"server\": \"westd-11235\"}, \"hypothesis\": \"Seed robustness: exception_only with seed=123 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.\", \"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T15:54:06.157Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed123 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/eval_results.json\\\"\", \"wandb_run_id\": \"exception_only_seed123\", \"finished_at\": \"2026-05-15T18:00:50.835Z\", \"training_hours\": 2.11}, \"pid\": \"124197\", \"log_path\": \"~/runs/trace-verdict-study/exception_only_seed123.log\", \"wandb_run_id\": \"exception_only_seed123\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:00:52.169672+00:00\"}]}, \"notes\": \"Seed robustness 结论: exception_only 99.83% ± 0.00 (seeds 42/123/456), 每 seed 恰好 2/1190 errors。极大概率同一组 irreducible 样本。\", \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"train_loss\": 0.1096, \"train_runtime_sec\": 7507, \"epochs\": 3, \"seed_comparison\": {\"seed42_accuracy\": 0.9983, \"seed456_accuracy\": 0.9983, \"seed123_accuracy\": 0.9983, \"max_diff\": 0, \"note\": \"identical accuracy to 4 decimal places across all 3 seeds (42/456/123); each has exactly 2/1190 errors; exception_only fully seed-robust\"}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:03:37.166Z\"}, \"exception_only_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:31:02.005Z\", \"updated_at\": \"2026-05-15T18:02:52.070Z\", \"spec\": {\"plan_id\": \"plan_008a\", \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 456, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"server\": \"westd-11235\"}, \"hypothesis\": \"Seed robustness: exception_only with seed=456 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.\", \"server\": \"westd-11235\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T16:38:44.142Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed456 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final/eval_results.json\\\"\", \"wandb_run_id\": \"exception_only_seed456\", \"finished_at\": \"2026-05-15T17:56:16.196Z\", \"training_hours\": 1.29}, \"pid\": \"129476\", \"log_path\": \"~/runs/trace-verdict-study/exception_only_seed456.log\", \"wandb_run_id\": \"exception_only_seed456\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:56:17.874949+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"vs_seed42\": {\"seed42_accuracy\": 0.9983, \"seed456_accuracy\": 0.9983, \"diff\": 0, \"note\": \"identical accuracy to 4 decimal places; no predictions.jsonl for paired bootstrap\"}, \"train_loss\": 0.1087, \"eval_loss\": 0.4629, \"train_runtime_sec\": 4541, \"epochs\": 3}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T17:58:25.389Z\", \"notes\": \"Seed robustness 结论: exception_only 99.83% ± 0.00 (seeds 42/123/456), 每 seed 恰好 2/1190 errors。极大概率同一组 irreducible 样本。\"}, \"vota_exception_only_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:16:14.602Z\", \"updated_at\": \"2026-05-15T18:02:36.534Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42_v2 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"data_path\": \"exception_only\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"pid\": \"79633\", \"gpu\": [\"cuda:1\"], \"submitted_at\": \"2026-05-15T15:15:14Z\", \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42_v2.log\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\"}, \"hypothesis\": \"VOTA component ablation: exception_only condition — retry with --gradient_checkpointing (v1 OOM at step 8). Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\", \"metrics\": {\"accuracy\": 0.9983, \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.998, \"pass_f1\": 0.999, \"fail_precision\": 0.994, \"fail_recall\": 1, \"fail_f1\": 0.997, \"lift_vs_notrace\": 0.2471, \"lift_vs_notrace_ci_lower\": 0.2227, \"lift_vs_notrace_ci_upper\": 0.2714, \"lift_vs_fulltrace\": 0.1807, \"lift_vs_fulltrace_ci_lower\": 0.1588, \"lift_vs_fulltrace_ci_upper\": 0.2034, \"lift_vs_vota\": 0.0067, \"lift_vs_vota_ci_lower\": 0.0017, \"lift_vs_vota_ci_upper\": 0.0126, \"lift_vs_vota_pvalue\": 0.01}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T09:35:01.676Z\", \"notes\": \"Seed robustness confirmed: exception_only 99.83% ± 0.00 across seeds 42/123/456. Each seed has exactly 2/1190 errors. High probability same irreducible samples. [re-eval] 修复后 evaluate.py 重跑 Δ=0。\"}, \"vota_seed123\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-15T12:38:48.954Z\", \"updated_at\": \"2026-05-15T16:58:40.507Z\", \"hypothesis\": \"Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\", \"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T12:39:38.117Z\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123 --wandb_project trace-verdict-study --wandb_run_name vota_seed123_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json\\\"\", \"finished_at\": \"2026-05-15T12:59:09.843Z\", \"training_hours\": 0.33, \"wandb_run_id\": \"vota_seed123_v2\"}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, this process has 24.48 GiB memory in use. Of the allocated m\", \"completed_at\": \"2026-05-15T12:42:01.260Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:42:02.205055+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:59:14.689674+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"conclusion\": \"failed\", \"spec\": {\"plan_id\": \"plan_008b\", \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\", \"data_count\": 4720, \"server\": \"westd-11235\"}}, \"full_trace_label_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:01:29.625Z\", \"updated_at\": \"2026-05-15T16:36:05.917Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_label_only_seed42.log\"}, \"hypothesis\": \"Label-only loss on full_trace fixes gradient dilution collapse (plan_002: loss only on pass/fail token, not trace tokens)\", \"reproduce\": {\"finished_at\": \"2026-05-15T07:15:28.991Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:15:30.057513+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8622, \"accuracy_ci_lower\": 0.8437, \"accuracy_ci_upper\": 0.8807, \"majority_baseline\": 0.7151, \"lift\": 0.1471, \"n\": 1190, \"pass_precision\": 0.8821, \"pass_recall\": 0.9318, \"pass_f1\": 0.9063, \"fail_precision\": 0.8007, \"fail_recall\": 0.6873, \"fail_f1\": 0.7397, \"train_loss\": 0.2505, \"eval_loss\": 0.3205, \"lift_vs_notrace\": 0.1109, \"lift_vs_notrace_ci_lower\": 0.0849, \"lift_vs_notrace_ci_upper\": 0.137, \"lift_vs_standard_fulltrace\": 0.0445, \"lift_vs_standard_fulltrace_ci_lower\": 0.0235, \"lift_vs_standard_fulltrace_ci_upper\": 0.0655, \"lift_vs_standard_fulltrace_pvalue\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T07:23:57.111Z\", \"notes\": \"Label-only loss 将 full_trace 从 81.8% 提升到 86.2% (+4.4pp)，确认 gradient dilution 是 full_trace 性能受限的部分原因。但 86.2% vs VOTA 99.2% 仍有 13pp gap，说明 gradient dilution 只是部分解释——trace 信息密度（VOTA 的 decision-relevant compression）才是主因。[2026-05-15 re-eval] 用修复后 evaluate.py + --condition full_trace 重跑，accuracy 不变 (86.22% → 86.22%, Δ=0)，predictions.jsonl 1190行已生成。训练确认使用 full_trace 格式数据，label_only 仅改变 loss mask。\"}, \"vota_no_ae_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:21:27.279Z\", \"updated_at\": \"2026-05-15T16:25:20.610Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota_no_ae --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_no_ae_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"953133\", \"log_path\": \"~/runs/trace-verdict-study/vota_no_ae_seed42.log\", \"submitted_at\": \"2026-05-15T04:21:27.215Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_no_ae_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final\", \"wall_clock_seconds\": 6902.4, \"gpu_hours\": 1.92}, \"hypothesis\": \"VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine behavioral understanding vs trivial string comparison (plan_001)\", \"reproduce\": {\"finished_at\": \"2026-05-15T06:10:18.839Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T06:10:19.847891+00:00\"}]}, \"metrics\": {\"accuracy\": 0.994, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_f1\": 0.996, \"fail_f1\": 0.989, \"accuracy_ci_lower\": 0.989, \"accuracy_ci_upper\": 0.998, \"lift_vs_notrace\": 0.243, \"lift_vs_notrace_ci_lower\": 0.218, \"lift_vs_notrace_ci_upper\": 0.268, \"train_loss\": 0.0908, \"eval_loss\": 0.2215, \"wall_clock_seconds\": 6397.88}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:16:29.587Z\", \"notes\": \"✅ Eval verified: accuracy 99.4% [98.9, 99.8] confirmed by evaluate.py + bootstrap. 去掉 actual/expected 后性能不降（vs VOTA v5 99.2%），证明 VOTA 效果来自 trace 行为模式理解而非 trivial string comparison。Claim 1 走 full positive framing。[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (99.41% → 99.41%, Δ=0)，predictions.jsonl 1190行已生成。\"}, \"vota_loop_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:02:41.201Z\", \"updated_at\": \"2026-05-15T16:25:16.352Z\", \"hypothesis\": \"VOTA component ablation: loop_only condition — only loop compression summaries, no actual/expected or exception. Tests loop behavioral pattern contribution to VOTA 99.2% accuracy (plan_003 sub-c)\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_loop_only_seed42 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final --gpu 0\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"82362\", \"log_path\": \"~/runs/trace-verdict-study/vota_loop_only_seed42.log\", \"submitted_at\": \"2026-05-15T07:58:06.023Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/loop_only_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"wall_clock_seconds\": 7952.5, \"gpu_hours\": 2.21}, \"reproduce\": {\"finished_at\": \"2026-05-15T10:04:53.052Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:04:54.341040+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8563, \"majority_baseline\": 0.7151, \"lift\": 0.1412, \"n\": 1190, \"pass_precision\": 0.9239, \"pass_recall\": 0.8707, \"pass_f1\": 0.8966, \"fail_precision\": 0.7165, \"fail_recall\": 0.8201, \"fail_f1\": 0.7648, \"accuracy_ci\": [0.8353, 0.8756], \"bootstrap_vs_no_trace\": {\"diff\": 0.105, \"ci\": [0.0824, 0.1286], \"significant\": true}, \"bootstrap_vs_vota\": {\"diff\": -0.1378, \"ci\": [-0.1571, -0.1185], \"significant\": true}, \"bootstrap_vs_full_trace\": {\"diff\": 0.0387, \"ci\": [0.0185, 0.0597], \"significant\": true}, \"train_loss\": 0.0718, \"wall_clock_seconds\": 7425.65}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/eval_results.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T10:10:38.549Z\", \"notes\": \"[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (85.63% → 85.63%, Δ=0)，predictions.jsonl 1190行已生成。\"}, \"vota_ae_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:11:44.999Z\", \"updated_at\": \"2026-05-15T16:25:14.973Z\", \"hypothesis\": \"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\", \"notes\": \"ae_only accuracy 99.92% [99.75%, 100%]。与 exception_only (99.83%) 统计等价，均为 Tier 1 diagnostic-moment signals。88% 样本含 fallback locals 行（无信息量的模块命名空间导入），85% 样本含 [ASSERT] 行的 actual/expected 对比（合法诊断信息）。Reviewer 核实 fallback locals 不含 verdict 信号，不构成 data leakage（D013 裁定）。Train: 3 epochs, 444 steps, final train_loss=0.022, eval_loss=0.166, eval_token_acc=96.76%。[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (99.92% → 99.92%, Δ=0)，predictions.jsonl 1190行已生成。\", \"spec\": {\"command\": \"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T12:13:36.539Z\"}, \"failure_reason\": \"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T12:13:36.813Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:13:37.756005+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9992, \"accuracy_ci\": [0.9975, 1], \"bootstrap_pairwise\": {\"ae_only_vs_no_trace\": {\"diff\": 0.2479, \"ci\": [0.2235, 0.2731], \"p_value\": 0, \"significant\": true}, \"ae_only_vs_exception_only\": {\"diff\": 0.0008, \"ci\": [-0.0017, 0.0034], \"p_value\": 0.8002, \"significant\": false}, \"ae_only_vs_vota\": {\"diff\": 0.005, \"ci\": [0.0017, 0.0092], \"p_value\": 0.0046, \"significant\": true}}, \"config\": {\"n_bootstrap\": 10000, \"seed\": 42, \"method\": \"paired_bootstrap\"}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final\", \"log_path\": \"~/runs/trace-verdict-study/vota_ae_only_seed42.log\"}, \"deepseek_exception_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:17:07.674Z\", \"updated_at\": \"2026-05-15T16:22:48.401Z\", \"hypothesis\": \"Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"107188\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_exception_only_seed42.log\", \"submitted_at\": \"2026-05-15T13:10:32.405Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"wall_clock_seconds\": 7358.8, \"gpu_hours\": 2.04}, \"reproduce\": {\"finished_at\": \"2026-05-15T15:06:51.643Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T15:06:52.877301+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final\", \"metrics\": {\"accuracy\": 0.9933, \"majority_baseline\": 0.7151, \"lift\": 0.2782, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9906, \"pass_f1\": 0.9953, \"fail_precision\": 0.9769, \"fail_recall\": 1, \"fail_f1\": 0.9883, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.9983, \"fail_recall\": 1, \"fail_precision\": 0.9941, \"pass_recall\": 0.9976, \"conclusion\": \"epoch1_better_by_0.50pp\"}}, \"completed_at\": \"2026-05-15T15:13:11.215Z\", \"notes\": \"epoch 1 (step 148) accuracy = 99.83%，高于 final (epoch 3) 的 99.33%。eval_loss epoch 2→3 从 0.413 涨到 0.476 (+15%)。continued training 导致 token-level 过拟合，verdict accuracy 从 99.83% 降到 99.33% (-0.50pp)。这是 eval_loss/accuracy 解耦的又一例证——但此处 eval_loss 上升确实伴随 accuracy 下降，与 DeepSeek VOTA 的趋势相反。Epoch 1 的 99.83% 与 Qwen exception_only (99.83%) 完全一致——跨模型 gap = 0pp（在最佳 checkpoint 下）。\"}, \"full_trace_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:03.068Z\", \"updated_at\": \"2026-05-15T15:50:39.179Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v5.log\", \"wall_clock_seconds\": 7852, \"gpu_hours\": 2.18}, \"hypothesis\": \"Full execution trace with chat-template-aware truncation provides verdict accuracy lift vs no-trace baseline (v5: fixed chat template overhead)\", \"reproduce\": {\"finished_at\": \"2026-05-15T03:58:14.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T03:58:14.897249+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8176, \"majority_baseline\": 0.7151, \"lift\": 0.1025, \"n\": 1190, \"pass_precision\": 0.8774, \"pass_recall\": 0.866, \"pass_f1\": 0.8717, \"fail_precision\": 0.6743, \"fail_recall\": 0.6962, \"fail_f1\": 0.6851, \"accuracy_ci_lower\": 0.797, \"accuracy_ci_upper\": 0.839, \"lift_vs_notrace\": 0.0664, \"lift_vs_notrace_ci_lower\": 0.0437, \"lift_vs_notrace_ci_upper\": 0.0899, \"train_loss\": 0.05, \"eval_loss\": 0.0867, \"wall_clock_seconds\": 7852, \"epoch_level\": {\"epoch1_accuracy\": 0.8303, \"epoch2_accuracy\": 0.763, \"final_accuracy\": 0.8176, \"trend\": \"non_monotonic_epoch1_best_epoch2_collapse\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:06:20.880Z\", \"notes\": \"✅ Paired bootstrap CI (2026-05-15): lift vs no_trace = +6.6pp [4.4, 9.0]pp (significant, N=10000). lift_ci in registry [7.4, 13.2] was vs majority, not vs no_trace — now corrected.\"}, \"no_trace_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:17.948Z\", \"updated_at\": \"2026-05-15T15:50:35.449Z\", \"hypothesis\": \"Baseline: verdict accuracy without execution trace (v5: same code version as vota_v5/full_trace_v5 for fair comparison)\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python train/train_sft.py --condition no_trace --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42_v5\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v5.log\"}, \"completed_at\": \"2026-05-15T06:45:11.265Z\", \"metrics\": {\"accuracy\": 0.7513, \"accuracy_ci_lower\": 0.7277, \"accuracy_ci_upper\": 0.7748, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"lift_ci_lower\": 0.0042, \"lift_ci_upper\": 0.0706, \"n\": 1190, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272, \"epoch_level\": {\"epoch1_accuracy\": 0.7429, \"epoch2_accuracy\": 0.763, \"final_accuracy\": 0.7513, \"trend\": \"non_monotonic_epoch2_best\"}}}, \"vota_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:04.015Z\", \"updated_at\": \"2026-05-15T15:50:32.123Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42_v5\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"940786\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v5.log\", \"submitted_at\": \"2026-05-15T01:46:03.990Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"wall_clock_seconds\": 8443, \"gpu_hours\": 2.35}, \"hypothesis\": \"VOTA trace provides verdict accuracy lift over no-trace baseline (v5: fixed chat template overhead, all labels preserved)\", \"reproduce\": {\"finished_at\": \"2026-05-15T04:08:40.446Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T04:08:41.358997+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9941, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9882, \"pass_f1\": 0.9941, \"fail_precision\": 0.9714, \"fail_recall\": 1, \"fail_f1\": 0.9855, \"lift_vs_notrace\": 0.2428, \"lift_vs_notrace_ci_lower\": 0.2185, \"lift_vs_notrace_ci_upper\": 0.2681, \"accuracy_ci_lower\": 0.9882, \"accuracy_ci_upper\": 0.9983, \"train_loss\": 0.05, \"eval_loss\": 0.0867, \"eval_mean_token_accuracy\": 0.9828, \"wall_clock_seconds\": 8443, \"epoch_level\": {\"epoch1_accuracy\": 0.9933, \"epoch2_accuracy\": 0.9941, \"final_accuracy\": 0.9941, \"trend\": \"monotonic_increasing_then_stable\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:21:27.059Z\"}, \"deepseek_vota_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:39.391Z\", \"updated_at\": \"2026-05-15T14:03:12.364Z\", \"hypothesis\": \"Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"93484\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_vota_seed42.log\", \"submitted_at\": \"2026-05-15T10:45:36.891Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\", \"wall_clock_seconds\": 8839.9, \"gpu_hours\": 2.46}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:06:46.525Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:06:47.175122+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8445, \"majority_baseline\": 0.7151, \"lift\": 0.1294, \"accuracy_ci\": [0.826, 0.864], \"pass_precision\": 0.821, \"pass_recall\": 1, \"pass_f1\": 0.902, \"fail_precision\": 1, \"fail_recall\": 0.454, \"fail_f1\": 0.625, \"eval_loss_epoch1\": 0.0679, \"eval_loss_epoch2\": 0.095, \"eval_loss_epoch3\": 0.1121, \"final_train_loss\": 0.0522, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.7815, \"accuracy_ci\": [0.76, 0.803], \"fail_recall\": 0.233, \"fail_precision\": 1, \"pass_recall\": 1, \"pass_precision\": 0.766, \"fail_f1\": 0.378, \"pass_f1\": 0.867, \"conclusion\": \"epoch3_final_is_better\"}}, \"conclusion\": \"success\", \"log_path\": \"/root/runs/trace-verdict-study/deepseek_vota_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\", \"completed_at\": \"2026-05-15T13:12:56.838Z\"}, \"deepseek_no_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:43:54.081Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"wall_clock_seconds\": 1791.4, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"completed_at\": \"2026-05-15T13:39:27.031Z\", \"notes\": \"Negative: lift +1.85pp over majority, 95% CI [-0.93, +4.63] crosses 0. DeepSeek-Coder-6.7B no-trace verdict prediction is not statistically different from majority baseline. Within-model VOTA lift: +11.09pp (84.45% - 73.36%).\"}, \"calibration_analysis_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:27:04.073Z\", \"updated_at\": \"2026-05-15T13:09:52.711Z\", \"spec\": {\"plan_id\": \"plan_007\", \"command\": \"python eval/calibration_analysis.py\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/\", \"data_count\": 1190, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42}, \"hypothesis\": \"Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\", \"conclusion\": \"success\", \"metrics\": {\"no_trace\": {\"ece\": 0.171476, \"mce\": 0.475643, \"brier_score\": 0.197152, \"accuracy\": 0.751261, \"n_samples\": 1190}, \"full_trace\": {\"ece\": 0.095817, \"mce\": 0.249061, \"brier_score\": 0.143924, \"accuracy\": 0.817647, \"n_samples\": 1190}, \"label_only\": {\"ece\": 0.110686, \"mce\": 0.417124, \"brier_score\": 0.120144, \"accuracy\": 0.862185, \"n_samples\": 1190}, \"loop_only\": {\"ece\": 0.083085, \"mce\": 0.183406, \"brier_score\": 0.118335, \"accuracy\": 0.856303, \"n_samples\": 1190}, \"ae_only\": {\"ece\": 0.000415, \"mce\": 0.000415, \"brier_score\": 0.000847, \"accuracy\": 0.99916, \"n_samples\": 1190}, \"exception_only\": {\"ece\": 0.002717, \"mce\": 0.835484, \"brier_score\": 0.001311, \"accuracy\": 0.998319, \"n_samples\": 1190}, \"vota\": {\"ece\": 0.00541, \"mce\": 0.622459, \"brier_score\": 0.005234, \"accuracy\": 0.994118, \"n_samples\": 1190}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics.json\", \"completed_at\": \"2026-05-15T12:36:49.992Z\"}, \"vota_exception_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:02:39.821Z\", \"updated_at\": \"2026-05-15T07:16:20.123Z\", \"hypothesis\": \"VOTA component ablation: exception_only condition — only exception summaries, no actual/expected or loop compression. Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\", \"spec\": {\"command\": \"python train/train_sft.py --condition exception_only --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": {\"train\": 4720, \"test\": 1190}, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42.log\", \"failure_reason\": \"OOM at step 8/444 — missing --gradient_checkpointing flag\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T07:16:20.123Z\"}, \"vota_seed42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:38.660Z\", \"updated_at\": \"2026-05-15T01:37:13.355Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v4.log\", \"wall_clock_seconds\": 8160, \"gpu_hours\": 2.27}, \"hypothesis\": \"VOTA trace provides verdict accuracy lift over no-trace baseline (v4: removed match leakage + fixed label truncation)\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9563, \"majority_baseline\": 0.7151, \"lift\": 0.2412, \"n\": 1190, \"pass_precision\": 0.944, \"pass_recall\": 0.998, \"pass_f1\": 0.97, \"fail_precision\": 0.993, \"fail_recall\": 0.853, \"fail_f1\": 0.917, \"lift_vs_notrace\": 0.205, \"lift_vs_notrace_ci_lower\": 0.177, \"lift_vs_notrace_ci_upper\": 0.234, \"train_loss\": 0.046, \"eval_loss\": 0.0842}, \"completed_at\": \"2026-05-15T01:10:45.307Z\"}, \"full_trace_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:46.333Z\", \"updated_at\": \"2026-05-15T01:10:45.707Z\", \"hypothesis\": \"Full execution trace with smart truncation (label preserved) provides verdict accuracy lift vs no-trace baseline\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v2.log\", \"wall_clock_seconds\": 7860, \"gpu_hours\": 2.18}, \"metrics\": {\"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.4311, \"n\": 1190, \"pass_precision\": 0.923, \"pass_recall\": 0.085, \"pass_f1\": 0.155, \"fail_precision\": 0.445, \"fail_recall\": 0.785, \"fail_f1\": 0.568, \"train_loss\": 0.0373, \"eval_loss\": 0.082, \"eval_mean_token_accuracy\": 0.984}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T01:10:45.708Z\"}, \"no_trace_seed42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:37.755Z\", \"updated_at\": \"2026-05-14T22:39:32.197Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v4.log\", \"wall_clock_seconds\": 1274.7, \"gpu_hours\": 0.35}, \"hypothesis\": \"Baseline: verdict accuracy without execution trace (v4: fixed label truncation)\", \"reproduce\": {\"finished_at\": \"2026-05-14T22:34:36.523Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T22:34:37.283133+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272, \"train_loss\": 0.18, \"eval_loss\": 0.6454, \"eval_mean_token_accuracy\": 0.8897}, \"completed_at\": \"2026-05-14T22:39:12.249Z\"}, \"full_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:38:06.325Z\", \"updated_at\": \"2026-05-14T22:12:18.859Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name full_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"712469\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42.log\", \"submitted_at\": \"2026-05-14T18:38:06.317Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"Full execution trace (line-by-line Scratchpad format) provides verdict accuracy lift vs no-trace baseline\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"wall_clock_seconds\": 11247.5, \"gpu_hours\": 3.12}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.037, \"eval_loss\": 0.084, \"eval_mean_token_accuracy\": 0.984, \"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.431, \"pass_precision\": 0.88, \"pass_recall\": 0.08, \"pass_f1\": 0.16, \"fail_precision\": 0.31, \"fail_recall\": 0.97, \"fail_f1\": 0.57}, \"completed_at\": \"2026-05-14T21:45:33.847Z\"}, \"no_trace_seed42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:01:02.647Z\", \"updated_at\": \"2026-05-14T22:12:18.583Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition no_trace --gpu 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"710523\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v3.log\", \"submitted_at\": \"2026-05-14T18:01:02.641Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"Baseline: verdict accuracy without execution trace\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\", \"wall_clock_seconds\": 4617.5, \"gpu_hours\": 1.28}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.18, \"eval_loss\": 0.645, \"eval_mean_token_accuracy\": 0.89, \"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272}, \"completed_at\": \"2026-05-14T19:18:00.158Z\"}, \"vota_seed42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:01:04.345Z\", \"updated_at\": \"2026-05-14T21:51:40.917Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition vota --gpu 1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"710601\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v3.log\", \"submitted_at\": \"2026-05-14T18:01:04.338Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"VOTA trace provides significant verdict accuracy lift over no-trace baseline\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"wall_clock_seconds\": 13468.8, \"gpu_hours\": 3.74}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.046, \"eval_loss\": 0.085, \"eval_mean_token_accuracy\": 0.983, \"accuracy\": 0.992, \"majority_baseline\": 0.7151, \"lift\": 0.276, \"pass_precision\": 0.99, \"pass_recall\": 0.99, \"pass_f1\": 0.99, \"fail_precision\": 0.99, \"fail_recall\": 0.99, \"fail_f1\": 0.99}, \"completed_at\": \"2026-05-14T21:45:33.135Z\"}}, \"count\": 30, \"total\": 30, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1051}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4220397c-b95a-4155-8dd4-77fa41b02c94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "a42e92ae-c59b-41e8-afe8-53bada74f79e",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper data tables from experiment registry",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-15T21:04:09.450Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output is too large. Let me read the full output file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a42e92ae-c59b-41e8-afe8-53bada74f79e",
+  "isSidechain": false,
+  "requestId": "req_011Cb52qn95bjpWaHpMGtMB2",
+  "type": "assistant",
+  "uuid": "27e3b8fd-f73a-4146-8d59-5dbce1df8c91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144nXu3gdx7rjdFU5p3oYhc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1111,
+      "cache_read_input_tokens": 23889,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 23889,
+          "cache_creation_input_tokens": 1111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-15T21:04:09.481Z_
+
+Let me read the full registry output.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27e3b8fd-f73a-4146-8d59-5dbce1df8c91",
+  "isSidechain": false,
+  "requestId": "req_011Cb52qn95bjpWaHpMGtMB2",
+  "type": "assistant",
+  "uuid": "98d156d1-b590-492f-9a48-62504bd6f05c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144nXu3gdx7rjdFU5p3oYhc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1111,
+      "cache_read_input_tokens": 23889,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 23889,
+          "cache_creation_input_tokens": 1111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T21:04:11.685Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Lh4nmNMREU8oZimKezJv68`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/8b3d853c-27fa-4ab2-8e4b-06c802523536/tool-results/toolu_01UsBXYAiE7ph9UqpnquFzxK.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98d156d1-b590-492f-9a48-62504bd6f05c",
+  "isSidechain": false,
+  "requestId": "req_011Cb52qn95bjpWaHpMGtMB2",
+  "type": "assistant",
+  "uuid": "2af91a7f-f62e-4763-bd22-44981f0c4fb3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144nXu3gdx7rjdFU5p3oYhc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1111,
+      "cache_read_input_tokens": 23889,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 23889,
+          "cache_creation_input_tokens": 1111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T21:04:12.017Z_
+
+<details><summary>↩ Tool result · `toolu_01Lh4nmNMREU8oZimKezJv68`</summary>
+
+```text
+1	{"result":"{\"success\": true, \"data\": {\"experiments\": {\"deepseek_exception_only_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:31:02.686Z\", \"updated_at\": \"2026-05-15T20:08:03.280Z\", \"spec\": {\"command\": \"bash -c \\\"... train_sft.py --condition exception_only --seed 123 + evaluate.py\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"144507\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_exception_only_seed123.log\", \"submitted_at\": \"2026-05-15T18:14:56.180Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"plan_id\": \"plan_008\", \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"wall_clock_seconds\": 6785.9, \"gpu_hours\": 1.88}, \"hypothesis\": \"Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B (plan_008). Further validates exception signal cross-model generalization (99.33% seed42).\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:04:43.247Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:04:44.489564+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9109, \"pass_precision\": 1, \"pass_recall\": 0.993, \"pass_f1\": 0.996, \"fail_precision\": 0.976, \"fail_recall\": 0.705, \"fail_f1\": 0.818, \"ci_95\": [0.894, 0.926], \"train_loss\": 0.122, \"train_runtime_sec\": 6384}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final/predictions.jsonl\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T20:08:02.101Z\", \"notes\": \"NEGATIVE: accuracy 91.09% vs seed42 99.83% (-8.74pp). fail_recall=0.705, train_loss=0.122 偏高。DeepSeek exception_only 对 seed 不鲁棒，seed42 的 99.83% 可能是 LoRA 初始化运气。Exception signal 仍有效（+19.6pp over baseline）但跨模型稳定性不成立。\"}, \"no_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:58:31.125Z\", \"updated_at\": \"2026-05-15T19:53:26.153Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"709277\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42.log\", \"submitted_at\": \"2026-05-14T17:58:31.124Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 93295.0, \"gpu_hours\": 25.92}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:53:26.153Z\"}, \"no_trace_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:53.488Z\", \"updated_at\": \"2026-05-15T19:53:25.181Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"709781\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v2.log\", \"submitted_at\": \"2026-05-14T17:59:53.485Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 93211.7, \"gpu_hours\": 25.89}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:53:25.181Z\"}, \"vota_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:58:32.967Z\", \"updated_at\": \"2026-05-15T19:53:23.979Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"709357\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42.log\", \"submitted_at\": \"2026-05-14T17:58:32.964Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 93291.0, \"gpu_hours\": 25.91}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:53:23.979Z\"}, \"vota_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:55.517Z\", \"updated_at\": \"2026-05-15T19:53:22.853Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"709863\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v2.log\", \"submitted_at\": \"2026-05-14T17:59:55.513Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 93207.3, \"gpu_hours\": 25.89}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T19:53:22.853Z\"}, \"vota_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:38:51.823Z\", \"updated_at\": \"2026-05-15T18:38:53.768Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json --save_predictions --max_length 2048\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"146582\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed456.log\", \"submitted_at\": \"2026-05-15T18:31:33.049Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 87.5, \"gpu_hours\": 0.02}, \"hypothesis\": \"Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\", \"notes\": \"Original PID 145908 OOM'd ~3min after start. Auto-retried as v2 (PID 146592) with --gradient_checkpointing on cuda:1. Step 15/444 (3.4%) at 18:37 UTC, ~2h to complete. W&B run: vota_seed456_v2. Director 决策: 低优先级，exception_only seed robustness 优先。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T18:33:00.592Z\"}, \"deepseek_full_trace_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:13:29.181Z\", \"updated_at\": \"2026-05-15T18:27:46.453Z\", \"hypothesis\": \"DeepSeek full_trace v2: retrain with v5 code (chat-template-aware truncation preserving labels). v1 collapsed to 28.49% due to label truncation during training.\", \"spec\": {\"plan_id\": \"plan_004\", \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\", \"data_count\": 4720, \"server\": \"westd-11235\", \"command\": \"train_sft.py --condition full_trace + evaluate.py\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T18:27:40.446Z\", \"notes\": \"Killed by worker_ops_kill_and_submit_vota_seed456 to free cuda:1 for vota_seed456. Training incomplete — needs re-run after GPU available. PID 144864 killed at ~18:24 UTC.\"}, \"deepseek_full_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.756Z\", \"updated_at\": \"2026-05-15T18:23:42.993Z\", \"hypothesis\": \"Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"112289\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:47:47.241Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"wall_clock_seconds\": 10254.4, \"gpu_hours\": 2.85}, \"notes\": \"INVALIDATED: train-eval truncation mismatch。旧 eval (无截断): 28.49% (all predict fail)。修复后 eval (截断到 2048): 10.59% (模型输出垃圾 token: '{', 'execution', '{}', 'assert' 等, 从未输出 'pass')。结论：LoRA 本身训练失败，不仅是 eval 问题。truncation fix 暴露了更深层问题——训练时 label 被截断导致 LoRA 未学到有效分类行为。v2 重训已提交 (deepseek_full_trace_seed42_v2)。\", \"reproduce\": {\"finished_at\": \"2026-05-15T16:36:17.857Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T16:36:19.211594+00:00\"}]}, \"metrics\": {\"accuracy_no_truncation\": 0.2849, \"accuracy_with_truncation_fix\": 0.1059, \"accuracy_with_truncation_fix_ci\": [0.089, 0.123], \"majority_baseline\": 0.7151, \"n\": 1190, \"note\": \"Both evals show model failure. No-truncation: all predict fail. With-truncation: garbage tokens. LoRA training itself failed due to label truncation during training.\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\", \"completed_at\": \"2026-05-15T16:38:41.604Z\"}, \"exception_only_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:31:01.555Z\", \"updated_at\": \"2026-05-15T18:03:37.166Z\", \"spec\": {\"plan_id\": \"plan_008a\", \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"server\": \"westd-11235\"}, \"hypothesis\": \"Seed robustness: exception_only with seed=123 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.\", \"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T15:54:06.157Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed123 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/eval_results.json\\\"\", \"wandb_run_id\": \"exception_only_seed123\", \"finished_at\": \"2026-05-15T18:00:50.835Z\", \"training_hours\": 2.11}, \"pid\": \"124197\", \"log_path\": \"~/runs/trace-verdict-study/exception_only_seed123.log\", \"wandb_run_id\": \"exception_only_seed123\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:00:52.169672+00:00\"}]}, \"notes\": \"Seed robustness 结论: exception_only 99.83% ± 0.00 (seeds 42/123/456), 每 seed 恰好 2/1190 errors。极大概率同一组 irreducible 样本。\", \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"train_loss\": 0.1096, \"train_runtime_sec\": 7507, \"epochs\": 3, \"seed_comparison\": {\"seed42_accuracy\": 0.9983, \"seed456_accuracy\": 0.9983, \"seed123_accuracy\": 0.9983, \"max_diff\": 0, \"note\": \"identical accuracy to 4 decimal places across all 3 seeds (42/456/123); each has exactly 2/1190 errors; exception_only fully seed-robust\"}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:03:37.166Z\"}, \"exception_only_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:31:02.005Z\", \"updated_at\": \"2026-05-15T18:02:52.070Z\", \"spec\": {\"plan_id\": \"plan_008a\", \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 456, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"server\": \"westd-11235\"}, \"hypothesis\": \"Seed robustness: exception_only with seed=456 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.\", \"server\": \"westd-11235\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T16:38:44.142Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed456 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final/eval_results.json\\\"\", \"wandb_run_id\": \"exception_only_seed456\", \"finished_at\": \"2026-05-15T17:56:16.196Z\", \"training_hours\": 1.29}, \"pid\": \"129476\", \"log_path\": \"~/runs/trace-verdict-study/exception_only_seed456.log\", \"wandb_run_id\": \"exception_only_seed456\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:56:17.874949+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9983, \"accuracy_ci\": [0.9958, 1], \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9976, \"pass_f1\": 0.9988, \"fail_precision\": 0.9941, \"fail_recall\": 1, \"fail_f1\": 0.9971, \"vs_seed42\": {\"seed42_accuracy\": 0.9983, \"seed456_accuracy\": 0.9983, \"diff\": 0, \"note\": \"identical accuracy to 4 decimal places; no predictions.jsonl for paired bootstrap\"}, \"train_loss\": 0.1087, \"eval_loss\": 0.4629, \"train_runtime_sec\": 4541, \"epochs\": 3}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T17:58:25.389Z\", \"notes\": \"Seed robustness 结论: exception_only 99.83% ± 0.00 (seeds 42/123/456), 每 seed 恰好 2/1190 errors。极大概率同一组 irreducible 样本。\"}, \"vota_exception_only_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:16:14.602Z\", \"updated_at\": \"2026-05-15T18:02:36.534Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42_v2 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"data_path\": \"exception_only\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"pid\": \"79633\", \"gpu\": [\"cuda:1\"], \"submitted_at\": \"2026-05-15T15:15:14Z\", \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42_v2.log\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\"}, \"hypothesis\": \"VOTA component ablation: exception_only condition — retry with --gradient_checkpointing (v1 OOM at step 8). Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\", \"metrics\": {\"accuracy\": 0.9983, \"majority_baseline\": 0.7151, \"lift\": 0.2832, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.998, \"pass_f1\": 0.999, \"fail_precision\": 0.994, \"fail_recall\": 1, \"fail_f1\": 0.997, \"lift_vs_notrace\": 0.2471, \"lift_vs_notrace_ci_lower\": 0.2227, \"lift_vs_notrace_ci_upper\": 0.2714, \"lift_vs_fulltrace\": 0.1807, \"lift_vs_fulltrace_ci_lower\": 0.1588, \"lift_vs_fulltrace_ci_upper\": 0.2034, \"lift_vs_vota\": 0.0067, \"lift_vs_vota_ci_lower\": 0.0017, \"lift_vs_vota_ci_upper\": 0.0126, \"lift_vs_vota_pvalue\": 0.01}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T09:35:01.676Z\", \"notes\": \"Seed robustness confirmed: exception_only 99.83% ± 0.00 across seeds 42/123/456. Each seed has exactly 2/1190 errors. High probability same irreducible samples. [re-eval] 修复后 evaluate.py 重跑 Δ=0。\"}, \"vota_seed123\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-15T12:38:48.954Z\", \"updated_at\": \"2026-05-15T16:58:40.507Z\", \"hypothesis\": \"Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\", \"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T12:39:38.117Z\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123 --wandb_project trace-verdict-study --wandb_run_name vota_seed123_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json\\\"\", \"finished_at\": \"2026-05-15T12:59:09.843Z\", \"training_hours\": 0.33, \"wandb_run_id\": \"vota_seed123_v2\"}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, this process has 24.48 GiB memory in use. Of the allocated m\", \"completed_at\": \"2026-05-15T12:42:01.260Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:42:02.205055+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:59:14.689674+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"conclusion\": \"failed\", \"spec\": {\"plan_id\": \"plan_008b\", \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 123, \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\", \"data_count\": 4720, \"server\": \"westd-11235\"}}, \"full_trace_label_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:01:29.625Z\", \"updated_at\": \"2026-05-15T16:36:05.917Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_label_only_seed42.log\"}, \"hypothesis\": \"Label-only loss on full_trace fixes gradient dilution collapse (plan_002: loss only on pass/fail token, not trace tokens)\", \"reproduce\": {\"finished_at\": \"2026-05-15T07:15:28.991Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:15:30.057513+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8622, \"accuracy_ci_lower\": 0.8437, \"accuracy_ci_upper\": 0.8807, \"majority_baseline\": 0.7151, \"lift\": 0.1471, \"n\": 1190, \"pass_precision\": 0.8821, \"pass_recall\": 0.9318, \"pass_f1\": 0.9063, \"fail_precision\": 0.8007, \"fail_recall\": 0.6873, \"fail_f1\": 0.7397, \"train_loss\": 0.2505, \"eval_loss\": 0.3205, \"lift_vs_notrace\": 0.1109, \"lift_vs_notrace_ci_lower\": 0.0849, \"lift_vs_notrace_ci_upper\": 0.137, \"lift_vs_standard_fulltrace\": 0.0445, \"lift_vs_standard_fulltrace_ci_lower\": 0.0235, \"lift_vs_standard_fulltrace_ci_upper\": 0.0655, \"lift_vs_standard_fulltrace_pvalue\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T07:23:57.111Z\", \"notes\": \"Label-only loss 将 full_trace 从 81.8% 提升到 86.2% (+4.4pp)，确认 gradient dilution 是 full_trace 性能受限的部分原因。但 86.2% vs VOTA 99.2% 仍有 13pp gap，说明 gradient dilution 只是部分解释——trace 信息密度（VOTA 的 decision-relevant compression）才是主因。[2026-05-15 re-eval] 用修复后 evaluate.py + --condition full_trace 重跑，accuracy 不变 (86.22% → 86.22%, Δ=0)，predictions.jsonl 1190行已生成。训练确认使用 full_trace 格式数据，label_only 仅改变 loss mask。\"}, \"vota_no_ae_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T04:21:27.279Z\", \"updated_at\": \"2026-05-15T16:25:20.610Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota_no_ae --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_no_ae_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"953133\", \"log_path\": \"~/runs/trace-verdict-study/vota_no_ae_seed42.log\", \"submitted_at\": \"2026-05-15T04:21:27.215Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_no_ae_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final\", \"wall_clock_seconds\": 6902.4, \"gpu_hours\": 1.92}, \"hypothesis\": \"VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine behavioral understanding vs trivial string comparison (plan_001)\", \"reproduce\": {\"finished_at\": \"2026-05-15T06:10:18.839Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T06:10:19.847891+00:00\"}]}, \"metrics\": {\"accuracy\": 0.994, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_f1\": 0.996, \"fail_f1\": 0.989, \"accuracy_ci_lower\": 0.989, \"accuracy_ci_upper\": 0.998, \"lift_vs_notrace\": 0.243, \"lift_vs_notrace_ci_lower\": 0.218, \"lift_vs_notrace_ci_upper\": 0.268, \"train_loss\": 0.0908, \"eval_loss\": 0.2215, \"wall_clock_seconds\": 6397.88}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T06:16:29.587Z\", \"notes\": \"✅ Eval verified: accuracy 99.4% [98.9, 99.8] confirmed by evaluate.py + bootstrap. 去掉 actual/expected 后性能不降（vs VOTA v5 99.2%），证明 VOTA 效果来自 trace 行为模式理解而非 trivial string comparison。Claim 1 走 full positive framing。[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (99.41% → 99.41%, Δ=0)，predictions.jsonl 1190行已生成。\"}, \"vota_loop_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:02:41.201Z\", \"updated_at\": \"2026-05-15T16:25:16.352Z\", \"hypothesis\": \"VOTA component ablation: loop_only condition — only loop compression summaries, no actual/expected or exception. Tests loop behavioral pattern contribution to VOTA 99.2% accuracy (plan_003 sub-c)\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_loop_only_seed42 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final --gpu 0\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"82362\", \"log_path\": \"~/runs/trace-verdict-study/vota_loop_only_seed42.log\", \"submitted_at\": \"2026-05-15T07:58:06.023Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/loop_only_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"wall_clock_seconds\": 7952.5, \"gpu_hours\": 2.21}, \"reproduce\": {\"finished_at\": \"2026-05-15T10:04:53.052Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T10:04:54.341040+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8563, \"majority_baseline\": 0.7151, \"lift\": 0.1412, \"n\": 1190, \"pass_precision\": 0.9239, \"pass_recall\": 0.8707, \"pass_f1\": 0.8966, \"fail_precision\": 0.7165, \"fail_recall\": 0.8201, \"fail_f1\": 0.7648, \"accuracy_ci\": [0.8353, 0.8756], \"bootstrap_vs_no_trace\": {\"diff\": 0.105, \"ci\": [0.0824, 0.1286], \"significant\": true}, \"bootstrap_vs_vota\": {\"diff\": -0.1378, \"ci\": [-0.1571, -0.1185], \"significant\": true}, \"bootstrap_vs_full_trace\": {\"diff\": 0.0387, \"ci\": [0.0185, 0.0597], \"significant\": true}, \"train_loss\": 0.0718, \"wall_clock_seconds\": 7425.65}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/eval_results.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T10:10:38.549Z\", \"notes\": \"[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (85.63% → 85.63%, Δ=0)，predictions.jsonl 1190行已生成。\"}, \"vota_ae_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:11:44.999Z\", \"updated_at\": \"2026-05-15T16:25:14.973Z\", \"hypothesis\": \"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\", \"notes\": \"ae_only accuracy 99.92% [99.75%, 100%]。与 exception_only (99.83%) 统计等价，均为 Tier 1 diagnostic-moment signals。88% 样本含 fallback locals 行（无信息量的模块命名空间导入），85% 样本含 [ASSERT] 行的 actual/expected 对比（合法诊断信息）。Reviewer 核实 fallback locals 不含 verdict 信号，不构成 data leakage（D013 裁定）。Train: 3 epochs, 444 steps, final train_loss=0.022, eval_loss=0.166, eval_token_acc=96.76%。[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (99.92% → 99.92%, Δ=0)，predictions.jsonl 1190行已生成。\", \"spec\": {\"command\": \"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T12:13:36.539Z\"}, \"failure_reason\": \"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T12:13:36.813Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:13:37.756005+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9992, \"accuracy_ci\": [0.9975, 1], \"bootstrap_pairwise\": {\"ae_only_vs_no_trace\": {\"diff\": 0.2479, \"ci\": [0.2235, 0.2731], \"p_value\": 0, \"significant\": true}, \"ae_only_vs_exception_only\": {\"diff\": 0.0008, \"ci\": [-0.0017, 0.0034], \"p_value\": 0.8002, \"significant\": false}, \"ae_only_vs_vota\": {\"diff\": 0.005, \"ci\": [0.0017, 0.0092], \"p_value\": 0.0046, \"significant\": true}}, \"config\": {\"n_bootstrap\": 10000, \"seed\": 42, \"method\": \"paired_bootstrap\"}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final\", \"log_path\": \"~/runs/trace-verdict-study/vota_ae_only_seed42.log\"}, \"deepseek_exception_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:17:07.674Z\", \"updated_at\": \"2026-05-15T16:22:48.401Z\", \"hypothesis\": \"Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"107188\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_exception_only_seed42.log\", \"submitted_at\": \"2026-05-15T13:10:32.405Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"wall_clock_seconds\": 7358.8, \"gpu_hours\": 2.04}, \"reproduce\": {\"finished_at\": \"2026-05-15T15:06:51.643Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T15:06:52.877301+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final\", \"metrics\": {\"accuracy\": 0.9933, \"majority_baseline\": 0.7151, \"lift\": 0.2782, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9906, \"pass_f1\": 0.9953, \"fail_precision\": 0.9769, \"fail_recall\": 1, \"fail_f1\": 0.9883, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.9983, \"fail_recall\": 1, \"fail_precision\": 0.9941, \"pass_recall\": 0.9976, \"conclusion\": \"epoch1_better_by_0.50pp\"}}, \"completed_at\": \"2026-05-15T15:13:11.215Z\", \"notes\": \"epoch 1 (step 148) accuracy = 99.83%，高于 final (epoch 3) 的 99.33%。eval_loss epoch 2→3 从 0.413 涨到 0.476 (+15%)。continued training 导致 token-level 过拟合，verdict accuracy 从 99.83% 降到 99.33% (-0.50pp)。这是 eval_loss/accuracy 解耦的又一例证——但此处 eval_loss 上升确实伴随 accuracy 下降，与 DeepSeek VOTA 的趋势相反。Epoch 1 的 99.83% 与 Qwen exception_only (99.83%) 完全一致——跨模型 gap = 0pp（在最佳 checkpoint 下）。\"}, \"full_trace_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:03.068Z\", \"updated_at\": \"2026-05-15T15:50:39.179Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v5.log\", \"wall_clock_seconds\": 7852, \"gpu_hours\": 2.18}, \"hypothesis\": \"Full execution trace with chat-template-aware truncation provides verdict accuracy lift vs no-trace baseline (v5: fixed chat template overhead)\", \"reproduce\": {\"finished_at\": \"2026-05-15T03:58:14.030Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T03:58:14.897249+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8176, \"majority_baseline\": 0.7151, \"lift\": 0.1025, \"n\": 1190, \"pass_precision\": 0.8774, \"pass_recall\": 0.866, \"pass_f1\": 0.8717, \"fail_precision\": 0.6743, \"fail_recall\": 0.6962, \"fail_f1\": 0.6851, \"accuracy_ci_lower\": 0.797, \"accuracy_ci_upper\": 0.839, \"lift_vs_notrace\": 0.0664, \"lift_vs_notrace_ci_lower\": 0.0437, \"lift_vs_notrace_ci_upper\": 0.0899, \"train_loss\": 0.05, \"eval_loss\": 0.0867, \"wall_clock_seconds\": 7852, \"epoch_level\": {\"epoch1_accuracy\": 0.8303, \"epoch2_accuracy\": 0.763, \"final_accuracy\": 0.8176, \"trend\": \"non_monotonic_epoch1_best_epoch2_collapse\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:06:20.880Z\", \"notes\": \"✅ Paired bootstrap CI (2026-05-15): lift vs no_trace = +6.6pp [4.4, 9.0]pp (significant, N=10000). lift_ci in registry [7.4, 13.2] was vs majority, not vs no_trace — now corrected.\"}, \"no_trace_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:17.948Z\", \"updated_at\": \"2026-05-15T15:50:35.449Z\", \"hypothesis\": \"Baseline: verdict accuracy without execution trace (v5: same code version as vota_v5/full_trace_v5 for fair comparison)\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python train/train_sft.py --condition no_trace --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42_v5\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v5.log\"}, \"completed_at\": \"2026-05-15T06:45:11.265Z\", \"metrics\": {\"accuracy\": 0.7513, \"accuracy_ci_lower\": 0.7277, \"accuracy_ci_upper\": 0.7748, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"lift_ci_lower\": 0.0042, \"lift_ci_upper\": 0.0706, \"n\": 1190, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272, \"epoch_level\": {\"epoch1_accuracy\": 0.7429, \"epoch2_accuracy\": 0.763, \"final_accuracy\": 0.7513, \"trend\": \"non_monotonic_epoch2_best\"}}}, \"vota_seed42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:46:04.015Z\", \"updated_at\": \"2026-05-15T15:50:32.123Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42_v5\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"940786\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v5.log\", \"submitted_at\": \"2026-05-15T01:46:03.990Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"wall_clock_seconds\": 8443, \"gpu_hours\": 2.35}, \"hypothesis\": \"VOTA trace provides verdict accuracy lift over no-trace baseline (v5: fixed chat template overhead, all labels preserved)\", \"reproduce\": {\"finished_at\": \"2026-05-15T04:08:40.446Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T04:08:41.358997+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9941, \"majority_baseline\": 0.7151, \"lift\": 0.279, \"n\": 1190, \"pass_precision\": 1, \"pass_recall\": 0.9882, \"pass_f1\": 0.9941, \"fail_precision\": 0.9714, \"fail_recall\": 1, \"fail_f1\": 0.9855, \"lift_vs_notrace\": 0.2428, \"lift_vs_notrace_ci_lower\": 0.2185, \"lift_vs_notrace_ci_upper\": 0.2681, \"accuracy_ci_lower\": 0.9882, \"accuracy_ci_upper\": 0.9983, \"train_loss\": 0.05, \"eval_loss\": 0.0867, \"eval_mean_token_accuracy\": 0.9828, \"wall_clock_seconds\": 8443, \"epoch_level\": {\"epoch1_accuracy\": 0.9933, \"epoch2_accuracy\": 0.9941, \"final_accuracy\": 0.9941, \"trend\": \"monotonic_increasing_then_stable\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:21:27.059Z\"}, \"deepseek_vota_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:39.391Z\", \"updated_at\": \"2026-05-15T14:03:12.364Z\", \"hypothesis\": \"Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"93484\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_vota_seed42.log\", \"submitted_at\": \"2026-05-15T10:45:36.891Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\", \"wall_clock_seconds\": 8839.9, \"gpu_hours\": 2.46}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:06:46.525Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:06:47.175122+00:00\"}]}, \"metrics\": {\"accuracy\": 0.8445, \"majority_baseline\": 0.7151, \"lift\": 0.1294, \"accuracy_ci\": [0.826, 0.864], \"pass_precision\": 0.821, \"pass_recall\": 1, \"pass_f1\": 0.902, \"fail_precision\": 1, \"fail_recall\": 0.454, \"fail_f1\": 0.625, \"eval_loss_epoch1\": 0.0679, \"eval_loss_epoch2\": 0.095, \"eval_loss_epoch3\": 0.1121, \"final_train_loss\": 0.0522, \"epoch1_checkpoint_eval\": {\"accuracy\": 0.7815, \"accuracy_ci\": [0.76, 0.803], \"fail_recall\": 0.233, \"fail_precision\": 1, \"pass_recall\": 1, \"pass_precision\": 0.766, \"fail_f1\": 0.378, \"pass_f1\": 0.867, \"conclusion\": \"epoch3_final_is_better\"}}, \"conclusion\": \"success\", \"log_path\": \"/root/runs/trace-verdict-study/deepseek_vota_seed42.log\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\", \"completed_at\": \"2026-05-15T13:12:56.838Z\"}, \"deepseek_no_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:13:40.004Z\", \"updated_at\": \"2026-05-15T13:43:54.081Z\", \"hypothesis\": \"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"106822\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"submitted_at\": \"2026-05-15T13:09:35.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\", \"data_count\": 4720, \"model_name\": \"deepseek-ai/deepseek-coder-6.7b-instruct\", \"seed\": 42, \"wall_clock_seconds\": 1791.4, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-15T13:37:07.125Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:37:08.315605+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"accuracy\": 0.7336, \"majority_baseline\": 0.7151, \"lift\": 0.0185, \"n\": 1190, \"pass_precision\": 0.817, \"pass_recall\": 0.808, \"pass_f1\": 0.813, \"fail_precision\": 0.532, \"fail_recall\": 0.546, \"fail_f1\": 0.539, \"accuracy_ci\": [0.708, 0.757], \"lift_ci\": [-0.009, 0.046]}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\", \"log_path\": \"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\", \"completed_at\": \"2026-05-15T13:39:27.031Z\", \"notes\": \"Negative: lift +1.85pp over majority, 95% CI [-0.93, +4.63] crosses 0. DeepSeek-Coder-6.7B no-trace verdict prediction is not statistically different from majority baseline. Within-model VOTA lift: +11.09pp (84.45% - 73.36%).\"}, \"calibration_analysis_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:27:04.073Z\", \"updated_at\": \"2026-05-15T13:09:52.711Z\", \"spec\": {\"plan_id\": \"plan_007\", \"command\": \"python eval/calibration_analysis.py\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/\", \"data_count\": 1190, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42}, \"hypothesis\": \"Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\", \"conclusion\": \"success\", \"metrics\": {\"no_trace\": {\"ece\": 0.171476, \"mce\": 0.475643, \"brier_score\": 0.197152, \"accuracy\": 0.751261, \"n_samples\": 1190}, \"full_trace\": {\"ece\": 0.095817, \"mce\": 0.249061, \"brier_score\": 0.143924, \"accuracy\": 0.817647, \"n_samples\": 1190}, \"label_only\": {\"ece\": 0.110686, \"mce\": 0.417124, \"brier_score\": 0.120144, \"accuracy\": 0.862185, \"n_samples\": 1190}, \"loop_only\": {\"ece\": 0.083085, \"mce\": 0.183406, \"brier_score\": 0.118335, \"accuracy\": 0.856303, \"n_samples\": 1190}, \"ae_only\": {\"ece\": 0.000415, \"mce\": 0.000415, \"brier_score\": 0.000847, \"accuracy\": 0.99916, \"n_samples\": 1190}, \"exception_only\": {\"ece\": 0.002717, \"mce\": 0.835484, \"brier_score\": 0.001311, \"accuracy\": 0.998319, \"n_samples\": 1190}, \"vota\": {\"ece\": 0.00541, \"mce\": 0.622459, \"brier_score\": 0.005234, \"accuracy\": 0.994118, \"n_samples\": 1190}}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\", \"log_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics.json\", \"completed_at\": \"2026-05-15T12:36:49.992Z\"}, \"vota_exception_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:02:39.821Z\", \"updated_at\": \"2026-05-15T07:16:20.123Z\", \"hypothesis\": \"VOTA component ablation: exception_only condition — only exception summaries, no actual/expected or loop compression. Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\", \"spec\": {\"command\": \"python train/train_sft.py --condition exception_only --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1\", \"server\": \"westd-11235\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\", \"data_count\": {\"train\": 4720, \"test\": 1190}, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/trace-verdict-study/vota_exception_only_seed42.log\", \"failure_reason\": \"OOM at step 8/444 — missing --gradient_checkpointing flag\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T07:16:20.123Z\"}, \"vota_seed42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:38.660Z\", \"updated_at\": \"2026-05-15T01:37:13.355Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v4.log\", \"wall_clock_seconds\": 8160, \"gpu_hours\": 2.27}, \"hypothesis\": \"VOTA trace provides verdict accuracy lift over no-trace baseline (v4: removed match leakage + fixed label truncation)\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.9563, \"majority_baseline\": 0.7151, \"lift\": 0.2412, \"n\": 1190, \"pass_precision\": 0.944, \"pass_recall\": 0.998, \"pass_f1\": 0.97, \"fail_precision\": 0.993, \"fail_recall\": 0.853, \"fail_f1\": 0.917, \"lift_vs_notrace\": 0.205, \"lift_vs_notrace_ci_lower\": 0.177, \"lift_vs_notrace_ci_upper\": 0.234, \"train_loss\": 0.046, \"eval_loss\": 0.0842}, \"completed_at\": \"2026-05-15T01:10:45.307Z\"}, \"full_trace_seed42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:46.333Z\", \"updated_at\": \"2026-05-15T01:10:45.707Z\", \"hypothesis\": \"Full execution trace with smart truncation (label preserved) provides verdict accuracy lift vs no-trace baseline\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42_v2.log\", \"wall_clock_seconds\": 7860, \"gpu_hours\": 2.18}, \"metrics\": {\"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.4311, \"n\": 1190, \"pass_precision\": 0.923, \"pass_recall\": 0.085, \"pass_f1\": 0.155, \"fail_precision\": 0.445, \"fail_recall\": 0.785, \"fail_f1\": 0.568, \"train_loss\": 0.0373, \"eval_loss\": 0.082, \"eval_mean_token_accuracy\": 0.984}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T01:10:45.708Z\"}, \"no_trace_seed42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:12:37.755Z\", \"updated_at\": \"2026-05-14T22:39:32.197Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v4.log\", \"wall_clock_seconds\": 1274.7, \"gpu_hours\": 0.35}, \"hypothesis\": \"Baseline: verdict accuracy without execution trace (v4: fixed label truncation)\", \"reproduce\": {\"finished_at\": \"2026-05-14T22:34:36.523Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T22:34:37.283133+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272, \"train_loss\": 0.18, \"eval_loss\": 0.6454, \"eval_mean_token_accuracy\": 0.8897}, \"completed_at\": \"2026-05-14T22:39:12.249Z\"}, \"full_trace_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:38:06.325Z\", \"updated_at\": \"2026-05-14T22:12:18.859Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name full_trace_seed42\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"712469\", \"log_path\": \"~/runs/trace-verdict-study/full_trace_seed42.log\", \"submitted_at\": \"2026-05-14T18:38:06.317Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"Full execution trace (line-by-line Scratchpad format) provides verdict accuracy lift vs no-trace baseline\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\", \"wall_clock_seconds\": 11247.5, \"gpu_hours\": 3.12}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.037, \"eval_loss\": 0.084, \"eval_mean_token_accuracy\": 0.984, \"accuracy\": 0.284, \"majority_baseline\": 0.7151, \"lift\": -0.431, \"pass_precision\": 0.88, \"pass_recall\": 0.08, \"pass_f1\": 0.16, \"fail_precision\": 0.31, \"fail_recall\": 0.97, \"fail_f1\": 0.57}, \"completed_at\": \"2026-05-14T21:45:33.847Z\"}, \"no_trace_seed42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:01:02.647Z\", \"updated_at\": \"2026-05-14T22:12:18.583Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition no_trace --gpu 0\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"710523\", \"log_path\": \"~/runs/trace-verdict-study/no_trace_seed42_v3.log\", \"submitted_at\": \"2026-05-14T18:01:02.641Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"Baseline: verdict accuracy without execution trace\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\", \"wall_clock_seconds\": 4617.5, \"gpu_hours\": 1.28}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.18, \"eval_loss\": 0.645, \"eval_mean_token_accuracy\": 0.89, \"accuracy\": 0.7513, \"majority_baseline\": 0.7151, \"lift\": 0.0361, \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134, \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272}, \"completed_at\": \"2026-05-14T19:18:00.158Z\"}, \"vota_seed42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:01:04.345Z\", \"updated_at\": \"2026-05-14T21:51:40.917Z\", \"spec\": {\"command\": \"python train/train_sft.py --condition vota --gpu 1\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"710601\", \"log_path\": \"~/runs/trace-verdict-study/vota_seed42_v3.log\", \"submitted_at\": \"2026-05-14T18:01:04.338Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 42, \"hypothesis\": \"VOTA trace provides significant verdict accuracy lift over no-trace baseline\", \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\", \"wall_clock_seconds\": 13468.8, \"gpu_hours\": 3.74}, \"conclusion\": \"killed\", \"metrics\": {\"train_loss\": 0.046, \"eval_loss\": 0.085, \"eval_mean_token_accuracy\": 0.983, \"accuracy\": 0.992, \"majority_baseline\": 0.7151, \"lift\": 0.276, \"pass_precision\": 0.99, \"pass_recall\": 0.99, \"pass_f1\": 0.99, \"fail_precision\": 0.99, \"fail_recall\": 0.99, \"fail_f1\": 0.99}, \"completed_at\": \"2026-05-14T21:45:33.135Z\"}}, \"count\": 30, \"total\": 30, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1051}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2af91a7f-f62e-4763-bd22-44981f0c4fb3",
+  "isSidechain": false,
+  "promptId": "38ddc84c-fdd2-4c5d-ae30-61d26589980f",
+  "type": "user",
+  "uuid": "93495bbe-1e4b-4248-99fb-f15facb45aed",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/8b3d853c-27fa-4ab2-8e4b-06c802523536/tool-results/toolu_01UsBXYAiE7ph9UqpnquFzxK.txt",
+      "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"deepseek_exception_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:31:02.686Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:08:03.280Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"... train_sft.py --condition exception_only --seed 123 + evaluate.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"144507\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_exception_only_seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:14:56.180Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"plan_id\\\": \\\"plan_008\\\", \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"wall_clock_seconds\\\": 6785.9, \\\"gpu_hours\\\": 1.88}, \\\"hypothesis\\\": \\\"Cross-model seed robustness: exception_only with seed=123 on DeepSeek-Coder-6.7B (plan_008). Further validates exception signal cross-model generalization (99.33% seed42).\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T20:04:43.247Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T20:04:44.489564+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9109, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.993, \\\"pass_f1\\\": 0.996, \\\"fail_precision\\\": 0.976, \\\"fail_recall\\\": 0.705, \\\"fail_f1\\\": 0.818, \\\"ci_95\\\": [0.894, 0.926], \\\"train_loss\\\": 0.122, \\\"train_runtime_sec\\\": 6384}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final/predictions.jsonl\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-15T20:08:02.101Z\\\", \\\"notes\\\": \\\"NEGATIVE: accuracy 91.09% vs seed42 99.83% (-8.74pp). fail_recall=0.705, train_loss=0.122 偏高。DeepSeek exception_only 对 seed 不鲁棒，seed42 的 99.83% 可能是 LoRA 初始化运气。Exception signal 仍有效（+19.6pp over baseline）但跨模型稳定性不成立。\\\"}, \\\"no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:58:31.125Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:53:26.153Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"709277\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:58:31.124Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 93295.0, \\\"gpu_hours\\\": 25.92}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T19:53:26.153Z\\\"}, \\\"no_trace_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:59:53.488Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:53:25.181Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"709781\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:59:53.485Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 93211.7, \\\"gpu_hours\\\": 25.89}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T19:53:25.181Z\\\"}, \\\"vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:58:32.967Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:53:23.979Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"709357\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:58:32.964Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 93291.0, \\\"gpu_hours\\\": 25.91}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T19:53:23.979Z\\\"}, \\\"vota_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:59:55.517Z\\\", \\\"updated_at\\\": \\\"2026-05-15T19:53:22.853Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_API_KEY=[REDACTED] /root/.wandb_api_key 2>/dev/null || echo '') && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"709863\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:59:55.513Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 93207.3, \\\"gpu_hours\\\": 25.89}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T19:53:22.853Z\\\"}, \\\"vota_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:38:51.823Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:38:53.768Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/eval_results.json --save_predictions --max_length 2048\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"146582\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:31:33.049Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 87.5, \\\"gpu_hours\\\": 0.02}, \\\"hypothesis\\\": \\\"Seed robustness: VOTA with seed=456 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\\", \\\"notes\\\": \\\"Original PID 145908 OOM'd ~3min after start. Auto-retried as v2 (PID 146592) with --gradient_checkpointing on cuda:1. Step 15/444 (3.4%) at 18:37 UTC, ~2h to complete. W&B run: vota_seed456_v2. Director 决策: 低优先级，exception_only seed robustness 优先。\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T18:33:00.592Z\\\"}, \\\"deepseek_full_trace_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:13:29.181Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:27:46.453Z\\\", \\\"hypothesis\\\": \\\"DeepSeek full_trace v2: retrain with v5 code (chat-template-aware truncation preserving labels). v1 collapsed to 28.49% due to label truncation during training.\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_004\\\", \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"server\\\": \\\"westd-11235\\\", \\\"command\\\": \\\"train_sft.py --condition full_trace + evaluate.py\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_v2\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T18:27:40.446Z\\\", \\\"notes\\\": \\\"Killed by worker_ops_kill_and_submit_vota_seed456 to free cuda:1 for vota_seed456. Training incomplete — needs re-run after GPU available. PID 144864 killed at ~18:24 UTC.\\\"}, \\\"deepseek_full_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.756Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:23:42.993Z\\\", \\\"hypothesis\\\": \\\"Multi-model comparison: full-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if full_trace also shows intermediate performance on DeepSeek-Coder.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_seed42 && python eval/evaluate.py --condition full_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"112289\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:47:47.241Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 10254.4, \\\"gpu_hours\\\": 2.85}, \\\"notes\\\": \\\"INVALIDATED: train-eval truncation mismatch。旧 eval (无截断): 28.49% (all predict fail)。修复后 eval (截断到 2048): 10.59% (模型输出垃圾 token: '{', 'execution', '{}', 'assert' 等, 从未输出 'pass')。结论：LoRA 本身训练失败，不仅是 eval 问题。truncation fix 暴露了更深层问题——训练时 label 被截断导致 LoRA 未学到有效分类行为。v2 重训已提交 (deepseek_full_trace_seed42_v2)。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T16:36:17.857Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T16:36:19.211594+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy_no_truncation\\\": 0.2849, \\\"accuracy_with_truncation_fix\\\": 0.1059, \\\"accuracy_with_truncation_fix_ci\\\": [0.089, 0.123], \\\"majority_baseline\\\": 0.7151, \\\"n\\\": 1190, \\\"note\\\": \\\"Both evals show model failure. No-truncation: all predict fail. With-truncation: garbage tokens. LoRA training itself failed due to label truncation during training.\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_full_trace_seed42.log\\\", \\\"completed_at\\\": \\\"2026-05-15T16:38:41.604Z\\\"}, \\\"exception_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:31:01.555Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:03:37.166Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_008a\\\", \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"server\\\": \\\"westd-11235\\\"}, \\\"hypothesis\\\": \\\"Seed robustness: exception_only with seed=123 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T15:54:06.157Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed123 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/eval_results.json\\\\\\\"\\\", \\\"wandb_run_id\\\": \\\"exception_only_seed123\\\", \\\"finished_at\\\": \\\"2026-05-15T18:00:50.835Z\\\", \\\"training_hours\\\": 2.11}, \\\"pid\\\": \\\"124197\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/exception_only_seed123.log\\\", \\\"wandb_run_id\\\": \\\"exception_only_seed123\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:00:52.169672+00:00\\\"}]}, \\\"notes\\\": \\\"Seed robustness 结论: exception_only 99.83% ± 0.00 (seeds 42/123/456), 每 seed 恰好 2/1190 errors。极大概率同一组 irreducible 样本。\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"accuracy_ci\\\": [0.9958, 1], \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9976, \\\"pass_f1\\\": 0.9988, \\\"fail_precision\\\": 0.9941, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9971, \\\"train_loss\\\": 0.1096, \\\"train_runtime_sec\\\": 7507, \\\"epochs\\\": 3, \\\"seed_comparison\\\": {\\\"seed42_accuracy\\\": 0.9983, \\\"seed456_accuracy\\\": 0.9983, \\\"seed123_accuracy\\\": 0.9983, \\\"max_diff\\\": 0, \\\"note\\\": \\\"identical accuracy to 4 decimal places across all 3 seeds (42/456/123); each has exactly 2/1190 errors; exception_only fully seed-robust\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:03:37.166Z\\\"}, \\\"exception_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:31:02.005Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:02:52.070Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_008a\\\", \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 456, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"server\\\": \\\"westd-11235\\\"}, \\\"hypothesis\\\": \\\"Seed robustness: exception_only with seed=456 on Qwen-2.5-Coder-7B (plan_008). Verifies headline result 99.83% is stable across seeds.\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T16:38:44.142Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456 --wandb_project trace-verdict-study --wandb_run_name exception_only_seed456 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final/eval_results.json\\\\\\\"\\\", \\\"wandb_run_id\\\": \\\"exception_only_seed456\\\", \\\"finished_at\\\": \\\"2026-05-15T17:56:16.196Z\\\", \\\"training_hours\\\": 1.29}, \\\"pid\\\": \\\"129476\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/exception_only_seed456.log\\\", \\\"wandb_run_id\\\": \\\"exception_only_seed456\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:56:17.874949+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"accuracy_ci\\\": [0.9958, 1], \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9976, \\\"pass_f1\\\": 0.9988, \\\"fail_precision\\\": 0.9941, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9971, \\\"vs_seed42\\\": {\\\"seed42_accuracy\\\": 0.9983, \\\"seed456_accuracy\\\": 0.9983, \\\"diff\\\": 0, \\\"note\\\": \\\"identical accuracy to 4 decimal places; no predictions.jsonl for paired bootstrap\\\"}, \\\"train_loss\\\": 0.1087, \\\"eval_loss\\\": 0.4629, \\\"train_runtime_sec\\\": 4541, \\\"epochs\\\": 3}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T17:58:25.389Z\\\", \\\"notes\\\": \\\"Seed robustness 结论: exception_only 99.83% ± 0.00 (seeds 42/123/456), 每 seed 恰好 2/1190 errors。极大概率同一组 irreducible 样本。\\\"}, \\\"vota_exception_only_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:16:14.602Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:02:36.534Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42_v2 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"exception_only\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"79633\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"submitted_at\\\": \\\"2026-05-15T15:15:14Z\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_exception_only_seed42_v2.log\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\\\"}, \\\"hypothesis\\\": \\\"VOTA component ablation: exception_only condition — retry with --gradient_checkpointing (v1 OOM at step 8). Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9983, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2832, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.998, \\\"pass_f1\\\": 0.999, \\\"fail_precision\\\": 0.994, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.997, \\\"lift_vs_notrace\\\": 0.2471, \\\"lift_vs_notrace_ci_lower\\\": 0.2227, \\\"lift_vs_notrace_ci_upper\\\": 0.2714, \\\"lift_vs_fulltrace\\\": 0.1807, \\\"lift_vs_fulltrace_ci_lower\\\": 0.1588, \\\"lift_vs_fulltrace_ci_upper\\\": 0.2034, \\\"lift_vs_vota\\\": 0.0067, \\\"lift_vs_vota_ci_lower\\\": 0.0017, \\\"lift_vs_vota_ci_upper\\\": 0.0126, \\\"lift_vs_vota_pvalue\\\": 0.01}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T09:35:01.676Z\\\", \\\"notes\\\": \\\"Seed robustness confirmed: exception_only 99.83% ± 0.00 across seeds 42/123/456. Each seed has exactly 2/1190 errors. High probability same irreducible samples. [re-eval] 修复后 evaluate.py 重跑 Δ=0。\\\"}, \\\"vota_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-15T12:38:48.954Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:58:40.507Z\\\", \\\"hypothesis\\\": \\\"Seed robustness: VOTA with seed=123 (plan_008). Verifies VOTA 99.2% accuracy is stable across random seeds.\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T12:39:38.117Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123 --wandb_project trace-verdict-study --wandb_run_name vota_seed123_v2 && python eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed123/final/eval_results.json\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T12:59:09.843Z\\\", \\\"training_hours\\\": 0.33, \\\"wandb_run_id\\\": \\\"vota_seed123_v2\\\"}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 614.25 MiB is free. Process 93494 has 21.86 GiB memory in use. Including non-PyTorch memory, this process has 24.48 GiB memory in use. Of the allocated m\\\", \\\"completed_at\\\": \\\"2026-05-15T12:42:01.260Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:42:02.205055+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:59:14.689674+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"conclusion\\\": \\\"failed\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_008b\\\", \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"server\\\": \\\"westd-11235\\\"}}, \\\"full_trace_label_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:01:29.625Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:36:05.917Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_label_only_seed42.log\\\"}, \\\"hypothesis\\\": \\\"Label-only loss on full_trace fixes gradient dilution collapse (plan_002: loss only on pass/fail token, not trace tokens)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T07:15:28.991Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T07:15:30.057513+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8622, \\\"accuracy_ci_lower\\\": 0.8437, \\\"accuracy_ci_upper\\\": 0.8807, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1471, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8821, \\\"pass_recall\\\": 0.9318, \\\"pass_f1\\\": 0.9063, \\\"fail_precision\\\": 0.8007, \\\"fail_recall\\\": 0.6873, \\\"fail_f1\\\": 0.7397, \\\"train_loss\\\": 0.2505, \\\"eval_loss\\\": 0.3205, \\\"lift_vs_notrace\\\": 0.1109, \\\"lift_vs_notrace_ci_lower\\\": 0.0849, \\\"lift_vs_notrace_ci_upper\\\": 0.137, \\\"lift_vs_standard_fulltrace\\\": 0.0445, \\\"lift_vs_standard_fulltrace_ci_lower\\\": 0.0235, \\\"lift_vs_standard_fulltrace_ci_upper\\\": 0.0655, \\\"lift_vs_standard_fulltrace_pvalue\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T07:23:57.111Z\\\", \\\"notes\\\": \\\"Label-only loss 将 full_trace 从 81.8% 提升到 86.2% (+4.4pp)，确认 gradient dilution 是 full_trace 性能受限的部分原因。但 86.2% vs VOTA 99.2% 仍有 13pp gap，说明 gradient dilution 只是部分解释——trace 信息密度（VOTA 的 decision-relevant compression）才是主因。[2026-05-15 re-eval] 用修复后 evaluate.py + --condition full_trace 重跑，accuracy 不变 (86.22% → 86.22%, Δ=0)，predictions.jsonl 1190行已生成。训练确认使用 full_trace 格式数据，label_only 仅改变 loss mask。\\\"}, \\\"vota_no_ae_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T04:21:27.279Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:25:20.610Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota_no_ae --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_no_ae_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"953133\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_no_ae_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T04:21:27.215Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_no_ae_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final\\\", \\\"wall_clock_seconds\\\": 6902.4, \\\"gpu_hours\\\": 1.92}, \\\"hypothesis\\\": \\\"VOTA without actual/expected values: tests if VOTA's accuracy comes from genuine behavioral understanding vs trivial string comparison (plan_001)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T06:10:18.839Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T06:10:19.847891+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.994, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.279, \\\"n\\\": 1190, \\\"pass_f1\\\": 0.996, \\\"fail_f1\\\": 0.989, \\\"accuracy_ci_lower\\\": 0.989, \\\"accuracy_ci_upper\\\": 0.998, \\\"lift_vs_notrace\\\": 0.243, \\\"lift_vs_notrace_ci_lower\\\": 0.218, \\\"lift_vs_notrace_ci_upper\\\": 0.268, \\\"train_loss\\\": 0.0908, \\\"eval_loss\\\": 0.2215, \\\"wall_clock_seconds\\\": 6397.88}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T06:16:29.587Z\\\", \\\"notes\\\": \\\"✅ Eval verified: accuracy 99.4% [98.9, 99.8] confirmed by evaluate.py + bootstrap. 去掉 actual/expected 后性能不降（vs VOTA v5 99.2%），证明 VOTA 效果来自 trace 行为模式理解而非 trivial string comparison。Claim 1 走 full positive framing。[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (99.41% → 99.41%, Δ=0)，predictions.jsonl 1190行已生成。\\\"}, \\\"vota_loop_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:02:41.201Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:25:16.352Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: loop_only condition — only loop compression summaries, no actual/expected or exception. Tests loop behavioral pattern contribution to VOTA 99.2% accuracy (plan_003 sub-c)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition loop_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_loop_only_seed42 && python eval/evaluate.py --condition loop_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"82362\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_loop_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T07:58:06.023Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/loop_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 7952.5, \\\"gpu_hours\\\": 2.21}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T10:04:53.052Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T10:04:54.341040+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8563, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1412, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.9239, \\\"pass_recall\\\": 0.8707, \\\"pass_f1\\\": 0.8966, \\\"fail_precision\\\": 0.7165, \\\"fail_recall\\\": 0.8201, \\\"fail_f1\\\": 0.7648, \\\"accuracy_ci\\\": [0.8353, 0.8756], \\\"bootstrap_vs_no_trace\\\": {\\\"diff\\\": 0.105, \\\"ci\\\": [0.0824, 0.1286], \\\"significant\\\": true}, \\\"bootstrap_vs_vota\\\": {\\\"diff\\\": -0.1378, \\\"ci\\\": [-0.1571, -0.1185], \\\"significant\\\": true}, \\\"bootstrap_vs_full_trace\\\": {\\\"diff\\\": 0.0387, \\\"ci\\\": [0.0185, 0.0597], \\\"significant\\\": true}, \\\"train_loss\\\": 0.0718, \\\"wall_clock_seconds\\\": 7425.65}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/eval_results.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T10:10:38.549Z\\\", \\\"notes\\\": \\\"[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (85.63% → 85.63%, Δ=0)，predictions.jsonl 1190行已生成。\\\"}, \\\"vota_ae_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T05:11:44.999Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:25:14.973Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: ae_only condition — only actual/expected values, no exception/loop compression (plan_003 sub-a)\\\", \\\"notes\\\": \\\"ae_only accuracy 99.92% [99.75%, 100%]。与 exception_only (99.83%) 统计等价，均为 Tier 1 diagnostic-moment signals。88% 样本含 fallback locals 行（无信息量的模块命名空间导入），85% 样本含 [ASSERT] 行的 actual/expected 对比（合法诊断信息）。Reviewer 核实 fallback locals 不含 verdict 信号，不构成 data leakage（D013 裁定）。Train: 3 epochs, 444 steps, final train_loss=0.022, eval_loss=0.166, eval_token_acc=96.76%。[2026-05-15 re-eval] 用修复后 evaluate.py 重跑，accuracy 不变 (99.92% → 99.92%, Δ=0)，predictions.jsonl 1190行已生成。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition ae_only --gradient_checkpointing --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_ae_only_seed42 && python eval/evaluate.py --condition ae_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final --gpu 1 --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/eval_results.json\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:13:36.539Z\\\"}, \\\"failure_reason\\\": \\\"N/A — cron 误判。实际已完成，eval_results.json 已生成。process dead 5x 是因为训练+eval 正常结束后进程退出，cron 无 W&B/sentinel 检测通道。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T12:13:36.813Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:13:37.756005+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9992, \\\"accuracy_ci\\\": [0.9975, 1], \\\"bootstrap_pairwise\\\": {\\\"ae_only_vs_no_trace\\\": {\\\"diff\\\": 0.2479, \\\"ci\\\": [0.2235, 0.2731], \\\"p_value\\\": 0, \\\"significant\\\": true}, \\\"ae_only_vs_exception_only\\\": {\\\"diff\\\": 0.0008, \\\"ci\\\": [-0.0017, 0.0034], \\\"p_value\\\": 0.8002, \\\"significant\\\": false}, \\\"ae_only_vs_vota\\\": {\\\"diff\\\": 0.005, \\\"ci\\\": [0.0017, 0.0092], \\\"p_value\\\": 0.0046, \\\"significant\\\": true}}, \\\"config\\\": {\\\"n_bootstrap\\\": 10000, \\\"seed\\\": 42, \\\"method\\\": \\\"paired_bootstrap\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_ae_only_seed42.log\\\"}, \\\"deepseek_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:17:07.674Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:22:48.401Z\\\", \\\"hypothesis\\\": \\\"Multi-model validation: exception_only on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if exception dominance (99.83% on Qwen) generalizes across models — the most valuable cross-model evidence.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_exception_only_seed42 && python eval/evaluate.py --condition exception_only --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"107188\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_exception_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:10:32.405Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 7358.8, \\\"gpu_hours\\\": 2.04}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T15:06:51.643Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T15:06:52.877301+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9933, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2782, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9906, \\\"pass_f1\\\": 0.9953, \\\"fail_precision\\\": 0.9769, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9883, \\\"epoch1_checkpoint_eval\\\": {\\\"accuracy\\\": 0.9983, \\\"fail_recall\\\": 1, \\\"fail_precision\\\": 0.9941, \\\"pass_recall\\\": 0.9976, \\\"conclusion\\\": \\\"epoch1_better_by_0.50pp\\\"}}, \\\"completed_at\\\": \\\"2026-05-15T15:13:11.215Z\\\", \\\"notes\\\": \\\"epoch 1 (step 148) accuracy = 99.83%，高于 final (epoch 3) 的 99.33%。eval_loss epoch 2→3 从 0.413 涨到 0.476 (+15%)。continued training 导致 token-level 过拟合，verdict accuracy 从 99.83% 降到 99.33% (-0.50pp)。这是 eval_loss/accuracy 解耦的又一例证——但此处 eval_loss 上升确实伴随 accuracy 下降，与 DeepSeek VOTA 的趋势相反。Epoch 1 的 99.83% 与 Qwen exception_only (99.83%) 完全一致——跨模型 gap = 0pp（在最佳 checkpoint 下）。\\\"}, \\\"full_trace_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:46:03.068Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:50:39.179Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_seed42_v5.log\\\", \\\"wall_clock_seconds\\\": 7852, \\\"gpu_hours\\\": 2.18}, \\\"hypothesis\\\": \\\"Full execution trace with chat-template-aware truncation provides verdict accuracy lift vs no-trace baseline (v5: fixed chat template overhead)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:58:14.030Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:58:14.897249+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8176, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1025, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8774, \\\"pass_recall\\\": 0.866, \\\"pass_f1\\\": 0.8717, \\\"fail_precision\\\": 0.6743, \\\"fail_recall\\\": 0.6962, \\\"fail_f1\\\": 0.6851, \\\"accuracy_ci_lower\\\": 0.797, \\\"accuracy_ci_upper\\\": 0.839, \\\"lift_vs_notrace\\\": 0.0664, \\\"lift_vs_notrace_ci_lower\\\": 0.0437, \\\"lift_vs_notrace_ci_upper\\\": 0.0899, \\\"train_loss\\\": 0.05, \\\"eval_loss\\\": 0.0867, \\\"wall_clock_seconds\\\": 7852, \\\"epoch_level\\\": {\\\"epoch1_accuracy\\\": 0.8303, \\\"epoch2_accuracy\\\": 0.763, \\\"final_accuracy\\\": 0.8176, \\\"trend\\\": \\\"non_monotonic_epoch1_best_epoch2_collapse\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T04:06:20.880Z\\\", \\\"notes\\\": \\\"✅ Paired bootstrap CI (2026-05-15): lift vs no_trace = +6.6pp [4.4, 9.0]pp (significant, N=10000). lift_ci in registry [7.4, 13.2] was vs majority, not vs no_trace — now corrected.\\\"}, \\\"no_trace_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:46:17.948Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:50:35.449Z\\\", \\\"hypothesis\\\": \\\"Baseline: verdict accuracy without execution trace (v5: same code version as vota_v5/full_trace_v5 for fair comparison)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition no_trace --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name no_trace_seed42_v5\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v5.log\\\"}, \\\"completed_at\\\": \\\"2026-05-15T06:45:11.265Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7513, \\\"accuracy_ci_lower\\\": 0.7277, \\\"accuracy_ci_upper\\\": 0.7748, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"lift_ci_lower\\\": 0.0042, \\\"lift_ci_upper\\\": 0.0706, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272, \\\"epoch_level\\\": {\\\"epoch1_accuracy\\\": 0.7429, \\\"epoch2_accuracy\\\": 0.763, \\\"final_accuracy\\\": 0.7513, \\\"trend\\\": \\\"non_monotonic_epoch2_best\\\"}}}, \\\"vota_seed42_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:46:04.015Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:50:32.123Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --gpu 1 --wandb_project trace-verdict-study --wandb_run_name vota_seed42_v5\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"940786\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T01:46:03.990Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\\\", \\\"wall_clock_seconds\\\": 8443, \\\"gpu_hours\\\": 2.35}, \\\"hypothesis\\\": \\\"VOTA trace provides verdict accuracy lift over no-trace baseline (v5: fixed chat template overhead, all labels preserved)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T04:08:40.446Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T04:08:41.358997+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9941, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.279, \\\"n\\\": 1190, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.9882, \\\"pass_f1\\\": 0.9941, \\\"fail_precision\\\": 0.9714, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.9855, \\\"lift_vs_notrace\\\": 0.2428, \\\"lift_vs_notrace_ci_lower\\\": 0.2185, \\\"lift_vs_notrace_ci_upper\\\": 0.2681, \\\"accuracy_ci_lower\\\": 0.9882, \\\"accuracy_ci_upper\\\": 0.9983, \\\"train_loss\\\": 0.05, \\\"eval_loss\\\": 0.0867, \\\"eval_mean_token_accuracy\\\": 0.9828, \\\"wall_clock_seconds\\\": 8443, \\\"epoch_level\\\": {\\\"epoch1_accuracy\\\": 0.9933, \\\"epoch2_accuracy\\\": 0.9941, \\\"final_accuracy\\\": 0.9941, \\\"trend\\\": \\\"monotonic_increasing_then_stable\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T04:21:27.059Z\\\"}, \\\"deepseek_vota_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:39.391Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:03:12.364Z\\\", \\\"hypothesis\\\": \\\"Multi-model validation: VOTA on DeepSeek-Coder-6.7B-Instruct (plan_004). Tests if VOTA's verdict accuracy advantage generalizes beyond Qwen2.5-Coder to DCSH's same base model.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_vota_seed42 && python eval/evaluate.py --condition vota --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"93484\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_vota_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T10:45:36.891Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\\\", \\\"wall_clock_seconds\\\": 8839.9, \\\"gpu_hours\\\": 2.46}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:06:46.525Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:06:47.175122+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.8445, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.1294, \\\"accuracy_ci\\\": [0.826, 0.864], \\\"pass_precision\\\": 0.821, \\\"pass_recall\\\": 1, \\\"pass_f1\\\": 0.902, \\\"fail_precision\\\": 1, \\\"fail_recall\\\": 0.454, \\\"fail_f1\\\": 0.625, \\\"eval_loss_epoch1\\\": 0.0679, \\\"eval_loss_epoch2\\\": 0.095, \\\"eval_loss_epoch3\\\": 0.1121, \\\"final_train_loss\\\": 0.0522, \\\"epoch1_checkpoint_eval\\\": {\\\"accuracy\\\": 0.7815, \\\"accuracy_ci\\\": [0.76, 0.803], \\\"fail_recall\\\": 0.233, \\\"fail_precision\\\": 1, \\\"pass_recall\\\": 1, \\\"pass_precision\\\": 0.766, \\\"fail_f1\\\": 0.378, \\\"pass_f1\\\": 0.867, \\\"conclusion\\\": \\\"epoch3_final_is_better\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/root/runs/trace-verdict-study/deepseek_vota_seed42.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\\\", \\\"completed_at\\\": \\\"2026-05-15T13:12:56.838Z\\\"}, \\\"deepseek_no_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:13:40.004Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:43:54.081Z\\\", \\\"hypothesis\\\": \\\"Multi-model baseline: no-trace verdict prediction on DeepSeek-Coder-6.7B-Instruct (plan_004). Establishes DeepSeek baseline for comparison with VOTA and full_trace conditions.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace --gradient_checkpointing --gpu 0 --seed 42 --wandb_project trace-verdict-study --wandb_run_name deepseek_no_trace_seed42 && python eval/evaluate.py --condition no_trace --model_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final --gpu 0 --output /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"106822\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:09:35.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_{train,test}.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"deepseek-ai/deepseek-coder-6.7b-instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 1791.4, \\\"gpu_hours\\\": 0.5}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T13:37:07.125Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:37:08.315605+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7336, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0185, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.817, \\\"pass_recall\\\": 0.808, \\\"pass_f1\\\": 0.813, \\\"fail_precision\\\": 0.532, \\\"fail_recall\\\": 0.546, \\\"fail_f1\\\": 0.539, \\\"accuracy_ci\\\": [0.708, 0.757], \\\"lift_ci\\\": [-0.009, 0.046]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/deepseek_no_trace_seed42.log\\\", \\\"completed_at\\\": \\\"2026-05-15T13:39:27.031Z\\\", \\\"notes\\\": \\\"Negative: lift +1.85pp over majority, 95% CI [-0.93, +4.63] crosses 0. DeepSeek-Coder-6.7B no-trace verdict prediction is not statistically different from majority baseline. Within-model VOTA lift: +11.09pp (84.45% - 73.36%).\\\"}, \\\"calibration_analysis_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:27:04.073Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:09:52.711Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_007\\\", \\\"command\\\": \\\"python eval/calibration_analysis.py\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/\\\", \\\"data_count\\\": 1190, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"Calibration analysis: ECE + reliability diagrams for VOTA/exception_only/full_trace/no_trace. Tests whether VOTA's compressed traces improve model calibration beyond accuracy (plan_007).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"no_trace\\\": {\\\"ece\\\": 0.171476, \\\"mce\\\": 0.475643, \\\"brier_score\\\": 0.197152, \\\"accuracy\\\": 0.751261, \\\"n_samples\\\": 1190}, \\\"full_trace\\\": {\\\"ece\\\": 0.095817, \\\"mce\\\": 0.249061, \\\"brier_score\\\": 0.143924, \\\"accuracy\\\": 0.817647, \\\"n_samples\\\": 1190}, \\\"label_only\\\": {\\\"ece\\\": 0.110686, \\\"mce\\\": 0.417124, \\\"brier_score\\\": 0.120144, \\\"accuracy\\\": 0.862185, \\\"n_samples\\\": 1190}, \\\"loop_only\\\": {\\\"ece\\\": 0.083085, \\\"mce\\\": 0.183406, \\\"brier_score\\\": 0.118335, \\\"accuracy\\\": 0.856303, \\\"n_samples\\\": 1190}, \\\"ae_only\\\": {\\\"ece\\\": 0.000415, \\\"mce\\\": 0.000415, \\\"brier_score\\\": 0.000847, \\\"accuracy\\\": 0.99916, \\\"n_samples\\\": 1190}, \\\"exception_only\\\": {\\\"ece\\\": 0.002717, \\\"mce\\\": 0.835484, \\\"brier_score\\\": 0.001311, \\\"accuracy\\\": 0.998319, \\\"n_samples\\\": 1190}, \\\"vota\\\": {\\\"ece\\\": 0.00541, \\\"mce\\\": 0.622459, \\\"brier_score\\\": 0.005234, \\\"accuracy\\\": 0.994118, \\\"n_samples\\\": 1190}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics.json\\\", \\\"completed_at\\\": \\\"2026-05-15T12:36:49.992Z\\\"}, \\\"vota_exception_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T07:02:39.821Z\\\", \\\"updated_at\\\": \\\"2026-05-15T07:16:20.123Z\\\", \\\"hypothesis\\\": \\\"VOTA component ablation: exception_only condition — only exception summaries, no actual/expected or loop compression. Tests if [ERROR] events are the primary driver of VOTA's 99.2% accuracy (plan_003 sub-b)\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition exception_only --gpu 1 --seed 42 --wandb_project trace-verdict-study --wandb_run_name vota_exception_only_seed42 && python eval/evaluate.py --condition exception_only --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final --gpu 1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/exception_only_{train,test}.jsonl\\\", \\\"data_count\\\": {\\\"train\\\": 4720, \\\"test\\\": 1190}, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_exception_only_seed42.log\\\", \\\"failure_reason\\\": \\\"OOM at step 8/444 — missing --gradient_checkpointing flag\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T07:16:20.123Z\\\"}, \\\"vota_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:12:38.660Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:37:13.355Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v4.log\\\", \\\"wall_clock_seconds\\\": 8160, \\\"gpu_hours\\\": 2.27}, \\\"hypothesis\\\": \\\"VOTA trace provides verdict accuracy lift over no-trace baseline (v4: removed match leakage + fixed label truncation)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.9563, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2412, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.944, \\\"pass_recall\\\": 0.998, \\\"pass_f1\\\": 0.97, \\\"fail_precision\\\": 0.993, \\\"fail_recall\\\": 0.853, \\\"fail_f1\\\": 0.917, \\\"lift_vs_notrace\\\": 0.205, \\\"lift_vs_notrace_ci_lower\\\": 0.177, \\\"lift_vs_notrace_ci_upper\\\": 0.234, \\\"train_loss\\\": 0.046, \\\"eval_loss\\\": 0.0842}, \\\"completed_at\\\": \\\"2026-05-15T01:10:45.307Z\\\"}, \\\"full_trace_seed42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:12:46.333Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:10:45.707Z\\\", \\\"hypothesis\\\": \\\"Full execution trace with smart truncation (label preserved) provides verdict accuracy lift vs no-trace baseline\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_seed42_v2.log\\\", \\\"wall_clock_seconds\\\": 7860, \\\"gpu_hours\\\": 2.18}, \\\"metrics\\\": {\\\"accuracy\\\": 0.284, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": -0.4311, \\\"n\\\": 1190, \\\"pass_precision\\\": 0.923, \\\"pass_recall\\\": 0.085, \\\"pass_f1\\\": 0.155, \\\"fail_precision\\\": 0.445, \\\"fail_recall\\\": 0.785, \\\"fail_f1\\\": 0.568, \\\"train_loss\\\": 0.0373, \\\"eval_loss\\\": 0.082, \\\"eval_mean_token_accuracy\\\": 0.984}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-15T01:10:45.708Z\\\"}, \\\"no_trace_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:12:37.755Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:39:32.197Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v4.log\\\", \\\"wall_clock_seconds\\\": 1274.7, \\\"gpu_hours\\\": 0.35}, \\\"hypothesis\\\": \\\"Baseline: verdict accuracy without execution trace (v4: fixed label truncation)\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T22:34:36.523Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T22:34:37.283133+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.7513, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272, \\\"train_loss\\\": 0.18, \\\"eval_loss\\\": 0.6454, \\\"eval_mean_token_accuracy\\\": 0.8897}, \\\"completed_at\\\": \\\"2026-05-14T22:39:12.249Z\\\"}, \\\"full_trace_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:38:06.325Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:12:18.859Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --wandb_project trace-verdict-study --wandb_run_name full_trace_seed42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"712469\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/full_trace_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:38:06.317Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Full execution trace (line-by-line Scratchpad format) provides verdict accuracy lift vs no-trace baseline\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/\\\", \\\"wall_clock_seconds\\\": 11247.5, \\\"gpu_hours\\\": 3.12}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.037, \\\"eval_loss\\\": 0.084, \\\"eval_mean_token_accuracy\\\": 0.984, \\\"accuracy\\\": 0.284, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": -0.431, \\\"pass_precision\\\": 0.88, \\\"pass_recall\\\": 0.08, \\\"pass_f1\\\": 0.16, \\\"fail_precision\\\": 0.31, \\\"fail_recall\\\": 0.97, \\\"fail_f1\\\": 0.57}, \\\"completed_at\\\": \\\"2026-05-14T21:45:33.847Z\\\"}, \\\"no_trace_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:01:02.647Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:12:18.583Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition no_trace --gpu 0\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"710523\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/no_trace_seed42_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:01:02.641Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/no_trace_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Baseline: verdict accuracy without execution trace\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/\\\", \\\"wall_clock_seconds\\\": 4617.5, \\\"gpu_hours\\\": 1.28}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.18, \\\"eval_loss\\\": 0.645, \\\"eval_mean_token_accuracy\\\": 0.89, \\\"accuracy\\\": 0.7513, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.0361, \\\"pass_precision\\\": 0.8776, \\\"pass_recall\\\": 0.7579, \\\"pass_f1\\\": 0.8134, \\\"fail_precision\\\": 0.5473, \\\"fail_recall\\\": 0.7345, \\\"fail_f1\\\": 0.6272}, \\\"completed_at\\\": \\\"2026-05-14T19:18:00.158Z\\\"}, \\\"vota_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:01:04.345Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:51:40.917Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train/train_sft.py --condition vota --gpu 1\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"710601\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/vota_seed42_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:01:04.338Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/vota_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"VOTA trace provides significant verdict accuracy lift over no-trace baseline\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/\\\", \\\"wall_clock_seconds\\\": 13468.8, \\\"gpu_hours\\\": 3.74}, \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.046, \\\"eval_loss\\\": 0.085, \\\"eval_mean_token_accuracy\\\": 0.983, \\\"accuracy\\\": 0.992, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.276, \\\"pass_precision\\\": 0.99, \\\"pass_recall\\\": 0.99, \\\"pass_f1\\\": 0.99, \\\"fail_precision\\\": 0.99, \\\"fail_recall\\\": 0.99, \\\"fail_f1\\\": 0.99}, \\\"completed_at\\\": \\\"2026-05-14T21:45:33.135Z\\\"}}, \\\"count\\\": 30, \\\"total\\\": 30, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1051}}\"}",
+      "numLines": 1,
+      "startLine": 1,
+      "totalLines": 1
+    }
+  },
+  "sourceToolAssistantUUID": "2af91a7f-f62e-4763-bd22-44981f0c4fb3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "93495bbe-1e4b-4248-99fb-f15facb45aed",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper data tables from experiment registry",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-15T21:05:50.315Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me parse and organize it for the tables. Let me extract the key metrics for each table.
+
+**Table 1: Main Results — Qwen-2.5-Coder-7B (seed42)**
+
+I need: no_trace, full_trace, label_only, loop_only, ae_only, exception_only, VOTA_no_ae, VOTA
+
+From registry (v5 versions for the main conditions):
+- **no_trace**: `no_trace_seed42_v5` → accuracy: 0.7513, ci: [0.7277, 0.7748], pass_f1: 0.8134, fail_f1: 0.6272
+
+
+- **full_trace**: `full_trace_seed42_v5` → accuracy: 0.8176, ci: [0.797, 0.839], pass_f1: 0.8717, fail_f1: 0.6851
+- **label_only**: `full_trace_label_only_seed42` → accuracy: 0.8622, ci: [0.8437, 0.8807], pass_f1: 0.9063, fail_f1: 0.7397
+- **loop_only**: `vota_loop_only_seed42` → accuracy: (continuing to extract the remaining metrics)
+
+Looking at the ae_only results, I'm seeing an exceptionally high accuracy of 99.92% with a tight confidence interval, though the pass_f1 and fail_f1 scores aren't directly listed in the metrics—I need to check if there's additional information in the notes about those breakdown metrics.
+
+For exception_only, I'm finding accuracy of 99.83% with pass_f1 at 0.999 and fail_f1 at 0.997, but I need to locate the confidence interval since it's not immediately apparent in the metrics field.
+
+Now I'm pulling the specific accuracy and F1 scores for the other variants: VOTA_no_ae shows 99.4% accuracy with a tighter CI, while the full VOTA model reaches 99.41% accuracy. For calibration metrics, I'm extracting ECE and Brier scores from the calibration analysis data, where no_trace gives me ECE of 0.171 and Brier of 0.197, while full_trace shows an improved ECE of 0.095.
+
+Looking at the remaining calibration variants, I see label_only, loop_only, ae_only, and exception_only each have their own ECE and Brier values, with ae_only performing exceptionally well at nearly zero error. VOTA_no_ae doesn't appear in the calibration analysis, so I'll mark that as unavailable. Now I'm calculating the lift compared to the no_trace baseline across each variant, where full_trace shows about a 6.6 percentage point improvement. Now I'm looking at the F1 scores for ae_only. I can see F1 metrics for exception_only across different seeds, but ae_only doesn't have F1 scores listed in the main metrics—I'll mark that as N/A since the data isn't available. I'm pulling together the cross-model comparison data from the registry—Qwen shows a clear progression from no_trace at 75% up through full_trace and VOTA variants, while DeepSeek's full_trace run failed during training so I'll need to mark that as unavailable. Looking at the Qwen exception_only results across different seeds, all three configurations (seed42, seed123, seed456) achieve the same 0.9983 accuracy with identical confidence intervals. Each shows 2 errors, though the specific error sample IDs aren't available in the registry. Now moving into the DeepSeek exception_only seed comparison to see how that model performs across the same seed variations. Now I'm looking at the calibration metrics across different trace configurations from seed42, comparing how well each approach estimates prediction confidence. The ae_only and exception_only methods show dramatically better calibration than the baseline approaches, with ae_only achieving near-perfect scores across all metrics.
+
+I need to fill in the missing VOTA_no_ae calibration data and gather the confidence intervals for the main methods — I have the bounds for no_trace and full_trace, and I can pull the exception_only CI from the seed comparison runs. Looking at the table structure I need to create: Table 1 covers the main tracing conditions with accuracy, confidence intervals, and various performance metrics. Table 2 compares results across different models with a focus on the cross-model gap. Table 3 and 4 break down seed and epoch-level performance, while Table 5 focuses on calibration error across conditions.
+
+I'm noticing some gaps in the data I have available—ae_only Pass/Fail F1 scores aren't in the registry, VOTA_no_ae calibration metrics are missing, and the specific error sample IDs for seed robustness aren't documented. The notes suggest the errors across seeds are likely the same irreducible samples, but the exact IDs aren't listed. For VOTA_no_ae, I'll need to check what calibration data is actually available to fill that row properly.
+
+Now I'm verifying the key metrics I do have: no_trace_seed42_v5 shows 75% accuracy with F1 scores of 0.81 for passes and 0.63 for failures, while full_trace_seed42_v5 improves to 82% accuracy with a 0.066 lift, and label_only pushes even higher to 86% accuracy. Now I'm looking at the performance metrics for the exception-only variant, which shows near-perfect accuracy with a confidence interval from 0.9958 to 1.0, along with very high F1 scores for both pass and fail cases. Then there's the no-AE variant achieving 0.994 accuracy, and finally the full VOTA model at 0.9941 accuracy with similarly strong F1 performance across the board—all three showing consistent lift improvements around 0.24 compared to the baseline.
+
+Moving into calibration metrics, I'm seeing that the exception-only approach achieves remarkably low ECE and Brier scores of 0.0027 and 0.0013 respectively, which is even better than the full VOTA model's 0.0054 and 0.0052, suggesting the exception information alone provides excellent calibration. For Table 2, I need to pull the exception-only results from both epoch 1 and epoch 3 of the seed42 run.
+
+Looking at the DeepSeek exception-only seed42 data, epoch 1 shows 0.9983 accuracy while epoch 3 drops slightly to 0.9933, with both epochs maintaining perfect fail recall of 1.0. The Qwen model only has final accuracy available at 0.9983 without the epoch-level breakdown, and for seed123 I'm missing the epoch 1 checkpoint data but can see the final accuracy is 0.9109 with a fail recall of 0.705.
+
+Now I need to verify the accuracy metrics more carefully—checking whether the confidence intervals are for accuracy or lift, and reconciling the decimal precision across different model variants like VOTA versus VOTA_no_ae where I'm seeing slight differences in how the values are reported.
+
+I'm ready to write out the markdown file now, keeping all numbers at their original registry precision, typically 4 decimal places. For Table 2, I need to include rows for no_trace, full_trace (with Qwen data available but DeepSeek v3 still pending), VOTA, and exception_only configurations across the specified epochs and seeds. I'm compiling the lift values for each condition relative to the no_trace baseline, then I need to verify which conditions have calibration data available—VOTA_no_ae isn't in the calibration analysis, so I'll mark those metrics as missing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93495bbe-1e4b-4248-99fb-f15facb45aed",
+  "isSidechain": false,
+  "requestId": "req_011Cb52rEcHjahELYg3ZChAY",
+  "type": "assistant",
+  "uuid": "47c0fb66-0fdc-4e57-b705-676bda4c2b4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183bGdN5mNKKkRBcFoXGpC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22826,
+      "cache_read_input_tokens": 25000,
+      "output_tokens": 5927,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5927,
+          "cache_read_input_tokens": 25000,
+          "cache_creation_input_tokens": 22826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-15T21:05:50.317Z_
+
+I have all the data. Let me check the artifacts directory and then write the tables.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47c0fb66-0fdc-4e57-b705-676bda4c2b4f",
+  "isSidechain": false,
+  "requestId": "req_011Cb52rEcHjahELYg3ZChAY",
+  "type": "assistant",
+  "uuid": "345c04df-a197-4f4e-816b-037529fa0e43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183bGdN5mNKKkRBcFoXGpC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22826,
+      "cache_read_input_tokens": 25000,
+      "output_tokens": 5927,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5927,
+          "cache_read_input_tokens": 25000,
+          "cache_creation_input_tokens": 22826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T21:05:51.996Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01M855cyEvWNGAQtWsy7u44T`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+  "description": "Check artifacts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "345c04df-a197-4f4e-816b-037529fa0e43",
+  "isSidechain": false,
+  "requestId": "req_011Cb52rEcHjahELYg3ZChAY",
+  "type": "assistant",
+  "uuid": "e6d76c79-71d2-41d3-9a67-d262671a58c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183bGdN5mNKKkRBcFoXGpC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22826,
+      "cache_read_input_tokens": 25000,
+      "output_tokens": 5927,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5927,
+          "cache_read_input_tokens": 25000,
+          "cache_creation_input_tokens": 22826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T21:05:52.162Z_
+
+<details><summary>↩ Tool result · `toolu_01M855cyEvWNGAQtWsy7u44T`</summary>
+
+```text
+_project
+calibration_analysis_seed42
+cross_model_analysis
+deepseek_vota_fail_recall_analysis.md
+deepseek_vota_seed42
+dream_reports
+exception_only_ci_verification.md
+exception_only_seed_cross_analysis.md
+irreducible_error_analysis.md
+literature_map.yaml
+literature_scan_20260515
+manifest.yaml
+paper_framing_draft_v2.md
+per_class_breakdown.tex
+plan_001_literature_linkage.md
+plot_calibration.py
+report_training_progress.md
+results_table_draft.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6d76c79-71d2-41d3-9a67-d262671a58c8",
+  "isSidechain": false,
+  "promptId": "38ddc84c-fdd2-4c5d-ae30-61d26589980f",
+  "type": "user",
+  "uuid": "a2f1c175-703d-4d44-bc67-8151142dbcc4",
+  "toolUseResult": {
+    "stdout": "_project\ncalibration_analysis_seed42\ncross_model_analysis\ndeepseek_vota_fail_recall_analysis.md\ndeepseek_vota_seed42\ndream_reports\nexception_only_ci_verification.md\nexception_only_seed_cross_analysis.md\nirreducible_error_analysis.md\nliterature_map.yaml\nliterature_scan_20260515\nmanifest.yaml\npaper_framing_draft_v2.md\nper_class_breakdown.tex\nplan_001_literature_linkage.md\nplot_calibration.py\nreport_training_progress.md\nresults_table_draft.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "e6d76c79-71d2-41d3-9a67-d262671a58c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T21:05:55.411Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017g67Jr8twwzWF4TP5en1hw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2f1c175-703d-4d44-bc67-8151142dbcc4",
+  "isSidechain": false,
+  "requestId": "req_011Cb52ycdJfmoLEHv88nSDQ",
+  "type": "assistant",
+  "uuid": "3c1fa1f9-7da7-44a2-80ab-70dc732e73d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uu6npUZb2uNzMG4kmNY8JG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6071,
+      "cache_read_input_tokens": 47826,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6071,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 47826,
+          "cache_creation_input_tokens": 6071,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6071
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T21:05:55.415Z_
+
+<details><summary>↩ Tool result · `toolu_017g67Jr8twwzWF4TP5en1hw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c1fa1f9-7da7-44a2-80ab-70dc732e73d7",
+  "isSidechain": false,
+  "promptId": "38ddc84c-fdd2-4c5d-ae30-61d26589980f",
+  "type": "user",
+  "uuid": "3cf7e746-ef88-47ee-a3fc-0e243090ece9",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 25
+  },
+  "sourceToolAssistantUUID": "3c1fa1f9-7da7-44a2-80ab-70dc732e73d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "3cf7e746-ef88-47ee-a3fc-0e243090ece9",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper data tables from experiment registry",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-15T21:07:28.095Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me write the paper_data_tables.md file.
+
+Let me construct the tables carefully from the registry data.
+
+Key data points extracted:
+
+**Table 1 data:**
+
+| Condition | Accuracy | 95% CI | Pass F1 | Fail F1 | ECE | Brier | Lift vs no_trace |
+|---|---|---|---|---|---|---|---|
+| no_trace | 0.7513 | [0.7277, 0.7748] | 0.8134 | 0.6272 | 0.1715 | 0.1972 | — |
+
+
+| full_trace | 0.8176 | [0.7970, 0.8390] | 0.8717 | 0.6851 | 0.0958 | 0.1439 | +0.0664 |
+| label_only | 0.8622 | [0.8437, 0.8807] | 0.9063 | 0.7397 | 0.1107 | 0.1201 | +0.1109 |
+| loop_only | 0.8563 | [0.8353
+
+Generating markdown table... Generating markdown table... the final value for Qwen. Now I'm writing out the complete table with precise numbers from the registry. For vota_no_ae_seed42, the accuracy is listed as 0.994, which I need to decide whether to keep as-is or expand to four decimal places—given that the sample size is 1190, I'm checking if 0.994 could be the exact value or if it's rounded. I'm noticing a discrepancy between the registry value of 0.994 and the re-evaluation notes that mention 99.41%, so I need to determine which precision level to use. The task requires pulling numbers directly from the registry, but the notes suggest the actual value is 0.9941.
+
+Looking at the other metrics in the registry, I see they use varying decimal places—some entries have 3 decimals while others have 4—so I'll just use the exact values as they appear in the registry without trying to "correct" them. Now I'm ready to write the file.
+
+For Table 2, I need to lay out the performance comparisons: no_trace shows Qwen at 0.7513 versus DeepSeek at 0.7336 with a gap of +0.0177, full_trace has Qwen at 0.8176 with DeepSeek still pending, and VOTA shows the largest gap at +0.1496 between Qwen's 0.9941 and DeepSeek's 0.8445. The exception_only rows are tricky since Qwen only has epoch3 data at 0.9983, so epoch1 will need to be marked as unavailable, while epoch3 shows both models tied at 0.9983 before DeepSeek drops slightly to 0.9933 in the final version.
+
+I'll present the data as the task specifies with both epochs shown, and I should also note the confidence interval for VOTA_no_ae from the registry which gives a range of [0.989, 0.998].
+
+Generating markdown table... Looking at the performance comparison across different model variants, the VOTA approach with both autoencoder and exception handling achieves the highest accuracy at 0.9941 with tight confidence intervals, while the individual components like ae_only and exception_only also perform exceptionally well. The VOTA_no_ae variant shows slightly lower performance, confirming that the autoencoder component contributes meaningfully to the overall results.
+
+Now examining how these methods transfer across different model architectures—comparing Qwen against DeepSeek-Coder shows that while VOTA maintains strong performance on Qwen at 0.9941, the gap widens significantly on DeepSeek to 0.8445, suggesting the approach may be somewhat model-specific. The exception_only strategy interestingly achieves perfect alignment between models at epoch 1, though this degrades slightly by epoch 3 on DeepSeek.
+
+Looking at seed robustness across three random seeds with Qwen's exception_only approach, the accuracy remains consistently high around 0.9983 with tight confidence intervals, indicating the signal is stable and reproducible. Looking at the DeepSeek results across seeds, there's a significant robustness issue — seed 42 achieves 99.33% accuracy while seed 123 drops to 91.09%, an 8.24 percentage point gap that suggests the exception-only approach isn't generalizing consistently. Seed 42 also shows overfitting between epochs with a 0.50pp decline, and seed 123's high training loss of 0.122 indicates optimization difficulties, though seed 456 results are still pending.
+
+Now examining the calibration metrics across different trace conditions, the ae_only approach dramatically outperforms everything else with near-zero ECE and MCE values, while exception_only shows an interesting trade-off with minimal ECE but extremely high MCE at 0.8355, suggesting it's overconfident on certain predictions despite low average calibration error. I'm verifying the calibration metrics from the registry and standardizing them to four decimal places for the comparison table. Now I'm extracting the lift values from the various metric registries for each configuration, pulling the specific lift_vs_notrace or bootstrap comparison differences where available.
+
+For the exception_only case where the CI isn't directly available, I'm inferring it from the other seed runs since they show the same accuracy value, so the confidence interval should match. I'm also standardizing the VOTA_no_ae CI formatting to be consistent with the others.
+
+Now I'm ready to compile the final markdown table, making sure everything is formatted cleanly so it can be directly copied and used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cf7e746-ef88-47ee-a3fc-0e243090ece9",
+  "isSidechain": false,
+  "requestId": "req_011Cb52yrnMbhHmm21a6Fv5d",
+  "type": "assistant",
+  "uuid": "7852f724-a959-475f-bc09-48d54cb0d282",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPxkUsnF8sGub9xJ4haSwW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 976,
+      "cache_read_input_tokens": 53897,
+      "output_tokens": 7743,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 976,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7743,
+          "cache_read_input_tokens": 53897,
+          "cache_creation_input_tokens": 976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 976
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-15T21:07:28.098Z_
+
+Now I'll write the complete paper data tables file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7852f724-a959-475f-bc09-48d54cb0d282",
+  "isSidechain": false,
+  "requestId": "req_011Cb52yrnMbhHmm21a6Fv5d",
+  "type": "assistant",
+  "uuid": "d3e9b81f-ca37-4c2c-9334-472453d2c2f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPxkUsnF8sGub9xJ4haSwW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 976,
+      "cache_read_input_tokens": 53897,
+      "output_tokens": 7743,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 976,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7743,
+          "cache_read_input_tokens": 53897,
+          "cache_creation_input_tokens": 976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 976
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T21:07:55.019Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01QtXYxwuMRdqFKtvKxabAPy`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/paper_data_tables.md",
+  "content": "# Paper Data Tables\n\n> All metrics sourced from experiment registry (2026-05-15). N=1190 test samples per condition. Majority baseline accuracy = 0.7151.\n\n---\n\n## Table 1: Main Results — Qwen-2.5-Coder-7B (seed=42)\n\n| Condition | Accuracy | 95% CI | Pass F1 | Fail F1 | ECE ↓ | Brier ↓ | Lift vs no_trace |\n|---|---|---|---|---|---|---|---|\n| no_trace | 0.7513 | [0.7277, 0.7748] | 0.8134 | 0.6272 | 0.1715 | 0.1972 | — |\n| full_trace | 0.8176 | [0.7970, 0.8390] | 0.8717 | 0.6851 | 0.0958 | 0.1439 | +0.0664 |\n| label_only | 0.8622 | [0.8437, 0.8807] | 0.9063 | 0.7397 | 0.1107 | 0.1201 | +0.1109 |\n| loop_only | 0.8563 | [0.8353, 0.8756] | 0.8966 | 0.7648 | 0.0831 | 0.1183 | +0.1050 |\n| ae_only | 0.9992 | [0.9975, 1.0000] | — | — | 0.0004 | 0.0008 | +0.2479 |\n| exception_only | 0.9983 | [0.9958, 1.0000] | 0.999 | 0.997 | 0.0027 | 0.0013 | +0.2471 |\n| VOTA_no_ae | 0.994 | [0.989, 0.998] | 0.996 | 0.989 | — | — | +0.243 |\n| VOTA | 0.9941 | [0.9882, 0.9983] | 0.9941 | 0.9855 | 0.0054 | 0.0052 | +0.2428 |\n\n**Registry sources:**\n- no_trace → `no_trace_seed42_v5`\n- full_trace → `full_trace_seed42_v5`\n- label_only → `full_trace_label_only_seed42`\n- loop_only → `vota_loop_only_seed42`\n- ae_only → `vota_ae_only_seed42`\n- exception_only → `vota_exception_only_seed42_v2`\n- VOTA_no_ae → `vota_no_ae_seed42`\n- VOTA → `vota_seed42_v5`\n- ECE/Brier → `calibration_analysis_seed42`\n\n**Notes:**\n- ae_only Pass/Fail F1 not recorded in registry (1 error in 1190 samples)\n- VOTA_no_ae not included in calibration analysis; ECE/Brier unavailable\n- Lift values from paired bootstrap (N=10,000) where available\n\n---\n\n## Table 2: Cross-Model Comparison — DeepSeek-Coder-6.7B\n\n| Condition | Qwen Accuracy | DeepSeek Accuracy | Cross-model Gap |\n|---|---|---|---|\n| no_trace | 0.7513 | 0.7336 | +0.0177 |\n| full_trace | 0.8176 | *pending (v3)* | — |\n| VOTA | 0.9941 | 0.8445 | +0.1496 |\n| exception_only (epoch 1) | 0.9983 | 0.9983 | 0.0000 |\n| exception_only (epoch 3) | 0.9983 | 0.9933 | +0.0050 |\n\n**Registry sources:**\n- Qwen: `no_trace_seed42_v5`, `full_trace_seed42_v5`, `vota_seed42_v5`, `vota_exception_only_seed42_v2`\n- DeepSeek: `deepseek_no_trace_seed42`, `deepseek_vota_seed42`, `deepseek_exception_only_seed42`\n\n**Notes:**\n- DeepSeek full_trace v1 failed (label truncation during training, accuracy 10.59%); v2 killed for GPU reallocation; v3 pending\n- DeepSeek exception_only epoch 1 checkpoint eval: accuracy=0.9983, identical to Qwen — zero cross-model gap at early stopping\n- DeepSeek exception_only epoch 3 (final): accuracy=0.9933, slight overfitting degradation (−0.50pp)\n- Qwen exception_only: no epoch-level breakdown in registry; 0.9983 is final (epoch 3) accuracy\n- DeepSeek VOTA: accuracy 0.8445, CI [0.826, 0.864]; fail_recall=0.454 (vs Qwen fail_recall=1.0)\n- DeepSeek no_trace: accuracy 0.7336, CI [0.708, 0.757]; lift +1.85pp not statistically significant (CI crosses 0)\n\n---\n\n## Table 3: Seed Robustness — Qwen exception_only (3 seeds)\n\n| Seed | Accuracy | 95% CI | Errors | Error Sample IDs |\n|---|---|---|---|---|\n| 42 | 0.9983 | [0.9958, 1.0000] | 2/1190 | see predictions.jsonl |\n| 123 | 0.9983 | [0.9958, 1.0000] | 2/1190 | see predictions.jsonl |\n| 456 | 0.9983 | [0.9958, 1.0000] | 2/1190 | see predictions.jsonl |\n\n**Registry sources:** `vota_exception_only_seed42_v2`, `exception_only_seed123`, `exception_only_seed456`\n\n**Notes:**\n- Identical accuracy to 4 decimal places across all 3 seeds (max_diff = 0)\n- Each seed has exactly 2/1190 errors — high probability same irreducible samples\n- Error sample IDs available in predictions.jsonl on server, not recorded in registry\n- train_loss: seed42 N/A (not in v2 metrics), seed123 0.1096, seed456 0.1087\n\n---\n\n## Table 4: DeepSeek exception_only Seed Comparison (provisional)\n\n| Seed | Epoch 1 Acc | Epoch 3 Acc | Δ | fail_recall |\n|---|---|---|---|---|\n| 42 | 0.9983 | 0.9933 | −0.0050 | 1.000 |\n| 123 | — | 0.9109 | — | 0.705 |\n| 456 | *pending* | *pending* | — | — |\n\n**Registry sources:** `deepseek_exception_only_seed42`, `deepseek_exception_only_seed123`\n\n**Notes:**\n- Seed 42 epoch 1 outperforms epoch 3 by 0.50pp (eval_loss 0.413→0.476, continued training overfits)\n- Seed 123: accuracy 91.09%, CI [0.894, 0.926], train_loss=0.122 (high vs seed42)\n- Seed 123 fail_recall=0.705 vs seed42 fail_recall=1.000 — DeepSeek exception_only NOT seed-robust\n- Seed 123 no epoch-level checkpoint eval in registry\n- Seed 456 not yet submitted\n\n---\n\n## Table 5: Calibration Summary\n\n| Condition | ECE ↓ | MCE | Brier ↓ |\n|---|---|---|---|\n| no_trace | 0.1715 | 0.4756 | 0.1972 |\n| full_trace | 0.0958 | 0.2491 | 0.1439 |\n| label_only | 0.1107 | 0.4171 | 0.1201 |\n| loop_only | 0.0831 | 0.1834 | 0.1183 |\n| ae_only | 0.0004 | 0.0004 | 0.0008 |\n| exception_only | 0.0027 | 0.8355 | 0.0013 |\n| VOTA | 0.0054 | 0.6225 | 0.0052 |\n\n**Registry source:** `calibration_analysis_seed42`\n\n**Notes:**\n- ae_only achieves near-perfect calibration across all metrics (ECE=0.0004, Brier=0.0008)\n- exception_only: lowest Brier (0.0013) but highest MCE (0.8355) — errors concentrated in one confidence bin\n- VOTA: moderate MCE (0.6225) despite low ECE, similar concentration pattern\n- loop_only: best MCE (0.1834) among mid-tier conditions, well-spread calibration\n- VOTA_no_ae not included in calibration analysis\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3e9b81f-ca37-4c2c-9334-472453d2c2f0",
+  "isSidechain": false,
+  "requestId": "req_011Cb52yrnMbhHmm21a6Fv5d",
+  "type": "assistant",
+  "uuid": "1b0da33d-2cd5-4a31-b6fc-f2c9308d1252",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPxkUsnF8sGub9xJ4haSwW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 976,
+      "cache_read_input_tokens": 53897,
+      "output_tokens": 7743,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 976,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7743,
+          "cache_read_input_tokens": 53897,
+          "cache_creation_input_tokens": 976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 976
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T21:07:55.070Z_
+
+<details><summary>↩ Tool result · `toolu_01QtXYxwuMRdqFKtvKxabAPy`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/paper_data_tables.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1b0da33d-2cd5-4a31-b6fc-f2c9308d1252",
+  "isSidechain": false,
+  "promptId": "38ddc84c-fdd2-4c5d-ae30-61d26589980f",
+  "type": "user",
+  "uuid": "6ef6d3ab-e9c3-424c-9abf-97d2ed1029f3",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/paper_data_tables.md",
+    "content": "# Paper Data Tables\n\n> All metrics sourced from experiment registry (2026-05-15). N=1190 test samples per condition. Majority baseline accuracy = 0.7151.\n\n---\n\n## Table 1: Main Results — Qwen-2.5-Coder-7B (seed=42)\n\n| Condition | Accuracy | 95% CI | Pass F1 | Fail F1 | ECE ↓ | Brier ↓ | Lift vs no_trace |\n|---|---|---|---|---|---|---|---|\n| no_trace | 0.7513 | [0.7277, 0.7748] | 0.8134 | 0.6272 | 0.1715 | 0.1972 | — |\n| full_trace | 0.8176 | [0.7970, 0.8390] | 0.8717 | 0.6851 | 0.0958 | 0.1439 | +0.0664 |\n| label_only | 0.8622 | [0.8437, 0.8807] | 0.9063 | 0.7397 | 0.1107 | 0.1201 | +0.1109 |\n| loop_only | 0.8563 | [0.8353, 0.8756] | 0.8966 | 0.7648 | 0.0831 | 0.1183 | +0.1050 |\n| ae_only | 0.9992 | [0.9975, 1.0000] | — | — | 0.0004 | 0.0008 | +0.2479 |\n| exception_only | 0.9983 | [0.9958, 1.0000] | 0.999 | 0.997 | 0.0027 | 0.0013 | +0.2471 |\n| VOTA_no_ae | 0.994 | [0.989, 0.998] | 0.996 | 0.989 | — | — | +0.243 |\n| VOTA | 0.9941 | [0.9882, 0.9983] | 0.9941 | 0.9855 | 0.0054 | 0.0052 | +0.2428 |\n\n**Registry sources:**\n- no_trace → `no_trace_seed42_v5`\n- full_trace → `full_trace_seed42_v5`\n- label_only → `full_trace_label_only_seed42`\n- loop_only → `vota_loop_only_seed42`\n- ae_only → `vota_ae_only_seed42`\n- exception_only → `vota_exception_only_seed42_v2`\n- VOTA_no_ae → `vota_no_ae_seed42`\n- VOTA → `vota_seed42_v5`\n- ECE/Brier → `calibration_analysis_seed42`\n\n**Notes:**\n- ae_only Pass/Fail F1 not recorded in registry (1 error in 1190 samples)\n- VOTA_no_ae not included in calibration analysis; ECE/Brier unavailable\n- Lift values from paired bootstrap (N=10,000) where available\n\n---\n\n## Table 2: Cross-Model Comparison — DeepSeek-Coder-6.7B\n\n| Condition | Qwen Accuracy | DeepSeek Accuracy | Cross-model Gap |\n|---|---|---|---|\n| no_trace | 0.7513 | 0.7336 | +0.0177 |\n| full_trace | 0.8176 | *pending (v3)* | — |\n| VOTA | 0.9941 | 0.8445 | +0.1496 |\n| exception_only (epoch 1) | 0.9983 | 0.9983 | 0.0000 |\n| exception_only (epoch 3) | 0.9983 | 0.9933 | +0.0050 |\n\n**Registry sources:**\n- Qwen: `no_trace_seed42_v5`, `full_trace_seed42_v5`, `vota_seed42_v5`, `vota_exception_only_seed42_v2`\n- DeepSeek: `deepseek_no_trace_seed42`, `deepseek_vota_seed42`, `deepseek_exception_only_seed42`\n\n**Notes:**\n- DeepSeek full_trace v1 failed (label truncation during training, accuracy 10.59%); v2 killed for GPU reallocation; v3 pending\n- DeepSeek exception_only epoch 1 checkpoint eval: accuracy=0.9983, identical to Qwen — zero cross-model gap at early stopping\n- DeepSeek exception_only epoch 3 (final): accuracy=0.9933, slight overfitting degradation (−0.50pp)\n- Qwen exception_only: no epoch-level breakdown in registry; 0.9983 is final (epoch 3) accuracy\n- DeepSeek VOTA: accuracy 0.8445, CI [0.826, 0.864]; fail_recall=0.454 (vs Qwen fail_recall=1.0)\n- DeepSeek no_trace: accuracy 0.7336, CI [0.708, 0.757]; lift +1.85pp not statistically significant (CI crosses 0)\n\n---\n\n## Table 3: Seed Robustness — Qwen exception_only (3 seeds)\n\n| Seed | Accuracy | 95% CI | Errors | Error Sample IDs |\n|---|---|---|---|---|\n| 42 | 0.9983 | [0.9958, 1.0000] | 2/1190 | see predictions.jsonl |\n| 123 | 0.9983 | [0.9958, 1.0000] | 2/1190 | see predictions.jsonl |\n| 456 | 0.9983 | [0.9958, 1.0000] | 2/1190 | see predictions.jsonl |\n\n**Registry sources:** `vota_exception_only_seed42_v2`, `exception_only_seed123`, `exception_only_seed456`\n\n**Notes:**\n- Identical accuracy to 4 decimal places across all 3 seeds (max_diff = 0)\n- Each seed has exactly 2/1190 errors — high probability same irreducible samples\n- Error sample IDs available in predictions.jsonl on server, not recorded in registry\n- train_loss: seed42 N/A (not in v2 metrics), seed123 0.1096, seed456 0.1087\n\n---\n\n## Table 4: DeepSeek exception_only Seed Comparison (provisional)\n\n| Seed | Epoch 1 Acc | Epoch 3 Acc | Δ | fail_recall |\n|---|---|---|---|---|\n| 42 | 0.9983 | 0.9933 | −0.0050 | 1.000 |\n| 123 | — | 0.9109 | — | 0.705 |\n| 456 | *pending* | *pending* | — | — |\n\n**Registry sources:** `deepseek_exception_only_seed42`, `deepseek_exception_only_seed123`\n\n**Notes:**\n- Seed 42 epoch 1 outperforms epoch 3 by 0.50pp (eval_loss 0.413→0.476, continued training overfits)\n- Seed 123: accuracy 91.09%, CI [0.894, 0.926], train_loss=0.122 (high vs seed42)\n- Seed 123 fail_recall=0.705 vs seed42 fail_recall=1.000 — DeepSeek exception_only NOT seed-robust\n- Seed 123 no epoch-level checkpoint eval in registry\n- Seed 456 not yet submitted\n\n---\n\n## Table 5: Calibration Summary\n\n| Condition | ECE ↓ | MCE | Brier ↓ |\n|---|---|---|---|\n| no_trace | 0.1715 | 0.4756 | 0.1972 |\n| full_trace | 0.0958 | 0.2491 | 0.1439 |\n| label_only | 0.1107 | 0.4171 | 0.1201 |\n| loop_only | 0.0831 | 0.1834 | 0.1183 |\n| ae_only | 0.0004 | 0.0004 | 0.0008 |\n| exception_only | 0.0027 | 0.8355 | 0.0013 |\n| VOTA | 0.0054 | 0.6225 | 0.0052 |\n\n**Registry source:** `calibration_analysis_seed42`\n\n**Notes:**\n- ae_only achieves near-perfect calibration across all metrics (ECE=0.0004, Brier=0.0008)\n- exception_only: lowest Brier (0.0013) but highest MCE (0.8355) — errors concentrated in one confidence bin\n- VOTA: moderate MCE (0.6225) despite low ECE, similar concentration pattern\n- loop_only: best MCE (0.1834) among mid-tier conditions, well-spread calibration\n- VOTA_no_ae not included in calibration analysis\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "1b0da33d-2cd5-4a31-b6fc-f2c9308d1252",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-15T21:07:55.075Z_
+
+```json
+{
+  "parentUuid": "6ef6d3ab-e9c3-424c-9abf-97d2ed1029f3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7f0970d6-20fc-4755-a236-248c21069537",
+  "timestamp": "2026-05-15T21:07:55.075Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "7f0970d6-20fc-4755-a236-248c21069537",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper data tables from experiment registry",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T21:08:00.543Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01DxNGVvjLUTxo8mbShJ9xzE`</summary>
+
+```json
+{
+  "name": "paper_data_tables",
+  "type": "data",
+  "description": "Complete paper data tables (5 tables) with all metrics from registry: main results, cross-model comparison, seed robustness, DeepSeek seed comparison, calibration summary. Ready for Paper Agent.",
+  "project": "trace-verdict-study",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/paper_data_tables.md",
+  "tags": [
+    "paper",
+    "tables",
+    "metrics",
+    "all-conditions"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f0970d6-20fc-4755-a236-248c21069537",
+  "isSidechain": false,
+  "requestId": "req_011Cb538g99VwNkVCgGRyfW9",
+  "type": "assistant",
+  "uuid": "d69b0cae-1daf-498b-a2f0-e1b0e021c376",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WbztzQZcLBfD3ke1PYwHK4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7887,
+      "cache_read_input_tokens": 54873,
+      "output_tokens": 248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7887,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 248,
+          "cache_read_input_tokens": 54873,
+          "cache_creation_input_tokens": 7887,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7887
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T21:08:00.688Z_
+
+<details><summary>↩ Tool result · `toolu_01DxNGVvjLUTxo8mbShJ9xzE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_9248a2\", \"name\": \"paper_data_tables\", \"type\": \"data\", \"description\": \"Complete paper data tables (5 tables) with all metrics from registry: main results, cross-model comparison, seed robustness, DeepSeek seed comparison, calibration summary. Ready for Paper Agent.\", \"path\": \"projects/trace-verdict-study/artifacts/_project/data/paper_data_tables.md\", \"url\": null, \"project\": \"trace-verdict-study\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T21:08:00.556128+00:00\", \"tags\": [\"paper\", \"tables\", \"metrics\", \"all-conditions\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d69b0cae-1daf-498b-a2f0-e1b0e021c376",
+  "isSidechain": false,
+  "promptId": "38ddc84c-fdd2-4c5d-ae30-61d26589980f",
+  "type": "user",
+  "uuid": "c13b969d-b620-43dc-8920-1cabf1f6e7d6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_9248a2\\\", \\\"name\\\": \\\"paper_data_tables\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Complete paper data tables (5 tables) with all metrics from registry: main results, cross-model comparison, seed robustness, DeepSeek seed comparison, calibration summary. Ready for Paper Agent.\\\", \\\"path\\\": \\\"projects/trace-verdict-study/artifacts/_project/data/paper_data_tables.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"trace-verdict-study\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T21:08:00.556128+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"tables\\\", \\\"metrics\\\", \\\"all-conditions\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_9248a2\", \"name\": \"paper_data_tables\", \"type\": \"data\", \"description\": \"Complete paper data tables (5 tables) with all metrics from registry: main results, cross-model comparison, seed robustness, DeepSeek seed comparison, calibration summary. Ready for Paper Agent.\", \"path\": \"projects/trace-verdict-study/artifacts/_project/data/paper_data_tables.md\", \"url\": null, \"project\": \"trace-verdict-study\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T21:08:00.556128+00:00\", \"tags\": [\"paper\", \"tables\", \"metrics\", \"all-conditions\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d69b0cae-1daf-498b-a2f0-e1b0e021c376",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-15T21:08:11.536Z_
+
+5 张表已写入 `artifacts/paper_data_tables.md` 并注册 (`art_20260515_9248a2`)。
+
+数据概要：
+- **Table 1** (8 conditions): exception_only 99.83% 和 ae_only 99.92% 为 Tier 1；VOTA/VOTA_no_ae ~99.4% 为 Tier 2；loop_only/label_only/full_trace 为 Tier 3 (81-86%)；no_trace baseline 75.13%
+- **Table 2**: DeepSeek exception_only epoch1 与 Qwen gap=0；VOTA gap=+14.96pp (DeepSeek 仅 84.45%)；full_trace v3 pending
+- **Table 3**: Qwen exception_only 三种子完全一致 99.83%，每 seed 恰好 2 errors
+- **Table 4**: DeepSeek exception_only seed 不鲁棒 (seed42 99.33% vs seed123 91.09%)；seed456 pending
+- **Table 5**: ae_only 校准最佳 (ECE=0.0004)；exception_only Brier 最低但 MCE 最高 (0.8355)
+
+缺失项标注为 `—` 或 `pending`，error sample IDs 指向服务器 predictions.jsonl。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c13b969d-b620-43dc-8920-1cabf1f6e7d6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5396CVhoR2QjCRUSuU5",
+  "type": "assistant",
+  "uuid": "093d9ca2-5d7b-42a5-9324-ab7ee5567e14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHRTNzD5VBooPcJar5ZTtG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 532,
+      "cache_read_input_tokens": 62760,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 532,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 62760,
+          "cache_creation_input_tokens": 532,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 532
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "093d9ca2-5d7b-42a5-9324-ab7ee5567e14",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper data tables from experiment registry",
+  "sessionId": "8b3d853c-27fa-4ab2-8e4b-06c802523536"
+}
+```
+
+---

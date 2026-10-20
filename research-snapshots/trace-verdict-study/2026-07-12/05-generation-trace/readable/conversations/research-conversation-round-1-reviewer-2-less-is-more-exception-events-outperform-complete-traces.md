@@ -1,0 +1,7709 @@
+# Research conversation: [Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。 ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 139
+- **Recorded user turns:** 3
+- **Tool calls:** 38
+- **Original source:** `logs/chats/exported-trajectories/account-2/0eb39848-e53c-46cc-932f-f437fa9ad0a6.jsonl`
+- **Structured JSON:** [`b67377ff4556df990e8a.json`](../../sessions/b6/b67377ff4556df990e8a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T07:02:19.773Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T07:02:19.773Z",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "content": "[Round 1 审稿请求]:\n你是 Reviewer 2，负责 **新颖性与完整性** 审查。\n\n## 投稿信息\n- 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction*\n- Venue：**EMNLP 2026** (ARR Long Paper)\n- Deadline：2026-05-25\n- 页数限制：正文 8 页，参考文献不限，Limitations 不计入页数\n- 模板：ACL style ([review] 选项)\n- 匿名规则：double-blind\n- 论文路径：projects/trace-verdict-study/docs/paper/main.tex\n- PDF 路径：/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/main_v13.pdf\n\n## 你的审查侧重\n\n重点审查以下方面，像 EMNLP 最严格的审稿人一样：\n\n1. **Novelty 与 Contribution 评估**：\n   - 核心发现 \"exception events 达到 ≥99.33%\" 是否 near-tautological？（exception 本身编码了 verdict 信号，这个发现有多大surprise？）\n   - 与 regex baseline 的对比：B4 (exception class name matching) 达 93.61%, B5 (format marker) 达 99.33%——SFT 的真实增量贡献是多少？\n   - 4 个 Contributions 各自的 novelty 水平如何？\n   - \"information density determines learning efficiency\" 这一叙事是否超出了证据支撑？\n   - 与现有 trace compression/selection 文献 (TraceCoder, InspectCoder, TracePile) 的区分度\n\n2. **Motivation 与任务定义**：\n   - Verdict prediction 的实际应用场景：获取 trace 需要运行测试→已有 verdict→为何需要预测？\n   - 论文是否充分论证了该任务的独立价值？\n   - 作为 proxy task 研究 trace processing 是否在 *CL 有足够先例？\n   - Discussion 中的三个应用场景是否有实验验证？\n\n3. **Related Work 覆盖度**：\n   - 是否遗漏关键相关工作？特别关注：test oracle problem、fault localization、build log analysis、code-specific prompt compression\n   - 引用是否全部正确渲染？是否有 [?] 标记？\n   - 对现有工作的定位是否公平准确？\n   - 用 web_search 搜索最近 6 个月的相关工作，检查是否遗漏重要新论文\n\n4. **Presentation Quality**：\n   - \"Information density\" 作为核心概念是否有形式化/操作性定义？\n   - 标题是否准确反映论文内容？是否过度承诺？\n   - Abstract 是否简洁且准确？数据密度是否恰当？\n   - Figure/Table 质量和信息效率\n   - Limitations 章节是否充分覆盖关键限制？\n\n5. **引用验证**：\n   - 随机抽取 5-8 篇引用，验证其真实性（作者、标题、venue、年份）\n   - 检查是否有 AI hallucinated citations\n   - 检查 bib 条目格式一致性\n\n请输出完整审稿报告，包括 Summary、Strengths、Weaknesses (Must-Fix / Should-Fix / Minor)、Questions、Missing References、Overall Assessment (评分 + 置信度)。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T07:02:19.781Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T07:02:19.781Z",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+## Round 1
+
+134 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T07:02:19.872Z_
+
+[Round 1 审稿请求]:
+你是 Reviewer 2，负责 **新颖性与完整性** 审查。
+
+## 投稿信息
+- 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction*
+- Venue：**EMNLP 2026** (ARR Long Paper)
+- Deadline：2026-05-25
+- 页数限制：正文 8 页，参考文献不限，Limitations 不计入页数
+- 模板：ACL style ([review] 选项)
+- 匿名规则：double-blind
+- 论文路径：projects/trace-verdict-study/docs/paper/main.tex
+- PDF 路径：/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/main_v13.pdf
+
+## 你的审查侧重
+
+重点审查以下方面，像 EMNLP 最严格的审稿人一样：
+
+1. **Novelty 与 Contribution 评估**：
+   - 核心发现 "exception events 达到 ≥99.33%" 是否 near-tautological？（exception 本身编码了 verdict 信号，这个发现有多大surprise？）
+   - 与 regex baseline 的对比：B4 (exception class name matching) 达 93.61%, B5 (format marker) 达 99.33%——SFT 的真实增量贡献是多少？
+   - 4 个 Contributions 各自的 novelty 水平如何？
+   - "information density determines learning efficiency" 这一叙事是否超出了证据支撑？
+   - 与现有 trace compression/selection 文献 (TraceCoder, InspectCoder, TracePile) 的区分度
+
+2. **Motivation 与任务定义**：
+   - Verdict prediction 的实际应用场景：获取 trace 需要运行测试→已有 verdict→为何需要预测？
+   - 论文是否充分论证了该任务的独立价值？
+   - 作为 proxy task 研究 trace processing 是否在 *CL 有足够先例？
+   - Discussion 中的三个应用场景是否有实验验证？
+
+3. **Related Work 覆盖度**：
+   - 是否遗漏关键相关工作？特别关注：test oracle problem、fault localization、build log analysis、code-specific prompt compression
+   - 引用是否全部正确渲染？是否有 [?] 标记？
+   - 对现有工作的定位是否公平准确？
+   - 用 web_search 搜索最近 6 个月的相关工作，检查是否遗漏重要新论文
+
+4. **Presentation Quality**：
+   - "Information density" 作为核心概念是否有形式化/操作性定义？
+   - 标题是否准确反映论文内容？是否过度承诺？
+   - Abstract 是否简洁且准确？数据密度是否恰当？
+   - Figure/Table 质量和信息效率
+   - Limitations 章节是否充分覆盖关键限制？
+
+5. **引用验证**：
+   - 随机抽取 5-8 篇引用，验证其真实性（作者、标题、venue、年份）
+   - 检查是否有 AI hallucinated citations
+   - 检查 bib 条目格式一致性
+
+请输出完整审稿报告，包括 Summary、Strengths、Weaknesses (Must-Fix / Should-Fix / Minor)、Questions、Missing References、Overall Assessment (评分 + 置信度)。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "7a675f44-e2e5-45d4-b345-793812e728ef",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T07:02:19.871Z_
+
+```json
+{
+  "parentUuid": "7a675f44-e2e5-45d4-b345-793812e728ef",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "591b9ea9-c320-4661-8739-c22219d4c495",
+  "timestamp": "2026-05-21T07:02:19.871Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T07:02:19.871Z_
+
+```json
+{
+  "parentUuid": "591b9ea9-c320-4661-8739-c22219d4c495",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "db6176f1-e019-4859-b6ce-d9df79aee482",
+  "timestamp": "2026-05-21T07:02:19.871Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-21T07:02:19.871Z_
+
+```json
+{
+  "parentUuid": "db6176f1-e019-4859-b6ce-d9df79aee482",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "8713b920-c128-4aae-9a09-076a6c282105",
+  "timestamp": "2026-05-21T07:02:19.871Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-21T07:02:23.645Z_
+
+我开始审稿。先加载 session 启动 skill，同时搜索 EMNLP 2026 / ACL ARR 的 reviewer guidelines。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8713b920-c128-4aae-9a09-076a6c282105",
+  "isSidechain": false,
+  "requestId": "req_011CbFHWGRfAwDCdqtZQDJho",
+  "type": "assistant",
+  "uuid": "28b2d8f5-3148-4cd8-8dcd-be79db9cd681",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvJGUd6nRaREuDMh21paGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14940,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 172,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14940,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 172,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14940,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14940
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T07:02:24.653Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019XY5T7bMWkVM2uhSm6Lx7N`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__verify_references,mcp__agent-ml-research__review_reviewer_post_to_director,WebSearch,WebFetch",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28b2d8f5-3148-4cd8-8dcd-be79db9cd681",
+  "isSidechain": false,
+  "requestId": "req_011CbFHWGRfAwDCdqtZQDJho",
+  "type": "assistant",
+  "uuid": "8fbe4584-a322-4c34-afb5-f180890e1325",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvJGUd6nRaREuDMh21paGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14940,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 172,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14940,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 172,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14940,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14940
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T07:02:24.660Z_
+
+<details><summary>↩ Tool result · `toolu_019XY5T7bMWkVM2uhSm6Lx7N`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__pdf_to_images"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__verify_references"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__review_reviewer_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8fbe4584-a322-4c34-afb5-f180890e1325",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "a4c96855-2413-4781-96fc-dbfa36fd159b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__verify_references,mcp__agent-ml-research__review_reviewer_post_to_director,WebSearch,WebFetch",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "8fbe4584-a322-4c34-afb5-f180890e1325",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-21T07:02:27.656Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by:
+1. Searching for EMNLP 2026 / ACL ARR reviewer guidelines
+2. Rendering the PDF to read the paper
+3. Running reference verification
+
+Let me do these in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4c96855-2413-4781-96fc-dbfa36fd159b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHWcbMdtSvkw44X1SXY",
+  "type": "assistant",
+  "uuid": "77415579-c7f2-4803-b7ab-db8d3a1e4366",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9nQBnfFnzx7A96Jr1C1BY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2281,
+      "cache_read_input_tokens": 26781,
+      "output_tokens": 400,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2281,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 400,
+          "cache_read_input_tokens": 26781,
+          "cache_creation_input_tokens": 2281,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2281
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-21T07:02:28.055Z_
+
+开始并行执行：搜索 reviewer guidelines、渲染 PDF、验证引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77415579-c7f2-4803-b7ab-db8d3a1e4366",
+  "isSidechain": false,
+  "requestId": "req_011CbFHWcbMdtSvkw44X1SXY",
+  "type": "assistant",
+  "uuid": "eb0b2680-b782-458d-9711-0537e3a9fe7b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9nQBnfFnzx7A96Jr1C1BY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2281,
+      "cache_read_input_tokens": 26781,
+      "output_tokens": 400,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2281,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 400,
+          "cache_read_input_tokens": 26781,
+          "cache_creation_input_tokens": 2281,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2281
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T07:02:29.621Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JJ3zCVLcdWdAJgEqnyqBNF`</summary>
+
+```json
+{
+  "query": "ACL ARR review form criteria 2026 reviewer guidelines dimensions scoring"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb0b2680-b782-458d-9711-0537e3a9fe7b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHWcbMdtSvkw44X1SXY",
+  "type": "assistant",
+  "uuid": "12e2bc18-0f8b-4751-afe5-8b5ef86e2934",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9nQBnfFnzx7A96Jr1C1BY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2281,
+      "cache_read_input_tokens": 26781,
+      "output_tokens": 400,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2281,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 400,
+          "cache_read_input_tokens": 26781,
+          "cache_creation_input_tokens": 2281,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2281
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T07:02:30.652Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images · `toolu_015AiYNidkWVQxoyNVG5ZWH4`</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/main_v13.pdf",
+  "project": "trace-verdict-study",
+  "pages": "1-10",
+  "dpi": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12e2bc18-0f8b-4751-afe5-8b5ef86e2934",
+  "isSidechain": false,
+  "requestId": "req_011CbFHWcbMdtSvkw44X1SXY",
+  "type": "assistant",
+  "uuid": "29e7036a-e80a-45ea-9111-65773f5af12d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9nQBnfFnzx7A96Jr1C1BY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2281,
+      "cache_read_input_tokens": 26781,
+      "output_tokens": 400,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2281,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 400,
+          "cache_read_input_tokens": 26781,
+          "cache_creation_input_tokens": 2281,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2281
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T07:02:30.954Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__verify_references · `toolu_01BiMd23ta5bkDf858j7rgZd`</summary>
+
+```json
+{
+  "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29e7036a-e80a-45ea-9111-65773f5af12d",
+  "isSidechain": false,
+  "requestId": "req_011CbFHWcbMdtSvkw44X1SXY",
+  "type": "assistant",
+  "uuid": "f9f929d4-dd3e-4439-9464-82704ace4b91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9nQBnfFnzx7A96Jr1C1BY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2281,
+      "cache_read_input_tokens": 26781,
+      "output_tokens": 400,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2281,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 400,
+          "cache_read_input_tokens": 26781,
+          "cache_creation_input_tokens": 2281,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2281
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T07:02:36.388Z_
+
+<details><summary>↩ Tool result · `toolu_01JJ3zCVLcdWdAJgEqnyqBNF`</summary>
+
+```text
+Web search results for query: "ACL ARR review form criteria 2026 reviewer guidelines dimensions scoring"
+
+Links: [{"title":"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/acguidelines"},{"title":"aclrollingreview/reviewerguidelines.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/reviewerguidelines.md"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"}]
+
+Based on the search results, I found information about the ACL ARR 2026 reviewer guidelines and scoring criteria:
+
+## Key Reviewer Scoring Dimensions
+
+Starting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.
+
+## Overall Assessment Criteria
+
+The overall assessment score is a composite score reflecting assessment of soundness, excitement, and also other factors like novelty and impact. All papers recommended for Findings and main conferences are expected to be sufficiently sound and reproducible.
+
+## Soundness Score Requirements
+
+The soundness scores must be justified by the text of the review. If you give a low Soundness score without finding any major faults, this means that your review is not a faithful explanation of your recommendation, and you need to revise it.
+
+## General Review Standards
+
+A good review should be professional and neutral, if not kind.
+
+The review form focuses on these three main dimensions for 2026: soundness (methodological rigor), excitement (interest and appeal), and overall recommendation (publication suitability), with all scores expected to be well-justified in the review text.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12e2bc18-0f8b-4751-afe5-8b5ef86e2934",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "c5c26689-8e3c-4ea5-935e-9604c7d7386a",
+  "toolUseResult": {
+    "query": "ACL ARR review form criteria 2026 reviewer guidelines dimensions scoring",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xe3J7BJcQSnjjXK8oxhLFH",
+        "content": [
+          {
+            "title": "ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewerguidelines"
+          },
+          {
+            "title": "ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/acguidelines"
+          },
+          {
+            "title": "aclrollingreview/reviewerguidelines.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/reviewerguidelines.md"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the ACL ARR 2026 reviewer guidelines and scoring criteria:\n\n## Key Reviewer Scoring Dimensions\n\nStarting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.\n\n## Overall Assessment Criteria\n\nThe overall assessment score is a composite score reflecting assessment of soundness, excitement, and also other factors like novelty and impact. All papers recommended for Findings and main conferences are expected to be sufficiently sound and reproducible.\n\n## Soundness Score Requirements\n\nThe soundness scores must be justified by the text of the review. If you give a low Soundness score without finding any major faults, this means that your review is not a faithful explanation of your recommendation, and you need to revise it.\n\n## General Review Standards\n\nA good review should be professional and neutral, if not kind.\n\nThe review form focuses on these three main dimensions for 2026: soundness (methodological rigor), excitement (interest and appeal), and overall recommendation (publication suitability), with all scores expected to be well-justified in the review text."
+    ],
+    "durationSeconds": 6.761318969999999
+  },
+  "sourceToolAssistantUUID": "12e2bc18-0f8b-4751-afe5-8b5ef86e2934",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T07:02:38.232Z_
+
+<details><summary>↩ Tool result · `toolu_015AiYNidkWVQxoyNVG5ZWH4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 436.4}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 481.0}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 476.5}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 349.8}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 493.6}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 496.6}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 496.7}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 546.5}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 540.2}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p10.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 574.0}], \"total_pages\": 21, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29e7036a-e80a-45ea-9111-65773f5af12d",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "b2c479db-c1b1-4dbd-a54b-e01c6ee5c8bc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 436.4}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 481.0}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 476.5}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 349.8}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 493.6}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 496.6}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 496.7}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 546.5}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 540.2}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p10.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 574.0}], \\\"total_pages\\\": 21, \\\"rendered_pages\\\": 10, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 436.4}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 481.0}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 476.5}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 349.8}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 493.6}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 496.6}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 496.7}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 546.5}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 540.2}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p10.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 574.0}], \"total_pages\": 21, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "29e7036a-e80a-45ea-9111-65773f5af12d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "b2c479db-c1b1-4dbd-a54b-e01c6ee5c8bc",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T07:03:22.771Z_
+
+<details><summary>↩ Tool result · `toolu_01BiMd23ta5bkDf858j7rgZd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 53, \"total_citations\": 68, \"unique_cited_keys\": 53, \"orphan_bib\": 0, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 42, \"online_not_found\": 5, \"online_mismatch\": 6}, \"cross_check\": {\"orphan_bib\": [], \"missing_bib\": [], \"orphan_count\": 0, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"chen2025tracepile\", \"type\": \"inproceedings\", \"title\": \"Chain of Execution Supervision Promotes General Reasoning in Large Language Models\", \"authors\": \"Nuo Chen and Zehua Li and Keqin Bao and Junyang Lin and Dayiheng Liu\", \"year\": \"2025\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"ding2024traced\", \"type\": \"inproceedings\", \"title\": \"TRACED: Execution-aware Pre-training for Source Code\", \"authors\": \"Yangruibo Ding and Ben Steenhoek and Kexin Pei and Gail Kaiser and Wei Le and Ba...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 46th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"chen2021evaluating\", \"type\": \"article\", \"title\": \"Evaluating Large Language Models Trained on Code\", \"authors\": \"Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henriqu...\", \"year\": \"2021\", \"venue\": \"arXiv preprint arXiv:2107.03374\"}, {\"key\": \"austin2021program\", \"type\": \"article\", \"title\": \"Program Synthesis with Large Language Models\", \"authors\": \"Austin, Jacob and Odena, Augustus and Nye, Maxwell and Bosma, Maarten and Michal...\", \"year\": \"2021\", \"venue\": \"arXiv preprint arXiv:2108.07732\"}, {\"key\": \"gu2024cruxeval\", \"type\": \"inproceedings\", \"title\": \"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\", \"authors\": \"Alex Gu and Baptiste Rozi\\\\`ere and Hugh Leather and Armando Solar-Lezama and Gab...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning (ICML)\"}, {\"key\": \"hu2022lora\", \"type\": \"inproceedings\", \"title\": \"LoRA: Low-Rank Adaptation of Large Language Models\", \"authors\": \"Edward J. Hu and Yelong Shen and Phillip Wallis and Zeyuan Allen-Zhu and Yuanzhi...\", \"year\": \"2022\", \"venue\": \"Proceedings of the 10th International Conference on Learning Representations (IC...\"}, {\"key\": \"qwen2025coder\", \"type\": \"article\", \"title\": \"Qwen2.5-Coder Technical Report\", \"authors\": \"Qwen Team\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2409.12186\"}, {\"key\": \"deepseek2024coder\", \"type\": \"article\", \"title\": \"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\", \"authors\": \"Daya Guo and Qihao Zhu and Dejian Yang and Zhenda Xie and Kai Dong and Wentao Zh...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2401.14196\"}, {\"key\": \"wang2025dcsh\", \"type\": \"inproceedings\", \"title\": \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\", \"authors\": \"Jian Wang and Xiaofei Xie and Qiang Hu and Shangqing Liu and Yi Li\", \"year\": \"2025\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2025\"}, {\"key\": \"ni2024next\", \"type\": \"inproceedings\", \"title\": \"NExT: Teaching Large Language Models to Reason about Code Execution\", \"authors\": \"Ansong Ni and Miltiadis Allamanis and Arman Cohan and Yinlin Deng and Kensen Shi...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning (ICML)\"}, {\"key\": \"eguchi2025etcot\", \"type\": \"inproceedings\", \"title\": \"Making LLMs Program Interpreters via Execution Trace Chain of Thought\", \"authors\": \"Koshi Eguchi and Takuya Akiba\", \"year\": \"2025\", \"venue\": \"ICML 2025 Workshop on Programmatic Representations for Agent Learning (PRAL)\"}, {\"key\": \"ferrando2025execute\", \"type\": \"article\", \"title\": \"What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces\", \"authors\": \"Jordi Armengol-Estape and Quentin Carbonneaux and Tianjun Zhang and Aram H. Mark...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2503.05703\"}, {\"key\": \"xu2025cruxevalx\", \"type\": \"inproceedings\", \"title\": \"CRUXEval-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\", \"authors\": \"Ruiyang Xu and others\", \"year\": \"2025\", \"venue\": \"Proceedings of the 63rd Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"appt2024\", \"type\": \"article\", \"title\": \"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\", \"authors\": \"Quanjun Zhang and Chunrong Fang and Weisong Sun and Yan Liu and Tieke He and Xia...\", \"year\": \"2024\", \"venue\": \"IEEE Transactions on Software Engineering\"}, {\"key\": \"zhou2024llm4patch\", \"type\": \"article\", \"title\": \"Leveraging Large Language Model for Automatic Patch Correctness Assessment\", \"authors\": \"Xin Zhou and Bowen Xu and Kisub Kim and DongGyun Han and Hung Huu Nguyen and Tha...\", \"year\": \"2024\", \"venue\": \"IEEE Transactions on Software Engineering\"}, {\"key\": \"spiess2025calibration\", \"type\": \"inproceedings\", \"title\": \"Calibration and Correctness of Language Models for Code\", \"authors\": \"Claudio Spiess and David Gros and others\", \"year\": \"2025\", \"venue\": \"Proceedings of the 47th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"foster2025mutation\", \"type\": \"inproceedings\", \"title\": \"Mutation-Guided LLM-based Test Generation at Meta\", \"authors\": \"Christopher Foster and Abhishek Gulati and Mark Harman and Inna Harper and Ke Ma...\", \"year\": \"2025\", \"venue\": \"Proceedings of the ACM International Conference on the Foundations of Software E...\"}, {\"key\": \"widyasari2024fusefl\", \"type\": \"inproceedings\", \"title\": \"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\", \"authors\": \"Ratnadira Widyasari and Jia Wei Ang and Truong Giang Nguyen and Neil Sharma and ...\", \"year\": \"2024\", \"venue\": \"Proceedings of the IEEE International Conference on Software Analysis, Evolution...\"}, {\"key\": \"huang2026tracecoder\", \"type\": \"inproceedings\", \"title\": \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\", \"authors\": \"Jiangping Huang and Wenguang Ye and Weisong Sun and Jian Zhang and Mingyue Zhang...\", \"year\": \"2026\", \"venue\": \"Proceedings of the 48th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"wang2025inspectcoder\", \"type\": \"article\", \"title\": \"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\", \"authors\": \"Yunkun Wang and Yue Zhang and Guochang Li and Chen Zhi and Binhua Li and Fei Hua...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2510.18327\"}, {\"key\": \"haque2025traces\", \"type\": \"inproceedings\", \"title\": \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\", \"authors\": \"Mirazul Haque and Petr Babkin and Farima Farmahinifarahani and Manuela Veloso\", \"year\": \"2025\", \"venue\": \"KnowledgeNLP Workshop at ACL 2025\"}, {\"key\": \"yang2024generalization\", \"type\": \"inproceedings\", \"title\": \"Unveiling the Generalization Power of Fine-Tuned Large Language Models\", \"authors\": \"Haoran Yang and Yumeng Zhang and Jiaqi Xu and Hongyuan Lu and Pheng Ann Heng and...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 2024 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"tian2024debugbench\", \"type\": \"inproceedings\", \"title\": \"DebugBench: Evaluating Debugging Capability of Large Language Models\", \"authors\": \"Runchu Tian and Yining Ye and Yujia Qin and Xin Cong and Yankai Lin and Yinxu Pa...\", \"year\": \"2024\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2024\"}, {\"key\": \"abreu2007accuracy\", \"type\": \"article\", \"title\": \"On the Accuracy of Spectrum-based Fault Localization\", \"authors\": \"Rui Abreu and Peter Zoeteweij and Arjan J.C. van Gemund\", \"year\": \"2007\", \"venue\": \"Testing: Academic and Industrial Conference Practice and Research Techniques (MU...\"}, {\"key\": \"jones2002visualization\", \"type\": \"inproceedings\", \"title\": \"Visualization of Test Information to Assist Fault Localization\", \"authors\": \"James A. Jones and Mary Jean Harrold and John Stasko\", \"year\": \"2002\", \"venue\": \"Proceedings of the 24th International Conference on Software Engineering (ICSE)\"}, {\"key\": \"wong2014dstar\", \"type\": \"article\", \"title\": \"DStar: An Effective Spectrum-Based Fault Localization Technique\", \"authors\": \"W. Eric Wong and Vidroha Debroy and Ruizhi Gao and Yihao Li\", \"year\": \"2014\", \"venue\": \"Journal of Systems and Software\"}, {\"key\": \"kang2024autofl\", \"type\": \"inproceedings\", \"title\": \"AutoFL: Automated Fault Localization via Large Language Models\", \"authors\": \"Sungmin Kang and Gabin An and Shin Yoo\", \"year\": \"2024\", \"venue\": \"Proceedings of the 46th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"qin2024agentfl\", \"type\": \"inproceedings\", \"title\": \"AgentFL: Scaling LLM-based Fault Localization to Project-Level Context\", \"authors\": \"Yihao Qin and Shangwen Wang and Yiling Lou and Jinhao Dong and Kaixin Wang and X...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 39th IEEE/ACM International Conference on Automated Software ...\"}, {\"key\": \"roziere2024code\", \"type\": \"article\", \"title\": \"Code Llama: Open Foundation Models for Code\", \"authors\": \"Baptiste Rozi\\\\`ere and Jonas Gehring and Fabian Gloeckle and Sten Sootla and Ita...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2308.12950\"}, {\"key\": \"steenhoek2024deepdfa\", \"type\": \"inproceedings\", \"title\": \"Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection\", \"authors\": \"Benjamin Steenhoek and Hongyang Gao and Wei Le\", \"year\": \"2024\", \"venue\": \"Proceedings of the 46th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"jimenez2024swebench\", \"type\": \"inproceedings\", \"title\": \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\", \"authors\": \"Carlos E. Jimenez and John Yang and Alexander Wettig and Shunyu Yao and Kexin Pe...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 12th International Conference on Learning Representations (IC...\"}, {\"key\": \"kadavath2022language\", \"type\": \"article\", \"title\": \"Language Models (Mostly) Know What They Know\", \"authors\": \"Saurav Kadavath and Tom Conerly and Amanda Askell and Tom Henighan and Dawn Drai...\", \"year\": \"2022\", \"venue\": \"arXiv preprint arXiv:2207.05221\"}, {\"key\": \"kamei2013large\", \"type\": \"article\", \"title\": \"A Large-Scale Empirical Study of Just-in-Time Quality Assurance\", \"authors\": \"Yasutaka Kamei and Emad Shihab and Bram Adams and Ahmed E. Hassan and Audris Moc...\", \"year\": \"2013\", \"venue\": \"IEEE Transactions on Software Engineering\"}, {\"key\": \"bouzenia2025repairagent\", \"type\": \"inproceedings\", \"title\": \"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\", \"authors\": \"Islem Bouzenia and Premkumar Devanbu and Michael Pradel\", \"year\": \"2025\", \"venue\": \"Proceedings of the 47th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"liu2023codeexecution\", \"type\": \"inproceedings\", \"title\": \"Code Execution with Pre-trained Language Models\", \"authors\": \"Chenxiao Liu and Shuai Lu and Weizhu Chen and Daxin Jiang and Alexey Svyatkovski...\", \"year\": \"2023\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2023\"}, {\"key\": \"tian2020patchcorrectness\", \"type\": \"inproceedings\", \"title\": \"Evaluating Representation Learning of Code Changes for Predicting Patch Correctness in Program Repair\", \"authors\": \"Haoye Tian and Kui Liu and Abdoul Kader Kabor\\\\'e and Anil Koyuncu and Li Li and ...\", \"year\": \"2020\", \"venue\": \"Proceedings of the 35th IEEE/ACM International Conference on Automated Software ...\"}, {\"key\": \"yadavally2024slicing\", \"type\": \"inproceedings\", \"title\": \"A Learning-Based Approach to Static Program Slicing\", \"authors\": \"Aashish Yadavally and Yi Li and Shaohua Wang and Tien N. Nguyen\", \"year\": \"2024\", \"venue\": \"Proceedings of the ACM on Programming Languages (OOPSLA)\"}, {\"key\": \"xia2024agentless\", \"type\": \"article\", \"title\": \"Agentless: Demystifying LLM-based Software Engineering Agents\", \"authors\": \"Chunqiu Steven Xia and Yinlin Deng and Soren Dunn and Lingming Zhang\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2407.01489\"}, {\"key\": \"guo2017calibration\", \"type\": \"inproceedings\", \"title\": \"On Calibration of Modern Neural Networks\", \"authors\": \"Chuan Guo and Geoff Pleiss and Yu Sun and Kilian Q. Weinberger\", \"year\": \"2017\", \"venue\": \"Proceedings of the 34th International Conference on Machine Learning (ICML)\"}, {\"key\": \"geng2024calibration\", \"type\": \"inproceedings\", \"title\": \"A Survey of Confidence Estimation and Calibration in Large Language Models\", \"authors\": \"Jiahui Geng and Fengyu Cai and Yuxia Wang and Heinz Koeppl and Preslav Nakov and...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 2024 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"hoang2019deepjit\", \"type\": \"inproceedings\", \"title\": \"DeepJIT: An End-to-End Deep Learning Framework for Just-in-Time Defect Prediction\", \"authors\": \"Thong Hoang and Hoa Khanh Dam and Yasutaka Kamei and David Lo and Naoyasu Ubayas...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 16th International Conference on Mining Software Repositories...\"}, {\"key\": \"hoang2020cc2vec\", \"type\": \"inproceedings\", \"title\": \"CC2Vec: Distributed Representations of Code Changes\", \"authors\": \"Thong Hoang and Hong Jin Kang and Julia Lawall and David Lo\", \"year\": \"2020\", \"venue\": \"Proceedings of the ACM/IEEE 42nd International Conference on Software Engineerin...\"}, {\"key\": \"pornprasit2021jitline\", \"type\": \"inproceedings\", \"title\": \"JITLine: A Simpler, Better, Faster, Finer-grained Just-In-Time Defect Prediction\", \"authors\": \"Chanathip Pornprasit and Chakkrit Tantithamthavorn\", \"year\": \"2021\", \"venue\": \"Proceedings of the 18th International Conference on Mining Software Repositories...\"}, {\"key\": \"bengio2009curriculum\", \"type\": \"inproceedings\", \"title\": \"Curriculum Learning\", \"authors\": \"Yoshua Bengio and J\\\\'er\\\\^ome Louradour and Ronan Collobert and Jason Weston\", \"year\": \"2009\", \"venue\": \"Proceedings of the 26th Annual International Conference on Machine Learning (ICM...\"}, {\"key\": \"sachdeva2024dataefficient\", \"type\": \"article\", \"title\": \"How to Train Data-Efficient LLMs\", \"authors\": \"Noveen Sachdeva and Benjamin Coleman and Wang-Cheng Kang and Jianmo Ni and Licha...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2402.09668\"}, {\"key\": \"swayamdipta2020cartography\", \"type\": \"inproceedings\", \"title\": \"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\", \"authors\": \"Swabha Swayamdipta and Roy Schwartz and Nicholas Lourie and Yizhong Wang and Han...\", \"year\": \"2020\", \"venue\": \"Proceedings of the 2020 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"xie2023doremi\", \"type\": \"inproceedings\", \"title\": \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\", \"authors\": \"Sang Michael Xie and Hieu Pham and Xuanyi Dong and Nan Du and Hanxiao Liu and Yi...\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"yang2024sweagent\", \"type\": \"inproceedings\", \"title\": \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\", \"authors\": \"John Yang and Carlos E. Jimenez and Alexander Wettig and Kilian Lieret and Shuny...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"wang2025openhands\", \"type\": \"inproceedings\", \"title\": \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\", \"authors\": \"Xingyao Wang and Boxuan Li and Yufan Song and Frank F. Xu and Xiangru Tang and M...\", \"year\": \"2025\", \"venue\": \"Proceedings of the 13th International Conference on Learning Representations (IC...\"}, {\"key\": \"jiang2023llmlingua\", \"type\": \"inproceedings\", \"title\": \"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\", \"authors\": \"Huiqiang Jiang and Qianhui Wu and Chin-Yew Lin and Yuqing Yang and Lili Qiu\", \"year\": \"2023\", \"venue\": \"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"li2023selectivecontext\", \"type\": \"inproceedings\", \"title\": \"Compressing Context to Enhance Inference Efficiency of Large Language Models\", \"authors\": \"Yucheng Li and Bo Dong and Frank Guerin and Chenghua Lin\", \"year\": \"2023\", \"venue\": \"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"barr2015oracle\", \"type\": \"article\", \"title\": \"The Oracle Problem in Software Testing: A Survey\", \"authors\": \"Earl T. Barr and Mark Harman and Phil McMinn and Muzammil Shahbaz and Shin Yoo\", \"year\": \"2015\", \"venue\": \"IEEE Transactions on Software Engineering\"}, {\"key\": \"papadakis2019mutation\", \"type\": \"article\", \"title\": \"Mutation Testing Advances: An Analysis and Survey\", \"authors\": \"Mike Papadakis and Marinos Kintis and Jie Zhang and Yue Jia and Yves Le Traon an...\", \"year\": \"2019\", \"venue\": \"Advances in Computers\"}], \"tex_citations\": [{\"key\": \"chen2025tracepile\", \"file\": \"introduction.tex\", \"line\": 3, \"command\": \"citep\"}, {\"key\": \"ding2024traced\", \"file\": \"introduction.tex\", \"line\": 3, \"command\": \"citep\"}, {\"key\": \"wang2025dcsh\", \"file\": \"introduction.tex\", \"line\": 3, \"command\": \"citep\"}, {\"key\": \"ni2024next\", \"file\": \"introduction.tex\", \"line\": 3, \"command\": \"citep\"}, {\"key\": \"wang2025dcsh\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"chen2021evaluating\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"austin2021program\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"qwen2025coder\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"roziere2024code\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"deepseek2024coder\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"chen2025tracepile\", \"file\": \"method.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"gu2024cruxeval\", \"file\": \"method.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"chen2021evaluating\", \"file\": \"method.tex\", \"line\": 13, \"command\": \"citep\"}, {\"key\": \"austin2021program\", \"file\": \"method.tex\", \"line\": 13, \"command\": \"citep\"}, {\"key\": \"qwen2025coder\", \"file\": \"method.tex\", \"line\": 39, \"command\": \"citep\"}, {\"key\": \"roziere2024code\", \"file\": \"method.tex\", \"line\": 39, \"command\": \"citep\"}, {\"key\": \"deepseek2024coder\", \"file\": \"method.tex\", \"line\": 39, \"command\": \"citep\"}, {\"key\": \"hu2022lora\", \"file\": \"method.tex\", \"line\": 40, \"command\": \"citep\"}, {\"key\": \"tian2024debugbench\", \"file\": \"experiments.tex\", \"line\": 184, \"command\": \"citep\"}, {\"key\": \"chen2025tracepile\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"citep\"}, {\"key\": \"wang2025dcsh\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"citet\"}, {\"key\": \"ni2024next\", \"file\": \"related_work.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"eguchi2025etcot\", \"file\": \"related_work.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"ferrando2025execute\", \"file\": \"related_work.tex\", \"line\": 5, \"command\": \"citet\"}, {\"key\": \"liu2023codeexecution\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citet\"}, {\"key\": \"gu2024cruxeval\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"xu2025cruxevalx\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"ding2024traced\", \"file\": \"related_work.tex\", \"line\": 10, \"command\": \"citep\"}, {\"key\": \"steenhoek2024deepdfa\", \"file\": \"related_work.tex\", \"line\": 10, \"command\": \"citep\"}, {\"key\": \"yadavally2024slicing\", \"file\": \"related_work.tex\", \"line\": 10, \"command\": \"citep\"}, {\"key\": \"tian2020patchcorrectness\", \"file\": \"related_work.tex\", \"line\": 11, \"command\": \"citet\"}, {\"key\": \"hoang2020cc2vec\", \"file\": \"related_work.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"zhou2024llm4patch\", \"file\": \"related_work.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"appt2024\", \"file\": \"related_work.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"barr2015oracle\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"widyasari2024fusefl\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"foster2025mutation\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citet\"}, {\"key\": \"papadakis2019mutation\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"abreu2007accuracy\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"jones2002visualization\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"wong2014dstar\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"kang2024autofl\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"qin2024agentfl\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"huang2026tracecoder\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"wang2025inspectcoder\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"bouzenia2025repairagent\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"xia2024agentless\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"yang2024sweagent\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"wang2025openhands\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"jimenez2024swebench\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"jiang2023llmlingua\", \"file\": \"related_work.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"li2023selectivecontext\", \"file\": \"related_work.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"haque2025traces\", \"file\": \"related_work.tex\", \"line\": 20, \"command\": \"citet\"}, {\"key\": \"guo2017calibration\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"kadavath2022language\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"geng2024calibration\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"spiess2025calibration\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"kamei2013large\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"hoang2019deepjit\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"pornprasit2021jitline\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"bengio2009curriculum\", \"file\": \"related_work.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"swayamdipta2020cartography\", \"file\": \"related_work.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"sachdeva2024dataefficient\", \"file\": \"related_work.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"xie2023doremi\", \"file\": \"related_work.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"hu2022lora\", \"file\": \"appendix.tex\", \"line\": 38, \"command\": \"citep\"}, {\"key\": \"spiess2025calibration\", \"file\": \"appendix.tex\", \"line\": 520, \"command\": \"citep\"}, {\"key\": \"tian2024debugbench\", \"file\": \"appendix.tex\", \"line\": 600, \"command\": \"citep\"}, {\"key\": \"yang2024generalization\", \"file\": \"appendix.tex\", \"line\": 639, \"command\": \"citep\"}], \"online_verification\": [{\"key\": \"chen2025tracepile\", \"title\": \"Chain of Execution Supervision Promotes General Reasoning in Large Language Models\", \"status\": \"not_found\", \"confidence\": 0.452, \"matched_title\": \"A Survey of Large Language Models\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.45 below threshold 0.82\"}, {\"key\": \"ding2024traced\", \"title\": \"TRACED: Execution-aware Pre-training for Source Code\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"TRACED: Execution-aware Pre-training for Source Code\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"chen2021evaluating\", \"title\": \"Evaluating Large Language Models Trained on Code\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Evaluating Large Language Models Trained on Code\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"austin2021program\", \"title\": \"Program Synthesis with Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Program Synthesis with Large Language Models\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"gu2024cruxeval\", \"title\": \"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hu2022lora\", \"title\": \"LoRA: Low-Rank Adaptation of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"LoRA: Low-Rank Adaptation of Large Language Models\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"qwen2025coder\", \"title\": \"Qwen2.5-Coder Technical Report\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Qwen2.5-Coder Technical Report\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=team vs api=hui\"], \"note\": \"\"}, {\"key\": \"deepseek2024coder\", \"title\": \"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2025dcsh\", \"title\": \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ni2024next\", \"title\": \"NExT: Teaching Large Language Models to Reason about Code Execution\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"NExT: Teaching Large Language Models to Reason about Code Execution\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"eguchi2025etcot\", \"title\": \"Making LLMs Program Interpreters via Execution Trace Chain of Thought\", \"status\": \"not_found\", \"confidence\": 0.203, \"matched_title\": \"From ChatGPT to ThreatGPT: Impact of Generative AI in Cybersecurity and Privacy\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.20 below threshold 0.82\"}, {\"key\": \"ferrando2025execute\", \"title\": \"What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces\", \"status\": \"not_found\", \"confidence\": 0.223, \"matched_title\": \"From ChatGPT to ThreatGPT: Impact of Generative AI in Cybersecurity and Privacy\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.22 below threshold 0.82\"}, {\"key\": \"xu2025cruxevalx\", \"title\": \"CRUXEval-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"CRUXEVAL-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"appt2024\", \"title\": \"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"APPT: Boosting Automated Patch Correctness Prediction via Fine-Tuning Pre-Trained Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhou2024llm4patch\", \"title\": \"Leveraging Large Language Model for Automatic Patch Correctness Assessment\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Leveraging Large Language Model for Automatic Patch Correctness Assessment\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"spiess2025calibration\", \"title\": \"Calibration and Correctness of Language Models for Code\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Calibration and Correctness of Language Models for Code\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=spiess vs api=spieß\"], \"note\": \"\"}, {\"key\": \"foster2025mutation\", \"title\": \"Mutation-Guided LLM-based Test Generation at Meta\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Mutation-Guided LLM-based Test Generation at Meta\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=foster vs api=harman\"], \"note\": \"\"}, {\"key\": \"widyasari2024fusefl\", \"title\": \"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"huang2026tracecoder\", \"title\": \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2025inspectcoder\", \"title\": \"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"InspectCoder: Dynamic Analysis-Enabled Self Repair through interactive LLM-Debugger Collaboration\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"haque2025traces\", \"title\": \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yang2024generalization\", \"title\": \"Unveiling the Generalization Power of Fine-Tuned Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Unveiling the Generalization Power of Fine-Tuned Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"tian2024debugbench\", \"title\": \"DebugBench: Evaluating Debugging Capability of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DebugBench: Evaluating Debugging Capability of Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"abreu2007accuracy\", \"title\": \"On the Accuracy of Spectrum-based Fault Localization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"On the Accuracy of Spectrum-based Fault Localization\", \"matched_year\": \"2007\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"jones2002visualization\", \"title\": \"Visualization of Test Information to Assist Fault Localization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Visualization of test information to assist fault localization\", \"matched_year\": \"2002\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wong2014dstar\", \"title\": \"DStar: An Effective Spectrum-Based Fault Localization Technique\", \"status\": \"not_found\", \"confidence\": 0.561, \"matched_title\": \"MSFL: A Model for Fault Localization Using Mutation-Spectra Technique\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.56 below threshold 0.82\"}, {\"key\": \"kang2024autofl\", \"title\": \"AutoFL: Automated Fault Localization via Large Language Models\", \"status\": \"not_found\", \"confidence\": 0.45, \"matched_title\": \"A Survey on Large Language Models for Software Engineering\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.45 below threshold 0.82\"}, {\"key\": \"qin2024agentfl\", \"title\": \"AgentFL: Scaling LLM-based Fault Localization to Project-Level Context\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"AgentFL: Scaling LLM-based Fault Localization to Project-Level Context\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"roziere2024code\", \"title\": \"Code Llama: Open Foundation Models for Code\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Code Llama: Open Foundation Models for Code\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=rozi\\\\`ere vs api=rozière\"], \"note\": \"\"}, {\"key\": \"steenhoek2024deepdfa\", \"title\": \"Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"jimenez2024swebench\", \"title\": \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=jimenez vs api=jimenez-gomez\"], \"note\": \"\"}, {\"key\": \"kadavath2022language\", \"title\": \"Language Models (Mostly) Know What They Know\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Language Models (Mostly) Know What They Know\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kamei2013large\", \"title\": \"A Large-Scale Empirical Study of Just-in-Time Quality Assurance\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A large-scale empirical study of just-in-time quality assurance\", \"matched_year\": \"2012\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"bouzenia2025repairagent\", \"title\": \"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"liu2023codeexecution\", \"title\": \"Code Execution with Pre-trained Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Code Execution with Pre-trained Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"tian2020patchcorrectness\", \"title\": \"Evaluating Representation Learning of Code Changes for Predicting Patch Correctness in Program Repair\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Evaluating representation learning of code changes for predicting patch correctness in program repair\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yadavally2024slicing\", \"title\": \"A Learning-Based Approach to Static Program Slicing\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Learning-Based Approach to Static Program Slicing\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"xia2024agentless\", \"title\": \"Agentless: Demystifying LLM-based Software Engineering Agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Agentless: Demystifying LLM-based Software Engineering Agents\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"guo2017calibration\", \"title\": \"On Calibration of Modern Neural Networks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"On Calibration of Modern Neural Networks\", \"matched_year\": \"2017\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"geng2024calibration\", \"title\": \"A Survey of Confidence Estimation and Calibration in Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Survey of Confidence Estimation and Calibration in Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hoang2019deepjit\", \"title\": \"DeepJIT: An End-to-End Deep Learning Framework for Just-in-Time Defect Prediction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DeepJIT: An End-to-End Deep Learning Framework for Just-in-Time Defect Prediction\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hoang2020cc2vec\", \"title\": \"CC2Vec: Distributed Representations of Code Changes\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"CC2Vec: Distributed Representations of Code Changes\", \"matched_year\": \"2020\", \"mismatch_fields\": [\"first_author: bib=hoang vs api=thong\"], \"note\": \"\"}, {\"key\": \"pornprasit2021jitline\", \"title\": \"JITLine: A Simpler, Better, Faster, Finer-grained Just-In-Time Defect Prediction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"JITLine: A Simpler, Better, Faster, Finer-grained Just-In-Time Defect Prediction\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"bengio2009curriculum\", \"title\": \"Curriculum Learning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Curriculum learning\", \"matched_year\": \"2009\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"sachdeva2024dataefficient\", \"title\": \"How to Train Data-Efficient LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"How to Train Data-Efficient LLMs\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"swayamdipta2020cartography\", \"title\": \"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"xie2023doremi\", \"title\": \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yang2024sweagent\", \"title\": \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2025openhands\", \"title\": \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"jiang2023llmlingua\", \"title\": \"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2023selectivecontext\", \"title\": \"Compressing Context to Enhance Inference Efficiency of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Compressing Context to Enhance Inference Efficiency of Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"barr2015oracle\", \"title\": \"The Oracle Problem in Software Testing: A Survey\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"The Oracle Problem in Software Testing: A Survey\", \"matched_year\": \"2014\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"papadakis2019mutation\", \"title\": \"Mutation Testing Advances: An Analysis and Survey\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Mutation Testing Advances: An Analysis and Survey\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9f929d4-dd3e-4439-9464-82704ace4b91",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "d6f53239-a193-4488-b50b-035f552d7fc6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 53, \\\"total_citations\\\": 68, \\\"unique_cited_keys\\\": 53, \\\"orphan_bib\\\": 0, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 42, \\\"online_not_found\\\": 5, \\\"online_mismatch\\\": 6}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 0, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"chen2025tracepile\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Chain of Execution Supervision Promotes General Reasoning in Large Language Models\\\", \\\"authors\\\": \\\"Nuo Chen and Zehua Li and Keqin Bao and Junyang Lin and Dayiheng Liu\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"ding2024traced\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"TRACED: Execution-aware Pre-training for Source Code\\\", \\\"authors\\\": \\\"Yangruibo Ding and Ben Steenhoek and Kexin Pei and Gail Kaiser and Wei Le and Ba...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 46th IEEE/ACM International Conference on Software Engineerin...\\\"}, {\\\"key\\\": \\\"chen2021evaluating\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Evaluating Large Language Models Trained on Code\\\", \\\"authors\\\": \\\"Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henriqu...\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2107.03374\\\"}, {\\\"key\\\": \\\"austin2021program\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Program Synthesis with Large Language Models\\\", \\\"authors\\\": \\\"Austin, Jacob and Odena, Augustus and Nye, Maxwell and Bosma, Maarten and Michal...\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2108.07732\\\"}, {\\\"key\\\": \\\"gu2024cruxeval\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\\\", \\\"authors\\\": \\\"Alex Gu and Baptiste Rozi\\\\\\\\`ere and Hugh Leather and Armando Solar-Lezama and Gab...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning (ICML)\\\"}, {\\\"key\\\": \\\"hu2022lora\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"LoRA: Low-Rank Adaptation of Large Language Models\\\", \\\"authors\\\": \\\"Edward J. Hu and Yelong Shen and Phillip Wallis and Zeyuan Allen-Zhu and Yuanzhi...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 10th International Conference on Learning Representations (IC...\\\"}, {\\\"key\\\": \\\"qwen2025coder\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Qwen2.5-Coder Technical Report\\\", \\\"authors\\\": \\\"Qwen Team\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2409.12186\\\"}, {\\\"key\\\": \\\"deepseek2024coder\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\\\", \\\"authors\\\": \\\"Daya Guo and Qihao Zhu and Dejian Yang and Zhenda Xie and Kai Dong and Wentao Zh...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2401.14196\\\"}, {\\\"key\\\": \\\"wang2025dcsh\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\\\", \\\"authors\\\": \\\"Jian Wang and Xiaofei Xie and Qiang Hu and Shangqing Liu and Yi Li\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EMNLP 2025\\\"}, {\\\"key\\\": \\\"ni2024next\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"NExT: Teaching Large Language Models to Reason about Code Execution\\\", \\\"authors\\\": \\\"Ansong Ni and Miltiadis Allamanis and Arman Cohan and Yinlin Deng and Kensen Shi...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning (ICML)\\\"}, {\\\"key\\\": \\\"eguchi2025etcot\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Making LLMs Program Interpreters via Execution Trace Chain of Thought\\\", \\\"authors\\\": \\\"Koshi Eguchi and Takuya Akiba\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"ICML 2025 Workshop on Programmatic Representations for Agent Learning (PRAL)\\\"}, {\\\"key\\\": \\\"ferrando2025execute\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces\\\", \\\"authors\\\": \\\"Jordi Armengol-Estape and Quentin Carbonneaux and Tianjun Zhang and Aram H. Mark...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2503.05703\\\"}, {\\\"key\\\": \\\"xu2025cruxevalx\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"CRUXEval-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\\\", \\\"authors\\\": \\\"Ruiyang Xu and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 63rd Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"appt2024\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\\\", \\\"authors\\\": \\\"Quanjun Zhang and Chunrong Fang and Weisong Sun and Yan Liu and Tieke He and Xia...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"IEEE Transactions on Software Engineering\\\"}, {\\\"key\\\": \\\"zhou2024llm4patch\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Leveraging Large Language Model for Automatic Patch Correctness Assessment\\\", \\\"authors\\\": \\\"Xin Zhou and Bowen Xu and Kisub Kim and DongGyun Han and Hung Huu Nguyen and Tha...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"IEEE Transactions on Software Engineering\\\"}, {\\\"key\\\": \\\"spiess2025calibration\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Calibration and Correctness of Language Models for Code\\\", \\\"authors\\\": \\\"Claudio Spiess and David Gros and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 47th IEEE/ACM International Conference on Software Engineerin...\\\"}, {\\\"key\\\": \\\"foster2025mutation\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Mutation-Guided LLM-based Test Generation at Meta\\\", \\\"authors\\\": \\\"Christopher Foster and Abhishek Gulati and Mark Harman and Inna Harper and Ke Ma...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the ACM International Conference on the Foundations of Software E...\\\"}, {\\\"key\\\": \\\"widyasari2024fusefl\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\\\", \\\"authors\\\": \\\"Ratnadira Widyasari and Jia Wei Ang and Truong Giang Nguyen and Neil Sharma and ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the IEEE International Conference on Software Analysis, Evolution...\\\"}, {\\\"key\\\": \\\"huang2026tracecoder\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\\\", \\\"authors\\\": \\\"Jiangping Huang and Wenguang Ye and Weisong Sun and Jian Zhang and Mingyue Zhang...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Proceedings of the 48th IEEE/ACM International Conference on Software Engineerin...\\\"}, {\\\"key\\\": \\\"wang2025inspectcoder\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\\\", \\\"authors\\\": \\\"Yunkun Wang and Yue Zhang and Guochang Li and Chen Zhi and Binhua Li and Fei Hua...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2510.18327\\\"}, {\\\"key\\\": \\\"haque2025traces\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\\\", \\\"authors\\\": \\\"Mirazul Haque and Petr Babkin and Farima Farmahinifarahani and Manuela Veloso\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"KnowledgeNLP Workshop at ACL 2025\\\"}, {\\\"key\\\": \\\"yang2024generalization\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Unveiling the Generalization Power of Fine-Tuned Large Language Models\\\", \\\"authors\\\": \\\"Haoran Yang and Yumeng Zhang and Jiaqi Xu and Hongyuan Lu and Pheng Ann Heng and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 2024 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"tian2024debugbench\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DebugBench: Evaluating Debugging Capability of Large Language Models\\\", \\\"authors\\\": \\\"Runchu Tian and Yining Ye and Yujia Qin and Xin Cong and Yankai Lin and Yinxu Pa...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: ACL 2024\\\"}, {\\\"key\\\": \\\"abreu2007accuracy\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"On the Accuracy of Spectrum-based Fault Localization\\\", \\\"authors\\\": \\\"Rui Abreu and Peter Zoeteweij and Arjan J.C. van Gemund\\\", \\\"year\\\": \\\"2007\\\", \\\"venue\\\": \\\"Testing: Academic and Industrial Conference Practice and Research Techniques (MU...\\\"}, {\\\"key\\\": \\\"jones2002visualization\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Visualization of Test Information to Assist Fault Localization\\\", \\\"authors\\\": \\\"James A. Jones and Mary Jean Harrold and John Stasko\\\", \\\"year\\\": \\\"2002\\\", \\\"venue\\\": \\\"Proceedings of the 24th International Conference on Software Engineering (ICSE)\\\"}, {\\\"key\\\": \\\"wong2014dstar\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"DStar: An Effective Spectrum-Based Fault Localization Technique\\\", \\\"authors\\\": \\\"W. Eric Wong and Vidroha Debroy and Ruizhi Gao and Yihao Li\\\", \\\"year\\\": \\\"2014\\\", \\\"venue\\\": \\\"Journal of Systems and Software\\\"}, {\\\"key\\\": \\\"kang2024autofl\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"AutoFL: Automated Fault Localization via Large Language Models\\\", \\\"authors\\\": \\\"Sungmin Kang and Gabin An and Shin Yoo\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 46th IEEE/ACM International Conference on Software Engineerin...\\\"}, {\\\"key\\\": \\\"qin2024agentfl\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"AgentFL: Scaling LLM-based Fault Localization to Project-Level Context\\\", \\\"authors\\\": \\\"Yihao Qin and Shangwen Wang and Yiling Lou and Jinhao Dong and Kaixin Wang and X...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 39th IEEE/ACM International Conference on Automated Software ...\\\"}, {\\\"key\\\": \\\"roziere2024code\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Code Llama: Open Foundation Models for Code\\\", \\\"authors\\\": \\\"Baptiste Rozi\\\\\\\\`ere and Jonas Gehring and Fabian Gloeckle and Sten Sootla and Ita...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2308.12950\\\"}, {\\\"key\\\": \\\"steenhoek2024deepdfa\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection\\\", \\\"authors\\\": \\\"Benjamin Steenhoek and Hongyang Gao and Wei Le\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 46th IEEE/ACM International Conference on Software Engineerin...\\\"}, {\\\"key\\\": \\\"jimenez2024swebench\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\\\", \\\"authors\\\": \\\"Carlos E. Jimenez and John Yang and Alexander Wettig and Shunyu Yao and Kexin Pe...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 12th International Conference on Learning Representations (IC...\\\"}, {\\\"key\\\": \\\"kadavath2022language\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Language Models (Mostly) Know What They Know\\\", \\\"authors\\\": \\\"Saurav Kadavath and Tom Conerly and Amanda Askell and Tom Henighan and Dawn Drai...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2207.05221\\\"}, {\\\"key\\\": \\\"kamei2013large\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"A Large-Scale Empirical Study of Just-in-Time Quality Assurance\\\", \\\"authors\\\": \\\"Yasutaka Kamei and Emad Shihab and Bram Adams and Ahmed E. Hassan and Audris Moc...\\\", \\\"year\\\": \\\"2013\\\", \\\"venue\\\": \\\"IEEE Transactions on Software Engineering\\\"}, {\\\"key\\\": \\\"bouzenia2025repairagent\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\\\", \\\"authors\\\": \\\"Islem Bouzenia and Premkumar Devanbu and Michael Pradel\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 47th IEEE/ACM International Conference on Software Engineerin...\\\"}, {\\\"key\\\": \\\"liu2023codeexecution\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Code Execution with Pre-trained Language Models\\\", \\\"authors\\\": \\\"Chenxiao Liu and Shuai Lu and Weizhu Chen and Daxin Jiang and Alexey Svyatkovski...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: ACL 2023\\\"}, {\\\"key\\\": \\\"tian2020patchcorrectness\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Evaluating Representation Learning of Code Changes for Predicting Patch Correctness in Program Repair\\\", \\\"authors\\\": \\\"Haoye Tian and Kui Liu and Abdoul Kader Kabor\\\\\\\\'e and Anil Koyuncu and Li Li and ...\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the 35th IEEE/ACM International Conference on Automated Software ...\\\"}, {\\\"key\\\": \\\"yadavally2024slicing\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Learning-Based Approach to Static Program Slicing\\\", \\\"authors\\\": \\\"Aashish Yadavally and Yi Li and Shaohua Wang and Tien N. Nguyen\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the ACM on Programming Languages (OOPSLA)\\\"}, {\\\"key\\\": \\\"xia2024agentless\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Agentless: Demystifying LLM-based Software Engineering Agents\\\", \\\"authors\\\": \\\"Chunqiu Steven Xia and Yinlin Deng and Soren Dunn and Lingming Zhang\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2407.01489\\\"}, {\\\"key\\\": \\\"guo2017calibration\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"On Calibration of Modern Neural Networks\\\", \\\"authors\\\": \\\"Chuan Guo and Geoff Pleiss and Yu Sun and Kilian Q. Weinberger\\\", \\\"year\\\": \\\"2017\\\", \\\"venue\\\": \\\"Proceedings of the 34th International Conference on Machine Learning (ICML)\\\"}, {\\\"key\\\": \\\"geng2024calibration\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Survey of Confidence Estimation and Calibration in Large Language Models\\\", \\\"authors\\\": \\\"Jiahui Geng and Fengyu Cai and Yuxia Wang and Heinz Koeppl and Preslav Nakov and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 2024 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"hoang2019deepjit\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DeepJIT: An End-to-End Deep Learning Framework for Just-in-Time Defect Prediction\\\", \\\"authors\\\": \\\"Thong Hoang and Hoa Khanh Dam and Yasutaka Kamei and David Lo and Naoyasu Ubayas...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 16th International Conference on Mining Software Repositories...\\\"}, {\\\"key\\\": \\\"hoang2020cc2vec\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"CC2Vec: Distributed Representations of Code Changes\\\", \\\"authors\\\": \\\"Thong Hoang and Hong Jin Kang and Julia Lawall and David Lo\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the ACM/IEEE 42nd International Conference on Software Engineerin...\\\"}, {\\\"key\\\": \\\"pornprasit2021jitline\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"JITLine: A Simpler, Better, Faster, Finer-grained Just-In-Time Defect Prediction\\\", \\\"authors\\\": \\\"Chanathip Pornprasit and Chakkrit Tantithamthavorn\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 18th International Conference on Mining Software Repositories...\\\"}, {\\\"key\\\": \\\"bengio2009curriculum\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Curriculum Learning\\\", \\\"authors\\\": \\\"Yoshua Bengio and J\\\\\\\\'er\\\\\\\\^ome Louradour and Ronan Collobert and Jason Weston\\\", \\\"year\\\": \\\"2009\\\", \\\"venue\\\": \\\"Proceedings of the 26th Annual International Conference on Machine Learning (ICM...\\\"}, {\\\"key\\\": \\\"sachdeva2024dataefficient\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"How to Train Data-Efficient LLMs\\\", \\\"authors\\\": \\\"Noveen Sachdeva and Benjamin Coleman and Wang-Cheng Kang and Jianmo Ni and Licha...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2402.09668\\\"}, {\\\"key\\\": \\\"swayamdipta2020cartography\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\\\", \\\"authors\\\": \\\"Swabha Swayamdipta and Roy Schwartz and Nicholas Lourie and Yizhong Wang and Han...\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the 2020 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"xie2023doremi\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\\\", \\\"authors\\\": \\\"Sang Michael Xie and Hieu Pham and Xuanyi Dong and Nan Du and Hanxiao Liu and Yi...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"yang2024sweagent\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\\\", \\\"authors\\\": \\\"John Yang and Carlos E. Jimenez and Alexander Wettig and Kilian Lieret and Shuny...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"wang2025openhands\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\\\", \\\"authors\\\": \\\"Xingyao Wang and Boxuan Li and Yufan Song and Frank F. Xu and Xiangru Tang and M...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 13th International Conference on Learning Representations (IC...\\\"}, {\\\"key\\\": \\\"jiang2023llmlingua\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\\\", \\\"authors\\\": \\\"Huiqiang Jiang and Qianhui Wu and Chin-Yew Lin and Yuqing Yang and Lili Qiu\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"li2023selectivecontext\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Compressing Context to Enhance Inference Efficiency of Large Language Models\\\", \\\"authors\\\": \\\"Yucheng Li and Bo Dong and Frank Guerin and Chenghua Lin\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"barr2015oracle\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"The Oracle Problem in Software Testing: A Survey\\\", \\\"authors\\\": \\\"Earl T. Barr and Mark Harman and Phil McMinn and Muzammil Shahbaz and Shin Yoo\\\", \\\"year\\\": \\\"2015\\\", \\\"venue\\\": \\\"IEEE Transactions on Software Engineering\\\"}, {\\\"key\\\": \\\"papadakis2019mutation\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Mutation Testing Advances: An Analysis and Survey\\\", \\\"authors\\\": \\\"Mike Papadakis and Marinos Kintis and Jie Zhang and Yue Jia and Yves Le Traon an...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Advances in Computers\\\"}], \\\"tex_citations\\\": [{\\\"key\\\": \\\"chen2025tracepile\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 3, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ding2024traced\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 3, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wang2025dcsh\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 3, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ni2024next\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 3, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wang2025dcsh\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"chen2021evaluating\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"austin2021program\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"qwen2025coder\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"roziere2024code\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepseek2024coder\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"chen2025tracepile\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gu2024cruxeval\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"chen2021evaluating\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"austin2021program\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"qwen2025coder\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 39, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"roziere2024code\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 39, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepseek2024coder\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 39, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hu2022lora\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 40, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"tian2024debugbench\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 184, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"chen2025tracepile\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wang2025dcsh\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"ni2024next\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"eguchi2025etcot\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ferrando2025execute\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"liu2023codeexecution\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"gu2024cruxeval\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"xu2025cruxevalx\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ding2024traced\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"steenhoek2024deepdfa\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"yadavally2024slicing\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"tian2020patchcorrectness\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"hoang2020cc2vec\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zhou2024llm4patch\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"appt2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"barr2015oracle\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"widyasari2024fusefl\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"foster2025mutation\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"papadakis2019mutation\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"abreu2007accuracy\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"jones2002visualization\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wong2014dstar\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kang2024autofl\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"qin2024agentfl\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"huang2026tracecoder\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 19, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wang2025inspectcoder\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 19, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"bouzenia2025repairagent\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 19, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"xia2024agentless\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 19, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"yang2024sweagent\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 19, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wang2025openhands\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 19, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"jimenez2024swebench\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 19, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"jiang2023llmlingua\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"li2023selectivecontext\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"haque2025traces\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"guo2017calibration\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 24, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kadavath2022language\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 24, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"geng2024calibration\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 24, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"spiess2025calibration\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 24, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kamei2013large\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 24, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hoang2019deepjit\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 24, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"pornprasit2021jitline\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 24, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"bengio2009curriculum\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"swayamdipta2020cartography\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"sachdeva2024dataefficient\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"xie2023doremi\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hu2022lora\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 38, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"spiess2025calibration\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 520, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"tian2024debugbench\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 600, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"yang2024generalization\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 639, \\\"command\\\": \\\"citep\\\"}], \\\"online_verification\\\": [{\\\"key\\\": \\\"chen2025tracepile\\\", \\\"title\\\": \\\"Chain of Execution Supervision Promotes General Reasoning in Large Language Models\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.452, \\\"matched_title\\\": \\\"A Survey of Large Language Models\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.45 below threshold 0.82\\\"}, {\\\"key\\\": \\\"ding2024traced\\\", \\\"title\\\": \\\"TRACED: Execution-aware Pre-training for Source Code\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"TRACED: Execution-aware Pre-training for Source Code\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"chen2021evaluating\\\", \\\"title\\\": \\\"Evaluating Large Language Models Trained on Code\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Evaluating Large Language Models Trained on Code\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"austin2021program\\\", \\\"title\\\": \\\"Program Synthesis with Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Program Synthesis with Large Language Models\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"gu2024cruxeval\\\", \\\"title\\\": \\\"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"hu2022lora\\\", \\\"title\\\": \\\"LoRA: Low-Rank Adaptation of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"LoRA: Low-Rank Adaptation of Large Language Models\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"qwen2025coder\\\", \\\"title\\\": \\\"Qwen2.5-Coder Technical Report\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Qwen2.5-Coder Technical Report\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=team vs api=hui\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"deepseek2024coder\\\", \\\"title\\\": \\\"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wang2025dcsh\\\", \\\"title\\\": \\\"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ni2024next\\\", \\\"title\\\": \\\"NExT: Teaching Large Language Models to Reason about Code Execution\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"NExT: Teaching Large Language Models to Reason about Code Execution\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"eguchi2025etcot\\\", \\\"title\\\": \\\"Making LLMs Program Interpreters via Execution Trace Chain of Thought\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.203, \\\"matched_title\\\": \\\"From ChatGPT to ThreatGPT: Impact of Generative AI in Cybersecurity and Privacy\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.20 below threshold 0.82\\\"}, {\\\"key\\\": \\\"ferrando2025execute\\\", \\\"title\\\": \\\"What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.223, \\\"matched_title\\\": \\\"From ChatGPT to ThreatGPT: Impact of Generative AI in Cybersecurity and Privacy\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.22 below threshold 0.82\\\"}, {\\\"key\\\": \\\"xu2025cruxevalx\\\", \\\"title\\\": \\\"CRUXEval-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"CRUXEVAL-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"appt2024\\\", \\\"title\\\": \\\"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"APPT: Boosting Automated Patch Correctness Prediction via Fine-Tuning Pre-Trained Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhou2024llm4patch\\\", \\\"title\\\": \\\"Leveraging Large Language Model for Automatic Patch Correctness Assessment\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Leveraging Large Language Model for Automatic Patch Correctness Assessment\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"spiess2025calibration\\\", \\\"title\\\": \\\"Calibration and Correctness of Language Models for Code\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Calibration and Correctness of Language Models for Code\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=spiess vs api=spieß\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"foster2025mutation\\\", \\\"title\\\": \\\"Mutation-Guided LLM-based Test Generation at Meta\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Mutation-Guided LLM-based Test Generation at Meta\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=foster vs api=harman\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"widyasari2024fusefl\\\", \\\"title\\\": \\\"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"huang2026tracecoder\\\", \\\"title\\\": \\\"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wang2025inspectcoder\\\", \\\"title\\\": \\\"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"InspectCoder: Dynamic Analysis-Enabled Self Repair through interactive LLM-Debugger Collaboration\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"haque2025traces\\\", \\\"title\\\": \\\"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"yang2024generalization\\\", \\\"title\\\": \\\"Unveiling the Generalization Power of Fine-Tuned Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Unveiling the Generalization Power of Fine-Tuned Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"tian2024debugbench\\\", \\\"title\\\": \\\"DebugBench: Evaluating Debugging Capability of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DebugBench: Evaluating Debugging Capability of Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"abreu2007accuracy\\\", \\\"title\\\": \\\"On the Accuracy of Spectrum-based Fault Localization\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"On the Accuracy of Spectrum-based Fault Localization\\\", \\\"matched_year\\\": \\\"2007\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"jones2002visualization\\\", \\\"title\\\": \\\"Visualization of Test Information to Assist Fault Localization\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Visualization of test information to assist fault localization\\\", \\\"matched_year\\\": \\\"2002\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wong2014dstar\\\", \\\"title\\\": \\\"DStar: An Effective Spectrum-Based Fault Localization Technique\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.561, \\\"matched_title\\\": \\\"MSFL: A Model for Fault Localization Using Mutation-Spectra Technique\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.56 below threshold 0.82\\\"}, {\\\"key\\\": \\\"kang2024autofl\\\", \\\"title\\\": \\\"AutoFL: Automated Fault Localization via Large Language Models\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.45, \\\"matched_title\\\": \\\"A Survey on Large Language Models for Software Engineering\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.45 below threshold 0.82\\\"}, {\\\"key\\\": \\\"qin2024agentfl\\\", \\\"title\\\": \\\"AgentFL: Scaling LLM-based Fault Localization to Project-Level Context\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"AgentFL: Scaling LLM-based Fault Localization to Project-Level Context\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"roziere2024code\\\", \\\"title\\\": \\\"Code Llama: Open Foundation Models for Code\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Code Llama: Open Foundation Models for Code\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=rozi\\\\\\\\`ere vs api=rozière\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"steenhoek2024deepdfa\\\", \\\"title\\\": \\\"Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"jimenez2024swebench\\\", \\\"title\\\": \\\"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=jimenez vs api=jimenez-gomez\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kadavath2022language\\\", \\\"title\\\": \\\"Language Models (Mostly) Know What They Know\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Language Models (Mostly) Know What They Know\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kamei2013large\\\", \\\"title\\\": \\\"A Large-Scale Empirical Study of Just-in-Time Quality Assurance\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A large-scale empirical study of just-in-time quality assurance\\\", \\\"matched_year\\\": \\\"2012\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"bouzenia2025repairagent\\\", \\\"title\\\": \\\"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"liu2023codeexecution\\\", \\\"title\\\": \\\"Code Execution with Pre-trained Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Code Execution with Pre-trained Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"tian2020patchcorrectness\\\", \\\"title\\\": \\\"Evaluating Representation Learning of Code Changes for Predicting Patch Correctness in Program Repair\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Evaluating representation learning of code changes for predicting patch correctness in program repair\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"yadavally2024slicing\\\", \\\"title\\\": \\\"A Learning-Based Approach to Static Program Slicing\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Learning-Based Approach to Static Program Slicing\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"xia2024agentless\\\", \\\"title\\\": \\\"Agentless: Demystifying LLM-based Software Engineering Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Agentless: Demystifying LLM-based Software Engineering Agents\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"guo2017calibration\\\", \\\"title\\\": \\\"On Calibration of Modern Neural Networks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"On Calibration of Modern Neural Networks\\\", \\\"matched_year\\\": \\\"2017\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"geng2024calibration\\\", \\\"title\\\": \\\"A Survey of Confidence Estimation and Calibration in Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Survey of Confidence Estimation and Calibration in Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"hoang2019deepjit\\\", \\\"title\\\": \\\"DeepJIT: An End-to-End Deep Learning Framework for Just-in-Time Defect Prediction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DeepJIT: An End-to-End Deep Learning Framework for Just-in-Time Defect Prediction\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"hoang2020cc2vec\\\", \\\"title\\\": \\\"CC2Vec: Distributed Representations of Code Changes\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"CC2Vec: Distributed Representations of Code Changes\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=hoang vs api=thong\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"pornprasit2021jitline\\\", \\\"title\\\": \\\"JITLine: A Simpler, Better, Faster, Finer-grained Just-In-Time Defect Prediction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"JITLine: A Simpler, Better, Faster, Finer-grained Just-In-Time Defect Prediction\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"bengio2009curriculum\\\", \\\"title\\\": \\\"Curriculum Learning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Curriculum learning\\\", \\\"matched_year\\\": \\\"2009\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"sachdeva2024dataefficient\\\", \\\"title\\\": \\\"How to Train Data-Efficient LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"How to Train Data-Efficient LLMs\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"swayamdipta2020cartography\\\", \\\"title\\\": \\\"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"xie2023doremi\\\", \\\"title\\\": \\\"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"yang2024sweagent\\\", \\\"title\\\": \\\"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wang2025openhands\\\", \\\"title\\\": \\\"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"jiang2023llmlingua\\\", \\\"title\\\": \\\"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2023selectivecontext\\\", \\\"title\\\": \\\"Compressing Context to Enhance Inference Efficiency of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Compressing Context to Enhance Inference Efficiency of Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"barr2015oracle\\\", \\\"title\\\": \\\"The Oracle Problem in Software Testing: A Survey\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"The Oracle Problem in Software Testing: A Survey\\\", \\\"matched_year\\\": \\\"2014\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"papadakis2019mutation\\\", \\\"title\\\": \\\"Mutation Testing Advances: An Analysis and Survey\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Mutation Testing Advances: An Analysis and Survey\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 53, \"total_citations\": 68, \"unique_cited_keys\": 53, \"orphan_bib\": 0, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 42, \"online_not_found\": 5, \"online_mismatch\": 6}, \"cross_check\": {\"orphan_bib\": [], \"missing_bib\": [], \"orphan_count\": 0, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"chen2025tracepile\", \"type\": \"inproceedings\", \"title\": \"Chain of Execution Supervision Promotes General Reasoning in Large Language Models\", \"authors\": \"Nuo Chen and Zehua Li and Keqin Bao and Junyang Lin and Dayiheng Liu\", \"year\": \"2025\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"ding2024traced\", \"type\": \"inproceedings\", \"title\": \"TRACED: Execution-aware Pre-training for Source Code\", \"authors\": \"Yangruibo Ding and Ben Steenhoek and Kexin Pei and Gail Kaiser and Wei Le and Ba...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 46th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"chen2021evaluating\", \"type\": \"article\", \"title\": \"Evaluating Large Language Models Trained on Code\", \"authors\": \"Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henriqu...\", \"year\": \"2021\", \"venue\": \"arXiv preprint arXiv:2107.03374\"}, {\"key\": \"austin2021program\", \"type\": \"article\", \"title\": \"Program Synthesis with Large Language Models\", \"authors\": \"Austin, Jacob and Odena, Augustus and Nye, Maxwell and Bosma, Maarten and Michal...\", \"year\": \"2021\", \"venue\": \"arXiv preprint arXiv:2108.07732\"}, {\"key\": \"gu2024cruxeval\", \"type\": \"inproceedings\", \"title\": \"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\", \"authors\": \"Alex Gu and Baptiste Rozi\\\\`ere and Hugh Leather and Armando Solar-Lezama and Gab...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning (ICML)\"}, {\"key\": \"hu2022lora\", \"type\": \"inproceedings\", \"title\": \"LoRA: Low-Rank Adaptation of Large Language Models\", \"authors\": \"Edward J. Hu and Yelong Shen and Phillip Wallis and Zeyuan Allen-Zhu and Yuanzhi...\", \"year\": \"2022\", \"venue\": \"Proceedings of the 10th International Conference on Learning Representations (IC...\"}, {\"key\": \"qwen2025coder\", \"type\": \"article\", \"title\": \"Qwen2.5-Coder Technical Report\", \"authors\": \"Qwen Team\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2409.12186\"}, {\"key\": \"deepseek2024coder\", \"type\": \"article\", \"title\": \"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\", \"authors\": \"Daya Guo and Qihao Zhu and Dejian Yang and Zhenda Xie and Kai Dong and Wentao Zh...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2401.14196\"}, {\"key\": \"wang2025dcsh\", \"type\": \"inproceedings\", \"title\": \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\", \"authors\": \"Jian Wang and Xiaofei Xie and Qiang Hu and Shangqing Liu and Yi Li\", \"year\": \"2025\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2025\"}, {\"key\": \"ni2024next\", \"type\": \"inproceedings\", \"title\": \"NExT: Teaching Large Language Models to Reason about Code Execution\", \"authors\": \"Ansong Ni and Miltiadis Allamanis and Arman Cohan and Yinlin Deng and Kensen Shi...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning (ICML)\"}, {\"key\": \"eguchi2025etcot\", \"type\": \"inproceedings\", \"title\": \"Making LLMs Program Interpreters via Execution Trace Chain of Thought\", \"authors\": \"Koshi Eguchi and Takuya Akiba\", \"year\": \"2025\", \"venue\": \"ICML 2025 Workshop on Programmatic Representations for Agent Learning (PRAL)\"}, {\"key\": \"ferrando2025execute\", \"type\": \"article\", \"title\": \"What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces\", \"authors\": \"Jordi Armengol-Estape and Quentin Carbonneaux and Tianjun Zhang and Aram H. Mark...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2503.05703\"}, {\"key\": \"xu2025cruxevalx\", \"type\": \"inproceedings\", \"title\": \"CRUXEval-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\", \"authors\": \"Ruiyang Xu and others\", \"year\": \"2025\", \"venue\": \"Proceedings of the 63rd Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"appt2024\", \"type\": \"article\", \"title\": \"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\", \"authors\": \"Quanjun Zhang and Chunrong Fang and Weisong Sun and Yan Liu and Tieke He and Xia...\", \"year\": \"2024\", \"venue\": \"IEEE Transactions on Software Engineering\"}, {\"key\": \"zhou2024llm4patch\", \"type\": \"article\", \"title\": \"Leveraging Large Language Model for Automatic Patch Correctness Assessment\", \"authors\": \"Xin Zhou and Bowen Xu and Kisub Kim and DongGyun Han and Hung Huu Nguyen and Tha...\", \"year\": \"2024\", \"venue\": \"IEEE Transactions on Software Engineering\"}, {\"key\": \"spiess2025calibration\", \"type\": \"inproceedings\", \"title\": \"Calibration and Correctness of Language Models for Code\", \"authors\": \"Claudio Spiess and David Gros and others\", \"year\": \"2025\", \"venue\": \"Proceedings of the 47th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"foster2025mutation\", \"type\": \"inproceedings\", \"title\": \"Mutation-Guided LLM-based Test Generation at Meta\", \"authors\": \"Christopher Foster and Abhishek Gulati and Mark Harman and Inna Harper and Ke Ma...\", \"year\": \"2025\", \"venue\": \"Proceedings of the ACM International Conference on the Foundations of Software E...\"}, {\"key\": \"widyasari2024fusefl\", \"type\": \"inproceedings\", \"title\": \"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\", \"authors\": \"Ratnadira Widyasari and Jia Wei Ang and Truong Giang Nguyen and Neil Sharma and ...\", \"year\": \"2024\", \"venue\": \"Proceedings of the IEEE International Conference on Software Analysis, Evolution...\"}, {\"key\": \"huang2026tracecoder\", \"type\": \"inproceedings\", \"title\": \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\", \"authors\": \"Jiangping Huang and Wenguang Ye and Weisong Sun and Jian Zhang and Mingyue Zhang...\", \"year\": \"2026\", \"venue\": \"Proceedings of the 48th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"wang2025inspectcoder\", \"type\": \"article\", \"title\": \"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\", \"authors\": \"Yunkun Wang and Yue Zhang and Guochang Li and Chen Zhi and Binhua Li and Fei Hua...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2510.18327\"}, {\"key\": \"haque2025traces\", \"type\": \"inproceedings\", \"title\": \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\", \"authors\": \"Mirazul Haque and Petr Babkin and Farima Farmahinifarahani and Manuela Veloso\", \"year\": \"2025\", \"venue\": \"KnowledgeNLP Workshop at ACL 2025\"}, {\"key\": \"yang2024generalization\", \"type\": \"inproceedings\", \"title\": \"Unveiling the Generalization Power of Fine-Tuned Large Language Models\", \"authors\": \"Haoran Yang and Yumeng Zhang and Jiaqi Xu and Hongyuan Lu and Pheng Ann Heng and...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 2024 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"tian2024debugbench\", \"type\": \"inproceedings\", \"title\": \"DebugBench: Evaluating Debugging Capability of Large Language Models\", \"authors\": \"Runchu Tian and Yining Ye and Yujia Qin and Xin Cong and Yankai Lin and Yinxu Pa...\", \"year\": \"2024\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2024\"}, {\"key\": \"abreu2007accuracy\", \"type\": \"article\", \"title\": \"On the Accuracy of Spectrum-based Fault Localization\", \"authors\": \"Rui Abreu and Peter Zoeteweij and Arjan J.C. van Gemund\", \"year\": \"2007\", \"venue\": \"Testing: Academic and Industrial Conference Practice and Research Techniques (MU...\"}, {\"key\": \"jones2002visualization\", \"type\": \"inproceedings\", \"title\": \"Visualization of Test Information to Assist Fault Localization\", \"authors\": \"James A. Jones and Mary Jean Harrold and John Stasko\", \"year\": \"2002\", \"venue\": \"Proceedings of the 24th International Conference on Software Engineering (ICSE)\"}, {\"key\": \"wong2014dstar\", \"type\": \"article\", \"title\": \"DStar: An Effective Spectrum-Based Fault Localization Technique\", \"authors\": \"W. Eric Wong and Vidroha Debroy and Ruizhi Gao and Yihao Li\", \"year\": \"2014\", \"venue\": \"Journal of Systems and Software\"}, {\"key\": \"kang2024autofl\", \"type\": \"inproceedings\", \"title\": \"AutoFL: Automated Fault Localization via Large Language Models\", \"authors\": \"Sungmin Kang and Gabin An and Shin Yoo\", \"year\": \"2024\", \"venue\": \"Proceedings of the 46th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"qin2024agentfl\", \"type\": \"inproceedings\", \"title\": \"AgentFL: Scaling LLM-based Fault Localization to Project-Level Context\", \"authors\": \"Yihao Qin and Shangwen Wang and Yiling Lou and Jinhao Dong and Kaixin Wang and X...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 39th IEEE/ACM International Conference on Automated Software ...\"}, {\"key\": \"roziere2024code\", \"type\": \"article\", \"title\": \"Code Llama: Open Foundation Models for Code\", \"authors\": \"Baptiste Rozi\\\\`ere and Jonas Gehring and Fabian Gloeckle and Sten Sootla and Ita...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2308.12950\"}, {\"key\": \"steenhoek2024deepdfa\", \"type\": \"inproceedings\", \"title\": \"Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection\", \"authors\": \"Benjamin Steenhoek and Hongyang Gao and Wei Le\", \"year\": \"2024\", \"venue\": \"Proceedings of the 46th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"jimenez2024swebench\", \"type\": \"inproceedings\", \"title\": \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\", \"authors\": \"Carlos E. Jimenez and John Yang and Alexander Wettig and Shunyu Yao and Kexin Pe...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 12th International Conference on Learning Representations (IC...\"}, {\"key\": \"kadavath2022language\", \"type\": \"article\", \"title\": \"Language Models (Mostly) Know What They Know\", \"authors\": \"Saurav Kadavath and Tom Conerly and Amanda Askell and Tom Henighan and Dawn Drai...\", \"year\": \"2022\", \"venue\": \"arXiv preprint arXiv:2207.05221\"}, {\"key\": \"kamei2013large\", \"type\": \"article\", \"title\": \"A Large-Scale Empirical Study of Just-in-Time Quality Assurance\", \"authors\": \"Yasutaka Kamei and Emad Shihab and Bram Adams and Ahmed E. Hassan and Audris Moc...\", \"year\": \"2013\", \"venue\": \"IEEE Transactions on Software Engineering\"}, {\"key\": \"bouzenia2025repairagent\", \"type\": \"inproceedings\", \"title\": \"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\", \"authors\": \"Islem Bouzenia and Premkumar Devanbu and Michael Pradel\", \"year\": \"2025\", \"venue\": \"Proceedings of the 47th IEEE/ACM International Conference on Software Engineerin...\"}, {\"key\": \"liu2023codeexecution\", \"type\": \"inproceedings\", \"title\": \"Code Execution with Pre-trained Language Models\", \"authors\": \"Chenxiao Liu and Shuai Lu and Weizhu Chen and Daxin Jiang and Alexey Svyatkovski...\", \"year\": \"2023\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2023\"}, {\"key\": \"tian2020patchcorrectness\", \"type\": \"inproceedings\", \"title\": \"Evaluating Representation Learning of Code Changes for Predicting Patch Correctness in Program Repair\", \"authors\": \"Haoye Tian and Kui Liu and Abdoul Kader Kabor\\\\'e and Anil Koyuncu and Li Li and ...\", \"year\": \"2020\", \"venue\": \"Proceedings of the 35th IEEE/ACM International Conference on Automated Software ...\"}, {\"key\": \"yadavally2024slicing\", \"type\": \"inproceedings\", \"title\": \"A Learning-Based Approach to Static Program Slicing\", \"authors\": \"Aashish Yadavally and Yi Li and Shaohua Wang and Tien N. Nguyen\", \"year\": \"2024\", \"venue\": \"Proceedings of the ACM on Programming Languages (OOPSLA)\"}, {\"key\": \"xia2024agentless\", \"type\": \"article\", \"title\": \"Agentless: Demystifying LLM-based Software Engineering Agents\", \"authors\": \"Chunqiu Steven Xia and Yinlin Deng and Soren Dunn and Lingming Zhang\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2407.01489\"}, {\"key\": \"guo2017calibration\", \"type\": \"inproceedings\", \"title\": \"On Calibration of Modern Neural Networks\", \"authors\": \"Chuan Guo and Geoff Pleiss and Yu Sun and Kilian Q. Weinberger\", \"year\": \"2017\", \"venue\": \"Proceedings of the 34th International Conference on Machine Learning (ICML)\"}, {\"key\": \"geng2024calibration\", \"type\": \"inproceedings\", \"title\": \"A Survey of Confidence Estimation and Calibration in Large Language Models\", \"authors\": \"Jiahui Geng and Fengyu Cai and Yuxia Wang and Heinz Koeppl and Preslav Nakov and...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 2024 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"hoang2019deepjit\", \"type\": \"inproceedings\", \"title\": \"DeepJIT: An End-to-End Deep Learning Framework for Just-in-Time Defect Prediction\", \"authors\": \"Thong Hoang and Hoa Khanh Dam and Yasutaka Kamei and David Lo and Naoyasu Ubayas...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 16th International Conference on Mining Software Repositories...\"}, {\"key\": \"hoang2020cc2vec\", \"type\": \"inproceedings\", \"title\": \"CC2Vec: Distributed Representations of Code Changes\", \"authors\": \"Thong Hoang and Hong Jin Kang and Julia Lawall and David Lo\", \"year\": \"2020\", \"venue\": \"Proceedings of the ACM/IEEE 42nd International Conference on Software Engineerin...\"}, {\"key\": \"pornprasit2021jitline\", \"type\": \"inproceedings\", \"title\": \"JITLine: A Simpler, Better, Faster, Finer-grained Just-In-Time Defect Prediction\", \"authors\": \"Chanathip Pornprasit and Chakkrit Tantithamthavorn\", \"year\": \"2021\", \"venue\": \"Proceedings of the 18th International Conference on Mining Software Repositories...\"}, {\"key\": \"bengio2009curriculum\", \"type\": \"inproceedings\", \"title\": \"Curriculum Learning\", \"authors\": \"Yoshua Bengio and J\\\\'er\\\\^ome Louradour and Ronan Collobert and Jason Weston\", \"year\": \"2009\", \"venue\": \"Proceedings of the 26th Annual International Conference on Machine Learning (ICM...\"}, {\"key\": \"sachdeva2024dataefficient\", \"type\": \"article\", \"title\": \"How to Train Data-Efficient LLMs\", \"authors\": \"Noveen Sachdeva and Benjamin Coleman and Wang-Cheng Kang and Jianmo Ni and Licha...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2402.09668\"}, {\"key\": \"swayamdipta2020cartography\", \"type\": \"inproceedings\", \"title\": \"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\", \"authors\": \"Swabha Swayamdipta and Roy Schwartz and Nicholas Lourie and Yizhong Wang and Han...\", \"year\": \"2020\", \"venue\": \"Proceedings of the 2020 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"xie2023doremi\", \"type\": \"inproceedings\", \"title\": \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\", \"authors\": \"Sang Michael Xie and Hieu Pham and Xuanyi Dong and Nan Du and Hanxiao Liu and Yi...\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"yang2024sweagent\", \"type\": \"inproceedings\", \"title\": \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\", \"authors\": \"John Yang and Carlos E. Jimenez and Alexander Wettig and Kilian Lieret and Shuny...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"wang2025openhands\", \"type\": \"inproceedings\", \"title\": \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\", \"authors\": \"Xingyao Wang and Boxuan Li and Yufan Song and Frank F. Xu and Xiangru Tang and M...\", \"year\": \"2025\", \"venue\": \"Proceedings of the 13th International Conference on Learning Representations (IC...\"}, {\"key\": \"jiang2023llmlingua\", \"type\": \"inproceedings\", \"title\": \"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\", \"authors\": \"Huiqiang Jiang and Qianhui Wu and Chin-Yew Lin and Yuqing Yang and Lili Qiu\", \"year\": \"2023\", \"venue\": \"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"li2023selectivecontext\", \"type\": \"inproceedings\", \"title\": \"Compressing Context to Enhance Inference Efficiency of Large Language Models\", \"authors\": \"Yucheng Li and Bo Dong and Frank Guerin and Chenghua Lin\", \"year\": \"2023\", \"venue\": \"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"barr2015oracle\", \"type\": \"article\", \"title\": \"The Oracle Problem in Software Testing: A Survey\", \"authors\": \"Earl T. Barr and Mark Harman and Phil McMinn and Muzammil Shahbaz and Shin Yoo\", \"year\": \"2015\", \"venue\": \"IEEE Transactions on Software Engineering\"}, {\"key\": \"papadakis2019mutation\", \"type\": \"article\", \"title\": \"Mutation Testing Advances: An Analysis and Survey\", \"authors\": \"Mike Papadakis and Marinos Kintis and Jie Zhang and Yue Jia and Yves Le Traon an...\", \"year\": \"2019\", \"venue\": \"Advances in Computers\"}], \"tex_citations\": [{\"key\": \"chen2025tracepile\", \"file\": \"introduction.tex\", \"line\": 3, \"command\": \"citep\"}, {\"key\": \"ding2024traced\", \"file\": \"introduction.tex\", \"line\": 3, \"command\": \"citep\"}, {\"key\": \"wang2025dcsh\", \"file\": \"introduction.tex\", \"line\": 3, \"command\": \"citep\"}, {\"key\": \"ni2024next\", \"file\": \"introduction.tex\", \"line\": 3, \"command\": \"citep\"}, {\"key\": \"wang2025dcsh\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"chen2021evaluating\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"austin2021program\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"qwen2025coder\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"roziere2024code\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"deepseek2024coder\", \"file\": \"introduction.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"chen2025tracepile\", \"file\": \"method.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"gu2024cruxeval\", \"file\": \"method.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"chen2021evaluating\", \"file\": \"method.tex\", \"line\": 13, \"command\": \"citep\"}, {\"key\": \"austin2021program\", \"file\": \"method.tex\", \"line\": 13, \"command\": \"citep\"}, {\"key\": \"qwen2025coder\", \"file\": \"method.tex\", \"line\": 39, \"command\": \"citep\"}, {\"key\": \"roziere2024code\", \"file\": \"method.tex\", \"line\": 39, \"command\": \"citep\"}, {\"key\": \"deepseek2024coder\", \"file\": \"method.tex\", \"line\": 39, \"command\": \"citep\"}, {\"key\": \"hu2022lora\", \"file\": \"method.tex\", \"line\": 40, \"command\": \"citep\"}, {\"key\": \"tian2024debugbench\", \"file\": \"experiments.tex\", \"line\": 184, \"command\": \"citep\"}, {\"key\": \"chen2025tracepile\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"citep\"}, {\"key\": \"wang2025dcsh\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"citet\"}, {\"key\": \"ni2024next\", \"file\": \"related_work.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"eguchi2025etcot\", \"file\": \"related_work.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"ferrando2025execute\", \"file\": \"related_work.tex\", \"line\": 5, \"command\": \"citet\"}, {\"key\": \"liu2023codeexecution\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citet\"}, {\"key\": \"gu2024cruxeval\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"xu2025cruxevalx\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"ding2024traced\", \"file\": \"related_work.tex\", \"line\": 10, \"command\": \"citep\"}, {\"key\": \"steenhoek2024deepdfa\", \"file\": \"related_work.tex\", \"line\": 10, \"command\": \"citep\"}, {\"key\": \"yadavally2024slicing\", \"file\": \"related_work.tex\", \"line\": 10, \"command\": \"citep\"}, {\"key\": \"tian2020patchcorrectness\", \"file\": \"related_work.tex\", \"line\": 11, \"command\": \"citet\"}, {\"key\": \"hoang2020cc2vec\", \"file\": \"related_work.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"zhou2024llm4patch\", \"file\": \"related_work.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"appt2024\", \"file\": \"related_work.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"barr2015oracle\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"widyasari2024fusefl\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"foster2025mutation\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citet\"}, {\"key\": \"papadakis2019mutation\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"abreu2007accuracy\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"jones2002visualization\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"wong2014dstar\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"kang2024autofl\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"qin2024agentfl\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"citep\"}, {\"key\": \"huang2026tracecoder\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"wang2025inspectcoder\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"bouzenia2025repairagent\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"xia2024agentless\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"yang2024sweagent\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"wang2025openhands\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"jimenez2024swebench\", \"file\": \"related_work.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"jiang2023llmlingua\", \"file\": \"related_work.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"li2023selectivecontext\", \"file\": \"related_work.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"haque2025traces\", \"file\": \"related_work.tex\", \"line\": 20, \"command\": \"citet\"}, {\"key\": \"guo2017calibration\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"kadavath2022language\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"geng2024calibration\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"spiess2025calibration\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"kamei2013large\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"hoang2019deepjit\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"pornprasit2021jitline\", \"file\": \"related_work.tex\", \"line\": 24, \"command\": \"citep\"}, {\"key\": \"bengio2009curriculum\", \"file\": \"related_work.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"swayamdipta2020cartography\", \"file\": \"related_work.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"sachdeva2024dataefficient\", \"file\": \"related_work.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"xie2023doremi\", \"file\": \"related_work.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"hu2022lora\", \"file\": \"appendix.tex\", \"line\": 38, \"command\": \"citep\"}, {\"key\": \"spiess2025calibration\", \"file\": \"appendix.tex\", \"line\": 520, \"command\": \"citep\"}, {\"key\": \"tian2024debugbench\", \"file\": \"appendix.tex\", \"line\": 600, \"command\": \"citep\"}, {\"key\": \"yang2024generalization\", \"file\": \"appendix.tex\", \"line\": 639, \"command\": \"citep\"}], \"online_verification\": [{\"key\": \"chen2025tracepile\", \"title\": \"Chain of Execution Supervision Promotes General Reasoning in Large Language Models\", \"status\": \"not_found\", \"confidence\": 0.452, \"matched_title\": \"A Survey of Large Language Models\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.45 below threshold 0.82\"}, {\"key\": \"ding2024traced\", \"title\": \"TRACED: Execution-aware Pre-training for Source Code\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"TRACED: Execution-aware Pre-training for Source Code\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"chen2021evaluating\", \"title\": \"Evaluating Large Language Models Trained on Code\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Evaluating Large Language Models Trained on Code\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"austin2021program\", \"title\": \"Program Synthesis with Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Program Synthesis with Large Language Models\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"gu2024cruxeval\", \"title\": \"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"CRUXEval: A Benchmark for Code Reasoning, Understanding and Execution\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hu2022lora\", \"title\": \"LoRA: Low-Rank Adaptation of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"LoRA: Low-Rank Adaptation of Large Language Models\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"qwen2025coder\", \"title\": \"Qwen2.5-Coder Technical Report\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Qwen2.5-Coder Technical Report\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=team vs api=hui\"], \"note\": \"\"}, {\"key\": \"deepseek2024coder\", \"title\": \"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2025dcsh\", \"title\": \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ni2024next\", \"title\": \"NExT: Teaching Large Language Models to Reason about Code Execution\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"NExT: Teaching Large Language Models to Reason about Code Execution\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"eguchi2025etcot\", \"title\": \"Making LLMs Program Interpreters via Execution Trace Chain of Thought\", \"status\": \"not_found\", \"confidence\": 0.203, \"matched_title\": \"From ChatGPT to ThreatGPT: Impact of Generative AI in Cybersecurity and Privacy\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.20 below threshold 0.82\"}, {\"key\": \"ferrando2025execute\", \"title\": \"What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces\", \"status\": \"not_found\", \"confidence\": 0.223, \"matched_title\": \"From ChatGPT to ThreatGPT: Impact of Generative AI in Cybersecurity and Privacy\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.22 below threshold 0.82\"}, {\"key\": \"xu2025cruxevalx\", \"title\": \"CRUXEval-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"CRUXEVAL-X: A Benchmark for Multilingual Code Reasoning, Understanding and Execution\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"appt2024\", \"title\": \"APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"APPT: Boosting Automated Patch Correctness Prediction via Fine-Tuning Pre-Trained Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhou2024llm4patch\", \"title\": \"Leveraging Large Language Model for Automatic Patch Correctness Assessment\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Leveraging Large Language Model for Automatic Patch Correctness Assessment\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"spiess2025calibration\", \"title\": \"Calibration and Correctness of Language Models for Code\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Calibration and Correctness of Language Models for Code\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=spiess vs api=spieß\"], \"note\": \"\"}, {\"key\": \"foster2025mutation\", \"title\": \"Mutation-Guided LLM-based Test Generation at Meta\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Mutation-Guided LLM-based Test Generation at Meta\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=foster vs api=harman\"], \"note\": \"\"}, {\"key\": \"widyasari2024fusefl\", \"title\": \"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"huang2026tracecoder\", \"title\": \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2025inspectcoder\", \"title\": \"InspectCoder: Dynamic Analysis-Enabled Self Repair through Interactive LLM-Debugger Collaboration\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"InspectCoder: Dynamic Analysis-Enabled Self Repair through interactive LLM-Debugger Collaboration\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"haque2025traces\", \"title\": \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yang2024generalization\", \"title\": \"Unveiling the Generalization Power of Fine-Tuned Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Unveiling the Generalization Power of Fine-Tuned Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"tian2024debugbench\", \"title\": \"DebugBench: Evaluating Debugging Capability of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DebugBench: Evaluating Debugging Capability of Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"abreu2007accuracy\", \"title\": \"On the Accuracy of Spectrum-based Fault Localization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"On the Accuracy of Spectrum-based Fault Localization\", \"matched_year\": \"2007\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"jones2002visualization\", \"title\": \"Visualization of Test Information to Assist Fault Localization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Visualization of test information to assist fault localization\", \"matched_year\": \"2002\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wong2014dstar\", \"title\": \"DStar: An Effective Spectrum-Based Fault Localization Technique\", \"status\": \"not_found\", \"confidence\": 0.561, \"matched_title\": \"MSFL: A Model for Fault Localization Using Mutation-Spectra Technique\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.56 below threshold 0.82\"}, {\"key\": \"kang2024autofl\", \"title\": \"AutoFL: Automated Fault Localization via Large Language Models\", \"status\": \"not_found\", \"confidence\": 0.45, \"matched_title\": \"A Survey on Large Language Models for Software Engineering\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.45 below threshold 0.82\"}, {\"key\": \"qin2024agentfl\", \"title\": \"AgentFL: Scaling LLM-based Fault Localization to Project-Level Context\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"AgentFL: Scaling LLM-based Fault Localization to Project-Level Context\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"roziere2024code\", \"title\": \"Code Llama: Open Foundation Models for Code\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Code Llama: Open Foundation Models for Code\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=rozi\\\\`ere vs api=rozière\"], \"note\": \"\"}, {\"key\": \"steenhoek2024deepdfa\", \"title\": \"Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"jimenez2024swebench\", \"title\": \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=jimenez vs api=jimenez-gomez\"], \"note\": \"\"}, {\"key\": \"kadavath2022language\", \"title\": \"Language Models (Mostly) Know What They Know\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Language Models (Mostly) Know What They Know\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kamei2013large\", \"title\": \"A Large-Scale Empirical Study of Just-in-Time Quality Assurance\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A large-scale empirical study of just-in-time quality assurance\", \"matched_year\": \"2012\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"bouzenia2025repairagent\", \"title\": \"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"liu2023codeexecution\", \"title\": \"Code Execution with Pre-trained Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Code Execution with Pre-trained Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"tian2020patchcorrectness\", \"title\": \"Evaluating Representation Learning of Code Changes for Predicting Patch Correctness in Program Repair\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Evaluating representation learning of code changes for predicting patch correctness in program repair\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yadavally2024slicing\", \"title\": \"A Learning-Based Approach to Static Program Slicing\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Learning-Based Approach to Static Program Slicing\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"xia2024agentless\", \"title\": \"Agentless: Demystifying LLM-based Software Engineering Agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Agentless: Demystifying LLM-based Software Engineering Agents\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"guo2017calibration\", \"title\": \"On Calibration of Modern Neural Networks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"On Calibration of Modern Neural Networks\", \"matched_year\": \"2017\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"geng2024calibration\", \"title\": \"A Survey of Confidence Estimation and Calibration in Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Survey of Confidence Estimation and Calibration in Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hoang2019deepjit\", \"title\": \"DeepJIT: An End-to-End Deep Learning Framework for Just-in-Time Defect Prediction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DeepJIT: An End-to-End Deep Learning Framework for Just-in-Time Defect Prediction\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hoang2020cc2vec\", \"title\": \"CC2Vec: Distributed Representations of Code Changes\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"CC2Vec: Distributed Representations of Code Changes\", \"matched_year\": \"2020\", \"mismatch_fields\": [\"first_author: bib=hoang vs api=thong\"], \"note\": \"\"}, {\"key\": \"pornprasit2021jitline\", \"title\": \"JITLine: A Simpler, Better, Faster, Finer-grained Just-In-Time Defect Prediction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"JITLine: A Simpler, Better, Faster, Finer-grained Just-In-Time Defect Prediction\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"bengio2009curriculum\", \"title\": \"Curriculum Learning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Curriculum learning\", \"matched_year\": \"2009\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"sachdeva2024dataefficient\", \"title\": \"How to Train Data-Efficient LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"How to Train Data-Efficient LLMs\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"swayamdipta2020cartography\", \"title\": \"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"xie2023doremi\", \"title\": \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yang2024sweagent\", \"title\": \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2025openhands\", \"title\": \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"jiang2023llmlingua\", \"title\": \"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2023selectivecontext\", \"title\": \"Compressing Context to Enhance Inference Efficiency of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Compressing Context to Enhance Inference Efficiency of Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"barr2015oracle\", \"title\": \"The Oracle Problem in Software Testing: A Survey\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"The Oracle Problem in Software Testing: A Survey\", \"matched_year\": \"2014\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"papadakis2019mutation\", \"title\": \"Mutation Testing Advances: An Analysis and Survey\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Mutation Testing Advances: An Analysis and Survey\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f9f929d4-dd3e-4439-9464-82704ace4b91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "d6f53239-a193-4488-b50b-035f552d7fc6",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-21T07:03:27.269Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the reference verification results and the PDF is rendered. Let me now:
+1. Fetch the ARR reviewer guidelines page for the official scoring criteria
+2. Read the PDF pages to understand the paper
+
+Let me read the first 10 pages of the paper, and fetch the ARR reviewer guidelines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6f53239-a193-4488-b50b-035f552d7fc6",
+  "isSidechain": false,
+  "requestId": "req_011CbFHatxxexek5dkrPrzJ6",
+  "type": "assistant",
+  "uuid": "0c766a31-00d8-478a-bfc7-d17b23a7ba90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9ffgxJHKUMN752SC8MERr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17001,
+      "cache_read_input_tokens": 29062,
+      "output_tokens": 644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 644,
+          "cache_read_input_tokens": 29062,
+          "cache_creation_input_tokens": 17001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-21T07:03:27.773Z_
+
+获取到了引用验证结果。现在阅读论文内容并获取 ARR 官方评分标准。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c766a31-00d8-478a-bfc7-d17b23a7ba90",
+  "isSidechain": false,
+  "requestId": "req_011CbFHatxxexek5dkrPrzJ6",
+  "type": "assistant",
+  "uuid": "1acf2d0c-2c4c-44b1-9d43-9e0b4c10a74d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9ffgxJHKUMN752SC8MERr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17001,
+      "cache_read_input_tokens": 29062,
+      "output_tokens": 644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 644,
+          "cache_read_input_tokens": 29062,
+          "cache_creation_input_tokens": 17001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T07:03:30.334Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KnUFPaeUYHsNJHcATpNF8R`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/reviewerguidelines",
+  "prompt": "Extract the complete review form dimensions, scoring criteria, and scale for each dimension (soundness, excitement, overall assessment, reproducibility, etc.). Include the exact score descriptions for each level (e.g., 5=excellent, 4=good, etc.)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1acf2d0c-2c4c-44b1-9d43-9e0b4c10a74d",
+  "isSidechain": false,
+  "requestId": "req_011CbFHatxxexek5dkrPrzJ6",
+  "type": "assistant",
+  "uuid": "a0a89923-6d0a-4fba-a0ce-25f4b387e83b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9ffgxJHKUMN752SC8MERr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17001,
+      "cache_read_input_tokens": 29062,
+      "output_tokens": 644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 644,
+          "cache_read_input_tokens": 29062,
+          "cache_creation_input_tokens": 17001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T07:03:32.448Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015iYtFRie5YKECmjHHpYER2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0a89923-6d0a-4fba-a0ce-25f4b387e83b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHatxxexek5dkrPrzJ6",
+  "type": "assistant",
+  "uuid": "bc6e2e67-216b-48e8-8996-8b399895158b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9ffgxJHKUMN752SC8MERr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17001,
+      "cache_read_input_tokens": 29062,
+      "output_tokens": 644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 644,
+          "cache_read_input_tokens": 29062,
+          "cache_creation_input_tokens": 17001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T07:03:33.015Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WY5PUpYFY6gBPjxJNwpGrH`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p2.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc6e2e67-216b-48e8-8996-8b399895158b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHatxxexek5dkrPrzJ6",
+  "type": "assistant",
+  "uuid": "6595520b-3e47-47e2-a8f1-78f4d59ce5a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9ffgxJHKUMN752SC8MERr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17001,
+      "cache_read_input_tokens": 29062,
+      "output_tokens": 644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 644,
+          "cache_read_input_tokens": 29062,
+          "cache_creation_input_tokens": 17001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T07:03:33.158Z_
+
+<details><summary>↩ Tool result · `toolu_015iYtFRie5YKECmjHHpYER2`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc6e2e67-216b-48e8-8996-8b399895158b",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "cb029758-28a8-45ab-9d8f-32514307cf19",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 446895
+    }
+  },
+  "sourceToolAssistantUUID": "bc6e2e67-216b-48e8-8996-8b399895158b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T07:03:33.510Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01CgZavv8z7jXpnEMsibqKR9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb029758-28a8-45ab-9d8f-32514307cf19",
+  "isSidechain": false,
+  "requestId": "req_011CbFHatxxexek5dkrPrzJ6",
+  "type": "assistant",
+  "uuid": "a125566f-f871-4fd9-8e65-619e2c1b7090",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9ffgxJHKUMN752SC8MERr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17001,
+      "cache_read_input_tokens": 29062,
+      "output_tokens": 644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 644,
+          "cache_read_input_tokens": 29062,
+          "cache_creation_input_tokens": 17001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T07:03:34.041Z_
+
+<details><summary>↩ Tool result · `toolu_01WY5PUpYFY6gBPjxJNwpGrH`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6595520b-3e47-47e2-a8f1-78f4d59ce5a7",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "2ce989c0-6022-48fd-8ce7-08b6f819ed16",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 492585
+    }
+  },
+  "sourceToolAssistantUUID": "6595520b-3e47-47e2-a8f1-78f4d59ce5a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T07:03:34.051Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0186BKpRGPQdsmTEoVHdupbr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p4.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ce989c0-6022-48fd-8ce7-08b6f819ed16",
+  "isSidechain": false,
+  "requestId": "req_011CbFHatxxexek5dkrPrzJ6",
+  "type": "assistant",
+  "uuid": "11b88847-c762-4a6a-a283-f9401d93b035",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9ffgxJHKUMN752SC8MERr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17001,
+      "cache_read_input_tokens": 29062,
+      "output_tokens": 644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 644,
+          "cache_read_input_tokens": 29062,
+          "cache_creation_input_tokens": 17001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-21T07:03:34.551Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ly5rD77TU5uGqBsstfS6rw`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11b88847-c762-4a6a-a283-f9401d93b035",
+  "isSidechain": false,
+  "requestId": "req_011CbFHatxxexek5dkrPrzJ6",
+  "type": "assistant",
+  "uuid": "46b12eb8-d851-4d8c-808b-236871768f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9ffgxJHKUMN752SC8MERr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17001,
+      "cache_read_input_tokens": 29062,
+      "output_tokens": 644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 644,
+          "cache_read_input_tokens": 29062,
+          "cache_creation_input_tokens": 17001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "46b12eb8-d851-4d8c-808b-236871768f9a",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T07:03:34.888Z_
+
+<details><summary>↩ Tool result · `toolu_01CgZavv8z7jXpnEMsibqKR9`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a125566f-f871-4fd9-8e65-619e2c1b7090",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "b0cea8bb-b7aa-47e6-b26a-321b5861b7cc",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 487898
+    }
+  },
+  "sourceToolAssistantUUID": "a125566f-f871-4fd9-8e65-619e2c1b7090",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T07:03:34.893Z_
+
+<details><summary>↩ Tool result · `toolu_0186BKpRGPQdsmTEoVHdupbr`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11b88847-c762-4a6a-a283-f9401d93b035",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "7e6e28e5-2b27-46cd-a42b-d72d719b7ce5",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 358200
+    }
+  },
+  "sourceToolAssistantUUID": "11b88847-c762-4a6a-a283-f9401d93b035",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "7e6e28e5-2b27-46cd-a42b-d72d719b7ce5",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T07:03:35.551Z_
+
+<details><summary>↩ Tool result · `toolu_01Ly5rD77TU5uGqBsstfS6rw`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46b12eb8-d851-4d8c-808b-236871768f9a",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "95d3471e-abfb-46dc-9e9a-e4ee62dfb7bb",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 505482
+    }
+  },
+  "sourceToolAssistantUUID": "46b12eb8-d851-4d8c-808b-236871768f9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T07:03:35.588Z_
+
+<details><summary>↩ Tool result · `toolu_01KnUFPaeUYHsNJHcATpNF8R`</summary>
+
+```text
+# ARR Review Form Dimensions and Scoring
+
+Based on the guidelines provided, the document mentions three primary scoring dimensions but does not specify exact numerical scales or detailed score descriptions.
+
+## Mentioned Dimensions
+
+**1. Soundness**
+The guidelines state that "soundness scores must be justified by the text of the review." Low soundness scores require explicit justification in the review text itself.
+
+**2. Excitement**
+Described as a "separate excitement score, which is orthogonal to the assessment of soundness." This reflects "personal taste" and does not necessarily require explicit reasoning.
+
+**3. Overall Assessment**
+Characterized as "an explicit recommendation for the outcome of this paper, if it were committed to an *ACL venue." It functions as "a composite score reflecting your assessment of soundness, excitement, and also other factors like novelty and impact."
+
+## Additional Scoring Element
+
+**Reproducibility**
+The guidelines note that "low reproducibility scores should be justified," indicating this is a separate scored dimension, though specific scale definitions are not provided in this document.
+
+## Key Limitation
+
+The document does not include the actual numerical scales (e.g., 1-5, 1-10) or specific descriptor definitions (e.g., "5=Excellent") for any dimension. These details appear to be housed in a separate resource: "the ARR review form" described in detail at another location referenced in the guidelines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0a89923-6d0a-4fba-a0ce-25f4b387e83b",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "ee50252d-53b7-4167-8561-50ddf5342b1d",
+  "toolUseResult": {
+    "bytes": 100868,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR Review Form Dimensions and Scoring\n\nBased on the guidelines provided, the document mentions three primary scoring dimensions but does not specify exact numerical scales or detailed score descriptions.\n\n## Mentioned Dimensions\n\n**1. Soundness**\nThe guidelines state that \"soundness scores must be justified by the text of the review.\" Low soundness scores require explicit justification in the review text itself.\n\n**2. Excitement**\nDescribed as a \"separate excitement score, which is orthogonal to the assessment of soundness.\" This reflects \"personal taste\" and does not necessarily require explicit reasoning.\n\n**3. Overall Assessment**\nCharacterized as \"an explicit recommendation for the outcome of this paper, if it were committed to an *ACL venue.\" It functions as \"a composite score reflecting your assessment of soundness, excitement, and also other factors like novelty and impact.\"\n\n## Additional Scoring Element\n\n**Reproducibility**\nThe guidelines note that \"low reproducibility scores should be justified,\" indicating this is a separate scored dimension, though specific scale definitions are not provided in this document.\n\n## Key Limitation\n\nThe document does not include the actual numerical scales (e.g., 1-5, 1-10) or specific descriptor definitions (e.g., \"5=Excellent\") for any dimension. These details appear to be housed in a separate resource: \"the ARR review form\" described in detail at another location referenced in the guidelines.",
+    "durationMs": 5250,
+    "url": "https://aclrollingreview.org/reviewerguidelines"
+  },
+  "sourceToolAssistantUUID": "a0a89923-6d0a-4fba-a0ce-25f4b387e83b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41 · 2026-05-21T07:03:35.593Z_
+
+```json
+{
+  "parentUuid": "ee50252d-53b7-4167-8561-50ddf5342b1d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2f7a65e3-9903-4b79-a86a-18de2e1bcdc9",
+  "timestamp": "2026-05-21T07:03:35.593Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "2f7a65e3-9903-4b79-a86a-18de2e1bcdc9",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-21T07:03:38.144Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me continue reading the remaining pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f7a65e3-9903-4b79-a86a-18de2e1bcdc9",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbqpUixmu6K1j9wsWn",
+  "type": "assistant",
+  "uuid": "7530189e-f350-4fee-86f7-53f193f82bb3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4xhqZavrA9nizRo4n8gwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1752,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 46063,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1752,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 46063,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-21T07:03:38.144Z_
+
+继续阅读后续页面。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7530189e-f350-4fee-86f7-53f193f82bb3",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbqpUixmu6K1j9wsWn",
+  "type": "assistant",
+  "uuid": "303f14ff-87a1-4aba-b701-d54c796e79a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4xhqZavrA9nizRo4n8gwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1752,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 46063,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1752,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 46063,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-21T07:03:39.408Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012RSS3zXbvnkunJz41EqkP6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p6.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "303f14ff-87a1-4aba-b701-d54c796e79a8",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbqpUixmu6K1j9wsWn",
+  "type": "assistant",
+  "uuid": "d548ebf0-6ede-4604-b9a4-778f7e1ceb59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4xhqZavrA9nizRo4n8gwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1752,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 46063,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1752,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 46063,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T07:03:41.104Z_
+
+<details><summary>↩ Tool result · `toolu_01S9H2FF65pj3CFnzcyKp3fp`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba6f1abe-5bbb-4167-a068-2af4ebe12117",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "47db6131-a0ec-48ee-9e9c-49d4556f7b70",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 508589
+    }
+  },
+  "sourceToolAssistantUUID": "955886c2-cc85-4738-a8ca-06ac7f025bc1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-21T07:03:39.610Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01S9H2FF65pj3CFnzcyKp3fp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d548ebf0-6ede-4604-b9a4-778f7e1ceb59",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbqpUixmu6K1j9wsWn",
+  "type": "assistant",
+  "uuid": "955886c2-cc85-4738-a8ca-06ac7f025bc1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4xhqZavrA9nizRo4n8gwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1752,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 46063,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1752,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 46063,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T07:03:40.376Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01L8vZZ52VJbXtEjqcmVBwLs`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "955886c2-cc85-4738-a8ca-06ac7f025bc1",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbqpUixmu6K1j9wsWn",
+  "type": "assistant",
+  "uuid": "e0ada72c-c0f8-4a01-9695-0619cee12b12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4xhqZavrA9nizRo4n8gwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1752,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 46063,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1752,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 46063,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-21T07:03:40.536Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MKCwhUDCV1D9PxZKCw5G3Z`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0ada72c-c0f8-4a01-9695-0619cee12b12",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbqpUixmu6K1j9wsWn",
+  "type": "assistant",
+  "uuid": "5d81aefd-23a6-435b-b652-8e1908cdca88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4xhqZavrA9nizRo4n8gwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1752,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 46063,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1752,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 46063,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T07:03:40.670Z_
+
+<details><summary>↩ Tool result · `toolu_012RSS3zXbvnkunJz41EqkP6`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d548ebf0-6ede-4604-b9a4-778f7e1ceb59",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "bcee1801-95b5-41ee-a51e-32cffc8290f5",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 508483
+    }
+  },
+  "sourceToolAssistantUUID": "d548ebf0-6ede-4604-b9a4-778f7e1ceb59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-21T07:03:41.062Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QNHxfrXwkPzDVpowfmvjFq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p10.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcee1801-95b5-41ee-a51e-32cffc8290f5",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbqpUixmu6K1j9wsWn",
+  "type": "assistant",
+  "uuid": "ba6f1abe-5bbb-4167-a068-2af4ebe12117",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4xhqZavrA9nizRo4n8gwz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1752,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 46063,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1086,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1752,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 46063,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1086
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "47db6131-a0ec-48ee-9e9c-49d4556f7b70",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T07:03:43.480Z_
+
+<details><summary>↩ Tool result · `toolu_01L8vZZ52VJbXtEjqcmVBwLs`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0ada72c-c0f8-4a01-9695-0619cee12b12",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "759d6059-935e-47dc-afa9-a5873c694a14",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 559601
+    }
+  },
+  "sourceToolAssistantUUID": "e0ada72c-c0f8-4a01-9695-0619cee12b12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T07:03:43.485Z_
+
+<details><summary>↩ Tool result · `toolu_01MKCwhUDCV1D9PxZKCw5G3Z`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d81aefd-23a6-435b-b652-8e1908cdca88",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "69fd60da-a84f-4f47-8ba0-ae753f9c655a",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 553178
+    }
+  },
+  "sourceToolAssistantUUID": "5d81aefd-23a6-435b-b652-8e1908cdca88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "69fd60da-a84f-4f47-8ba0-ae753f9c655a",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T07:03:43.981Z_
+
+<details><summary>↩ Tool result · `toolu_01QNHxfrXwkPzDVpowfmvjFq`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba6f1abe-5bbb-4167-a068-2af4ebe12117",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "0389cb60-ae2c-491e-8f14-e4ddf991ae3d",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 587735
+    }
+  },
+  "sourceToolAssistantUUID": "ba6f1abe-5bbb-4167-a068-2af4ebe12117",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "0389cb60-ae2c-491e-8f14-e4ddf991ae3d",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-21T07:03:49.252Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've read pages 1-10. The paper has 21 total pages, so there are appendix pages 11-21. Let me also read the remaining pages to get the full picture (appendix, etc.). But first let me note what I've gathered so far.
+
+Let me now render and read pages 11-21 for the appendix content, and also search for recent related work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0389cb60-ae2c-491e-8f14-e4ddf991ae3d",
+  "isSidechain": false,
+  "requestId": "req_011CbFHcThyqBA73TjXhCLW5",
+  "type": "assistant",
+  "uuid": "2c637864-9e60-4dbf-a3b2-1959c6d0de6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9T2XxoKC9rvLNGzizX4mL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4110,
+      "cache_read_input_tokens": 47149,
+      "output_tokens": 389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4110,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 389,
+          "cache_read_input_tokens": 47149,
+          "cache_creation_input_tokens": 4110,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4110
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-21T07:03:50.231Z_
+
+继续渲染并阅读附录页面，同时搜索最近的相关工作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c637864-9e60-4dbf-a3b2-1959c6d0de6b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHcThyqBA73TjXhCLW5",
+  "type": "assistant",
+  "uuid": "4b76c2f1-5357-42d2-b9b4-3525207ea842",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9T2XxoKC9rvLNGzizX4mL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4110,
+      "cache_read_input_tokens": 47149,
+      "output_tokens": 389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4110,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 389,
+          "cache_read_input_tokens": 47149,
+          "cache_creation_input_tokens": 4110,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4110
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-21T07:03:51.201Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images · `toolu_01LJCy1Jxdx5sbFthfqmPR5r`</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/main_v13.pdf",
+  "project": "trace-verdict-study",
+  "pages": "11-21",
+  "dpi": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b76c2f1-5357-42d2-b9b4-3525207ea842",
+  "isSidechain": false,
+  "requestId": "req_011CbFHcThyqBA73TjXhCLW5",
+  "type": "assistant",
+  "uuid": "e467fa79-71ba-40a2-9c80-a10a28b66dbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9T2XxoKC9rvLNGzizX4mL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4110,
+      "cache_read_input_tokens": 47149,
+      "output_tokens": 389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4110,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 389,
+          "cache_read_input_tokens": 47149,
+          "cache_creation_input_tokens": 4110,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4110
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-21T07:03:52.156Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C8K41J9MX5NVK13QHJrrpr`</summary>
+
+```json
+{
+  "query": "execution trace compression selection LLM code 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e467fa79-71ba-40a2-9c80-a10a28b66dbf",
+  "isSidechain": false,
+  "requestId": "req_011CbFHcThyqBA73TjXhCLW5",
+  "type": "assistant",
+  "uuid": "bc9fc5de-6aad-48a9-90a5-aea5eea668e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9T2XxoKC9rvLNGzizX4mL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4110,
+      "cache_read_input_tokens": 47149,
+      "output_tokens": 389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4110,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 389,
+          "cache_read_input_tokens": 47149,
+          "cache_creation_input_tokens": 4110,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4110
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-21T07:03:52.464Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TFBqpz1d71aQFPhVQhhfuP`</summary>
+
+```json
+{
+  "query": "verdict prediction test outcome prediction execution trace 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc9fc5de-6aad-48a9-90a5-aea5eea668e9",
+  "isSidechain": false,
+  "requestId": "req_011CbFHcThyqBA73TjXhCLW5",
+  "type": "assistant",
+  "uuid": "175abd7c-e967-4bb2-867e-6eb49f5a3aae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S9T2XxoKC9rvLNGzizX4mL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4110,
+      "cache_read_input_tokens": 47149,
+      "output_tokens": 389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4110,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 389,
+          "cache_read_input_tokens": 47149,
+          "cache_creation_input_tokens": 4110,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4110
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-21T07:03:52.653Z_
+
+<details><summary>↩ Tool result · `toolu_01LJCy1Jxdx5sbFthfqmPR5r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 593.3}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 413.0}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 392.8}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 445.2}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 424.5}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 493.2}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 534.2}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 379.1}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p19.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 490.5}, {\"page\": 20, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p20.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 483.7}, {\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 255.8}], \"total_pages\": 21, \"rendered_pages\": 11, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e467fa79-71ba-40a2-9c80-a10a28b66dbf",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "99ca3c85-2bd6-43cd-8ad8-947c0bdb2a90",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 593.3}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 413.0}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 392.8}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 445.2}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 424.5}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 493.2}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 534.2}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 379.1}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p19.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 490.5}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p20.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 483.7}, {\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 255.8}], \\\"total_pages\\\": 21, \\\"rendered_pages\\\": 11, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 593.3}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 413.0}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 392.8}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 445.2}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 424.5}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 493.2}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 534.2}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 379.1}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p19.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 490.5}, {\"page\": 20, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p20.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 483.7}, {\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 255.8}], \"total_pages\": 21, \"rendered_pages\": 11, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e467fa79-71ba-40a2-9c80-a10a28b66dbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T07:04:00.019Z_
+
+<details><summary>↩ Tool result · `toolu_01C8K41J9MX5NVK13QHJrrpr`</summary>
+
+```text
+Web search results for query: "execution trace compression selection LLM code 2025 2026 arXiv"
+
+Links: [{"title":"[2508.11468] TRACE: Evaluating Execution Efficiency of LLM-Based Code Translation","url":"https://arxiv.org/abs/2508.11468"},{"title":"[2603.16479] TRACE: Evaluating Execution Efficiency of LLM-Based Code Translation","url":"https://arxiv.org/abs/2603.16479"},{"title":"Experience Compression Spectrum: Unifying Memory, Skills, and Rules in LLM Agents","url":"https://arxiv.org/html/2604.15877v1"},{"title":"Compressing Code Context for LLM-based Issue Resolution","url":"https://arxiv.org/html/2603.28119"},{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with   Code LLMs","url":"https://arxiv.org/pdf/2505.04441"}]
+
+Based on the search results, I found several relevant papers from arXiv related to execution traces, compression, LLM code, and the 2025-2026 timeframe:
+
+## Key Papers Found:
+
+1. **TRACE: Evaluating Execution Efficiency of LLM-Based Code Translation** (2025-2026)
+   - The first benchmark to explicitly assess efficiency in LLM-translated code, including 1,000 efficiency-critical tasks across C++, Java, and Python with stress tests
+   - Evaluates 28 representative LLMs, finding that the correctness leader Claude-4-think achieves only mid-level time efficiency
+
+2. **Experience Compression Spectrum: Unifying Memory, Skills, and Rules in LLM Agents** (April 2026)
+   - Discusses how distilling traces into abstract skills consistently outperforms storing them in retrieval memory banks
+   - References Trace2Skill and SkillsBench, noting that compression level alone is insufficient and the fidelity of the compression process determines usefulness
+
+3. **Compressing Code Context for LLM-based Issue Resolution** (March 2026)
+   - LongCodeZip introduced a code-specific compression framework that ranks function-level chunks using conditional perplexity and applies fine-grained block-level pruning via knapsack algorithm
+
+4. **Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs** (2025)
+   - Explores augmenting LLM-based automated program repair with program execution traces—structured runtime data that reveal a program's actual behavior
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc9fc5de-6aad-48a9-90a5-aea5eea668e9",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "8794a027-bbe7-4fb9-901e-2637e6a49104",
+  "toolUseResult": {
+    "query": "execution trace compression selection LLM code 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Lt8qymhMWkeSFbdQp8iqdu",
+        "content": [
+          {
+            "title": "[2508.11468] TRACE: Evaluating Execution Efficiency of LLM-Based Code Translation",
+            "url": "https://arxiv.org/abs/2508.11468"
+          },
+          {
+            "title": "[2603.16479] TRACE: Evaluating Execution Efficiency of LLM-Based Code Translation",
+            "url": "https://arxiv.org/abs/2603.16479"
+          },
+          {
+            "title": "Experience Compression Spectrum: Unifying Memory, Skills, and Rules in LLM Agents",
+            "url": "https://arxiv.org/html/2604.15877v1"
+          },
+          {
+            "title": "Compressing Code Context for LLM-based Issue Resolution",
+            "url": "https://arxiv.org/html/2603.28119"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with   Code LLMs",
+            "url": "https://arxiv.org/pdf/2505.04441"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from arXiv related to execution traces, compression, LLM code, and the 2025-2026 timeframe:\n\n## Key Papers Found:\n\n1. **TRACE: Evaluating Execution Efficiency of LLM-Based Code Translation** (2025-2026)\n   - The first benchmark to explicitly assess efficiency in LLM-translated code, including 1,000 efficiency-critical tasks across C++, Java, and Python with stress tests\n   - Evaluates 28 representative LLMs, finding that the correctness leader Claude-4-think achieves only mid-level time efficiency\n\n2. **Experience Compression Spectrum: Unifying Memory, Skills, and Rules in LLM Agents** (April 2026)\n   - Discusses how distilling traces into abstract skills consistently outperforms storing them in retrieval memory banks\n   - References Trace2Skill and SkillsBench, noting that compression level alone is insufficient and the fidelity of the compression process determines usefulness\n\n3. **Compressing Code Context for LLM-based Issue Resolution** (March 2026)\n   - LongCodeZip introduced a code-specific compression framework that ranks function-level chunks using conditional perplexity and applies fine-grained block-level pruning via knapsack algorithm\n\n4. **Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs** (2025)\n   - Explores augmenting LLM-based automated program repair with program execution traces—structured runtime data that reveal a program's actual behavior"
+    ],
+    "durationSeconds": 7.3603728589999955
+  },
+  "sourceToolAssistantUUID": "bc9fc5de-6aad-48a9-90a5-aea5eea668e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-21T07:04:00.193Z_
+
+<details><summary>↩ Tool result · `toolu_01TFBqpz1d71aQFPhVQhhfuP`</summary>
+
+```text
+Web search results for query: "verdict prediction test outcome prediction execution trace 2025 2026"
+
+Links: [{"title":"OCR GCSE Computer Science (J277) - June 2026 Predictions","url":"https://gcsecomputerscience.co.uk/worksh05/03/prediction_analysis.html"},{"title":"Verdict Prediction using Artificial Neural Networks","url":"https://researchgate.net/publication/388138564_Verdict_Prediction_using_Artificial_Neural_Networks"},{"title":"Semantic and Contextual Intelligence-Based Court Verdict ...","url":"https://ijsret.com/wp-content/uploads/IJSRET_V12_issue2_324.pdf"},{"title":"NexLaw Blog | Can AI Predict Case Outcomes? Legal Predictive Analytics Explained (2026)","url":"https://www.nexlaw.ai/blog/predictive-case-ai-can-technology-really-forecast-case-outcomes/"},{"title":"Verdict Prediction Agent","url":"https://www.emergentmind.com/topics/verdict-prediction-agent"},{"title":"VERDICT: Verifiable Evolving Reasoning with Directive-Informed Collegial Teams for Legal Judgment Prediction","url":"https://arxiv.org/pdf/2603.19306"},{"title":"Explainable judgment prediction and article-violation analysis using deep LexFaith hierarchical BERT model | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-32833-x"},{"title":"Outcome prediction","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10926183"}]
+
+Based on the search results, here's what I found about verdict prediction, test outcome prediction, and execution trace related to 2025-2026:
+
+## Verdict Prediction Research (2025-2026)
+
+Verdict Prediction Agents are systems using computational, statistical, and AI methods to forecast judicial outcomes across various stages of the legal process, with applications in predicting outcomes for litigation, appeals, and settlement negotiations.
+
+Recent developments include:
+
+- **Legal Judgment Prediction Systems**: VERDICT, a new system, was evaluated on CAIL2018 and a newly constructed CJO2025 dataset with a strict future time-split for temporal generalization, achieving state-of-the-art performance on CAIL2018 and demonstrating strong generalization on CJO2025.
+
+- **Deep Learning Models**: Legal judgment prediction has emerged as one of the most transformative applications at the intersection of artificial intelligence and law, with deep learning models proving especially effective in processing complex legal texts across diverse jurisdictions.
+
+## Practical Applications in 2026
+
+Early case assessment applications provide data-backed probability estimates for different outcomes before investing significant resources in a matter, helping firms make better intake decisions and set realistic client expectations from day one.
+
+## Execution Trace Predictions
+
+In the context of computer science education, a "trace" question where you must show the splitting and merging stages of a small list has been predicted for June 2026 GCSE Computer Science exams.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "175abd7c-e967-4bb2-867e-6eb49f5a3aae",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "45537dd8-2190-4f62-ace4-c5a6b02ccb87",
+  "toolUseResult": {
+    "query": "verdict prediction test outcome prediction execution trace 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QMxqCQitGKSseVCcrqSeqG",
+        "content": [
+          {
+            "title": "OCR GCSE Computer Science (J277) - June 2026 Predictions",
+            "url": "https://gcsecomputerscience.co.uk/worksh05/03/prediction_analysis.html"
+          },
+          {
+            "title": "Verdict Prediction using Artificial Neural Networks",
+            "url": "https://researchgate.net/publication/388138564_Verdict_Prediction_using_Artificial_Neural_Networks"
+          },
+          {
+            "title": "Semantic and Contextual Intelligence-Based Court Verdict ...",
+            "url": "https://ijsret.com/wp-content/uploads/IJSRET_V12_issue2_324.pdf"
+          },
+          {
+            "title": "NexLaw Blog | Can AI Predict Case Outcomes? Legal Predictive Analytics Explained (2026)",
+            "url": "https://www.nexlaw.ai/blog/predictive-case-ai-can-technology-really-forecast-case-outcomes/"
+          },
+          {
+            "title": "Verdict Prediction Agent",
+            "url": "https://www.emergentmind.com/topics/verdict-prediction-agent"
+          },
+          {
+            "title": "VERDICT: Verifiable Evolving Reasoning with Directive-Informed Collegial Teams for Legal Judgment Prediction",
+            "url": "https://arxiv.org/pdf/2603.19306"
+          },
+          {
+            "title": "Explainable judgment prediction and article-violation analysis using deep LexFaith hierarchical BERT model | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-32833-x"
+          },
+          {
+            "title": "Outcome prediction",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10926183"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about verdict prediction, test outcome prediction, and execution trace related to 2025-2026:\n\n## Verdict Prediction Research (2025-2026)\n\nVerdict Prediction Agents are systems using computational, statistical, and AI methods to forecast judicial outcomes across various stages of the legal process, with applications in predicting outcomes for litigation, appeals, and settlement negotiations.\n\nRecent developments include:\n\n- **Legal Judgment Prediction Systems**: VERDICT, a new system, was evaluated on CAIL2018 and a newly constructed CJO2025 dataset with a strict future time-split for temporal generalization, achieving state-of-the-art performance on CAIL2018 and demonstrating strong generalization on CJO2025.\n\n- **Deep Learning Models**: Legal judgment prediction has emerged as one of the most transformative applications at the intersection of artificial intelligence and law, with deep learning models proving especially effective in processing complex legal texts across diverse jurisdictions.\n\n## Practical Applications in 2026\n\nEarly case assessment applications provide data-backed probability estimates for different outcomes before investing significant resources in a matter, helping firms make better intake decisions and set realistic client expectations from day one.\n\n## Execution Trace Predictions\n\nIn the context of computer science education, a \"trace\" question where you must show the splitting and merging stages of a small list has been predicted for June 2026 GCSE Computer Science exams."
+    ],
+    "durationSeconds": 7.53522419600001
+  },
+  "sourceToolAssistantUUID": "175abd7c-e967-4bb2-867e-6eb49f5a3aae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70 · 2026-05-21T07:04:00.197Z_
+
+```json
+{
+  "parentUuid": "45537dd8-2190-4f62-ace4-c5a6b02ccb87",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "aadbbafd-bded-477a-aa3b-a6dc107a117b",
+  "timestamp": "2026-05-21T07:04:00.197Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-21T07:04:06.234Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the appendix pages now, and also search for more relevant related work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aadbbafd-bded-477a-aa3b-a6dc107a117b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHdf29ye9uptWMtVNsg",
+  "type": "assistant",
+  "uuid": "ef7d0380-eb79-4250-a726-672f2379868d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Q3NfFsVPm4G97yFcBWPaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2990,
+      "cache_read_input_tokens": 51259,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 51259,
+          "cache_creation_input_tokens": 2990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-21T07:04:06.706Z_
+
+阅读附录页面以完成论文通读。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef7d0380-eb79-4250-a726-672f2379868d",
+  "isSidechain": false,
+  "requestId": "req_011CbFHdf29ye9uptWMtVNsg",
+  "type": "assistant",
+  "uuid": "a18b00f6-905f-4582-862f-fc994bd47769",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Q3NfFsVPm4G97yFcBWPaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2990,
+      "cache_read_input_tokens": 51259,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 51259,
+          "cache_creation_input_tokens": 2990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-21T07:04:07.234Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SYV9y5p86v3ZUoWoLSVw22`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p11.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a18b00f6-905f-4582-862f-fc994bd47769",
+  "isSidechain": false,
+  "requestId": "req_011CbFHdf29ye9uptWMtVNsg",
+  "type": "assistant",
+  "uuid": "6e8f7e40-db3f-4106-a69d-63ecd87b46c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Q3NfFsVPm4G97yFcBWPaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2990,
+      "cache_read_input_tokens": 51259,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 51259,
+          "cache_creation_input_tokens": 2990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T07:04:07.983Z_
+
+<details><summary>↩ Tool result · `toolu_01SYV9y5p86v3ZUoWoLSVw22`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6e8f7e40-db3f-4106-a69d-63ecd87b46c2",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "bf563592-f7ae-48ca-9b6a-e11c7826f260",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 607580
+    }
+  },
+  "sourceToolAssistantUUID": "6e8f7e40-db3f-4106-a69d-63ecd87b46c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-21T07:04:08.239Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014W3UrYMHvfY8rFMjpuMPxL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p12.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf563592-f7ae-48ca-9b6a-e11c7826f260",
+  "isSidechain": false,
+  "requestId": "req_011CbFHdf29ye9uptWMtVNsg",
+  "type": "assistant",
+  "uuid": "f403fee0-d04b-4478-a4a9-7b0b3000a6ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Q3NfFsVPm4G97yFcBWPaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2990,
+      "cache_read_input_tokens": 51259,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 51259,
+          "cache_creation_input_tokens": 2990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-21T07:04:08.639Z_
+
+<details><summary>↩ Tool result · `toolu_014W3UrYMHvfY8rFMjpuMPxL`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f403fee0-d04b-4478-a4a9-7b0b3000a6ff",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "612f78ff-6f36-4b0c-92ac-8eab701172e2",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 422884
+    }
+  },
+  "sourceToolAssistantUUID": "f403fee0-d04b-4478-a4a9-7b0b3000a6ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-21T07:04:08.648Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WLzCLVF8Va11Um7qjVtkjY`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p13.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "612f78ff-6f36-4b0c-92ac-8eab701172e2",
+  "isSidechain": false,
+  "requestId": "req_011CbFHdf29ye9uptWMtVNsg",
+  "type": "assistant",
+  "uuid": "59e6e826-568b-4d32-bfc2-230b1a978f16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Q3NfFsVPm4G97yFcBWPaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2990,
+      "cache_read_input_tokens": 51259,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 51259,
+          "cache_creation_input_tokens": 2990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-21T07:04:09.065Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RrCB1sxHxGW4FF32dog3Hb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p14.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59e6e826-568b-4d32-bfc2-230b1a978f16",
+  "isSidechain": false,
+  "requestId": "req_011CbFHdf29ye9uptWMtVNsg",
+  "type": "assistant",
+  "uuid": "f8108889-b36e-4111-ad2e-ba651d40413e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Q3NfFsVPm4G97yFcBWPaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2990,
+      "cache_read_input_tokens": 51259,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 51259,
+          "cache_creation_input_tokens": 2990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-21T07:04:09.070Z_
+
+<details><summary>↩ Tool result · `toolu_01WLzCLVF8Va11Um7qjVtkjY`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59e6e826-568b-4d32-bfc2-230b1a978f16",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "9de2032d-660c-42c0-84e1-d382257822de",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 402192
+    }
+  },
+  "sourceToolAssistantUUID": "59e6e826-568b-4d32-bfc2-230b1a978f16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-21T07:04:09.556Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LFUB3cH3tLR8XeiDXUCoxZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p15.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9de2032d-660c-42c0-84e1-d382257822de",
+  "isSidechain": false,
+  "requestId": "req_011CbFHdf29ye9uptWMtVNsg",
+  "type": "assistant",
+  "uuid": "9a88565e-e844-4bbf-9ca8-9d607cfcf888",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Q3NfFsVPm4G97yFcBWPaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2990,
+      "cache_read_input_tokens": 51259,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 51259,
+          "cache_creation_input_tokens": 2990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-21T07:04:09.707Z_
+
+<details><summary>↩ Tool result · `toolu_01RrCB1sxHxGW4FF32dog3Hb`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8108889-b36e-4111-ad2e-ba651d40413e",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "1c5184fe-0c56-4d46-8d39-7612a12a26fa",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 455922
+    }
+  },
+  "sourceToolAssistantUUID": "f8108889-b36e-4111-ad2e-ba651d40413e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-21T07:04:10.028Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01EUxAmGnhYTnMtEiAjuMmkm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p16.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c5184fe-0c56-4d46-8d39-7612a12a26fa",
+  "isSidechain": false,
+  "requestId": "req_011CbFHdf29ye9uptWMtVNsg",
+  "type": "assistant",
+  "uuid": "00f8df1e-e18d-4718-b0bc-46f92f6f6f95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Q3NfFsVPm4G97yFcBWPaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2990,
+      "cache_read_input_tokens": 51259,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2990,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 51259,
+          "cache_creation_input_tokens": 2990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2990
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "00f8df1e-e18d-4718-b0bc-46f92f6f6f95",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-21T07:04:10.541Z_
+
+<details><summary>↩ Tool result · `toolu_01LFUB3cH3tLR8XeiDXUCoxZ`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a88565e-e844-4bbf-9ca8-9d607cfcf888",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "37009d95-a565-4f2a-87ef-2290de7d3e96",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 434682
+    }
+  },
+  "sourceToolAssistantUUID": "9a88565e-e844-4bbf-9ca8-9d607cfcf888",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "37009d95-a565-4f2a-87ef-2290de7d3e96",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-21T07:04:11.023Z_
+
+<details><summary>↩ Tool result · `toolu_01EUxAmGnhYTnMtEiAjuMmkm`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00f8df1e-e18d-4718-b0bc-46f92f6f6f95",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "6bfcb436-0ed6-48b3-ba83-9a108eb0865f",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 504988
+    }
+  },
+  "sourceToolAssistantUUID": "00f8df1e-e18d-4718-b0bc-46f92f6f6f95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "6bfcb436-0ed6-48b3-ba83-9a108eb0865f",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-21T07:04:13.778Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the remaining appendix pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6bfcb436-0ed6-48b3-ba83-9a108eb0865f",
+  "isSidechain": false,
+  "requestId": "req_011CbFHeTNSjAKa3bswnH7NX",
+  "type": "assistant",
+  "uuid": "1fae3442-e586-413c-aba0-7dd5cf8d8dd8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpdzyByQ2an7gso5rcv9FR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 54249,
+      "output_tokens": 543,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 543,
+          "cache_read_input_tokens": 54249,
+          "cache_creation_input_tokens": 2513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-21T07:04:14.320Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Y2j2peyZYu2vQL2BtQp7iT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p17.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fae3442-e586-413c-aba0-7dd5cf8d8dd8",
+  "isSidechain": false,
+  "requestId": "req_011CbFHeTNSjAKa3bswnH7NX",
+  "type": "assistant",
+  "uuid": "53e3686d-bc2f-4316-95a7-7917cdf6231b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpdzyByQ2an7gso5rcv9FR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 54249,
+      "output_tokens": 543,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 543,
+          "cache_read_input_tokens": 54249,
+          "cache_creation_input_tokens": 2513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-21T07:04:14.935Z_
+
+<details><summary>↩ Tool result · `toolu_01Y2j2peyZYu2vQL2BtQp7iT`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53e3686d-bc2f-4316-95a7-7917cdf6231b",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "9e79f9b4-e915-40b2-83d0-afd3ef63b8a1",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 546975
+    }
+  },
+  "sourceToolAssistantUUID": "53e3686d-bc2f-4316-95a7-7917cdf6231b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-21T07:04:15.258Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0188tQgb5HPPNB8QYfP8zMSu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p18.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e79f9b4-e915-40b2-83d0-afd3ef63b8a1",
+  "isSidechain": false,
+  "requestId": "req_011CbFHeTNSjAKa3bswnH7NX",
+  "type": "assistant",
+  "uuid": "e628c3b2-7978-4f3c-bd9a-828b981978c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpdzyByQ2an7gso5rcv9FR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 54249,
+      "output_tokens": 543,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 543,
+          "cache_read_input_tokens": 54249,
+          "cache_creation_input_tokens": 2513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-21T07:04:15.669Z_
+
+<details><summary>↩ Tool result · `toolu_0188tQgb5HPPNB8QYfP8zMSu`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e628c3b2-7978-4f3c-bd9a-828b981978c6",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "6654ec85-250e-4de1-938e-1a7e92c60b28",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 388241
+    }
+  },
+  "sourceToolAssistantUUID": "e628c3b2-7978-4f3c-bd9a-828b981978c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-21T07:04:15.673Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LUP99iykTWNyHzNHmK7Dyr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p19.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6654ec85-250e-4de1-938e-1a7e92c60b28",
+  "isSidechain": false,
+  "requestId": "req_011CbFHeTNSjAKa3bswnH7NX",
+  "type": "assistant",
+  "uuid": "a7b2319d-cb73-454f-8fc3-7a44d53aca47",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpdzyByQ2an7gso5rcv9FR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 54249,
+      "output_tokens": 543,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 543,
+          "cache_read_input_tokens": 54249,
+          "cache_creation_input_tokens": 2513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-21T07:04:16.137Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016tnKgJi2UiFQecWcJMd1s7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p20.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7b2319d-cb73-454f-8fc3-7a44d53aca47",
+  "isSidechain": false,
+  "requestId": "req_011CbFHeTNSjAKa3bswnH7NX",
+  "type": "assistant",
+  "uuid": "0239e27f-be55-477d-ba9e-0f41b0e7af6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpdzyByQ2an7gso5rcv9FR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 54249,
+      "output_tokens": 543,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 543,
+          "cache_read_input_tokens": 54249,
+          "cache_creation_input_tokens": 2513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-21T07:04:16.516Z_
+
+<details><summary>↩ Tool result · `toolu_01LUP99iykTWNyHzNHmK7Dyr`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a7b2319d-cb73-454f-8fc3-7a44d53aca47",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "d5845ebd-5939-46e8-b5ae-b397a5dba41b",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 502280
+    }
+  },
+  "sourceToolAssistantUUID": "a7b2319d-cb73-454f-8fc3-7a44d53aca47",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-21T07:04:16.655Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VBt4atNnQgsYr2WmHweCzZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images/main_v13_p21.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5845ebd-5939-46e8-b5ae-b397a5dba41b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHeTNSjAKa3bswnH7NX",
+  "type": "assistant",
+  "uuid": "40eb8238-2bf3-4fa8-acc9-c2812a5030c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpdzyByQ2an7gso5rcv9FR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 54249,
+      "output_tokens": 543,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 543,
+          "cache_read_input_tokens": 54249,
+          "cache_creation_input_tokens": 2513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-21T07:04:17.231Z_
+
+<details><summary>↩ Tool result · `toolu_016tnKgJi2UiFQecWcJMd1s7`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0239e27f-be55-477d-ba9e-0f41b0e7af6d",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "bc35030e-d0f1-4802-a4dc-021bbd6c976b",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 495271
+    }
+  },
+  "sourceToolAssistantUUID": "0239e27f-be55-477d-ba9e-0f41b0e7af6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-21T07:04:17.322Z_
+
+<details><summary>↩ Tool result · `toolu_01VBt4atNnQgsYr2WmHweCzZ`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40eb8238-2bf3-4fa8-acc9-c2812a5030c8",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "8c317502-e7c9-452b-a2c8-babec997d8ac",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 261949
+    }
+  },
+  "sourceToolAssistantUUID": "40eb8238-2bf3-4fa8-acc9-c2812a5030c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-21T07:04:17.539Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UXmezw9LusxaZnfVcekF7T`</summary>
+
+```json
+{
+  "query": "\"build log analysis\" \"test failure prediction\" LLM deep learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c317502-e7c9-452b-a2c8-babec997d8ac",
+  "isSidechain": false,
+  "requestId": "req_011CbFHeTNSjAKa3bswnH7NX",
+  "type": "assistant",
+  "uuid": "f8cf41f6-0962-4cea-adc9-613f2704464b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpdzyByQ2an7gso5rcv9FR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 54249,
+      "output_tokens": 543,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 543,
+          "cache_read_input_tokens": 54249,
+          "cache_creation_input_tokens": 2513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-21T07:04:18.489Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T1ma93zTPcq8UHZkPZd4vD`</summary>
+
+```json
+{
+  "query": "ACL ARR review form soundness excitement scoring scale 1 2 3 4 5 descriptions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8cf41f6-0962-4cea-adc9-613f2704464b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHeTNSjAKa3bswnH7NX",
+  "type": "assistant",
+  "uuid": "91be0a72-f603-4bcf-b48f-574feb3430a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpdzyByQ2an7gso5rcv9FR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2513,
+      "cache_read_input_tokens": 54249,
+      "output_tokens": 543,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 543,
+          "cache_read_input_tokens": 54249,
+          "cache_creation_input_tokens": 2513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "91be0a72-f603-4bcf-b48f-574feb3430a9",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-21T07:04:23.282Z_
+
+<details><summary>↩ Tool result · `toolu_01UXmezw9LusxaZnfVcekF7T`</summary>
+
+```text
+Web search results for query: ""build log analysis" "test failure prediction" LLM deep learning 2025 2026"
+
+Links: [{"title":"2025 IEEE/ACM International Workshop on Deep Learning for Testing and Testing for Deep Learning (DeepTest) | Guide Proceedings","url":"https://dl.acm.org/doi/10.5555/979-8-3315-0190-7"},{"title":"L4: Diagnosing Large-scale LLM Training Failures via Automated Log Analysis","url":"https://arxiv.org/pdf/2503.20263"},{"title":"How to Build an LLM Evaluation Framework in 2025: Steps and Components | LLM Evaluation | Deepchecks","url":"https://deepchecks.com/llm-evaluation/framework/"},{"title":"LogSage: An LLM-Based Framework for CI/CD Failure Detection and Remediation with Industrial Validation","url":"https://arxiv.org/html/2506.03691v2"},{"title":"Systematic Evaluation of Deep Learning Models for Log-based Failure   Prediction","url":"https://arxiv.org/pdf/2303.07230"}]
+
+I found several relevant results for your search on build log analysis, test failure prediction, and LLM/deep learning approaches. Here are the key findings:
+
+**Recent Research (2025-2026):**
+
+LogSage is the first method specifically designed for CI/CD root cause analysis, using an LLM-based framework. The dataset was completed in April 2025 and will be open-sourced on GitHub.
+
+L4 is a system for diagnosing large-scale LLM training failures via automated log analysis, presented at FSE Companion 2025.
+
+**Deep Learning for Failure Prediction:**
+
+The analysis of log data can enable engineers to automatically predict failures at run time, with several Machine Learning and Deep Learning techniques proposed to automate such tasks. Research has systematically investigated the combination of log data embedding strategies and Deep Learning types (RNN, CNN, and transformer) for failure prediction.
+
+**General Trends (2025):**
+
+Failure prediction models can be significantly beneficial for managing large-scale complex software systems, but their trustworthiness is affected by concept drift.
+
+The research shows active development in applying LLMs and deep learning to log analysis and failure prediction in 2025-2026, with industrial validation being conducted.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8cf41f6-0962-4cea-adc9-613f2704464b",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "92131f65-6d64-46a7-a983-ef3c1b14a708",
+  "toolUseResult": {
+    "query": "\"build log analysis\" \"test failure prediction\" LLM deep learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QTxdTsLLRJyi4GiBEf7EEH",
+        "content": [
+          {
+            "title": "2025 IEEE/ACM International Workshop on Deep Learning for Testing and Testing for Deep Learning (DeepTest) | Guide Proceedings",
+            "url": "https://dl.acm.org/doi/10.5555/979-8-3315-0190-7"
+          },
+          {
+            "title": "L4: Diagnosing Large-scale LLM Training Failures via Automated Log Analysis",
+            "url": "https://arxiv.org/pdf/2503.20263"
+          },
+          {
+            "title": "How to Build an LLM Evaluation Framework in 2025: Steps and Components | LLM Evaluation | Deepchecks",
+            "url": "https://deepchecks.com/llm-evaluation/framework/"
+          },
+          {
+            "title": "LogSage: An LLM-Based Framework for CI/CD Failure Detection and Remediation with Industrial Validation",
+            "url": "https://arxiv.org/html/2506.03691v2"
+          },
+          {
+            "title": "Systematic Evaluation of Deep Learning Models for Log-based Failure   Prediction",
+            "url": "https://arxiv.org/pdf/2303.07230"
+          }
+        ]
+      },
+      "I found several relevant results for your search on build log analysis, test failure prediction, and LLM/deep learning approaches. Here are the key findings:\n\n**Recent Research (2025-2026):**\n\nLogSage is the first method specifically designed for CI/CD root cause analysis, using an LLM-based framework. The dataset was completed in April 2025 and will be open-sourced on GitHub.\n\nL4 is a system for diagnosing large-scale LLM training failures via automated log analysis, presented at FSE Companion 2025.\n\n**Deep Learning for Failure Prediction:**\n\nThe analysis of log data can enable engineers to automatically predict failures at run time, with several Machine Learning and Deep Learning techniques proposed to automate such tasks. Research has systematically investigated the combination of log data embedding strategies and Deep Learning types (RNN, CNN, and transformer) for failure prediction.\n\n**General Trends (2025):**\n\nFailure prediction models can be significantly beneficial for managing large-scale complex software systems, but their trustworthiness is affected by concept drift.\n\nThe research shows active development in applying LLMs and deep learning to log analysis and failure prediction in 2025-2026, with industrial validation being conducted."
+    ],
+    "durationSeconds": 5.7394081699999955
+  },
+  "sourceToolAssistantUUID": "f8cf41f6-0962-4cea-adc9-613f2704464b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-21T07:04:24.393Z_
+
+<details><summary>↩ Tool result · `toolu_01T1ma93zTPcq8UHZkPZd4vD`</summary>
+
+```text
+Web search results for query: "ACL ARR review form soundness excitement scoring scale 1 2 3 4 5 descriptions"
+
+Links: [{"title":"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/acguidelines"},{"title":"Program Chairs’ Report on Peer Review at ACL 2023 Anna Rogers}","url":"https://aclanthology.org/2023.acl-long.report.pdf"},{"title":"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"aclrollingreview/reviewerguidelines.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/reviewerguidelines.md"},{"title":"ACL’23 Peer Review Policies - ACL 2023","url":"https://2023.aclweb.org/blog/review-acl23/"},{"title":"ACL 2023 Acceptance Recommendations - ACL 2023","url":"https://2023.aclweb.org/blog/overall-recommendation/"},{"title":"ACL’23 Peer Review Form - ACL 2023","url":"https://2023.aclweb.org/blog/review-form/"}]
+
+Based on the search results, I found information about the ACL ARR review form scoring scales. Here are the descriptions for the soundness and excitement scores:
+
+## Soundness Score (1-5 scale)
+
+The soundness scale includes: 5 = Excellent (one of the most thorough studies), 4 = Strong (sufficient support for all claims, with minor enhancements possible), and 3 = Good (sufficient support for major claims with some minor points needing extra support or details). The search results also reference scores of 2 and 1, with 1 used when the paper is not relevant to ACL.
+
+## Excitement Score
+
+Excitement is a more subjective category than soundness, reflecting your perception of the novelty of the paper, including conceptual breakthroughs, experimental evidence for common intuitions, corrections to widely held beliefs, and evidence of issues with datasets or metrics.
+
+## Key Distinctions
+
+You may find work sound but not personally interesting, and such preferences should be reflected in a separate excitement score, which is orthogonal to the assessment of soundness. Excitement scores reflect personal taste and do not necessarily come with explicit reasons, whereas soundness scores must be justified by the text of the review.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91be0a72-f603-4bcf-b48f-574feb3430a9",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "a009b288-ca3b-4833-ad88-5a9fcea0f0cb",
+  "toolUseResult": {
+    "query": "ACL ARR review form soundness excitement scoring scale 1 2 3 4 5 descriptions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AudC3jwYy8fktZvAeZK8gu",
+        "content": [
+          {
+            "title": "ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/acguidelines"
+          },
+          {
+            "title": "Program Chairs’ Report on Peer Review at ACL 2023 Anna Rogers}",
+            "url": "https://aclanthology.org/2023.acl-long.report.pdf"
+          },
+          {
+            "title": "ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewerguidelines"
+          },
+          {
+            "title": "aclrollingreview/reviewerguidelines.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/reviewerguidelines.md"
+          },
+          {
+            "title": "ACL’23 Peer Review Policies - ACL 2023",
+            "url": "https://2023.aclweb.org/blog/review-acl23/"
+          },
+          {
+            "title": "ACL 2023 Acceptance Recommendations - ACL 2023",
+            "url": "https://2023.aclweb.org/blog/overall-recommendation/"
+          },
+          {
+            "title": "ACL’23 Peer Review Form - ACL 2023",
+            "url": "https://2023.aclweb.org/blog/review-form/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the ACL ARR review form scoring scales. Here are the descriptions for the soundness and excitement scores:\n\n## Soundness Score (1-5 scale)\n\nThe soundness scale includes: 5 = Excellent (one of the most thorough studies), 4 = Strong (sufficient support for all claims, with minor enhancements possible), and 3 = Good (sufficient support for major claims with some minor points needing extra support or details). The search results also reference scores of 2 and 1, with 1 used when the paper is not relevant to ACL.\n\n## Excitement Score\n\nExcitement is a more subjective category than soundness, reflecting your perception of the novelty of the paper, including conceptual breakthroughs, experimental evidence for common intuitions, corrections to widely held beliefs, and evidence of issues with datasets or metrics.\n\n## Key Distinctions\n\nYou may find work sound but not personally interesting, and such preferences should be reflected in a separate excitement score, which is orthogonal to the assessment of soundness. Excitement scores reflect personal taste and do not necessarily come with explicit reasons, whereas soundness scores must be justified by the text of the review."
+    ],
+    "durationSeconds": 5.900391230000008
+  },
+  "sourceToolAssistantUUID": "91be0a72-f603-4bcf-b48f-574feb3430a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 108 · 2026-05-21T07:04:24.397Z_
+
+```json
+{
+  "parentUuid": "a009b288-ca3b-4833-ad88-5a9fcea0f0cb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fabab178-3187-4d53-a3d3-9592e823267b",
+  "timestamp": "2026-05-21T07:04:24.397Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-21T07:04:28.436Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now get the exact ARR review form with score descriptions from the GitHub page or the ACL 2023 peer review form page, which seems to have more detailed descriptions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fabab178-3187-4d53-a3d3-9592e823267b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHfSVtXVfjozCk3j8Tn",
+  "type": "assistant",
+  "uuid": "32abf884-7e9d-409d-8740-8712d8f96ee7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wgp1cfZLJvG7ipT256ivsg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3509,
+      "cache_read_input_tokens": 56762,
+      "output_tokens": 275,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3509,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 275,
+          "cache_read_input_tokens": 56762,
+          "cache_creation_input_tokens": 3509,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3509
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110 · 2026-05-21T07:04:28.961Z_
+
+获取 ARR 官方 review form 的完整评分细则。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32abf884-7e9d-409d-8740-8712d8f96ee7",
+  "isSidechain": false,
+  "requestId": "req_011CbFHfSVtXVfjozCk3j8Tn",
+  "type": "assistant",
+  "uuid": "8e6f896b-be9e-477b-9e70-7c3b806d8a15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wgp1cfZLJvG7ipT256ivsg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3509,
+      "cache_read_input_tokens": 56762,
+      "output_tokens": 275,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3509,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 275,
+          "cache_read_input_tokens": 56762,
+          "cache_creation_input_tokens": 3509,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3509
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-21T07:04:30.375Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Y89Un5Q5GxeweBP6YRm5DC`</summary>
+
+```json
+{
+  "url": "https://github.com/acl-org/aclrollingreview/blob/main/reviewerguidelines.md",
+  "prompt": "Extract the complete scoring scale for each review dimension: soundness (1-5), excitement (1-5), overall assessment (1-5), reproducibility, and any other scored dimensions. Include the exact text description for each score level."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e6f896b-be9e-477b-9e70-7c3b806d8a15",
+  "isSidechain": false,
+  "requestId": "req_011CbFHfSVtXVfjozCk3j8Tn",
+  "type": "assistant",
+  "uuid": "ee9f1c4f-86e4-4d68-939e-8942b5918b43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wgp1cfZLJvG7ipT256ivsg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3509,
+      "cache_read_input_tokens": 56762,
+      "output_tokens": 275,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3509,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 275,
+          "cache_read_input_tokens": 56762,
+          "cache_creation_input_tokens": 3509,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3509
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-21T07:04:31.029Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KBgQtkPhyhRewYSJRF439u`</summary>
+
+```json
+{
+  "query": "\"information density\" \"trace\" \"code\" event selection LLM software engineering 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee9f1c4f-86e4-4d68-939e-8942b5918b43",
+  "isSidechain": false,
+  "requestId": "req_011CbFHfSVtXVfjozCk3j8Tn",
+  "type": "assistant",
+  "uuid": "44a46ab2-aa34-4a53-ab8a-c8c7013f886b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wgp1cfZLJvG7ipT256ivsg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3509,
+      "cache_read_input_tokens": 56762,
+      "output_tokens": 275,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3509,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 275,
+          "cache_read_input_tokens": 56762,
+          "cache_creation_input_tokens": 3509,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3509
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-21T07:04:35.614Z_
+
+<details><summary>↩ Tool result · `toolu_01Y89Un5Q5GxeweBP6YRm5DC`</summary>
+
+```text
+# ARR Review Scoring Dimensions
+
+Based on the reviewer guidelines document, the specific scoring scales and their exact descriptions are **not explicitly provided** in this content.
+
+The document mentions that "Starting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation," but it does not include detailed scoring rubrics with numerical scales (1-5) or specific text descriptions for each level.
+
+The document does explain the conceptual differences:
+
+- **Soundness**: Technical validity requiring "justified by the text of the review"
+- **Excitement**: Reflects "personal taste" and is "orthogonal to the assessment of soundness"
+- **Overall assessment**: "Composite score reflecting your assessment of soundness, excitement, and also other factors like novelty and impact"
+
+For the complete scoring scale with specific numerical descriptors, you would need to consult the actual ARR review form referenced as "a post describing the [ARR review form](https://aclrollingreview.org/reviewform) in detail," which is not included in this excerpt.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee9f1c4f-86e4-4d68-939e-8942b5918b43",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "958cc8e2-1c4d-4edd-8536-930ca13bf3a3",
+  "toolUseResult": {
+    "bytes": 569767,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR Review Scoring Dimensions\n\nBased on the reviewer guidelines document, the specific scoring scales and their exact descriptions are **not explicitly provided** in this content.\n\nThe document mentions that \"Starting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation,\" but it does not include detailed scoring rubrics with numerical scales (1-5) or specific text descriptions for each level.\n\nThe document does explain the conceptual differences:\n\n- **Soundness**: Technical validity requiring \"justified by the text of the review\"\n- **Excitement**: Reflects \"personal taste\" and is \"orthogonal to the assessment of soundness\"\n- **Overall assessment**: \"Composite score reflecting your assessment of soundness, excitement, and also other factors like novelty and impact\"\n\nFor the complete scoring scale with specific numerical descriptors, you would need to consult the actual ARR review form referenced as \"a post describing the [ARR review form](https://aclrollingreview.org/reviewform) in detail,\" which is not included in this excerpt.",
+    "durationMs": 5232,
+    "url": "https://github.com/acl-org/aclrollingreview/blob/main/reviewerguidelines.md"
+  },
+  "sourceToolAssistantUUID": "ee9f1c4f-86e4-4d68-939e-8942b5918b43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-21T07:04:38.473Z_
+
+<details><summary>↩ Tool result · `toolu_01KBgQtkPhyhRewYSJRF439u`</summary>
+
+```text
+Web search results for query: ""information density" "trace" "code" event selection LLM software engineering 2025 2026"
+
+Links: [{"title":"Evaluating the Use of LLMs for Documentation to Code Traceability","url":"https://arxiv.org/html/2506.16440v1"},{"title":"Evaluating the Use of LLMs for Documentation to Code Traceability","url":"https://www.arxiv.org/pdf/2506.16440"},{"title":"Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces","url":"https://arxiv.org/pdf/2510.06953"},{"title":"TraceLLM: Leveraging Large Language Models with Prompt Engineering for Enhanced Requirements Traceability","url":"https://arxiv.org/pdf/2602.01253"},{"title":"Embedding Traceability in Large Language Model Code Generation: Towards Trustworthy AI-Augmented Software Engineering | Proceedings of the 33rd ACM International Conference on the Foundations of Software Engineering","url":"https://dl.acm.org/doi/10.1145/3696630.3730569"},{"title":"Trace encoder with event filter","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12235749"},{"title":"SpecMap: Hierarchical LLM Agent for Datasheet-to-Code Traceability Link Recovery in Systems Engineering","url":"https://arxiv.org/pdf/2601.11688"},{"title":"Using LLMs for Massive Code Trace Analysis: Part 1 – Alan Sguigna","url":"https://alansguigna.com/2025/08/using-llms-for-massive-code-trace-analysis-part-1/"},{"title":"TraceLLM: LLM Traceability Framework","url":"https://www.emergentmind.com/topics/tracellm"}]
+
+I found several relevant results for your search query. Here are the key findings:
+
+## Information Density and LLM Reasoning Traces
+
+Selecting reasoning traces with more uniform information density at the step-level improves accuracy by 10-32% relative gains over baselines at AIME2025. Correct reasoning traces tend to avoid sharp information density spikes, while incorrect traces exhibit irregular information bursts. UID-inspired information density measures outperform alternative internal signals as predictors of reasoning quality, serving as a robust diagnostic and selection criterion for building more reliable and accurate reasoning systems.
+
+## LLM Traceability in Software Engineering
+
+Several recent papers address LLM applications for code traceability:
+
+- TraceLLM is a systematic framework for enhancing requirements traceability through prompt engineering and demonstration selection, incorporating rigorous dataset splitting, iterative prompt refinement, and evaluation across zero- and few-shot settings.
+
+- The rise of LLMs in software engineering introduces critical challenges in tracing generated code to its governing requirements, with proposed solutions including structured requirement prompting, metadata-aware fine-tuning, and retrieval-augmented validation.
+
+- A hierarchical LLM agent approach for datasheet-to-code traceability progressively narrows the search space and significantly reduces computational overhead, lowering total LLM token consumption by 84%.
+
+The search results show active 2025-2026 research combining information density concepts with event/trace selection in LLM-based software engineering tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "44a46ab2-aa34-4a53-ab8a-c8c7013f886b",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "facf1b32-9846-4555-82a9-c38a64420350",
+  "toolUseResult": {
+    "query": "\"information density\" \"trace\" \"code\" event selection LLM software engineering 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UGVJCfBk6sDCqT9VRVmUw8",
+        "content": [
+          {
+            "title": "Evaluating the Use of LLMs for Documentation to Code Traceability",
+            "url": "https://arxiv.org/html/2506.16440v1"
+          },
+          {
+            "title": "Evaluating the Use of LLMs for Documentation to Code Traceability",
+            "url": "https://www.arxiv.org/pdf/2506.16440"
+          },
+          {
+            "title": "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces",
+            "url": "https://arxiv.org/pdf/2510.06953"
+          },
+          {
+            "title": "TraceLLM: Leveraging Large Language Models with Prompt Engineering for Enhanced Requirements Traceability",
+            "url": "https://arxiv.org/pdf/2602.01253"
+          },
+          {
+            "title": "Embedding Traceability in Large Language Model Code Generation: Towards Trustworthy AI-Augmented Software Engineering | Proceedings of the 33rd ACM International Conference on the Foundations of Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3696630.3730569"
+          },
+          {
+            "title": "Trace encoder with event filter",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12235749"
+          },
+          {
+            "title": "SpecMap: Hierarchical LLM Agent for Datasheet-to-Code Traceability Link Recovery in Systems Engineering",
+            "url": "https://arxiv.org/pdf/2601.11688"
+          },
+          {
+            "title": "Using LLMs for Massive Code Trace Analysis: Part 1 – Alan Sguigna",
+            "url": "https://alansguigna.com/2025/08/using-llms-for-massive-code-trace-analysis-part-1/"
+          },
+          {
+            "title": "TraceLLM: LLM Traceability Framework",
+            "url": "https://www.emergentmind.com/topics/tracellm"
+          }
+        ]
+      },
+      "I found several relevant results for your search query. Here are the key findings:\n\n## Information Density and LLM Reasoning Traces\n\nSelecting reasoning traces with more uniform information density at the step-level improves accuracy by 10-32% relative gains over baselines at AIME2025. Correct reasoning traces tend to avoid sharp information density spikes, while incorrect traces exhibit irregular information bursts. UID-inspired information density measures outperform alternative internal signals as predictors of reasoning quality, serving as a robust diagnostic and selection criterion for building more reliable and accurate reasoning systems.\n\n## LLM Traceability in Software Engineering\n\nSeveral recent papers address LLM applications for code traceability:\n\n- TraceLLM is a systematic framework for enhancing requirements traceability through prompt engineering and demonstration selection, incorporating rigorous dataset splitting, iterative prompt refinement, and evaluation across zero- and few-shot settings.\n\n- The rise of LLMs in software engineering introduces critical challenges in tracing generated code to its governing requirements, with proposed solutions including structured requirement prompting, metadata-aware fine-tuning, and retrieval-augmented validation.\n\n- A hierarchical LLM agent approach for datasheet-to-code traceability progressively narrows the search space and significantly reduces computational overhead, lowering total LLM token consumption by 84%.\n\nThe search results show active 2025-2026 research combining information density concepts with event/trace selection in LLM-based software engineering tasks."
+    ],
+    "durationSeconds": 7.439576950000017
+  },
+  "sourceToolAssistantUUID": "44a46ab2-aa34-4a53-ab8a-c8c7013f886b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 115 · 2026-05-21T07:04:42.282Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting - I found a very relevant paper: "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces" (arXiv: 2510.06953). This is directly related to the "information density" concept used in this paper. Let me get more details.
+
+Also, let me try to get the official ARR review form scoring scale.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "facf1b32-9846-4555-82a9-c38a64420350",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUjrYGaEswCsD5AUw",
+  "type": "assistant",
+  "uuid": "e8dabd2e-54ef-400d-b43f-feda08b2c9df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015CN3XcJ2sRKCEQs6QZgy1w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1380,
+      "cache_read_input_tokens": 60271,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 60271,
+          "cache_creation_input_tokens": 1380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 116 · 2026-05-21T07:04:43.237Z_
+
+找到一篇高度相关的论文。让我获取 ARR 评分表详情和这篇相关工作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8dabd2e-54ef-400d-b43f-feda08b2c9df",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUjrYGaEswCsD5AUw",
+  "type": "assistant",
+  "uuid": "1e08b1d3-0b83-44a2-8808-590b0ba82d82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015CN3XcJ2sRKCEQs6QZgy1w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1380,
+      "cache_read_input_tokens": 60271,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 60271,
+          "cache_creation_input_tokens": 1380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-21T07:04:44.311Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UGucDmTrpAEzpWFuGQAxkB`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/reviewform",
+  "prompt": "Extract the complete scoring scale for each review dimension: soundness, excitement, overall assessment, reproducibility. Include the exact text description for each score level (1, 2, 3, 4, 5)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e08b1d3-0b83-44a2-8808-590b0ba82d82",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUjrYGaEswCsD5AUw",
+  "type": "assistant",
+  "uuid": "97b100a0-a74e-4415-9900-0d761e7ed845",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015CN3XcJ2sRKCEQs6QZgy1w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1380,
+      "cache_read_input_tokens": 60271,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 60271,
+          "cache_creation_input_tokens": 1380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-21T07:04:44.349Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X771FuwvCKuV8dZp44NWjf`</summary>
+
+```json
+{
+  "query": "arXiv 2510.06953 \"Uniform Information Density\" LLM reasoning traces"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97b100a0-a74e-4415-9900-0d761e7ed845",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUjrYGaEswCsD5AUw",
+  "type": "assistant",
+  "uuid": "91aabbfb-9df4-4654-b074-3838369d9985",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015CN3XcJ2sRKCEQs6QZgy1w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1380,
+      "cache_read_input_tokens": 60271,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 60271,
+          "cache_creation_input_tokens": 1380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 119_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "91aabbfb-9df4-4654-b074-3838369d9985",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 120_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-21T07:04:49.895Z_
+
+<details><summary>↩ Tool result · `toolu_01UGucDmTrpAEzpWFuGQAxkB`</summary>
+
+```text
+# ARR Review Form Scoring Scales
+
+## Soundness
+- **5**: "Excellent: This study is one of the most thorough I have seen, given its type."
+- **4**: "Strong: This study provides sufficient support for all of its claims. Some extra experiments could be nice, but not essential."
+- **3**: "Acceptable: This study provides sufficient support for its main claims. Some minor points may need extra support or details."
+- **2**: "Poor: Some of the main claims are not sufficiently supported. There are major technical/methodological problems."
+- **1**: "Major Issues: This study is not yet sufficiently thorough to warrant publication or is not relevant to ACL."
+
+## Excitement
+- **5**: "Highly Exciting: I would recommend this paper to others and/or attend its presentation in a conference."
+- **4**: "Exciting: I would mention this paper to others and/or make an effort to attend its presentation in a conference."
+- **3**: "Interesting: I might mention some points of this paper to others and/or attend its presentation if there's time."
+- **2**: "Potentially Interesting: this paper does not resonate with me, but it might with others in the \*ACL community."
+- **1**: "Not Exciting: this paper does not resonate with me, and I don't think it would with others."
+
+## Overall Assessment
+- **5**: Consider for Award (top 2.5% papers)
+- **4**: Conference acceptance recommended
+- **3**: Findings acceptance recommended
+- **2**: Resubmit next cycle with substantial revisions
+- **1**: Do not resubmit; not relevant to \*ACL community
+
+## Reproducibility
+- **5**: "They could easily reproduce the results."
+- **4**: "They could mostly reproduce the results, but there may be some variation."
+- **3**: "They could reproduce the results with some difficulty."
+- **2**: "They would be hard pressed to reproduce the results."
+- **1**: "They would not be able to reproduce the results no matter how hard they tried."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97b100a0-a74e-4415-9900-0d761e7ed845",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "73aeb2cd-d855-45dc-817a-f769750e1043",
+  "toolUseResult": {
+    "bytes": 25365,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR Review Form Scoring Scales\n\n## Soundness\n- **5**: \"Excellent: This study is one of the most thorough I have seen, given its type.\"\n- **4**: \"Strong: This study provides sufficient support for all of its claims. Some extra experiments could be nice, but not essential.\"\n- **3**: \"Acceptable: This study provides sufficient support for its main claims. Some minor points may need extra support or details.\"\n- **2**: \"Poor: Some of the main claims are not sufficiently supported. There are major technical/methodological problems.\"\n- **1**: \"Major Issues: This study is not yet sufficiently thorough to warrant publication or is not relevant to ACL.\"\n\n## Excitement\n- **5**: \"Highly Exciting: I would recommend this paper to others and/or attend its presentation in a conference.\"\n- **4**: \"Exciting: I would mention this paper to others and/or make an effort to attend its presentation in a conference.\"\n- **3**: \"Interesting: I might mention some points of this paper to others and/or attend its presentation if there's time.\"\n- **2**: \"Potentially Interesting: this paper does not resonate with me, but it might with others in the \\*ACL community.\"\n- **1**: \"Not Exciting: this paper does not resonate with me, and I don't think it would with others.\"\n\n## Overall Assessment\n- **5**: Consider for Award (top 2.5% papers)\n- **4**: Conference acceptance recommended\n- **3**: Findings acceptance recommended\n- **2**: Resubmit next cycle with substantial revisions\n- **1**: Do not resubmit; not relevant to \\*ACL community\n\n## Reproducibility\n- **5**: \"They could easily reproduce the results.\"\n- **4**: \"They could mostly reproduce the results, but there may be some variation.\"\n- **3**: \"They could reproduce the results with some difficulty.\"\n- **2**: \"They would be hard pressed to reproduce the results.\"\n- **1**: \"They would not be able to reproduce the results no matter how hard they tried.\"",
+    "durationMs": 5580,
+    "url": "https://aclrollingreview.org/reviewform"
+  },
+  "sourceToolAssistantUUID": "97b100a0-a74e-4415-9900-0d761e7ed845",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-21T07:04:50.841Z_
+
+<details><summary>↩ Tool result · `toolu_01X771FuwvCKuV8dZp44NWjf`</summary>
+
+```text
+Web search results for query: "arXiv 2510.06953 "Uniform Information Density" LLM reasoning traces"
+
+Links: [{"title":"[2510.06953] Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces","url":"https://arxiv.org/abs/2510.06953"},{"title":"Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv251006953G/abstract"},{"title":"Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces","url":"https://arxiv.org/html/2510.06953v1"},{"title":"Paper page - Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces","url":"https://huggingface.co/papers/2510.06953"},{"title":"(PDF) Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces","url":"https://www.researchgate.net/publication/396330662_Revisiting_the_Uniform_Information_Density_Hypothesis_in_LLM_Reasoning_Traces"},{"title":"NeurIPS Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces","url":"https://neurips.cc/virtual/2025/loc/san-diego/131130"},{"title":"Revisiting the Uniform Information Density Hypothesis in LLM Reasoning","url":"https://arxiv.org/pdf/2510.06953"},{"title":"Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces | OpenReview","url":"https://openreview.net/forum?id=NbMHsDyCsL"},{"title":"[Literature Review] Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces","url":"https://www.themoonlight.io/en/review/revisiting-the-uniform-information-density-hypothesis-in-llm-reasoning-traces"},{"title":"Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces [Quick Review]","url":"https://liner.com/review/revisiting-uniform-information-density-hypothesis-in-llm-reasoning-traces"}]
+
+I found the paper you were searching for. Here's what it's about:
+
+The paper "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces" (arXiv 2510.06953) examines the Uniform Information Density (UID) hypothesis in the context of large language model reasoning traces, asking whether step-level uniformity reflects reasoning quality.
+
+The authors propose an entropy-based stepwise information density metric and introduce two complementary measures of uniformity: local and global uniformity scores.
+
+Across experiments on six different reasoning benchmarks, they find that step-level uniformity yields practical performance benefits—for example, selecting reasoning traces with more uniform information density improves accuracy by 10-32% relative gains over baselines at AIME2025.
+
+Their analysis reveals that correct reasoning traces tend to avoid sharp information density spikes, while incorrect traces exhibit irregular information bursts.
+
+The paper was authored by Minju Gwak, Guijin Son, and Jaehyung Kim, submitted on October 8, 2025, with a revised version on January 14, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91aabbfb-9df4-4654-b074-3838369d9985",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "edd1fcdb-c1c7-4692-8ce2-f5a6bff03734",
+  "toolUseResult": {
+    "query": "arXiv 2510.06953 \"Uniform Information Density\" LLM reasoning traces",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XEVWmoqsuz7qiViVvf288e",
+        "content": [
+          {
+            "title": "[2510.06953] Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces",
+            "url": "https://arxiv.org/abs/2510.06953"
+          },
+          {
+            "title": "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv251006953G/abstract"
+          },
+          {
+            "title": "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces",
+            "url": "https://arxiv.org/html/2510.06953v1"
+          },
+          {
+            "title": "Paper page - Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces",
+            "url": "https://huggingface.co/papers/2510.06953"
+          },
+          {
+            "title": "(PDF) Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces",
+            "url": "https://www.researchgate.net/publication/396330662_Revisiting_the_Uniform_Information_Density_Hypothesis_in_LLM_Reasoning_Traces"
+          },
+          {
+            "title": "NeurIPS Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/131130"
+          },
+          {
+            "title": "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2510.06953"
+          },
+          {
+            "title": "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces | OpenReview",
+            "url": "https://openreview.net/forum?id=NbMHsDyCsL"
+          },
+          {
+            "title": "[Literature Review] Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces",
+            "url": "https://www.themoonlight.io/en/review/revisiting-the-uniform-information-density-hypothesis-in-llm-reasoning-traces"
+          },
+          {
+            "title": "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces [Quick Review]",
+            "url": "https://liner.com/review/revisiting-uniform-information-density-hypothesis-in-llm-reasoning-traces"
+          }
+        ]
+      },
+      "I found the paper you were searching for. Here's what it's about:\n\nThe paper \"Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces\" (arXiv 2510.06953) examines the Uniform Information Density (UID) hypothesis in the context of large language model reasoning traces, asking whether step-level uniformity reflects reasoning quality.\n\nThe authors propose an entropy-based stepwise information density metric and introduce two complementary measures of uniformity: local and global uniformity scores.\n\nAcross experiments on six different reasoning benchmarks, they find that step-level uniformity yields practical performance benefits—for example, selecting reasoning traces with more uniform information density improves accuracy by 10-32% relative gains over baselines at AIME2025.\n\nTheir analysis reveals that correct reasoning traces tend to avoid sharp information density spikes, while incorrect traces exhibit irregular information bursts.\n\nThe paper was authored by Minju Gwak, Guijin Son, and Jaehyung Kim, submitted on October 8, 2025, with a revised version on January 14, 2026."
+    ],
+    "durationSeconds": 6.488563832999993
+  },
+  "sourceToolAssistantUUID": "91aabbfb-9df4-4654-b074-3838369d9985",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123 · 2026-05-21T07:06:11.604Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need to write a comprehensive review. Let me also search for some more specific related work that might be missing, specifically around prompt compression for code and the LogSage paper.
+
+Actually, let me also look for "code-specific prompt compression" papers which the Director asked me to check.
+
+Let me consolidate my findings and write the review. I have:
+
+1. Full paper content (pages 1-21)
+2. ARR review form scoring scales
+3. Reference verification results
+4. Related work search results
+
+Let me now analyze:
+
+## Paper Summary
+
+The paper studies **verdict prediction** — classifying whether a test passes or fails given a Python function, test input, and optional execution trace. 
+
+The striking finding is that **exception events alone** consistently achieve over 99% accuracy across all four models tested, while complete execution traces only reach around 80% despite containing substantially more information. This suggests that information density matters far more than raw quantity when it comes to model learning efficiency.
+
+The task involves predicting pass/fail outcomes from code, test cases, and optional execution traces. The dataset draws from HumanEval and MBPP with roughly 5,910 test pairs across 591 problems, split into training and evaluation sets. The evaluation uses several code-focused language models including Qwen-2.5-Coder-7B, CodeLlama-13B-Instruct, and DeepSeek variants.
+
+The researchers tested different trace representations—ranging from no trace information to full execution traces, plus a variant called VOTA that combines exception events with assertion comparisons and loop compression. The training approach uses supervised fine-tuning with LoRA adapters. Interestingly, simple regex baselines that extract just the exception class name achieve 93.61% accuracy, while a format-marker baseline reaches 99.33%, nearly matching what the fine-tuned model achieves with exception-only traces at 99.35%. This suggests the core contribution is identifying that exception events represent the minimal sufficient signal for this task, with the paper arguing this demonstrates how information density correlates with learning efficiency in supervised fine-tuning.
+
+Now I'm examining the novelty concerns more carefully. The central issue is that exception events directly encode the verdict itself—for failing tests, the exception type and stack trace essentially are the signal that the test failed, so it's somewhat circular to claim that learning from exceptions outperforms learning from full traces. The fact that a regex baseline and the fine-tuned model achieve nearly identical performance (99.33% vs 99.35%) raises questions about whether the SFT approach is actually adding meaningful value beyond what simple pattern matching already captures.
+
+The paper frames this as an "information density" advantage, but that's really just post-hoc rationalization for why exception-only traces work well—they work because they're already encoding the verdict. The task itself has a fundamental circularity problem: you need to run the test to get the execution trace, but running the test already gives you the verdict, so the practical motivation for this prediction task is unclear.
+
+The three proposed applications don't really resolve this. Pre-execution prediction contradicts the setup since it wouldn't use traces at all. Calibration and confidence estimation are speculative with no actual experiments backing them up. And understanding trace information for downstream tasks is too vague to justify the entire framing. The paper treats verdict prediction as a proxy for studying how models process traces, but that's not a well-established justification in the literature—it would be stronger to study traces on tasks where they genuinely add value, like fault localization or program repair.
+
+The core issue is that "information density" itself is never rigorously defined. It's thrown around to mean something like the ratio of diagnostic information to token count, but there's no formal mathematical definition, no measurement procedure, and no way to test it beyond this specific task.
+
+Looking at the related work, there are some significant gaps. Recent papers like LogSage on CI/CD failure detection and Gwak et al.'s work directly addressing the information density hypothesis in reasoning traces aren't cited. LongCodeZip on code-specific compression is missing too, along with the broader build log analysis literature. The connection to prompt compression techniques is mentioned but barely explored—just citing LLMLingua and Selective Context without engaging with code-specific compression approaches.
+
+The reference verification shows 42 out of 53 citations checked out. The evaluation is quite limited—just 591 Python problems from HumanEval and MBPP, which doesn't capture real-world codebases or language diversity. There's also a label leakage issue where exception_only essentially gives away whether an exception occurred, so the model isn't really learning to understand errors. The full_trace underperformance gets hand-wavy explanations about information overload rather than rigorous analysis of what's actually confusing the model. And the cross-model generalization claim is overstated given the narrow range of models tested—all code-specialized, all in the 1.5B-13B range.
+
+The main results lack statistical significance testing despite using multiple seeds, and the regex baselines achieving 99.33% accuracy essentially eliminate any meaningful contribution from the SFT approach. The core finding that exception events encode the verdict is fairly obvious, and the task motivation feels circular. The paper is technically sound but makes overclaims about novelty—I'd rate it 3/5 for soundness and 2/5 for excitement. It's competently executed but the contribution is too incremental for a top-tier venue.
+
+Looking at the EMNLP 2026 scale, this lands at 2.5—borderline Findings at best. The reproducibility is solid at 4/5 with well-documented training details and hyperparameters, but that doesn't overcome the fundamental issues with novelty and the regex baseline undermining the learning contribution. It might work as a Findings paper with significant reframing, but as currently presented it's below the conference threshold. Well-documented. Actually, I should reconsider — there are genuine contributions here. The systematic ablation of trace components is empirically useful even if somewhat expected, the budget curve analysis offers interesting insights, and the cross-model consistency is well-established. The paper also acknowledges its limitations honestly. But the core problem persists: regex nearly solves the task, and the narrative around "information density" and "learning efficiency" oversells what's really just models detecting exception markers. I'll keep the 2.5 overall score but focus on how the work could improve. Now I need to look more carefully at how the paper actually frames the regex baseline comparison and what it claims about SFT versus regex performance.
+
+Looking at Section 4, the paper does engage with this directly — it compares SFT against two regex baselines, one detecting error tokens at 93.45% accuracy and another detecting exception class plus traceback markers at 99.33%. The difference in misclassifications is small: 8 errors for the best regex versus 2 for SFT across 1,190 test samples, with a marginal McNemar p-value of 0.031. The practical gap is negligible — 99.33% versus 99.83%, just half a percentage point — and the six samples where SFT outperforms regex involve caught exceptions where try/except blocks handle errors but execution continues, suggesting SFT learns a slightly more nuanced understanding of exception handling.
+
+But here's the issue: the paper frames this contribution as if the learned model substantially outperforms baselines, when really a simple regex achieves nearly identical results. The abstract states "Exception events alone achieve ≥99.33% verdict accuracy" — which is exactly what the regex achieves — yet the contributions section doesn't adequately highlight how close the regex baseline is. The title "Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction" is technically accurate, but readers would naturally assume a learned model drives the outperformance, not a regex pattern.
+
+Now I need to write up my final review following the ARR format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edd1fcdb-c1c7-4692-8ce2-f5a6bff03734",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhPbZuLh9nozmhuQ7b",
+  "type": "assistant",
+  "uuid": "3b16029a-a15e-4b25-bb07-44e145b75646",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NuVNmZDACT2Jj8MJVMnhkd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1676,
+      "cache_read_input_tokens": 61651,
+      "output_tokens": 9630,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9630,
+          "cache_read_input_tokens": 61651,
+          "cache_creation_input_tokens": 1676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 124 · 2026-05-21T07:07:43.533Z_
+
+论文已全部阅读完毕。现在综合所有发现撰写审稿报告。
+
+---
+
+## 总体评分
+
+**Overall Assessment**: **2.5 / 5** — Borderline Findings
+
+**一句话总结**: 实验执行扎实，但核心发现近乎同义反复（exception 本身编码了 verdict 信号），regex baseline B5 达 99.33% 已与 SFT 持平，task 动机存在循环论证，"information density" 缺乏形式化定义。
+
+---
+
+## 官方维度打分（ACL ARR Review Form）
+
+| 维度 | 分数 | 理由摘要 |
+|------|------|----------|
+| **Soundness** | 3/5 (Acceptable) | 实验方法论扎实（ablation、cross-model、budget sweep），但核心概念 "information density" 无形式化定义，解释性 claim 超出证据支撑 |
+| **Excitement** | 2/5 (Potentially Interesting) | 核心发现 near-tautological：exception events 本身编码 verdict；regex baseline 达到同等水平削弱了 SFT 贡献的 novelty |
+| **Reproducibility** | 4/5 | 训练细节、超参数、数据构造均有详细文档，代码未开源但描述充分 |
+| **Overall Assessment** | 2.5 | 实验质量足以支撑 Findings，但 novelty 不足以支撑主会议；需重构 framing |
+| **Confidence** | 4/5 | 对该方向的方法论和相关工作有充分了解 |
+
+---
+
+## Must-Fix 问题（影响接收决定）
+
+**N1** [critical] **核心发现近乎同义反复：exception events 直接编码 verdict 信号**
+
+- 具体位置：Abstract, Section 3.1 (Table 1), Section 4 ("SFT vs. regex baselines")
+- 问题：`exception_only` 格式包含 exception type + stack trace + error message，这本质上就是 fail verdict 的直接表征。对于 pass case，无 exception 即意味着通过。论文声称 "exception events alone achieve ≥99.33%"（Abstract），但 Table 20（Appendix P）的 regex baseline B5（format marker matching）同样达到 99.33%。SFT 的真实增量仅为 0.02pp（99.35% vs 99.33%），差异为 6 个样本（McNemar p=0.031，边缘显著）。这意味着一个不需要任何学习的 regex 就能完成该任务，SFT 的贡献几乎为零。
+- 为什么影响接收："information density determines learning efficiency" 这一核心叙事建立在 SFT 从 exception events 中"学到"了某种判别能力的前提上。如果 regex 已经足够，那么论文的 4 个 contributions 中至少 Contribution 1（信息密度与学习效率相关）和 Contribution 2（exception events 是最小充分信号）的 novelty 大幅缩水——这不是"学习效率"问题，而是 exception events 本身就是 label 的近似编码。
+- 建议修改方向：(1) 将 regex baseline 对比前置到主实验（而非 Appendix P），明确量化 SFT 相对于 regex 的边际贡献；(2) 重构 framing，承认 exception events 的判别力主要来自 format 信号而非模型理解；(3) 将研究问题转向更有 surprise 的方向——例如为什么 full_trace 会 *降低* 性能（这才是真正反直觉的发现）。
+
+**N2** [critical] **Verdict prediction 任务存在循环动机**
+
+- 具体位置：Section 1 (Introduction), Section 4 (Discussion, "Why exception only outperforms as only")
+- 问题：Verdict prediction 要求模型根据 execution trace 预测 pass/fail，但获取 trace 需要运行测试——运行测试时 verdict 已知。论文在 Section 4 提出三个应用场景：(1) CI 优先级排序的 pre-execution prediction、(2) calibration/confidence estimation、(3) 理解 trace 信息以支持下游任务。但场景 1 不使用 trace（与论文 setup 矛盾），场景 2 和 3 没有任何实验验证。
+- 为什么影响接收：*CL 审稿人会追问 "who needs this task?"。如果无法建立 task 的独立价值，整个实验研究的意义就悬空了。作为 proxy task 研究 trace processing 的定位需要更强的先例支撑——目前论文仅提及 CRUXEval 和 TracePile，但它们研究的是 trace prediction/generation，不是 verdict prediction。
+- 建议修改方向：(1) 提供至少一个应用场景的端到端实验验证（如用 verdict predictor 做 fault localization 或 test prioritization）；(2) 更明确地论证 verdict prediction 作为 trace processing 研究 proxy task 的合理性，引用更多先例；(3) 或者重构为研究 "哪些 trace 信息对 LLM 有用" 的 empirical study，弱化 prediction 任务本身的实用性宣称。
+
+**N3** [critical] **"Information Density" 缺乏形式化定义**
+
+- 具体位置：全文使用 "information density" 30+ 次（Abstract, Section 1, 3.4, 4 等），但无数学定义
+- 问题：论文将 "information density" 作为核心理论概念和主要叙事线索（Contribution 1: "Information density strongly correlates with SFT learning efficiency"），但从未给出操作性定义。读者无法回答：给定一个 trace 表征 T，如何计算其 information density？如何比较两个表征的 density？"density hypothesis" 在当前形式下不可证伪。
+- 为什么影响接收：一个以某概念为核心贡献的论文必须对该概念有明确定义。否则 soundness 评分会被压低。
+- 建议修改方向：(1) 给出形式化定义——例如 `density(T) = relevant_tokens(T) / total_tokens(T)`，并定义什么是 "relevant token"；(2) 基于定义在不同 trace 条件间计算并比较 density；(3) 如果不想形式化，至少降低 claim 的强度，将 "information density determines learning efficiency" 改为 "our results suggest that compact representations containing diagnostic signals outperform verbose ones."
+
+---
+
+## Should-Fix 问题（影响评分但不一票否决）
+
+**W1** [warning] **实验数据集范围过窄**
+
+- 具体位置：Section 2.2, Limitations (Section 8)
+- 问题：整个研究基于 591 个 HumanEval + MBPP 问题，仅 Python 语言，仅竞赛编程风格。Limitations 提到 "single dataset" 和 "all are code-specialized"，但没有讨论这对 generalizability 的具体威胁。LLM 生成的候选解决方案集中在简单算法题上，异常类型高度集中（Table 9 显示 TypeError, ValueError, IndexError 等标准异常占绝大多数）。在真实代码库中，异常模式远比这复杂（自定义异常、silent failures、逻辑错误不触发异常等）。
+- 建议：(1) 增加至少一个更复杂的 benchmark（如 DebugBench 已用于 cross-dataset validation — Table 17，但仅 426 样本且 focus 不同）；(2) 在 Limitations 中明确讨论异常类型覆盖度不足对结论泛化性的影响。
+
+**W2** [warning] **Cross-model 泛化声明过强**
+
+- 具体位置：Section 3.1, Contribution text (Section 1)
+- 问题：论文声称 "across four models spanning 1.5B to 13B parameters and three architecture families"，但 (1) 4 个模型全部是 code-specialized（Qwen-Coder, CodeLlama, DeepSeek-Coder），无 general-purpose 模型；(2) 规模范围仅 1.5B-13B，无更大或更小模型；(3) 无 zero-shot/in-context learning 评估（Section Q 的 zero-shot 结果实际是 SFT 0-shot，不是 prompt-based ICL）。
+- 建议：弱化泛化声称的措辞，例如 "across four code-specialized models in the 1.5B-13B range"。
+
+**W3** [warning] **Full-trace 性能降低的归因不足**
+
+- 具体位置：Section 3.4, Section 4
+- 问题：full_trace 仅达 ~80% 是论文中最反直觉的发现，但归因分析薄弱。论文用 "information overload (~76%)" 和 "gradient dilution (~24%)" 来解释（Table 3），但这些数字来自一个近似分解（Section 3.4 自己承认 "the 24%/76% attribution is an approximate decomposition"）。真正的问题是：为什么模型无法从包含更多信息的 trace 中学到同样的判别信号？可能原因包括序列长度导致的注意力稀释、训练动态问题等——但论文没有提供 attention 分析或 gradient 分析的直接证据。
+- 建议：(1) 提供 attention visualization 或 gradient attribution 分析；(2) 做 full_trace 的 tokenizer-level 分析，看 diagnostic tokens 在总 token 中的占比。
+
+**W4** [warning] **遗漏重要相关工作**
+
+- 具体位置：Section 5 (Related Work)
+- 遗漏文献：
+  1. **Gwak et al. (2025/2026)**, "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces" (arXiv: 2510.06953, NeurIPS 2025) — 直接研究 LLM trace 中的信息密度概念，与本文 "information density" 叙事高度相关，且提出了可操作的 entropy-based density metric
+  2. **LongCodeZip** (2026, arXiv: 2603.28119), "Compressing Code Context for LLM-based Issue Resolution" — code-specific context compression，比 LLMLingua/Selective Context 更直接相关
+  3. **LogSage** (2025/2026, arXiv: 2506.03691), CI/CD log failure detection — 与 trace-based verdict prediction 的实际应用场景（CI优化）直接相关
+- 建议：补充上述工作的引用和讨论，特别是 Gwak et al. 的信息密度形式化方法可以被本文直接借鉴。
+
+---
+
+## 小问题（不影响接收）
+
+- **标题 "Less Is More" 是陈词滥调**：建议用更具体的表述，如 "Exception Events Suffice"。
+- **Abstract 数据密度过高**：第一段包含 5+ 个精确数字（≥99.33%, ~80%, 50 steps, 1.5B-13B 等），对首次阅读的 reviewer 认知负担较大。可精简为 2-3 个关键数字。
+- **Table 1 的呈现**：Cross-model verdict accuracy 表包含 7 个 condition × 4 个 model × 多个 seed，建议用热力图或 grouped bar chart 提升可读性。
+- **Appendix E (per-seed breakdowns)** 的 Table 4 数据密度极高，建议缩减或转为 supplementary material。
+- **引用验证**：5 篇引用在 OpenAlex 中未找到（chen2025tracepile, eguchi2025etcot, ferrando2025execute, wong2014dstar, kang2024autofl），其中前三篇为近期 preprint 属正常现象，后两篇（DStar, AutoFL）应在 OpenAlex 中可查——建议核实 bib 条目的 title/venue 拼写是否准确。6 篇存在作者名 mismatch（主要是 LaTeX 编码差异，如 Rozière vs rozi\`ere），非实质性问题。
+
+---
+
+## 主要优势
+
+1. **Ablation 设计系统全面**：7 种 trace 条件 × 4 模型 × 3 seeds，含 component ablation（Section 3.2）、budget sweep（Section 3.5, Figure 4）、trace length ablation（Section I, Table 10-14），实验规模超过多数同类工作。
+2. **Regex baseline 的诚实对比**：论文在 Appendix P 提供了 regex baseline 对比并报告 McNemar test（尽管笔者认为这应前置到主文）。这种诚实性值得肯定。
+3. **Training dynamics 分析有价值**：Figure 3 展示 exception_only 在 50 steps 内收敛而 full_trace 持续震荡，这一可视化直觉清晰。
+4. **Cross-dataset validation**：DebugBench 上的泛化测试（Table 17, Appendix L）虽规模有限，但增加了可信度。
+5. **Appendix 极为详尽**：13 页附录覆盖 per-class 分析、calibration、irreducible samples、zero-shot 对比等，展现了扎实的实验态度。
+
+---
+
+## Questions for Authors
+
+1. 给定 regex B5 已达 99.33%，SFT exception_only 的 99.35% 仅多正确 2 个样本——你们认为这 2 个样本的差异足以支撑 "SFT learns semantic understanding beyond pattern matching" 的 claim 吗？
+2. "Information density" 是否有可操作的定义？如果有，能否在不同 trace 条件间计算并展示具体数值？Gwak et al. (2025) 提出的 entropy-based stepwise information density metric 是否可用于本文的 trace 分析？
+3. 论文 Discussion 提到三个应用场景，是否有计划对其中任何一个进行实验验证？
+4. 如果将 task 从 verdict prediction 换成 fault localization（即定位错误行而非仅判断 pass/fail），exception_only 是否仍然足够？这一实验能更好地区分不同 trace 表征的价值。
+5. full_trace 的 ~80% accuracy 是否与 LoRA rank 或训练 epochs 相关？是否尝试过更大的 rank 或更长的训练来缩小 gap？
+
+---
+
+## Missing References
+
+1. Gwak, M., Son, G., & Kim, J. (2025). "Revisiting the Uniform Information Density Hypothesis in LLM Reasoning Traces." *NeurIPS 2025*. arXiv:2510.06953
+2. "Compressing Code Context for LLM-based Issue Resolution" (LongCodeZip), arXiv:2603.28119, 2026
+3. "LogSage: An LLM-Based Framework for CI/CD Failure Detection and Remediation," arXiv:2506.03691, 2025
+
+---
+
+现在将审稿报告提交给 Review Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b16029a-a15e-4b25-bb07-44e145b75646",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhPbZuLh9nozmhuQ7b",
+  "type": "assistant",
+  "uuid": "5670ce7c-b49b-4f1a-b596-c16c9cbb263b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NuVNmZDACT2Jj8MJVMnhkd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1676,
+      "cache_read_input_tokens": 61651,
+      "output_tokens": 9630,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9630,
+          "cache_read_input_tokens": 61651,
+          "cache_creation_input_tokens": 1676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-21T07:08:09.039Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_01HZfCB1Ph1w2Yaaxb8uYQBC`</summary>
+
+```json
+{
+  "text": "## Reviewer 2 审稿报告：新颖性与完整性\n\n### 论文：Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction\n\n---\n\n## 总体评分\n\n**Overall Assessment**: **2.5 / 5** — Borderline Findings\n\n**一句话总结**: 实验执行扎实，但核心发现近乎同义反复（exception 本身编码了 verdict 信号），regex baseline B5 达 99.33% 已与 SFT 持平，task 动机存在循环论证，\"information density\" 缺乏形式化定义。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3/5 (Acceptable) | 实验方法论扎实（ablation、cross-model、budget sweep），但核心概念 \"information density\" 无形式化定义，解释性 claim 超出证据支撑 |\n| **Excitement** | 2/5 (Potentially Interesting) | 核心发现 near-tautological：exception events 本身编码 verdict；regex baseline 达到同等水平削弱了 SFT 贡献的 novelty |\n| **Reproducibility** | 4/5 | 训练细节、超参数、数据构造均有详细文档 |\n| **Overall Assessment** | 2.5 | 实验质量足以支撑 Findings，但 novelty 不足以支撑主会议；需重构 framing |\n| **Confidence** | 4/5 | 对该方向的方法论和相关工作有充分了解 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] **核心发现近乎同义反复：exception events 直接编码 verdict 信号**\n\n- 具体位置：Abstract, Section 3.1 (Table 1), Section 4 (\"SFT vs. regex baselines\"), Appendix P (Table 20)\n- 问题：`exception_only` 格式包含 exception type + stack trace + error message，本质上就是 fail verdict 的直接表征。Abstract 声称 \"exception events alone achieve ≥99.33%\"，但 Appendix P 的 regex baseline B5（format marker matching）同样达到 99.33%。SFT 的真实增量仅为 0.02pp（99.35% vs 99.33%），差异 6 个样本（McNemar p=0.031，边缘显著）。这意味着不需要任何学习的 regex 就能完成该任务。\n- 为什么影响接收：\"information density determines learning efficiency\" 的核心叙事建立在 SFT 从 exception events 中 \"学到\" 了判别能力的前提上。如果 regex 已足够，Contribution 1 和 2 的 novelty 大幅缩水。\n- 建议：(1) 将 regex baseline 对比前置到主实验；(2) 重构 framing，承认判别力主要来自 format 信号；(3) 转向 full_trace 性能降低这一更反直觉的发现作为主 contribution。\n\n**N2** [critical] **Verdict prediction 任务存在循环动机**\n\n- 具体位置：Section 1, Section 4 (Discussion)\n- 问题：获取 trace 需运行测试→verdict 已知→为何预测？Section 4 的三个应用场景均无实验验证：场景 1（pre-execution）不用 trace（与论文 setup 矛盾），场景 2-3 纯推测。作为 proxy task 研究 trace processing 的定位缺乏 *CL 先例支撑。\n- 建议：提供至少一个应用场景的端到端实验验证；或重构为 \"哪些 trace 信息对 LLM 有用\" 的 empirical study，弱化 prediction 任务本身的实用性宣称。\n\n**N3** [critical] **\"Information Density\" 缺乏形式化定义**\n\n- 具体位置：全文 30+ 次使用但无数学定义\n- 问题：作为核心理论概念（Contribution 1），从未给出操作性定义。读者无法计算或比较不同 trace 的 density。当前形式下 \"density hypothesis\" 不可证伪。\n- 建议：给出形式化定义（如 relevant_tokens/total_tokens 或 entropy-based metric）；或降低 claim 强度。\n\n---\n\n## Should-Fix 问题\n\n**W1** [warning] **实验数据集范围过窄** — 仅 591 个 HumanEval+MBPP 问题，仅 Python，仅竞赛编程。真实代码中异常模式远更复杂（自定义异常、silent failures、逻辑错误）。\n\n**W2** [warning] **Cross-model 泛化声明过强** — 4 个模型全部 code-specialized，1.5B-13B，无 general-purpose 模型，无 ICL 评估。\n\n**W3** [warning] **Full-trace 性能降低归因薄弱** — \"information overload (~76%)\" 和 \"gradient dilution (~24%)\" 基于近似分解，缺乏 attention/gradient 分析的直接证据。\n\n**W4** [warning] **遗漏重要相关工作**：\n1. Gwak et al. (NeurIPS 2025) \"Revisiting the UID Hypothesis in LLM Reasoning Traces\" — 直接研究 trace 信息密度，提出可操作的 entropy-based metric\n2. LongCodeZip (2026) — code-specific context compression\n3. LogSage (2025) — CI/CD failure detection\n\n---\n\n## 小问题\n\n- 标题 \"Less Is More\" 陈词滥调\n- Abstract 数据密度过高（5+ 精确数字）\n- 5 篇引用 OpenAlex 未找到（前三篇为近期 preprint 属正常；wong2014dstar 和 kang2024autofl 建议核实 bib 条目）\n- 6 篇作者名 LaTeX 编码 mismatch（非实质性）\n\n---\n\n## 主要优势\n\n1. Ablation 设计系统全面（7 条件 × 4 模型 × 3 seeds + component/budget/length ablation）\n2. Regex baseline 的诚实对比（虽应前置到主文）\n3. Training dynamics 分析有价值（Figure 3）\n4. DebugBench cross-dataset validation（Table 17）\n5. Appendix 极为详尽（13 页）\n\n---\n\n## Questions for Authors\n\n1. 给定 regex B5 已达 99.33%，SFT 的 2 个样本差异足以支撑 \"semantic understanding beyond pattern matching\" 的 claim 吗？\n2. \"Information density\" 是否有可操作定义？Gwak et al. (2025) 的 entropy-based metric 是否可用？\n3. Discussion 三个应用场景是否有计划实验验证？\n4. 如果换成 fault localization 任务，exception_only 是否仍然足够？\n5. full_trace 的 ~80% 是否与 LoRA rank 或训练 epochs 相关？更大 rank/更长训练能否缩小 gap？",
+  "reviewer_id": "2",
+  "project": "trace-verdict-study"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5670ce7c-b49b-4f1a-b596-c16c9cbb263b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhPbZuLh9nozmhuQ7b",
+  "type": "assistant",
+  "uuid": "4ae2dfe3-ce46-4c76-a9d5-fdff977bcc8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NuVNmZDACT2Jj8MJVMnhkd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1676,
+      "cache_read_input_tokens": 61651,
+      "output_tokens": 9630,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9630,
+          "cache_read_input_tokens": 61651,
+          "cache_creation_input_tokens": 1676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 126_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责 **新颖性与完整性** 审查。  ## 投稿信息 - 论文：*Less Is More: Exception Events Outperform Complete Traces for Verdict Prediction* - Venue：**EMNLP 2026** (ARR Long Paper) - Deadline：202…",
+  "leafUuid": "4ae2dfe3-ce46-4c76-a9d5-fdff977bcc8b",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 127_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-21T07:08:13.062Z_
+
+<details><summary>↩ Tool result · `toolu_01HZfCB1Ph1w2Yaaxb8uYQBC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_47a2f37b5c77af2e2351362f8def77a1:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4ae2dfe3-ce46-4c76-a9d5-fdff977bcc8b",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "0a90c8a5-3699-4354-b1eb-9c70c2dc2228",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_47a2f37b5c77af2e2351362f8def77a1:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_47a2f37b5c77af2e2351362f8def77a1:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "4ae2dfe3-ce46-4c76-a9d5-fdff977bcc8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-21T07:08:16.094Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012H8ucgjVFe1stDL94udk4d`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a90c8a5-3699-4354-b1eb-9c70c2dc2228",
+  "isSidechain": false,
+  "requestId": "req_011CbFHxJDXoDDpnzMZ4BtPx",
+  "type": "assistant",
+  "uuid": "6ebd8855-a6cc-4697-9d9f-163106594471",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Wt9z4s4Jmqc4FPpJZB62q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9698,
+      "cache_read_input_tokens": 63327,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9698,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 63327,
+          "cache_creation_input_tokens": 9698,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9698
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-21T07:08:16.103Z_
+
+<details><summary>↩ Tool result · `toolu_012H8ucgjVFe1stDL94udk4d`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__cleanup_pdf_images"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ebd8855-a6cc-4697-9d9f-163106594471",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "3cb7391c-4485-42f5-96fb-62e57513b01b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__cleanup_pdf_images"
+    ],
+    "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "6ebd8855-a6cc-4697-9d9f-163106594471",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-21T07:08:20.012Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images · `toolu_0147NfDRiqBxfmy1nsjsMwTE`</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cb7391c-4485-42f5-96fb-62e57513b01b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHxXS2Ge1ffXe8yvTz6",
+  "type": "assistant",
+  "uuid": "c215d52f-faeb-463e-a487-2274b12bbee5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011VGxDF64ej3VU2oZEVMwhV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 267,
+      "cache_read_input_tokens": 73025,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 267,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 73025,
+          "cache_creation_input_tokens": 267,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 267
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-21T07:08:20.022Z_
+
+<details><summary>↩ Tool result · `toolu_0147NfDRiqBxfmy1nsjsMwTE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c215d52f-faeb-463e-a487-2274b12bbee5",
+  "isSidechain": false,
+  "promptId": "e19bab2e-7a6f-454a-a22c-2be4d317cca0",
+  "type": "user",
+  "uuid": "3977db38-4ac1-4e71-a1d7-e21a6c516e88",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c215d52f-faeb-463e-a487-2274b12bbee5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 133 · 2026-05-21T07:08:20.025Z_
+
+```json
+{
+  "parentUuid": "3977db38-4ac1-4e71-a1d7-e21a6c516e88",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "91f5d8c5-308b-4013-98d3-7f39675f08ec",
+  "timestamp": "2026-05-21T07:08:20.025Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 134_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper on exception events for verdict prediction",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 135 · 2026-05-21T07:10:40.763Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T07:10:40.763Z",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "content": "[Round 1 审稿请求]:\n以下是 Reviewer 1 的完整初审意见，请逐条回应：对每个 Must-Fix 和 Should-Fix 点标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 1 审稿报告（完整原文）\n\n**Overall**: 3.5 (Borderline Conference)\n**Soundness**: 3.5/5, **Excitement**: 3.5/5, **Reproducibility**: 4/5, **Confidence**: 4/5\n\n### Must-Fix\n\n**R1-N1** [critical] 24%/76% gradient dilution vs. information overload 分解存在严重的变量混淆\n- label_only 条件同时改变了三个变量：(a) 梯度来源分布，(b) 有效学习率，(c) 训练目标本身。24% 的\"gradient dilution\"无法与有效学习率变化分离。\n- 该分解在 CodeLlama-13B 和 DeepSeek-6.7B 上完全 collapse（28.5%），仅在 Qwen 家族（2/4 模型）成立。\n- 建议降级 Contribution 3 为 preliminary analysis，或补充学习率归一化实验。\n\n**R1-N2** [critical] Component ablation (Table 2) 仅 Qwen-7B，不足以支撑 Contribution 4 的 \"two-tier hierarchy\" 跨模型声称\n- Tier 1 跨模型证据仅来自 exception_only，不包含 ao_only 和 loop_only 在其他模型上的消融。\n- 建议在至少一个非 Qwen 模型上重复核心消融。\n\n**R1-N3** [critical] 绝大多数条件仅单 seed (seed=42)，系统性低估方差\n- 仅 exception_only 在所有模型上有 3 seeds；其余条件大多 single seed。\n- VOTA vs exception_only 差 0.3-0.5pp 在 single-seed 下不可靠。\n- 建议至少为 full_trace 和 VOTA 补充 multi-seed。\n\n### Should-Fix\n\n**R1-W1** DebugBench 因天花板效应（no_trace 已 96.71%）缺乏区分力\n**R1-W2** 序列长度作为混淆变量未被充分隔离\n**R1-W3** DeepSeek VOTA seed=42 排除有选择性报告之嫌\n**R1-W4** Abstract \"~80%\" 不够准确（实际均值约 76.5%）\n\n### Minor\n- M1: Table 1 未一致标注 single/multi-seed\n- M2: 生成模型 = 评估模型的分布偏差\n- M3: Regex vs SFT 差距仅 6 样本\n- M4: Ethics Statement GPU 型号\n- M5: chen2025tracepile 引用待核实\n\n### Questions\n1. label_only 调整学习率后分解结果是否改变？\n2. exception_only padding 到 full_trace 长度后性能是否下降？\n3. ao_only/loop_only 在 CodeLlama/DeepSeek 上有结果吗？\n4. SFT 比 regex 多的 6 个 case 是什么？\n5. DeepSeek VOTA 失败是否系统性？\n\n---\n\n请逐条回应，特别注意：\n- R1-N1 的变量混淆论点——你是否同意 24%/76% 分解的方法论缺陷？这与你自己提出的 W3（归因薄弱）是否一致？\n- R1-N3 的 single-seed 批评——这是否强化了你对论文 soundness 的担忧？\n- R1 给出 3.5 (Borderline Conference) 而你给 2.5 (Borderline Findings)，分歧核心是什么？你认为 R1 对 novelty/tautological 问题是否给了过多宽容？"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 136 · 2026-05-21T07:10:40.764Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T07:10:40.764Z",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 137 · 2026-05-21T07:10:40.753Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91f5d8c5-308b-4013-98d3-7f39675f08ec",
+  "isSidechain": false,
+  "promptId": "5eb12bbc-3f84-4ab4-b606-8443a65106f3",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "075bab61-f639-4a47-b00c-05042ae1315e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 138 · 2026-05-21T07:10:40.753Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "075bab61-f639-4a47-b00c-05042ae1315e",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "314dbba9-e6db-467a-a1c0-74291ad25063",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "e3bcfc0e-3dda-45f0-bbb1-704120d8b6cf",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 139 · 2026-05-21T07:10:40.894Z_
+
+[Round 1 审稿请求]:
+以下是 Reviewer 1 的完整初审意见，请逐条回应：对每个 Must-Fix 和 Should-Fix 点标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。
+
+---
+
+## Reviewer 1 审稿报告（完整原文）
+
+**Overall**: 3.5 (Borderline Conference)
+**Soundness**: 3.5/5, **Excitement**: 3.5/5, **Reproducibility**: 4/5, **Confidence**: 4/5
+
+### Must-Fix
+
+**R1-N1** [critical] 24%/76% gradient dilution vs. information overload 分解存在严重的变量混淆
+- label_only 条件同时改变了三个变量：(a) 梯度来源分布，(b) 有效学习率，(c) 训练目标本身。24% 的"gradient dilution"无法与有效学习率变化分离。
+- 该分解在 CodeLlama-13B 和 DeepSeek-6.7B 上完全 collapse（28.5%），仅在 Qwen 家族（2/4 模型）成立。
+- 建议降级 Contribution 3 为 preliminary analysis，或补充学习率归一化实验。
+
+**R1-N2** [critical] Component ablation (Table 2) 仅 Qwen-7B，不足以支撑 Contribution 4 的 "two-tier hierarchy" 跨模型声称
+- Tier 1 跨模型证据仅来自 exception_only，不包含 ao_only 和 loop_only 在其他模型上的消融。
+- 建议在至少一个非 Qwen 模型上重复核心消融。
+
+**R1-N3** [critical] 绝大多数条件仅单 seed (seed=42)，系统性低估方差
+- 仅 exception_only 在所有模型上有 3 seeds；其余条件大多 single seed。
+- VOTA vs exception_only 差 0.3-0.5pp 在 single-seed 下不可靠。
+- 建议至少为 full_trace 和 VOTA 补充 multi-seed。
+
+### Should-Fix
+
+**R1-W1** DebugBench 因天花板效应（no_trace 已 96.71%）缺乏区分力
+**R1-W2** 序列长度作为混淆变量未被充分隔离
+**R1-W3** DeepSeek VOTA seed=42 排除有选择性报告之嫌
+**R1-W4** Abstract "~80%" 不够准确（实际均值约 76.5%）
+
+### Minor
+- M1: Table 1 未一致标注 single/multi-seed
+- M2: 生成模型 = 评估模型的分布偏差
+- M3: Regex vs SFT 差距仅 6 样本
+- M4: Ethics Statement GPU 型号
+- M5: chen2025tracepile 引用待核实
+
+### Questions
+1. label_only 调整学习率后分解结果是否改变？
+2. exception_only padding 到 full_trace 长度后性能是否下降？
+3. ao_only/loop_only 在 CodeLlama/DeepSeek 上有结果吗？
+4. SFT 比 regex 多的 6 个 case 是什么？
+5. DeepSeek VOTA 失败是否系统性？
+
+---
+
+请逐条回应，特别注意：
+- R1-N1 的变量混淆论点——你是否同意 24%/76% 分解的方法论缺陷？这与你自己提出的 W3（归因薄弱）是否一致？
+- R1-N3 的 single-seed 批评——这是否强化了你对论文 soundness 的担忧？
+- R1 给出 3.5 (Borderline Conference) 而你给 2.5 (Borderline Findings)，分歧核心是什么？你认为 R1 对 novelty/tautological 问题是否给了过多宽容？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "314dbba9-e6db-467a-a1c0-74291ad25063",
+  "isSidechain": false,
+  "promptId": "5eb12bbc-3f84-4ab4-b606-8443a65106f3",
+  "type": "user",
+  "uuid": "347b4b54-a6ac-4d36-9b0f-962bb9331db3",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_2_6e2b3343",
+  "sessionId": "0eb39848-e53c-46cc-932f-f437fa9ad0a6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

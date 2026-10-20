@@ -1,0 +1,5074 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 1
+- **Tool calls:** 18
+- **Original source:** `logs/chats/exported-trajectories/account-2/5ab4f45b-5a17-4feb-9157-c35c51167e6c.jsonl`
+- **Structured JSON:** [`605a83a8788443c527a9.json`](../../sessions/60/605a83a8788443c527a9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T06:52:57.435Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T06:52:57.435Z",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruction Tuning\",\n  \"core_problem\": \"Cross-lingual instruction tuning for low-resource languages defaults to English as the sole pivot, creating systematic gaps for languages that are typologically distant from English—particularly those with agglutinative morphology, non-Latin scripts, or SOV word order. Three peer-reviewed ACL 2025 benchmarks—KazMMLU (Kazakh), MiLiC-Eval (Tibetan, Uyghur, Kazakh, Mongolian), and TUMLU (Turkic languages including Kazakh and Uyghur)—confirm that even frontier multilingual LLMs (GPT-4, Llama-3.1, Qwen-2.5) achieve near-random performance on Mongolian comprehension tasks and substantially below-par accuracy on Kazakh and Uyghur relative to typologically proximate high-resource languages. No existing instruction tuning method uses typological distance to continuously weight data-source selection across a multi-pivot mixture for these under-represented language families.\",\n  \"opportunity\": \"Three complementary ACL 2025 benchmarks provide peer-reviewed grounding for the performance gap. KazMMLU (arXiv:2502.12829; ACL 2025 long paper) comprises 23K Kazakh-language questions spanning STEM, humanities, and social sciences sourced from authentic educational materials; evaluation of Llama-3.1, Qwen-2.5, GPT-4, and DeepSeek V3 shows 'substantial room for improvement' for all models on Kazakh, despite the language having 20 million speakers. MiLiC-Eval (arXiv:2503.01150; ACL 2025 Findings) covers Tibetan, Uyghur, Kazakh, and Mongolian across 9 tasks with 24K instances; GPT-4o-mini achieves only slightly above random on Mongolian tasks, and models exhibit only 'preliminary understanding' of Tibetan and Kazakh. TUMLU (arXiv:2502.11020; ACL 2025 long paper) provides 38K native questions spanning 11 academic subjects across Turkic languages including Kazakh and Uyghur, enabling controlled within-family comparisons that isolate the effect of lower training corpus size. The XLM-SWCM paper (arXiv:2502.10852) additionally shows that encoder-based shared-weight cross-lingual pretraining partially bridges these gaps—Kazakh ROUGE-L summarization score of 5.6 is notably the lowest among the four minority languages studied—but this approach does not scale to instruction-following for decoder LLMs. CLO (arXiv:2505.14297; ACL 2025) shows that DPO-style cross-lingual preference optimization with only 3,200 samples outperforms standard SFT with 6,400 samples, establishing strong data efficiency for cross-lingual transfer. These findings together create a clear opening: by weighting instruction data from multiple source languages inversely by URIEL typological distance and introducing a staged curriculum, we can build a principled multi-pivot training regime that directly addresses the English-pivot bottleneck for agglutinative low-resource targets.\",\n  \"landscape\": \"PLUG (ACL 2024) established that English-pivot cross-lingual instruction generation improves multilingual instruction following—but its reported 29% improvement was measured on Chinese, Korean, Italian, and Spanish. Whether the English-pivot advantage holds for typologically distant agglutinative languages with non-Latin scripts (Kazakh, Mongolian, Uyghur) is an assumption that TWMP directly tests rather than takes for granted. CLO (arXiv:2505.14297; ACL 2025) improves data efficiency via DPO-style cross-lingual preference optimization that suppresses off-language responses, but fixes English as the sole source language without varying source selection by typological distance. 'Family Matters' (arXiv:2510.00810) applies language transfer and LoRA merging from typologically related Nordic languages to Faroese—demonstrating that typological proximity helps—but as a single-language case study with no generalizable training recipe. 'Cross-Linguistic Transfer in Multilingual NLP' (arXiv:2505.13908) analyzes language family and morphology effects empirically without proposing a training method. Multi-Linguistic LoRA Merging (NeurIPS 2025 ER Workshop) decouples task and language LoRA adapters but does not use typological features to parameterize or weight the language adapter. Two works require careful differentiation from TWMP. First, TIPA (arXiv:2601.16629; EACL 2026 Findings) constructs proxy language adapters by aggregating existing MAD-X adapters weighted by typological similarity across 230+ languages—entirely without training. TIPA is orthogonal to TWMP in three key ways: (1) it is training-free inference-time adapter aggregation, whereas TWMP learns from a typologically-weighted data curriculum; (2) it operates on encoder-based MAD-X modules for classification tasks, whereas TWMP targets decoder LLM instruction tuning; (3) TIPA has not been applied to instruction generation or to languages not already represented by a dedicated adapter. Second, 'Linguistically-Informed Multilingual Instruction Tuning' (arXiv:2410.07809) uses 289-dimensional URIEL TYPO vectors with k-means clustering to select 14 discrete representative languages from a 52-language pool (one per cluster) for LoRA fine-tuning on Bactrian-X, showing that typologically diverse selection beats random selection. TWMP differs substantially: rather than discrete cluster-representative selection, TWMP applies continuous inverse-distance sampling weights over the full Aya collection; it adds a staged cosine-distance curriculum schedule; it integrates a CLO-style DPO preference optimization objective for language fidelity; and it directly targets Kazakh, Mongolian, and Uyghur—languages for which arXiv:2410.07809's evaluation suite (XNLI, XCOPA, XStoryCloze, XWinograd, PAWS-X) provides zero coverage. The combination of continuous weighting, staged curriculum, and DPO-based cross-lingual loss applied specifically to the Turkic–Mongolic evaluation gap is the core novelty.\",\n  \"approach\": \"We propose Typologically-Weighted Multi-Pivot (TWMP) instruction tuning, which replaces PLUG's single-English pivot with a principled mixture over multiple source languages drawn from the Aya collection. We compute URIEL typological distance vectors (289-dimensional binary features from the lang2vec Python library, covering syntactic, phonological, and phonetic inventory dimensions) between each candidate source language and the target low-resource language, then assign data-sampling weights inversely proportional to this distance—so morphologically close pivots such as Turkish or Uzbek for Kazakh receive substantially higher weight than English. A staged curriculum progressively introduces more distant pivots over training epochs following a cosine-distance threshold schedule: initially training on data from sources within a tight typological radius, then expanding the radius at scheduled epochs. This is combined with a CLO-style DPO cross-lingual preference optimization objective (following arXiv:2505.14297) that increases preference for target-language responses and reduces preference for off-language outputs, without requiring any target-language training labels. We apply QLoRA fine-tuning of Qwen3.5-9B (released February 2026; 248K-token vocabulary spanning 201 languages; the Qwen3.5 small series has 0.8B/2B/4B/9B variants—no 7B exists) on this weighted multi-pivot dataset, targeting Kazakh, Mongolian, and Uyghur as primary evaluation cases. Evaluation uses three ACL 2025 benchmarks that directly cover these languages: KazMMLU for Kazakh, MiLiC-Eval for all three targets across 9 tasks, and TUMLU for Kazakh and Uyghur within a controlled within-Turkic-family comparison. PLUG and CLO serve as primary baselines; typological weighting ablations compare full URIEL (289 features) vs. syntax-only vs. morphology-weighted sub-spaces vs. the k-means discrete selection baseline from arXiv:2410.07809. For generalization testing beyond the Turkic–Mongolic cluster, we include Swahili as a held-out agglutinative language not seen during hyperparameter design. Note: TyDi QA (sometimes suggested for Kazakh evaluation) covers Arabic, Bengali, Finnish, Indonesian, Japanese, Kiswahili, Korean, Russian, Telugu, and Thai—it does not include Kazakh, Mongolian, or Uyghur and is not used here.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h A100 (15–20 QLoRA runs × 10–13h each on Qwen3.5-9B, covering 3 primary target languages, PLUG/CLO baselines, URIEL sub-space ablations, and curriculum schedule variants)\",\n      \"gpu_utilization\": \"LOW (~25–35%): GPU sits idle during code writing, debugging, data pipeline work, result analysis, and paper writing; runs are launched manually and often queue overnight\",\n      \"timeline\": \"4–6 months\",\n      \"team\": \"1–2 researchers\",\n      \"estimated_gpu_cost\": \"~$300 (200h × $1.50/h on Lambda Labs A100)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~310h A100 (agent explores broader hyperparameter space with human approval gates; ~55% more runs than manual)\",\n      \"gpu_utilization\": \"MODERATE (~55–65%): agent queues follow-up experiments immediately after each run completes, filling GPU idle between human check-ins\",\n      \"timeline\": \"6–8 weeks\",\n      \"team\": \"1 researcher, ~30min/day check-in to approve experiment configs and review intermediate results\",\n      \"claude_api_cost\": \"~$150–250 (~1,500–2,500 conversation turns coordinating experiment scheduling, result parsing, and ablation planning)\",\n      \"estimated_gpu_cost\": \"~$465 (310h × $1.50/h)\",\n      \"risk_note\": \"Choice of typological distance sub-space (full URIEL vs. syntax-only vs. morphology-weighted) requires human judgment at key decision points; an automated agent may converge on a locally optimal weighting scheme that under-performs on the held-out Swahili generalization target\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~600h A100 (3–5× more experiments: grid search over distance metrics, curriculum schedule shapes, LoRA rank/alpha, 5+ target languages including Swahili and Kyrgyz for generalization, plus replication runs)\",\n      \"gpu_utilization\": \"NEAR-ZERO idle—agent schedules jobs back-to-back across all target languages in parallel, launches follow-up ablations immediately on job completion, and runs nightly sweeps without human bottleneck\",\n      \"timeline\": \"5–10 days with 4× concurrent A100s; ~3 weeks on a single A100\",\n      \"team\": \"0 (initial setup of experiment configs, data paths, and evaluation harness only)\",\n      \"claude_api_cost\": \"~$400–650 (~4,000–6,500 turns for full experiment orchestration, result parsing, ablation tree exploration, and report drafting)\",\n      \"estimated_gpu_cost\": \"~$900 (600h × $1.50/h)\",\n      \"speed_bottleneck\": \"GPU count is the primary bottleneck: 4 concurrent A100s reduces wall-clock time to ~5 days; API rate limits become secondary when running >8 parallel experiment threads\",\n      \"risk_note\": \"Unconstrained exploration may overfit the weighting function to the 3 initial target languages; requires Swahili as a held-out agglutinative language not seen during design to catch overfitting early\"\n    }\n  },\n  \"target_venues\": [\n    \"ACL 2027 (ARR submission deadline August 3, 2026) — primary target; provides adequate time for validation on additional typological clusters beyond Turkic–Mongolic, and for a paper of this scope (multi-pivot curriculum + ablations + 3 evaluation benchmarks) that cannot realistically reach conference quality in under 6 weeks\",\n    \"EMNLP 2026 (ACL Rolling Review, rolling deadlines throughout 2026) — viable only if the team has prior QLoRA fine-tuning infrastructure already in place and can begin experiments immediately\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"PLUG: Leveraging Pivot Language in Cross-Lingual Instruction Tuning (ACL 2024) [29% improvement on Chinese/Korean/Italian/Spanish; Turkic/Mongolic gap is untested]\",\n    \"Cross-Lingual Optimization for Language Transfer in Large Language Models (CLO; ACL 2025, arXiv:2505.14297) [DPO-style cross-lingual preference optimization; baseline and methodological component]\",\n    \"TIPA: Typologically Informed Parameter Aggregation (arXiv:2601.16629, EACL 2026 Findings) [training-free encoder adapter aggregation across 230+ languages—differentiated from TWMP's training-time decoder curriculum]\",\n    \"Linguistically-Informed Multilingual Instruction Tuning (arXiv:2410.07809) [discrete k-means language selection using URIEL TYPO features on BLOOM/mGPT/mT5—differentiated from TWMP's continuous weighted sampling, staged curriculum, DPO objective, and Turkic/Mongolic targets]\",\n    \"KazMMLU: Evaluating Language Models on Kazakh, Russian, and Regional Knowledge of Kazakhstan (ACL 2025, arXiv:2502.12829) [primary Kazakh evaluation benchmark, 23K questions, peer-reviewed]\",\n    \"MiLiC-Eval: Benchmarking Multilingual LLMs for China's Minority Languages (ACL 2025 Findings, arXiv:2503.01150) [primary evaluation for Uyghur, Kazakh, Mongolian across 9 tasks]\",\n    \"TUMLU: A Unified and Native Language Understanding Benchmark for Turkic Languages (ACL 2025, arXiv:2502.11020) [38K questions for Kazakh, Uyghur, and other Turkic languages; within-family controlled comparison]\",\n    \"Multilingual Encoder Knows more than You Realize: Shared Weights Pretraining for Extremely Low-Resource Languages (arXiv:2502.10852) [encoder-based cross-lingual transfer for Tibetan/Uyghur/Kazakh/Mongolian; motivation for decoder LLM gap]\",\n    \"Family Matters: Language Transfer and Merging for Adapting Small LLMs to Faroese (arXiv:2510.00810, 2025)\",\n    \"Cross-Linguistic Transfer in Multilingual NLP: The Role of Language Families and Morphology (arXiv:2505.13908, 2025)\",\n    \"Multi-Linguistic LoRA Merging (NeurIPS 2025 ER Workshop) [workshop paper, not main conference]\",\n    \"Left Behind: Cross-Lingual Transfer as a Bridge for Low-Resource Languages in Large Language Models (arXiv:2603.21036, 2026) [supplementary qualitative observation; single-author preprint with 50 hand-crafted questions—not primary motivation anchor]\"\n  ],\n  \"description\": \"This paper introduces Typologically-Weighted Multi-Pivot (TWMP) instruction tuning, a method for adapting decoder LLMs to low-resource languages that are typologically distant from English. Rather than using a single English pivot as in PLUG, we compute URIEL typological distance vectors—289 structural features via the lang2vec library—between all available source languages in the Aya collection and each target language, sampling instruction pairs with weights inversely proportional to that distance. A staged curriculum progressively introduces more distant pivots over training epochs via a cosine-distance threshold schedule, while a CLO-style DPO cross-lingual preference optimization objective suppresses off-language responses without requiring target-language training labels. We fine-tune Qwen3.5-9B with QLoRA (248K-token vocabulary, 201 languages; the 7B variant does not exist in this series), targeting Kazakh, Mongolian, and Uyghur—languages where KazMMLU, MiLiC-Eval, and TUMLU (all ACL 2025, peer-reviewed) document substantial LLM performance gaps. Two directly adjacent works are carefully differentiated: TIPA (EACL 2026 Findings) does typological weighting of MAD-X encoder adapters at inference time without training—orthogonal to TWMP's training-time data sampling for decoder instruction tuning; arXiv:2410.07809 uses k-means clustering on URIEL features to select 14 discrete language representatives from 52, but applies to older decoder models (BLOOM, mGPT), does not target Kazakh/Mongolian/Uyghur (their evaluation benchmarks cover none of these languages), and uses no curriculum or preference optimization. TWMP's combined contribution—continuous inverse-distance sampling over Aya, staged curriculum, DPO-style cross-lingual objective, and evaluation on three ACL 2025 benchmarks covering the target languages—constitutes a principled and differentiated advance. Ablations compare full URIEL vs. sub-space features and continuous weighting vs. the discrete k-means baseline. Swahili serves as a held-out agglutinative generalization target. The full suite requires 200–600 A100 hours depending on automation mode, with ACL 2027 (ARR August 3, 2026) as the primary target venue.\",\n  \"project_name\": \"typological_multi_pivot\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"SIGNIFICANT – CLO's DPO objective is designed for English-source preference pairs: chosen = target-language response to English instruction, rejected = off-language (English) response to target-language instruction. TWMP proposes extending this to non-English source languages (Turkish/Uzbek → Kazakh), but the paper does not specify how preference pairs are constructed when the source is itself a non-English language like Uzbek. If the model produces a Kazakh response to a Uzbek instruction, what is the 'rejected' response? Reviewers will reject this as technically incomplete without a precise DPO formulation for the multi-source case.\", \"SIGNIFICANT – URIEL legacy features are known to be sparse for exactly the target languages in this paper. URIEL+ (arXiv:2409.18472, COLING 2025) explicitly improves coverage for low-resource languages and should be used instead of the 289-dim lang2vec legacy features. Furthermore, 'Less is More: The Effectiveness of Compact Typological Language Representations' (EMNLP 2025) shows that compact URIEL+ features outperform the full 289-dim feature space for cross-lingual NLP tasks—directly contradicting TWMP's use of all 289 dimensions without selection. This is a directly relevant citation the paper must engage with.\", \"MODERATE – Auto_research mode (600h A100 ≈ 300h H100) exceeds the stated ≤200 H100-hour hard constraint. While the experiment plan uses manual mode (within constraint), the resource estimate table presents auto_research as a legitimate deployment mode without flagging this violation of the user's stated budget constraint.\", \"MODERATE – The staged curriculum's cosine-distance threshold schedule is described qualitatively ('progressively expands the radius at scheduled epochs') but no concrete schedule is specified. Reviewers will ask: how many stages? What distance thresholds? How are thresholds set relative to the URIEL distance distribution of the Aya collection? Without a concrete, reproducible specification, this is a design element that cannot be ablated or replicated.\", \"MODERATE – DCO (arXiv:2603.04678, March 2026, Tianyu Liu et al.) introduces Direct Consistency Optimization, a DPO-inspired method for cross-lingual knowledge consistency across 26 languages and 9 LLMs. This is a concurrent work that uses a DPO-style objective for cross-lingual alignment—similar in spirit to the CLO component of TWMP—and must be cited and differentiated in the related work section.\", \"MINOR – The Aya dataset's coverage of Turkic pivot languages (Turkish, Uzbek, Kyrgyz) is assumed but not verified. If Uzbek and Kyrgyz have only hundreds of Aya instances, the typological-distance-weighted sampling will produce noisy estimates for the closest pivots to Kazakh. The paper should state the number of available training instances per pivot language in Aya and set a minimum threshold below which a language is excluded from the mixture.\"]\nFeedback: The generator has addressed all Round 1 critical issues competently: TIPA is correctly differentiated, benchmarks are fixed, Qwen3.5-9B is confirmed correct, arXiv:2410.07809 is properly placed in the landscape, and the CLO/DPO description is accurate. The remaining blockers are two: (1) The DPO objective must be precisely formulated for non-English source languages. The current description 'increases preference for target-language responses and reduces preference for off-language outputs, without requiring any target-language training labels' is borrowed verbatim from CLO's English-source setting. For a Turkish → Kazakh pair, you must specify: what constitutes the chosen response, what constitutes the rejected response, and how you obtain these without any Kazakh labels. One viable extension: treat (Turkish-instruction, Kazakh-response) as the chosen pair and (Turkish-instruction, Turkish-response) as rejected—but this requires stating it explicitly and verifying that Qwen3.5-9B produces detectable off-language Turkish responses to Turkish instructions. (2) Replace lang2vec 289-dim URIEL features with URIEL+ (arXiv:2409.18472, COLING 2025), which has better sparse-language coverage, and cite 'Less is More' (EMNLP 2025) to justify whichever feature subspace you choose. This is not just a citation gap—if the typological distances for Uzbek and Kyrgyz are inaccurate in legacy URIEL due to sparsity, the entire weighting scheme degrades for the most important (closest) pivots to Kazakh. Beyond the blockers: add DCO (arXiv:2603.04678) to related work; specify the curriculum schedule concretely (number of stages, distance thresholds); verify and report the number of Aya instances per Turkic pivot language; and note that auto_research mode exceeds the 200 H100-hour constraint if that constraint applies. ACL 2027 (August 3, 2026 ARR) remains the appropriate primary venue.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T06:52:57.440Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T06:52:57.440Z",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+## Round 1
+
+71 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T06:52:57.464Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruction Tuning",
+  "core_problem": "Cross-lingual instruction tuning for low-resource languages defaults to English as the sole pivot, creating systematic gaps for languages that are typologically distant from English—particularly those with agglutinative morphology, non-Latin scripts, or SOV word order. Three peer-reviewed ACL 2025 benchmarks—KazMMLU (Kazakh), MiLiC-Eval (Tibetan, Uyghur, Kazakh, Mongolian), and TUMLU (Turkic languages including Kazakh and Uyghur)—confirm that even frontier multilingual LLMs (GPT-4, Llama-3.1, Qwen-2.5) achieve near-random performance on Mongolian comprehension tasks and substantially below-par accuracy on Kazakh and Uyghur relative to typologically proximate high-resource languages. No existing instruction tuning method uses typological distance to continuously weight data-source selection across a multi-pivot mixture for these under-represented language families.",
+  "opportunity": "Three complementary ACL 2025 benchmarks provide peer-reviewed grounding for the performance gap. KazMMLU (arXiv:2502.12829; ACL 2025 long paper) comprises 23K Kazakh-language questions spanning STEM, humanities, and social sciences sourced from authentic educational materials; evaluation of Llama-3.1, Qwen-2.5, GPT-4, and DeepSeek V3 shows 'substantial room for improvement' for all models on Kazakh, despite the language having 20 million speakers. MiLiC-Eval (arXiv:2503.01150; ACL 2025 Findings) covers Tibetan, Uyghur, Kazakh, and Mongolian across 9 tasks with 24K instances; GPT-4o-mini achieves only slightly above random on Mongolian tasks, and models exhibit only 'preliminary understanding' of Tibetan and Kazakh. TUMLU (arXiv:2502.11020; ACL 2025 long paper) provides 38K native questions spanning 11 academic subjects across Turkic languages including Kazakh and Uyghur, enabling controlled within-family comparisons that isolate the effect of lower training corpus size. The XLM-SWCM paper (arXiv:2502.10852) additionally shows that encoder-based shared-weight cross-lingual pretraining partially bridges these gaps—Kazakh ROUGE-L summarization score of 5.6 is notably the lowest among the four minority languages studied—but this approach does not scale to instruction-following for decoder LLMs. CLO (arXiv:2505.14297; ACL 2025) shows that DPO-style cross-lingual preference optimization with only 3,200 samples outperforms standard SFT with 6,400 samples, establishing strong data efficiency for cross-lingual transfer. These findings together create a clear opening: by weighting instruction data from multiple source languages inversely by URIEL typological distance and introducing a staged curriculum, we can build a principled multi-pivot training regime that directly addresses the English-pivot bottleneck for agglutinative low-resource targets.",
+  "landscape": "PLUG (ACL 2024) established that English-pivot cross-lingual instruction generation improves multilingual instruction following—but its reported 29% improvement was measured on Chinese, Korean, Italian, and Spanish. Whether the English-pivot advantage holds for typologically distant agglutinative languages with non-Latin scripts (Kazakh, Mongolian, Uyghur) is an assumption that TWMP directly tests rather than takes for granted. CLO (arXiv:2505.14297; ACL 2025) improves data efficiency via DPO-style cross-lingual preference optimization that suppresses off-language responses, but fixes English as the sole source language without varying source selection by typological distance. 'Family Matters' (arXiv:2510.00810) applies language transfer and LoRA merging from typologically related Nordic languages to Faroese—demonstrating that typological proximity helps—but as a single-language case study with no generalizable training recipe. 'Cross-Linguistic Transfer in Multilingual NLP' (arXiv:2505.13908) analyzes language family and morphology effects empirically without proposing a training method. Multi-Linguistic LoRA Merging (NeurIPS 2025 ER Workshop) decouples task and language LoRA adapters but does not use typological features to parameterize or weight the language adapter. Two works require careful differentiation from TWMP. First, TIPA (arXiv:2601.16629; EACL 2026 Findings) constructs proxy language adapters by aggregating existing MAD-X adapters weighted by typological similarity across 230+ languages—entirely without training. TIPA is orthogonal to TWMP in three key ways: (1) it is training-free inference-time adapter aggregation, whereas TWMP learns from a typologically-weighted data curriculum; (2) it operates on encoder-based MAD-X modules for classification tasks, whereas TWMP targets decoder LLM instruction tuning; (3) TIPA has not been applied to instruction generation or to languages not already represented by a dedicated adapter. Second, 'Linguistically-Informed Multilingual Instruction Tuning' (arXiv:2410.07809) uses 289-dimensional URIEL TYPO vectors with k-means clustering to select 14 discrete representative languages from a 52-language pool (one per cluster) for LoRA fine-tuning on Bactrian-X, showing that typologically diverse selection beats random selection. TWMP differs substantially: rather than discrete cluster-representative selection, TWMP applies continuous inverse-distance sampling weights over the full Aya collection; it adds a staged cosine-distance curriculum schedule; it integrates a CLO-style DPO preference optimization objective for language fidelity; and it directly targets Kazakh, Mongolian, and Uyghur—languages for which arXiv:2410.07809's evaluation suite (XNLI, XCOPA, XStoryCloze, XWinograd, PAWS-X) provides zero coverage. The combination of continuous weighting, staged curriculum, and DPO-based cross-lingual loss applied specifically to the Turkic–Mongolic evaluation gap is the core novelty.",
+  "approach": "We propose Typologically-Weighted Multi-Pivot (TWMP) instruction tuning, which replaces PLUG's single-English pivot with a principled mixture over multiple source languages drawn from the Aya collection. We compute URIEL typological distance vectors (289-dimensional binary features from the lang2vec Python library, covering syntactic, phonological, and phonetic inventory dimensions) between each candidate source language and the target low-resource language, then assign data-sampling weights inversely proportional to this distance—so morphologically close pivots such as Turkish or Uzbek for Kazakh receive substantially higher weight than English. A staged curriculum progressively introduces more distant pivots over training epochs following a cosine-distance threshold schedule: initially training on data from sources within a tight typological radius, then expanding the radius at scheduled epochs. This is combined with a CLO-style DPO cross-lingual preference optimization objective (following arXiv:2505.14297) that increases preference for target-language responses and reduces preference for off-language outputs, without requiring any target-language training labels. We apply QLoRA fine-tuning of Qwen3.5-9B (released February 2026; 248K-token vocabulary spanning 201 languages; the Qwen3.5 small series has 0.8B/2B/4B/9B variants—no 7B exists) on this weighted multi-pivot dataset, targeting Kazakh, Mongolian, and Uyghur as primary evaluation cases. Evaluation uses three ACL 2025 benchmarks that directly cover these languages: KazMMLU for Kazakh, MiLiC-Eval for all three targets across 9 tasks, and TUMLU for Kazakh and Uyghur within a controlled within-Turkic-family comparison. PLUG and CLO serve as primary baselines; typological weighting ablations compare full URIEL (289 features) vs. syntax-only vs. morphology-weighted sub-spaces vs. the k-means discrete selection baseline from arXiv:2410.07809. For generalization testing beyond the Turkic–Mongolic cluster, we include Swahili as a held-out agglutinative language not seen during hyperparameter design. Note: TyDi QA (sometimes suggested for Kazakh evaluation) covers Arabic, Bengali, Finnish, Indonesian, Japanese, Kiswahili, Korean, Russian, Telugu, and Thai—it does not include Kazakh, Mongolian, or Uyghur and is not used here.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100 (15–20 QLoRA runs × 10–13h each on Qwen3.5-9B, covering 3 primary target languages, PLUG/CLO baselines, URIEL sub-space ablations, and curriculum schedule variants)",
+      "gpu_utilization": "LOW (~25–35%): GPU sits idle during code writing, debugging, data pipeline work, result analysis, and paper writing; runs are launched manually and often queue overnight",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$300 (200h × $1.50/h on Lambda Labs A100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~310h A100 (agent explores broader hyperparameter space with human approval gates; ~55% more runs than manual)",
+      "gpu_utilization": "MODERATE (~55–65%): agent queues follow-up experiments immediately after each run completes, filling GPU idle between human check-ins",
+      "timeline": "6–8 weeks",
+      "team": "1 researcher, ~30min/day check-in to approve experiment configs and review intermediate results",
+      "claude_api_cost": "~$150–250 (~1,500–2,500 conversation turns coordinating experiment scheduling, result parsing, and ablation planning)",
+      "estimated_gpu_cost": "~$465 (310h × $1.50/h)",
+      "risk_note": "Choice of typological distance sub-space (full URIEL vs. syntax-only vs. morphology-weighted) requires human judgment at key decision points; an automated agent may converge on a locally optimal weighting scheme that under-performs on the held-out Swahili generalization target"
+    },
+    "auto_research": {
+      "gpu_hours": "~600h A100 (3–5× more experiments: grid search over distance metrics, curriculum schedule shapes, LoRA rank/alpha, 5+ target languages including Swahili and Kyrgyz for generalization, plus replication runs)",
+      "gpu_utilization": "NEAR-ZERO idle—agent schedules jobs back-to-back across all target languages in parallel, launches follow-up ablations immediately on job completion, and runs nightly sweeps without human bottleneck",
+      "timeline": "5–10 days with 4× concurrent A100s; ~3 weeks on a single A100",
+      "team": "0 (initial setup of experiment configs, data paths, and evaluation harness only)",
+      "claude_api_cost": "~$400–650 (~4,000–6,500 turns for full experiment orchestration, result parsing, ablation tree exploration, and report drafting)",
+      "estimated_gpu_cost": "~$900 (600h × $1.50/h)",
+      "speed_bottleneck": "GPU count is the primary bottleneck: 4 concurrent A100s reduces wall-clock time to ~5 days; API rate limits become secondary when running >8 parallel experiment threads",
+      "risk_note": "Unconstrained exploration may overfit the weighting function to the 3 initial target languages; requires Swahili as a held-out agglutinative language not seen during design to catch overfitting early"
+    }
+  },
+  "target_venues": [
+    "ACL 2027 (ARR submission deadline August 3, 2026) — primary target; provides adequate time for validation on additional typological clusters beyond Turkic–Mongolic, and for a paper of this scope (multi-pivot curriculum + ablations + 3 evaluation benchmarks) that cannot realistically reach conference quality in under 6 weeks",
+    "EMNLP 2026 (ACL Rolling Review, rolling deadlines throughout 2026) — viable only if the team has prior QLoRA fine-tuning infrastructure already in place and can begin experiments immediately"
+  ],
+  "level": "solid",
+  "key_references": [
+    "PLUG: Leveraging Pivot Language in Cross-Lingual Instruction Tuning (ACL 2024) [29% improvement on Chinese/Korean/Italian/Spanish; Turkic/Mongolic gap is untested]",
+    "Cross-Lingual Optimization for Language Transfer in Large Language Models (CLO; ACL 2025, arXiv:2505.14297) [DPO-style cross-lingual preference optimization; baseline and methodological component]",
+    "TIPA: Typologically Informed Parameter Aggregation (arXiv:2601.16629, EACL 2026 Findings) [training-free encoder adapter aggregation across 230+ languages—differentiated from TWMP's training-time decoder curriculum]",
+    "Linguistically-Informed Multilingual Instruction Tuning (arXiv:2410.07809) [discrete k-means language selection using URIEL TYPO features on BLOOM/mGPT/mT5—differentiated from TWMP's continuous weighted sampling, staged curriculum, DPO objective, and Turkic/Mongolic targets]",
+    "KazMMLU: Evaluating Language Models on Kazakh, Russian, and Regional Knowledge of Kazakhstan (ACL 2025, arXiv:2502.12829) [primary Kazakh evaluation benchmark, 23K questions, peer-reviewed]",
+    "MiLiC-Eval: Benchmarking Multilingual LLMs for China's Minority Languages (ACL 2025 Findings, arXiv:2503.01150) [primary evaluation for Uyghur, Kazakh, Mongolian across 9 tasks]",
+    "TUMLU: A Unified and Native Language Understanding Benchmark for Turkic Languages (ACL 2025, arXiv:2502.11020) [38K questions for Kazakh, Uyghur, and other Turkic languages; within-family controlled comparison]",
+    "Multilingual Encoder Knows more than You Realize: Shared Weights Pretraining for Extremely Low-Resource Languages (arXiv:2502.10852) [encoder-based cross-lingual transfer for Tibetan/Uyghur/Kazakh/Mongolian; motivation for decoder LLM gap]",
+    "Family Matters: Language Transfer and Merging for Adapting Small LLMs to Faroese (arXiv:2510.00810, 2025)",
+    "Cross-Linguistic Transfer in Multilingual NLP: The Role of Language Families and Morphology (arXiv:2505.13908, 2025)",
+    "Multi-Linguistic LoRA Merging (NeurIPS 2025 ER Workshop) [workshop paper, not main conference]",
+    "Left Behind: Cross-Lingual Transfer as a Bridge for Low-Resource Languages in Large Language Models (arXiv:2603.21036, 2026) [supplementary qualitative observation; single-author preprint with 50 hand-crafted questions—not primary motivation anchor]"
+  ],
+  "description": "This paper introduces Typologically-Weighted Multi-Pivot (TWMP) instruction tuning, a method for adapting decoder LLMs to low-resource languages that are typologically distant from English. Rather than using a single English pivot as in PLUG, we compute URIEL typological distance vectors—289 structural features via the lang2vec library—between all available source languages in the Aya collection and each target language, sampling instruction pairs with weights inversely proportional to that distance. A staged curriculum progressively introduces more distant pivots over training epochs via a cosine-distance threshold schedule, while a CLO-style DPO cross-lingual preference optimization objective suppresses off-language responses without requiring target-language training labels. We fine-tune Qwen3.5-9B with QLoRA (248K-token vocabulary, 201 languages; the 7B variant does not exist in this series), targeting Kazakh, Mongolian, and Uyghur—languages where KazMMLU, MiLiC-Eval, and TUMLU (all ACL 2025, peer-reviewed) document substantial LLM performance gaps. Two directly adjacent works are carefully differentiated: TIPA (EACL 2026 Findings) does typological weighting of MAD-X encoder adapters at inference time without training—orthogonal to TWMP's training-time data sampling for decoder instruction tuning; arXiv:2410.07809 uses k-means clustering on URIEL features to select 14 discrete language representatives from 52, but applies to older decoder models (BLOOM, mGPT), does not target Kazakh/Mongolian/Uyghur (their evaluation benchmarks cover none of these languages), and uses no curriculum or preference optimization. TWMP's combined contribution—continuous inverse-distance sampling over Aya, staged curriculum, DPO-style cross-lingual objective, and evaluation on three ACL 2025 benchmarks covering the target languages—constitutes a principled and differentiated advance. Ablations compare full URIEL vs. sub-space features and continuous weighting vs. the discrete k-means baseline. Swahili serves as a held-out agglutinative generalization target. The full suite requires 200–600 A100 hours depending on automation mode, with ACL 2027 (ARR August 3, 2026) as the primary target venue.",
+  "project_name": "typological_multi_pivot",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 2)
+Issues: ["SIGNIFICANT – CLO's DPO objective is designed for English-source preference pairs: chosen = target-language response to English instruction, rejected = off-language (English) response to target-language instruction. TWMP proposes extending this to non-English source languages (Turkish/Uzbek → Kazakh), but the paper does not specify how preference pairs are constructed when the source is itself a non-English language like Uzbek. If the model produces a Kazakh response to a Uzbek instruction, what is the 'rejected' response? Reviewers will reject this as technically incomplete without a precise DPO formulation for the multi-source case.", "SIGNIFICANT – URIEL legacy features are known to be sparse for exactly the target languages in this paper. URIEL+ (arXiv:2409.18472, COLING 2025) explicitly improves coverage for low-resource languages and should be used instead of the 289-dim lang2vec legacy features. Furthermore, 'Less is More: The Effectiveness of Compact Typological Language Representations' (EMNLP 2025) shows that compact URIEL+ features outperform the full 289-dim feature space for cross-lingual NLP tasks—directly contradicting TWMP's use of all 289 dimensions without selection. This is a directly relevant citation the paper must engage with.", "MODERATE – Auto_research mode (600h A100 ≈ 300h H100) exceeds the stated ≤200 H100-hour hard constraint. While the experiment plan uses manual mode (within constraint), the resource estimate table presents auto_research as a legitimate deployment mode without flagging this violation of the user's stated budget constraint.", "MODERATE – The staged curriculum's cosine-distance threshold schedule is described qualitatively ('progressively expands the radius at scheduled epochs') but no concrete schedule is specified. Reviewers will ask: how many stages? What distance thresholds? How are thresholds set relative to the URIEL distance distribution of the Aya collection? Without a concrete, reproducible specification, this is a design element that cannot be ablated or replicated.", "MODERATE – DCO (arXiv:2603.04678, March 2026, Tianyu Liu et al.) introduces Direct Consistency Optimization, a DPO-inspired method for cross-lingual knowledge consistency across 26 languages and 9 LLMs. This is a concurrent work that uses a DPO-style objective for cross-lingual alignment—similar in spirit to the CLO component of TWMP—and must be cited and differentiated in the related work section.", "MINOR – The Aya dataset's coverage of Turkic pivot languages (Turkish, Uzbek, Kyrgyz) is assumed but not verified. If Uzbek and Kyrgyz have only hundreds of Aya instances, the typological-distance-weighted sampling will produce noisy estimates for the closest pivots to Kazakh. The paper should state the number of available training instances per pivot language in Aya and set a minimum threshold below which a language is excluded from the mixture."]
+Feedback: The generator has addressed all Round 1 critical issues competently: TIPA is correctly differentiated, benchmarks are fixed, Qwen3.5-9B is confirmed correct, arXiv:2410.07809 is properly placed in the landscape, and the CLO/DPO description is accurate. The remaining blockers are two: (1) The DPO objective must be precisely formulated for non-English source languages. The current description 'increases preference for target-language responses and reduces preference for off-language outputs, without requiring any target-language training labels' is borrowed verbatim from CLO's English-source setting. For a Turkish → Kazakh pair, you must specify: what constitutes the chosen response, what constitutes the rejected response, and how you obtain these without any Kazakh labels. One viable extension: treat (Turkish-instruction, Kazakh-response) as the chosen pair and (Turkish-instruction, Turkish-response) as rejected—but this requires stating it explicitly and verifying that Qwen3.5-9B produces detectable off-language Turkish responses to Turkish instructions. (2) Replace lang2vec 289-dim URIEL features with URIEL+ (arXiv:2409.18472, COLING 2025), which has better sparse-language coverage, and cite 'Less is More' (EMNLP 2025) to justify whichever feature subspace you choose. This is not just a citation gap—if the typological distances for Uzbek and Kyrgyz are inaccurate in legacy URIEL due to sparsity, the entire weighting scheme degrades for the most important (closest) pivots to Kazakh. Beyond the blockers: add DCO (arXiv:2603.04678) to related work; specify the curriculum schedule concretely (number of stages, distance thresholds); verify and report the number of Aya instances per Turkic pivot language; and note that auto_research mode exceeds the 200 H100-hour constraint if that constraint applies. ACL 2027 (August 3, 2026 ARR) remains the appropriate primary venue.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "8e8f4124-e5f2-495e-a870-d6f6d508ed7e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T06:52:57.463Z_
+
+```json
+{
+  "parentUuid": "8e8f4124-e5f2-495e-a870-d6f6d508ed7e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3c94c9df-ff17-4175-8606-5694c325c98a",
+  "timestamp": "2026-05-10T06:52:57.463Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T06:52:57.463Z_
+
+```json
+{
+  "parentUuid": "3c94c9df-ff17-4175-8606-5694c325c98a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "188549fe-96e9-452f-bed8-bb66289d4ade",
+  "timestamp": "2026-05-10T06:52:57.463Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruc…",
+  "leafUuid": "188549fe-96e9-452f-bed8-bb66289d4ade",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DPO formulation for multi-source instruction tuning",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T06:53:10.600Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research approach before making revisions.
+
+## Issues to Address:
+
+1. **SIGNIFICANT** - DPO formulation for non-English source languages is technically incomplete. Need to specify precisely how preference pairs are constructed when source is Uzbek/Turkish → Kazakh.
+
+2. **SIGNIFICANT** - URIEL legacy features sparse for target languages. Should use URIEL+ (arXiv:2409.18472, COLING 2025) and cite "Less is More" (EMNLP 2025) for compact feature justification.
+
+
+3. **MODERATE** - Auto_research mode exceeds ≤200 H100-hour constraint and needs to be flagged.
+
+4. **MODERATE** - Curriculum schedule is qualitative, needs concrete specification with defined stages and distance thresholds.
+
+5. **MODERATE** - DCO (arXiv:2603.04678, March 2026) is concurrent work using DPO-style for cross-lingual alignment that I need to cite and differentiate from.
+
+6. **MINOR** - Aya dataset coverage of Turkic pivot languages requires verification.
+
+Now I'm mapping out my research priorities: I need to review URIEL+ and the "Less is More" paper to strengthen the feature engineering section, then work through the computational constraints and curriculum formalization.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "188549fe-96e9-452f-bed8-bb66289d4ade",
+  "isSidechain": false,
+  "requestId": "req_011CatStjoXNte84BhPUZ75f",
+  "type": "assistant",
+  "uuid": "e2b8f3fa-cc8e-4704-9246-a6d92e2df3d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01S88TMLbVYt3j9sFRd6qqCR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11888,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 11888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T06:53:10.602Z_
+
+I'll research the key papers flagged by reviewers before revising. Let me fetch them in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2b8f3fa-cc8e-4704-9246-a6d92e2df3d0",
+  "isSidechain": false,
+  "requestId": "req_011CatStjoXNte84BhPUZ75f",
+  "type": "assistant",
+  "uuid": "31bb06fb-17cc-4287-bbe2-4fcbc095e501",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01S88TMLbVYt3j9sFRd6qqCR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11888,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 11888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T06:53:10.756Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GGNApi1wzYMsAFJKdxkW2u`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31bb06fb-17cc-4287-bbe2-4fcbc095e501",
+  "isSidechain": false,
+  "requestId": "req_011CatStjoXNte84BhPUZ75f",
+  "type": "assistant",
+  "uuid": "b76ef688-67cb-4415-a769-1527b6ddc780",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01S88TMLbVYt3j9sFRd6qqCR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11888,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 494,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 11888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T06:53:10.769Z_
+
+<details><summary>↩ Tool result · `toolu_01GGNApi1wzYMsAFJKdxkW2u`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b76ef688-67cb-4415-a769-1527b6ddc780",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "c52c82bf-f7ee-49b2-bd71-85a9e1e4fe58",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "b76ef688-67cb-4415-a769-1527b6ddc780",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T06:53:15.129Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch the key papers in parallel: URIEL+, DCO, and search for "Less is More" compact URIEL features, and Aya dataset Turkic coverage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c52c82bf-f7ee-49b2-bd71-85a9e1e4fe58",
+  "isSidechain": false,
+  "requestId": "req_011CatSuiYecqbNj41Uh43RW",
+  "type": "assistant",
+  "uuid": "2beb1637-5482-4bcd-8628-1f426af86cbc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011wc9U2w3Qfv5kMvhGzKgyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 23519,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 23519,
+          "cache_creation_input_tokens": 1514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T06:53:15.132Z_
+
+Now fetching all key papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2beb1637-5482-4bcd-8628-1f426af86cbc",
+  "isSidechain": false,
+  "requestId": "req_011CatSuiYecqbNj41Uh43RW",
+  "type": "assistant",
+  "uuid": "f202b4b4-c98b-4daf-9985-d99c36387271",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011wc9U2w3Qfv5kMvhGzKgyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 23519,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 23519,
+          "cache_creation_input_tokens": 1514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T06:53:20.229Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WngEViRMasVpEtNhZLQ77L`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2409.18472",
+  "prompt": "Extract: (1) what URIEL+ improves over legacy URIEL, (2) which languages have better coverage especially Kazakh/Uzbek/Kyrgyz/Mongolian/Uyghur/Turkic, (3) the dimensionality and feature types of URIEL+, (4) how to use it via the urielplus Python library"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f202b4b4-c98b-4daf-9985-d99c36387271",
+  "isSidechain": false,
+  "requestId": "req_011CatSuiYecqbNj41Uh43RW",
+  "type": "assistant",
+  "uuid": "bd01d179-1d3b-49b8-b4df-5da887c0b8bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011wc9U2w3Qfv5kMvhGzKgyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 23519,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 23519,
+          "cache_creation_input_tokens": 1514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T06:53:20.336Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SyYABVUB8Ai2X5pXuVJfQ6`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.04678",
+  "prompt": "Extract: (1) what DCO (Direct Consistency Optimization) does, (2) how the DPO-style objective is formulated, (3) what \"chosen\" and \"rejected\" responses are in their formulation, (4) how it differs from CLO, (5) which languages and models it covers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd01d179-1d3b-49b8-b4df-5da887c0b8bd",
+  "isSidechain": false,
+  "requestId": "req_011CatSuiYecqbNj41Uh43RW",
+  "type": "assistant",
+  "uuid": "8a7602cf-09ca-4c06-9df0-5ad99453900b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011wc9U2w3Qfv5kMvhGzKgyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 23519,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 23519,
+          "cache_creation_input_tokens": 1514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T06:53:20.902Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pb6D1KZ9mB2sjAkztiqCKs`</summary>
+
+```json
+{
+  "query": "EMNLP 2025 \"Less is More\" compact URIEL typological features cross-lingual NLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a7602cf-09ca-4c06-9df0-5ad99453900b",
+  "isSidechain": false,
+  "requestId": "req_011CatSuiYecqbNj41Uh43RW",
+  "type": "assistant",
+  "uuid": "c9af2b6f-66fe-40ce-a32a-a92e4b217c62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011wc9U2w3Qfv5kMvhGzKgyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 23519,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 23519,
+          "cache_creation_input_tokens": 1514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-10T06:53:21.139Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Rd9qDKoN49DwakHkKhrGXd`</summary>
+
+```json
+{
+  "query": "Aya dataset Cohere Turkic languages Uzbek Kyrgyz Turkish instance count coverage statistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9af2b6f-66fe-40ce-a32a-a92e4b217c62",
+  "isSidechain": false,
+  "requestId": "req_011CatSuiYecqbNj41Uh43RW",
+  "type": "assistant",
+  "uuid": "3b485575-b143-474f-8843-cbcce54c6935",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011wc9U2w3Qfv5kMvhGzKgyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 23519,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 23519,
+          "cache_creation_input_tokens": 1514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T06:53:24.721Z_
+
+<details><summary>↩ Tool result · `toolu_01WngEViRMasVpEtNhZLQ77L`</summary>
+
+```text
+# URIEL+: Key Information
+
+Based on the arXiv abstract provided, here's what can be determined:
+
+## (1) Improvements Over Legacy URIEL
+
+URIEL+ addresses limitations through:
+- "expanding typological feature coverage for 2898 languages"
+- "robust, customizable distance calculations to better suit the needs of users"
+- Performance improvements on downstream tasks and better alignment with linguistic distance studies
+
+## (2) Language Coverage (Kazakh/Uzbek/Kyrgyz/Mongolian/Uyghur/Turkic)
+
+**Not addressed in the provided content.** The abstract mentions expanding coverage to 2898 languages but does not specify which individual languages received enhanced coverage, including the Turkic language family you asked about.
+
+## (3) Dimensionality and Feature Types
+
+**Not specified in the provided content.** The abstract does not detail the vector dimensionality or enumerate specific typological feature categories included in URIEL+.
+
+## (4) Usage via urielplus Python Library
+
+**Not covered in the provided content.** The abstract mentions the enhanced "lang2vec tool" but provides no installation instructions or usage examples for a Python library.
+
+---
+
+**Recommendation:** Consult the full PDF or HTML version of the paper for technical specifications, language-specific coverage details, and implementation guidance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd01d179-1d3b-49b8-b4df-5da887c0b8bd",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "22e1c368-b48d-49a5-8280-76144d558ce3",
+  "toolUseResult": {
+    "bytes": 46377,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# URIEL+: Key Information\n\nBased on the arXiv abstract provided, here's what can be determined:\n\n## (1) Improvements Over Legacy URIEL\n\nURIEL+ addresses limitations through:\n- \"expanding typological feature coverage for 2898 languages\"\n- \"robust, customizable distance calculations to better suit the needs of users\"\n- Performance improvements on downstream tasks and better alignment with linguistic distance studies\n\n## (2) Language Coverage (Kazakh/Uzbek/Kyrgyz/Mongolian/Uyghur/Turkic)\n\n**Not addressed in the provided content.** The abstract mentions expanding coverage to 2898 languages but does not specify which individual languages received enhanced coverage, including the Turkic language family you asked about.\n\n## (3) Dimensionality and Feature Types\n\n**Not specified in the provided content.** The abstract does not detail the vector dimensionality or enumerate specific typological feature categories included in URIEL+.\n\n## (4) Usage via urielplus Python Library\n\n**Not covered in the provided content.** The abstract mentions the enhanced \"lang2vec tool\" but provides no installation instructions or usage examples for a Python library.\n\n---\n\n**Recommendation:** Consult the full PDF or HTML version of the paper for technical specifications, language-specific coverage details, and implementation guidance.",
+    "durationMs": 4487,
+    "url": "https://arxiv.org/abs/2409.18472"
+  },
+  "sourceToolAssistantUUID": "bd01d179-1d3b-49b8-b4df-5da887c0b8bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T06:53:25.478Z_
+
+<details><summary>↩ Tool result · `toolu_01SyYABVUB8Ai2X5pXuVJfQ6`</summary>
+
+```text
+# Summary of DCO Research Paper
+
+Based on the arXiv page content provided, here's what I can extract:
+
+## (1) What DCO Does
+DCO addresses inconsistent knowledge in multilingual language models. The abstract states it "significantly improves crosslingual consistency across diverse LLMs" by enabling models to provide consistent responses when asked similar questions in different languages.
+
+## (2) DPO-Style Objective Formulation
+The paper describes DCO as "a DPO-inspired method that requires no explicit reward model and is derived directly from the LLM itself." However, the specific mathematical formulation of the objective isn't detailed in this page excerpt.
+
+## (3) "Chosen" and "Rejected" Responses
+The page content doesn't explain these specific terms or how they're defined in their formulation.
+
+## (4) Differences from CLO
+This comparison isn't addressed in the provided webpage content.
+
+## (5) Languages and Models Covered
+The abstract mentions "diverse LLMs" and indicates "effectiveness...in bilingual settings," but doesn't specify which particular languages or model names are evaluated.
+
+**Note:** For technical details on items 2-4, the full PDF or paper would be necessary, as the arXiv abstract page provides limited methodological specifics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a7602cf-09ca-4c06-9df0-5ad99453900b",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "31a44609-1e4e-43a4-af17-7e99a59c3527",
+  "toolUseResult": {
+    "bytes": 46965,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of DCO Research Paper\n\nBased on the arXiv page content provided, here's what I can extract:\n\n## (1) What DCO Does\nDCO addresses inconsistent knowledge in multilingual language models. The abstract states it \"significantly improves crosslingual consistency across diverse LLMs\" by enabling models to provide consistent responses when asked similar questions in different languages.\n\n## (2) DPO-Style Objective Formulation\nThe paper describes DCO as \"a DPO-inspired method that requires no explicit reward model and is derived directly from the LLM itself.\" However, the specific mathematical formulation of the objective isn't detailed in this page excerpt.\n\n## (3) \"Chosen\" and \"Rejected\" Responses\nThe page content doesn't explain these specific terms or how they're defined in their formulation.\n\n## (4) Differences from CLO\nThis comparison isn't addressed in the provided webpage content.\n\n## (5) Languages and Models Covered\nThe abstract mentions \"diverse LLMs\" and indicates \"effectiveness...in bilingual settings,\" but doesn't specify which particular languages or model names are evaluated.\n\n**Note:** For technical details on items 2-4, the full PDF or paper would be necessary, as the arXiv abstract page provides limited methodological specifics.",
+    "durationMs": 5140,
+    "url": "https://arxiv.org/abs/2603.04678"
+  },
+  "sourceToolAssistantUUID": "8a7602cf-09ca-4c06-9df0-5ad99453900b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T06:53:26.702Z_
+
+<details><summary>↩ Tool result · `toolu_01Pb6D1KZ9mB2sjAkztiqCKs`</summary>
+
+```text
+Web search results for query: "EMNLP 2025 "Less is More" compact URIEL typological features cross-lingual NLP"
+
+Links: [{"title":"Less is More: The Effectiveness of Compact Typological Language Representations - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1310/"},{"title":"Less is More: The Effectiveness of Compact Typological ...","url":"https://aclanthology.org/2025.emnlp-main.1310.pdf"},{"title":"[2509.20129] Less is More: The Effectiveness of Compact Typological Language Representations","url":"https://arxiv.org/abs/2509.20129"},{"title":"Less is More: The Effectiveness of Compact Typological Language Representations","url":"https://arxiv.org/html/2509.20129v1"},{"title":"A Comprehensive Collection of Language Distance ...","url":"https://aclanthology.org/2025.emnlp-demos.23.pdf"},{"title":"Modality Matching Matters: Calibrating Language Distances for Cross-Lingual Transfer in URIEL+","url":"https://arxiv.org/html/2510.19217"},{"title":"The 2025 Conference on Empirical Methods in Natural Language Processing - EMNLP 2025","url":"https://2025.emnlp.org/"},{"title":"EMNLP.2025 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/EMNLP.2025"},{"title":"What is “Typological Diversity” in NLP?","url":"https://aclanthology.org/2024.emnlp-main.326.pdf"},{"title":"Aligning LLMs for Multilingual Consistency in Enterprise ...","url":"https://aclanthology.org/2025.emnlp-industry.9.pdf"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## "Less is More: The Effectiveness of Compact Typological Language Representations"
+
+This paper was presented at EMNLP 2025 and is titled "Less is More: The Effectiveness of Compact Typological Language Representations" by York Hay Ng, Phuong Hanh Hoang, and En-Shiun Annie Lee.
+
+### Research Focus
+
+The paper addresses a key limitation in linguistic feature datasets such as URIEL+: their high dimensionality and sparsity, especially for low-resource languages, limit the effectiveness of distance metrics.
+
+### Main Contribution
+
+The authors propose a pipeline to optimize the URIEL+ typological feature space by combining feature selection and imputation, producing compact yet interpretable typological representations.
+
+### Evaluation
+
+The feature subsets are evaluated on linguistic distance alignment and downstream tasks, demonstrating that reduced feature sets can be effective for cross-lingual NLP applications.
+
+The paper is part of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP 2025), held in Suzhou, China from November 4th to November 9th, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9af2b6f-66fe-40ce-a32a-a92e4b217c62",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "676a9e18-8619-4dae-bd2c-234d7a2fa1c5",
+  "toolUseResult": {
+    "query": "EMNLP 2025 \"Less is More\" compact URIEL typological features cross-lingual NLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FvkjtcvHhQLQ4zcC4FVNxh",
+        "content": [
+          {
+            "title": "Less is More: The Effectiveness of Compact Typological Language Representations - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.1310/"
+          },
+          {
+            "title": "Less is More: The Effectiveness of Compact Typological ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1310.pdf"
+          },
+          {
+            "title": "[2509.20129] Less is More: The Effectiveness of Compact Typological Language Representations",
+            "url": "https://arxiv.org/abs/2509.20129"
+          },
+          {
+            "title": "Less is More: The Effectiveness of Compact Typological Language Representations",
+            "url": "https://arxiv.org/html/2509.20129v1"
+          },
+          {
+            "title": "A Comprehensive Collection of Language Distance ...",
+            "url": "https://aclanthology.org/2025.emnlp-demos.23.pdf"
+          },
+          {
+            "title": "Modality Matching Matters: Calibrating Language Distances for Cross-Lingual Transfer in URIEL+",
+            "url": "https://arxiv.org/html/2510.19217"
+          },
+          {
+            "title": "The 2025 Conference on Empirical Methods in Natural Language Processing - EMNLP 2025",
+            "url": "https://2025.emnlp.org/"
+          },
+          {
+            "title": "EMNLP.2025 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/EMNLP.2025"
+          },
+          {
+            "title": "What is “Typological Diversity” in NLP?",
+            "url": "https://aclanthology.org/2024.emnlp-main.326.pdf"
+          },
+          {
+            "title": "Aligning LLMs for Multilingual Consistency in Enterprise ...",
+            "url": "https://aclanthology.org/2025.emnlp-industry.9.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## \"Less is More: The Effectiveness of Compact Typological Language Representations\"\n\nThis paper was presented at EMNLP 2025 and is titled \"Less is More: The Effectiveness of Compact Typological Language Representations\" by York Hay Ng, Phuong Hanh Hoang, and En-Shiun Annie Lee.\n\n### Research Focus\n\nThe paper addresses a key limitation in linguistic feature datasets such as URIEL+: their high dimensionality and sparsity, especially for low-resource languages, limit the effectiveness of distance metrics.\n\n### Main Contribution\n\nThe authors propose a pipeline to optimize the URIEL+ typological feature space by combining feature selection and imputation, producing compact yet interpretable typological representations.\n\n### Evaluation\n\nThe feature subsets are evaluated on linguistic distance alignment and downstream tasks, demonstrating that reduced feature sets can be effective for cross-lingual NLP applications.\n\nThe paper is part of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP 2025), held in Suzhou, China from November 4th to November 9th, 2025."
+    ],
+    "durationSeconds": 5.792990564
+  },
+  "sourceToolAssistantUUID": "c9af2b6f-66fe-40ce-a32a-a92e4b217c62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T06:53:32.837Z_
+
+<details><summary>↩ Tool result · `toolu_01Rd9qDKoN49DwakHkKhrGXd`</summary>
+
+```text
+Web search results for query: "Aya dataset Cohere Turkic languages Uzbek Kyrgyz Turkish instance count coverage statistics"
+
+Links: [{"title":"Aya | Cohere Labs","url":"https://cohere.com/research/aya"},{"title":"CohereLabs/aya-101 · Hugging Face","url":"https://huggingface.co/CohereLabs/aya-101"},{"title":"Aya Model: An Instruction Finetuned Open-Access Multilingual Language Model","url":"https://cohere.com/research/aya/aya-model-paper.pdf"},{"title":"GitHub - IS2AI/TurkicTTS: A multilingual text-to-speech synthesis system for ten lower-resourced Turkic languages: Azerbaijani, Bashkir, Kazakh, Kyrgyz, Sakha, Tatar, Turkish, Turkmen, Uyghur, and Uzbek. · GitHub","url":"https://github.com/IS2AI/TurkicTTS"},{"title":"GitHub - IS2AI/TurkicASR: A multilingual ASR model that can recognize ten Turkic languages—Azerbaijani, Bashkir, Chuvash, Kazakh, Kyrgyz, Sakha, Tatar, Turkish, Uyghur, and Uzbek.","url":"https://github.com/IS2AI/TurkicASR"},{"title":"ISSAI · GitHub","url":"https://github.com/IS2AI"},{"title":"README.md · CohereLabs/aya-101 at main","url":"https://huggingface.co/CohereLabs/aya-101/blob/main/README.md"},{"title":"aya-at-a-glance.pdf","url":"https://cohere.com/research/aya/aya-at-a-glance.pdf"},{"title":"Cohere introduces Aya model that speaks 23 languages - Techzine Global","url":"https://www.techzine.eu/news/analytics/120328/cohere-introduces-aya-model-that-speaks-23-languages/"},{"title":"Cohere for AI unveils Aya, a multilingual open-source AI with 101 languages - SiliconANGLE","url":"https://siliconangle.com/2024/02/13/cohere-ai-unveils-aya-multilingual-open-source-ai-101-languages/"}]
+
+Let me search for more specific information about instance counts and coverage statistics for the Aya dataset.
+
+Links: [{"title":"Aya Dataset: Multilingual Instruction Tuning","url":"https://www.emergentmind.com/topics/aya-dataset"},{"title":"Papers Explained 108: Aya Dataset | by Ritvik Rastogi | Medium","url":"https://ritvik19.medium.com/papers-explained-108-aya-dataset-9e299ac74a19"},{"title":"[2402.06619] Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning","url":"https://arxiv.org/abs/2402.06619"},{"title":"Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning - ACL Anthology","url":"https://aclanthology.org/2024.acl-long.620/"},{"title":"Aya Datasets - a CohereLabs Collection","url":"https://huggingface.co/collections/CohereLabs/aya-datasets"},{"title":"Aya | Cohere Labs","url":"https://cohere.com/research/aya"},{"title":"Aya Model: An Instruction Finetuned Open-Access Multilingual Language Model","url":"https://cohere.com/research/aya/aya-model-paper.pdf"},{"title":"CohereLabs/aya_dataset · Datasets at Hugging Face","url":"https://huggingface.co/datasets/CohereLabs/aya_dataset"},{"title":"aya-at-a-glance.pdf","url":"https://cohere.com/research/aya/aya-at-a-glance.pdf"},{"title":"Paper page - Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning","url":"https://huggingface.co/papers/2402.06619"}]
+
+Now let me search for specific information about Turkic language coverage in the Aya dataset.
+
+Links: [{"title":"Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning","url":"https://arxiv.org/pdf/2402.06619"},{"title":"GitHub - IS2AI/TurkicASR: A multilingual ASR model that can recognize ten Turkic languages—Azerbaijani, Bashkir, Chuvash, Kazakh, Kyrgyz, Sakha, Tatar, Turkish, Uyghur, and Uzbek.","url":"https://github.com/IS2AI/TurkicASR"},{"title":"[2402.06619] Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning","url":"https://arxiv.org/abs/2402.06619"},{"title":"ISSAI · GitHub","url":"https://github.com/IS2AI"},{"title":"Paper page - Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning","url":"https://huggingface.co/papers/2402.06619"},{"title":"Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning - ACL Anthology","url":"https://aclanthology.org/2024.acl-long.620/"},{"title":"[PDF] Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Aya-Dataset:-An-Open-Access-Collection-for-Tuning-Singh-Vargus/88cd6e0f7c2f1fe2bd4796a6729447d60bfeffc9"},{"title":"aya-at-a-glance.pdf","url":"https://cohere.com/research/aya/aya-at-a-glance.pdf"},{"title":"Aya Datasets - a CohereLabs Collection","url":"https://huggingface.co/collections/CohereLabs/aya-datasets"},{"title":"CohereLabs/aya_collection_language_split · Datasets at Hugging Face","url":"https://huggingface.co/datasets/CohereLabs/aya_collection_language_split/viewer/haitian/train?p=1"}]
+
+Based on the web search results, here's comprehensive information about the Aya dataset from Cohere and its coverage of Turkic languages:
+
+## Overview of the Aya Dataset
+
+The Aya project bridges the language gap by building a human-curated instruction-following dataset spanning 65 languages, and creates the most extensive multilingual collection to date, comprising 513 million instances through templating and translating existing datasets across 114 languages.
+
+## Instance Count and Coverage Statistics
+
+**Overall Dataset Statistics:**
+
+- The Aya instruction-tuning mixture contains approximately 203 million instruction examples (post-filtering and pruning) for model tuning.
+- The Aya Collection comprises 513,579,625 templated and translated instances covering 114 languages.
+- The Aya Dataset is a multilingual instruction fine-tuning dataset containing a total of 204k human-annotated prompt-completion pairs along with the demographics data of the annotators.
+
+**Language Classification:**
+
+Language coverage includes 101 languages for training, classified as 23 high-resource, 26 mid-resource, and 52 low-resource languages. The final mix approximates 30% high-resource, 15% mid-resource, and 55% low-resource languages.
+
+## Turkic Language Coverage
+
+The search results indicate that the dataset expands coverage to more than 50 previously underrepresented languages not commonly found in proprietary models such as Somali and Uzbek.
+
+For specific Turkic language instance counts, the data shows that in the Aya Collection language split, Kyrgyz has 4.13M rows and Northern Uzbek has entries in the dataset. Turkish is included in the Aya-human-annotated test set with 250 examples.
+
+The dataset represents a significant effort in multilingual coverage, with 2,997 registered contributors from 119 countries participating in the annotation process.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b485575-b143-474f-8843-cbcce54c6935",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "2ce5f353-b2ad-4cb5-b907-00876ea2920e",
+  "toolUseResult": {
+    "query": "Aya dataset Cohere Turkic languages Uzbek Kyrgyz Turkish instance count coverage statistics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0137ntrMYGTveAvrZUk8GAjh",
+        "content": [
+          {
+            "title": "Aya | Cohere Labs",
+            "url": "https://cohere.com/research/aya"
+          },
+          {
+            "title": "CohereLabs/aya-101 · Hugging Face",
+            "url": "https://huggingface.co/CohereLabs/aya-101"
+          },
+          {
+            "title": "Aya Model: An Instruction Finetuned Open-Access Multilingual Language Model",
+            "url": "https://cohere.com/research/aya/aya-model-paper.pdf"
+          },
+          {
+            "title": "GitHub - IS2AI/TurkicTTS: A multilingual text-to-speech synthesis system for ten lower-resourced Turkic languages: Azerbaijani, Bashkir, Kazakh, Kyrgyz, Sakha, Tatar, Turkish, Turkmen, Uyghur, and Uzbek. · GitHub",
+            "url": "https://github.com/IS2AI/TurkicTTS"
+          },
+          {
+            "title": "GitHub - IS2AI/TurkicASR: A multilingual ASR model that can recognize ten Turkic languages—Azerbaijani, Bashkir, Chuvash, Kazakh, Kyrgyz, Sakha, Tatar, Turkish, Uyghur, and Uzbek.",
+            "url": "https://github.com/IS2AI/TurkicASR"
+          },
+          {
+            "title": "ISSAI · GitHub",
+            "url": "https://github.com/IS2AI"
+          },
+          {
+            "title": "README.md · CohereLabs/aya-101 at main",
+            "url": "https://huggingface.co/CohereLabs/aya-101/blob/main/README.md"
+          },
+          {
+            "title": "aya-at-a-glance.pdf",
+            "url": "https://cohere.com/research/aya/aya-at-a-glance.pdf"
+          },
+          {
+            "title": "Cohere introduces Aya model that speaks 23 languages - Techzine Global",
+            "url": "https://www.techzine.eu/news/analytics/120328/cohere-introduces-aya-model-that-speaks-23-languages/"
+          },
+          {
+            "title": "Cohere for AI unveils Aya, a multilingual open-source AI with 101 languages - SiliconANGLE",
+            "url": "https://siliconangle.com/2024/02/13/cohere-ai-unveils-aya-multilingual-open-source-ai-101-languages/"
+          }
+        ]
+      },
+      "Let me search for more specific information about instance counts and coverage statistics for the Aya dataset.",
+      {
+        "tool_use_id": "srvtoolu_01PqsoXoLoSxyFgk9woArFkQ",
+        "content": [
+          {
+            "title": "Aya Dataset: Multilingual Instruction Tuning",
+            "url": "https://www.emergentmind.com/topics/aya-dataset"
+          },
+          {
+            "title": "Papers Explained 108: Aya Dataset | by Ritvik Rastogi | Medium",
+            "url": "https://ritvik19.medium.com/papers-explained-108-aya-dataset-9e299ac74a19"
+          },
+          {
+            "title": "[2402.06619] Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning",
+            "url": "https://arxiv.org/abs/2402.06619"
+          },
+          {
+            "title": "Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning - ACL Anthology",
+            "url": "https://aclanthology.org/2024.acl-long.620/"
+          },
+          {
+            "title": "Aya Datasets - a CohereLabs Collection",
+            "url": "https://huggingface.co/collections/CohereLabs/aya-datasets"
+          },
+          {
+            "title": "Aya | Cohere Labs",
+            "url": "https://cohere.com/research/aya"
+          },
+          {
+            "title": "Aya Model: An Instruction Finetuned Open-Access Multilingual Language Model",
+            "url": "https://cohere.com/research/aya/aya-model-paper.pdf"
+          },
+          {
+            "title": "CohereLabs/aya_dataset · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/CohereLabs/aya_dataset"
+          },
+          {
+            "title": "aya-at-a-glance.pdf",
+            "url": "https://cohere.com/research/aya/aya-at-a-glance.pdf"
+          },
+          {
+            "title": "Paper page - Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning",
+            "url": "https://huggingface.co/papers/2402.06619"
+          }
+        ]
+      },
+      "Now let me search for specific information about Turkic language coverage in the Aya dataset.",
+      {
+        "tool_use_id": "srvtoolu_01W1g8thtqdp2D8DNv7QBwzu",
+        "content": [
+          {
+            "title": "Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning",
+            "url": "https://arxiv.org/pdf/2402.06619"
+          },
+          {
+            "title": "GitHub - IS2AI/TurkicASR: A multilingual ASR model that can recognize ten Turkic languages—Azerbaijani, Bashkir, Chuvash, Kazakh, Kyrgyz, Sakha, Tatar, Turkish, Uyghur, and Uzbek.",
+            "url": "https://github.com/IS2AI/TurkicASR"
+          },
+          {
+            "title": "[2402.06619] Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning",
+            "url": "https://arxiv.org/abs/2402.06619"
+          },
+          {
+            "title": "ISSAI · GitHub",
+            "url": "https://github.com/IS2AI"
+          },
+          {
+            "title": "Paper page - Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning",
+            "url": "https://huggingface.co/papers/2402.06619"
+          },
+          {
+            "title": "Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning - ACL Anthology",
+            "url": "https://aclanthology.org/2024.acl-long.620/"
+          },
+          {
+            "title": "[PDF] Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Aya-Dataset:-An-Open-Access-Collection-for-Tuning-Singh-Vargus/88cd6e0f7c2f1fe2bd4796a6729447d60bfeffc9"
+          },
+          {
+            "title": "aya-at-a-glance.pdf",
+            "url": "https://cohere.com/research/aya/aya-at-a-glance.pdf"
+          },
+          {
+            "title": "Aya Datasets - a CohereLabs Collection",
+            "url": "https://huggingface.co/collections/CohereLabs/aya-datasets"
+          },
+          {
+            "title": "CohereLabs/aya_collection_language_split · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/CohereLabs/aya_collection_language_split/viewer/haitian/train?p=1"
+          }
+        ]
+      },
+      "Based on the web search results, here's comprehensive information about the Aya dataset from Cohere and its coverage of Turkic languages:\n\n## Overview of the Aya Dataset\n\nThe Aya project bridges the language gap by building a human-curated instruction-following dataset spanning 65 languages, and creates the most extensive multilingual collection to date, comprising 513 million instances through templating and translating existing datasets across 114 languages.\n\n## Instance Count and Coverage Statistics\n\n**Overall Dataset Statistics:**\n\n- The Aya instruction-tuning mixture contains approximately 203 million instruction examples (post-filtering and pruning) for model tuning.\n- The Aya Collection comprises 513,579,625 templated and translated instances covering 114 languages.\n- The Aya Dataset is a multilingual instruction fine-tuning dataset containing a total of 204k human-annotated prompt-completion pairs along with the demographics data of the annotators.\n\n**Language Classification:**\n\nLanguage coverage includes 101 languages for training, classified as 23 high-resource, 26 mid-resource, and 52 low-resource languages. The final mix approximates 30% high-resource, 15% mid-resource, and 55% low-resource languages.\n\n## Turkic Language Coverage\n\nThe search results indicate that the dataset expands coverage to more than 50 previously underrepresented languages not commonly found in proprietary models such as Somali and Uzbek.\n\nFor specific Turkic language instance counts, the data shows that in the Aya Collection language split, Kyrgyz has 4.13M rows and Northern Uzbek has entries in the dataset. Turkish is included in the Aya-human-annotated test set with 250 examples.\n\nThe dataset represents a significant effort in multilingual coverage, with 2,997 registered contributors from 119 countries participating in the annotation process."
+    ],
+    "durationSeconds": 11.692261957000003
+  },
+  "sourceToolAssistantUUID": "3b485575-b143-474f-8843-cbcce54c6935",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruc…",
+  "leafUuid": "2ce5f353-b2ad-4cb5-b907-00876ea2920e",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DPO formulation for multi-source instruction tuning",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-10T06:53:39.622Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me fetch the actual papers more deeply. I need to get the full content of:
+1. The "Less is More" paper (arXiv:2509.20129)
+2. The URIEL+ paper (arXiv:2409.18472) - specifically the full paper
+3. The DCO paper (arXiv:2603.04678)
+4. The Aya dataset HuggingFace page with language-specific statistics
+
+Let me also check on the Aya collection with language splits to understand Turkic coverage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ce5f353-b2ad-4cb5-b907-00876ea2920e",
+  "isSidechain": false,
+  "requestId": "req_011CatSwLYsJrmYpKHTDeTwh",
+  "type": "assistant",
+  "uuid": "a2e991b9-40a5-4446-aacb-592343082cae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01T4Ph6gVuBrWyY6gfG4hqrC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4010,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 685,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 685,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 4010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-10T06:53:40.077Z_
+
+Let me get deeper content from the key papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2e991b9-40a5-4446-aacb-592343082cae",
+  "isSidechain": false,
+  "requestId": "req_011CatSwLYsJrmYpKHTDeTwh",
+  "type": "assistant",
+  "uuid": "88bcdaa1-624c-46c5-8007-6ab72b32a8d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01T4Ph6gVuBrWyY6gfG4hqrC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4010,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 685,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 685,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 4010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-10T06:53:42.568Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012HSubjxJTKkcfj5E5EXPiC`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.20129v1",
+  "prompt": "Extract: (1) exact findings on compact vs full 289-dim URIEL features, (2) which feature subsets work best, (3) methodology for feature selection/imputation, (4) downstream task results comparing compact vs full features, (5) specific numbers/dimensions for best performing subsets"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88bcdaa1-624c-46c5-8007-6ab72b32a8d2",
+  "isSidechain": false,
+  "requestId": "req_011CatSwLYsJrmYpKHTDeTwh",
+  "type": "assistant",
+  "uuid": "fec77fd4-b13b-4f43-bc0c-fba8782ca87f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01T4Ph6gVuBrWyY6gfG4hqrC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4010,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 685,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 685,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 4010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-10T06:53:44.777Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0163ya8cYRsJU4MKQyrNxwKR`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2409.18472",
+  "prompt": "Extract: (1) improvements over legacy URIEL for low-resource/Turkic languages like Kazakh, Uzbek, Kyrgyz, Mongolian, Uyghur, (2) feature dimensions in URIEL+, (3) coverage statistics for these specific languages, (4) how to compute distances with URIEL+"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fec77fd4-b13b-4f43-bc0c-fba8782ca87f",
+  "isSidechain": false,
+  "requestId": "req_011CatSwLYsJrmYpKHTDeTwh",
+  "type": "assistant",
+  "uuid": "ef185d02-9b32-4eac-9c40-dfd6e1ce2755",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01T4Ph6gVuBrWyY6gfG4hqrC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4010,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 685,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 685,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 4010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-10T06:53:45.393Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MywUnaGLtqo7amu9b1gUyH`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/datasets/CohereLabs/aya_dataset",
+  "prompt": "Extract: instance counts per language, especially for Turkish, Uzbek, Kyrgyz, Kazakh, Mongolian, Uyghur"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef185d02-9b32-4eac-9c40-dfd6e1ce2755",
+  "isSidechain": false,
+  "requestId": "req_011CatSwLYsJrmYpKHTDeTwh",
+  "type": "assistant",
+  "uuid": "fd6c6301-bb2d-46fb-87c0-84c8b65a67a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01T4Ph6gVuBrWyY6gfG4hqrC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4010,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 685,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 685,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 4010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-10T06:53:47.894Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BBDZU3rfThgf79723zyhy8`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2603.04678",
+  "prompt": "Extract: (1) exact DPO-style objective formulation for DCO, (2) definition of chosen and rejected responses in their setup, (3) whether they handle multilingual sources or just English→X, (4) key results and which languages/models, (5) how it differs from CLO (arXiv:2505.14297)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd6c6301-bb2d-46fb-87c0-84c8b65a67a6",
+  "isSidechain": false,
+  "requestId": "req_011CatSwLYsJrmYpKHTDeTwh",
+  "type": "assistant",
+  "uuid": "a66fb761-fa27-45a7-bfca-ffb195ae3df1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01T4Ph6gVuBrWyY6gfG4hqrC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4010,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 685,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 685,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 4010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-10T06:53:48.916Z_
+
+<details><summary>↩ Tool result · `toolu_0163ya8cYRsJU4MKQyrNxwKR`</summary>
+
+```text
+I appreciate your request, but I'm unable to extract the information you're looking for from the provided content. The text appears to be a PDF file encoded in binary/compressed format rather than readable text. The content shows PDF stream objects with compression indicators (FlateDecode filters) rather than the actual article text about URIEL linguistic features.
+
+To help you effectively, I would need:
+
+1. **Plain text or readable format** of the URIEL+ paper or documentation
+2. **Direct access** to sections covering language improvements, feature dimensions, and computational methods
+3. **Specific sections** about Turkic language coverage (Kazakh, Uzbek, Kyrgyz, etc.)
+
+If you have access to the original paper, I'd recommend:
+- Downloading it as a text-extractable PDF
+- Copying the relevant sections directly
+- Providing the document URL if it's publicly available
+
+Once you share the readable content, I can provide concise, properly quoted information addressing your four questions about URIEL+ improvements, dimensions, coverage statistics, and distance computation methods—all within your 125-character citation limit.
+
+[Binary content (application/pdf, 1.7MB) also saved to /home/ubuntu/.claude-account-2/projects/-/5ab4f45b-5a17-4feb-9157-c35c51167e6c/tool-results/webfetch-1778396024796-bmpqb9.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef185d02-9b32-4eac-9c40-dfd6e1ce2755",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "03b64243-9172-4067-8b84-270c399157b8",
+  "toolUseResult": {
+    "bytes": 1747129,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I appreciate your request, but I'm unable to extract the information you're looking for from the provided content. The text appears to be a PDF file encoded in binary/compressed format rather than readable text. The content shows PDF stream objects with compression indicators (FlateDecode filters) rather than the actual article text about URIEL linguistic features.\n\nTo help you effectively, I would need:\n\n1. **Plain text or readable format** of the URIEL+ paper or documentation\n2. **Direct access** to sections covering language improvements, feature dimensions, and computational methods\n3. **Specific sections** about Turkic language coverage (Kazakh, Uzbek, Kyrgyz, etc.)\n\nIf you have access to the original paper, I'd recommend:\n- Downloading it as a text-extractable PDF\n- Copying the relevant sections directly\n- Providing the document URL if it's publicly available\n\nOnce you share the readable content, I can provide concise, properly quoted information addressing your four questions about URIEL+ improvements, dimensions, coverage statistics, and distance computation methods—all within your 125-character citation limit.\n\n[Binary content (application/pdf, 1.7MB) also saved to /home/ubuntu/.claude-account-2/projects/-/5ab4f45b-5a17-4feb-9157-c35c51167e6c/tool-results/webfetch-1778396024796-bmpqb9.pdf]",
+    "durationMs": 4136,
+    "url": "https://arxiv.org/pdf/2409.18472"
+  },
+  "sourceToolAssistantUUID": "ef185d02-9b32-4eac-9c40-dfd6e1ce2755",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-10T06:53:50.609Z_
+
+<details><summary>↩ Tool result · `toolu_012HSubjxJTKkcfj5E5EXPiC`</summary>
+
+```text
+# Compact Typological Language Representations: Key Findings
+
+## (1) Compact vs. Full URIEL+ Features
+
+The research demonstrates that reduced feature sets outperform the full 800-dimensional URIEL+ dataset. The baseline URIEL+ achieved a Spearman correlation of 0.260 with linguistic similarity measures, while optimized subsets reached 0.358—a substantial improvement using only 37.5% of original features.
+
+## (2) Best-Performing Feature Subsets
+
+**Laplacian Score emerged as the top performer**, achieving ρ = 0.358 with just 300 features. The paper notes: "Laplacian Score strategy achieves the strongest G_d alignment...when using only 300 features, underscoring its effectiveness at capturing manifold structure."
+
+Performance rankings across methods:
+- Laplacian Score (300 features): ρ = 0.358
+- Variance (500 features): ρ = 0.295
+- PCA Loadings (700 features): ρ = 0.292
+- Correlation-based FS (200 features): ρ = 0.264
+
+## (3) Methodology: Feature Selection & Imputation
+
+**Three unsupervised methods:**
+- Variance ranking (identifies discriminative binary features)
+- PCA loadings (preserves interpretability via principal components)
+- Laplacian Score (preserves local manifold structure using 5-nearest neighbors)
+
+**Supervised approach:** Correlation-based Feature Selection using language family membership and mutual information to balance feature-class relevance against inter-feature redundancy.
+
+**Missing value handling:** SoftImpute applied to complete reduced matrices via low-rank approximation.
+
+## (4) Downstream Task Results
+
+**LangRank (transfer language selection):**
+- Laplacian Score: +7.8% improvement at 300 features
+- Correlation-based FS: +6.0% at 100 features
+- Variance/PCA methods showed lesser gains
+
+**ProxyLM (language model performance prediction):**
+- Consistent 0.2-1.4% RMSE reduction across all subset sizes
+- "No subset results in performance degradation," demonstrating robustness
+
+**LinguAlchemy (linguistic regularization):**
+- "Performance varies only slightly," suggesting regularization loss remains stable despite dimensionality reduction
+
+## (5) Best-Performing Subset Dimensions
+
+The optimal subsets ranged from **100-700 features** depending on method:
+- **300 features** (Laplacian Score): Best linguistic alignment
+- **200 features** (Correlation-based FS): Best LangRank performance
+- **500 features** (Variance): Strong performance across metrics
+
+All substantially outperformed the full 800-feature baseline while reducing computational costs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fec77fd4-b13b-4f43-bc0c-fba8782ca87f",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "9c295505-3565-4bdf-9660-a499226f83b3",
+  "toolUseResult": {
+    "bytes": 111662,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Compact Typological Language Representations: Key Findings\n\n## (1) Compact vs. Full URIEL+ Features\n\nThe research demonstrates that reduced feature sets outperform the full 800-dimensional URIEL+ dataset. The baseline URIEL+ achieved a Spearman correlation of 0.260 with linguistic similarity measures, while optimized subsets reached 0.358—a substantial improvement using only 37.5% of original features.\n\n## (2) Best-Performing Feature Subsets\n\n**Laplacian Score emerged as the top performer**, achieving ρ = 0.358 with just 300 features. The paper notes: \"Laplacian Score strategy achieves the strongest G_d alignment...when using only 300 features, underscoring its effectiveness at capturing manifold structure.\"\n\nPerformance rankings across methods:\n- Laplacian Score (300 features): ρ = 0.358\n- Variance (500 features): ρ = 0.295\n- PCA Loadings (700 features): ρ = 0.292\n- Correlation-based FS (200 features): ρ = 0.264\n\n## (3) Methodology: Feature Selection & Imputation\n\n**Three unsupervised methods:**\n- Variance ranking (identifies discriminative binary features)\n- PCA loadings (preserves interpretability via principal components)\n- Laplacian Score (preserves local manifold structure using 5-nearest neighbors)\n\n**Supervised approach:** Correlation-based Feature Selection using language family membership and mutual information to balance feature-class relevance against inter-feature redundancy.\n\n**Missing value handling:** SoftImpute applied to complete reduced matrices via low-rank approximation.\n\n## (4) Downstream Task Results\n\n**LangRank (transfer language selection):**\n- Laplacian Score: +7.8% improvement at 300 features\n- Correlation-based FS: +6.0% at 100 features\n- Variance/PCA methods showed lesser gains\n\n**ProxyLM (language model performance prediction):**\n- Consistent 0.2-1.4% RMSE reduction across all subset sizes\n- \"No subset results in performance degradation,\" demonstrating robustness\n\n**LinguAlchemy (linguistic regularization):**\n- \"Performance varies only slightly,\" suggesting regularization loss remains stable despite dimensionality reduction\n\n## (5) Best-Performing Subset Dimensions\n\nThe optimal subsets ranged from **100-700 features** depending on method:\n- **300 features** (Laplacian Score): Best linguistic alignment\n- **200 features** (Correlation-based FS): Best LangRank performance\n- **500 features** (Variance): Strong performance across metrics\n\nAll substantially outperformed the full 800-feature baseline while reducing computational costs.",
+    "durationMs": 8036,
+    "url": "https://arxiv.org/html/2509.20129v1"
+  },
+  "sourceToolAssistantUUID": "fec77fd4-b13b-4f43-bc0c-fba8782ca87f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-10T06:53:50.880Z_
+
+<details><summary>↩ Tool result · `toolu_01MywUnaGLtqo7amu9b1gUyH`</summary>
+
+````text
+# Instance Counts Per Language in Aya Dataset
+
+Based on the webpage content provided, I can confirm that the Aya Dataset includes several Central Asian and Turkic languages, but **specific instance counts per language are not disclosed** in the documentation.
+
+## Languages Mentioned
+
+From the dataset's language coverage table, the following relevant languages are included:
+
+| Language | ISO Code | Resource Level |
+|----------|----------|-----------------|
+| Turkish | `tur` | High |
+| Kyrgyz | `kir` | Low |
+
+**Not included in the dataset:**
+- Uzbek
+- Kazakh
+- Mongolian
+- Uyghur
+
+## Available Dataset Statistics
+
+The documentation provides these aggregate statistics:
+
+- **Total instances**: 204,114 human-annotated prompt-completion pairs
+- **Language coverage**: 65 languages (71 including dialects & scripts)
+- **Breakdown by annotation type**:
+  - Original Annotations: 138,844
+  - Re-Annotations: 65,270
+
+- **Resource distribution**:
+  - 28 high-resource languages
+  - 12 mid-resource languages
+  - 31 low-resource languages
+
+## Accessing Granular Language Statistics
+
+To obtain per-language instance counts, you would need to:
+
+```python
+from datasets import load_dataset
+
+# Load the dataset
+aya_dataset = load_dataset("CohereLabs/aya_dataset")
+
+# Count instances per language
+language_counts = aya_dataset['train'].to_pandas()['language'].value_counts()
+print(language_counts)
+```
+
+This approach will provide the specific instance counts you're seeking for Turkish, Kyrgyz, and other languages in the dataset.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd6c6301-bb2d-46fb-87c0-84c8b65a67a6",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "28c80ec6-dff7-45fb-a908-abbde287ff14",
+  "toolUseResult": {
+    "bytes": 740349,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Instance Counts Per Language in Aya Dataset\n\nBased on the webpage content provided, I can confirm that the Aya Dataset includes several Central Asian and Turkic languages, but **specific instance counts per language are not disclosed** in the documentation.\n\n## Languages Mentioned\n\nFrom the dataset's language coverage table, the following relevant languages are included:\n\n| Language | ISO Code | Resource Level |\n|----------|----------|-----------------|\n| Turkish | `tur` | High |\n| Kyrgyz | `kir` | Low |\n\n**Not included in the dataset:**\n- Uzbek\n- Kazakh\n- Mongolian\n- Uyghur\n\n## Available Dataset Statistics\n\nThe documentation provides these aggregate statistics:\n\n- **Total instances**: 204,114 human-annotated prompt-completion pairs\n- **Language coverage**: 65 languages (71 including dialects & scripts)\n- **Breakdown by annotation type**:\n  - Original Annotations: 138,844\n  - Re-Annotations: 65,270\n\n- **Resource distribution**:\n  - 28 high-resource languages\n  - 12 mid-resource languages\n  - 31 low-resource languages\n\n## Accessing Granular Language Statistics\n\nTo obtain per-language instance counts, you would need to:\n\n```python\nfrom datasets import load_dataset\n\n# Load the dataset\naya_dataset = load_dataset(\"CohereLabs/aya_dataset\")\n\n# Count instances per language\nlanguage_counts = aya_dataset['train'].to_pandas()['language'].value_counts()\nprint(language_counts)\n```\n\nThis approach will provide the specific instance counts you're seeking for Turkish, Kyrgyz, and other languages in the dataset.",
+    "durationMs": 5484,
+    "url": "https://huggingface.co/datasets/CohereLabs/aya_dataset"
+  },
+  "sourceToolAssistantUUID": "fd6c6301-bb2d-46fb-87c0-84c8b65a67a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-10T06:53:53.891Z_
+
+<details><summary>↩ Tool result · `toolu_01BBDZU3rfThgf79723zyhy8`</summary>
+
+```text
+# Direct Crosslingual Optimization (DCO) Extraction
+
+Based on the PDF content, here are the requested details:
+
+## (1) DPO-Style Objective Formulation
+The paper adapts Direct Preference Optimization by modifying the standard DPO loss to enforce consistency across languages. The exact formulation appears in equations 3.1-3.4, where they extend the preference learning framework to constrain model behavior across multiple language pairs simultaneously.
+
+## (2) Chosen vs. Rejected Responses
+In their setup, "chosen responses" are those that maintain knowledge consistency across languages, while "rejected responses" violate this consistency. The framework uses parallel translations where the model should produce semantically equivalent outputs regardless of input language.
+
+## (3) Multilingual Source Handling
+The approach processes **multilingual sources**, not limited to English→X translation. They evaluate across multiple language pairs and use crosslingual knowledge alignment, suggesting bidirectional language coverage beyond monodirectional translation.
+
+## (4) Key Results & Languages/Models
+Results include evaluation on:
+- Multiple LLMs (Llama, GPT-4, DeepSeek cited)
+- Multiple languages tested (paper mentions evaluating across diverse language sets)
+- Improvements in "crosslingual knowledge consistency" as the primary metric
+
+## (5) Distinction from CLO
+The paper references related work on crosslingual optimization but positions DCO as directly optimizing consistency through preference learning, contrasting with alternative alignment approaches in contemporary multilingual LLM research.
+
+**Note:** Full technical details require accessing the mathematical sections (equations 4.1-4.11 referenced throughout).
+
+[Binary content (application/pdf, 1008.4KB) also saved to /home/ubuntu/.claude-account-2/projects/-/5ab4f45b-5a17-4feb-9157-c35c51167e6c/tool-results/webfetch-1778396027909-p7p7bb.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a66fb761-fa27-45a7-bfca-ffb195ae3df1",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "799642de-f9f3-4504-9550-75d5cec7913a",
+  "toolUseResult": {
+    "bytes": 1032580,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Direct Crosslingual Optimization (DCO) Extraction\n\nBased on the PDF content, here are the requested details:\n\n## (1) DPO-Style Objective Formulation\nThe paper adapts Direct Preference Optimization by modifying the standard DPO loss to enforce consistency across languages. The exact formulation appears in equations 3.1-3.4, where they extend the preference learning framework to constrain model behavior across multiple language pairs simultaneously.\n\n## (2) Chosen vs. Rejected Responses\nIn their setup, \"chosen responses\" are those that maintain knowledge consistency across languages, while \"rejected responses\" violate this consistency. The framework uses parallel translations where the model should produce semantically equivalent outputs regardless of input language.\n\n## (3) Multilingual Source Handling\nThe approach processes **multilingual sources**, not limited to English→X translation. They evaluate across multiple language pairs and use crosslingual knowledge alignment, suggesting bidirectional language coverage beyond monodirectional translation.\n\n## (4) Key Results & Languages/Models\nResults include evaluation on:\n- Multiple LLMs (Llama, GPT-4, DeepSeek cited)\n- Multiple languages tested (paper mentions evaluating across diverse language sets)\n- Improvements in \"crosslingual knowledge consistency\" as the primary metric\n\n## (5) Distinction from CLO\nThe paper references related work on crosslingual optimization but positions DCO as directly optimizing consistency through preference learning, contrasting with alternative alignment approaches in contemporary multilingual LLM research.\n\n**Note:** Full technical details require accessing the mathematical sections (equations 4.1-4.11 referenced throughout).\n\n[Binary content (application/pdf, 1008.4KB) also saved to /home/ubuntu/.claude-account-2/projects/-/5ab4f45b-5a17-4feb-9157-c35c51167e6c/tool-results/webfetch-1778396027909-p7p7bb.pdf]",
+    "durationMs": 5995,
+    "url": "https://arxiv.org/pdf/2603.04678"
+  },
+  "sourceToolAssistantUUID": "a66fb761-fa27-45a7-bfca-ffb195ae3df1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-10T06:53:53.899Z_
+
+```json
+{
+  "parentUuid": "799642de-f9f3-4504-9550-75d5cec7913a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0055a22d-991d-48f0-a0cc-479e0ee0247a",
+  "timestamp": "2026-05-10T06:53:53.899Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-10T06:53:57.881Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now fetch the HTML version of the URIEL+ paper and the Aya collection with language splits to get better data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0055a22d-991d-48f0-a0cc-479e0ee0247a",
+  "isSidechain": false,
+  "requestId": "req_011CatSxtdx9Byri7YCSGGYu",
+  "type": "assistant",
+  "uuid": "af37a9d1-f5e3-4fba-b4c5-4dacb3880de6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FzgmwF8G5ZpZpCwy4aHQC1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2699,
+      "cache_read_input_tokens": 29043,
+      "output_tokens": 402,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 402,
+          "cache_read_input_tokens": 29043,
+          "cache_creation_input_tokens": 2699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-10T06:53:58.404Z_
+
+Let me fetch the HTML versions of these papers for more complete information.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af37a9d1-f5e3-4fba-b4c5-4dacb3880de6",
+  "isSidechain": false,
+  "requestId": "req_011CatSxtdx9Byri7YCSGGYu",
+  "type": "assistant",
+  "uuid": "bad6ac2f-d72d-4f53-8022-f2a4b1bfa062",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FzgmwF8G5ZpZpCwy4aHQC1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2699,
+      "cache_read_input_tokens": 29043,
+      "output_tokens": 402,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 402,
+          "cache_read_input_tokens": 29043,
+          "cache_creation_input_tokens": 2699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-10T06:54:00.971Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01APztPeZXMnFmtQGsComcBm`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2409.18472",
+  "prompt": "Extract: (1) what specific improvements URIEL+ makes over legacy URIEL lang2vec, (2) coverage for Kazakh, Uzbek, Kyrgyz, Mongolian, Uyghur, Tibetan (any stats), (3) feature dimensionality of URIEL+, (4) how distance is computed, (5) the urielplus Python API usage"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bad6ac2f-d72d-4f53-8022-f2a4b1bfa062",
+  "isSidechain": false,
+  "requestId": "req_011CatSxtdx9Byri7YCSGGYu",
+  "type": "assistant",
+  "uuid": "0833443d-d370-4d06-a321-a91d2c51d468",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FzgmwF8G5ZpZpCwy4aHQC1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2699,
+      "cache_read_input_tokens": 29043,
+      "output_tokens": 402,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 402,
+          "cache_read_input_tokens": 29043,
+          "cache_creation_input_tokens": 2699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-10T06:54:02.595Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HoKCEqoLxrcpWX4C5zNmek`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/datasets/CohereLabs/aya_collection_language_split",
+  "prompt": "List all available language configurations/splits, especially whether Turkish, Uzbek, Kyrgyz, Kazakh, Mongolian, Uyghur are present and their approximate sizes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0833443d-d370-4d06-a321-a91d2c51d468",
+  "isSidechain": false,
+  "requestId": "req_011CatSxtdx9Byri7YCSGGYu",
+  "type": "assistant",
+  "uuid": "470382ea-2074-47f5-a5fc-081f8ef48edb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FzgmwF8G5ZpZpCwy4aHQC1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2699,
+      "cache_read_input_tokens": 29043,
+      "output_tokens": 402,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 402,
+          "cache_read_input_tokens": 29043,
+          "cache_creation_input_tokens": 2699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-10T06:54:02.980Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WiFyGacRyNKwabNEK3r1DW`</summary>
+
+```json
+{
+  "query": "Aya collection 2024 language statistics Turkish Uzbek Kyrgyz instance count multilingual instruction tuning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "470382ea-2074-47f5-a5fc-081f8ef48edb",
+  "isSidechain": false,
+  "requestId": "req_011CatSxtdx9Byri7YCSGGYu",
+  "type": "assistant",
+  "uuid": "06599f51-342e-4158-a1b0-fd4119aebaae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FzgmwF8G5ZpZpCwy4aHQC1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2699,
+      "cache_read_input_tokens": 29043,
+      "output_tokens": 402,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 402,
+          "cache_read_input_tokens": 29043,
+          "cache_creation_input_tokens": 2699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruc…",
+  "leafUuid": "06599f51-342e-4158-a1b0-fd4119aebaae",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DPO formulation for multi-source instruction tuning",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-10T06:54:07.860Z_
+
+<details><summary>↩ Tool result · `toolu_01HoKCEqoLxrcpWX4C5zNmek`</summary>
+
+````text
+# Aya Collection Language Split - Available Languages
+
+Based on the webpage content provided, I can see that the dataset includes **115+ languages** (indicated by "Achinese, Afrikaans, Amharic + 112"), but the specific language list is truncated in the provided content.
+
+## Regarding Your Specific Languages
+
+The webpage shows:
+- **Confirmed present**: Achinese, Afrikaans, Amharic (and 112 others)
+- **Turkish, Uzbek, Kyrgyz, Kazakh, Mongolian, Uyghur**: Not visible in the truncated content
+
+## How to Access Complete Language Information
+
+To get the exact list of all language splits and their sizes, you would need to:
+
+1. **Visit the dataset page directly**: https://huggingface.co/datasets/CohereLabs/aya_collection_language_split
+
+2. **Use the Hugging Face Datasets library**:
+```python
+from datasets import load_dataset
+
+# Load the dataset to inspect available configurations
+dataset = load_dataset("CohereLabs/aya_collection_language_split")
+print(dataset.keys())  # Shows available language splits
+```
+
+3. **Check the ArXiv paper**: arxiv:2402.06619 - likely contains detailed information about language coverage and dataset sizes
+
+## Dataset Specifications
+- **Total Size**: 100M - 1B
+- **Format**: Parquet
+- **License**: Apache 2.0
+- **Modalities**: Tabular + Text
+
+For accurate information about Turkic languages (Turkish, Uzbek, Kyrgyz, Kazakh) and others you mentioned, please consult the full dataset documentation or the ArXiv paper.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "470382ea-2074-47f5-a5fc-081f8ef48edb",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "849f1460-16ff-4afb-8248-dcb305857d5b",
+  "toolUseResult": {
+    "bytes": 1809050,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Aya Collection Language Split - Available Languages\n\nBased on the webpage content provided, I can see that the dataset includes **115+ languages** (indicated by \"Achinese, Afrikaans, Amharic + 112\"), but the specific language list is truncated in the provided content.\n\n## Regarding Your Specific Languages\n\nThe webpage shows:\n- **Confirmed present**: Achinese, Afrikaans, Amharic (and 112 others)\n- **Turkish, Uzbek, Kyrgyz, Kazakh, Mongolian, Uyghur**: Not visible in the truncated content\n\n## How to Access Complete Language Information\n\nTo get the exact list of all language splits and their sizes, you would need to:\n\n1. **Visit the dataset page directly**: https://huggingface.co/datasets/CohereLabs/aya_collection_language_split\n\n2. **Use the Hugging Face Datasets library**:\n```python\nfrom datasets import load_dataset\n\n# Load the dataset to inspect available configurations\ndataset = load_dataset(\"CohereLabs/aya_collection_language_split\")\nprint(dataset.keys())  # Shows available language splits\n```\n\n3. **Check the ArXiv paper**: arxiv:2402.06619 - likely contains detailed information about language coverage and dataset sizes\n\n## Dataset Specifications\n- **Total Size**: 100M - 1B\n- **Format**: Parquet\n- **License**: Apache 2.0\n- **Modalities**: Tabular + Text\n\nFor accurate information about Turkic languages (Turkish, Uzbek, Kyrgyz, Kazakh) and others you mentioned, please consult the full dataset documentation or the ArXiv paper.",
+    "durationMs": 5262,
+    "url": "https://huggingface.co/datasets/CohereLabs/aya_collection_language_split"
+  },
+  "sourceToolAssistantUUID": "470382ea-2074-47f5-a5fc-081f8ef48edb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T06:54:08.708Z_
+
+<details><summary>↩ Tool result · `toolu_01APztPeZXMnFmtQGsComcBm`</summary>
+
+```text
+# URIEL+ Analysis
+
+## (1) Specific Improvements Over Legacy URIEL
+
+URIEL+ addresses several critical limitations:
+
+- **Feature Coverage**: Expanded from 2,724 to 4,366 languages with actual typological data by integrating five additional databases (SAPhon, BDPROTO, Grambank, APiCS, eWAVE)
+
+- **Data Integrity**: Implements three imputation algorithms (k-NN, MIDASpy, SoftImpute) where "SoftImpute performed the best" across metrics
+
+- **Dynamic Distance Calculation**: Replaced pre-computed distances with customizable calculations allowing users to select aggregation methods, distance metrics, specific features, and data sources
+
+- **Confidence Scoring**: Introduced metrics measuring data completeness, consistency, and imputation quality for distance reliability assessment
+
+## (2) Coverage for Central Asian/East Asian Languages
+
+The document provides **no specific statistics** for Kazakh, Uzbek, Kyrgyz, Mongolian, Uyghur, or Tibetan. Coverage details focus on regional breakdowns (high/medium/low-resource languages) rather than individual language codes.
+
+## (3) Feature Dimensionality
+
+URIEL+ contains **607 grammar features** (474 syntactic + 133 morphological) and **193 sound features** (30 phonological + 163 inventory), totaling approximately **800 features** across all categories.
+
+## (4) Distance Computation
+
+Distances use customizable parameters: "union or average aggregation and between cosine or angular distances." By default, union aggregation with angular distance is applied, excluding language pairs lacking shared feature data.
+
+## (5) Python API Usage
+
+The document does not provide API code examples. It only references "lang2vec tool" availability and notes the "code is available at https://github.com/Masonshipton25/URIELPlus" without detailing implementation specifics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0833443d-d370-4d06-a321-a91d2c51d468",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "c6368590-dade-4480-89fd-202c736c74cf",
+  "toolUseResult": {
+    "bytes": 512863,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# URIEL+ Analysis\n\n## (1) Specific Improvements Over Legacy URIEL\n\nURIEL+ addresses several critical limitations:\n\n- **Feature Coverage**: Expanded from 2,724 to 4,366 languages with actual typological data by integrating five additional databases (SAPhon, BDPROTO, Grambank, APiCS, eWAVE)\n\n- **Data Integrity**: Implements three imputation algorithms (k-NN, MIDASpy, SoftImpute) where \"SoftImpute performed the best\" across metrics\n\n- **Dynamic Distance Calculation**: Replaced pre-computed distances with customizable calculations allowing users to select aggregation methods, distance metrics, specific features, and data sources\n\n- **Confidence Scoring**: Introduced metrics measuring data completeness, consistency, and imputation quality for distance reliability assessment\n\n## (2) Coverage for Central Asian/East Asian Languages\n\nThe document provides **no specific statistics** for Kazakh, Uzbek, Kyrgyz, Mongolian, Uyghur, or Tibetan. Coverage details focus on regional breakdowns (high/medium/low-resource languages) rather than individual language codes.\n\n## (3) Feature Dimensionality\n\nURIEL+ contains **607 grammar features** (474 syntactic + 133 morphological) and **193 sound features** (30 phonological + 163 inventory), totaling approximately **800 features** across all categories.\n\n## (4) Distance Computation\n\nDistances use customizable parameters: \"union or average aggregation and between cosine or angular distances.\" By default, union aggregation with angular distance is applied, excluding language pairs lacking shared feature data.\n\n## (5) Python API Usage\n\nThe document does not provide API code examples. It only references \"lang2vec tool\" availability and notes the \"code is available at https://github.com/Masonshipton25/URIELPlus\" without detailing implementation specifics.",
+    "durationMs": 7734,
+    "url": "https://arxiv.org/html/2409.18472"
+  },
+  "sourceToolAssistantUUID": "0833443d-d370-4d06-a321-a91d2c51d468",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-10T06:54:09.044Z_
+
+<details><summary>↩ Tool result · `toolu_01WiFyGacRyNKwabNEK3r1DW`</summary>
+
+```text
+Web search results for query: "Aya collection 2024 language statistics Turkish Uzbek Kyrgyz instance count multilingual instruction tuning"
+
+Links: [{"title":"Aya Model: An Instruction Finetuned Open-Access Multilingual Language Model","url":"https://cohere.com/research/aya/aya-model-paper.pdf"},{"title":"Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning","url":"https://arxiv.org/pdf/2402.06619"},{"title":"Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning - ACL Anthology","url":"https://aclanthology.org/2024.acl-long.620/"},{"title":"CohereLabs/aya-101 · Hugging Face","url":"https://huggingface.co/CohereLabs/aya-101"},{"title":"Aya 23: Open Weight Releases to Further Multilingual Progress","url":"https://arxiv.org/html/2405.15032v1"},{"title":"Aya 23: New Open-Source Multilingual Language Models by Cohere | by My Social | 𝐀𝐈 𝐦𝐨𝐧𝐤𝐬.𝐢𝐨 | Medium","url":"https://medium.com/aimonks/aya-23-new-open-source-multilingual-language-models-by-cohere-47403d9e7470"},{"title":"Recent Advancements and Challenges of Turkic Central ...","url":"https://aclanthology.org/2025.loreslm-1.25.pdf"},{"title":"Aya Model: An Instruction Finetuned Open-Access ...","url":"https://aclanthology.org/2024.acl-long.845.pdf"},{"title":"TUMLU: A Unified and Native Language Understanding ...","url":"https://arxiv.org/pdf/2502.11020"},{"title":"Cohere for AI unveils Aya, a multilingual open-source AI with 101 languages - SiliconANGLE","url":"https://siliconangle.com/2024/02/13/cohere-ai-unveils-aya-multilingual-open-source-ai-101-languages/"}]
+
+Based on the search results, here's what I found about the Aya collection 2024 and language statistics:
+
+## Aya Collection 2024 Overview
+
+The Aya Collection comprises 513 million instances through templating and augmenting existing datasets across 114 languages.
+
+## Language Coverage
+
+The Aya Dataset was built with fluent speakers of languages from around the world to collect natural instances of instructions and completions, spanning 65 languages.
+
+Regarding the specific languages you mentioned (Turkish, Uzbek, and Kyrgyz):
+
+- **Turkish**: Turkish is included in the Aya collection with 250 native speaker annotations.
+
+- **Uzbek and Kyrgyz**: The search results do not contain specific instance counts for Uzbek and Kyrgyz in the Aya collection 2024. While the documents reference the multilingual nature of the collection across 114 languages, detailed breakdowns for these particular Central Asian languages are not provided in the available search results.
+
+## Multilingual Instruction Tuning
+
+The Aya dataset was created through a year-long participatory research initiative involving 2,997 participants from 110 countries, with the goal of including natural and organic examples curated by individuals fluent in their respective languages through original annotations as well as re-annotations of existing datasets, resulting in a culturally aware and meaningful multilingual dataset.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06599f51-342e-4158-a1b0-fd4119aebaae",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "1f8bde5b-7fce-4840-9a23-e42b0e4f5015",
+  "toolUseResult": {
+    "query": "Aya collection 2024 language statistics Turkish Uzbek Kyrgyz instance count multilingual instruction tuning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N33Q3omdL5sCpK9KQvTDdd",
+        "content": [
+          {
+            "title": "Aya Model: An Instruction Finetuned Open-Access Multilingual Language Model",
+            "url": "https://cohere.com/research/aya/aya-model-paper.pdf"
+          },
+          {
+            "title": "Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning",
+            "url": "https://arxiv.org/pdf/2402.06619"
+          },
+          {
+            "title": "Aya Dataset: An Open-Access Collection for Multilingual Instruction Tuning - ACL Anthology",
+            "url": "https://aclanthology.org/2024.acl-long.620/"
+          },
+          {
+            "title": "CohereLabs/aya-101 · Hugging Face",
+            "url": "https://huggingface.co/CohereLabs/aya-101"
+          },
+          {
+            "title": "Aya 23: Open Weight Releases to Further Multilingual Progress",
+            "url": "https://arxiv.org/html/2405.15032v1"
+          },
+          {
+            "title": "Aya 23: New Open-Source Multilingual Language Models by Cohere | by My Social | 𝐀𝐈 𝐦𝐨𝐧𝐤𝐬.𝐢𝐨 | Medium",
+            "url": "https://medium.com/aimonks/aya-23-new-open-source-multilingual-language-models-by-cohere-47403d9e7470"
+          },
+          {
+            "title": "Recent Advancements and Challenges of Turkic Central ...",
+            "url": "https://aclanthology.org/2025.loreslm-1.25.pdf"
+          },
+          {
+            "title": "Aya Model: An Instruction Finetuned Open-Access ...",
+            "url": "https://aclanthology.org/2024.acl-long.845.pdf"
+          },
+          {
+            "title": "TUMLU: A Unified and Native Language Understanding ...",
+            "url": "https://arxiv.org/pdf/2502.11020"
+          },
+          {
+            "title": "Cohere for AI unveils Aya, a multilingual open-source AI with 101 languages - SiliconANGLE",
+            "url": "https://siliconangle.com/2024/02/13/cohere-ai-unveils-aya-multilingual-open-source-ai-101-languages/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Aya collection 2024 and language statistics:\n\n## Aya Collection 2024 Overview\n\nThe Aya Collection comprises 513 million instances through templating and augmenting existing datasets across 114 languages.\n\n## Language Coverage\n\nThe Aya Dataset was built with fluent speakers of languages from around the world to collect natural instances of instructions and completions, spanning 65 languages.\n\nRegarding the specific languages you mentioned (Turkish, Uzbek, and Kyrgyz):\n\n- **Turkish**: Turkish is included in the Aya collection with 250 native speaker annotations.\n\n- **Uzbek and Kyrgyz**: The search results do not contain specific instance counts for Uzbek and Kyrgyz in the Aya collection 2024. While the documents reference the multilingual nature of the collection across 114 languages, detailed breakdowns for these particular Central Asian languages are not provided in the available search results.\n\n## Multilingual Instruction Tuning\n\nThe Aya dataset was created through a year-long participatory research initiative involving 2,997 participants from 110 countries, with the goal of including natural and organic examples curated by individuals fluent in their respective languages through original annotations as well as re-annotations of existing datasets, resulting in a culturally aware and meaningful multilingual dataset."
+    ],
+    "durationSeconds": 6.060003685999996
+  },
+  "sourceToolAssistantUUID": "06599f51-342e-4158-a1b0-fd4119aebaae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-10T06:54:12.246Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clearer picture. Let me fetch the Aya paper directly to understand what languages are covered and with what volumes, and also look for URIEL+ coverage for Turkic languages specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f8bde5b-7fce-4840-9a23-e42b0e4f5015",
+  "isSidechain": false,
+  "requestId": "req_011CatSz1LogxaB5mWs5gg81",
+  "type": "assistant",
+  "uuid": "1b5cc346-608a-4bb0-8788-ca493e5187e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019ij9i8PD78hwgw7SZeCUdG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2211,
+      "cache_read_input_tokens": 31742,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 31742,
+          "cache_creation_input_tokens": 2211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-10T06:54:13.206Z_
+
+Let me get the Aya paper and check the Aya collection viewer for Turkic languages.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b5cc346-608a-4bb0-8788-ca493e5187e0",
+  "isSidechain": false,
+  "requestId": "req_011CatSz1LogxaB5mWs5gg81",
+  "type": "assistant",
+  "uuid": "eb4d0099-36c1-403a-8c3e-c8115320eb4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019ij9i8PD78hwgw7SZeCUdG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2211,
+      "cache_read_input_tokens": 31742,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 31742,
+          "cache_creation_input_tokens": 2211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T06:54:15.356Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017baQFYUmgq4DLg3cL7zyxR`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2402.06619",
+  "prompt": "Extract: (1) which Turkic languages are in the Aya dataset/collection (Turkish, Uzbek, Kyrgyz, Kazakh, Uyghur), (2) instance counts per language for the Aya collection (the templated+translated large version), (3) any table showing language-level statistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb4d0099-36c1-403a-8c3e-c8115320eb4c",
+  "isSidechain": false,
+  "requestId": "req_011CatSz1LogxaB5mWs5gg81",
+  "type": "assistant",
+  "uuid": "ecf60344-efe2-4544-9af6-7b0e65199aa2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019ij9i8PD78hwgw7SZeCUdG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2211,
+      "cache_read_input_tokens": 31742,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 31742,
+          "cache_creation_input_tokens": 2211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T06:54:16.455Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TmfgiJvNfiDLRrZJRh7xH5`</summary>
+
+```json
+{
+  "query": "URIEL+ Kazakh Uzbek Kyrgyz Mongolian coverage \"low-resource\" Turkic typological features 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ecf60344-efe2-4544-9af6-7b0e65199aa2",
+  "isSidechain": false,
+  "requestId": "req_011CatSz1LogxaB5mWs5gg81",
+  "type": "assistant",
+  "uuid": "604d3d2c-ac77-4c7b-89ce-72c430d2bc17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019ij9i8PD78hwgw7SZeCUdG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2211,
+      "cache_read_input_tokens": 31742,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 31742,
+          "cache_creation_input_tokens": 2211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-10T06:54:17.963Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Xcem2toNrq6x2SAzp8QiHw`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.14297",
+  "prompt": "Extract: (1) exact DPO formulation for CLO - what are chosen vs rejected responses, (2) whether the source language is only English or can be other languages, (3) how they handle off-language responses"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "604d3d2c-ac77-4c7b-89ce-72c430d2bc17",
+  "isSidechain": false,
+  "requestId": "req_011CatSz1LogxaB5mWs5gg81",
+  "type": "assistant",
+  "uuid": "afc3cb00-56bc-4e0d-9a97-eeeee6f24b4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019ij9i8PD78hwgw7SZeCUdG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2211,
+      "cache_read_input_tokens": 31742,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 31742,
+          "cache_creation_input_tokens": 2211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-10T06:54:18.537Z_
+
+<details><summary>↩ Tool result · `toolu_017baQFYUmgq4DLg3cL7zyxR`</summary>
+
+```text
+# Aya Dataset: Turkic Languages and Statistics
+
+Based on the provided webpage content, I cannot extract the specific information you requested:
+
+1. **Turkic languages included**: The page does not list individual languages covered in the dataset. While it states the collection spans "114 languages," the specific Turkic languages (Turkish, Uzbek, Kyrgyz, Kazakh, Uyghur) are not enumerated in this content.
+
+2. **Instance counts per language**: No per-language statistics are provided in this abstract page.
+
+3. **Language-level statistics table**: No tables displaying language-specific data appear in the webpage excerpt.
+
+The available content only confirms that the Aya Collection comprises "513 million instances through templating and translating existing datasets across 114 languages," but detailed breakdowns by individual language are not included in this document.
+
+To obtain this information, you would need to access the full research paper (available via the PDF link) or consult supplementary materials associated with the publication.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ecf60344-efe2-4544-9af6-7b0e65199aa2",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "e3cd64a9-7e28-4a07-82a3-36f8e7ade983",
+  "toolUseResult": {
+    "bytes": 51228,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Aya Dataset: Turkic Languages and Statistics\n\nBased on the provided webpage content, I cannot extract the specific information you requested:\n\n1. **Turkic languages included**: The page does not list individual languages covered in the dataset. While it states the collection spans \"114 languages,\" the specific Turkic languages (Turkish, Uzbek, Kyrgyz, Kazakh, Uyghur) are not enumerated in this content.\n\n2. **Instance counts per language**: No per-language statistics are provided in this abstract page.\n\n3. **Language-level statistics table**: No tables displaying language-specific data appear in the webpage excerpt.\n\nThe available content only confirms that the Aya Collection comprises \"513 million instances through templating and translating existing datasets across 114 languages,\" but detailed breakdowns by individual language are not included in this document.\n\nTo obtain this information, you would need to access the full research paper (available via the PDF link) or consult supplementary materials associated with the publication.",
+    "durationMs": 3177,
+    "url": "https://arxiv.org/abs/2402.06619"
+  },
+  "sourceToolAssistantUUID": "ecf60344-efe2-4544-9af6-7b0e65199aa2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T06:54:21.990Z_
+
+<details><summary>↩ Tool result · `toolu_01Xcem2toNrq6x2SAzp8QiHw`</summary>
+
+```text
+# Analysis of CLO Research Paper
+
+Based on the provided webpage content, I cannot extract the specific details you requested:
+
+## What's Available
+
+The page contains only the **abstract and metadata** for arXiv:2505.14297. The abstract states the method uses "publicly available English SFT data and a translation model to enable cross-lingual transfer" and notes CLO "consistently outperforms SFT in both acquiring target language proficiency and maintaining English performance."
+
+## What's Missing
+
+The webpage does not include:
+
+1. **DPO formulation details** - The abstract doesn't specify chosen vs. rejected response pairs or the exact optimization framework
+2. **Source language scope** - While the abstract emphasizes "English-centric LLM" adaptation, it doesn't clarify whether other source languages are supported
+3. **Off-language response handling** - No information about managing responses in unintended languages
+
+## To Access This Information
+
+You would need to view the full paper via:
+- The PDF link provided (/pdf/2505.14297)
+- The HTML experimental version
+- The TeX source files
+
+These would contain the methodology section detailing the exact formulations and response handling strategies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "afc3cb00-56bc-4e0d-9a97-eeeee6f24b4f",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "f94845f9-11f3-4d7b-b1e7-884eed6be310",
+  "toolUseResult": {
+    "bytes": 46359,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of CLO Research Paper\n\nBased on the provided webpage content, I cannot extract the specific details you requested:\n\n## What's Available\n\nThe page contains only the **abstract and metadata** for arXiv:2505.14297. The abstract states the method uses \"publicly available English SFT data and a translation model to enable cross-lingual transfer\" and notes CLO \"consistently outperforms SFT in both acquiring target language proficiency and maintaining English performance.\"\n\n## What's Missing\n\nThe webpage does not include:\n\n1. **DPO formulation details** - The abstract doesn't specify chosen vs. rejected response pairs or the exact optimization framework\n2. **Source language scope** - While the abstract emphasizes \"English-centric LLM\" adaptation, it doesn't clarify whether other source languages are supported\n3. **Off-language response handling** - No information about managing responses in unintended languages\n\n## To Access This Information\n\nYou would need to view the full paper via:\n- The PDF link provided (/pdf/2505.14297)\n- The HTML experimental version\n- The TeX source files\n\nThese would contain the methodology section detailing the exact formulations and response handling strategies.",
+    "durationMs": 4025,
+    "url": "https://arxiv.org/abs/2505.14297"
+  },
+  "sourceToolAssistantUUID": "afc3cb00-56bc-4e0d-9a97-eeeee6f24b4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T06:54:30.902Z_
+
+<details><summary>↩ Tool result · `toolu_01TmfgiJvNfiDLRrZJRh7xH5`</summary>
+
+```text
+Web search results for query: "URIEL+ Kazakh Uzbek Kyrgyz Mongolian coverage "low-resource" Turkic typological features 2025"
+
+Links: [{"title":"Turkic languages - Wikipedia","url":"https://en.wikipedia.org/wiki/Turkic_languages"},{"title":"Turkish Language | Encyclopedia.com","url":"https://www.encyclopedia.com/literature-and-arts/language-linguistics-and-literary-terms/language-and-linguistics/turkish-language"},{"title":"Turkic language books","url":"https://www.omniglot.com/books/language/turkic.htm"},{"title":"(PDF) A Comparison of Modern Turkic Languages (Turkish, Azerbaijan,Kazakh, Kyrgyz, Uzbek) in Terms of Most Frequently Used 1000 Words","url":"https://www.researchgate.net/publication/341445391_A_Comparison_of_Modern_Turkic_Languages_Turkish_AzerbaijanKazakh_Kyrgyz_Uzbek_in_Terms_of_Most_Frequently_Used_1000_Words"},{"title":"The Turkic Languages: What Are Their Similarities and Differences? - Crystal Clear Translation","url":"https://crystalcleartranslation.com/the-turkic-languages-what-are-their-similarities-and-differences/"},{"title":"Turkic Languages Classification Overview | PDF | Phoneme | Morphology (Linguistics)","url":"https://www.scribd.com/document/219225207/Migration-and-Classification-of-Turkic-Lang"},{"title":"Uzbek, \"the penguin of Turkic languages\" - Languages Of The World","url":"https://www.languagesoftheworld.info/language-families/uzbek-the-penguin-of-turkic-languages.html"},{"title":"Turkic languages","url":"https://languagesgulper.com/eng/Turkic.html"},{"title":"Turkic languages | Geography, History, & Comparison | Britannica","url":"https://www.britannica.com/topic/Turkic-languages"},{"title":"List of Turkic languages - Wikipedia","url":"https://en.wikipedia.org/wiki/List_of_Turkic_languages"}]
+
+The search returned general information about Turkic languages and their typological features, but did not find specific information about "URIEL+" (which appears to be a specific linguistic database or resource) and its coverage of low-resource Turkic languages. Let me search more specifically for URIEL as a linguistic resource.
+
+Links: [{"title":"David R. Mortensen | URIEL","url":"https://www.cs.cmu.edu/~dmortens/uriel.html"},{"title":"URIEL and lang2vec: Representing languages as typological, geographical, and phylogenetic vectors - ACL Anthology","url":"https://aclanthology.org/E17-2002/"},{"title":"GitHub - antonisa/lang2vec: A simple library for querying the URIEL typological database. · GitHub","url":"https://github.com/antonisa/lang2vec"},{"title":"[2409.18472] URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base","url":"https://arxiv.org/abs/2409.18472"},{"title":"URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base","url":"https://arxiv.org/html/2409.18472"},{"title":"arXiv:1610.03349v1 [cs.CL] 11 Oct 2016","url":"https://arxiv.org/pdf/1610.03349"},{"title":"[PDF] URIEL and lang2vec: Representing languages as typological, geographical, and phylogenetic vectors | Semantic Scholar","url":"https://www.semanticscholar.org/paper/URIEL-and-lang2vec:-Representing-languages-as-and-Levin-Littell/e3a824e59ac66ceaaa420e0de4f2b5d809231f6e"},{"title":"A Survey on Typological Linguistics for Natural Language ...","url":"https://aclanthology.org/J19-3005.pdf"},{"title":"Simple Additions, Substantial Gains: Expanding Scripts, Languages, and Lineage Coverage in URIEL+","url":"https://arxiv.org/html/2510.27183"},{"title":"GitHub - dmort27/uriel-phonology: Features for phonological typology from version 0.1 of the URIEL database","url":"https://github.com/dmort27/uriel-phonology"}]
+
+Great! Now I found information about URIEL+. Let me search more specifically for information about Turkic language coverage in URIEL+ 2025.
+
+Links: [{"title":"Recent Advancements and Challenges of Turkic Central ...","url":"https://aclanthology.org/2025.loreslm-1.25.pdf"},{"title":"Turkic States Agree On Common Latin Alphabet, But Kyrgyzstan Happy With Its Cyrillic Script","url":"https://www.rferl.org/a/common-turkic-alphabet-kyrgyz-kazakh-uzbek-turkmen-latin-cyrillic/33137392.html"},{"title":"Turkic languages - Wikipedia","url":"https://en.wikipedia.org/wiki/Turkic_languages"},{"title":"Uzbek language - Wikipedia","url":"https://en.wikipedia.org/wiki/Uzbek_language"},{"title":"Kazakh language - Wikipedia","url":"https://en.wikipedia.org/wiki/Kazakh_language"},{"title":"Turkish | Department of Slavic, German, and Eurasian Studies","url":"https://sges.ku.edu/turkish"},{"title":"Kyrgyz: Language Portal: Materials: Center for Languages of the Central Asian Region: Indiana University Bloomington","url":"https://celcar.indiana.edu/materials/language-portal/kyrgyz.html"},{"title":"The Turkic Languages: What Are Their Similarities and Differences? - Crystal Clear Translation","url":"https://crystalcleartranslation.com/the-turkic-languages-what-are-their-similarities-and-differences/"},{"title":"University of Cambridge Language Centre Resources - Kyrgyz","url":"https://www.langcen.cam.ac.uk/resources/langk/kyrgyz.html"},{"title":"UN marks first World Turkic Language Family Day | UN News","url":"https://news.un.org/en/story/2025/12/1166588"}]
+
+Let me search more specifically for URIEL+ academic papers with Mongolian and typological features.
+
+Links: [{"title":"[2510.27183] Simple Additions, Substantial Gains: Expanding Scripts, Languages, and Lineage Coverage in URIEL+","url":"https://arxiv.org/abs/2510.27183"},{"title":"[PDF] URIEL and lang2vec: Representing languages as typological, geographical, and phylogenetic vectors | Semantic Scholar","url":"https://www.semanticscholar.org/paper/URIEL-and-lang2vec:-Representing-languages-as-and-Levin-Littell/e3a824e59ac66ceaaa420e0de4f2b5d809231f6e"},{"title":"arXiv:2409.18472v3 [cs.CL] 14 Feb 2025","url":"https://arxiv.org/pdf/2409.18472"},{"title":"Simple Additions, Substantial Gains: Expanding Scripts, Languages, and Lineage Coverage in URIEL+","url":"https://arxiv.org/html/2510.27183"},{"title":"Less is More: The Effectiveness of Compact Typological Language Representations - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1310/"},{"title":"[2509.20129] Less is More: The Effectiveness of Compact Typological Language Representations","url":"https://arxiv.org/abs/2509.20129"},{"title":"Less is More: The Effectiveness of Compact Typological Language Representations","url":"https://arxiv.org/html/2509.20129"},{"title":"URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base","url":"https://arxiv.org/html/2409.18472"},{"title":"URIEL+: Enhancing Linguistic Inclusion and Usability in a ...","url":"https://aclanthology.org/2025.coling-main.463.pdf"},{"title":"[2409.18472] URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base","url":"https://arxiv.org/abs/2409.18472"}]
+
+Based on my web search results, I have found comprehensive information about URIEL+ and its coverage. Let me provide you with the findings:
+
+## Summary of Search Results
+
+URIEL is a knowledge base for massively multilingual NLP that provides information-rich vector identifications of languages drawn from typological, geographical, and phylogenetic databases, with the goal of enabling multilingual NLP especially on less-resourced languages.
+
+### URIEL+ Enhancements (2025)
+
+URIEL offers geographical, phylogenetic, and typological vector representations for 7970 languages, including distance measures between these vectors for 4005 languages accessible via the lang2vec tool. 
+
+Despite being frequently cited, URIEL is limited in terms of linguistic inclusion and overall usability, which led to the introduction of URIEL+, an enhanced version that addresses these limitations by expanding typological feature coverage for 2898 languages.
+
+### Coverage of Low-Resource Turkic Languages
+
+The search results show that URIEL+ has improved coverage for low-resource languages through multiple mechanisms:
+
+URIEL+ extends coverage by introducing script vectors to represent writing system properties for 7,488 languages, integrating Glottolog to add 18,710 additional languages, and expanding lineage imputation for 26,449 languages by propagating typological and script features across genealogies.
+
+Linguistic feature datasets such as URIEL+ are valuable for modelling cross-lingual relationships, but their high dimensionality and sparsity, especially for low-resource languages, limit the effectiveness of distance metrics.
+
+However, the search results did not contain specific information about dedicated coverage for Kazakh, Uzbek, Kyrgyz, or Mongolian languages in the 2025 URIEL+ documentation, nor specific details about their typological feature representation in relation to other Turkic and Altaic languages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "604d3d2c-ac77-4c7b-89ce-72c430d2bc17",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "4ee5aabf-645b-435e-a55f-81ef0bc3d4f5",
+  "toolUseResult": {
+    "query": "URIEL+ Kazakh Uzbek Kyrgyz Mongolian coverage \"low-resource\" Turkic typological features 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SAhuzF68RSHFQDLvpa8a9b",
+        "content": [
+          {
+            "title": "Turkic languages - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Turkic_languages"
+          },
+          {
+            "title": "Turkish Language | Encyclopedia.com",
+            "url": "https://www.encyclopedia.com/literature-and-arts/language-linguistics-and-literary-terms/language-and-linguistics/turkish-language"
+          },
+          {
+            "title": "Turkic language books",
+            "url": "https://www.omniglot.com/books/language/turkic.htm"
+          },
+          {
+            "title": "(PDF) A Comparison of Modern Turkic Languages (Turkish, Azerbaijan,Kazakh, Kyrgyz, Uzbek) in Terms of Most Frequently Used 1000 Words",
+            "url": "https://www.researchgate.net/publication/341445391_A_Comparison_of_Modern_Turkic_Languages_Turkish_AzerbaijanKazakh_Kyrgyz_Uzbek_in_Terms_of_Most_Frequently_Used_1000_Words"
+          },
+          {
+            "title": "The Turkic Languages: What Are Their Similarities and Differences? - Crystal Clear Translation",
+            "url": "https://crystalcleartranslation.com/the-turkic-languages-what-are-their-similarities-and-differences/"
+          },
+          {
+            "title": "Turkic Languages Classification Overview | PDF | Phoneme | Morphology (Linguistics)",
+            "url": "https://www.scribd.com/document/219225207/Migration-and-Classification-of-Turkic-Lang"
+          },
+          {
+            "title": "Uzbek, \"the penguin of Turkic languages\" - Languages Of The World",
+            "url": "https://www.languagesoftheworld.info/language-families/uzbek-the-penguin-of-turkic-languages.html"
+          },
+          {
+            "title": "Turkic languages",
+            "url": "https://languagesgulper.com/eng/Turkic.html"
+          },
+          {
+            "title": "Turkic languages | Geography, History, & Comparison | Britannica",
+            "url": "https://www.britannica.com/topic/Turkic-languages"
+          },
+          {
+            "title": "List of Turkic languages - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/List_of_Turkic_languages"
+          }
+        ]
+      },
+      "The search returned general information about Turkic languages and their typological features, but did not find specific information about \"URIEL+\" (which appears to be a specific linguistic database or resource) and its coverage of low-resource Turkic languages. Let me search more specifically for URIEL as a linguistic resource.",
+      {
+        "tool_use_id": "srvtoolu_01UUXCCNfNGPzutUxcktVAXY",
+        "content": [
+          {
+            "title": "David R. Mortensen | URIEL",
+            "url": "https://www.cs.cmu.edu/~dmortens/uriel.html"
+          },
+          {
+            "title": "URIEL and lang2vec: Representing languages as typological, geographical, and phylogenetic vectors - ACL Anthology",
+            "url": "https://aclanthology.org/E17-2002/"
+          },
+          {
+            "title": "GitHub - antonisa/lang2vec: A simple library for querying the URIEL typological database. · GitHub",
+            "url": "https://github.com/antonisa/lang2vec"
+          },
+          {
+            "title": "[2409.18472] URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base",
+            "url": "https://arxiv.org/abs/2409.18472"
+          },
+          {
+            "title": "URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base",
+            "url": "https://arxiv.org/html/2409.18472"
+          },
+          {
+            "title": "arXiv:1610.03349v1 [cs.CL] 11 Oct 2016",
+            "url": "https://arxiv.org/pdf/1610.03349"
+          },
+          {
+            "title": "[PDF] URIEL and lang2vec: Representing languages as typological, geographical, and phylogenetic vectors | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/URIEL-and-lang2vec:-Representing-languages-as-and-Levin-Littell/e3a824e59ac66ceaaa420e0de4f2b5d809231f6e"
+          },
+          {
+            "title": "A Survey on Typological Linguistics for Natural Language ...",
+            "url": "https://aclanthology.org/J19-3005.pdf"
+          },
+          {
+            "title": "Simple Additions, Substantial Gains: Expanding Scripts, Languages, and Lineage Coverage in URIEL+",
+            "url": "https://arxiv.org/html/2510.27183"
+          },
+          {
+            "title": "GitHub - dmort27/uriel-phonology: Features for phonological typology from version 0.1 of the URIEL database",
+            "url": "https://github.com/dmort27/uriel-phonology"
+          }
+        ]
+      },
+      "Great! Now I found information about URIEL+. Let me search more specifically for information about Turkic language coverage in URIEL+ 2025.",
+      {
+        "tool_use_id": "srvtoolu_01WGECNmodXbsG7sRRYjenaB",
+        "content": [
+          {
+            "title": "Recent Advancements and Challenges of Turkic Central ...",
+            "url": "https://aclanthology.org/2025.loreslm-1.25.pdf"
+          },
+          {
+            "title": "Turkic States Agree On Common Latin Alphabet, But Kyrgyzstan Happy With Its Cyrillic Script",
+            "url": "https://www.rferl.org/a/common-turkic-alphabet-kyrgyz-kazakh-uzbek-turkmen-latin-cyrillic/33137392.html"
+          },
+          {
+            "title": "Turkic languages - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Turkic_languages"
+          },
+          {
+            "title": "Uzbek language - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Uzbek_language"
+          },
+          {
+            "title": "Kazakh language - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Kazakh_language"
+          },
+          {
+            "title": "Turkish | Department of Slavic, German, and Eurasian Studies",
+            "url": "https://sges.ku.edu/turkish"
+          },
+          {
+            "title": "Kyrgyz: Language Portal: Materials: Center for Languages of the Central Asian Region: Indiana University Bloomington",
+            "url": "https://celcar.indiana.edu/materials/language-portal/kyrgyz.html"
+          },
+          {
+            "title": "The Turkic Languages: What Are Their Similarities and Differences? - Crystal Clear Translation",
+            "url": "https://crystalcleartranslation.com/the-turkic-languages-what-are-their-similarities-and-differences/"
+          },
+          {
+            "title": "University of Cambridge Language Centre Resources - Kyrgyz",
+            "url": "https://www.langcen.cam.ac.uk/resources/langk/kyrgyz.html"
+          },
+          {
+            "title": "UN marks first World Turkic Language Family Day | UN News",
+            "url": "https://news.un.org/en/story/2025/12/1166588"
+          }
+        ]
+      },
+      "Let me search more specifically for URIEL+ academic papers with Mongolian and typological features.",
+      {
+        "tool_use_id": "srvtoolu_01FU3kfimHsCxSQDgk3imVZV",
+        "content": [
+          {
+            "title": "[2510.27183] Simple Additions, Substantial Gains: Expanding Scripts, Languages, and Lineage Coverage in URIEL+",
+            "url": "https://arxiv.org/abs/2510.27183"
+          },
+          {
+            "title": "[PDF] URIEL and lang2vec: Representing languages as typological, geographical, and phylogenetic vectors | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/URIEL-and-lang2vec:-Representing-languages-as-and-Levin-Littell/e3a824e59ac66ceaaa420e0de4f2b5d809231f6e"
+          },
+          {
+            "title": "arXiv:2409.18472v3 [cs.CL] 14 Feb 2025",
+            "url": "https://arxiv.org/pdf/2409.18472"
+          },
+          {
+            "title": "Simple Additions, Substantial Gains: Expanding Scripts, Languages, and Lineage Coverage in URIEL+",
+            "url": "https://arxiv.org/html/2510.27183"
+          },
+          {
+            "title": "Less is More: The Effectiveness of Compact Typological Language Representations - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.1310/"
+          },
+          {
+            "title": "[2509.20129] Less is More: The Effectiveness of Compact Typological Language Representations",
+            "url": "https://arxiv.org/abs/2509.20129"
+          },
+          {
+            "title": "Less is More: The Effectiveness of Compact Typological Language Representations",
+            "url": "https://arxiv.org/html/2509.20129"
+          },
+          {
+            "title": "URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base",
+            "url": "https://arxiv.org/html/2409.18472"
+          },
+          {
+            "title": "URIEL+: Enhancing Linguistic Inclusion and Usability in a ...",
+            "url": "https://aclanthology.org/2025.coling-main.463.pdf"
+          },
+          {
+            "title": "[2409.18472] URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base",
+            "url": "https://arxiv.org/abs/2409.18472"
+          }
+        ]
+      },
+      "Based on my web search results, I have found comprehensive information about URIEL+ and its coverage. Let me provide you with the findings:\n\n## Summary of Search Results\n\nURIEL is a knowledge base for massively multilingual NLP that provides information-rich vector identifications of languages drawn from typological, geographical, and phylogenetic databases, with the goal of enabling multilingual NLP especially on less-resourced languages.\n\n### URIEL+ Enhancements (2025)\n\nURIEL offers geographical, phylogenetic, and typological vector representations for 7970 languages, including distance measures between these vectors for 4005 languages accessible via the lang2vec tool. \n\nDespite being frequently cited, URIEL is limited in terms of linguistic inclusion and overall usability, which led to the introduction of URIEL+, an enhanced version that addresses these limitations by expanding typological feature coverage for 2898 languages.\n\n### Coverage of Low-Resource Turkic Languages\n\nThe search results show that URIEL+ has improved coverage for low-resource languages through multiple mechanisms:\n\nURIEL+ extends coverage by introducing script vectors to represent writing system properties for 7,488 languages, integrating Glottolog to add 18,710 additional languages, and expanding lineage imputation for 26,449 languages by propagating typological and script features across genealogies.\n\nLinguistic feature datasets such as URIEL+ are valuable for modelling cross-lingual relationships, but their high dimensionality and sparsity, especially for low-resource languages, limit the effectiveness of distance metrics.\n\nHowever, the search results did not contain specific information about dedicated coverage for Kazakh, Uzbek, Kyrgyz, or Mongolian languages in the 2025 URIEL+ documentation, nor specific details about their typological feature representation in relation to other Turkic and Altaic languages."
+    ],
+    "durationSeconds": 14.442341793999992
+  },
+  "sourceToolAssistantUUID": "604d3d2c-ac77-4c7b-89ce-72c430d2bc17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruc…",
+  "leafUuid": "4ee5aabf-645b-435e-a55f-81ef0bc3d4f5",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DPO formulation for multi-source instruction tuning",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-10T06:54:34.879Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me get the CLO paper more carefully and also look at the extended URIEL+ for Turkic language coverage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ee5aabf-645b-435e-a55f-81ef0bc3d4f5",
+  "isSidechain": false,
+  "requestId": "req_011CatT1cpXdhbKXpJfGXDam",
+  "type": "assistant",
+  "uuid": "d4d5b9e7-c0c0-4658-bb2b-8da8f1e088bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Et6LEzRoX6Em5SVYSTTYnB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 292,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 33953,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3271,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 292,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 33953,
+          "cache_creation_input_tokens": 3271,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3271
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-10T06:54:35.606Z_
+
+Let me fetch the CLO paper PDF and the expanded URIEL+ paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4d5b9e7-c0c0-4658-bb2b-8da8f1e088bf",
+  "isSidechain": false,
+  "requestId": "req_011CatT1cpXdhbKXpJfGXDam",
+  "type": "assistant",
+  "uuid": "32d588d6-3230-418a-8175-8b021608fe24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Et6LEzRoX6Em5SVYSTTYnB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 292,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 33953,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3271,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 292,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 33953,
+          "cache_creation_input_tokens": 3271,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3271
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-10T06:54:38.238Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XBajQ6iRxRvhwTpez4SNiT`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.14297",
+  "prompt": "Extract: (1) exact DPO formulation - math definition of chosen vs rejected responses, (2) whether source is only English or can be multilingual, (3) the preference pair construction: (English-instruction, target-language-response) as chosen, (English-instruction, English-response) as rejected? Or something else?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32d588d6-3230-418a-8175-8b021608fe24",
+  "isSidechain": false,
+  "requestId": "req_011CatT1cpXdhbKXpJfGXDam",
+  "type": "assistant",
+  "uuid": "659adb48-6a48-4bac-8895-a500d38e8427",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Et6LEzRoX6Em5SVYSTTYnB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 292,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 33953,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3271,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 292,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 33953,
+          "cache_creation_input_tokens": 3271,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3271
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-10T06:54:39.100Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01M25ZR6HnFpU42yuF5Z5yYU`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.27183",
+  "prompt": "Extract what scripts, languages, and lineage coverage URIEL+ expanded - especially for Kazakh, Uzbek, Kyrgyz, Mongolian, Uyghur. What specific improvements were made for these languages?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "659adb48-6a48-4bac-8895-a500d38e8427",
+  "isSidechain": false,
+  "requestId": "req_011CatT1cpXdhbKXpJfGXDam",
+  "type": "assistant",
+  "uuid": "5175f088-33ec-4a66-ae4c-27fe217ad89d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Et6LEzRoX6Em5SVYSTTYnB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 292,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 33953,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3271,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 292,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 33953,
+          "cache_creation_input_tokens": 3271,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3271
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-10T06:54:44.194Z_
+
+<details><summary>↩ Tool result · `toolu_01XBajQ6iRxRvhwTpez4SNiT`</summary>
+
+```text
+# Cross-Lingual Optimization (CLO) Analysis
+
+## 1. DPO Formulation
+
+The standard DPO loss is defined as:
+**ℒ_DPO = -𝔼[(x, y_w, y_l)~D] [log σ(z)]**
+
+where z = β log[π_θ(y_w|x)/π_ref(y_w|x)] - β log[π_θ(y_l|x)/π_ref(y_l|x)]
+
+The paper modifies this for cross-lingual contexts using z_en and z_ℓ that compare language-mismatched responses.
+
+## 2. Source Data
+
+The method uses **English-only source material**: specifically 6,400 samples from OpenAssistant, which are then machine-translated to target languages via M2M100 1.2B model.
+
+## 3. Preference Pair Construction
+
+CLO inverts preference mappings by language context:
+
+- **English input (x_en)**: chosen = English response (y_en); rejected = target language response (y_ℓ)
+- **Target input (x_ℓ)**: chosen = target language response (y_ℓ); rejected = English response (y_en)
+
+This "prevents the model from generating target language outputs when provided an English prompt, thereby preserving its English capability," while encouraging target language generation when receiving target language instructions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "659adb48-6a48-4bac-8895-a500d38e8427",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "393feda7-21a2-45a7-929c-c7d65318f06d",
+  "toolUseResult": {
+    "bytes": 785593,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Cross-Lingual Optimization (CLO) Analysis\n\n## 1. DPO Formulation\n\nThe standard DPO loss is defined as:\n**ℒ_DPO = -𝔼[(x, y_w, y_l)~D] [log σ(z)]**\n\nwhere z = β log[π_θ(y_w|x)/π_ref(y_w|x)] - β log[π_θ(y_l|x)/π_ref(y_l|x)]\n\nThe paper modifies this for cross-lingual contexts using z_en and z_ℓ that compare language-mismatched responses.\n\n## 2. Source Data\n\nThe method uses **English-only source material**: specifically 6,400 samples from OpenAssistant, which are then machine-translated to target languages via M2M100 1.2B model.\n\n## 3. Preference Pair Construction\n\nCLO inverts preference mappings by language context:\n\n- **English input (x_en)**: chosen = English response (y_en); rejected = target language response (y_ℓ)\n- **Target input (x_ℓ)**: chosen = target language response (y_ℓ); rejected = English response (y_en)\n\nThis \"prevents the model from generating target language outputs when provided an English prompt, thereby preserving its English capability,\" while encouraging target language generation when receiving target language instructions.",
+    "durationMs": 5951,
+    "url": "https://arxiv.org/html/2505.14297"
+  },
+  "sourceToolAssistantUUID": "659adb48-6a48-4bac-8895-a500d38e8427",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T06:54:45.344Z_
+
+<details><summary>↩ Tool result · `toolu_01M25ZR6HnFpU42yuF5Z5yYU`</summary>
+
+```text
+# URIEL+ Expansion for Central Asian Languages
+
+Based on the paper, I cannot find specific details about individual improvements for Kazakh, Uzbek, Kyrgyz, Mongolian, or Uyghur.
+
+However, the document does mention **Kazakh as an example** of script vector benefits: "Kazakh is marked as having both the SC_ABJAD feature (from Arabic) and the SC_ALPHABET feature (from Cyrillic and Latin)." This illustrates how languages with multiple writing systems receive comprehensive script representation.
+
+## General Improvements Made:
+
+**Script vectors:** Added for 7,488 languages, enabling representation of "structural and social properties of writing systems."
+
+**Language coverage:** Integrated 18,710 additional languages from Glottolog, potentially including Central Asian varieties.
+
+**Lineage imputation:** Expanded to 26,449 languages, propagating features "from parent languages to all child languages across the knowledge base."
+
+The paper emphasizes that these additions particularly benefit **low-resource languages**, which likely includes Central Asian language families. However, the paper doesn't provide granular, language-specific metrics for the five languages you asked about—only aggregate statistics demonstrating broad improvements across resource levels.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5175f088-33ec-4a66-ae4c-27fe217ad89d",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "ff5f103a-b6a2-4b49-a692-53ab206b9bac",
+  "toolUseResult": {
+    "bytes": 342194,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# URIEL+ Expansion for Central Asian Languages\n\nBased on the paper, I cannot find specific details about individual improvements for Kazakh, Uzbek, Kyrgyz, Mongolian, or Uyghur.\n\nHowever, the document does mention **Kazakh as an example** of script vector benefits: \"Kazakh is marked as having both the SC_ABJAD feature (from Arabic) and the SC_ALPHABET feature (from Cyrillic and Latin).\" This illustrates how languages with multiple writing systems receive comprehensive script representation.\n\n## General Improvements Made:\n\n**Script vectors:** Added for 7,488 languages, enabling representation of \"structural and social properties of writing systems.\"\n\n**Language coverage:** Integrated 18,710 additional languages from Glottolog, potentially including Central Asian varieties.\n\n**Lineage imputation:** Expanded to 26,449 languages, propagating features \"from parent languages to all child languages across the knowledge base.\"\n\nThe paper emphasizes that these additions particularly benefit **low-resource languages**, which likely includes Central Asian language families. However, the paper doesn't provide granular, language-specific metrics for the five languages you asked about—only aggregate statistics demonstrating broad improvements across resource levels.",
+    "durationMs": 6241,
+    "url": "https://arxiv.org/html/2510.27183"
+  },
+  "sourceToolAssistantUUID": "5175f088-33ec-4a66-ae4c-27fe217ad89d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61 · 2026-05-10T06:54:45.352Z_
+
+```json
+{
+  "parentUuid": "ff5f103a-b6a2-4b49-a692-53ab206b9bac",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "210e4a7c-ad9a-4b27-b89f-2508677911d1",
+  "timestamp": "2026-05-10T06:54:45.352Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-10T06:58:07.309Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to formulate a comprehensive revision. Let me synthesize what I've learned:
+
+## Key Findings:
+
+### 1. CLO DPO Formulation (SIGNIFICANT issue)
+CLO's preference pair construction:
+- **English input (x_en)**: chosen = English response (y_en); rejected = target language response (y_ℓ)
+- **Target input (x_ℓ)**: chosen = target language response (y_ℓ); rejected = English response (y_en)
+
+This is SPECIFICALLY designed to handle English as source and target language (ℓ) as target. 
+
+For TWMP's multi-source scenario like Turkish to Kazakh, I'd need to generalize this pattern: Turkish input pairs with Kazakh as chosen and Turkish as rejected, while Kazakh input pairs with Kazakh as chosen and Turkish as rejected. The critical insight is identifying what serves as the "off-language" response—in CLO's formulation it's the target language response to English input, but for multi-source pivoting I need to determine whether the off-language response should be the source language or something else entirely.
+
+The reviewer's key point is that this approach works if I can verify Qwen3.5-9B actually produces detectable Turkish responses when given Turkish instructions, which would validate the rejected pair. So the DPO setup would generalize across any source language with a fixed target, where each source language input gets paired with the target-language response as chosen and the source-language response as rejected.
+
+For CLO, I'm realizing the second pair type doesn't apply here since TWMP doesn't include target-language instructions—we only have source-language inputs. The first pair type (source input with target response chosen, source response rejected) is what matters for this setting. target language
+
+For TWMP's multi-source case, the analogous formulation would be:
+- Source language input (x_{s_i}): chosen = target language response (y_t); rejected = source language response (y_{s_i})
+- [Optional, if we have target language queries] Target input (x_t): chosen = target response (y_t); rejected = any other response
+
+This is actually clear and makes sense! The key difference from CLO is:
+1. CLO uses English as the sole source language; TWMP uses multiple source languages
+2. In CLO, for English inputs, chosen=English response (to preserve English); in TWMP, for source language inputs, chosen=target language response (to promote target)
+3. CLO's second pair type (target-lang input) isn't directly applicable to TWMP since we don't have target-language training data
+
+Wait, actually I'm now confused.
+
+Now I'm re-examining CLO's structure more carefully. It's doing two distinct things: preserving English capability by preferring English responses to English instructions, and promoting target language capability by preferring target responses to target instructions. For TWMP with Turkish→Kazakh, I'd want the same pattern—when Turkish instructions come in, prefer Kazakh responses.
+
+The DPO formulation would pair Turkish inputs with Kazakh responses as chosen and Turkish responses as rejected. But since we don't have Kazakh training data, I need to figure out how to generate those Kazakh responses without it.
+
+The approach is to sample multiple responses from the model given a Turkish instruction, then use language detection to automatically separate them—responses that come out in Kazakh get marked as chosen, responses in Turkish get marked as rejected, and anything else gets discarded. Since Qwen3.5-9B is multilingual, it should naturally produce some variation in output languages.
+
+Now looking at URIEL+...
+
+it's a massively expanded linguistic feature database that went from 2,724 to 4,366 languages with around 800 total features covering grammar and phonology. Kazakh is specifically noted as having both Arabic and Cyrillic script features. There's also a Python library available for it. But interestingly, a recent paper shows that using only 300 carefully selected features via Laplacian Score actually outperforms using all 800 features, suggesting that feature compression is more effective than having the full set.
+
+For the approach here, I should use URIEL+ with the Laplacian Score feature selection to get those 300 compact features, then compute the inverse-distance weights from there rather than relying on the older 289-dimensional URIEL.
+
+Now looking at DCO, which is a concurrent method from March 2026 that applies DPO-style training across 26 languages and 9 LLMs, distinguishing between responses that maintain knowledge consistency across languages versus those that don't.
+
+The key distinction from TWMP's approach is that DCO focuses on factual consistency across languages while TWMP targets language fidelity—getting the model to respond in the correct language. DCO works with bilingual pairs and parallel translations, whereas TWMP uses multi-pivot source training and actually addresses instruction tuning for low-resource languages, which DCO doesn't cover.
+
+For the curriculum scheduling, I need to nail down the concrete details: the number of stages, distance thresholds, and how those thresholds relate to the URIEL distance distribution. My proposal starts with Stage 1 covering sources within 0.3 cosine distance from the target language, like Turkish.
+
+Now I'm looking at the Aya dataset's Turkic language coverage—it includes 65 languages from the full 114-language collection, with Turkish well-represented through human annotations and Uzbek also included as one of the previously underrepresented languages now covered.
+
+Kyrgyz has substantial coverage with 4.13M rows in the language split, while Kazakh appears to be missing from the human-annotated portion, and Azerbaijani likely has meaningful representation. Rather than relying on just the 204K human-annotated subset, I should leverage the full Aya collection's 513M instances across 114 languages to identify the key Turkic pivots—Turkish as the high-resource anchor, Uzbek and Kyrgyz as mid-resource options with tens of thousands to millions of rows, and Azerbaijani as another substantial source.
+
+For Kazakh and other Turkic targets, Kyrgyz, Uzbek, and Turkish are the closest relatives and all appear in the collection. Mongolian is trickier since it's linguistically separate from Turkic, so I'd need to look at Korean or Japanese as closer relatives, with Turkic languages as more distant fallbacks.
+
+I'm also noticing a resource constraint issue—the auto_research mode is consuming around 600 A100 hours, which translates to roughly 300 H100 hours and exceeds the 200-hour limit. I need to either remove that mode, cap it at 400 A100 hours, or find another way to stay within budget.
+
+Now I'm thinking through the core revisions needed. The problem framing and opportunity landscape are solid, but the approach needs substantial rework. For the DPO formulation with multiple source languages, I should be precise about how pairs are constructed: taking a source-language instruction, generating multiple candidate responses from Qwen3.5-9B, then using language identification to filter and select the target-language response as the chosen pair while keeping the source-language response as the rejected pair.
+
+This is fundamentally different from CLO's approach because I'm optimizing for target-language instruction-following rather than preserving source-language capability. I also need to swap out lang2vec for URIEL+ features—moving from 289 binary dimensions to 800 continuous dimensions from the urielplus library, then applying Laplacian Score feature selection to reduce down to 300 dimensions, which aligns with recent findings on feature efficiency. This matters especially for lower-resource languages like Kazakh.
+
+For the curriculum, I'm structuring three stages based on typological distance percentiles computed from URIEL+ features: starting with the closest relatives within the 25th percentile, expanding to the 60th percentile in stage two, then moving to a full mixture with inverse-distance weighting. I should also clarify how DCO differs from this work—it addresses cross-lingual factual consistency while TWMP focuses on language fidelity, making them complementary. Finally, I need to verify Aya's coverage across all target languages.
+
+For the pivot language selection, Turkish, Uzbek, Kyrgyz, and Azerbaijani all meet the 5,000-instance threshold with substantial coverage, while Kazakh and Mongolian are excluded as pivot sources. The auto_research mode requires around 300 H100-hours, which exceeds the stated budget constraint, so I should note this is included for reference but not a viable deployment option. I'll also add citations for DCO and URIEL+ to the references.
+
+Looking at the next section, I realize URIEL+ isn't currently in the key references even though it should be—the reviewer is pointing out that I should replace the legacy URIEL approach with URIEL+ instead. I need to add URIEL+ to the references and update the approach section to use it. The "Less is More" and "Simple Additions, Substantial Gains" papers provide additional context on compact feature representations and extended coverage with URIEL+.
+
+This is a major revision because the DPO formulation needs complete respecification, the typological features shift from legacy URIEL to URIEL+ with feature selection, the curriculum schedule requires concrete details, and I need to differentiate from concurrent work like DCO while verifying Aya coverage. The core concept of typologically-weighted multi-pivot instruction tuning remains sound though.
+
+Now I'm updating the approach to use URIEL+ features via the urielplus library with Laplacian Score feature selection down to 300 features, drawing from the "Less is More" paper's methodology.
+
+I need to add the precise DPO formulation for the multi-source case, specify the curriculum schedule with exact stage counts and distance thresholds, and include Aya coverage verification with minimum thresholds. The resource estimate needs a note that auto_research mode exceeds the 200 H100-hour constraint, and I'm adding the new references: URIEL+, "Less is More," DCO, and potentially "Simple Additions, Substantial Gains" to the key references section. The landscape section also needs updating to include DCO as a related approach. The key insight is that TWMP inverts CLO's preference structure—instead of preserving source-language responses to source-language inputs, it actively promotes cross-lingual transfer by preferring target-language responses. To construct these pairs without target-language labels, I'd sample multiple candidate responses from the model using temperature sampling, then filter them by language identification to separate source from target responses.
+
+Before proceeding, I need to verify that Qwen3.5-9B actually produces both off-language Turkish responses and some Kazakh outputs when given Turkish instructions—this is a critical empirical check I should run on a small probe set first. For Mongolian as a target language where there's no close typological pivot available, I'd need to explore alternative source languages from the available Aya dataset.
+
+Now I'm mapping out the actual curriculum schedule: I'll compute typological distances from all Aya sources to the target using URIEL+ features, then divide the sources into three progressive stages based on distance percentiles—starting with the closest typological neighbors, expanding outward, and finally incorporating all sources with weighted contributions.
+
+For Kazakh specifically, the closest languages cluster around distance 0.30 (Turkish, Uzbek, Kyrgyz, Azerbaijani), while the 60th percentile extends to about 0.55 to include Russian, Arabic, and Mongolian. Across 10 total epochs, I'm splitting this into three stages of roughly equal length and then ablating the approach by testing against baselines with no curriculum, 2-stage, 4-stage variants to measure the benefit of this particular progression.
+
+I need to verify that the key source languages are actually present in Aya with sufficient coverage—Turkish has millions of instances, Uzbek is there but lower-resource, and Kyrgyz has over 4 million rows.
+
+Now I'm checking the compute constraints: the auto_research mode at 600 A100-hours translates to roughly 360-420 H100-hours, which overshoots the 200 H100-hour limit, whereas the manual mode at 200 A100-hours stays within bounds at around 120-140 H100-hours equivalent.
+
+I need to flag this budget violation in the auto_research risk notes and recommend manual mode as the compliant option. Looking at the revision scope—DPO formulation precision, the URIEL to URIEL+ upgrade, budget constraint flagging, curriculum schedule details, DCO citation, and Aya coverage validation—these are all significant methodological and specification improvements rather than fundamental corrections.
+
+Now I'm structuring the complete JSON with all the approach details: swapping lang2vec for URIEL+ with Laplacian Score feature selection on 300 features, the precise multi-source DPO formulation, the three-stage curriculum with percentile thresholds, Aya coverage verification with minimum instance requirements, and the empirical check for Qwen3.5-9B language mixing. I also need to add the DCO reference to the landscape section.
+
+For the key_references, I'm realizing URIEL+ isn't currently cited even though it's central to the revised approach, so I need to add it along with the "Less is More" paper and DCO. I'm confirming the publication details for these papers — "Less is More" is at EMNLP 2025 with ACL Anthology link 2025.emnlp-main.1310, and DCO (arXiv:2603.04678) is a March 2026 paper by Tianyu Liu et al. covering 26 languages and 9 LLMs. Now I'm formulating the precise DPO setup for the multi-source approach, where preference pairs are constructed with chosen responses (instruction in source language paired with target language output) versus rejected alternatives.
+
+The key insight is that unlike CLO which preserves English capability through mixed pair types, TWMP focuses purely on acquiring target-language instruction-following by using only cross-lingual pairs. For constructing these pairs without target-language labels, I'm sampling multiple candidate responses from the base model using temperature sampling, then filtering them through language identification to separate target-language responses into the chosen pool from source-language responses in the rejected pool. CLO and TWMP serve complementary purposes—CLO preserves English capability while TWMP promotes cross-lingual transfer through source-language preference pairs. Now comparing against DCO, which focuses on knowledge consistency across languages rather than language fidelity; TWMP addresses which language the model responds in, whereas DCO ensures factual consistency regardless of language, making them orthogonal objectives that don't overlap in addressing instruction tuning for low-resource languages.
+
+I need to finalize the JSON and flag the resource constraints—the auto_research mode exceeds the H100 budget at around 300 equivalent hours, so I'll note that manual or human-in-loop modes are the viable options within the stated limits.
+
+Now I'm checking whether the curriculum thresholds make sense for Kazakh by looking at URIEL typological distances—the closest Turkic relatives like Kyrgyz and Uzbek cluster around 0.2-0.4, while more distant languages like Arabic and Russian fall in the 0.5-0.7 range, which suggests D_25 should be around 0.30-0.35 and D_60 around 0.50-0.60.
+
+For Mongolian, the nearest languages in the collection are probably Korean, Finnish, and Japanese due to shared agglutinative and SOV properties, though the percentile-based approach will handle distance compression automatically.
+
+I need to write out the full JSON now, and I should also verify that the "Less is More" findings about URIEL+ using 300 selected features instead of the full 800 are relevant to this approach.
+
+The key insight is that URIEL+ contains around 800 features total (607 grammar and 193 phonological), but selecting just 300 features via Laplacian Score actually outperforms both the legacy 289-dimensional representation and the full 800-feature set. This matters especially for low-resource languages like Kazakh, Uzbek, and Kyrgyz where sparse feature representations can skew distance estimates, so I should incorporate this into the revision by using the compact 300-feature URIEL+ representation rather than the full feature set.
+
+For the ablation study, I need to update the baselines to compare the full 800-feature URIEL+ against the Laplacian-selected 300 features, syntax-only features (474), and morphology-only features (133), replacing the original 289-feature baseline entirely.
+
+Writing the revised JSON... Now I'm structuring the full project proposal with the refined approach incorporating typological weighting through URIEL+, a DPO formulation for preference optimization, and a curriculum learning schedule—while keeping resource estimates consistent and updating key references to include the latest work on language-aware data selection and direct preference optimization methods. now.
+
+For the approach section, the key changes are:
+
+1. **Typological Distance Computation (replacing lang2vec with URIEL+)**:
+   We're using URIEL+ instead of the legacy lang2vec to compute typological distances, which covers 4,366 languages with around 800 total features and better handles low-resource languages like Kazakh, Uzbek, and Kyrgyz through improved imputation. I'm applying unsupervised feature selection to reduce this to 300 features, which actually improves alignment while cutting computational overhead, then assigning sampling weights inversely proportional to the resulting cosine distances.
+
+2. **Curriculum Schedule Specification**:
+   The curriculum unfolds in three stages based on URIEL+ distance percentiles—Stage 1 trains on the closest sources (roughly distance ≤0.32 for Kazakh), Stage 2 expands to moderately distant sources (≤0.56), and Stage 3 includes all remaining languages, with each stage spanning a few epochs to gradually increase typological diversity.
+
+3. **Precise Multi-Source DPO Formulation**:
+   Extending the DPO objective to handle multiple source languages by defining preference pairs for each source-target combination, where the chosen response is the model's output in the target language. -generated response in the target language; rejected = (x_{s_i}, y^{rejected}_{s_i}), where y^{rejected}_{s_i} is a model-generated response in the source language s_i. This formulation promotes target-language responses to source-language instructions—the cross-lingual direction essential for instruction transfer—and requires no human-authored target-language training data. Preference pairs are constructed automatically: given each source-language instruction x_{s_i}, we sample K=8 candidate responses from Qwen3.5-9B at temperature 0.7; apply fastText language identification to each; assign target-language responses to the chosen pool and source-language responses to the rejected pool; pair the highest-scoring chosen with the lowest-scoring rejected per instruction. Instructions yielding no target-language candidate are discarded. This inverts CLO's approach—where English inputs pair English responses as chosen and target-language as rejected to preserve English capability—because here the goal is acquiring cross-lingual target-language instruction following rather than maintaining source-language performance. Before training, I verify that Qwen3.5-9B generates detectable target-language candidates at sufficient frequency (>5% of samples) for close-pivot language pairs, running this check on 500 instructions per pivot before DPO begins, and any pivot failing this threshold is excluded.
+
+I'm also verifying that the Aya collection covers all proposed Turkic pivots—Turkish with millions of instances, Kyrgyz at around 4.1M, and Uzbek as an underrepresented language—and enforcing a 5,000-instance minimum per pivot; languages below that are dropped from the mixture. For Mongolian, no Turkic pivot falls within the distance threshold, so the closest available sources are Korean, Finnish, and Turkish, reflecting Mongolian's typological isolation, and the distance-adaptive weighting naturally assigns very small weights to these distant sources.
+
+Now I need to compile everything into the complete JSON and update the landscape section to include DCO. DCO uses Direct Consistency Optimization to ensure factual responses remain semantically equivalent across 26 languages, whereas TWMP's DPO component focuses on language fidelity—these are orthogonal objectives addressing different aspects of cross-lingual behavior.
+
+Let me verify I've addressed all six reviewer issues: the DPO formulation for multi-source data, the URIEL+ feature selection with Laplacian Score, the auto_research budget constraint, the three-stage curriculum schedule with concrete thresholds, and the DCO concurrent work in the landscape. All major concerns are covered.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "210e4a7c-ad9a-4b27-b89f-2508677911d1",
+  "isSidechain": false,
+  "requestId": "req_011CatT2gbmBEPLmw7ng6nYQ",
+  "type": "assistant",
+  "uuid": "8e04b4a0-390f-4087-9bd2-7311d361715f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01JjXgk2nwC2X55qqAS1dzDK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 37224,
+      "output_tokens": 10815,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10815,
+          "cache_read_input_tokens": 37224,
+          "cache_creation_input_tokens": 1390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-10T06:58:11.814Z_
+
+I now have enough information to make a comprehensive revision. Let me synthesize the key findings and write the complete updated JSON.
+
+**Key research findings:**
+1. **CLO formulation (confirmed)**: CLO's English-input pair = chosen(English response) vs. rejected(target response). For TWMP's multi-source extension, I need to invert: chosen = target response, rejected = source response for any source instruction.
+2. **URIEL+** has ~800 features (607 grammar + 193 sound); Kazakh explicitly mentioned for multi-script vectors. Compact 300-feature (Laplacian Score) beats full 800-feature set (ρ=0.358 vs 0.260).
+3. **DCO**: Targets cross-lingual factual *consistency*, not language fidelity — orthogonal to TWMP's CLO component.
+4. **Aya coverage**: Turkish (millions), Kyrgyz (~4.1M rows), Uzbek (present). Kazakh and Mongolian are **target** languages, not pivots. Minimum threshold of 5,000 instances needed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e04b4a0-390f-4087-9bd2-7311d361715f",
+  "isSidechain": false,
+  "requestId": "req_011CatT2gbmBEPLmw7ng6nYQ",
+  "type": "assistant",
+  "uuid": "c7ef87e2-d998-4b46-b0c9-2e3052e5ce4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01JjXgk2nwC2X55qqAS1dzDK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 37224,
+      "output_tokens": 10815,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10815,
+          "cache_read_input_tokens": 37224,
+          "cache_creation_input_tokens": 1390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-10T06:58:12.100Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Kv822oKmgdeuAscSJzefnM`</summary>
+
+```json
+{
+  "query": "DCO \"Direct Consistency Optimization\" arXiv 2603.04678 cross-lingual DPO 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7ef87e2-d998-4b46-b0c9-2e3052e5ce4d",
+  "isSidechain": false,
+  "requestId": "req_011CatT2gbmBEPLmw7ng6nYQ",
+  "type": "assistant",
+  "uuid": "1f53ccce-cbaf-4543-87d0-d73e5a4f3b2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01JjXgk2nwC2X55qqAS1dzDK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 37224,
+      "output_tokens": 10815,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10815,
+          "cache_read_input_tokens": 37224,
+          "cache_creation_input_tokens": 1390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruc…",
+  "leafUuid": "1f53ccce-cbaf-4543-87d0-d73e5a4f3b2d",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DPO formulation for multi-source instruction tuning",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-10T06:58:19.808Z_
+
+<details><summary>↩ Tool result · `toolu_01Kv822oKmgdeuAscSJzefnM`</summary>
+
+```text
+Web search results for query: "DCO "Direct Consistency Optimization" arXiv 2603.04678 cross-lingual DPO 2026"
+
+Links: [{"title":"[2603.04678] Optimizing Language Models for Crosslingual Knowledge Consistency","url":"https://arxiv.org/abs/2603.04678"},{"title":"Optimizing Language Models for Crosslingual Knowledge Consistency","url":"https://arxiv.org/html/2603.04678"},{"title":"[2402.12004] Direct Consistency Optimization for Robust Customization of Text-to-Image Diffusion Models","url":"https://arxiv.org/abs/2402.12004"},{"title":"Direct Consistency Optimization for Robust Customization of Text-to-Image Diffusion Models","url":"https://arxiv.org/html/2402.12004v2"},{"title":"SVasP: Self-Versatility Adversarial Style Perturbation for Cross-Domain Few-Shot Learning","url":"https://arxiv.org/html/2412.09073v1"},{"title":"Curriculum Direct Preference Optimization for Diffusion and Consistency Models","url":"https://arxiv.org/html/2405.13637v4"},{"title":"Direct Density Ratio Optimization: A Statistically Consistent ...","url":"https://arxiv.org/pdf/2505.07558"},{"title":"[2603.22335] Causal Direct Preference Optimization for Distributionally Robust Generative Recommendation","url":"https://arxiv.org/abs/2603.22335"},{"title":"[2603.29259] Aligning Multimodal Sequential Recommendations via Robust Direct Preference Optimization with Sparse MoE","url":"https://arxiv.org/abs/2603.29259"},{"title":"[2305.19809] Direct Diffusion Bridge using Data Consistency for Inverse Problems","url":"https://arxiv.org/abs/2305.19809"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## Direct Consistency Optimization (DCO) - arXiv 2603.04678: "Optimizing Language Models for Crosslingual Knowledge Consistency"
+
+**Key Information:**
+
+- **Authors**: Tianyu Liu, Jirui Qi, Mrinmaya Sachan, Ryan Cotterell, Raquel Fernández, and Arianna Bisazza
+- **Submission Date**: March 4, 2026
+
+**What is DCO:**
+
+DCO is a DPO-inspired method that requires no explicit reward model and is derived directly from the LLM itself. The paper addresses the problem that large language models often exhibit inconsistent knowledge, which is particularly problematic in multilingual scenarios where models are asked similar questions in different languages, and inconsistent responses can undermine their reliability.
+
+**Key Results:**
+
+DCO significantly improves crosslingual consistency across diverse LLMs and outperforms existing methods when training with samples of multiple languages, while complementing DPO when gold labels are available. Additionally, DCO demonstrates effectiveness in bilingual settings, significant out-of-domain generalizability, and controllable alignment via direction hyperparameters, establishing it as a robust and efficient solution for improving knowledge consistency across languages in multilingual LLMs.
+
+**Resources:** Code, training scripts, and evaluation benchmarks are available at https://github.com/Betswish/ConsistencyRL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f53ccce-cbaf-4543-87d0-d73e5a4f3b2d",
+  "isSidechain": false,
+  "promptId": "31ae3f44-e457-44d4-9c6a-14fb59968bbc",
+  "type": "user",
+  "uuid": "0aa90458-ef40-4023-8e3a-d2fc79d7683f",
+  "toolUseResult": {
+    "query": "DCO \"Direct Consistency Optimization\" arXiv 2603.04678 cross-lingual DPO 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FyMNSfrkYeazi1j8XkTR5G",
+        "content": [
+          {
+            "title": "[2603.04678] Optimizing Language Models for Crosslingual Knowledge Consistency",
+            "url": "https://arxiv.org/abs/2603.04678"
+          },
+          {
+            "title": "Optimizing Language Models for Crosslingual Knowledge Consistency",
+            "url": "https://arxiv.org/html/2603.04678"
+          },
+          {
+            "title": "[2402.12004] Direct Consistency Optimization for Robust Customization of Text-to-Image Diffusion Models",
+            "url": "https://arxiv.org/abs/2402.12004"
+          },
+          {
+            "title": "Direct Consistency Optimization for Robust Customization of Text-to-Image Diffusion Models",
+            "url": "https://arxiv.org/html/2402.12004v2"
+          },
+          {
+            "title": "SVasP: Self-Versatility Adversarial Style Perturbation for Cross-Domain Few-Shot Learning",
+            "url": "https://arxiv.org/html/2412.09073v1"
+          },
+          {
+            "title": "Curriculum Direct Preference Optimization for Diffusion and Consistency Models",
+            "url": "https://arxiv.org/html/2405.13637v4"
+          },
+          {
+            "title": "Direct Density Ratio Optimization: A Statistically Consistent ...",
+            "url": "https://arxiv.org/pdf/2505.07558"
+          },
+          {
+            "title": "[2603.22335] Causal Direct Preference Optimization for Distributionally Robust Generative Recommendation",
+            "url": "https://arxiv.org/abs/2603.22335"
+          },
+          {
+            "title": "[2603.29259] Aligning Multimodal Sequential Recommendations via Robust Direct Preference Optimization with Sparse MoE",
+            "url": "https://arxiv.org/abs/2603.29259"
+          },
+          {
+            "title": "[2305.19809] Direct Diffusion Bridge using Data Consistency for Inverse Problems",
+            "url": "https://arxiv.org/abs/2305.19809"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## Direct Consistency Optimization (DCO) - arXiv 2603.04678: \"Optimizing Language Models for Crosslingual Knowledge Consistency\"\n\n**Key Information:**\n\n- **Authors**: Tianyu Liu, Jirui Qi, Mrinmaya Sachan, Ryan Cotterell, Raquel Fernández, and Arianna Bisazza\n- **Submission Date**: March 4, 2026\n\n**What is DCO:**\n\nDCO is a DPO-inspired method that requires no explicit reward model and is derived directly from the LLM itself. The paper addresses the problem that large language models often exhibit inconsistent knowledge, which is particularly problematic in multilingual scenarios where models are asked similar questions in different languages, and inconsistent responses can undermine their reliability.\n\n**Key Results:**\n\nDCO significantly improves crosslingual consistency across diverse LLMs and outperforms existing methods when training with samples of multiple languages, while complementing DPO when gold labels are available. Additionally, DCO demonstrates effectiveness in bilingual settings, significant out-of-domain generalizability, and controllable alignment via direction hyperparameters, establishing it as a robust and efficient solution for improving knowledge consistency across languages in multilingual LLMs.\n\n**Resources:** Code, training scripts, and evaluation benchmarks are available at https://github.com/Betswish/ConsistencyRL."
+    ],
+    "durationSeconds": 7.700489996999968
+  },
+  "sourceToolAssistantUUID": "1f53ccce-cbaf-4543-87d0-d73e5a4f3b2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-10T06:58:30.985Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now I have confirmed DCO details. Let me write the complete revised JSON.
+
+Key DCO facts:
+- Paper: "Optimizing Language Models for Crosslingual Knowledge Consistency" (NOT "Direct Consistency Optimization" as the reviewer called it - but same paper, same arXiv ID)
+- Authors: Tianyu Liu, Jirui Qi, Mrinmaya Sachan, Ryan Cotterell, Raquel Fernández, and Arianna Bisazza
+- March 4, 2026
+- DPO-inspired, no reward model
+
+
+- Targets knowledge consistency across diverse LLMs in bilingual and multilingual settings, which differs from TWMP's CLO component that focuses on language fidelity
+
+Now I'll compile the full JSON with the actual paper title rather than the reviewer's shorthand.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0aa90458-ef40-4023-8e3a-d2fc79d7683f",
+  "isSidechain": false,
+  "requestId": "req_011CatTJVWThUxbTQwxmy6As",
+  "type": "assistant",
+  "uuid": "93aa24c1-26c0-47c6-88e0-0608c2800368",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NuGBmrsoaM4WwGa4d1xjnG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11627,
+      "cache_read_input_tokens": 38614,
+      "output_tokens": 14578,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 14578,
+          "cache_read_input_tokens": 38614,
+          "cache_creation_input_tokens": 11627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-10T07:03:41.937Z_
+
+Now I have all the information needed. Let me write the complete revised JSON.
+
+```json
+{
+  "title": "Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruction Tuning",
+  "change_type": "major",
+  "core_problem": "Cross-lingual instruction tuning for low-resource languages defaults to English as the sole pivot, creating systematic gaps for languages that are typologically distant from English—particularly those with agglutinative morphology, non-Latin scripts, or SOV word order. Three peer-reviewed ACL 2025 benchmarks—KazMMLU (Kazakh), MiLiC-Eval (Tibetan, Uyghur, Kazakh, Mongolian), and TUMLU (Turkic languages including Kazakh and Uyghur)—confirm that even frontier multilingual LLMs (GPT-4, Llama-3.1, Qwen-2.5) achieve near-random performance on Mongolian comprehension tasks and substantially below-par accuracy on Kazakh and Uyghur relative to typologically proximate high-resource languages. No existing instruction tuning method uses typological distance to continuously weight data-source selection across a multi-pivot mixture for these under-represented language families.",
+  "opportunity": "Three complementary ACL 2025 benchmarks provide peer-reviewed grounding for the performance gap. KazMMLU (arXiv:2502.12829; ACL 2025 long paper) comprises 23K Kazakh-language questions spanning STEM, humanities, and social sciences sourced from authentic educational materials; evaluation of Llama-3.1, Qwen-2.5, GPT-4, and DeepSeek V3 shows 'substantial room for improvement' for all models on Kazakh, despite the language having 20 million speakers. MiLiC-Eval (arXiv:2503.01150; ACL 2025 Findings) covers Tibetan, Uyghur, Kazakh, and Mongolian across 9 tasks with 24K instances; GPT-4o-mini achieves only slightly above random on Mongolian tasks, and models exhibit only 'preliminary understanding' of Tibetan and Kazakh. TUMLU (arXiv:2502.11020; ACL 2025 long paper) provides 38K native questions spanning 11 academic subjects across Turkic languages including Kazakh and Uyghur, enabling controlled within-family comparisons that isolate the effect of lower training corpus size. The XLM-SWCM paper (arXiv:2502.10852) additionally shows that encoder-based shared-weight cross-lingual pretraining partially bridges these gaps—Kazakh ROUGE-L summarization score of 5.6 is notably the lowest among the four minority languages studied—but this approach does not scale to instruction-following for decoder LLMs. CLO (arXiv:2505.14297; ACL 2025) shows that DPO-style cross-lingual preference optimization with only 3,200 samples outperforms standard SFT with 6,400 samples, establishing strong data efficiency for cross-lingual transfer. These findings together create a clear opening: by weighting instruction data from multiple source languages inversely by URIEL+ typological distance and introducing a staged curriculum, we can build a principled multi-pivot training regime that directly addresses the English-pivot bottleneck for agglutinative low-resource targets.",
+  "landscape": "PLUG (ACL 2024) established that English-pivot cross-lingual instruction generation improves multilingual instruction following—but its reported 29% improvement was measured on Chinese, Korean, Italian, and Spanish. Whether the English-pivot advantage holds for typologically distant agglutinative languages with non-Latin scripts (Kazakh, Mongolian, Uyghur) is an assumption that TWMP directly tests rather than takes for granted. CLO (arXiv:2505.14297; ACL 2025) improves data efficiency via DPO-style cross-lingual preference optimization that suppresses off-language responses, using English as the sole source and 6,400 OpenAssistant samples machine-translated by M2M100; it fixes English as the sole source language without varying source selection by typological distance. 'Family Matters' (arXiv:2510.00810) applies language transfer and LoRA merging from typologically related Nordic languages to Faroese—demonstrating that typological proximity helps—but as a single-language case study with no generalizable training recipe. 'Cross-Linguistic Transfer in Multilingual NLP' (arXiv:2505.13908) analyzes language family and morphology effects empirically without proposing a training method. Multi-Linguistic LoRA Merging (NeurIPS 2025 ER Workshop) decouples task and language LoRA adapters but does not use typological features to parameterize or weight the language adapter. 'Optimizing Language Models for Crosslingual Knowledge Consistency' (arXiv:2603.04678; Tianyu Liu et al., March 2026) introduces a DPO-inspired method that enforces factual consistency of model responses across 26 languages in 9 LLMs; its preference pairs encode semantic equivalence of knowledge across languages (chosen = consistent factual response, rejected = inconsistent response), which is orthogonal to TWMP's language-fidelity objective (chosen = target-language response to source-language instruction, rejected = source-language response). DCO addresses what the model says across languages; TWMP addresses which language it responds in during multi-pivot instruction training. DCO does not target low-resource instruction tuning, multi-pivot source selection, or typological distance weighting. Two works require careful differentiation from TWMP. First, TIPA (arXiv:2601.16629; EACL 2026 Findings) constructs proxy language adapters by aggregating existing MAD-X adapters weighted by typological similarity across 230+ languages—entirely without training. TIPA is orthogonal to TWMP in three key ways: (1) it is training-free inference-time adapter aggregation, whereas TWMP learns from a typologically-weighted data curriculum; (2) it operates on encoder-based MAD-X modules for classification tasks, whereas TWMP targets decoder LLM instruction tuning; (3) TIPA has not been applied to instruction generation or to languages not already represented by a dedicated adapter. Second, 'Linguistically-Informed Multilingual Instruction Tuning' (arXiv:2410.07809) uses 289-dimensional URIEL TYPO vectors with k-means clustering to select 14 discrete representative languages from a 52-language pool (one per cluster) for LoRA fine-tuning on Bactrian-X, showing that typologically diverse selection beats random selection. TWMP differs substantially: rather than discrete cluster-representative selection, TWMP applies continuous inverse-distance sampling weights over the full Aya collection using compact URIEL+ features; it adds a staged cosine-distance curriculum schedule; it integrates a multi-source DPO preference optimization objective for language fidelity; and it directly targets Kazakh, Mongolian, and Uyghur—languages for which arXiv:2410.07809's evaluation suite (XNLI, XCOPA, XStoryCloze, XWinograd, PAWS-X) provides zero coverage. The combination of continuous weighting with URIEL+ features, staged curriculum, multi-source DPO cross-lingual loss, and evaluation on three ACL 2025 benchmarks covering the target languages constitutes a principled and differentiated advance.",
+  "approach": "We propose Typologically-Weighted Multi-Pivot (TWMP) instruction tuning, which replaces PLUG's single-English pivot with a principled mixture over multiple source languages drawn from the Aya collection (513M instances across 114 languages). We first verify Aya coverage of Turkic pivot languages: Turkish (high-resource, multi-million instances), Kyrgyz (~4.1M instances in the Aya collection language split), Uzbek (confirmed present as an underrepresented language with meaningful coverage), and Azerbaijani are all available as pivot sources. A minimum threshold of 5,000 Aya instances per pivot language is enforced; languages below this threshold are excluded, and all pivot languages with their instance counts are reported in an appendix table. Kazakh, Mongolian, and Uyghur serve exclusively as evaluation targets and are excluded from the pivot mixture.\n\nTypological distances are computed using URIEL+ (arXiv:2409.18472, COLING 2025; available via the urielplus Python library at github.com/Masonshipton25/URIELPlus) rather than the legacy lang2vec 289-dimensional binary features. URIEL+ expands coverage to 4,366 languages with approximately 800 features (607 grammar features covering syntactic and morphological dimensions, plus 193 sound features), and applies SoftImpute for missing-value imputation—critical for reducing sparsity in Kazakh, Uzbek, and Kyrgyz. URIEL+ explicitly represents Kazakh's multi-script properties (Cyrillic, Latin, and Arabic) via script vectors. Following 'Less is More' (arXiv:2509.20129, EMNLP 2025), which shows that compact URIEL+ feature subsets outperform the full feature space (Spearman ρ=0.358 at 300 features vs. ρ=0.260 for the full 800-feature baseline), we apply Laplacian Score unsupervised feature selection to reduce the URIEL+ space to 300 features before computing cosine distances. Data-sampling weights are assigned inversely proportional to this 300-feature URIEL+ cosine distance, so morphologically close pivots such as Turkish or Uzbek for Kazakh receive substantially higher weight than English.\n\nThe staged curriculum uses three phases calibrated by the empirical URIEL+ distance distribution of available Aya pivot languages relative to each target language. Let D_25 and D_60 denote the 25th and 60th percentile distances from the target language to all qualifying Aya pivots. Stage 1 (epochs 1–3): exclusively sources with distance < D_25—for Kazakh this is approximately ≤0.32, capturing Turkish, Kyrgyz, Uzbek, and Azerbaijani. Stage 2 (epochs 4–6): sources with distance < D_60 (approximately ≤0.56 for Kazakh), expanding to Russian, Arabic, and other mid-distance languages. Stage 3 (epochs 7–10): full mixture over all qualifying pivot languages with continuous inverse-distance weights. Distance percentile thresholds are target-specific: computed from the actual URIEL+ distance distribution of qualifying Aya languages before training begins for each target language. For Mongolian, where no Turkic pivot falls within D_25, the closest available Aya sources (Korean, Finnish, Turkish) are used across all three stages with smaller weights; this distance-constrained setting for Mongolian is itself a controlled finding of interest. Ablations compare: no curriculum (full mixture from epoch 1), 2-stage (merging Stages 1–2), 3-stage (proposed), and linear distance-based weighting without staged expansion.\n\nThe CLO-style DPO preference optimization objective is extended to the multi-source setting with a precise formulation. For each source pivot language s_i and target language t, preference pairs are: chosen = (x_{s_i}, y^w_t)—a source-language instruction paired with a model-generated response identified as being in the target language; rejected = (x_{s_i}, y^l_{s_i})—the same instruction paired with a model-generated response in the source language. This inverts CLO's English-input pair direction (CLO: English input → prefer English response to preserve English capability) because TWMP's objective is to acquire cross-lingual target-language instruction following, not to preserve pivot-language capability. TWMP does not use CLO's second pair type (target-language input → prefer target-language response) since target-language training data is explicitly excluded. Preference pairs are constructed without any target-language labels: given each source-language instruction x_{s_i}, we sample K=8 candidate responses from Qwen3.5-9B at temperature 0.7; apply fastText language identification (lid.176.bin) to each response; assign target-language responses to the chosen pool and source-language responses to the rejected pool; pair the top chosen with the lowest rejected per instruction. Instructions yielding no target-language candidates are discarded. As a mandatory prerequisite check before DPO training, we run a 500-instruction probe per source-target language pair and verify that Qwen3.5-9B generates target-language responses at >5% frequency in the K=8 candidates; any pivot language failing this check is excluded from DPO training (falling back to SFT only) for that target. This verification ensures the automated preference pair construction is grounded in observed model behavior rather than assumed.\n\nWe apply QLoRA fine-tuning of Qwen3.5-9B (released February 2026; 248K-token vocabulary spanning 201 languages; the Qwen3.5 small series has 0.8B/2B/4B/9B variants—no 7B exists) on this weighted multi-pivot dataset, targeting Kazakh, Mongolian, and Uyghur as primary evaluation cases. Evaluation uses three ACL 2025 benchmarks that directly cover these languages: KazMMLU for Kazakh, MiLiC-Eval for all three targets across 9 tasks, and TUMLU for Kazakh and Uyghur within a controlled within-Turkic-family comparison. PLUG and CLO serve as primary baselines; typological weighting ablations compare full 800-feature URIEL+ vs. Laplacian-selected 300 features vs. syntax-only (474 features) vs. morphology-only (133 features) vs. the k-means discrete selection baseline from arXiv:2410.07809. For generalization testing beyond the Turkic–Mongolic cluster, we include Swahili as a held-out agglutinative language not seen during hyperparameter design.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100 (15–20 QLoRA runs × 10–13h each on Qwen3.5-9B, covering 3 primary target languages, PLUG/CLO baselines, URIEL+ sub-space ablations, curriculum schedule variants, and DPO prerequisite probe runs)",
+      "gpu_utilization": "LOW (~25–35%): GPU sits idle during code writing, debugging, data pipeline work, result analysis, and paper writing; runs are launched manually and often queue overnight",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$300 (200h × $1.50/h on Lambda Labs A100)",
+      "h100_equivalent": "~120h H100 (within ≤200 H100-hour budget constraint at typical A100/H100 performance ratio of ~0.6×)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~310h A100 (agent explores broader hyperparameter space with human approval gates; ~55% more runs than manual)",
+      "gpu_utilization": "MODERATE (~55–65%): agent queues follow-up experiments immediately after each run completes, filling GPU idle between human check-ins",
+      "timeline": "6–8 weeks",
+      "team": "1 researcher, ~30min/day check-in to approve experiment configs and review intermediate results",
+      "claude_api_cost": "~$150–250 (~1,500–2,500 conversation turns coordinating experiment scheduling, result parsing, and ablation planning)",
+      "estimated_gpu_cost": "~$465 (310h × $1.50/h)",
+      "h100_equivalent": "~186h H100 (within ≤200 H100-hour budget constraint at ~0.6× ratio, but leaves minimal headroom for reruns)",
+      "risk_note": "Choice of URIEL+ feature subspace (full 800-feature vs. Laplacian-selected 300 vs. syntax-only) and DPO prerequisite probe threshold require human judgment at key decision points; an automated agent may converge on a locally optimal weighting scheme that under-performs on the held-out Swahili generalization target"
+    },
+    "auto_research": {
+      "gpu_hours": "~600h A100 (3–5× more experiments: grid search over distance metrics, curriculum schedule shapes, LoRA rank/alpha, 5+ target languages including Swahili and Kyrgyz for generalization, plus replication runs)",
+      "gpu_utilization": "NEAR-ZERO idle—agent schedules jobs back-to-back across all target languages in parallel, launches follow-up ablations immediately on job completion, and runs nightly sweeps without human bottleneck",
+      "timeline": "5–10 days with 4× concurrent A100s; ~3 weeks on a single A100",
+      "team": "0 (initial setup of experiment configs, data paths, and evaluation harness only)",
+      "claude_api_cost": "~$400–650 (~4,000–6,500 turns for full experiment orchestration, result parsing, ablation tree exploration, and report drafting)",
+      "estimated_gpu_cost": "~$900 (600h × $1.50/h)",
+      "h100_equivalent": "~360h H100 (EXCEEDS ≤200 H100-hour hard budget constraint—auto_research mode is documented for completeness but is NOT a viable deployment option within the stated budget; use manual mode or human_in_loop mode instead)",
+      "speed_bottleneck": "GPU count is the primary bottleneck: 4 concurrent A100s reduces wall-clock time to ~5 days; API rate limits become secondary when running >8 parallel experiment threads",
+      "risk_note": "CONSTRAINT VIOLATION: 600 A100h ≈ 360 H100h, exceeding the ≤200 H100-hour hard budget constraint. Additionally, unconstrained exploration may overfit the URIEL+ weighting function to the 3 initial target languages; requires Swahili as a held-out agglutinative language not seen during design to catch overfitting early."
+    }
+  },
+  "target_venues": [
+    "ACL 2027 (ARR submission deadline August 3, 2026) — primary target; provides adequate time for validation on additional typological clusters beyond Turkic–Mongolic, and for a paper of this scope (multi-pivot curriculum + ablations + 3 evaluation benchmarks) that cannot realistically reach conference quality in under 6 weeks",
+    "EMNLP 2026 (ACL Rolling Review, rolling deadlines throughout 2026) — viable only if the team has prior QLoRA fine-tuning infrastructure already in place and can begin experiments immediately"
+  ],
+  "level": "solid",
+  "key_references": [
+    "PLUG: Leveraging Pivot Language in Cross-Lingual Instruction Tuning (ACL 2024) [29% improvement on Chinese/Korean/Italian/Spanish; Turkic/Mongolic gap is untested]",
+    "Cross-Lingual Optimization for Language Transfer in Large Language Models (CLO; ACL 2025, arXiv:2505.14297) [DPO-style cross-lingual preference optimization using English-only source; baseline and methodological reference for TWMP's multi-source DPO extension]",
+    "URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base (arXiv:2409.18472, COLING 2025) [800-feature typological database with improved coverage and SoftImpute imputation for low-resource Turkic languages; replaces legacy lang2vec 289-dim URIEL in TWMP]",
+    "Less is More: The Effectiveness of Compact Typological Language Representations (arXiv:2509.20129, EMNLP 2025) [shows Laplacian Score 300-feature URIEL+ subset (ρ=0.358) outperforms full 800-feature URIEL+ (ρ=0.260) for cross-lingual NLP; justifies TWMP's feature selection step]",
+    "Optimizing Language Models for Crosslingual Knowledge Consistency (arXiv:2603.04678; Tianyu Liu et al., March 2026) [concurrent DPO-inspired work targeting factual consistency across 26 languages and 9 LLMs—orthogonal to TWMP's language-fidelity objective; differentiated in related work]",
+    "TIPA: Typologically Informed Parameter Aggregation (arXiv:2601.16629, EACL 2026 Findings) [training-free encoder adapter aggregation across 230+ languages—differentiated from TWMP's training-time decoder curriculum]",
+    "Linguistically-Informed Multilingual Instruction Tuning (arXiv:2410.07809) [discrete k-means language selection using URIEL TYPO features on BLOOM/mGPT/mT5—differentiated from TWMP's continuous weighted sampling, staged curriculum, DPO objective, and Turkic/Mongolic targets]",
+    "KazMMLU: Evaluating Language Models on Kazakh, Russian, and Regional Knowledge of Kazakhstan (ACL 2025, arXiv:2502.12829) [primary Kazakh evaluation benchmark, 23K questions, peer-reviewed]",
+    "MiLiC-Eval: Benchmarking Multilingual LLMs for China's Minority Languages (ACL 2025 Findings, arXiv:2503.01150) [primary evaluation for Uyghur, Kazakh, Mongolian across 9 tasks]",
+    "TUMLU: A Unified and Native Language Understanding Benchmark for Turkic Languages (ACL 2025, arXiv:2502.11020) [38K questions for Kazakh, Uyghur, and other Turkic languages; within-family controlled comparison]",
+    "Multilingual Encoder Knows more than You Realize: Shared Weights Pretraining for Extremely Low-Resource Languages (arXiv:2502.10852) [encoder-based cross-lingual transfer for Tibetan/Uyghur/Kazakh/Mongolian; motivation for decoder LLM gap]",
+    "Family Matters: Language Transfer and Merging for Adapting Small LLMs to Faroese (arXiv:2510.00810, 2025)",
+    "Cross-Linguistic Transfer in Multilingual NLP: The Role of Language Families and Morphology (arXiv:2505.13908, 2025)",
+    "Multi-Linguistic LoRA Merging (NeurIPS 2025 ER Workshop) [workshop paper, not main conference]",
+    "Left Behind: Cross-Lingual Transfer as a Bridge for Low-Resource Languages in Large Language Models (arXiv:2603.21036, 2026) [supplementary qualitative observation; single-author preprint with 50 hand-crafted questions—not primary motivation anchor]"
+  ],
+  "description": "This paper introduces Typologically-Weighted Multi-Pivot (TWMP) instruction tuning, a method for adapting decoder LLMs to low-resource languages that are typologically distant from English. Rather than using a single English pivot as in PLUG, we compute typological distances using URIEL+ (arXiv:2409.18472, COLING 2025; via the urielplus Python library), which expands coverage to ~800 features across 4,366 languages with improved imputation for low-resource Turkic languages. Following 'Less is More' (arXiv:2509.20129, EMNLP 2025), we apply Laplacian Score feature selection to reduce the URIEL+ space to 300 compact features (Spearman ρ=0.358 vs. ρ=0.260 for the full 800-feature set), then assign data-sampling weights over the Aya collection inversely proportional to these 300-feature cosine distances. A staged 3-phase curriculum progressively introduces more distant pivots: Stage 1 (epochs 1–3) trains exclusively on sources within the 25th percentile distance threshold (e.g., Turkish, Kyrgyz, Uzbek, Azerbaijani for Kazakh, with distances ≤~0.32); Stage 2 (epochs 4–6) expands to the 60th percentile (≤~0.56); Stage 3 (epochs 7–10) uses the full weighted mixture. Thresholds are computed target-specifically from the empirical URIEL+ distance distribution of qualifying Aya pivot languages before training begins. Aya pivot coverage is verified: Turkish (multi-million instances), Kyrgyz (~4.1M), and Uzbek are all present with a minimum 5,000-instance threshold enforced. The DPO preference optimization objective is precisely formulated for the multi-source case: for each source pivot language s_i and target language t, chosen = (instruction in s_i, model-generated response in t); rejected = (instruction in s_i, model-generated response in s_i). Pairs are constructed automatically by sampling K=8 responses per instruction from Qwen3.5-9B, applying fastText language identification, and pairing target-language and source-language responses—requiring no target-language training labels. This inverts CLO's English-input pair direction (CLO prefers English responses to English inputs to preserve English capability; TWMP prefers target-language responses to any source-language input to promote cross-lingual instruction following). A mandatory 500-instruction prerequisite probe verifies that Qwen3.5-9B generates >5% target-language responses per source-target pair before DPO training begins. Two directly adjacent works are carefully differentiated: TIPA (EACL 2026 Findings) aggregates MAD-X encoder adapters at inference time without training—orthogonal to TWMP's training-time decoder curriculum; arXiv:2410.07809 uses k-means on 289-dim legacy URIEL features for discrete language selection on BLOOM/mGPT with no Kazakh/Mongolian/Uyghur coverage. Concurrent work 'Optimizing Language Models for Crosslingual Knowledge Consistency' (arXiv:2603.04678, March 2026) uses DPO for factual consistency across 26 languages—targeting what the model says (knowledge coherence) rather than which language it responds in (fidelity), and not addressing low-resource instruction tuning. We fine-tune Qwen3.5-9B with QLoRA targeting Kazakh, Mongolian, and Uyghur, evaluated on KazMMLU, MiLiC-Eval, and TUMLU (all ACL 2025). Ablations cover full 800-feature URIEL+ vs. Laplacian 300-feature vs. syntax-only vs. morphology-only vs. k-means discrete baseline; curriculum variants; and DPO vs. SFT-only. Swahili is a held-out agglutinative generalization target. Manual mode (200 A100h ≈ 120 H100h) and human-in-loop mode (310 A100h ≈ 186 H100h) stay within the ≤200 H100-hour budget; auto_research mode (600 A100h ≈ 360 H100h) exceeds the budget and is not a viable deployment option. ACL 2027 (ARR August 3, 2026) is the primary target venue.",
+  "project_name": "typological_multi_pivot",
+  "source": "web_research"
+}
+```
+
+Here is the complete revised JSON:
+
+```json
+{
+  "title": "Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruction Tuning",
+  "change_type": "major",
+  "core_problem": "Cross-lingual instruction tuning for low-resource languages defaults to English as the sole pivot, creating systematic gaps for languages that are typologically distant from English—particularly those with agglutinative morphology, non-Latin scripts, or SOV word order. Three peer-reviewed ACL 2025 benchmarks—KazMMLU (Kazakh), MiLiC-Eval (Tibetan, Uyghur, Kazakh, Mongolian), and TUMLU (Turkic languages including Kazakh and Uyghur)—confirm that even frontier multilingual LLMs (GPT-4, Llama-3.1, Qwen-2.5) achieve near-random performance on Mongolian comprehension tasks and substantially below-par accuracy on Kazakh and Uyghur relative to typologically proximate high-resource languages. No existing instruction tuning method uses typological distance to continuously weight data-source selection across a multi-pivot mixture for these under-represented language families.",
+  "opportunity": "Three complementary ACL 2025 benchmarks provide peer-reviewed grounding for the performance gap. KazMMLU (arXiv:2502.12829; ACL 2025 long paper) comprises 23K Kazakh-language questions spanning STEM, humanities, and social sciences sourced from authentic educational materials; evaluation of Llama-3.1, Qwen-2.5, GPT-4, and DeepSeek V3 shows 'substantial room for improvement' for all models on Kazakh, despite the language having 20 million speakers. MiLiC-Eval (arXiv:2503.01150; ACL 2025 Findings) covers Tibetan, Uyghur, Kazakh, and Mongolian across 9 tasks with 24K instances; GPT-4o-mini achieves only slightly above random on Mongolian tasks, and models exhibit only 'preliminary understanding' of Tibetan and Kazakh. TUMLU (arXiv:2502.11020; ACL 2025 long paper) provides 38K native questions spanning 11 academic subjects across Turkic languages including Kazakh and Uyghur, enabling controlled within-family comparisons that isolate the effect of lower training corpus size. The XLM-SWCM paper (arXiv:2502.10852) additionally shows that encoder-based shared-weight cross-lingual pretraining partially bridges these gaps—Kazakh ROUGE-L summarization score of 5.6 is notably the lowest among the four minority languages studied—but this approach does not scale to instruction-following for decoder LLMs. CLO (arXiv:2505.14297; ACL 2025) shows that DPO-style cross-lingual preference optimization with only 3,200 samples outperforms standard SFT with 6,400 samples, establishing strong data efficiency for cross-lingual transfer. These findings together create a clear opening: by weighting instruction data from multiple source languages inversely by URIEL+ typological distance and introducing a staged curriculum, we can build a principled multi-pivot training regime that directly addresses the English-pivot bottleneck for agglutinative low-resource targets.",
+  "landscape": "PLUG (ACL 2024) established that English-pivot cross-lingual instruction generation improves multilingual instruction following—but its reported 29% improvement was measured on Chinese, Korean, Italian, and Spanish. Whether the English-pivot advantage holds for typologically distant agglutinative languages with non-Latin scripts (Kazakh, Mongolian, Uyghur) is an assumption that TWMP directly tests rather than takes for granted. CLO (arXiv:2505.14297; ACL 2025) improves data efficiency via DPO-style cross-lingual preference optimization using 6,400 OpenAssistant samples machine-translated by M2M100; it fixes English as the sole source language without varying source selection by typological distance. 'Family Matters' (arXiv:2510.00810) applies language transfer and LoRA merging from typologically related Nordic languages to Faroese—demonstrating that typological proximity helps—but as a single-language case study with no generalizable training recipe. 'Cross-Linguistic Transfer in Multilingual NLP' (arXiv:2505.13908) analyzes language family and morphology effects empirically without proposing a training method. Multi-Linguistic LoRA Merging (NeurIPS 2025 ER Workshop) decouples task and language LoRA adapters but does not use typological features to parameterize or weight the language adapter. 'Optimizing Language Models for Crosslingual Knowledge Consistency' (arXiv:2603.04678; Tianyu Liu et al., March 2026) introduces a DPO-inspired method—concurrent with TWMP—that enforces factual consistency of model responses across 26 languages and 9 LLMs; its preference pairs encode semantic equivalence of knowledge across languages (chosen = factually consistent cross-lingual response, rejected = factually inconsistent response). This objective is orthogonal to TWMP's: DCO addresses what the model says across languages (knowledge coherence), while TWMP addresses which language it responds in when given instructions in any of multiple pivot languages (instruction-language fidelity). DCO does not address low-resource instruction tuning, multi-pivot source selection, or typological-distance weighting. Two works require careful differentiation from TWMP. First, TIPA (arXiv:2601.16629; EACL 2026 Findings) constructs proxy language adapters by aggregating existing MAD-X adapters weighted by typological similarity across 230+ languages—entirely without training. TIPA is orthogonal to TWMP in three key ways: (1) it is training-free inference-time adapter aggregation, whereas TWMP learns from a typologically-weighted data curriculum; (2) it operates on encoder-based MAD-X modules for classification tasks, whereas TWMP targets decoder LLM instruction tuning; (3) TIPA has not been applied to instruction generation or to languages not already represented by a dedicated adapter. Second, 'Linguistically-Informed Multilingual Instruction Tuning' (arXiv:2410.07809) uses 289-dimensional legacy URIEL TYPO vectors with k-means clustering to select 14 discrete representative languages from a 52-language pool (one per cluster) for LoRA fine-tuning on Bactrian-X, showing that typologically diverse selection beats random selection. TWMP differs substantially: rather than discrete cluster-representative selection, TWMP applies continuous inverse-distance sampling weights over the full Aya collection using compact URIEL+ features (300-dim, Laplacian Score selected); it adds a staged cosine-distance curriculum schedule; it integrates a multi-source DPO preference optimization objective for language fidelity; and it directly targets Kazakh, Mongolian, and Uyghur—languages for which arXiv:2410.07809's evaluation suite (XNLI, XCOPA, XStoryCloze, XWinograd, PAWS-X) provides zero coverage. The combination of continuous URIEL+ weighting, staged curriculum, precisely formulated multi-source DPO loss, and evaluation on three ACL 2025 benchmarks covering the target languages constitutes a principled and differentiated advance.",
+  "approach": "We propose Typologically-Weighted Multi-Pivot (TWMP) instruction tuning, which replaces PLUG's single-English pivot with a principled mixture over multiple source languages drawn from the Aya collection (513M instances across 114 languages).\n\nAya pivot coverage is verified before training: Turkish (high-resource, multi-million instances), Kyrgyz (~4.1M instances in the Aya collection language split), Uzbek (confirmed present as an underrepresented language with meaningful coverage), and Azerbaijani all qualify as pivot sources. A minimum threshold of 5,000 Aya instances per pivot language is enforced; languages below this threshold are excluded from the mixture. All qualifying pivot languages and their instance counts are reported in an appendix table. Kazakh, Mongolian, and Uyghur serve exclusively as evaluation targets and are never included in the pivot mixture.\n\nTypological distances are computed using URIEL+ (arXiv:2409.18472, COLING 2025; available via the urielplus Python library at github.com/Masonshipton25/URIELPlus) rather than the legacy lang2vec 289-dimensional binary features. URIEL+ expands coverage to 4,366 languages with approximately 800 features (607 grammar features covering syntactic and morphological dimensions, plus 193 sound features), and applies SoftImpute for missing-value imputation—critical for reducing sparsity in Kazakh, Uzbek, and Kyrgyz, where legacy URIEL features are known to be sparse. URIEL+ explicitly represents Kazakh's multi-script properties (Cyrillic, Latin, and Arabic) via script vectors. Following 'Less is More' (arXiv:2509.20129, EMNLP 2025), which demonstrates that a Laplacian Score 300-feature subset of URIEL+ achieves Spearman ρ=0.358 on typological alignment tasks versus ρ=0.260 for the full 800-feature set while also improving downstream cross-lingual NLP performance, we apply this feature selection before computing cosine distances. Data-sampling weights are assigned inversely proportional to these 300-feature URIEL+ cosine distances, so morphologically close pivots such as Turkish or Uzbek for Kazakh receive substantially higher weight than English.\n\nThe staged curriculum uses three phases calibrated by the empirical URIEL+ distance distribution of qualifying Aya pivot languages relative to each target language. Let D_25 and D_60 denote the 25th and 60th percentile distances from the target language to all qualifying Aya pivots (computed once, before training). Stage 1 (epochs 1–3): exclusively sources with cosine distance < D_25—for Kazakh, approximately ≤0.32, capturing Turkish, Kyrgyz, Uzbek, and Azerbaijani. Stage 2 (epochs 4–6): sources with distance < D_60 (approximately ≤0.56 for Kazakh), expanding to Russian, Arabic, and other mid-distance languages. Stage 3 (epochs 7–10): full mixture over all qualifying pivot languages with continuous inverse-distance weights. Thresholds are target-specific and computed from the actual Aya-pivot distance distribution; for Mongolian, where no Turkic pivot falls within D_25, the closest available Aya sources (Korean, Finnish, Turkish) are used across all three stages with correspondingly small weights—this distance-constrained Mongolian setting is a controlled finding of interest. Ablations compare: no curriculum (full weighted mixture from epoch 1), 2-stage (merging Stages 1–2), 3-stage (proposed), and linear interpolation between stages.\n\nThe CLO-style DPO preference optimization objective is precisely extended to the multi-source setting. For each source pivot language s_i and target language t, preference pairs are defined as: chosen = (x_{s_i}, y^w_t)—an instruction in source language s_i paired with a model-generated response identified as being in the target language t; rejected = (x_{s_i}, y^l_{s_i})—the same instruction paired with a model-generated response in source language s_i. This formulation promotes target-language responses to source-language instructions and differs from CLO's English-source objective in a critical respect: CLO's English-input pair (chosen=English response, rejected=target-language response) is designed to preserve English capability by penalizing cross-lingual output for English inputs. TWMP inverts this preference because the training goal is acquisition of cross-lingual target-language instruction following: for any source-language input, we want the model to respond in the target language. TWMP does not use CLO's second pair type (target-language input → prefer target-language response) because target-language training data is explicitly excluded.\n\nPreference pairs are constructed entirely without target-language labels via automatic language identification: given each source-language instruction x_{s_i}, we sample K=8 candidate responses from Qwen3.5-9B at temperature 0.7; apply fastText language identification (lid.176.bin) to each candidate; assign responses identified as the target language to the chosen pool and responses identified as the source language to the rejected pool; pair the highest-scoring chosen with the lowest-scoring rejected per instruction. Instructions yielding no target-language candidates in K=8 samples are discarded. As a mandatory prerequisite check, we run a 500-instruction probe per source-target language pair on the base Qwen3.5-9B and verify that target-language responses appear in >5% of K=8 samples; any pivot language pair failing this check is excluded from DPO training (falling back to SFT-weighted sampling only) for that target language. This probe is reported as a characterization result: for close Turkic pivots (Turkish→Kazakh), we expect the frequency to exceed 5% given Qwen3.5-9B's broad multilingual coverage; for distant pivots (English→Mongolian), the check may filter some source languages, which is informative about which pivots can drive DPO-based cross-lingual preference learning.\n\nWe apply QLoRA fine-tuning of Qwen3.5-9B (released February 2026; 248K-token vocabulary spanning 201 languages; the Qwen3.5 small series has 0.8B/2B/4B/9B variants—no 7B exists) on this weighted multi-pivot dataset, targeting Kazakh, Mongolian, and Uyghur as primary evaluation cases. Evaluation uses three ACL 2025 benchmarks: KazMMLU for Kazakh, MiLiC-Eval for all three targets across 9 tasks, and TUMLU for Kazakh and Uyghur within a controlled within-Turkic-family comparison. PLUG and CLO serve as primary baselines. Typological weighting ablations compare: full 800-feature URIEL+ vs. Laplacian-selected 300 features vs. syntax-only (474 features) vs. morphology-only (133 features) vs. the k-means discrete selection baseline from arXiv:2410.07809. Swahili serves as a held-out agglutinative generalization target not used during hyperparameter design. Note: TyDi QA covers Arabic, Bengali, Finnish, Indonesian, Japanese, Kiswahili, Korean, Russian, Telugu, and Thai—it does not include Kazakh, Mongolian, or Uyghur and is not used here.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100 (15–20 QLoRA runs × 10–13h each on Qwen3.5-9B, covering 3 primary target languages, PLUG/CLO baselines, URIEL+ sub-space ablations, curriculum schedule variants, and DPO prerequisite probe runs)",
+      "gpu_utilization": "LOW (~25–35%): GPU sits idle during code writing, debugging, data pipeline work, result analysis, and paper writing; runs are launched manually and often queue overnight",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$300 (200h × $1.50/h on Lambda Labs A100)",
+      "h100_equivalent": "~120h H100 (within ≤200 H100-hour budget constraint at typical A100/H100 performance ratio of ~0.6×)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~310h A100 (agent explores broader hyperparameter space with human approval gates; ~55% more runs than manual)",
+      "gpu_utilization": "MODERATE (~55–65%): agent queues follow-up experiments immediately after each run completes, filling GPU idle between human check-ins",
+      "timeline": "6–8 weeks",
+      "team": "1 researcher, ~30min/day check-in to approve experiment configs and review intermediate results",
+      "claude_api_cost": "~$150–250 (~1,500–2,500 conversation turns coordinating experiment scheduling, result parsing, and ablation planning)",
+      "estimated_gpu_cost": "~$465 (310h × $1.50/h)",
+      "h100_equivalent": "~186h H100 (within ≤200 H100-hour budget constraint at ~0.6× A100/H100 ratio, leaving ~14h headroom)",
+      "risk_note": "Choice of URIEL+ feature subspace (full 800-feature vs. Laplacian 300-feature vs. syntax-only) and the DPO prerequisite probe threshold require human judgment at key decision points; an automated agent may converge on a locally optimal weighting scheme that under-performs on the held-out Swahili generalization target"
+    },
+    "auto_research": {
+      "gpu_hours": "~600h A100 (3–5× more experiments: grid search over distance metrics, curriculum schedule shapes, LoRA rank/alpha, 5+ target languages including Swahili and Kyrgyz for generalization, plus replication runs)",
+      "gpu_utilization": "NEAR-ZERO idle—agent schedules jobs back-to-back across all target languages in parallel, launches follow-up ablations immediately on job completion, and runs nightly sweeps without human bottleneck",
+      "timeline": "5–10 days with 4× concurrent A100s; ~3 weeks on a single A100",
+      "team": "0 (initial setup of experiment configs, data paths, and evaluation harness only)",
+      "claude_api_cost": "~$400–650 (~4,000–6,500 turns for full experiment orchestration, result parsing, ablation tree exploration, and report drafting)",
+      "estimated_gpu_cost": "~$900 (600h × $1.50/h)",
+      "h100_equivalent": "~360h H100 — EXCEEDS the ≤200 H100-hour hard budget constraint. Auto_research mode is documented for completeness but is NOT a viable deployment option within the stated budget. Use manual mode (~120 H100h) or human_in_loop mode (~186 H100h) to remain within budget.",
+      "speed_bottleneck": "GPU count is the primary bottleneck: 4 concurrent A100s reduces wall-clock time to ~5 days; API rate limits become secondary when running >8 parallel experiment threads",
+      "risk_note": "CONSTRAINT VIOLATION: 600 A100h ≈ 360 H100h, exceeding the ≤200 H100-hour hard budget. Additionally, unconstrained exploration may overfit the URIEL+ weighting function to the 3 initial target languages; Swahili as a held-out agglutinative target is required to detect this overfitting early."
+    }
+  },
+  "target_venues": [
+    "ACL 2027 (ARR submission deadline August 3, 2026) — primary target; provides adequate time for validation on additional typological clusters beyond Turkic–Mongolic, and for a paper of this scope (multi-pivot curriculum + ablations + 3 evaluation benchmarks) that cannot realistically reach conference quality in under 6 weeks",
+    "EMNLP 2026 (ACL Rolling Review, rolling deadlines throughout 2026) — viable only if the team has prior QLoRA fine-tuning infrastructure already in place and can begin experiments immediately"
+  ],
+  "level": "solid",
+  "key_references": [
+    "PLUG: Leveraging Pivot Language in Cross-Lingual Instruction Tuning (ACL 2024) [29% improvement on Chinese/Korean/Italian/Spanish; Turkic/Mongolic gap is untested]",
+    "Cross-Lingual Optimization for Language Transfer in Large Language Models (CLO; ACL 2025, arXiv:2505.14297) [DPO-style cross-lingual preference optimization using English-only source and M2M100 translation; baseline and methodological reference for TWMP's multi-source DPO extension]",
+    "URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base (arXiv:2409.18472, COLING 2025) [~800-feature typological database covering 4,366 languages with SoftImpute for low-resource Turkic languages; replaces legacy lang2vec 289-dim URIEL in TWMP]",
+    "Less is More: The Effectiveness of Compact Typological Language Representations (arXiv:2509.20129, EMNLP 2025) [Laplacian Score 300-feature URIEL+ subset (ρ=0.358) outperforms full 800-feature URIEL+ (ρ=0.260) for typological alignment and downstream cross-lingual NLP; justifies TWMP's feature selection step]",
+    "Optimizing Language Models for Crosslingual Knowledge Consistency (arXiv:2603.04678; Tianyu Liu et al., March 2026) [concurrent DPO-inspired work targeting factual consistency across 26 languages and 9 LLMs—orthogonal to TWMP's language-fidelity DPO objective; differentiated in related work]",
+    "TIPA: Typologically Informed Parameter Aggregation (arXiv:2601.16629, EACL 2026 Findings) [training-free encoder adapter aggregation across 230+ languages—differentiated from TWMP's training-time decoder curriculum]",
+    "Linguistically-Informed Multilingual Instruction Tuning (arXiv:2410.07809) [discrete k-means language selection using legacy 289-dim URIEL TYPO features on BLOOM/mGPT/mT5—differentiated from TWMP's continuous URIEL+ weighting, staged curriculum, multi-source DPO, and Turkic/Mongolic targets]",
+    "KazMMLU: Evaluating Language Models on Kazakh, Russian, and Regional Knowledge of Kazakhstan (ACL 2025, arXiv:2502.12829) [primary Kazakh evaluation benchmark, 23K questions, peer-reviewed]",
+    "MiLiC-Eval: Benchmarking Multilingual LLMs for China's Minority Languages (ACL 2025 Findings, arXiv:2503.01150) [primary evaluation for Uyghur, Kazakh, Mongolian across 9 tasks]",
+    "TUMLU: A Unified and Native Language Understanding Benchmark for Turkic Languages (ACL 2025, arXiv:2502.11020) [38K questions for Kazakh, Uyghur, and other Turkic languages; within-family controlled comparison]",
+    "Multilingual Encoder Knows more than You Realize: Shared Weights Pretraining for Extremely Low-Resource Languages (arXiv:2502.10852) [encoder-based cross-lingual transfer for Tibetan/Uyghur/Kazakh/Mongolian; motivation for decoder LLM gap]",
+    "Family Matters: Language Transfer and Merging for Adapting Small LLMs to Faroese (arXiv:2510.00810, 2025)",
+    "Cross-Linguistic Transfer in Multilingual NLP: The Role of Language Families and Morphology (arXiv:2505.13908, 2025)",
+    "Multi-Linguistic LoRA Merging (NeurIPS 2025 ER Workshop) [workshop paper, not main conference]",
+    "Left Behind: Cross-Lingual Transfer as a Bridge for Low-Resource Languages in Large Language Models (arXiv:2603.21036, 2026) [supplementary qualitative observation; single-author preprint with 50 hand-crafted questions—not primary motivation anchor]"
+  ],
+  "description": "This paper introduces Typologically-Weighted Multi-Pivot (TWMP) instruction tuning, a method for adapting decoder LLMs to low-resource languages that are typologically distant from English. Rather than using a single English pivot as in PLUG, we compute typological distances using URIEL+ (arXiv:2409.18472, COLING 2025; urielplus Python library), which covers ~800 features across 4,366 languages with SoftImpute imputation—critical for low-resource Turkic languages where legacy lang2vec 289-dim URIEL is known to be sparse. Following 'Less is More' (arXiv:2509.20129, EMNLP 2025), we apply Laplacian Score feature selection to reduce URIEL+ to 300 compact features (Spearman ρ=0.358 vs. ρ=0.260 for the full 800-feature set) before computing cosine distances and assigning inverse-distance sampling weights over the Aya collection. Aya pivot coverage is verified: Turkish (multi-million instances), Kyrgyz (~4.1M instances), and Uzbek all clear a 5,000-instance minimum threshold; Kazakh, Mongolian, and Uyghur are evaluation-only targets excluded from the pivot pool. A staged 3-phase curriculum progressively introduces more distant pivots using percentile thresholds computed from the empirical URIEL+ distance distribution of qualifying Aya pivots per target: Stage 1 (epochs 1–3) uses sources within the 25th percentile distance threshold (~≤0.32 for Kazakh, capturing Turkish/Kyrgyz/Uzbek/Azerbaijani); Stage 2 (epochs 4–6) expands to the 60th percentile (~≤0.56); Stage 3 (epochs 7–10) uses the full weighted mixture. The DPO preference optimization objective is precisely formulated for the multi-source case: for source pivot s_i and target t, chosen = (instruction in s_i, model-generated response in t); rejected = (instruction in s_i, model-generated response in s_i). This inverts CLO's English-input pair direction—CLO prefers English responses to English inputs (preserving English capability), while TWMP prefers target-language responses to any source-language input (promoting cross-lingual instruction following). Pairs are auto-constructed by sampling K=8 responses per instruction from Qwen3.5-9B and applying fastText language identification, requiring no target-language training labels. A mandatory 500-instruction prerequisite probe verifies >5% target-language response frequency per source-target pair; pairs failing this check fall back to SFT-only. Concurrent work 'Optimizing Language Models for Crosslingual Knowledge Consistency' (arXiv:2603.04678, March 2026) uses DPO for factual consistency across 26 languages—orthogonal in objective (knowledge coherence vs. language fidelity) and not addressing low-resource instruction tuning. Two directly adjacent works are carefully differentiated: TIPA (EACL 2026) aggregates MAD-X encoder adapters at inference time without training; arXiv:2410.07809 uses k-means on legacy 289-dim URIEL for discrete language selection on BLOOM/mGPT with zero Kazakh/Mongolian/Uyghur coverage. We fine-tune Qwen3.5-9B with QLoRA (248K-token vocabulary, 201 languages; 0.8B/2B/4B/9B series—no 7B variant), targeting Kazakh, Mongolian, and Uyghur, evaluated on KazMMLU, MiLiC-Eval, and TUMLU (all ACL 2025). Ablations cover full URIEL+ vs. Laplacian-300 vs. syntax-only vs. morphology-only vs. k-means discrete baseline; curriculum variants; DPO vs. SFT-only. Swahili is the held-out agglutinative generalization target. Manual mode (200 A100h ≈ 120 H100h) and human-in-loop mode (310 A100h ≈ 186 H100h) stay within the ≤200 H100-hour budget; auto_research mode (600 A100h ≈ 360 H100h) exceeds the constraint and is not viable within budget. ACL 2027 (ARR August 3, 2026) is the primary target venue.",
+  "project_name": "typological_multi_pivot",
+  "source": "web_research"
+}
+```
+
+---
+
+**Summary of changes (major revision):**
+
+**Two SIGNIFICANT blockers resolved:**
+
+1. **Multi-source DPO formulation** — Now precisely specified. For source pivot s_i → target t: chosen = (instruction in s_i, Qwen-generated response in t); rejected = (instruction in s_i, Qwen-generated response in s_i). Pairs are auto-constructed by sampling K=8 responses and applying fastText language identification — no target-language labels required. Critically distinguishes the inversion from CLO's English-input pair (CLO prefers English responses to preserve English; TWMP prefers target responses to promote cross-lingual transfer). Added mandatory 500-instruction prerequisite probe verifying >5% target-language response frequency per source-target pair before DPO training begins.
+
+2. **URIEL → URIEL+** — Legacy 289-dim lang2vec replaced with URIEL+ (~800 features, 4,366 languages, SoftImpute imputation for sparse Turkic languages). Laplacian Score feature selection to 300 features justified by "Less is More" (EMNLP 2025) showing ρ=0.358 vs. ρ=0.260 for the full set. Both papers added to key_references. Ablation suite updated to compare full-800 vs. Laplacian-300 vs. syntax-only vs. morphology-only.
+
+**Three MODERATE issues resolved:**
+
+3. **Curriculum schedule concretized** — 3 stages at epochs 1–3 / 4–6 / 7–10 with thresholds at the 25th and 60th percentile of the URIEL+ distance distribution of qualifying Aya pivots per target language. Approximate values given for Kazakh (D_25 ≈ 0.32, D_60 ≈ 0.56). Ablations specified.
+
+4. **DCO differentiated** — Added to landscape as concurrent work. Objective distinction: DCO targets factual consistency (what the model says across languages); TWMP's DPO targets language fidelity (which language it responds in). Added to key_references.
+
+5. **Auto_research budget violation flagged** — 600 A100h ≈ 360 H100h explicitly marked as exceeding the ≤200 H100-hour constraint with bold warning. Manual (~120 H100h) and human-in-loop (~186 H100h) confirmed within budget.
+
+**One MINOR issue resolved:**
+
+6. **Aya Turkic coverage verified** — Turkish (multi-million), Kyrgyz (~4.1M), Uzbek (confirmed present) all verified. Minimum 5,000-instance threshold added. Appendix table for pivot-language instance counts specified.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93aa24c1-26c0-47c6-88e0-0608c2800368",
+  "isSidechain": false,
+  "requestId": "req_011CatTJVWThUxbTQwxmy6As",
+  "type": "assistant",
+  "uuid": "ca1bddf2-4bdf-48b4-a018-26f78bc80744",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NuGBmrsoaM4WwGa4d1xjnG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11627,
+      "cache_read_input_tokens": 38614,
+      "output_tokens": 14578,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 14578,
+          "cache_read_input_tokens": 38614,
+          "cache_creation_input_tokens": 11627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruc…",
+  "leafUuid": "ca1bddf2-4bdf-48b4-a018-26f78bc80744",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DPO formulation for multi-source instruction tuning",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Typologically-Weighted Multi-Pivot Curriculum for Low-Resource Instruc…",
+  "leafUuid": "ca1bddf2-4bdf-48b4-a018-26f78bc80744",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DPO formulation for multi-source instruction tuning",
+  "sessionId": "5ab4f45b-5a17-4feb-9157-c35c51167e6c"
+}
+```
+
+---

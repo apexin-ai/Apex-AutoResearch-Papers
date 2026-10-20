@@ -1,0 +1,588 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1491216c1dc00e6d75c5",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-21T07:46:16.177Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Maa3JREax8G7UWi7ExH4zL",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "qwen7b_full_trace_seed456",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "trace-verdict-study",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --gradient_checkpointing --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456",
+                  "server": "westd-11235",
+                  "gpu": [
+                    "cuda:1"
+                  ],
+                  "pid": "683873",
+                  "log_path": "~/runs/trace-verdict-study/qwen7b_full_trace_seed456.log",
+                  "submitted_at": "2026-05-21T15:41:46Z",
+                  "submitted_via": "tmux",
+                  "backend": "tmux",
+                  "account": "root",
+                  "data_path": "/root/autodl-tmp/trace-verdict-study-data/",
+                  "data_count": 4720,
+                  "model_name": "Qwen2.5-Coder-7B-Instruct",
+                  "seed": 456
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1dfb6cc-14e6-4bef-bdf0-c04a7c18f8e9",
+            "isSidechain": false,
+            "requestId": "req_011CbFLqq7odtNS4nX72o2N9",
+            "type": "assistant",
+            "uuid": "c0f0472d-893d-48da-8820-a3bd35384d7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+            "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hn2zP2w939BmyCyNPZZYkG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2071,
+                "cache_read_input_tokens": 95668,
+                "output_tokens": 821,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2071,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 821,
+                    "cache_read_input_tokens": 95668,
+                    "cache_creation_input_tokens": 2071,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2071
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-21T07:46:17.649Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Maa3JREax8G7UWi7ExH4zL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4097}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0f0472d-893d-48da-8820-a3bd35384d7d",
+            "isSidechain": false,
+            "promptId": "4f536853-02fa-4df6-89b1-27e32d2796c6",
+            "type": "user",
+            "uuid": "9d87f628-da0f-405e-a273-865520c85b14",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4097}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 1.4097}}"
+              }
+            },
+            "sourceToolAssistantUUID": "c0f0472d-893d-48da-8820-a3bd35384d7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+            "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-21T07:46:22.215Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "These experiments have a `parent` field set, so the registry treats them as eval experiments and requires checkpoint_source and eval_data. Let me add those fields.",
+              "signature": "EukCCmMIDRgCKkCQtM6GjhkN+gbYvC2GQYbDKYDHEG9wpPWYCfDPuKsV/CM79NrqsdWJwBqosgaf8qsgjM1BOVdLQKhOxtqn/POIMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDGKHh+4ElegboyWCOhoMajybfNMBpEHG7oZ6IjCGiNGk1yuQIQ4yx4viwZuHnBy+K7DPFSBQF/IBQMWhyws8dG/3iLro02UG2NgzV6oqswEdSkqsKyknLtQCv1f+ie+ukpzX6LhtbEVMyStkUbfbR+P3WMWaPc/CHypetmge1mnPm9yGzQDJFDoKMUsWniTfkzz/vP/P1VtqFuX725cdWbNdv4ocAsa4zvjqMWy6xbFHklBNO1K+Lnt4dfnDsgET4Q1mV1EPWVcInolpAbYSTP/rfQJqcTjzVr9PGoQtL+L3+4oyiE7TBFVNvqL4AhkHlHv+OYqPaQc7wy2H4qF4+XstzhgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d87f628-da0f-405e-a273-865520c85b14",
+            "isSidechain": false,
+            "requestId": "req_011CbFLrhq2txkx6tyEMcGKx",
+            "type": "assistant",
+            "uuid": "31b6124f-3d55-4879-b5a9-ee83e0b4149a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+            "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JmRx1SArGkWbCbNLc7YQXw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1058,
+                "cache_read_input_tokens": 97739,
+                "output_tokens": 932,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1058,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 932,
+                    "cache_read_input_tokens": 97739,
+                    "cache_creation_input_tokens": 1058,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1058
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-21T07:46:26.065Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JTLjKwsY1J8WuKvZqYCtVp",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "qwen7b_full_trace_seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "trace-verdict-study",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python train/train_sft.py --condition full_trace --gpu 0 --seed 123 --gradient_checkpointing --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed123",
+                  "server": "westd-11235",
+                  "gpu": [
+                    "cuda:0"
+                  ],
+                  "pid": "683796",
+                  "log_path": "~/runs/trace-verdict-study/qwen7b_full_trace_seed123.log",
+                  "submitted_at": "2026-05-21T15:41:44Z",
+                  "submitted_via": "tmux",
+                  "backend": "tmux",
+                  "account": "root",
+                  "data_path": "/root/autodl-tmp/trace-verdict-study-data/",
+                  "data_count": 4720,
+                  "model_name": "Qwen2.5-Coder-7B-Instruct",
+                  "seed": 123,
+                  "checkpoint_source": "self-trained",
+                  "eval_data": "full_trace_test.jsonl (1190 samples)"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31b6124f-3d55-4879-b5a9-ee83e0b4149a",
+            "isSidechain": false,
+            "requestId": "req_011CbFLrhq2txkx6tyEMcGKx",
+            "type": "assistant",
+            "uuid": "d7ee48a5-7097-40e6-8b8b-38af9c369450",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+            "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JmRx1SArGkWbCbNLc7YQXw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1058,
+                "cache_read_input_tokens": 97739,
+                "output_tokens": 932,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1058,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 932,
+                    "cache_read_input_tokens": 97739,
+                    "cache_creation_input_tokens": 1058,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1058
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-21T07:46:28.123Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JTLjKwsY1J8WuKvZqYCtVp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen7b_full_trace_seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T07:29:49.744Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:46:26.686Z\\\", \\\"hypothesis\\\": \\\"Qwen-7B full_trace seed123 应在 ~81% 附近（与 seed42=81.76% 一致），为 MF-3 multi-seed 要求补齐 full_trace 方差估计。full_trace 是 C2 \\\\\\\"more info hurts\\\\\\\" claim 的锚点，单 seed 在 review 中被标记为风险。\\\", \\\"parent\\\": \\\"full_trace_seed42_v5\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-21T07:30:12.716Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed123 && python eval/evaluate.py --condition full_trace --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123/final --gpu 0 --save_predictions\\\\\\\"\\\", \\\"code_commit\\\": \\\"e404237ccc765768e267d4d6fd3c89549dcf41a4\\\", \\\"finished_at\\\": \\\"2026-05-21T07:32:48.610Z\\\", \\\"training_hours\\\": 0.04}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 592.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 529.56 MiB is free. Including non-PyTorch memory, this process has 46.43 GiB memory in use. Of the allocated memory 45.00 GiB is allocated by PyTorch, \\\", \\\"completed_at\\\": \\\"2026-05-21T07:32:51.653Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:32:55.588576+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python train/train_sft.py --condition full_trace --gpu 0 --seed 123 --gradient_checkpointing --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed123\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"683796\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen7b_full_trace_seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T15:41:44Z\\\", \\\"submitted_via\\\": \\\"tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"full_trace_test.jsonl (1190 samples)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0438}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7ee48a5-7097-40e6-8b8b-38af9c369450",
+            "isSidechain": false,
+            "promptId": "4f536853-02fa-4df6-89b1-27e32d2796c6",
+            "type": "user",
+            "uuid": "fc6b9ea7-736c-447f-8dcf-3e60a15a6efa",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen7b_full_trace_seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T07:29:49.744Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:46:26.686Z\\\", \\\"hypothesis\\\": \\\"Qwen-7B full_trace seed123 应在 ~81% 附近（与 seed42=81.76% 一致），为 MF-3 multi-seed 要求补齐 full_trace 方差估计。full_trace 是 C2 \\\\\\\"more info hurts\\\\\\\" claim 的锚点，单 seed 在 review 中被标记为风险。\\\", \\\"parent\\\": \\\"full_trace_seed42_v5\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-21T07:30:12.716Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed123 && python eval/evaluate.py --condition full_trace --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123/final --gpu 0 --save_predictions\\\\\\\"\\\", \\\"code_commit\\\": \\\"e404237ccc765768e267d4d6fd3c89549dcf41a4\\\", \\\"finished_at\\\": \\\"2026-05-21T07:32:48.610Z\\\", \\\"training_hours\\\": 0.04}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 592.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 529.56 MiB is free. Including non-PyTorch memory, this process has 46.43 GiB memory in use. Of the allocated memory 45.00 GiB is allocated by PyTorch, \\\", \\\"completed_at\\\": \\\"2026-05-21T07:32:51.653Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:32:55.588576+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python train/train_sft.py --condition full_trace --gpu 0 --seed 123 --gradient_checkpointing --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed123\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"683796\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen7b_full_trace_seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T15:41:44Z\\\", \\\"submitted_via\\\": \\\"tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"full_trace_test.jsonl (1190 samples)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0438}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen7b_full_trace_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T07:29:49.744Z\", \"updated_at\": \"2026-05-21T07:46:26.686Z\", \"hypothesis\": \"Qwen-7B full_trace seed123 应在 ~81% 附近（与 seed42=81.76% 一致），为 MF-3 multi-seed 要求补齐 full_trace 方差估计。full_trace 是 C2 \\\"more info hurts\\\" claim 的锚点，单 seed 在 review 中被标记为风险。\", \"parent\": \"full_trace_seed42_v5\", \"server\": \"westd-11235\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-21T07:30:12.716Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --seed 123 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed123 && python eval/evaluate.py --condition full_trace --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123/final --gpu 0 --save_predictions\\\"\", \"code_commit\": \"e404237ccc765768e267d4d6fd3c89549dcf41a4\", \"finished_at\": \"2026-05-21T07:32:48.610Z\", \"training_hours\": 0.04}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 592.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 529.56 MiB is free. Including non-PyTorch memory, this process has 46.43 GiB memory in use. Of the allocated memory 45.00 GiB is allocated by PyTorch, \", \"completed_at\": \"2026-05-21T07:32:51.653Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:32:55.588576+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python train/train_sft.py --condition full_trace --gpu 0 --seed 123 --gradient_checkpointing --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed123\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"683796\", \"log_path\": \"~/runs/trace-verdict-study/qwen7b_full_trace_seed123.log\", \"submitted_at\": \"2026-05-21T15:41:44Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 123, \"checkpoint_source\": \"self-trained\", \"eval_data\": \"full_trace_test.jsonl (1190 samples)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0438}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d7ee48a5-7097-40e6-8b8b-38af9c369450",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+            "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-21T07:46:29.049Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0169CmMsjYEktAvPEWjRNs7c",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "qwen7b_full_trace_seed456",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "trace-verdict-study",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --gradient_checkpointing --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456",
+                  "server": "westd-11235",
+                  "gpu": [
+                    "cuda:1"
+                  ],
+                  "pid": "683873",
+                  "log_path": "~/runs/trace-verdict-study/qwen7b_full_trace_seed456.log",
+                  "submitted_at": "2026-05-21T15:41:46Z",
+                  "submitted_via": "tmux",
+                  "backend": "tmux",
+                  "account": "root",
+                  "data_path": "/root/autodl-tmp/trace-verdict-study-data/",
+                  "data_count": 4720,
+                  "model_name": "Qwen2.5-Coder-7B-Instruct",
+                  "seed": 456,
+                  "checkpoint_source": "self-trained",
+                  "eval_data": "full_trace_test.jsonl (1190 samples)"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc6b9ea7-736c-447f-8dcf-3e60a15a6efa",
+            "isSidechain": false,
+            "requestId": "req_011CbFLrhq2txkx6tyEMcGKx",
+            "type": "assistant",
+            "uuid": "9e4e66fd-2afc-491b-9031-6c1f26f1c6a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+            "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JmRx1SArGkWbCbNLc7YQXw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1058,
+                "cache_read_input_tokens": 97739,
+                "output_tokens": 932,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1058,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 932,
+                    "cache_read_input_tokens": 97739,
+                    "cache_creation_input_tokens": 1058,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1058
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "9e4e66fd-2afc-491b-9031-6c1f26f1c6a8",
+                "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fix full_trace OOM with GPU isolation",
+                "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c"
+              }
+            }
+          ],
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-21T07:46:30.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0169CmMsjYEktAvPEWjRNs7c",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen7b_full_trace_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T07:29:51.585Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:46:29.585Z\\\", \\\"hypothesis\\\": \\\"Qwen-7B full_trace seed456 应在 ~81% 附近（与 seed42=81.76% 一致），为 MF-3 multi-seed 要求补齐 full_trace 方差估计。3-seed mean 将替换 Table 2 中的单 seed 值。\\\", \\\"parent\\\": \\\"full_trace_seed42_v5\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-21T07:30:20.277Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456 && python eval/evaluate.py --condition full_trace --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456/final --gpu 0 --save_predictions\\\\\\\"\\\", \\\"code_commit\\\": \\\"e404237ccc765768e267d4d6fd3c89549dcf41a4\\\", \\\"finished_at\\\": \\\"2026-05-21T07:33:03.046Z\\\", \\\"training_hours\\\": 0.05}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 225.56 MiB is free. Including non-PyTorch memory, this process has 94.74 GiB memory in use. Of the allocated memory 87.18 GiB is allocated by PyTorch, an\\\", \\\"completed_at\\\": \\\"2026-05-21T07:33:08.094Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:33:15.672357+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --gradient_checkpointing --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"683873\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen7b_full_trace_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T15:41:46Z\\\", \\\"submitted_via\\\": \\\"tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"full_trace_test.jsonl (1190 samples)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8476}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e4e66fd-2afc-491b-9031-6c1f26f1c6a8",
+            "isSidechain": false,
+            "promptId": "4f536853-02fa-4df6-89b1-27e32d2796c6",
+            "type": "user",
+            "uuid": "56b6bafe-3d01-4c78-8884-3fce65030084",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen7b_full_trace_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-21T07:29:51.585Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:46:29.585Z\\\", \\\"hypothesis\\\": \\\"Qwen-7B full_trace seed456 应在 ~81% 附近（与 seed42=81.76% 一致），为 MF-3 multi-seed 要求补齐 full_trace 方差估计。3-seed mean 将替换 Table 2 中的单 seed 值。\\\", \\\"parent\\\": \\\"full_trace_seed42_v5\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-21T07:30:20.277Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456 && python eval/evaluate.py --condition full_trace --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456/final --gpu 0 --save_predictions\\\\\\\"\\\", \\\"code_commit\\\": \\\"e404237ccc765768e267d4d6fd3c89549dcf41a4\\\", \\\"finished_at\\\": \\\"2026-05-21T07:33:03.046Z\\\", \\\"training_hours\\\": 0.05}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 225.56 MiB is free. Including non-PyTorch memory, this process has 94.74 GiB memory in use. Of the allocated memory 87.18 GiB is allocated by PyTorch, an\\\", \\\"completed_at\\\": \\\"2026-05-21T07:33:08.094Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T07:33:15.672357+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --gradient_checkpointing --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"683873\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen7b_full_trace_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T15:41:46Z\\\", \\\"submitted_via\\\": \\\"tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-7B-Instruct\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"full_trace_test.jsonl (1190 samples)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8476}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen7b_full_trace_seed456\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-21T07:29:51.585Z\", \"updated_at\": \"2026-05-21T07:46:29.585Z\", \"hypothesis\": \"Qwen-7B full_trace seed456 应在 ~81% 附近（与 seed42=81.76% 一致），为 MF-3 multi-seed 要求补齐 full_trace 方差估计。3-seed mean 将替换 Table 2 中的单 seed 值。\", \"parent\": \"full_trace_seed42_v5\", \"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-11235\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T07:30:20.277Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/trace-verdict-study && python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456 && python eval/evaluate.py --condition full_trace --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456/final --gpu 0 --save_predictions\\\"\", \"code_commit\": \"e404237ccc765768e267d4d6fd3c89549dcf41a4\", \"finished_at\": \"2026-05-21T07:33:03.046Z\", \"training_hours\": 0.05}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 4.64 GiB. GPU 0 has a total capacity of 94.97 GiB of which 225.56 MiB is free. Including non-PyTorch memory, this process has 94.74 GiB memory in use. Of the allocated memory 87.18 GiB is allocated by PyTorch, an\", \"completed_at\": \"2026-05-21T07:33:08.094Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:33:15.672357+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python train/train_sft.py --condition full_trace --gpu 0 --seed 456 --gradient_checkpointing --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed456 --wandb_project trace-verdict-study --wandb_run_name qwen7b_full_trace_seed456\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:1\"], \"pid\": \"683873\", \"log_path\": \"~/runs/trace-verdict-study/qwen7b_full_trace_seed456.log\", \"submitted_at\": \"2026-05-21T15:41:46Z\", \"submitted_via\": \"tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-7B-Instruct\", \"seed\": 456, \"checkpoint_source\": \"self-trained\", \"eval_data\": \"full_trace_test.jsonl (1190 samples)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8476}}"
+              }
+            },
+            "sourceToolAssistantUUID": "9e4e66fd-2afc-491b-9031-6c1f26f1c6a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+            "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-21T07:46:49.636Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已成功提交并更新 registry 为 RUNNING。\n\n**汇报：**\n\n| 实验 | PID | GPU | 显存占用 | 利用率 | 速度 |\n|------|-----|-----|---------|--------|------|\n| seed123 | 683796 | GPU 0 (CUDA_VISIBLE_DEVICES=0) | 41,182 MiB | 100% | ~16.5s/step |\n| seed456 | 683873 | GPU 1 (CUDA_VISIBLE_DEVICES=1) | 41,182 MiB | 98% | ~20s/step (稳定后应与 seed123 持平) |\n\n**OOM 根因及修复：**\n- 之前两个进程都没有 `CUDA_VISIBLE_DEVICES`，全部落在物理 GPU 0 上，且缺少 `--gradient_checkpointing`\n- 现在用 `CUDA_VISIBLE_DEVICES=0/1` 严格隔离 + `--gradient_checkpointing` + `/root/miniconda3/bin/python`\n\n**额外清理：**\n- Kill 了一个自动重试机制产生的幽灵进程（PID 683229，从 hook on_failed 触发的串行脚本）\n- Kill 了该脚本试图启动的第二个幽灵进程（PID 684859）\n\n**预计完成时间：**\n- 444 steps/epoch × 3 epochs = 1,332 steps × ~16.5s/step ≈ 6.1 小时\n- 训练完成：约 UTC 21:50（北京时间 05:50）\n- 加上 eval 约 30 分钟，总计约 22:20 UTC"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56b6bafe-3d01-4c78-8884-3fce65030084",
+            "isSidechain": false,
+            "requestId": "req_011CbFLsgMG5ngZoMVnBeGMg",
+            "type": "assistant",
+            "uuid": "6868d5ad-b1b5-4ef7-9baf-95e70679c8d5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+            "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NqjHQNTKJ9MK4rQs6US6d1",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3302,
+                "cache_read_input_tokens": 98797,
+                "output_tokens": 478,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3302,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 478,
+                    "cache_read_input_tokens": 98797,
+                    "cache_creation_input_tokens": 3302,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3302
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "6868d5ad-b1b5-4ef7-9baf-95e70679c8d5",
+                "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c"
+              }
+            }
+          ],
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fix full_trace OOM with GPU isolation",
+                "sessionId": "5ddc9d29-cfea-45b8-aef1-6ce122eab05c"
+              }
+            }
+          ],
+          "id": "event-000186"
+        }
+      ]
+    }
+  ]
+}

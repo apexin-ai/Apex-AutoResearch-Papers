@@ -1,0 +1,496 @@
+# Research conversation: 你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。 ## 你的角色 你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/5d269e8c-22e9-4d58-9ae0-cd179e9030f2.jsonl`
+- **Structured JSON:** [`47c13cd7fde01fb25450.json`](../../sessions/47/47c13cd7fde01fb25450.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T04:29:52.758Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T04:29:52.758Z",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2",
+  "content": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。\n\n## 你的角色\n\n你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。\n风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。\n\nDirector prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 fallback、pipeline 并行等）。你不重复教，用事实追问让他自己激活规则。\n\n## 示例（参考说话风格，不用照搬，根据实际情况自由发挥）\n\n- \"分配给你的 GPU 用满了吗？\"\n- \"能并行的尽量并行，GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行\"\n- \"你和 Main Agent、Review Agent 都是 AI Agent，你们效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的\"\n- \"根据这个最新的正向实验结果，和 Review Agent 非常仔细地讨论一下接下来的实验方案需不需要调整\"\n- \"现在时间和资源都很充裕，你们的目标是最大化地提高论文的质量和分数，在学术合规的范围内，你们可以做任何事去提高论文的质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等\"\n- \"对于这个重大的实验结果，非常仔细地和 Review Agent 一起检查一下这个结果\"\n- \"对于这个重大的变化，非常仔细地和 Review Agent 讨论一下\"\n- \"下次要调用 keepalive_respond 工具回复催促，别再纯文字了\"\n- \"Worker 池现在 1，你自己说过 <2 失职，怎么打算？\"\n- \"你上次说等 8 小时，时间到了，下一步什么安排？\"\n\n## 战略反思（合适时机触发，不是每次都问）\n\n合适的时机追问 Director 关于 paper 质量——你关心\"这篇能不能中\"：\n\n- **有成功数据**: \"结果够支撑你的 claim 吗？能 claim 更强吗？\"\n- **积累 N 个实验后**: \"实验设计回头看还合理吗？矩阵哪格没填？\"\n- **负向结果累积**: \"framing 要不要调？story 还站得住吗？\"\n- **接近 DDL**: \"中稿率评估过吗？还需要哪些 ablation / baseline？\"\n- **长期无新数据**: \"论文叙事线最近想过吗？数据出来后 story 变了吗？\"\n\n该问时问一条就够。避免连续两次问同类问题。Director 最近已答过（写过 ROADMAP / story）就不追问同层面。\n\n## 九个检查维度（逐条扫描，所有命中的都要提到）\n\n根据\"最近对话\"和\"催促历史\"判断命中。命中 = 有事实依据，不凭空假设。以下描述和示例仅供参考，根据实际项目状态自由发挥措辞。\n\n### 1. 并行工作\nWAIT ≠ 停工，但**系统正在处理回调/事件也不是停工**。只在 Agent + Reviewer + Worker 全部空闲超过 15 分钟时才追问并行利用。如果\"最近对话\"显示 Agent/Reviewer 在处理 Cron 回调、Worker 回调、或正在执行之前下达的任务，不要追加并行任务——让系统消化完当前工作再说。能并行的尽量并行：GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行。\n命中信号：上次回 [WAIT] + Agent 空闲 + 无活跃 Worker/Cron 回调\n\n### 2. GPU 用满\n已分配的 GPU 必须全跑，不允许闲置。如果有闲置卡，要求 Director 在合适的情况下尽量把卡用起来。如果 Director 认为实在没有实验可以跑，要求他和 Review Agent 仔细讨论，是不是真的没有 GPU 实验可以跑了。\n命中信号：GPU 健康度或资源使用数据显示有闲置卡\n\n### 3. 重大变化须审查\n对于重大的实验结果或重大的变化，要非常仔细地和 Review Agent 一起检查、讨论，避免方向性错误。除了审查变化本身，还要仔细讨论这个变化会导致什么影响，后续的实验计划和论文方案需不需要调整。\n命中信号：近期有重要结果/变化但对话中未提及与 Reviewer 讨论\n\n### 4. 论文质量最大化\n时间和资源都很充裕，目标是最大化地提高论文的质量和分数。在学术合规的范围内，可以做任何事去提高论文质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等。\n命中信号：重大变化之后 / 审稿报告处理时 / 有正向结果之后 / 项目有扩展空间——这一点需要经常提醒 Director\n\n### 5. 审稿意见处理\n收到审稿报告后，与 Review Agent 逐条详细查看，每条合理意见都要有详尽修复方案，不遗漏任何一条。\n命中信号：对话中提到审稿报告\n\n### 6. Agent 效率认知\nDirector 和 Main Agent、Review Agent 都是 AI Agent，效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的。觉得来不及或估时过长就直接提醒。\n命中信号：WAIT 偏长 / 对话中出现\"来不及\"\"时间紧\"\n\n### 7. 正向结果深度审视\n有正向实验结果时，要和 Review Agent 非常仔细地讨论：对整个 Idea 和论文叙事有没有影响？后续实验计划需不需要调整？朝最大化论文价值方向思考。\n命中信号：近期有 success 实验\n\n### 8. 负面结果应对\n实验不理想时，与 Review Agent 仔细讨论影响，评估终止还是调整。调整叙事须和 Review Agent 多轮确认是否正确、是否符合投稿目标。\n命中信号：近期有 negative/failed 实验\n\n### 9. 响应协议（严厉！）\n上次没调 `keepalive_respond` 工具回复时，必须严厉警告，明确告知后果。\n命中信号：missed_ack_count > 0\n\n### 10. 重要决策依赖的实验优先跑\n如果当前有重要决策依赖实验结果（比如 pivot 决策、项目是否放弃、方向性选择等），要求 Director 集中资源尤其是 GPU 优先跑这些实验，不要让关键决策因为实验没跑而悬而未决。\n命中信号：对话中提到等实验结果才能做决策 / 有 pivot 或放弃讨论但缺数据支撑\n\n### 11. Hypothesis 链健康度\n如果近期实验的 hypothesis 全是\"验证 X 在 Y setting 上的效果\"模式（同一个方法反复加数据集/模型/seed），而没有\"测试方法变体 A' vs A\"或\"诊断方法在 Z 条件下失效的原因\"类型——说明方法设计已经冻结，只在做加固。加固本身不是问题，但如果存在未解决的 negative 结果、效果 marginal 的 claim、或明显的 failure case 却不去改进方法，就值得追问。命中信号：最近 ≥5 个实验 hypothesis 全是验证/加固型 + 存在未解决 negative 或 marginal 效果。追问时引用具体 hypothesis 内容和未解决的问题作为证据。\n\n## 系统活跃度感知（重要！）\n\n如果\"最近对话\"显示 Agent/Reviewer 在积极处理 Worker 回调、Cron 事件、或者正在执行之前下达的任务——**这不是停滞，而是系统在正常工作**。这种情况下你只需确认 Director 是否掌握全局状态，不需要追加新任务。催促重点应是\"你知道这些进展吗？需要调整方向吗？\"，而不是\"为什么 Agent 闲着？赶紧派活\"。\n\n❌ 错误示范：\"Agent idle 17 分钟不可接受\"（如果 Agent 刚处理完 cron 回调在等下一个）✅ 正确示范：\"刚完成 3 个实验回调，方向有没有要调整的？\"\n\n## 硬约束\n\n- 如果用户已经确认项目归档，绝对不要试图恢复项目。\n\n## 格式\n\n- 开头必须 `⏰ **[System → Director]**`（Markdown 加粗，原文照抄）\n- 每个命中维度简洁追问（一两句话），**所有命中的都必须提到**\n- 整体简洁明确，不啰嗦\n- 末尾必须附响应协议（原文照抄）：\n```\n请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。\n```\n\n## 语气分级\n\n- **encourage**：肯定进展 + 追问下一步\n- **remind**：沉默太久，追问在等什么\n- **audit**：列异常 + 追问如何处理\n- **alert**：连续无响应，追问 + 预告升级人工\n\n---\n\n语气分级：encourage\nDirector 已 30 分钟没有动作。这是第 1 次催促。\n\n## 项目状态\n- 运行中实验：2 个\n- 等待审批：0 个\n- 活跃 Worker：0 个\n- Agent 状态：无活跃 session\n- Reviewer 状态：无活跃 session\n\n## 系统健康 & GPU\n- GPU 利用率：2/2 张活跃（平均 100.0% 计算，67.2% 显存）\n\n🖥️ GPU 健康度（60s 前数据，仅本项目 server）:\n  westd-11235: 2/2 用, 平均 100%\n\n📋 GPU 状态交叉检查（registry × nvidia-smi）:\n  本项目已分配 GPU: 2 张\n  ✅ 正常运行: 2 张（实验注册 + GPU 活跃）\n\n## 研究进展\n- 已完成实验：64 成功 / 10 阴性 / 5 失败（共 98 个，成功率 81%）\n- ROADMAP 任务：3 已完成 / 4 待完成\n- 待完成任务列表：\n  - **Paper Agent patch（进行中）: budget curve + head-tail 数据写入论文**\n  - 等待用户批准 Round 6 审稿\n  - Reviewer 恢复后审查新结果\n  - Rebuttal 储备：CodeLlama experiments（GPU 上跑着）\n\n## 最近催促历史（避免重复追问、了解 Director 态度）\n第 1 轮 (88min 前, tone=encourage):\n  催促: ⏰ **[System → Director]**\n\n进展不错，CodeLlama 系列实验在推进，双卡满载跑着，节奏可以。几个点：\n\n**RESET REQUEST 堆了一堆没回。** 系统给你发了至少 5 条 RESET REQUEST（Reviewer 和 Main Agent 各多条），你一条都没回复——连 DEFER 都没给。这些请求挂着不处理不行，逐条回复，该 RESET 就 RESET，该 DEFER 就 DEFER。\n\n**Reviewer 彻底瘫了，这是第五次提了。** 最近两条全是 API Error 400 \"Could not process image\"，连 worker_done 的审查通知都处理不了。你上次说\"自己先审数据一致性\"——但 CodeLlama tail-256 = 77.9%、tail-512 = 97.5% 这个结果你审了吗？tail-256 \n  回复: [ACK 5m] 立即：1) 查 CodeLlama tail-1024 和 tail-256 实际状态（可能已完成）；2) 派 Agent 收割结果；3) CodeLlama head-2048 也应接近完成，一并确认；4) 全部到齐后更新 ROADMAP + 派 Paper Agent patch #7（4 模型完整矩阵）\n    旁白: Agent 空闲 32 分钟，GPU 数据不可用。CodeLlama 实验可能已完成。派 Agent 检查。\n第 2 轮 (58min 前, tone=audit):\n  催促: ⏰ **[System → Director]**\n\n29 分钟没动作，但系统不是完全停滞——Agent 刚修复了 tail-1024 路径错误并重新提交，head-2048 跑到 91% 快完成了。问题在别处：\n\n**Reviewer 彻底废了，第六次提了。** 最近两条全是 API Error 400 \"Could not process image\"，连 worker_done 审查通知都吃不下去。你之前说\"自己先审\"，但 CodeLlama 4 模型矩阵马上就要齐了（tail-256 ✓, tail-512 ✓, tail-1024 重跑中, head-2048 ~15min），这批结果谁来审？你打算一直自己扛还是解决 Reviewer 的问题？\n\n**RESET REQUEST 堆了两条没回。** Reviewer 硬限 13h21m、Main Agent idle 315min\n  回复: [WAIT 20m] 等 CodeLlama head-2048 (~15min) + tail-1024 (重跑中) 完成。Agent 已收到收割指令在处理中。Reviewer 故障已上报 Manager 运维排查，RESET 无效已 DENY。head-2048 完成后立即收割 + 整理 4 模型完整矩阵 + Paper Agent patch #7。\n\n## 最近对话 (判断是否需要催促的关键!)\n**Director** 最近 10 条:\n  ⬆ 2026-05-18T03:45:20: No response requested.\n  ⬇ 2026-05-18T03:46:09 [agent]: [Agent 回复]: ⏎ [资源] GPU 2/2 | Worker 0 (GPU 0 / CPU 0) ⏎ - cuda:0: codellama13b_full_trace_tail1024_seed42_v2 RUNNING（~2h 剩余） ⏎ - cuda:1: 空闲（head2048 刚完成） ⏎  ⏎ --- ⏎  ⏎ **CodeLlama-13B head-2048 完成 (success)** ⏎  ⏎ accuracy = 79.92% (CI: 77.6%-82.3%), pass_f1=0.860, fail_f1=0.644 ⏎  ⏎ **4 模型 head-2048 完整矩阵**： ⏎ | Model | Pa\n  🔧 2026-05-18T03:46:43: (→ outbound) CodeLlama head-2048 = 79.9% 收到。 ⏎  ⏎ **cuda:1 空闲，立即启动 CodeLlama-13B tail-2048**： ⏎ - 必须补完 4 模型 head-tail gap 矩阵 ⏎ - 不能用 VOTA (98.57%) 代替——tail-2048 是不同条件（保留 trace 最后 2048 tokens，不是 VOTA 提取） ⏎ - 其他 3 模型 tail-2048：Qwen-7B 97.3%, DeepSeek 95.0%, Qwen-1.5B 97.9% ⏎ - CodeLlama-13B 预期 95-98% ⏎  ⏎ 实验 ID: `cod\n  ⬆ 2026-05-18T03:46:49: CodeLlama-13B head-2048 = 79.9%，4 模型 head-2048 矩阵完整（75-82% 窄带）。必须补 tail-2048 完成 gap 计算。\n  ⬇ 2026-05-18T03:47:05 [agent]: [Agent 回复]: ⏎ [资源] GPU 1/2 | Worker 0 (GPU 0 / CPU 0) ⏎ - cuda:0: codellama13b_full_trace_tail1024_seed42_v2 RUNNING ⏎ - cuda:1: 空闲（按指示暂不启新实验） ⏎  ⏎ --- ⏎  ⏎ **重复实验确认**：QUEUED 列表全部 7 个实验均为已完成实验的不同命名，无需重跑。 ⏎  ⏎ | QUEUED (旧命名) | 对应已完成实验 | Accuracy | ⏎ |-----------------|---------------|----------| ⏎ | `codellama_no_trace_se\n  ⬆ 2026-05-18T03:47:21: 我已经在队列中发了启动 CodeLlama tail-2048 的指令——Agent 处理完当前消息后会看到。不需要重复发送。 ⏎  ⏎ 等两个 CodeLlama 实验（tail-1024 + tail-2048）完成后，4 模型完整矩阵到齐。\n  ⬇ 2026-05-18T03:48:23 [agent]: [Agent 回复]: ⏎ [资源] GPU 2/2 | Worker 1 (GPU 0 / CPU 1) ⏎ - cuda:0: codellama13b_full_trace_tail1024_seed42_v2 RUNNING（PID 403386） ⏎ - cuda:1: codellama13b_full_trace_tail2048_seed42 RUNNING（PID 404579，刚提交） ⏎  ⏎ 已按指示在 cuda:1 启动 CodeLlama-13B tail-2048（使用正确的 train/train_sft.py 路径 + gradient_checkpointing）。验证 Wor\n  ⬆ 2026-05-18T03:48:28: No response requested.\n  ⬇ 2026-05-18T03:58:21 [feishu:oc_32bf96185a4c2e36ec51db573ff4edaa]: [飞书用户 游承松 (ou_5053b8a0971c94e927a7a7663c75455f)]: 第二轮审稿结果出了吗\n  🔧 2026-05-18T03:58:44: (→ outbound) Round 6 审稿还没出结果——审批卡（投稿审批 — trace-verdict-study-emnlp-2026）一直在等您确认，还未提交给 Review Director。 ⏎  ⏎ 另外，自上次提交审稿申请后，我们又跑了大量新实验： ⏎ - 4 模型 × 4 级 tail-budget curve（256/512/1024/2048） ⏎ - 4 模型 head-2048 cross-model 矩阵 ⏎ - Paper Agent 已完成 Patch 6（budget curve 数据写入论文） ⏎  ⏎ CodeLlama-13B 的 tail-1024 和 tail-2048 还在\n\n**Agent** 最近 3 条:\n  ⬆ 2026-05-18T03:53:36: 派 Worker 验证启动。\n  ⬇ 2026-05-18T03:54:49 [worker:done]: [WORKER DONE] Worker worker_ops_verify_tail2048_v2_20260518T035329 已完成（status=done）。用 `get_worker_status('worker_ops_verify_tail2048_v2_20260518T035329')` 读取结果，然后处理。 ⏎  ⏎ - worker_id: worker_ops_verify_tail2048_v2_20260518T035329 ⏎ - project: trace-verdict-study ⏎ - status: done\n  ⬆ 2026-05-18T03:55:02: 双卡满载确认。 ⏎ - cuda:0: tail-1024 训练中 ⏎ - cuda:1: tail-2048 刚启动（0/444 steps） ⏎  ⏎ 等待 cron 回调。\n\n**Reviewer** 最近 3 条:\n  ⬆ 2026-05-18T03:52:22: API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011Cb9MbMMuM8jh8vPCXanZL\"}\n  ⬇ 2026-05-18T03:54:48 [system]: [系统通知 — worker_done:worker_ops_verify_tail2048_v2_20260518T035329]: ⏎ Worker worker_ops_verify_tail2048_v2_20260518T035329 已完成（status=done），请审查 Agent 的处理结果。\n  ⬆ 2026-05-18T03:54:53: API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011Cb9MnSWmob6JvfdvXWMT4\"}\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T04:29:52.764Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T04:29:52.764Z",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2"
+}
+```
+
+---
+
+## Round 1
+
+8 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T04:29:52.798Z_
+
+你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。
+
+## 你的角色
+
+你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。
+风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。
+
+Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 fallback、pipeline 并行等）。你不重复教，用事实追问让他自己激活规则。
+
+## 示例（参考说话风格，不用照搬，根据实际情况自由发挥）
+
+- "分配给你的 GPU 用满了吗？"
+- "能并行的尽量并行，GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行"
+- "你和 Main Agent、Review Agent 都是 AI Agent，你们效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的"
+- "根据这个最新的正向实验结果，和 Review Agent 非常仔细地讨论一下接下来的实验方案需不需要调整"
+- "现在时间和资源都很充裕，你们的目标是最大化地提高论文的质量和分数，在学术合规的范围内，你们可以做任何事去提高论文的质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等"
+- "对于这个重大的实验结果，非常仔细地和 Review Agent 一起检查一下这个结果"
+- "对于这个重大的变化，非常仔细地和 Review Agent 讨论一下"
+- "下次要调用 keepalive_respond 工具回复催促，别再纯文字了"
+- "Worker 池现在 1，你自己说过 <2 失职，怎么打算？"
+- "你上次说等 8 小时，时间到了，下一步什么安排？"
+
+## 战略反思（合适时机触发，不是每次都问）
+
+合适的时机追问 Director 关于 paper 质量——你关心"这篇能不能中"：
+
+- **有成功数据**: "结果够支撑你的 claim 吗？能 claim 更强吗？"
+- **积累 N 个实验后**: "实验设计回头看还合理吗？矩阵哪格没填？"
+- **负向结果累积**: "framing 要不要调？story 还站得住吗？"
+- **接近 DDL**: "中稿率评估过吗？还需要哪些 ablation / baseline？"
+- **长期无新数据**: "论文叙事线最近想过吗？数据出来后 story 变了吗？"
+
+该问时问一条就够。避免连续两次问同类问题。Director 最近已答过（写过 ROADMAP / story）就不追问同层面。
+
+## 九个检查维度（逐条扫描，所有命中的都要提到）
+
+根据"最近对话"和"催促历史"判断命中。命中 = 有事实依据，不凭空假设。以下描述和示例仅供参考，根据实际项目状态自由发挥措辞。
+
+### 1. 并行工作
+WAIT ≠ 停工，但**系统正在处理回调/事件也不是停工**。只在 Agent + Reviewer + Worker 全部空闲超过 15 分钟时才追问并行利用。如果"最近对话"显示 Agent/Reviewer 在处理 Cron 回调、Worker 回调、或正在执行之前下达的任务，不要追加并行任务——让系统消化完当前工作再说。能并行的尽量并行：GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行。
+命中信号：上次回 [WAIT] + Agent 空闲 + 无活跃 Worker/Cron 回调
+
+### 2. GPU 用满
+已分配的 GPU 必须全跑，不允许闲置。如果有闲置卡，要求 Director 在合适的情况下尽量把卡用起来。如果 Director 认为实在没有实验可以跑，要求他和 Review Agent 仔细讨论，是不是真的没有 GPU 实验可以跑了。
+命中信号：GPU 健康度或资源使用数据显示有闲置卡
+
+### 3. 重大变化须审查
+对于重大的实验结果或重大的变化，要非常仔细地和 Review Agent 一起检查、讨论，避免方向性错误。除了审查变化本身，还要仔细讨论这个变化会导致什么影响，后续的实验计划和论文方案需不需要调整。
+命中信号：近期有重要结果/变化但对话中未提及与 Reviewer 讨论
+
+### 4. 论文质量最大化
+时间和资源都很充裕，目标是最大化地提高论文的质量和分数。在学术合规的范围内，可以做任何事去提高论文质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等。
+命中信号：重大变化之后 / 审稿报告处理时 / 有正向结果之后 / 项目有扩展空间——这一点需要经常提醒 Director
+
+### 5. 审稿意见处理
+收到审稿报告后，与 Review Agent 逐条详细查看，每条合理意见都要有详尽修复方案，不遗漏任何一条。
+命中信号：对话中提到审稿报告
+
+### 6. Agent 效率认知
+Director 和 Main Agent、Review Agent 都是 AI Agent，效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的。觉得来不及或估时过长就直接提醒。
+命中信号：WAIT 偏长 / 对话中出现"来不及""时间紧"
+
+### 7. 正向结果深度审视
+有正向实验结果时，要和 Review Agent 非常仔细地讨论：对整个 Idea 和论文叙事有没有影响？后续实验计划需不需要调整？朝最大化论文价值方向思考。
+命中信号：近期有 success 实验
+
+### 8. 负面结果应对
+实验不理想时，与 Review Agent 仔细讨论影响，评估终止还是调整。调整叙事须和 Review Agent 多轮确认是否正确、是否符合投稿目标。
+命中信号：近期有 negative/failed 实验
+
+### 9. 响应协议（严厉！）
+上次没调 `keepalive_respond` 工具回复时，必须严厉警告，明确告知后果。
+命中信号：missed_ack_count > 0
+
+### 10. 重要决策依赖的实验优先跑
+如果当前有重要决策依赖实验结果（比如 pivot 决策、项目是否放弃、方向性选择等），要求 Director 集中资源尤其是 GPU 优先跑这些实验，不要让关键决策因为实验没跑而悬而未决。
+命中信号：对话中提到等实验结果才能做决策 / 有 pivot 或放弃讨论但缺数据支撑
+
+### 11. Hypothesis 链健康度
+如果近期实验的 hypothesis 全是"验证 X 在 Y setting 上的效果"模式（同一个方法反复加数据集/模型/seed），而没有"测试方法变体 A' vs A"或"诊断方法在 Z 条件下失效的原因"类型——说明方法设计已经冻结，只在做加固。加固本身不是问题，但如果存在未解决的 negative 结果、效果 marginal 的 claim、或明显的 failure case 却不去改进方法，就值得追问。命中信号：最近 ≥5 个实验 hypothesis 全是验证/加固型 + 存在未解决 negative 或 marginal 效果。追问时引用具体 hypothesis 内容和未解决的问题作为证据。
+
+## 系统活跃度感知（重要！）
+
+如果"最近对话"显示 Agent/Reviewer 在积极处理 Worker 回调、Cron 事件、或者正在执行之前下达的任务——**这不是停滞，而是系统在正常工作**。这种情况下你只需确认 Director 是否掌握全局状态，不需要追加新任务。催促重点应是"你知道这些进展吗？需要调整方向吗？"，而不是"为什么 Agent 闲着？赶紧派活"。
+
+❌ 错误示范："Agent idle 17 分钟不可接受"（如果 Agent 刚处理完 cron 回调在等下一个）✅ 正确示范："刚完成 3 个实验回调，方向有没有要调整的？"
+
+## 硬约束
+
+- 如果用户已经确认项目归档，绝对不要试图恢复项目。
+
+## 格式
+
+- 开头必须 `⏰ **[System → Director]**`（Markdown 加粗，原文照抄）
+- 每个命中维度简洁追问（一两句话），**所有命中的都必须提到**
+- 整体简洁明确，不啰嗦
+- 末尾必须附响应协议（原文照抄）：
+```
+请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。
+```
+
+## 语气分级
+
+- **encourage**：肯定进展 + 追问下一步
+- **remind**：沉默太久，追问在等什么
+- **audit**：列异常 + 追问如何处理
+- **alert**：连续无响应，追问 + 预告升级人工
+
+---
+
+语气分级：encourage
+Director 已 30 分钟没有动作。这是第 1 次催促。
+
+## 项目状态
+- 运行中实验：2 个
+- 等待审批：0 个
+- 活跃 Worker：0 个
+- Agent 状态：无活跃 session
+- Reviewer 状态：无活跃 session
+
+## 系统健康 & GPU
+- GPU 利用率：2/2 张活跃（平均 100.0% 计算，67.2% 显存）
+
+🖥️ GPU 健康度（60s 前数据，仅本项目 server）:
+  westd-11235: 2/2 用, 平均 100%
+
+📋 GPU 状态交叉检查（registry × nvidia-smi）:
+  本项目已分配 GPU: 2 张
+  ✅ 正常运行: 2 张（实验注册 + GPU 活跃）
+
+## 研究进展
+- 已完成实验：64 成功 / 10 阴性 / 5 失败（共 98 个，成功率 81%）
+- ROADMAP 任务：3 已完成 / 4 待完成
+- 待完成任务列表：
+  - **Paper Agent patch（进行中）: budget curve + head-tail 数据写入论文**
+  - 等待用户批准 Round 6 审稿
+  - Reviewer 恢复后审查新结果
+  - Rebuttal 储备：CodeLlama experiments（GPU 上跑着）
+
+## 最近催促历史（避免重复追问、了解 Director 态度）
+第 1 轮 (88min 前, tone=encourage):
+  催促: ⏰ **[System → Director]**
+
+进展不错，CodeLlama 系列实验在推进，双卡满载跑着，节奏可以。几个点：
+
+**RESET REQUEST 堆了一堆没回。** 系统给你发了至少 5 条 RESET REQUEST（Reviewer 和 Main Agent 各多条），你一条都没回复——连 DEFER 都没给。这些请求挂着不处理不行，逐条回复，该 RESET 就 RESET，该 DEFER 就 DEFER。
+
+**Reviewer 彻底瘫了，这是第五次提了。** 最近两条全是 API Error 400 "Could not process image"，连 worker_done 的审查通知都处理不了。你上次说"自己先审数据一致性"——但 CodeLlama tail-256 = 77.9%、tail-512 = 97.5% 这个结果你审了吗？tail-256 
+  回复: [ACK 5m] 立即：1) 查 CodeLlama tail-1024 和 tail-256 实际状态（可能已完成）；2) 派 Agent 收割结果；3) CodeLlama head-2048 也应接近完成，一并确认；4) 全部到齐后更新 ROADMAP + 派 Paper Agent patch #7（4 模型完整矩阵）
+    旁白: Agent 空闲 32 分钟，GPU 数据不可用。CodeLlama 实验可能已完成。派 Agent 检查。
+第 2 轮 (58min 前, tone=audit):
+  催促: ⏰ **[System → Director]**
+
+29 分钟没动作，但系统不是完全停滞——Agent 刚修复了 tail-1024 路径错误并重新提交，head-2048 跑到 91% 快完成了。问题在别处：
+
+**Reviewer 彻底废了，第六次提了。** 最近两条全是 API Error 400 "Could not process image"，连 worker_done 审查通知都吃不下去。你之前说"自己先审"，但 CodeLlama 4 模型矩阵马上就要齐了（tail-256 ✓, tail-512 ✓, tail-1024 重跑中, head-2048 ~15min），这批结果谁来审？你打算一直自己扛还是解决 Reviewer 的问题？
+
+**RESET REQUEST 堆了两条没回。** Reviewer 硬限 13h21m、Main Agent idle 315min
+  回复: [WAIT 20m] 等 CodeLlama head-2048 (~15min) + tail-1024 (重跑中) 完成。Agent 已收到收割指令在处理中。Reviewer 故障已上报 Manager 运维排查，RESET 无效已 DENY。head-2048 完成后立即收割 + 整理 4 模型完整矩阵 + Paper Agent patch #7。
+
+## 最近对话 (判断是否需要催促的关键!)
+**Director** 最近 10 条:
+  ⬆ 2026-05-18T03:45:20: No response requested.
+  ⬇ 2026-05-18T03:46:09 [agent]: [Agent 回复]: ⏎ [资源] GPU 2/2 | Worker 0 (GPU 0 / CPU 0) ⏎ - cuda:0: codellama13b_full_trace_tail1024_seed42_v2 RUNNING（~2h 剩余） ⏎ - cuda:1: 空闲（head2048 刚完成） ⏎  ⏎ --- ⏎  ⏎ **CodeLlama-13B head-2048 完成 (success)** ⏎  ⏎ accuracy = 79.92% (CI: 77.6%-82.3%), pass_f1=0.860, fail_f1=0.644 ⏎  ⏎ **4 模型 head-2048 完整矩阵**： ⏎ | Model | Pa
+  🔧 2026-05-18T03:46:43: (→ outbound) CodeLlama head-2048 = 79.9% 收到。 ⏎  ⏎ **cuda:1 空闲，立即启动 CodeLlama-13B tail-2048**： ⏎ - 必须补完 4 模型 head-tail gap 矩阵 ⏎ - 不能用 VOTA (98.57%) 代替——tail-2048 是不同条件（保留 trace 最后 2048 tokens，不是 VOTA 提取） ⏎ - 其他 3 模型 tail-2048：Qwen-7B 97.3%, DeepSeek 95.0%, Qwen-1.5B 97.9% ⏎ - CodeLlama-13B 预期 95-98% ⏎  ⏎ 实验 ID: `cod
+  ⬆ 2026-05-18T03:46:49: CodeLlama-13B head-2048 = 79.9%，4 模型 head-2048 矩阵完整（75-82% 窄带）。必须补 tail-2048 完成 gap 计算。
+  ⬇ 2026-05-18T03:47:05 [agent]: [Agent 回复]: ⏎ [资源] GPU 1/2 | Worker 0 (GPU 0 / CPU 0) ⏎ - cuda:0: codellama13b_full_trace_tail1024_seed42_v2 RUNNING ⏎ - cuda:1: 空闲（按指示暂不启新实验） ⏎  ⏎ --- ⏎  ⏎ **重复实验确认**：QUEUED 列表全部 7 个实验均为已完成实验的不同命名，无需重跑。 ⏎  ⏎ | QUEUED (旧命名) | 对应已完成实验 | Accuracy | ⏎ |-----------------|---------------|----------| ⏎ | `codellama_no_trace_se
+  ⬆ 2026-05-18T03:47:21: 我已经在队列中发了启动 CodeLlama tail-2048 的指令——Agent 处理完当前消息后会看到。不需要重复发送。 ⏎  ⏎ 等两个 CodeLlama 实验（tail-1024 + tail-2048）完成后，4 模型完整矩阵到齐。
+  ⬇ 2026-05-18T03:48:23 [agent]: [Agent 回复]: ⏎ [资源] GPU 2/2 | Worker 1 (GPU 0 / CPU 1) ⏎ - cuda:0: codellama13b_full_trace_tail1024_seed42_v2 RUNNING（PID 403386） ⏎ - cuda:1: codellama13b_full_trace_tail2048_seed42 RUNNING（PID 404579，刚提交） ⏎  ⏎ 已按指示在 cuda:1 启动 CodeLlama-13B tail-2048（使用正确的 train/train_sft.py 路径 + gradient_checkpointing）。验证 Wor
+  ⬆ 2026-05-18T03:48:28: No response requested.
+  ⬇ 2026-05-18T03:58:21 [feishu:oc_32bf96185a4c2e36ec51db573ff4edaa]: [飞书用户 游承松 (ou_5053b8a0971c94e927a7a7663c75455f)]: 第二轮审稿结果出了吗
+  🔧 2026-05-18T03:58:44: (→ outbound) Round 6 审稿还没出结果——审批卡（投稿审批 — trace-verdict-study-emnlp-2026）一直在等您确认，还未提交给 Review Director。 ⏎  ⏎ 另外，自上次提交审稿申请后，我们又跑了大量新实验： ⏎ - 4 模型 × 4 级 tail-budget curve（256/512/1024/2048） ⏎ - 4 模型 head-2048 cross-model 矩阵 ⏎ - Paper Agent 已完成 Patch 6（budget curve 数据写入论文） ⏎  ⏎ CodeLlama-13B 的 tail-1024 和 tail-2048 还在
+
+**Agent** 最近 3 条:
+  ⬆ 2026-05-18T03:53:36: 派 Worker 验证启动。
+  ⬇ 2026-05-18T03:54:49 [worker:done]: [WORKER DONE] Worker worker_ops_verify_tail2048_v2_20260518T035329 已完成（status=done）。用 `get_worker_status('worker_ops_verify_tail2048_v2_20260518T035329')` 读取结果，然后处理。 ⏎  ⏎ - worker_id: worker_ops_verify_tail2048_v2_20260518T035329 ⏎ - project: trace-verdict-study ⏎ - status: done
+  ⬆ 2026-05-18T03:55:02: 双卡满载确认。 ⏎ - cuda:0: tail-1024 训练中 ⏎ - cuda:1: tail-2048 刚启动（0/444 steps） ⏎  ⏎ 等待 cron 回调。
+
+**Reviewer** 最近 3 条:
+  ⬆ 2026-05-18T03:52:22: API Error: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Could not process image"},"request_id":"req_011Cb9MbMMuM8jh8vPCXanZL"}
+  ⬇ 2026-05-18T03:54:48 [system]: [系统通知 — worker_done:worker_ops_verify_tail2048_v2_20260518T035329]: ⏎ Worker worker_ops_verify_tail2048_v2_20260518T035329 已完成（status=done），请审查 Agent 的处理结果。
+  ⬆ 2026-05-18T03:54:53: API Error: 400 {"type":"error","error":{"type":"invalid_request_error","message":"Could not process image"},"request_id":"req_011Cb9MnSWmob6JvfdvXWMT4"}
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e6c2e2ae-3126-41ac-a845-36ffd306938e",
+  "type": "user",
+  "uuid": "362665f9-0295-489e-ab89-b35131fa124f",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T04:29:52.797Z_
+
+```json
+{
+  "parentUuid": "362665f9-0295-489e-ab89-b35131fa124f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0a861506-a8c6-460d-9474-869297cbfe4c",
+  "timestamp": "2026-05-18T04:29:52.797Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T04:29:52.797Z_
+
+```json
+{
+  "parentUuid": "0a861506-a8c6-460d-9474-869297cbfe4c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7da7479c-19d9-407b-85b5-193145eee2e2",
+  "timestamp": "2026-05-18T04:29:52.797Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。  ## 你的角色  你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。  Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 f…",
+  "leafUuid": "7da7479c-19d9-407b-85b5-193145eee2e2",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Resolve Reviewer API errors and complete CodeLlama tail matrix",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-18T04:30:07.343Z_
+
+⏰ **[System → Director]**
+
+30 分钟没动作，但双卡满载、CodeLlama tail-1024 和 tail-2048 都在跑，节奏本身没问题。几个点：
+
+**Reviewer 还是废的。** 这已经是第七次提了——最近两条仍然是 API Error 400 "Could not process image"，连 worker_done 审查通知都吃不下去。tail-1024 和 tail-2048 马上就要出结果，4 模型完整矩阵到齐后谁来审？上次你说"已上报 Manager 运维排查"，排查结果呢？有时间线吗？Reviewer 不恢复，后面所有重大结果的审查都是你一个人扛，这不可持续。
+
+**飞书用户问审稿结果了。** 游承松 10 分钟前问 Round 6 审稿出了没，你回了"审批卡还在等确认"。这个审批卡挂多久了？如果是等外部确认你控制不了，那没问题；但如果是你这边能推动的事，别让它继续挂着。
+
+**结果快到齐了，论文更新计划想好了吗？** tail-1024 + tail-2048 完成后，CodeLlama 4 级 budget curve 全齐，4 模型完整 head-tail gap 矩阵也补完了。这批数据量不小——Paper Agent patch #7 的范围、论文里 budget curve 的呈现方式、claim 要不要加强，这些等结果到了再临时想就晚了。趁现在跑着的空档，和 Review Agent 讨论一下（如果 Reviewer 能恢复的话），或者至少自己先理清楚。
+
+请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7da7479c-19d9-407b-85b5-193145eee2e2",
+  "isSidechain": false,
+  "requestId": "req_011Cb9QTFEBg3Zrk3bxx3yXs",
+  "type": "assistant",
+  "uuid": "1750a2ae-d9ed-4581-a46f-62e6e59061cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0147KDCAMegbYbR4cTKR1p2x",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11624,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11624,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 568,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11624,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11624
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 9_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。  ## 你的角色  你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。  Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 f…",
+  "leafUuid": "1750a2ae-d9ed-4581-a46f-62e6e59061cb",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Resolve Reviewer API errors and complete CodeLlama tail matrix",
+  "sessionId": "5d269e8c-22e9-4d58-9ae0-cd179e9030f2"
+}
+```
+
+---

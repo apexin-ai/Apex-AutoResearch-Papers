@@ -1,0 +1,1374 @@
+# Research conversation: Use WebSearch to verify the following claims: 1. AC-ODM (arXiv:2505.23878) was withdrawn from ICLR 2026 review. Search f
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 1
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a2ffd1f9b26127b33.jsonl`
+- **Structured JSON:** [`f7df8632cb23aa23cdef.json`](../../sessions/f7/f7df8632cb23aa23cdef.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+23 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T20:40:59.807Z_
+
+Use WebSearch to verify the following claims:
+
+1. AC-ODM (arXiv:2505.23878) was withdrawn from ICLR 2026 review. Search for "AC-ODM actor-critic online data mixing ICLR 2026 withdrawn" and "arxiv 2505.23878"
+
+2. TiKMiX (arXiv:2508.17677) was withdrawn from ICLR 2026 review. Search for "TiKMiX ICLR 2026 withdrawn" and "arxiv 2508.17677"
+
+3. Also verify: GRAPE (arXiv:2505.20380) was accepted at NeurIPS 2025. Search for "GRAPE group robust adaptive pretraining NeurIPS 2025"
+
+4. Also verify: Aioli (arXiv:2411.05735) was accepted at ICLR 2025. Search for "Aioli language model data mixing ICLR 2025"
+
+5. Check EMNLP 2026 ARR submission deadline - is May 25, 2026 correct? Search for "EMNLP 2026 ARR submission deadline" and "ACL Rolling Review May 2026 deadline"
+
+Report what you find for each.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "7e906e0c-6581-4c83-9fab-8f8413b8105d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-10T20:41:00.895Z_
+
+I'll search for each of these claims to verify their accuracy.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e906e0c-6581-4c83-9fab-8f8413b8105d",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "376beab2-a8de-4676-8bf5-f83b6c55e18e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-10T20:41:01.244Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RoAxtS4kFnt2jFUCga549k`</summary>
+
+```json
+{
+  "query": "AC-ODM actor-critic online data mixing ICLR 2026 withdrawn"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "376beab2-a8de-4676-8bf5-f83b6c55e18e",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "afe44a7a-7aed-4301-9fbc-d0ac96f6ff1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-10T20:41:01.316Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015nvMoXaAnmwqcQ5WojEzQ9`</summary>
+
+```json
+{
+  "query": "arxiv 2505.23878"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afe44a7a-7aed-4301-9fbc-d0ac96f6ff1d",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "a19b0961-d52b-4a8d-ad69-7160d0d6c3de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-10T20:41:01.322Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EJxQrma6K2obF3s8FDqKtX`</summary>
+
+```json
+{
+  "query": "TiKMiX ICLR 2026 withdrawn"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a19b0961-d52b-4a8d-ad69-7160d0d6c3de",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "a53cda16-260a-4f63-97ac-08ee083641e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-10T20:41:01.563Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Dn9XvuTZRoiEL5PWFVCBw2`</summary>
+
+```json
+{
+  "query": "arxiv 2508.17677"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a53cda16-260a-4f63-97ac-08ee083641e0",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "e6f91220-51ea-4e48-9ccf-fe72d200414e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-10T20:41:01.735Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RdwuRi477PegWoWLwVyxNc`</summary>
+
+```json
+{
+  "query": "GRAPE group robust adaptive pretraining NeurIPS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6f91220-51ea-4e48-9ccf-fe72d200414e",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "69d49d00-38f2-4009-820c-cc791f4b2a19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-10T20:41:02.000Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Rgorzqp9fXrqQ7QvBzjhp9`</summary>
+
+```json
+{
+  "query": "arxiv 2505.20380 GRAPE NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69d49d00-38f2-4009-820c-cc791f4b2a19",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "1bd91c3c-e62a-4ea8-80c8-174dc1b0223c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-10T20:41:02.194Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MmUTVd4HN8pa2Zwhq5cYJ1`</summary>
+
+```json
+{
+  "query": "Aioli language model data mixing ICLR 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1bd91c3c-e62a-4ea8-80c8-174dc1b0223c",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "ee12ea8a-5600-4f14-90f7-11bc9861c7c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T20:41:02.549Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UFVc6G6jS5KW8mggAks6bP`</summary>
+
+```json
+{
+  "query": "arxiv 2411.05735 Aioli"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee12ea8a-5600-4f14-90f7-11bc9861c7c1",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "c65e0568-135d-4680-932b-6711968e437e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T20:41:02.579Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AvevKDfvwgcqTt2GTxUCdF`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c65e0568-135d-4680-932b-6711968e437e",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "cbe43ad1-5ca3-430e-9441-3e375569a580",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 732,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T20:41:02.690Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jn2s464cwPPCR1AZ1PCzB1`</summary>
+
+```json
+{
+  "query": "ACL Rolling Review May 2026 deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbe43ad1-5ca3-430e-9441-3e375569a580",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY32erD4FTU7EGp5Vys",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "31e66730-93e9-4df4-9165-9c18ee75a672",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01YUFJ2mw8ULnUJXGR7YUxCp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 16153,
+      "output_tokens": 500,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 732
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 500,
+          "cache_read_input_tokens": 16153,
+          "cache_creation_input_tokens": 732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 732,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-10T20:41:05.136Z_
+
+<details><summary>↩ Tool result · `toolu_01EJxQrma6K2obF3s8FDqKtX`</summary>
+
+```text
+Web search results for query: "TiKMiX ICLR 2026 withdrawn"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"2026 Conference","url":"https://iclr.cc/"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"},{"title":"A Retrospective on the ICLR 2026 Review Process – ICLR Blog","url":"https://blog.iclr.cc/2026/03/31/a-retrospective-on-the-iclr-2026-review-process/"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"},{"title":"2024 - Call For Papers","url":"https://iclr.cc/Conferences/2024/CallForPapers"},{"title":"ICLR 2026 Pricing","url":"https://iclr.cc/Conferences/2026/Pricing"},{"title":"ICLR 2026 | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026"},{"title":"ICLR Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/iclr-statistics/"},{"title":"ICLR 2026 Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/iclr-statistics/iclr-2026-statistics/"}]
+
+Based on the search results, I found information about withdrawals at ICLR 2026, but not specifically about a paper called "TiKMiX."
+
+5,042 submissions were withdrawn from ICLR 2026, which represents a significant portion of the submissions that went through the review process. However, the search results don't contain specific information about the TiKMiX paper or its withdrawal.
+
+If you're looking for details about a specific TiKMiX paper that was withdrawn from ICLR 2026, you might want to check the OpenReview website directly at openreview.net, where withdrawn papers are publicly listed and de-anonymized, or you could search for the paper on arXiv if it was posted there.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a53cda16-260a-4f63-97ac-08ee083641e0",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "29abb833-875b-48d5-a253-f8f7fd23f59a",
+  "sourceToolAssistantUUID": "a53cda16-260a-4f63-97ac-08ee083641e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T20:41:06.204Z_
+
+<details><summary>↩ Tool result · `toolu_015nvMoXaAnmwqcQ5WojEzQ9`</summary>
+
+```text
+Web search results for query: "arxiv 2505.23878"
+
+Links: [{"title":"[2505.23878] Actor-Critic based Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/abs/2505.23878"},{"title":"Actor-Critic based Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/html/2505.23878"},{"title":"ZenBrain: A Neuroscience-Inspired 7-Layer Memory Architecture for Autonomous AI Systems","url":"https://arxiv.org/html/2604.23878"},{"title":"arXiv:2505.23878v1 [cs.LG] 29 May 2025","url":"https://arxiv.org/pdf/2505.23878"},{"title":"[2410.23878] Feedback Vertex Set for pseudo-disk graphs in subexponential FPT time","url":"https://arxiv.org/abs/2410.23878"},{"title":"Computer Science May 2025","url":"https://www.arxiv.org/list/cs/2025-05?skip=12475&show=2000"},{"title":"On Learning Verifiers and Implications to Chain-of-Thought Reasoning","url":"https://arxiv.org/html/2505.22650.pdf"},{"title":"1 Introduction","url":"https://arxiv.org/html/2512.23878"},{"title":"[2602.23878] A Foundation for Differentiable Logics using Dependent Type Theory","url":"https://arxiv.org/abs/2602.23878"},{"title":"Vincent Halde","url":"https://scholar.google.com/citations?user=D-W_7d8AAAAJ&hl=en"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Title:** Actor-Critic based Online Data Mixing For Language Model Pre-Training
+
+**Authors:** Jing Ma, Chenhao Dang, Mingjie Liao
+
+**Subjects:** Machine Learning (cs.LG); Artificial Intelligence (cs.AI)
+
+The paper develops an actor-critic based online data mixing (AC-ODM) method, which captures varying domain weights by auxiliary actor-critic networks and considers intra-domain interactions with the reward function. When constructing the dataset to pretrain a large target LLM, it directly applies the actor trained with a small proxy LLM as the sampling strategy.
+
+The paper was submitted on May 29, 2025. You can access it directly on arXiv at https://arxiv.org/abs/2505.23878.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a19b0961-d52b-4a8d-ad69-7160d0d6c3de",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "f53d1f86-c511-4823-90ed-6a1e5b176469",
+  "sourceToolAssistantUUID": "a19b0961-d52b-4a8d-ad69-7160d0d6c3de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T20:41:06.366Z_
+
+<details><summary>↩ Tool result · `toolu_01AvevKDfvwgcqTt2GTxUCdF`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X","url":"https://x.com/emnlpmeeting/status/1892259536137785419"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"}]
+
+Based on the search results, the ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+Additionally, some other important related dates for EMNLP 2026 include:
+- Reviewer registration deadline for all authors: May 27, 2026
+- Author response and author-reviewer discussion: July 7 - July 13, 2026
+- Meta review released: July 30, 2026
+- EMNLP commitment deadline: August 2, 2026
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cbe43ad1-5ca3-430e-9441-3e375569a580",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "dcabd401-7964-4afb-9b0a-cee67b4257d4",
+  "sourceToolAssistantUUID": "cbe43ad1-5ca3-430e-9441-3e375569a580",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T20:41:06.740Z_
+
+<details><summary>↩ Tool result · `toolu_01Dn9XvuTZRoiEL5PWFVCBw2`</summary>
+
+```text
+Web search results for query: "arxiv 2508.17677"
+
+Links: [{"title":"[2508.17677] TiKMiX: Take Data Influence into Dynamic Mixture for Language Model Pre-training","url":"https://arxiv.org/abs/2508.17677"},{"title":"TiKMiX: Take Data Influence into Dynamic Mixture for Language Model Pre-training","url":"https://arxiv.org/html/2508.17677"},{"title":"[2510.17677] General Purpose Inverse Design of Heterogeneous Finite-Sized Assemblies","url":"https://arxiv.org/abs/2510.17677"},{"title":"[2501.17677] Bottom quark forward-backward asymmetry at the future electron-positron collider FCC-ee","url":"https://arxiv.org/abs/2501.17677"},{"title":"[2512.17677] Toward Ethical AI Through Bayesian Uncertainty in Neural Question Answering","url":"https://arxiv.org/abs/2512.17677"},{"title":"[2507.17677] Machine Learning-Assisted Nano-imaging and Spectroscopy of Phase Coexistence in a Wide-Bandgap Semiconductor","url":"https://arxiv.org/abs/2507.17677"},{"title":"on the optimal memorization capacity of transformers","url":"https://arxiv.org/pdf/2409.17677"},{"title":"EngiBench: A Benchmark for Evaluating Large Language ...","url":"https://arxiv.org/pdf/2509.17677"},{"title":"[2603.17677] Adaptive Guidance for Retrieval-Augmented Masked Diffusion Models","url":"https://arxiv.org/abs/2603.17677"},{"title":"[2503.17677] Reducing Class-wise Confusion for Incremental Learning with Disentangled Manifolds","url":"https://arxiv.org/abs/2503.17677"}]
+
+Based on the search results, I found the paper arxiv:2508.17677:
+
+**Title:** TiKMiX: Take Data Influence into Dynamic Mixture for Language Model Pre-training
+
+**Authors:** Yifan Wang, Binbin Liu, and others
+
+**Overview:** The data mixture used in the pre-training of a language model is a cornerstone of its final performance. However, a static mixing strategy is suboptimal, as the model's learning preferences for various data domains shift dynamically throughout training.
+
+**Main Contribution:** The paper proposes TiKMiX, a method that dynamically adjusts the data mixture according to the model's evolving preferences. TiKMiX introduces Group Influence, an efficient metric for evaluating the impact of data domains on the model. The approach includes two implementations: TiKMiX-D for direct optimization, and TiKMiX-M, which uses a regression model to predict a superior mixture.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6f91220-51ea-4e48-9ccf-fe72d200414e",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "c716e60b-6dee-4212-a3fd-dc030def2145",
+  "sourceToolAssistantUUID": "e6f91220-51ea-4e48-9ccf-fe72d200414e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T20:41:06.940Z_
+
+<details><summary>↩ Tool result · `toolu_01RoAxtS4kFnt2jFUCga549k`</summary>
+
+```text
+Web search results for query: "AC-ODM actor-critic online data mixing ICLR 2026 withdrawn"
+
+Links: [{"title":"AC-ODM: Actor–Critic Online Data Mixing for Sample-Efficient LLM Pretraining | OpenReview","url":"https://openreview.net/forum?id=mRjzWksbGR"},{"title":"AC-ODM: ACTOR–CRITIC ONLINE DATA MIXING","url":"https://openreview.net/pdf/01dcd7be90975400ad1a6faf76be12a36cd2c3a6.pdf"},{"title":"Actor-Critic based Online Data Mixing For Language Model Pre-Training","url":"https://arxiv.org/html/2505.23878"},{"title":"ICLR 2026 Response to Security Incident – ICLR Blog","url":"https://blog.iclr.cc/2025/12/03/iclr-2026-response-to-security-incident/"},{"title":"ICLR 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026 – ICLR Blog","url":"https://blog.iclr.cc/category/iclr-2026/"},{"title":"Announcing the Test of Time Awards from ICLR 2016 – ICLR Blog","url":"https://blog.iclr.cc/2026/04/22/announcing-the-test-of-time-awards-from-iclr-2016/"},{"title":"ICLR 2026 Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/iclr-statistics/iclr-2026-statistics/"},{"title":"ICLR 2026 Conference Submissions","url":"https://openreview.net/submissions?page=24&venue=ICLR.cc/2026/Conference"}]
+
+Based on the search results, I found information about AC-ODM:
+
+AC-ODM is an ICLR 2026 withdrawn submission. AC-ODM is an actor–critic online data-mixing method that treats the LLM as the environment, uses auxiliary actor–critic networks to dynamically adjust domain sampling weights, and encodes intra-domain interactions through the reward.
+
+The method dynamically mixes data with an actor–critic policy, speeding LLM pretraining (up to 71% fewer steps) and improving accuracy (+27.5% MMLU). More specifically, on Pythia-1B pretraining over The Pile and SlimPajama, AC-ODM-410M reaches the optimal validation perplexity of ODM using 71% and 65% fewer training steps, respectively, and achieves a 27.5% relative improvement in zero-shot MMLU accuracy, a 2.23× higher pass@1 on HumanEval, and an average +3.44% accuracy gain across five additional benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "afe44a7a-7aed-4301-9fbc-d0ac96f6ff1d",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "521182d1-66c5-4388-aad6-90d517f94682",
+  "sourceToolAssistantUUID": "afe44a7a-7aed-4301-9fbc-d0ac96f6ff1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T20:41:07.368Z_
+
+<details><summary>↩ Tool result · `toolu_01Jn2s464cwPPCR1AZ1PCzB1`</summary>
+
+```text
+Web search results for query: "ACL Rolling Review May 2026 deadline"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"},{"title":"ACL ARR 2026 January | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"}]
+
+Based on my search results, here's what I found regarding the ACL Rolling Review May 2026 deadline:
+
+The search results indicate that the ACL Peer Review Committee recommended switching from 8-week to 10-week review cycles, with the new schedule starting in May 2025. In 2025, due to the switch to 10-week cycles, there were 4 review cycles in total.
+
+However, the search results don't provide a specific submission deadline for a May 2026 ARR cycle. The results reference upcoming cycles and deadlines (like the January 2026 cycle with a January 7th, 2026 registration deadline), but don't explicitly state whether there will be a May 2026 submission deadline or what it would be.
+
+For the most current and specific information about the May 2026 ARR deadline, I'd recommend checking the official ACL Rolling Review website at aclrollingreview.org/dates, which appears to maintain an up-to-date schedule of all submission deadlines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31e66730-93e9-4df4-9165-9c18ee75a672",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "a8f2931a-53ac-447e-9062-5423cf2c57f7",
+  "sourceToolAssistantUUID": "31e66730-93e9-4df4-9165-9c18ee75a672",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T20:41:09.228Z_
+
+<details><summary>↩ Tool result · `toolu_01MmUTVd4HN8pa2Zwhq5cYJ1`</summary>
+
+```text
+Web search results for query: "Aioli language model data mixing ICLR 2025"
+
+Links: [{"title":"Aioli: A Unified Optimization Framework for Language Model Data Mixing | OpenReview","url":"https://openreview.net/forum?id=R8nT7EqoYF"},{"title":"[2411.05735] Aioli: A Unified Optimization Framework for Language Model Data Mixing","url":"https://arxiv.org/abs/2411.05735"},{"title":"ICLR Aioli: A Unified Optimization Framework for Language Model Data Mixing","url":"https://iclr.cc/virtual/2025/34482"},{"title":"Published as a conference paper at ICLR 2025 AIOLI:","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/71cc3acb2578bdd1e52bf9f85bbb1af0-Paper-Conference.pdf"},{"title":"CDS Researchers Make Strong Showing at ICLR 2025 | by NYU Center for Data Science | Medium","url":"https://nyudatascience.medium.com/cds-researchers-make-strong-showing-at-iclr-2025-95b0a225dc49"},{"title":"Aioli: A unified optimization framework for language model data mixing","url":"https://arxiv.org/html/2411.05735v1"},{"title":"Hello, I’m Mayee! - Mayee Chen","url":"https://mayeechen.github.io/"},{"title":"Paper page - Aioli: A Unified Optimization Framework for Language Model Data Mixing","url":"https://huggingface.co/papers/2411.05735"},{"title":"GitHub - HazyResearch/aioli: Aioli: A unified optimization framework for language model data mixing · GitHub","url":"https://github.com/HazyResearch/aioli"},{"title":"Meet Aioli: A Unified Optimization Framework for Language Model Data Mixing - MarkTechPost","url":"https://www.marktechpost.com/2024/11/12/meet-aioli-a-unified-optimization-framework-for-language-model-data-mixing/"}]
+
+Based on the search results, here's what I found about Aioli and its presentation at ICLR 2025:
+
+## Overview
+
+Aioli: A Unified Optimization Framework for Language Model Data Mixing was published on March 6, 2025, and presented as an ICLR 2025 Workshop Data Problems Poster.
+
+## Key Problem and Solution
+
+Language model performance depends on identifying the optimal mixture of data groups to train on (e.g., law, code, math). Surprisingly, no existing method consistently outperforms a simple stratified sampling baseline in terms of average test perplexity.
+
+The researchers unified existing methods into a standard framework, showing they are equivalent to solving a common optimization problem: minimize average loss subject to a method-specific mixing law—an implicit assumption on the relationship between loss and mixture proportions.
+
+## The Aioli Method
+
+The researchers derived a new online method named Aioli, which directly estimates the mixing law parameters throughout training and uses them to dynamically adjust proportions.
+
+## Results
+
+Aioli outperforms stratified sampling on 6 out of 6 datasets by an average of 0.27 test perplexity points, whereas existing methods fail to consistently beat stratified sampling, doing up to 6.9 points worse. In a practical setting where proportions are learned on shorter runs due to computational constraints, Aioli can dynamically adjust these proportions over the full training run, consistently improving performance over existing methods by up to 12.01 test perplexity points.
+
+The paper also has a full conference version at ICLR 2025, with an open-source implementation available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee12ea8a-5600-4f14-90f7-11bc9861c7c1",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "90655dff-e694-4f3f-abb8-d61b51f38fcb",
+  "sourceToolAssistantUUID": "ee12ea8a-5600-4f14-90f7-11bc9861c7c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T20:41:09.793Z_
+
+<details><summary>↩ Tool result · `toolu_01Rgorzqp9fXrqQ7QvBzjhp9`</summary>
+
+```text
+Web search results for query: "arxiv 2505.20380 GRAPE NeurIPS"
+
+Links: [{"title":"[2505.20380] GRAPE: Optimize Data Mixture for Group Robust Multi-target Adaptive Pretraining","url":"https://arxiv.org/abs/2505.20380"},{"title":"arXiv:2505.20380v1 [cs.LG] 26 May 2025 GRAPE : Optimize Data Mixture","url":"https://arxiv.org/pdf/2505.20380"},{"title":"GRAPE: Optimize Data Mixture for Group Robust Multi-target Adaptive Pretraining","url":"https://arxiv.org/html/2505.20380"},{"title":"NeurIPS 2025 Best Paper Awards - by David Mataciunas","url":"https://aiconnections.substack.com/p/neurips-2025-best-paper-awards"},{"title":"NeurIPS Paper Checklist","url":"https://arxiv.org/html/2505.04037v1"},{"title":"[2505.03853] GRAPE: Heterogeneous Graph Representation Learning for Genetic Perturbation with Coding and Non-Coding Biotype","url":"https://arxiv.org/abs/2505.03853"},{"title":"Understanding Reinforcement Learning for Model Training, and future directions with GRAPE","url":"https://arxiv.org/html/2509.04501v1"},{"title":"GRAPE: Heterogeneous Graph Representation Learning for Genetic Perturbation with Coding and Non-Coding Biotype","url":"https://arxiv.org/html/2505.03853v1"},{"title":"Analog Foundation Models","url":"https://arxiv.org/html/2505.09663v3"},{"title":"[1907.11819] Grape detection, segmentation, and tracking using deep neural networks and three-dimensional association","url":"https://ar5iv.labs.arxiv.org/html/1907.11819"}]
+
+Based on the search results, I found information about arxiv 2505.20380:
+
+GRAPE (Group Robust Multi-target Adaptive PrEtraining) is a novel multi-source-multi-target domain reweighting framework designed to calibrate pretraining data mixtures for robust performance across multiple target tasks simultaneously.
+
+The paper introduces GRAPE to address how existing domain reweighting algorithms primarily optimize data mixtures for a single target task, resulting in models that overfit to specialized objectives while exhibiting substantial performance degradation on other benchmarks.
+
+Key aspects of the work include:
+
+- GRAPE dynamically adjusts sampling weights across source domains (domain weights) while concurrently modulating task weights that quantify the relative importance of each individual target task. This adaptive process prioritizes tasks based on their learning difficulty throughout training.
+
+- The reweighting mechanism is formulated as a minimax optimization problem: The inner maximization adjusts task weights leveraging group distributed-robust-optimization (DRO), where tasks demonstrating the least improvement under the current data mixture are prioritized with higher weights; The outer minimization then optimizes domain weights to maximize loss reduction on the prioritized tasks.
+
+- Experiments on ClimbLab and SlimPajama datasets demonstrate that GRAPE consistently outperforms baseline methods in reasoning performance across 6 benchmarks. Furthermore, when applied to multilingual targets, GRAPE effectively identifies optimal training mixtures from mainstream languages, achieving superior language modeling capabilities across 8 low-resource target languages.
+
+The paper was submitted on May 26, 2025, and is authored by Simin Fan, Maria Ios Glarou, and Martin Jaggi from EPFL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1bd91c3c-e62a-4ea8-80c8-174dc1b0223c",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "c279445a-9bb6-4e0f-a17c-d77d36b96795",
+  "sourceToolAssistantUUID": "1bd91c3c-e62a-4ea8-80c8-174dc1b0223c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T20:41:11.358Z_
+
+<details><summary>↩ Tool result · `toolu_01UFVc6G6jS5KW8mggAks6bP`</summary>
+
+```text
+Web search results for query: "arxiv 2411.05735 Aioli"
+
+Links: [{"title":"[2411.05735] Aioli: A Unified Optimization Framework for Language Model Data Mixing","url":"https://arxiv.org/abs/2411.05735"},{"title":"Aioli: A unified optimization framework for language model data mixing","url":"https://arxiv.org/html/2411.05735"},{"title":"Aioli: A Unified Optimization Framework for Language ...","url":"https://arxiv.org/pdf/2411.05735"},{"title":"Paper page - Aioli: A Unified Optimization Framework for Language Model Data Mixing","url":"https://huggingface.co/papers/2411.05735"},{"title":"GitHub - HazyResearch/aioli: Aioli: A unified optimization framework for language model data mixing · GitHub","url":"https://github.com/HazyResearch/aioli"},{"title":"Aioli: A unified optimization framework for language model data mixing","url":"https://www.researchgate.net/publication/385701131_Aioli_A_Unified_Optimization_Framework_for_Language_Model_Data_Mixing/fulltext/6731751adb208342def75a30/Aioli-A-Unified-Optimization-Framework-for-Language-Model-Data-Mixing.pdf?origin=scientificContributions"},{"title":"Do LLMs Really Forget? Evaluating Unlearning with Knowledge Correlation and Confidence Awareness","url":"https://arxiv.org/html/2506.05735"},{"title":"A Python Framework for Neutrosophic Sets and Mappings","url":"https://arxiv.org/html/2404.05735"},{"title":"[2505.05735] All-to-All Communication with Mobile Edge Adversary: Almost Linearly More Faults, For Free","url":"https://arxiv.org/abs/2505.05735"},{"title":"Research Article A Hybrid Natural Transform Homotopy Perturbation Method","url":"https://arxiv.org/pdf/1804.05735"}]
+
+Based on the search results, here's information about arxiv 2411.05735:
+
+## Aioli: A Unified Optimization Framework for Language Model Data Mixing
+
+The paper is titled "Aioli: A Unified Optimization Framework for Language Model Data Mixing" by Mayee F. Chen and 4 other authors (Michael Y. Hu, Nicholas Lourie, Kyunghyun Cho, and Christopher Ré).
+
+**Overview:**
+Language model performance depends on identifying the optimal mixture of data groups to train on (e.g., law, code, math).
+
+**Main Findings:**
+No existing method consistently outperforms a simple stratified sampling baseline in terms of average test perplexity. To understand this inconsistency, the authors unify existing methods into a standard framework, showing they are equivalent to solving a common optimization problem: minimize average loss subject to a method-specific mixing law.
+
+**The Aioli Method:**
+The authors derive a new online method named Aioli, which directly estimates the mixing law parameters throughout training and uses them to dynamically adjust proportions. Aioli outperforms stratified sampling on 6 out of 6 datasets by an average of 0.27 test perplexity points, whereas existing methods fail to consistently beat stratified sampling, doing up to 6.9 points worse.
+
+The paper was published on November 8, 2024, and the code is available on GitHub at HazyResearch/aioli.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c65e0568-135d-4680-932b-6711968e437e",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "480aec57-c643-4366-b528-c5cd0ed86716",
+  "sourceToolAssistantUUID": "c65e0568-135d-4680-932b-6711968e437e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T20:41:16.216Z_
+
+<details><summary>↩ Tool result · `toolu_01RdwuRi477PegWoWLwVyxNc`</summary>
+
+```text
+Web search results for query: "GRAPE group robust adaptive pretraining NeurIPS 2025"
+
+Links: [{"title":"NeurIPS Poster GRAPE: Optimize Data Mixture for Group Robust Multi-target Adaptive Pretraining","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/118723"},{"title":"GRAPE: Optimize Data Mixture for Group Robust Multi-target Adaptive Pretraining | OpenReview","url":"https://openreview.net/forum?id=JRmIvBcnWc"},{"title":"[2505.20380] GRAPE: Optimize Data Mixture for Group Robust Multi-target Adaptive Pretraining","url":"https://arxiv.org/abs/2505.20380"},{"title":"GRAPE: Optimize Data Mixture for Group Robust Multi- ...","url":"https://arxiv.org/pdf/2505.20380"},{"title":"GRAPE: Optimize Data Mixture for Group Robust Multi-target Adaptive Pretraining","url":"https://arxiv.org/html/2505.20380v1"},{"title":"Machine Learning May 2025","url":"https://www.arxiv.org/list/cs.LG/2025-05?skip=2125&show=50"},{"title":"NeurIPS 2025 Schedule","url":"https://neurips.cc/virtual/2025/calendar"},{"title":"NeurIPS Poster From Faults to Features: Pretraining to Learn Robust Representations against Sensor Failures","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/119529"},{"title":"NeurIPS Poster Provable Ordering and Continuity in Vision-Language Pretraining for Generalizable Embodied Agents","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/120019"},{"title":"GRAPE: Optimize Data Mixture for Group Robust Multi-target Adaptive Pretraining. | Semantic Scholar","url":"https://www.semanticscholar.org/search?q=GRAPE:+Optimize+Data+Mixture+for+Group+Robust+Multi-target+Adaptive+Pretraining."}]
+
+I found information about GRAPE at NeurIPS 2025. Here are the key details:
+
+## Overview
+
+GRAPE (Group Robust Multi-target Adaptive PrEtraining) is a novel multi-source-multi-target domain reweighting framework designed to calibrate pretraining data mixtures for robust performance across multiple target tasks simultaneously.
+
+## Problem and Motivation
+
+Existing domain reweighting algorithms primarily optimize data mixtures for a single target task, thereby resulting in models that overfit to specialized objectives while exhibiting substantial performance degradation on other benchmarks.
+
+## Key Features
+
+GRAPE dynamically adjusts sampling weights across source domains (domain weights) while concurrently modulating task weights that quantify the relative importance of each individual target task, with this adaptive process prioritizing tasks based on their learning difficulty throughout training.
+
+The interleaved reweighting mechanism is formulated as a minimax optimization problem: The inner maximization adjusts task weights leveraging group distributed-robust-optimization (DRO), where those tasks demonstrating the least improvement under the current data mixture are prioritized with higher weights; The outer minimization then optimizes domain weights to maximize loss reduction on the prioritized tasks.
+
+## Experimental Results
+
+Experiments on ClimbLab and SlimPajama datasets demonstrate that GRAPE consistently outperforms baseline methods in terms of reasoning accuracies across 6 benchmarks.
+
+## Venue
+
+The paper was presented as a poster at NeurIPS 2025 on Wednesday, December 3, 2025 from 11:00 AM – 2:00 PM PST.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69d49d00-38f2-4009-820c-cc791f4b2a19",
+  "isSidechain": true,
+  "promptId": "ed5fbd9e-edd3-469f-91bd-81c2d7a71751",
+  "agentId": "a2ffd1f9b26127b33",
+  "type": "user",
+  "uuid": "0a552709-b05a-4d58-8507-594d5859d715",
+  "sourceToolAssistantUUID": "69d49d00-38f2-4009-820c-cc791f4b2a19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-10T20:41:25.392Z_
+
+Based on my web search results, here is the verification of each claim:
+
+## 1. AC-ODM (arXiv:2505.23878) - ICLR 2026 Withdrawn
+
+**VERIFIED**: AC-ODM was indeed withdrawn from ICLR 2026. The paper "Actor-Critic based Online Data Mixing For Language Model Pre-Training" (arXiv:2505.23878) is confirmed as an ICLR 2026 withdrawal. The paper proposes an actor-critic online data mixing method that dynamically adjusts domain sampling weights, achieving 71% fewer training steps on some datasets and +27.5% relative improvement in MMLU accuracy.
+
+## 2. TiKMiX (arXiv:2508.17677) - ICLR 2026 Withdrawn
+
+**PARTIALLY VERIFIED**: The TiKMiX paper does exist (arXiv:2508.17677 - "TiKMiX: Take Data Influence into Dynamic Mixture for Language Model Pre-training"), but I could not find explicit confirmation that it was withdrawn from ICLR 2026 in the search results. The paper proposes a dynamic data mixture method that uses "Group Influence" to evaluate domain impact and includes implementations TiKMiX-D and TiKMiX-M.
+
+## 3. GRAPE (arXiv:2505.20380) - NeurIPS 2025 Accepted
+
+**VERIFIED**: GRAPE was accepted at NeurIPS 2025. The paper "GRAPE: Optimize Data Mixture for Group Robust Multi-target Adaptive Pretraining" (arXiv:2505.20380) was presented as a poster at NeurIPS 2025 on December 3, 2025. The paper proposes a multi-source-multi-target domain reweighting framework that optimizes data mixtures for robust performance across multiple target tasks.
+
+## 4. Aioli (arXiv:2411.05735) - ICLR 2025 Accepted
+
+**VERIFIED**: Aioli was accepted at ICLR 2025. The paper "Aioli: A Unified Optimization Framework for Language Model Data Mixing" (arXiv:2411.05735) was published as a conference paper at ICLR 2025. It presents a unified framework for language model data mixing that outperforms stratified sampling on 6 out of 6 datasets by an average of 0.27 test perplexity points.
+
+## 5. EMNLP 2026 ARR Submission Deadline - May 25, 2026
+
+**VERIFIED**: May 25, 2026 is correct as the ARR submission deadline for EMNLP 2026. This was officially announced on EMNLP's X account, with the full CFP available on their website.
+
+---
+
+### Sources:
+- [AC-ODM OpenReview Forum](https://openreview.net/forum?id=mRjzWksbGR)
+- [AC-ODM arXiv](https://arxiv.org/abs/2505.23878)
+- [TiKMiX arXiv](https://arxiv.org/abs/2508.17677)
+- [GRAPE NeurIPS Poster](https://neurips.cc/virtual/2025/loc/san-diego/poster/118723)
+- [GRAPE arXiv](https://arxiv.org/abs/2505.20380)
+- [Aioli ICLR 2025](https://iclr.cc/virtual/2025/34482)
+- [Aioli arXiv](https://arxiv.org/abs/2411.05735)
+- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)
+- [EMNLP 2026 X Announcement](https://x.com/emnlpmeeting/status/2029508292637061462)
+- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a552709-b05a-4d58-8507-594d5859d715",
+  "isSidechain": true,
+  "agentId": "a2ffd1f9b26127b33",
+  "requestId": "req_011CauY4EoNkP9vN44wE1hTy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "a2385cc9-1221-4b16-b2dd-1bb19acf50b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "65b80288-3d94-4e61-bb51-86387f214f68",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01A2jBUiv7fN9Z9BgEAJ1et3",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4241,
+      "cache_creation_input_tokens": 5148,
+      "cache_read_input_tokens": 16885,
+      "output_tokens": 974,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5148
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 4241,
+          "output_tokens": 974,
+          "cache_read_input_tokens": 16885,
+          "cache_creation_input_tokens": 5148,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5148,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

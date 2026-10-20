@@ -1,0 +1,2017 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-09 (UTC).** ## Original idea { "tit
+
+**Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-2/a2baa08c-16c9-408f-ab97-d654b8966e39.jsonl`
+- **Structured JSON:** [`f77ed1d47e60bea1f559.json`](../../sessions/f7/f77ed1d47e60bea1f559.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-09T21:27:22.975Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-09T21:27:22.975Z",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-09 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Stage-Attributed Contamination Fingerprinting via Stage-Contrastive Activation Probing\",\n  \"core_problem\": \"Existing contamination detectors are stage-specific silos: DICE (SFT, math benchmarks), Self-Critique (RL post-training, ICLR 2026), CoDeC (stage-agnostic ICL perturbations, ICLR 2026). No method determines WHEN in the training pipeline contamination entered — a critical gap, since the remediation strategy differs entirely: SFT contamination requires retraining the instruction stage, RL contamination requires reward model decontamination, and data-refresh contamination (test data appearing in a new corpus added during continued pretraining) requires data curation of the refresh batch. Critically, 'No Memorization, No Detection' (arXiv:2603.03203, March 2026) establishes that output-distribution methods (the basis of Self-Critique and CDD) operate at chance level for models under ~1B parameters, even with verified contamination — motivating activation-space and weight-sensitivity approaches for small-model stage attribution. All existing detectors operate on single-stage assumptions and none provide a multi-class stage label.\",\n  \"opportunity\": \"Four concurrent papers now characterize contamination at individual stages or confirm detection difficulty — DICE (arXiv:2406.04197), Self-Critique (arXiv:2510.09259, ICLR 2026), CoDeC (ICLR 2026), and No Memorization No Detection (arXiv:2603.03203) — but none attempts stage attribution. Kocyigit et al. (arXiv:2601.06103) empirically shows SFT contamination produces narrow task-specific inflation while RL/GRPO contamination generalizes more broadly — confirming that stages leave distinguishable behavioral signatures, but proposing no attribution classifier. The Linear Representation Hypothesis (arXiv:2502.17601) proposes that post-training behaviors are encoded as linear directions in transformer activation space; probe-based attribution (arXiv:2602.11079) demonstrates that activation-difference vectors carry reliable signal about training data identity. Whether directions produced by different training stages (data-refresh continued pretraining, SFT, RL) are mutually discriminable in activation space — and what their pairwise cosine similarities are — is an open empirical question that no prior work has tested. SCAF's analysis section ('Do Training Stages Leave Distinguishable Activation Signatures?') provides this measurement as a first empirical contribution before any probe training, computing a 4×4 per-stage mean-direction cosine-similarity heatmap and converting a theoretical prior into a directly observable result. The EMNLP 2026 theme on data governance makes this a natural venue. A stage-attribution framework can be executed within both hard constraints (≤200 H100-hours, ≤16 days) by using the Pythia-1B pretrained checkpoint (designed for controlled training experiments with frequent intermediate checkpoints), limiting to 2 benchmark domains, and reframing 'pretraining contamination' as the ecologically more valid 'data-refresh contamination' scenario — supported by 'How Much Can We Forget' (ICML 2025), which shows original pretraining contamination fades below detectability after ~5× Chinchilla-scale new data, making data-refresh the more persistent and practically relevant contamination vector.\",\n  \"landscape\": \"Post-hoc membership inference achieves AUC ~0.5 (arXiv:2604.19561, April 2026), confirming the fundamental difficulty of pretraining contamination detection. Proactive watermarking (arXiv:2502.17259, ICLR 2025) detects via radioactivity traces but requires pre-deployment benchmark modification and provides no stage information. DICE (arXiv:2406.04197) identifies the most activation-sensitive transformer layer and trains a classifier on its internal states for SFT contamination detection on math benchmarks — it does not generalize across stages. Self-Critique (arXiv:2510.09259, ICLR 2026) detects RL contamination via output-entropy collapse under self-critique prompting — stage-specific and, per 'No Memorization No Detection,' likely ineffective for sub-1B models due to insufficient output distribution peaking. CoDeC (ICLR 2026, arXiv:2510.27055) uses ICL perturbations to detect memorized data at dataset level (AUC 99.9%) but yields no stage label. Kernel Divergence Score (KDS, arXiv:2502.00678, 2025) evaluates contamination by comparing kernel similarity matrices of embeddings before and after fine-tuning on the benchmark dataset, achieving near-perfect correlation with contamination levels — but is entirely stage-agnostic and provides no attribution label. The contamination survey (arXiv:2502.14425) documents 50+ techniques without a single stage-aware method. 'No Memorization No Detection' (arXiv:2603.03203) systematically demonstrates that output-distribution detection operates at chance for Pythia 70M–410M, with probability-based methods (perplexity, Min-k% Prob) consistently outperforming distribution-based methods — motivating activation- and weight-based fingerprinting for small models. Kocyigit et al. (arXiv:2601.06103) characterizes stage-specific behavioral signatures (SFT = narrow inflation, RL/GRPO = broad generalization) without operationalizing them into a detector. Probe-based attribution (arXiv:2602.11079) uses activation-difference vectors to attribute post-training behaviors to training datapoints, achieving 10× lower cost than gradient-based attribution — the technique we extend to stage attribution. 'How Much Can We Forget' (ICML 2025) establishes that original pretraining contamination fades after large data additions, making continued-pretraining / data-refresh contamination the more practically persistent scenario. The Fisher information matrix diagonal is used in FILA (arXiv:2508.21300) for machine unlearning parameter isolation but has never been applied as a contamination stage attribution feature. Activation space interventions can be transferred across LLM families (Llama, Qwen, Gemma) via learned activation-space mappings (arXiv:2503.04429); training-free per-layer whitening aligns activation spaces across architectures without labeled target-domain data — supporting SCAF's cross-architecture evaluation design. No existing work spans all three contamination stages with a unified attribution method.\",\n  \"approach\": \"All experiments start from the public Pythia-1B pretrained checkpoint — no training from scratch. We construct controlled contamination across four conditions applied to Pythia-1B: (1) data-refresh contamination (continued pretraining on a 100M-token corpus with benchmark test data comprising 5%/10%/20% of tokens, simulating a crawl refresh that includes leaked test sets), (2) SFT contamination (benchmark questions as instructions, correct answers as responses, mixed into an instruction dataset), (3) RL contamination (DPO training with benchmark-paired preference data), and (4) clean baseline (same training recipe, no contamination). Two benchmark domains: MATH and MMLU. Three contamination ratios per condition: 5%, 10%, 20%. This yields 3 stages × 2 domains × 3 ratios + 2 clean baselines = 20 Pythia-1B checkpoint variants, providing a labeled dataset for probe training. For cross-architecture transfer, the identical contamination procedure is applied to OLMo-2-0425-1B (accessible on HuggingFace, Apache 2.0), yielding another 20 checkpoint variants with known ground-truth labels — used exclusively for zero-shot probe evaluation with no retraining.\\n\\n**Analysis Section 3.1 — 'Do Training Stages Leave Distinguishable Activation Signatures?':** Before training any probe classifier, we compute the mean activation-difference direction d̄ˢ = (1/300) Σᵢ δ(Mˢ; xᵢ) for each of the four stage conditions (data-refresh, SFT, RL, clean), where δ(Mˢ; xᵢ) = actᴸ(Mˢ; xᵢ) − actᴸ(M₀; xᵢ) is the activation difference from the clean Pythia-1B baseline at the middle transformer layer. We assemble a 4×4 cosine-similarity heatmap between {d̄^refresh, d̄^SFT, d̄^RL, d̄^clean} and report it as Figure 1 — an empirical, within-SCAF demonstration of inter-stage discriminability. This is an original measurement produced by SCAF itself, not dependent on any external citation. If any two off-diagonal entries exceed cosine similarity 0.5, the LIA architecture is augmented with a decorrelation objective before probe training proceeds.\\n\\nThe core methodological contribution is Stage-Contrastive Activation Fingerprinting (SCAF), a jointly-trained probe architecture with two novel components. (1) Layer-Importance Attention (LIA): activation-difference vectors δᴸᵢ = actᴸ(M; xᵢ) − actᴸ(M₀; xᵢ) are computed relative to the clean Pythia-1B baseline for each transformer layer L and each of 300 probe inputs xᵢ. Each of the 300 per-input vectors constitutes a separate probe training instance carrying the checkpoint's stage label — yielding 20 × 300 = 6,000 training instances for the Pythia-1B set. A soft attention α = softmax(Wα · δᴸᵢ) is learned over layers per input (no pooling across inputs before the attention step), producing a per-input LIA representation. Compared to DICE's hard selection of a single most-sensitive layer, LIA learns a distributed weighting that can capture multi-layer contamination signatures. (2) Layer-wise Weight Sensitivity Profile (LWSP): for each transformer block b, we compute the squared gradient norm ‖∇_{θb} ℒ(θ; D_probe)‖² over a 200-example domain-specific probe set, producing an L-dimensional sensitivity vector. The motivation is a testable prediction: contamination at different pipeline stages is predicted to consolidate task information into different layer groups — SFT has been empirically shown to concentrate mid-layer weight changes most strongly with performance gains (arXiv:2506.14681, EMNLP 2025); data-refresh contamination, operating via pretraining-like next-token prediction over a diffuse 100M-token corpus, is predicted to distribute gradient sensitivity more broadly; RL/DPO, which optimizes output-governing circuits, is predicted to shift sensitivity toward later layers. Whether this layer-distribution pattern is detectable at Pythia-1B scale is SCAF's secondary empirical claim, tested in the day-2 early ablation.\\n\\nThe LWSP vector — a checkpoint-level feature — is replicated and concatenated to each of the 300 per-input LIA representations from the same checkpoint before the probe forward pass. The LIA representation and LWSP vector are fed into a two-head probe network trained with a joint objective: ℒ_total = ℒ_CE + λ₁·ℒ_SCL + λ₂·ℒ_binary, where ℒ_CE is 4-way stage cross-entropy, ℒ_SCL is a supervised contrastive loss pulling together same-stage fingerprints and pushing apart different-stage fingerprints to explicitly maximize inter-stage discriminability, and ℒ_binary is a clean/contaminated detection head for regularization. At test time, 300 per-input predictions from an unseen checkpoint are aggregated by majority vote to produce a single checkpoint-level stage prediction.\\n\\n**Pre-registered fallback (Appendix Table A1):** If the day-2 early ablation (SFT condition only) shows LWSP macro-F1 < 0.40 on the 3-class SFT/RL/clean subset, LWSP is replaced with CoDeC-style ICL-sensitivity features: per-token log-probability delta under 3-shot vs. 0-shot prompting, averaged over 300 probe inputs. This fallback is fully pre-specified before experiments begin: input features = [LIA-weighted activation representation ‖ CoDeC ICL-delta vector], same two-head probe architecture and joint objective (ℒ_CE + λ₁·ℒ_SCL + λ₂·ℒ_binary). The paper presents this as Appendix Table A1 alongside main Table 2 ablations regardless of whether LWSP succeeds, showing its incremental contribution above the CoDeC-feature baseline.\\n\\nSix ablation conditions are evaluated: DICE-only, Self-Critique-only, CoDeC-only, naive DICE+SC+CoDeC concatenation (the straw-man baseline showing that simple combination is insufficient), LIA+LWSP without ℒ_SCL, and full SCAF. Primary metric: macro-F1 on the 4-class task (data-refresh / SFT / RL / clean). Secondary: we explicitly test whether Self-Critique output-entropy features replicate the 'No Memorization No Detection' failure mode at Pythia-1B scale, empirically motivating the LWSP feature.\\n\\n**Cross-architecture evaluation (Table 3):** Zero-shot transfer to OLMo-2-1B is reported with three rows to isolate each component's contribution to cross-architecture generalization: (a) LWSP-only transfer (no activation features), (b) LIA-only transfer with per-layer whitening, and (c) LIA+LWSP transfer with per-layer whitening. Since Pythia-trained LIA attention weights α encode Pythia-specific layer response geometry — and OLMo-2-0425-1B uses QK-norm and different attention parameterization (incompatible scale assumptions) — raw LIA transfer is biased. We apply a training-free per-layer whitening before applying Pythia's α to OLMo activations: for each layer l, OLMo's δᴸ vectors are standardized to zero mean and unit variance using statistics computed from 300 probe inputs on the OLMo clean baseline checkpoint, following the principle that whitening removes architectural scale mismatches without requiring labeled target-domain data (cf. training-free activation-space whitening for cross-model alignment, arXiv:2503.04429). LWSP is the stronger a-priori candidate for zero-shot transfer, since per-block squared gradient norms are architecture-agnostic scalars unaffected by differences in normalization style; the three-row Table 3 confirms which component actually drives cross-architecture performance.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~115h A100\",\n      \"gpu_utilization\": \"Low (~25-35%): researchers manually iterate on probe architecture and LWSP hyperparameters between checkpoint collection runs; sequential experiment design dominates calendar time despite low total compute\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"2 researchers\",\n      \"estimated_gpu_cost\": \"~$230 (at ~$2/hr A100, decentralized provider rate)\",\n      \"note\": \"Compute well within ≤200 H100-hours (≈70h H100 equivalent); calendar time far exceeds 16-day hard constraint due to manual iteration\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~155h A100\",\n      \"gpu_utilization\": \"Moderate (~65-75%): agent batches all 20 Pythia-1B and 20 OLMo-1B training runs continuously; researcher approves LWSP hyperparameter choices and contamination-ratio ablations at daily 30-min check-ins; idle GPU time reduced to checkpoint-save windows between runs\",\n      \"timeline\": \"7-10 days\",\n      \"team\": \"1 researcher, ~30min/day check-in\",\n      \"claude_api_cost\": \"$120-200\",\n      \"estimated_gpu_cost\": \"~$310 (at ~$2/hr A100)\",\n      \"constraint_satisfaction\": \"SATISFIES BOTH HARD CONSTRAINTS: ~95h H100 equivalent (≤200 H100-hours ✓) and 7-10 days calendar (≤16 days ✓) with 4 H100s running in parallel (~24h wall-clock compute + daily review cycles)\",\n      \"risk_note\": \"Main bottleneck: LWSP feature may exhibit high variance at Pythia-1B scale if continued-pretraining contamination does not produce sufficiently concentrated gradient sensitivity in specific layer groups. Early ablation checkpoint (day 2: SFT condition only) validates LWSP discriminability before committing to full sweep. Pre-registered fallback is Appendix Table A1 (LIA + CoDeC ICL-delta features), fully specified before experiments begin.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~500-700h A100\",\n      \"gpu_utilization\": \"Near-zero idle (~88-93%): agent runs 3× more contamination-ratio variants, ablates LWSP block granularity (layer-wise vs. block-wise), and sweeps attention head configurations in parallel across GPUs\",\n      \"timeline\": \"4-7 days with 8+ A100s\",\n      \"team\": \"0 (only ~2h initial setup)\",\n      \"claude_api_cost\": \"$300-450\",\n      \"estimated_gpu_cost\": \"~$1,000-1,400 (at ~$2/hr A100)\",\n      \"constraint_note\": \"Exceeds 200 H100-hours (≈310-430h H100); satisfies ≤16 days. Use HIL mode to satisfy both hard constraints simultaneously.\",\n      \"risk_note\": \"Without human oversight, auto mode may over-explore contamination-ratio space and under-explore cross-domain transfer conditions; LWSP sensitivity sweep may compute uninformative very-fine-grained block decompositions. Agent should be constrained to a fixed experiment plan approved during setup.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (primary — deadline expected July-August 2026; conference Feb 2027, Montreal): 2-3 month writing window after HIL experiments complete (~May 19-22), comfortable timeline for full ablation tables including Appendix Table A1 and three-row Table 3\",\n    \"EMNLP 2026 (stretch target only — ARR June cycle, deadline ~June 15; conference Oct 24-29, Budapest): achievable only if a complete paper draft covering problem framing, related work, and method sections exists before experiments begin on May 9; with 7-10 days of HIL experiments completing ~May 19-22, the remaining 3-4 weeks to the June deadline allow revision and refinement but not drafting from scratch\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"DICE: Detecting In-distribution Contamination in LLM's Fine-tuning Phase for Math Reasoning (arXiv:2406.04197, 2024)\",\n    \"Self-Critique: Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models (arXiv:2510.09259, ICLR 2026)\",\n    \"CoDeC: Detecting Data Contamination in LLMs via In-Context Learning (arXiv:2510.27055, ICLR 2026)\",\n    \"Probe-Based Data Attribution: Discovering and Mitigating Undesirable Behaviors in LLM Post-Training (arXiv:2602.11079, 2026)\",\n    \"No Memorization, No Detection: Output Distribution-Based Contamination Detection in Small Language Models (arXiv:2603.03203, 2026)\",\n    \"How Much Can We Forget about Data Contamination? (ICML 2025)\",\n    \"The Impact of Post-training on Data Contamination (Kocyigit et al., arXiv:2601.06103, 2026)\",\n    \"Detecting Data Contamination in Large Language Models (membership inference AUC ~0.5, arXiv:2604.19561, 2026)\",\n    \"Detecting Benchmark Contamination Through Watermarking (arXiv:2502.17259, ICLR 2025)\",\n    \"A Survey on Data Contamination for Large Language Models (arXiv:2502.14425, 2026)\",\n    \"Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling (arXiv:2304.01373, ICML 2023)\",\n    \"FILA: Fisher-Initialization of Low-rank Adapters for Machine Unlearning (arXiv:2508.21300, 2025)\",\n    \"Activation Space Interventions Can Be Transferred Between Large Language Models (arXiv:2503.04429, 2025) — cross-architecture activation transfer via learned mappings across Llama/Qwen/Gemma; supports whitening-based LIA transfer design\",\n    \"Massive Supervised Fine-tuning Experiments Reveal How Data, Layer, and Training Factors Shape LLM Alignment Quality (arXiv:2506.14681, EMNLP 2025) — empirically shows mid-layer weight changes correlate most strongly with SFT performance gains; supports LWSP layer-distribution hypothesis for SFT stage\",\n    \"How Contaminated Is Your Benchmark? Quantifying Dataset Leakage with Kernel Divergence Score (arXiv:2502.00678, 2025) — KDS achieves near-perfect contamination correlation but is stage-agnostic; confirms the stage-attribution gap\",\n    \"Representation Engineering for Large-Language Models: Survey and Research Challenges (arXiv:2502.17601, 2025) — linear representation hypothesis: post-training behaviors encoded as linear, mutually orthogonal directions in activation space\"\n  ],\n  \"description\": \"Benchmark contamination detection methods remain stage-specific silos: DICE handles SFT, Self-Critique handles RL, and CoDeC is stage-agnostic — leaving practitioners unable to determine when contamination entered their pipeline, which is essential for targeted remediation. 'No Memorization, No Detection' (arXiv:2603.03203) further establishes that output-distribution methods fail at chance for sub-1B models, motivating activation- and weight-based approaches. We propose Stage-Contrastive Activation Fingerprinting (SCAF), which starts from the Pythia-1B pretrained checkpoint and applies controlled contamination at three stages (data-refresh continued pretraining, SFT instruction tuning, RL preference training) plus a clean baseline, across MATH and MMLU, yielding 20 labeled checkpoints for probe training and 20 OLMo-2-1B checkpoints for zero-shot cross-architecture transfer evaluation. SCAF opens with an original empirical analysis ('Do Training Stages Leave Distinguishable Activation Signatures?'), computing a 4×4 per-stage mean-direction cosine-similarity heatmap as Figure 1 — a within-paper first result that demonstrates inter-stage discriminability without relying on any external unpublished claims. SCAF introduces two new components: Layer-Importance Attention (LIA), which learns a soft attention over all transformer layers' per-input activation-difference vectors (operating on each of the 300×20 = 6,000 training instances individually, with majority voting at test time) rather than DICE's hard single-layer selection; and the Layer-wise Weight Sensitivity Profile (LWSP), a new feature type — per-block squared gradient norms over a probe dataset — whose stage-specific layer-distribution pattern is tested as a secondary empirical claim, with a pre-registered fallback (Appendix Table A1: LIA + CoDeC ICL-delta features) specified before experiments begin. A joint training objective combines cross-entropy classification with a supervised contrastive loss. Cross-architecture Table 3 presents three rows — LWSP-only transfer, LIA-only+whitening, LIA+LWSP+whitening — isolating which component generalizes to OLMo-2-1B. Ablations against DICE, Self-Critique, CoDeC, and their naive concatenation isolate each contribution. AAAI 2027 is the primary target venue (July-August 2026 deadline); EMNLP 2026 ARR June cycle is a stretch target contingent on a pre-existing paper draft. The design satisfies both hard constraints (≤200 H100-hours, ≤16 days) in human-in-loop mode (~95h H100, 7-10 days with 4 H100s).\",\n  \"project_name\": \"contam_stage_attribution\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"MINOR (citation): arXiv:2508.21300 is titled 'Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning' and its main contribution is proposing VILA to replace FILA, which it critiques as flawed. The proposal describes it as presenting FILA for parameter isolation — this is backwards. Fix: cite FILA's original source or drop the citation and instead cite Fisher information as a standard technique for parameter importance estimation.\", \"MINOR (citation): arXiv:2502.17601 is 'Representation Engineering for Large-Language Models: Survey and Research Challenges' — a survey about representation engineering interventions broadly, not a paper establishing the linear representation hypothesis. The actual foundational LRH paper is Park et al. 2023 (arXiv:2311.03658, ICLR 2024). The proposal's description — 'linear representation hypothesis: post-training behaviors encoded as linear, mutually orthogonal directions in activation space' — does not accurately describe 2502.17601. Fix: replace with arXiv:2311.03658 or a more appropriate citation.\", \"MINOR (unacknowledged limitation): SCAF requires white-box access to model activations and gradient norms, restricting applicability to practitioners who control their own training pipelines. This is a shared limitation with DICE and KDS, but it should be explicitly acknowledged as a scope constraint in the proposal (and eventually in the paper's limitations section) to preempt reviewer criticism.\", \"MINOR (venue alignment): The user's stated primary target is EMNLP 2026 (ARR deadline 2026-05-25), but the proposal now lists AAAI 2027 as primary and EMNLP 2026 as 'stretch target only.' The logical justification is sound, but the proposal should explicitly state whether a pre-existing paper draft exists — if it does, EMNLP 2026 should be listed as primary per the user's requirement; if not, the proposal should be upfront that it cannot meet the user's stated target venue.\"]\nFeedback: All three Round 3 issues (unverifiable pending-arXiv citation, probe sample size, cross-arch LIA transfer fragility) are fully resolved in Round 4 — these were blocking issues and their resolution brings SCAF close to submission-ready. Four lightweight fixes remain: (1) Correct the FILA citation: arXiv:2508.21300 proposes VILA as a replacement for FILA, so the FILA technique itself should be cited from its original source (likely Ilharco et al. or a prior unlearning paper), not from a paper that argues it is flawed; alternatively, reference Fisher information parameter importance directly without a specific FILA citation. (2) Replace arXiv:2502.17601 with the actual linear representation hypothesis paper (Park et al. 2023, arXiv:2311.03658, ICLR 2024) or correct the description of 2502.17601 to accurately reflect its content (representation engineering survey). (3) Add one sentence explicitly acknowledging that SCAF requires white-box access to model internals, situating it alongside DICE and KDS in the white-box threat model rather than leaving this implicit. (4) Clarify venue strategy: if a draft exists, EMNLP 2026 should be primary (as the user requested); if not, state this clearly rather than framing AAAI 2027 as the primary target against the user's explicit requirement. These fixes are all implementable in under 4 hours and would bring the proposal to passing quality.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.8 到 3.5，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-09T21:27:22.980Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-09T21:27:22.980Z",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39"
+}
+```
+
+---
+
+## Round 1
+
+31 recorded events
+
+### User
+
+_source line 3 · 2026-05-09T21:27:23.015Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-09 (UTC).**
+
+## Original idea
+{
+  "title": "Stage-Attributed Contamination Fingerprinting via Stage-Contrastive Activation Probing",
+  "core_problem": "Existing contamination detectors are stage-specific silos: DICE (SFT, math benchmarks), Self-Critique (RL post-training, ICLR 2026), CoDeC (stage-agnostic ICL perturbations, ICLR 2026). No method determines WHEN in the training pipeline contamination entered — a critical gap, since the remediation strategy differs entirely: SFT contamination requires retraining the instruction stage, RL contamination requires reward model decontamination, and data-refresh contamination (test data appearing in a new corpus added during continued pretraining) requires data curation of the refresh batch. Critically, 'No Memorization, No Detection' (arXiv:2603.03203, March 2026) establishes that output-distribution methods (the basis of Self-Critique and CDD) operate at chance level for models under ~1B parameters, even with verified contamination — motivating activation-space and weight-sensitivity approaches for small-model stage attribution. All existing detectors operate on single-stage assumptions and none provide a multi-class stage label.",
+  "opportunity": "Four concurrent papers now characterize contamination at individual stages or confirm detection difficulty — DICE (arXiv:2406.04197), Self-Critique (arXiv:2510.09259, ICLR 2026), CoDeC (ICLR 2026), and No Memorization No Detection (arXiv:2603.03203) — but none attempts stage attribution. Kocyigit et al. (arXiv:2601.06103) empirically shows SFT contamination produces narrow task-specific inflation while RL/GRPO contamination generalizes more broadly — confirming that stages leave distinguishable behavioral signatures, but proposing no attribution classifier. The Linear Representation Hypothesis (arXiv:2502.17601) proposes that post-training behaviors are encoded as linear directions in transformer activation space; probe-based attribution (arXiv:2602.11079) demonstrates that activation-difference vectors carry reliable signal about training data identity. Whether directions produced by different training stages (data-refresh continued pretraining, SFT, RL) are mutually discriminable in activation space — and what their pairwise cosine similarities are — is an open empirical question that no prior work has tested. SCAF's analysis section ('Do Training Stages Leave Distinguishable Activation Signatures?') provides this measurement as a first empirical contribution before any probe training, computing a 4×4 per-stage mean-direction cosine-similarity heatmap and converting a theoretical prior into a directly observable result. The EMNLP 2026 theme on data governance makes this a natural venue. A stage-attribution framework can be executed within both hard constraints (≤200 H100-hours, ≤16 days) by using the Pythia-1B pretrained checkpoint (designed for controlled training experiments with frequent intermediate checkpoints), limiting to 2 benchmark domains, and reframing 'pretraining contamination' as the ecologically more valid 'data-refresh contamination' scenario — supported by 'How Much Can We Forget' (ICML 2025), which shows original pretraining contamination fades below detectability after ~5× Chinchilla-scale new data, making data-refresh the more persistent and practically relevant contamination vector.",
+  "landscape": "Post-hoc membership inference achieves AUC ~0.5 (arXiv:2604.19561, April 2026), confirming the fundamental difficulty of pretraining contamination detection. Proactive watermarking (arXiv:2502.17259, ICLR 2025) detects via radioactivity traces but requires pre-deployment benchmark modification and provides no stage information. DICE (arXiv:2406.04197) identifies the most activation-sensitive transformer layer and trains a classifier on its internal states for SFT contamination detection on math benchmarks — it does not generalize across stages. Self-Critique (arXiv:2510.09259, ICLR 2026) detects RL contamination via output-entropy collapse under self-critique prompting — stage-specific and, per 'No Memorization No Detection,' likely ineffective for sub-1B models due to insufficient output distribution peaking. CoDeC (ICLR 2026, arXiv:2510.27055) uses ICL perturbations to detect memorized data at dataset level (AUC 99.9%) but yields no stage label. Kernel Divergence Score (KDS, arXiv:2502.00678, 2025) evaluates contamination by comparing kernel similarity matrices of embeddings before and after fine-tuning on the benchmark dataset, achieving near-perfect correlation with contamination levels — but is entirely stage-agnostic and provides no attribution label. The contamination survey (arXiv:2502.14425) documents 50+ techniques without a single stage-aware method. 'No Memorization No Detection' (arXiv:2603.03203) systematically demonstrates that output-distribution detection operates at chance for Pythia 70M–410M, with probability-based methods (perplexity, Min-k% Prob) consistently outperforming distribution-based methods — motivating activation- and weight-based fingerprinting for small models. Kocyigit et al. (arXiv:2601.06103) characterizes stage-specific behavioral signatures (SFT = narrow inflation, RL/GRPO = broad generalization) without operationalizing them into a detector. Probe-based attribution (arXiv:2602.11079) uses activation-difference vectors to attribute post-training behaviors to training datapoints, achieving 10× lower cost than gradient-based attribution — the technique we extend to stage attribution. 'How Much Can We Forget' (ICML 2025) establishes that original pretraining contamination fades after large data additions, making continued-pretraining / data-refresh contamination the more practically persistent scenario. The Fisher information matrix diagonal is used in FILA (arXiv:2508.21300) for machine unlearning parameter isolation but has never been applied as a contamination stage attribution feature. Activation space interventions can be transferred across LLM families (Llama, Qwen, Gemma) via learned activation-space mappings (arXiv:2503.04429); training-free per-layer whitening aligns activation spaces across architectures without labeled target-domain data — supporting SCAF's cross-architecture evaluation design. No existing work spans all three contamination stages with a unified attribution method.",
+  "approach": "All experiments start from the public Pythia-1B pretrained checkpoint — no training from scratch. We construct controlled contamination across four conditions applied to Pythia-1B: (1) data-refresh contamination (continued pretraining on a 100M-token corpus with benchmark test data comprising 5%/10%/20% of tokens, simulating a crawl refresh that includes leaked test sets), (2) SFT contamination (benchmark questions as instructions, correct answers as responses, mixed into an instruction dataset), (3) RL contamination (DPO training with benchmark-paired preference data), and (4) clean baseline (same training recipe, no contamination). Two benchmark domains: MATH and MMLU. Three contamination ratios per condition: 5%, 10%, 20%. This yields 3 stages × 2 domains × 3 ratios + 2 clean baselines = 20 Pythia-1B checkpoint variants, providing a labeled dataset for probe training. For cross-architecture transfer, the identical contamination procedure is applied to OLMo-2-0425-1B (accessible on HuggingFace, Apache 2.0), yielding another 20 checkpoint variants with known ground-truth labels — used exclusively for zero-shot probe evaluation with no retraining.\n\n**Analysis Section 3.1 — 'Do Training Stages Leave Distinguishable Activation Signatures?':** Before training any probe classifier, we compute the mean activation-difference direction d̄ˢ = (1/300) Σᵢ δ(Mˢ; xᵢ) for each of the four stage conditions (data-refresh, SFT, RL, clean), where δ(Mˢ; xᵢ) = actᴸ(Mˢ; xᵢ) − actᴸ(M₀; xᵢ) is the activation difference from the clean Pythia-1B baseline at the middle transformer layer. We assemble a 4×4 cosine-similarity heatmap between {d̄^refresh, d̄^SFT, d̄^RL, d̄^clean} and report it as Figure 1 — an empirical, within-SCAF demonstration of inter-stage discriminability. This is an original measurement produced by SCAF itself, not dependent on any external citation. If any two off-diagonal entries exceed cosine similarity 0.5, the LIA architecture is augmented with a decorrelation objective before probe training proceeds.\n\nThe core methodological contribution is Stage-Contrastive Activation Fingerprinting (SCAF), a jointly-trained probe architecture with two novel components. (1) Layer-Importance Attention (LIA): activation-difference vectors δᴸᵢ = actᴸ(M; xᵢ) − actᴸ(M₀; xᵢ) are computed relative to the clean Pythia-1B baseline for each transformer layer L and each of 300 probe inputs xᵢ. Each of the 300 per-input vectors constitutes a separate probe training instance carrying the checkpoint's stage label — yielding 20 × 300 = 6,000 training instances for the Pythia-1B set. A soft attention α = softmax(Wα · δᴸᵢ) is learned over layers per input (no pooling across inputs before the attention step), producing a per-input LIA representation. Compared to DICE's hard selection of a single most-sensitive layer, LIA learns a distributed weighting that can capture multi-layer contamination signatures. (2) Layer-wise Weight Sensitivity Profile (LWSP): for each transformer block b, we compute the squared gradient norm ‖∇_{θb} ℒ(θ; D_probe)‖² over a 200-example domain-specific probe set, producing an L-dimensional sensitivity vector. The motivation is a testable prediction: contamination at different pipeline stages is predicted to consolidate task information into different layer groups — SFT has been empirically shown to concentrate mid-layer weight changes most strongly with performance gains (arXiv:2506.14681, EMNLP 2025); data-refresh contamination, operating via pretraining-like next-token prediction over a diffuse 100M-token corpus, is predicted to distribute gradient sensitivity more broadly; RL/DPO, which optimizes output-governing circuits, is predicted to shift sensitivity toward later layers. Whether this layer-distribution pattern is detectable at Pythia-1B scale is SCAF's secondary empirical claim, tested in the day-2 early ablation.\n\nThe LWSP vector — a checkpoint-level feature — is replicated and concatenated to each of the 300 per-input LIA representations from the same checkpoint before the probe forward pass. The LIA representation and LWSP vector are fed into a two-head probe network trained with a joint objective: ℒ_total = ℒ_CE + λ₁·ℒ_SCL + λ₂·ℒ_binary, where ℒ_CE is 4-way stage cross-entropy, ℒ_SCL is a supervised contrastive loss pulling together same-stage fingerprints and pushing apart different-stage fingerprints to explicitly maximize inter-stage discriminability, and ℒ_binary is a clean/contaminated detection head for regularization. At test time, 300 per-input predictions from an unseen checkpoint are aggregated by majority vote to produce a single checkpoint-level stage prediction.\n\n**Pre-registered fallback (Appendix Table A1):** If the day-2 early ablation (SFT condition only) shows LWSP macro-F1 < 0.40 on the 3-class SFT/RL/clean subset, LWSP is replaced with CoDeC-style ICL-sensitivity features: per-token log-probability delta under 3-shot vs. 0-shot prompting, averaged over 300 probe inputs. This fallback is fully pre-specified before experiments begin: input features = [LIA-weighted activation representation ‖ CoDeC ICL-delta vector], same two-head probe architecture and joint objective (ℒ_CE + λ₁·ℒ_SCL + λ₂·ℒ_binary). The paper presents this as Appendix Table A1 alongside main Table 2 ablations regardless of whether LWSP succeeds, showing its incremental contribution above the CoDeC-feature baseline.\n\nSix ablation conditions are evaluated: DICE-only, Self-Critique-only, CoDeC-only, naive DICE+SC+CoDeC concatenation (the straw-man baseline showing that simple combination is insufficient), LIA+LWSP without ℒ_SCL, and full SCAF. Primary metric: macro-F1 on the 4-class task (data-refresh / SFT / RL / clean). Secondary: we explicitly test whether Self-Critique output-entropy features replicate the 'No Memorization No Detection' failure mode at Pythia-1B scale, empirically motivating the LWSP feature.\n\n**Cross-architecture evaluation (Table 3):** Zero-shot transfer to OLMo-2-1B is reported with three rows to isolate each component's contribution to cross-architecture generalization: (a) LWSP-only transfer (no activation features), (b) LIA-only transfer with per-layer whitening, and (c) LIA+LWSP transfer with per-layer whitening. Since Pythia-trained LIA attention weights α encode Pythia-specific layer response geometry — and OLMo-2-0425-1B uses QK-norm and different attention parameterization (incompatible scale assumptions) — raw LIA transfer is biased. We apply a training-free per-layer whitening before applying Pythia's α to OLMo activations: for each layer l, OLMo's δᴸ vectors are standardized to zero mean and unit variance using statistics computed from 300 probe inputs on the OLMo clean baseline checkpoint, following the principle that whitening removes architectural scale mismatches without requiring labeled target-domain data (cf. training-free activation-space whitening for cross-model alignment, arXiv:2503.04429). LWSP is the stronger a-priori candidate for zero-shot transfer, since per-block squared gradient norms are architecture-agnostic scalars unaffected by differences in normalization style; the three-row Table 3 confirms which component actually drives cross-architecture performance.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~115h A100",
+      "gpu_utilization": "Low (~25-35%): researchers manually iterate on probe architecture and LWSP hyperparameters between checkpoint collection runs; sequential experiment design dominates calendar time despite low total compute",
+      "timeline": "3-4 months",
+      "team": "2 researchers",
+      "estimated_gpu_cost": "~$230 (at ~$2/hr A100, decentralized provider rate)",
+      "note": "Compute well within ≤200 H100-hours (≈70h H100 equivalent); calendar time far exceeds 16-day hard constraint due to manual iteration"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~155h A100",
+      "gpu_utilization": "Moderate (~65-75%): agent batches all 20 Pythia-1B and 20 OLMo-1B training runs continuously; researcher approves LWSP hyperparameter choices and contamination-ratio ablations at daily 30-min check-ins; idle GPU time reduced to checkpoint-save windows between runs",
+      "timeline": "7-10 days",
+      "team": "1 researcher, ~30min/day check-in",
+      "claude_api_cost": "$120-200",
+      "estimated_gpu_cost": "~$310 (at ~$2/hr A100)",
+      "constraint_satisfaction": "SATISFIES BOTH HARD CONSTRAINTS: ~95h H100 equivalent (≤200 H100-hours ✓) and 7-10 days calendar (≤16 days ✓) with 4 H100s running in parallel (~24h wall-clock compute + daily review cycles)",
+      "risk_note": "Main bottleneck: LWSP feature may exhibit high variance at Pythia-1B scale if continued-pretraining contamination does not produce sufficiently concentrated gradient sensitivity in specific layer groups. Early ablation checkpoint (day 2: SFT condition only) validates LWSP discriminability before committing to full sweep. Pre-registered fallback is Appendix Table A1 (LIA + CoDeC ICL-delta features), fully specified before experiments begin."
+    },
+    "auto_research": {
+      "gpu_hours": "~500-700h A100",
+      "gpu_utilization": "Near-zero idle (~88-93%): agent runs 3× more contamination-ratio variants, ablates LWSP block granularity (layer-wise vs. block-wise), and sweeps attention head configurations in parallel across GPUs",
+      "timeline": "4-7 days with 8+ A100s",
+      "team": "0 (only ~2h initial setup)",
+      "claude_api_cost": "$300-450",
+      "estimated_gpu_cost": "~$1,000-1,400 (at ~$2/hr A100)",
+      "constraint_note": "Exceeds 200 H100-hours (≈310-430h H100); satisfies ≤16 days. Use HIL mode to satisfy both hard constraints simultaneously.",
+      "risk_note": "Without human oversight, auto mode may over-explore contamination-ratio space and under-explore cross-domain transfer conditions; LWSP sensitivity sweep may compute uninformative very-fine-grained block decompositions. Agent should be constrained to a fixed experiment plan approved during setup."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (primary — deadline expected July-August 2026; conference Feb 2027, Montreal): 2-3 month writing window after HIL experiments complete (~May 19-22), comfortable timeline for full ablation tables including Appendix Table A1 and three-row Table 3",
+    "EMNLP 2026 (stretch target only — ARR June cycle, deadline ~June 15; conference Oct 24-29, Budapest): achievable only if a complete paper draft covering problem framing, related work, and method sections exists before experiments begin on May 9; with 7-10 days of HIL experiments completing ~May 19-22, the remaining 3-4 weeks to the June deadline allow revision and refinement but not drafting from scratch"
+  ],
+  "level": "solid",
+  "key_references": [
+    "DICE: Detecting In-distribution Contamination in LLM's Fine-tuning Phase for Math Reasoning (arXiv:2406.04197, 2024)",
+    "Self-Critique: Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models (arXiv:2510.09259, ICLR 2026)",
+    "CoDeC: Detecting Data Contamination in LLMs via In-Context Learning (arXiv:2510.27055, ICLR 2026)",
+    "Probe-Based Data Attribution: Discovering and Mitigating Undesirable Behaviors in LLM Post-Training (arXiv:2602.11079, 2026)",
+    "No Memorization, No Detection: Output Distribution-Based Contamination Detection in Small Language Models (arXiv:2603.03203, 2026)",
+    "How Much Can We Forget about Data Contamination? (ICML 2025)",
+    "The Impact of Post-training on Data Contamination (Kocyigit et al., arXiv:2601.06103, 2026)",
+    "Detecting Data Contamination in Large Language Models (membership inference AUC ~0.5, arXiv:2604.19561, 2026)",
+    "Detecting Benchmark Contamination Through Watermarking (arXiv:2502.17259, ICLR 2025)",
+    "A Survey on Data Contamination for Large Language Models (arXiv:2502.14425, 2026)",
+    "Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling (arXiv:2304.01373, ICML 2023)",
+    "FILA: Fisher-Initialization of Low-rank Adapters for Machine Unlearning (arXiv:2508.21300, 2025)",
+    "Activation Space Interventions Can Be Transferred Between Large Language Models (arXiv:2503.04429, 2025) — cross-architecture activation transfer via learned mappings across Llama/Qwen/Gemma; supports whitening-based LIA transfer design",
+    "Massive Supervised Fine-tuning Experiments Reveal How Data, Layer, and Training Factors Shape LLM Alignment Quality (arXiv:2506.14681, EMNLP 2025) — empirically shows mid-layer weight changes correlate most strongly with SFT performance gains; supports LWSP layer-distribution hypothesis for SFT stage",
+    "How Contaminated Is Your Benchmark? Quantifying Dataset Leakage with Kernel Divergence Score (arXiv:2502.00678, 2025) — KDS achieves near-perfect contamination correlation but is stage-agnostic; confirms the stage-attribution gap",
+    "Representation Engineering for Large-Language Models: Survey and Research Challenges (arXiv:2502.17601, 2025) — linear representation hypothesis: post-training behaviors encoded as linear, mutually orthogonal directions in activation space"
+  ],
+  "description": "Benchmark contamination detection methods remain stage-specific silos: DICE handles SFT, Self-Critique handles RL, and CoDeC is stage-agnostic — leaving practitioners unable to determine when contamination entered their pipeline, which is essential for targeted remediation. 'No Memorization, No Detection' (arXiv:2603.03203) further establishes that output-distribution methods fail at chance for sub-1B models, motivating activation- and weight-based approaches. We propose Stage-Contrastive Activation Fingerprinting (SCAF), which starts from the Pythia-1B pretrained checkpoint and applies controlled contamination at three stages (data-refresh continued pretraining, SFT instruction tuning, RL preference training) plus a clean baseline, across MATH and MMLU, yielding 20 labeled checkpoints for probe training and 20 OLMo-2-1B checkpoints for zero-shot cross-architecture transfer evaluation. SCAF opens with an original empirical analysis ('Do Training Stages Leave Distinguishable Activation Signatures?'), computing a 4×4 per-stage mean-direction cosine-similarity heatmap as Figure 1 — a within-paper first result that demonstrates inter-stage discriminability without relying on any external unpublished claims. SCAF introduces two new components: Layer-Importance Attention (LIA), which learns a soft attention over all transformer layers' per-input activation-difference vectors (operating on each of the 300×20 = 6,000 training instances individually, with majority voting at test time) rather than DICE's hard single-layer selection; and the Layer-wise Weight Sensitivity Profile (LWSP), a new feature type — per-block squared gradient norms over a probe dataset — whose stage-specific layer-distribution pattern is tested as a secondary empirical claim, with a pre-registered fallback (Appendix Table A1: LIA + CoDeC ICL-delta features) specified before experiments begin. A joint training objective combines cross-entropy classification with a supervised contrastive loss. Cross-architecture Table 3 presents three rows — LWSP-only transfer, LIA-only+whitening, LIA+LWSP+whitening — isolating which component generalizes to OLMo-2-1B. Ablations against DICE, Self-Critique, CoDeC, and their naive concatenation isolate each contribution. AAAI 2027 is the primary target venue (July-August 2026 deadline); EMNLP 2026 ARR June cycle is a stretch target contingent on a pre-existing paper draft. The design satisfies both hard constraints (≤200 H100-hours, ≤16 days) in human-in-loop mode (~95h H100, 7-10 days with 4 H100s).",
+  "project_name": "contam_stage_attribution",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["MINOR (citation): arXiv:2508.21300 is titled 'Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning' and its main contribution is proposing VILA to replace FILA, which it critiques as flawed. The proposal describes it as presenting FILA for parameter isolation — this is backwards. Fix: cite FILA's original source or drop the citation and instead cite Fisher information as a standard technique for parameter importance estimation.", "MINOR (citation): arXiv:2502.17601 is 'Representation Engineering for Large-Language Models: Survey and Research Challenges' — a survey about representation engineering interventions broadly, not a paper establishing the linear representation hypothesis. The actual foundational LRH paper is Park et al. 2023 (arXiv:2311.03658, ICLR 2024). The proposal's description — 'linear representation hypothesis: post-training behaviors encoded as linear, mutually orthogonal directions in activation space' — does not accurately describe 2502.17601. Fix: replace with arXiv:2311.03658 or a more appropriate citation.", "MINOR (unacknowledged limitation): SCAF requires white-box access to model activations and gradient norms, restricting applicability to practitioners who control their own training pipelines. This is a shared limitation with DICE and KDS, but it should be explicitly acknowledged as a scope constraint in the proposal (and eventually in the paper's limitations section) to preempt reviewer criticism.", "MINOR (venue alignment): The user's stated primary target is EMNLP 2026 (ARR deadline 2026-05-25), but the proposal now lists AAAI 2027 as primary and EMNLP 2026 as 'stretch target only.' The logical justification is sound, but the proposal should explicitly state whether a pre-existing paper draft exists — if it does, EMNLP 2026 should be listed as primary per the user's requirement; if not, the proposal should be upfront that it cannot meet the user's stated target venue."]
+Feedback: All three Round 3 issues (unverifiable pending-arXiv citation, probe sample size, cross-arch LIA transfer fragility) are fully resolved in Round 4 — these were blocking issues and their resolution brings SCAF close to submission-ready. Four lightweight fixes remain: (1) Correct the FILA citation: arXiv:2508.21300 proposes VILA as a replacement for FILA, so the FILA technique itself should be cited from its original source (likely Ilharco et al. or a prior unlearning paper), not from a paper that argues it is flawed; alternatively, reference Fisher information parameter importance directly without a specific FILA citation. (2) Replace arXiv:2502.17601 with the actual linear representation hypothesis paper (Park et al. 2023, arXiv:2311.03658, ICLR 2024) or correct the description of 2502.17601 to accurately reflect its content (representation engineering survey). (3) Add one sentence explicitly acknowledging that SCAF requires white-box access to model internals, situating it alongside DICE and KDS in the white-box threat model rather than leaving this implicit. (4) Clarify venue strategy: if a draft exists, EMNLP 2026 should be primary (as the user requested); if not, state this clearly rather than framing AAAI 2027 as the primary target against the user's explicit requirement. These fixes are all implementable in under 4 hours and would bring the proposal to passing quality.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.8 到 3.5，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "4fe8b225-16b3-4fd0-af92-12603231d031",
+  "type": "user",
+  "uuid": "880b29d9-a4e3-477e-b1f4-00b4b0d198bb",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-09T21:27:23.012Z_
+
+```json
+{
+  "parentUuid": "880b29d9-a4e3-477e-b1f4-00b4b0d198bb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "d26dd853-a6f0-40ff-bbf6-219d9ee910f3",
+  "timestamp": "2026-05-09T21:27:23.012Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-09T21:27:23.012Z_
+
+```json
+{
+  "parentUuid": "d26dd853-a6f0-40ff-bbf6-219d9ee910f3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d3ab3e32-84ca-4d64-894e-49bccefe1caf",
+  "timestamp": "2026-05-09T21:27:23.012Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Stage-Attributed Contamination Fingerprinting via Stage-Contrastive Ac…",
+  "leafUuid": "d3ab3e32-84ca-4d64-894e-49bccefe1caf",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise contamination stage attribution with corrected citations",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-09T21:27:59.591Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before deciding on the approach.
+
+## Reviewer Feedback Analysis
+
+The feedback is "Round 4" and notes that three previous blocking issues (unverifiable pending-arXiv citation, probe sample size, cross-arch LIA transfer fragility) have been fully resolved. The remaining issues are all **MINOR**:
+
+1. **FILA citation error**: arXiv:2508.21300 is actually a paper proposing VILA to replace FILA (critiquing FILA as flawed), not presenting FILA. Need to either cite FILA's original source or just reference Fisher information as a standard technique.
+
+
+2. **LRH citation error**: The survey paper I cited isn't the foundational Linear Representation Hypothesis work—I need to use Park et al. 2023 instead.
+3. **White-box access limitation**: SCAF requires white-box access but I haven't explicitly acknowledged this constraint in the paper.
+4. **Venue strategy clarification**: There's a mismatch between the proposal listing AAAI 2027 as primary while the actual target is EMNLP 2026, so I need to clarify the submission timeline.
+
+The declining scores across rounds are concerning on the surface, but the reviewer's feedback actually suggests the core idea is solid—they explicitly confirmed all major Round 3 issues are resolved and flagged only minor fixes needed to reach passing quality. Rather than pivoting away from this work, I should push through with these targeted corrections since the foundation is sound.
+
+Now I'm tracking down the specific citations the reviewer flagged. For the FILA reference, I need to either locate the original paper or pivot to citing Fisher information more directly as a standard technique for parameter importance, which might actually be cleaner than relying on a specific FILA source.
+
+For the Linear Representation Hypothesis, Park et al. 2023 (arXiv:2311.03658) is the right citation to use. On the white-box limitation, I just need to add a brief acknowledgment of that constraint. And for the venue strategy, I should make it explicit that EMNLP 2026 is a stretch target given we're only 16 days from the ARR deadline—the proposal should already reflect this, but I want to be clear about the timeline and what's realistic. I'm checking the timeline here—with experiments running through May 19-22 and the EMNLP deadline on May 25, that leaves only a few days to write from scratch, which is tight. The reviewer wants us to be explicit about whether a draft already exists, and if not, to clearly justify why AAAI 2027 is the primary target instead. I should update the venue section to address this directly.
+
+Before revising, let me verify the key citations—Park et al. 2023 for the Linear Representation Hypothesis, the original FILA paper or standard Fisher information techniques like EWC, and confirm the EMNLP 2026 ARR deadline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3ab3e32-84ca-4d64-894e-49bccefe1caf",
+  "isSidechain": false,
+  "requestId": "req_011CashmH8TPb6SFJiX2keG1",
+  "type": "assistant",
+  "uuid": "3ce7728f-f2d5-4b4c-a622-d6ad559aafe6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Pnu9Y8dVfMDNi6BPz1dRyt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13402,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13402,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1620,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 13402,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13402
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-09T21:28:00.280Z_
+
+Looking at the feedback: four MINOR fixes needed (two citation corrections, one limitation acknowledgment, one venue clarification). The reviewer explicitly says these fixes "would bring the proposal to passing quality" — so a minor revision is appropriate here. Let me verify the correct citations before making changes.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ce7728f-f2d5-4b4c-a622-d6ad559aafe6",
+  "isSidechain": false,
+  "requestId": "req_011CashmH8TPb6SFJiX2keG1",
+  "type": "assistant",
+  "uuid": "5fc3cac0-b470-46ff-9807-def455cc3575",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Pnu9Y8dVfMDNi6BPz1dRyt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13402,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13402,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1620,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 13402,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13402
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-09T21:28:00.397Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018WzjXxFuUX6K5bKE4J37uS`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fc3cac0-b470-46ff-9807-def455cc3575",
+  "isSidechain": false,
+  "requestId": "req_011CashmH8TPb6SFJiX2keG1",
+  "type": "assistant",
+  "uuid": "5000260d-6e39-4254-acae-dcc339854405",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Pnu9Y8dVfMDNi6BPz1dRyt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13402,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1620,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13402,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1620,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 13402,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13402
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-09T21:28:00.414Z_
+
+<details><summary>↩ Tool result · `toolu_018WzjXxFuUX6K5bKE4J37uS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5000260d-6e39-4254-acae-dcc339854405",
+  "isSidechain": false,
+  "promptId": "4fe8b225-16b3-4fd0-af92-12603231d031",
+  "type": "user",
+  "uuid": "80a71a1a-43b8-45f4-a35f-8ce027558607",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "5000260d-6e39-4254-acae-dcc339854405",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-09T21:28:02.856Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for the correct citations in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80a71a1a-43b8-45f4-a35f-8ce027558607",
+  "isSidechain": false,
+  "requestId": "req_011Cashp36gpAA4Tt5DS6Uqm",
+  "type": "assistant",
+  "uuid": "6382b71f-105d-45df-b3ee-9a9f2199b41d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BePN99ysLHbgaQCVyM3tiQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-09T21:28:03.286Z_
+
+Running three parallel searches to verify the correct citations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6382b71f-105d-45df-b3ee-9a9f2199b41d",
+  "isSidechain": false,
+  "requestId": "req_011Cashp36gpAA4Tt5DS6Uqm",
+  "type": "assistant",
+  "uuid": "33fa1556-2cb1-4ed1-9fb7-9da60023dea5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BePN99ysLHbgaQCVyM3tiQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-09T21:28:04.489Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01T5NQXvk2SKeyFnj6T4qypy`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2311.03658",
+  "prompt": "What is the title, authors, and main claim of this paper? Does it establish the Linear Representation Hypothesis?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33fa1556-2cb1-4ed1-9fb7-9da60023dea5",
+  "isSidechain": false,
+  "requestId": "req_011Cashp36gpAA4Tt5DS6Uqm",
+  "type": "assistant",
+  "uuid": "ffd7d7a6-b430-4d93-8bd5-73ed6170c2a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BePN99ysLHbgaQCVyM3tiQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-09T21:28:05.291Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015HjzMWNRAvFxgSL4vJGkG5`</summary>
+
+```json
+{
+  "query": "FILA Fisher-Initialization Low-rank Adapters machine unlearning original paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffd7d7a6-b430-4d93-8bd5-73ed6170c2a3",
+  "isSidechain": false,
+  "requestId": "req_011Cashp36gpAA4Tt5DS6Uqm",
+  "type": "assistant",
+  "uuid": "e59e82d2-7556-4071-a614-50b62bcefc2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BePN99ysLHbgaQCVyM3tiQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-09T21:28:06.804Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HeXpxmiNhoD4sRZX9qEBoK`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.21300",
+  "prompt": "What is this paper's title? What is FILA and what is VILA? Does this paper propose FILA or critique it and propose VILA as a replacement?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e59e82d2-7556-4071-a614-50b62bcefc2f",
+  "isSidechain": false,
+  "requestId": "req_011Cashp36gpAA4Tt5DS6Uqm",
+  "type": "assistant",
+  "uuid": "1d699927-29fa-46a9-9504-f2ea1f610e76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BePN99ysLHbgaQCVyM3tiQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 25033,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 25033,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-09T21:28:08.660Z_
+
+<details><summary>↩ Tool result · `toolu_01T5NQXvk2SKeyFnj6T4qypy`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "The Linear Representation Hypothesis and the Geometry of Large Language Models"
+
+**Authors:** Kiho Park, Yo Joong Choe, and Victor Veitch
+
+**Main Claim:** The paper formalizes the concept of linear representation—that "high-level concepts are represented linearly as directions in some representation space"—and provides mathematical rigor to this idea. Rather than establishing the hypothesis as true, the authors aim to clarify what it actually means and connect it to practical applications like linear probing and model steering.
+
+**Key Contribution:** They introduce a non-Euclidean inner product that respects language structure, demonstrating how different geometric notions in representation spaces can be unified through a causal framework. Experiments with LLaMA-2 validate the existence of linear representations and show their utility for model interpretation and control.
+
+The work was accepted for presentation at ICML 2024 and received an oral presentation at NeurIPS 2023's Causal Representation Learning Workshop.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffd7d7a6-b430-4d93-8bd5-73ed6170c2a3",
+  "isSidechain": false,
+  "promptId": "4fe8b225-16b3-4fd0-af92-12603231d031",
+  "type": "user",
+  "uuid": "00fc50bb-2c9a-4dc8-be43-0db50d73ff1c",
+  "toolUseResult": {
+    "bytes": 47016,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary\n\n**Title:** \"The Linear Representation Hypothesis and the Geometry of Large Language Models\"\n\n**Authors:** Kiho Park, Yo Joong Choe, and Victor Veitch\n\n**Main Claim:** The paper formalizes the concept of linear representation—that \"high-level concepts are represented linearly as directions in some representation space\"—and provides mathematical rigor to this idea. Rather than establishing the hypothesis as true, the authors aim to clarify what it actually means and connect it to practical applications like linear probing and model steering.\n\n**Key Contribution:** They introduce a non-Euclidean inner product that respects language structure, demonstrating how different geometric notions in representation spaces can be unified through a causal framework. Experiments with LLaMA-2 validate the existence of linear representations and show their utility for model interpretation and control.\n\nThe work was accepted for presentation at ICML 2024 and received an oral presentation at NeurIPS 2023's Causal Representation Learning Workshop.",
+    "durationMs": 4168,
+    "url": "https://arxiv.org/abs/2311.03658"
+  },
+  "sourceToolAssistantUUID": "ffd7d7a6-b430-4d93-8bd5-73ed6170c2a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-09T21:28:11.830Z_
+
+<details><summary>↩ Tool result · `toolu_015HjzMWNRAvFxgSL4vJGkG5`</summary>
+
+```text
+Web search results for query: "FILA Fisher-Initialization Low-rank Adapters machine unlearning original paper"
+
+Links: [{"title":"Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning","url":"https://arxiv.org/html/2508.21300"},{"title":"Improving Fisher Information Estimation and Efficiency for ...","url":"https://openreview.net/pdf?id=mTJW8Y1nd8"},{"title":"Towards Robust and Cost-Efficient Knowledge Unlearning for Large Language Models","url":"https://arxiv.org/html/2408.06621v2"},{"title":"Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250821300K/abstract"},{"title":"Towards Robust and Parameter-Efficient Knowledge Unlearning for LLMs","url":"https://arxiv.org/html/2408.06621v5"},{"title":"Stable Forgetting: Bounded Parameter-Efficient Unlearning in LLMs Arpit Garg∗†","url":"https://arxiv.org/pdf/2509.24166"},{"title":"[Quick Review] Towards Robust and Parameter-Efficient Knowledge Unlearning for LLMs","url":"https://liner.com/review/towards-robust-and-parameterefficient-knowledge-unlearning-for-llms"},{"title":"[2508.21300] Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning","url":"https://arxiv.org/abs/2508.21300"},{"title":"Towards Robust and Parameter-Efficient Knowledge Unlearning for LLMs | OpenReview","url":"https://openreview.net/forum?id=1ExfUpmIW4"},{"title":"Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning | OpenReview","url":"https://openreview.net/forum?id=mTJW8Y1nd8"}]
+
+Based on the search results, I found information about FILA (Fisher-Initialization of Low-rank Adapters) and its original paper:
+
+## Original Paper
+
+FILA (Fisher-Initialization of Low-rank Adapters) was introduced as a method that pre-assigns weights relatively important to generating unwanted information and data-adaptively assigns parameters responsible for generating unwanted information to adapters prior to tuning by decomposing the pretrained parameters weighted by the relative Fisher-information matrix.
+
+The original research was conducted on the Training Data Extraction Challenge dataset with GPT-Neo models along with the TOFU benchmark using Phi-1.5B and Llama2-7B models. The paper appears to have been published in 2024, with one version dated April 24, 2025.
+
+## Key Contributions
+
+FILA data-adaptively assigns parameters responsible for generating unwanted information to adapters prior to tuning by decomposing the pretrained parameters weighted by the relative Fisher-information matrix. The method leverages Fisher information to estimate gradient variance and identify parameters most closely related to the data to be forgotten, and these parameters are isolated from the base model by assigning them to a LoRA adapter.
+
+The original paper also introduced the Inverted Hinge Loss (IHL) to replace the negative cross-entropy loss in Gradient Ascent and resolve issues with dispersed gradients and unboundedness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e59e82d2-7556-4071-a614-50b62bcefc2f",
+  "isSidechain": false,
+  "promptId": "4fe8b225-16b3-4fd0-af92-12603231d031",
+  "type": "user",
+  "uuid": "46fbc843-3a5e-438f-945f-ca38c3005547",
+  "toolUseResult": {
+    "query": "FILA Fisher-Initialization Low-rank Adapters machine unlearning original paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V2T3FQMmCt3SCcsHvXbUKt",
+        "content": [
+          {
+            "title": "Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning",
+            "url": "https://arxiv.org/html/2508.21300"
+          },
+          {
+            "title": "Improving Fisher Information Estimation and Efficiency for ...",
+            "url": "https://openreview.net/pdf?id=mTJW8Y1nd8"
+          },
+          {
+            "title": "Towards Robust and Cost-Efficient Knowledge Unlearning for Large Language Models",
+            "url": "https://arxiv.org/html/2408.06621v2"
+          },
+          {
+            "title": "Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250821300K/abstract"
+          },
+          {
+            "title": "Towards Robust and Parameter-Efficient Knowledge Unlearning for LLMs",
+            "url": "https://arxiv.org/html/2408.06621v5"
+          },
+          {
+            "title": "Stable Forgetting: Bounded Parameter-Efficient Unlearning in LLMs Arpit Garg∗†",
+            "url": "https://arxiv.org/pdf/2509.24166"
+          },
+          {
+            "title": "[Quick Review] Towards Robust and Parameter-Efficient Knowledge Unlearning for LLMs",
+            "url": "https://liner.com/review/towards-robust-and-parameterefficient-knowledge-unlearning-for-llms"
+          },
+          {
+            "title": "[2508.21300] Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning",
+            "url": "https://arxiv.org/abs/2508.21300"
+          },
+          {
+            "title": "Towards Robust and Parameter-Efficient Knowledge Unlearning for LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=1ExfUpmIW4"
+          },
+          {
+            "title": "Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning | OpenReview",
+            "url": "https://openreview.net/forum?id=mTJW8Y1nd8"
+          }
+        ]
+      },
+      "Based on the search results, I found information about FILA (Fisher-Initialization of Low-rank Adapters) and its original paper:\n\n## Original Paper\n\nFILA (Fisher-Initialization of Low-rank Adapters) was introduced as a method that pre-assigns weights relatively important to generating unwanted information and data-adaptively assigns parameters responsible for generating unwanted information to adapters prior to tuning by decomposing the pretrained parameters weighted by the relative Fisher-information matrix.\n\nThe original research was conducted on the Training Data Extraction Challenge dataset with GPT-Neo models along with the TOFU benchmark using Phi-1.5B and Llama2-7B models. The paper appears to have been published in 2024, with one version dated April 24, 2025.\n\n## Key Contributions\n\nFILA data-adaptively assigns parameters responsible for generating unwanted information to adapters prior to tuning by decomposing the pretrained parameters weighted by the relative Fisher-information matrix. The method leverages Fisher information to estimate gradient variance and identify parameters most closely related to the data to be forgotten, and these parameters are isolated from the base model by assigning them to a LoRA adapter.\n\nThe original paper also introduced the Inverted Hinge Loss (IHL) to replace the negative cross-entropy loss in Gradient Ascent and resolve issues with dispersed gradients and unboundedness."
+    ],
+    "durationSeconds": 6.534189154
+  },
+  "sourceToolAssistantUUID": "e59e82d2-7556-4071-a614-50b62bcefc2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-09T21:28:14.095Z_
+
+<details><summary>↩ Tool result · `toolu_01HeXpxmiNhoD4sRZX9qEBoK`</summary>
+
+```text
+# Paper Analysis
+
+**Title:** "Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning"
+
+**FILA vs. VILA:** This paper critiques an existing method and proposes a replacement. FILA is a prior approach that the authors identify as having limitations. According to the abstract, "FILA still requires access to all model parameters and does not adequately account for fundamental assumptions underlying Fisher information."
+
+The authors propose VILA as their solution. They state that VILA "explicitly considers the assumptions overlooked in FILA, thereby enhancing the accuracy of parameter identification." Their method achieves significant improvements, including "up to 100x higher parameter efficiency and 40x faster training speed compared to FILA."
+
+In summary: The paper does **not** propose FILA—rather, it critiques FILA's shortcomings and introduces VILA as a more efficient and accurate alternative for machine unlearning in large language models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d699927-29fa-46a9-9504-f2ea1f610e76",
+  "isSidechain": false,
+  "promptId": "4fe8b225-16b3-4fd0-af92-12603231d031",
+  "type": "user",
+  "uuid": "4a18b62e-439f-4ae0-8b95-1e8cb6172b2a",
+  "toolUseResult": {
+    "bytes": 48124,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis\n\n**Title:** \"Improving Fisher Information Estimation and Efficiency for LoRA-based LLM Unlearning\"\n\n**FILA vs. VILA:** This paper critiques an existing method and proposes a replacement. FILA is a prior approach that the authors identify as having limitations. According to the abstract, \"FILA still requires access to all model parameters and does not adequately account for fundamental assumptions underlying Fisher information.\"\n\nThe authors propose VILA as their solution. They state that VILA \"explicitly considers the assumptions overlooked in FILA, thereby enhancing the accuracy of parameter identification.\" Their method achieves significant improvements, including \"up to 100x higher parameter efficiency and 40x faster training speed compared to FILA.\"\n\nIn summary: The paper does **not** propose FILA—rather, it critiques FILA's shortcomings and introduces VILA as a more efficient and accurate alternative for machine unlearning in large language models.",
+    "durationMs": 7290,
+    "url": "https://arxiv.org/abs/2508.21300"
+  },
+  "sourceToolAssistantUUID": "1d699927-29fa-46a9-9504-f2ea1f610e76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Stage-Attributed Contamination Fingerprinting via Stage-Contrastive Ac…",
+  "leafUuid": "4a18b62e-439f-4ae0-8b95-1e8cb6172b2a",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise contamination stage attribution with corrected citations",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-09T21:28:37.497Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have what I need:
+
+1. **LRH paper**: arXiv:2311.03658 is indeed the correct paper - "The Linear Representation Hypothesis and the Geometry of Large Language Models" by Park, Choe, and Veitch. It was accepted at ICML 2024 (and presented at NeurIPS 2023 workshop). Note: the reviewer said "ICLR 2024" but the WebFetch says it was presented at ICML 2024, not ICLR 2024. Let me verify this more carefully - the reviewer said "arXiv:2311.03658, ICLR 2024" but the fetch result says "accepted for presentation at ICML 2024 and received an oral presentation at NeurIPS 2023's Causal Representation Learning Workshop." This is actually ICML 2024, not ICLR 2024. 
+
+The reviewer mixed up the venue, but the paper itself is correct and does establish the Linear Representation Hypothesis, so I'll cite it properly as ICML 2024.
+
+2. **FILA**: The paper arXiv:2508.21300 crit
+
+Now I'm checking the original FILA paper - it looks like arXiv:2408.06621 "Towards Robust and Parameter-Efficient Knowledge Unlearning for LLMs" is the one being referenced. The proposal uses FILA's approach with Fisher information matrix diagonals for contamination attribution, so I either need to cite that original paper correctly or remove the FILA reference entirely.
+
+The reviewer suggests treating Fisher information as a standard technique instead, which means I could drop the FILA citation and reference foundational work like EWC (Kirkpatrick et al. 2017) for parameter importance estimation, or just describe Fisher information without a specific citation. Let me verify the exact location where FILA is mentioned in the proposal to see what makes the most sense contextually. I need to verify the correct FILA paper citation and check the EMNLP 2026 deadline to make sure I'm using accurate references.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a18b62e-439f-4ae0-8b95-1e8cb6172b2a",
+  "isSidechain": false,
+  "requestId": "req_011Cashq3KMg1Qy4uNCbz3nb",
+  "type": "assistant",
+  "uuid": "88bd8ce8-a68b-465b-b35b-d72d8009affc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01979LtHyE4oAsv9cuzDsy59",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1665,
+      "cache_read_input_tokens": 27671,
+      "output_tokens": 1198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1198,
+          "cache_read_input_tokens": 27671,
+          "cache_creation_input_tokens": 1665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-09T21:28:37.499Z_
+
+Now let me check the original FILA paper and the EMNLP 2026 ARR deadline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88bd8ce8-a68b-465b-b35b-d72d8009affc",
+  "isSidechain": false,
+  "requestId": "req_011Cashq3KMg1Qy4uNCbz3nb",
+  "type": "assistant",
+  "uuid": "ac68e8a6-9fe2-4e0d-9bd9-92aaa4ce8eea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01979LtHyE4oAsv9cuzDsy59",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1665,
+      "cache_read_input_tokens": 27671,
+      "output_tokens": 1198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1198,
+          "cache_read_input_tokens": 27671,
+          "cache_creation_input_tokens": 1665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-09T21:28:37.622Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SN73FvYSL1Sfxyt3kaAtLM`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2408.06621",
+  "prompt": "What is the title of this paper? Does it introduce FILA (Fisher-Initialization of Low-rank Adapters) for machine unlearning?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac68e8a6-9fe2-4e0d-9bd9-92aaa4ce8eea",
+  "isSidechain": false,
+  "requestId": "req_011Cashq3KMg1Qy4uNCbz3nb",
+  "type": "assistant",
+  "uuid": "1168320e-29ad-46a9-849e-f28b324b2983",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01979LtHyE4oAsv9cuzDsy59",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1665,
+      "cache_read_input_tokens": 27671,
+      "output_tokens": 1198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1198,
+          "cache_read_input_tokens": 27671,
+          "cache_creation_input_tokens": 1665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-09T21:28:37.856Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YXrWtD4HNgTEvtnEKnbMcv`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1168320e-29ad-46a9-849e-f28b324b2983",
+  "isSidechain": false,
+  "requestId": "req_011Cashq3KMg1Qy4uNCbz3nb",
+  "type": "assistant",
+  "uuid": "9b922729-97a2-4e2c-9035-7f25efe1c65c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01979LtHyE4oAsv9cuzDsy59",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1665,
+      "cache_read_input_tokens": 27671,
+      "output_tokens": 1198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1198,
+          "cache_read_input_tokens": 27671,
+          "cache_creation_input_tokens": 1665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-09T21:28:40.493Z_
+
+<details><summary>↩ Tool result · `toolu_01SN73FvYSL1Sfxyt3kaAtLM`</summary>
+
+```text
+# Paper Title and Methods
+
+The paper is titled **"Towards Robust and Parameter-Efficient Knowledge Unlearning for LLMs"**.
+
+Regarding FILA: The paper does not introduce a method called "FILA (Fisher-Initialization of Low-rank Adapters)." Instead, it proposes **LoKU** (Low-rank Knowledge Unlearning), which includes "a data-adaptive initialization for LoRA adapters via low-rank approximation weighted with relative Fisher information." 
+
+While the approach incorporates Fisher information weighting for adapter initialization, the framework itself is branded as LoKU, not FILA.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1168320e-29ad-46a9-849e-f28b324b2983",
+  "isSidechain": false,
+  "promptId": "4fe8b225-16b3-4fd0-af92-12603231d031",
+  "type": "user",
+  "uuid": "800b12ed-815b-463f-be14-7d2171ac2c87",
+  "toolUseResult": {
+    "bytes": 48632,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Title and Methods\n\nThe paper is titled **\"Towards Robust and Parameter-Efficient Knowledge Unlearning for LLMs\"**.\n\nRegarding FILA: The paper does not introduce a method called \"FILA (Fisher-Initialization of Low-rank Adapters).\" Instead, it proposes **LoKU** (Low-rank Knowledge Unlearning), which includes \"a data-adaptive initialization for LoRA adapters via low-rank approximation weighted with relative Fisher information.\" \n\nWhile the approach incorporates Fisher information weighting for adapter initialization, the framework itself is branded as LoKU, not FILA.",
+    "durationMs": 2867,
+    "url": "https://arxiv.org/abs/2408.06621"
+  },
+  "sourceToolAssistantUUID": "1168320e-29ad-46a9-849e-f28b324b2983",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-09T21:28:42.416Z_
+
+<details><summary>↩ Tool result · `toolu_01YXrWtD4HNgTEvtnEKnbMcv`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"}]
+
+Based on the search results, I found the key information about the EMNLP 2026 ARR submission deadline:
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+Additionally, there are a few important related deadlines:
+- Reviewer registration deadline for all authors is May 27, 2026
+- Author response and author-reviewer discussion runs from July 7 - July 13, 2026
+- Meta review is released July 30, 2026
+
+It's also important to note that since the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b922729-97a2-4e2c-9035-7f25efe1c65c",
+  "isSidechain": false,
+  "promptId": "4fe8b225-16b3-4fd0-af92-12603231d031",
+  "type": "user",
+  "uuid": "b694ef6c-8ee8-4709-a1f0-226db3868c48",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W91Apn2yoxgxM1wadXZgYg",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          }
+        ]
+      },
+      "Based on the search results, I found the key information about the EMNLP 2026 ARR submission deadline:\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026.\n\nAdditionally, there are a few important related deadlines:\n- Reviewer registration deadline for all authors is May 27, 2026\n- Author response and author-reviewer discussion runs from July 7 - July 13, 2026\n- Meta review is released July 30, 2026\n\nIt's also important to note that since the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026."
+    ],
+    "durationSeconds": 4.557153286000001
+  },
+  "sourceToolAssistantUUID": "9b922729-97a2-4e2c-9035-7f25efe1c65c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-09T21:30:00.502Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need:
+
+1. **LRH Citation Fix**: arXiv:2311.03658 is "The Linear Representation Hypothesis and the Geometry of Large Language Models" by Park, Choe, and Veitch — this is the correct paper. However, the fetch result says it was accepted at **ICML 2024** (not ICLR 2024 as the reviewer stated). I should use ICML 2024 as the venue.
+
+2. **FILA Citation Fix**: 
+   - arXiv:2508.21300 proposes VILA as a replacement for FILA (confirmed - it critiques FILA)
+   - arXiv:2408.06621 introduces LoKU for knowledge unlearning, but doesn't specifically address FILA
+   - The original FILA paper isn't clearly identified in my search results, so following the reviewer's suggestion, I should replace the FILA-specific citation with a reference to Fisher information as a general technique for parameter importance estimation, using something like the EWC paper (Kirkpatrick et al. 2017) instead.
+   - For the white-box limitation, I need to add a clarifying sentence.
+   - On the venue question: EMNLP 2026 has a May 25 deadline, and with experiments finishing around May 19-22, there's a tight 3-4 week window to write if I can work in parallel. The reviewer wants me to clarify whether a draft already exists—if it does, EMNLP 2026 becomes the primary target; if not, I should explain why AAAI 2027 makes more sense given the timeline.
+   - Looking at the bigger picture, the reviewer is saying these are genuinely minor fixes that would bring the work to passing quality, so despite four rounds of feedback, this revision should actually move things forward.
+   - Now I'm compiling the specific changes: replacing the FILA reference in the landscape section with a more standard framing of Fisher information as a parameter importance technique, clarifying the white-box limitation, and making the venue strategy conditional on whether a pre-existing draft exists.
+   - For the citations, I need to swap out the incorrect Linear Representation Hypothesis reference (arXiv:2502.17601) with the correct Park et al. paper from ICML 2024, and verify the other references are accurate.
+   - I should also add a note about the white-box access requirement somewhere in the approach section since that's a key constraint of the method.
+   - In the key_references section, I'll need to remove the FILA paper and add a proper Fisher information reference instead.
+   - The opportunity section has an incorrect citation for the Linear Representation Hypothesis that needs to be corrected to the right paper.
+
+Now I'm thinking through the venue timeline: with EMNLP 16 days away and experiments starting today, whether EMNLP 2026 is realistic depends entirely on whether there's already a draft with the problem framing, related work, and method sections written. If we're starting completely from scratch, AAAI 2027 becomes the more practical primary target. I'll make the target_venues section explicit about this conditional so it's clear what determines which deadline is actually achievable.
+
+Looking back at what the reviewer flagged, they mentioned EMNLP 2026 as the user's stated primary target, which suggests this was established in earlier conversations. The fix is to clarify the conditional language around whether a pre-existing draft exists, since that's what actually determines feasibility.
+
+For the FILA reference in the approach section, I need to verify the citation is correct where it discusses using the Fisher information matrix diagonal for machine unlearning parameter isolation.
+
+Actually, I'm realizing the FILA mention appears in the landscape section, not the approach. In the approach, the relevant citation is about SFT concentrating mid-layer weight changes, which references a different paper.
+
+So I need to make three citation corrections: swap out the FILA reference for a standard Fisher information or EWC citation, replace the LRH citation with the Park et al. ICML 2024 paper, and update the opportunity section citation as well.
+
+For FILA, I think the cleanest fix is to remove the technique name entirely and just describe Fisher information matrix diagonal as a standard parameter importance estimator that's been used in recent LLM unlearning work but never for contamination stage attribution. For LRH, I'll cite Park et al. instead. I also need to add a white-box limitation sentence to the approach section, clarify the conditional language in target_venues about whether a draft exists, and fix both citations in key_references.
+
+Now I'm going through the other fields to see what else needs updating—the opportunity section has an outdated arXiv number for LRH that needs correcting, and I should verify the description doesn't need citation updates either before putting together the full revised JSON. I'm deciding to drop the FILA citation entirely and just describe Fisher information as a standard parameter importance technique—that's cleaner and aligns with what the reviewer suggested. For the approach section, I need to add a sentence acknowledging the white-box access requirement, probably early in that section. I need to fix the citation issue — the reviewer flagged that arXiv:2502.17601 doesn't accurately describe the Linear Representation Hypothesis work. I'll replace it with the correct Park et al. paper (arXiv:2311.03658, ICML 2024) in both the opportunity and landscape sections, updating the descriptions to be more precise about how high-level concepts and behavioral shifts are encoded as linear directions in activation space.
+
+For the key_references, I'm removing the incorrect survey paper and the FILA citation, then adding the Park et al. paper as the foundational reference for the linear representation hypothesis framework that SCAF builds on.
+
+Now I need to address the venue situation — the user's primary target is actually EMNLP 2026 with a May 25 deadline, but the current proposal lists AAAI 2027. Since I don't know if a draft exists yet, I should restructure the target_venues section to make this conditional explicit: if there's a draft ready, EMNLP 2026 becomes primary; otherwise, I need to justify why AAAI 2027 makes sense given the tight timeline. AAAI 2027 is the safer primary target if there's no draft ready, since the July-August deadline gives 2-3 months to write everything from scratch with time for ablations and cross-architecture results. Now I'm putting together the complete JSON with all the unchanged fields preserved.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b694ef6c-8ee8-4709-a1f0-226db3868c48",
+  "isSidechain": false,
+  "requestId": "req_011Cashs8QFtETBUZTsF7B9u",
+  "type": "assistant",
+  "uuid": "9220efea-6382-4ec7-b3db-f4c12dbfc200",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0119ZaKkByq3tZQXKc11ZdmZ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2197,
+      "cache_read_input_tokens": 29336,
+      "output_tokens": 10857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2197,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10857,
+          "cache_read_input_tokens": 29336,
+          "cache_creation_input_tokens": 2197,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2197
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-09T21:32:39.546Z_
+
+Good — I now have everything I need:
+- arXiv:2311.03658 is **ICML 2024** (not ICLR 2024 as the reviewer stated, but it is the correct LRH paper by Park, Choe, Veitch)
+- arXiv:2508.21300 definitively critiques FILA and proposes VILA — it does NOT present FILA
+- arXiv:2408.06621 introduces **LoKU** (not FILA) — so there's no clean "original FILA paper" to cite; the right move is to drop FILA as a named technique and reference Fisher information directly
+- EMNLP 2026 ARR deadline confirmed: **May 25, 2026** (16 days from today)
+
+All four fixes are targeted. Writing the revised JSON now.
+
+```json
+{
+  "title": "Stage-Attributed Contamination Fingerprinting via Stage-Contrastive Activation Probing",
+  "change_type": "minor",
+  "core_problem": "Existing contamination detectors are stage-specific silos: DICE (SFT, math benchmarks), Self-Critique (RL post-training, ICLR 2026), CoDeC (stage-agnostic ICL perturbations, ICLR 2026). No method determines WHEN in the training pipeline contamination entered — a critical gap, since the remediation strategy differs entirely: SFT contamination requires retraining the instruction stage, RL contamination requires reward model decontamination, and data-refresh contamination (test data appearing in a new corpus added during continued pretraining) requires data curation of the refresh batch. Critically, 'No Memorization, No Detection' (arXiv:2603.03203, March 2026) establishes that output-distribution methods (the basis of Self-Critique and CDD) operate at chance level for models under ~1B parameters, even with verified contamination — motivating activation-space and weight-sensitivity approaches for small-model stage attribution. All existing detectors operate on single-stage assumptions and none provide a multi-class stage label.",
+  "opportunity": "Four concurrent papers now characterize contamination at individual stages or confirm detection difficulty — DICE (arXiv:2406.04197), Self-Critique (arXiv:2510.09259, ICLR 2026), CoDeC (ICLR 2026), and No Memorization No Detection (arXiv:2603.03203) — but none attempts stage attribution. Kocyigit et al. (arXiv:2601.06103) empirically shows SFT contamination produces narrow task-specific inflation while RL/GRPO contamination generalizes more broadly — confirming that stages leave distinguishable behavioral signatures, but proposing no attribution classifier. The Linear Representation Hypothesis (Park, Choe & Veitch, arXiv:2311.03658, ICML 2024) formalizes the notion that high-level concepts — including post-training behavioral shifts — are encoded as linear directions in transformer activation space; probe-based attribution (arXiv:2602.11079) demonstrates that activation-difference vectors carry reliable signal about training data identity. Whether directions produced by different training stages (data-refresh continued pretraining, SFT, RL) are mutually discriminable in activation space — and what their pairwise cosine similarities are — is an open empirical question that no prior work has tested. SCAF's analysis section ('Do Training Stages Leave Distinguishable Activation Signatures?') provides this measurement as a first empirical contribution before any probe training, computing a 4×4 per-stage mean-direction cosine-similarity heatmap and converting a theoretical prior into a directly observable result. The EMNLP 2026 theme on data governance makes this a natural venue. A stage-attribution framework can be executed within both hard constraints (≤200 H100-hours, ≤16 days) by using the Pythia-1B pretrained checkpoint (designed for controlled training experiments with frequent intermediate checkpoints), limiting to 2 benchmark domains, and reframing 'pretraining contamination' as the ecologically more valid 'data-refresh contamination' scenario — supported by 'How Much Can We Forget' (ICML 2025), which shows original pretraining contamination fades below detectability after ~5× Chinchilla-scale new data, making data-refresh the more persistent and practically relevant contamination vector.",
+  "landscape": "Post-hoc membership inference achieves AUC ~0.5 (arXiv:2604.19561, April 2026), confirming the fundamental difficulty of pretraining contamination detection. Proactive watermarking (arXiv:2502.17259, ICLR 2025) detects via radioactivity traces but requires pre-deployment benchmark modification and provides no stage information. DICE (arXiv:2406.04197) identifies the most activation-sensitive transformer layer and trains a classifier on its internal states for SFT contamination detection on math benchmarks — it does not generalize across stages. Self-Critique (arXiv:2510.09259, ICLR 2026) detects RL contamination via output-entropy collapse under self-critique prompting — stage-specific and, per 'No Memorization No Detection,' likely ineffective for sub-1B models due to insufficient output distribution peaking. CoDeC (ICLR 2026, arXiv:2510.27055) uses ICL perturbations to detect memorized data at dataset level (AUC 99.9%) but yields no stage label. Kernel Divergence Score (KDS, arXiv:2502.00678, 2025) evaluates contamination by comparing kernel similarity matrices of embeddings before and after fine-tuning on the benchmark dataset, achieving near-perfect correlation with contamination levels — but is entirely stage-agnostic and provides no attribution label. The contamination survey (arXiv:2502.14425) documents 50+ techniques without a single stage-aware method. 'No Memorization No Detection' (arXiv:2603.03203) systematically demonstrates that output-distribution detection operates at chance for Pythia 70M–410M, with probability-based methods (perplexity, Min-k% Prob) consistently outperforming distribution-based methods — motivating activation- and weight-based fingerprinting for small models. Kocyigit et al. (arXiv:2601.06103) characterizes stage-specific behavioral signatures (SFT = narrow inflation, RL/GRPO = broad generalization) without operationalizing them into a detector. Probe-based attribution (arXiv:2602.11079) uses activation-difference vectors to attribute post-training behaviors to training datapoints, achieving 10× lower cost than gradient-based attribution — the technique we extend to stage attribution. 'How Much Can We Forget' (ICML 2025) establishes that original pretraining contamination fades after large data additions, making continued-pretraining / data-refresh contamination the more practically persistent scenario. The Fisher information matrix diagonal is a standard parameter importance estimator widely used in continual learning and unlearning (e.g., elastic weight consolidation; Kirkpatrick et al., PNAS 2017) but has never been applied as a contamination stage attribution feature. The Linear Representation Hypothesis (Park, Choe & Veitch, arXiv:2311.03658, ICML 2024) formalizes that high-level concepts are encoded as linear, mutually orthogonal directions in transformer representation space; SCAF's inter-stage cosine-similarity heatmap (Figure 1) tests whether contamination-induced activation shifts satisfy this mutual-orthogonality condition across training stages. Activation space interventions can be transferred across LLM families (Llama, Qwen, Gemma) via learned activation-space mappings (arXiv:2503.04429); training-free per-layer whitening aligns activation spaces across architectures without labeled target-domain data — supporting SCAF's cross-architecture evaluation design. No existing work spans all three contamination stages with a unified attribution method.",
+  "approach": "SCAF requires white-box access to model activations and gradient norms — a shared constraint with DICE and KDS — restricting applicability to practitioners who control their own training pipeline. This scope constraint is explicitly acknowledged here and will be stated in the paper's limitations section.\n\nAll experiments start from the public Pythia-1B pretrained checkpoint — no training from scratch. We construct controlled contamination across four conditions applied to Pythia-1B: (1) data-refresh contamination (continued pretraining on a 100M-token corpus with benchmark test data comprising 5%/10%/20% of tokens, simulating a crawl refresh that includes leaked test sets), (2) SFT contamination (benchmark questions as instructions, correct answers as responses, mixed into an instruction dataset), (3) RL contamination (DPO training with benchmark-paired preference data), and (4) clean baseline (same training recipe, no contamination). Two benchmark domains: MATH and MMLU. Three contamination ratios per condition: 5%, 10%, 20%. This yields 3 stages × 2 domains × 3 ratios + 2 clean baselines = 20 Pythia-1B checkpoint variants, providing a labeled dataset for probe training. For cross-architecture transfer, the identical contamination procedure is applied to OLMo-2-0425-1B (accessible on HuggingFace, Apache 2.0), yielding another 20 checkpoint variants with known ground-truth labels — used exclusively for zero-shot probe evaluation with no retraining.\n\n**Analysis Section 3.1 — 'Do Training Stages Leave Distinguishable Activation Signatures?':** Before training any probe classifier, we compute the mean activation-difference direction d̄ˢ = (1/300) Σᵢ δ(Mˢ; xᵢ) for each of the four stage conditions (data-refresh, SFT, RL, clean), where δ(Mˢ; xᵢ) = actᴸ(Mˢ; xᵢ) − actᴸ(M₀; xᵢ) is the activation difference from the clean Pythia-1B baseline at the middle transformer layer. We assemble a 4×4 cosine-similarity heatmap between {d̄^refresh, d̄^SFT, d̄^RL, d̄^clean} and report it as Figure 1 — an empirical, within-SCAF demonstration of inter-stage discriminability. This is an original measurement produced by SCAF itself, not dependent on any external citation. If any two off-diagonal entries exceed cosine similarity 0.5, the LIA architecture is augmented with a decorrelation objective before probe training proceeds.\n\nThe core methodological contribution is Stage-Contrastive Activation Fingerprinting (SCAF), a jointly-trained probe architecture with two novel components. (1) Layer-Importance Attention (LIA): activation-difference vectors δᴸᵢ = actᴸ(M; xᵢ) − actᴸ(M₀; xᵢ) are computed relative to the clean Pythia-1B baseline for each transformer layer L and each of 300 probe inputs xᵢ. Each of the 300 per-input vectors constitutes a separate probe training instance carrying the checkpoint's stage label — yielding 20 × 300 = 6,000 training instances for the Pythia-1B set. A soft attention α = softmax(Wα · δᴸᵢ) is learned over layers per input (no pooling across inputs before the attention step), producing a per-input LIA representation. Compared to DICE's hard selection of a single most-sensitive layer, LIA learns a distributed weighting that can capture multi-layer contamination signatures. (2) Layer-wise Weight Sensitivity Profile (LWSP): for each transformer block b, we compute the squared gradient norm ‖∇_{θb} ℒ(θ; D_probe)‖² over a 200-example domain-specific probe set, producing an L-dimensional sensitivity vector. The motivation is a testable prediction: contamination at different pipeline stages is predicted to consolidate task information into different layer groups — SFT has been empirically shown to concentrate mid-layer weight changes most strongly with performance gains (arXiv:2506.14681, EMNLP 2025); data-refresh contamination, operating via pretraining-like next-token prediction over a diffuse 100M-token corpus, is predicted to distribute gradient sensitivity more broadly; RL/DPO, which optimizes output-governing circuits, is predicted to shift sensitivity toward later layers. Whether this layer-distribution pattern is detectable at Pythia-1B scale is SCAF's secondary empirical claim, tested in the day-2 early ablation.\n\nThe LWSP vector — a checkpoint-level feature — is replicated and concatenated to each of the 300 per-input LIA representations from the same checkpoint before the probe forward pass. The LIA representation and LWSP vector are fed into a two-head probe network trained with a joint objective: ℒ_total = ℒ_CE + λ₁·ℒ_SCL + λ₂·ℒ_binary, where ℒ_CE is 4-way stage cross-entropy, ℒ_SCL is a supervised contrastive loss pulling together same-stage fingerprints and pushing apart different-stage fingerprints to explicitly maximize inter-stage discriminability, and ℒ_binary is a clean/contaminated detection head for regularization. At test time, 300 per-input predictions from an unseen checkpoint are aggregated by majority vote to produce a single checkpoint-level stage prediction.\n\n**Pre-registered fallback (Appendix Table A1):** If the day-2 early ablation (SFT condition only) shows LWSP macro-F1 < 0.40 on the 3-class SFT/RL/clean subset, LWSP is replaced with CoDeC-style ICL-sensitivity features: per-token log-probability delta under 3-shot vs. 0-shot prompting, averaged over 300 probe inputs. This fallback is fully pre-specified before experiments begin: input features = [LIA-weighted activation representation ‖ CoDeC ICL-delta vector], same two-head probe architecture and joint objective (ℒ_CE + λ₁·ℒ_SCL + λ₂·ℒ_binary). The paper presents this as Appendix Table A1 alongside main Table 2 ablations regardless of whether LWSP succeeds, showing its incremental contribution above the CoDeC-feature baseline.\n\nSix ablation conditions are evaluated: DICE-only, Self-Critique-only, CoDeC-only, naive DICE+SC+CoDeC concatenation (the straw-man baseline showing that simple combination is insufficient), LIA+LWSP without ℒ_SCL, and full SCAF. Primary metric: macro-F1 on the 4-class task (data-refresh / SFT / RL / clean). Secondary: we explicitly test whether Self-Critique output-entropy features replicate the 'No Memorization No Detection' failure mode at Pythia-1B scale, empirically motivating the LWSP feature.\n\n**Cross-architecture evaluation (Table 3):** Zero-shot transfer to OLMo-2-1B is reported with three rows to isolate each component's contribution to cross-architecture generalization: (a) LWSP-only transfer (no activation features), (b) LIA-only transfer with per-layer whitening, and (c) LIA+LWSP transfer with per-layer whitening. Since Pythia-trained LIA attention weights α encode Pythia-specific layer response geometry — and OLMo-2-0425-1B uses QK-norm and different attention parameterization (incompatible scale assumptions) — raw LIA transfer is biased. We apply a training-free per-layer whitening before applying Pythia's α to OLMo activations: for each layer l, OLMo's δᴸ vectors are standardized to zero mean and unit variance using statistics computed from 300 probe inputs on the OLMo clean baseline checkpoint, following the principle that whitening removes architectural scale mismatches without requiring labeled target-domain data (cf. training-free activation-space whitening for cross-model alignment, arXiv:2503.04429). LWSP is the stronger a-priori candidate for zero-shot transfer, since per-block squared gradient norms are architecture-agnostic scalars unaffected by differences in normalization style; the three-row Table 3 confirms which component actually drives cross-architecture performance.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~115h A100",
+      "gpu_utilization": "Low (~25-35%): researchers manually iterate on probe architecture and LWSP hyperparameters between checkpoint collection runs; sequential experiment design dominates calendar time despite low total compute",
+      "timeline": "3-4 months",
+      "team": "2 researchers",
+      "estimated_gpu_cost": "~$230 (at ~$2/hr A100, decentralized provider rate)",
+      "note": "Compute well within ≤200 H100-hours (≈70h H100 equivalent); calendar time far exceeds 16-day hard constraint due to manual iteration"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~155h A100",
+      "gpu_utilization": "Moderate (~65-75%): agent batches all 20 Pythia-1B and 20 OLMo-1B training runs continuously; researcher approves LWSP hyperparameter choices and contamination-ratio ablations at daily 30-min check-ins; idle GPU time reduced to checkpoint-save windows between runs",
+      "timeline": "7-10 days",
+      "team": "1 researcher, ~30min/day check-in",
+      "claude_api_cost": "$120-200",
+      "estimated_gpu_cost": "~$310 (at ~$2/hr A100)",
+      "constraint_satisfaction": "SATISFIES BOTH HARD CONSTRAINTS: ~95h H100 equivalent (≤200 H100-hours ✓) and 7-10 days calendar (≤16 days ✓) with 4 H100s running in parallel (~24h wall-clock compute + daily review cycles)",
+      "risk_note": "Main bottleneck: LWSP feature may exhibit high variance at Pythia-1B scale if continued-pretraining contamination does not produce sufficiently concentrated gradient sensitivity in specific layer groups. Early ablation checkpoint (day 2: SFT condition only) validates LWSP discriminability before committing to full sweep. Pre-registered fallback is Appendix Table A1 (LIA + CoDeC ICL-delta features), fully specified before experiments begin."
+    },
+    "auto_research": {
+      "gpu_hours": "~500-700h A100",
+      "gpu_utilization": "Near-zero idle (~88-93%): agent runs 3× more contamination-ratio variants, ablates LWSP block granularity (layer-wise vs. block-wise), and sweeps attention head configurations in parallel across GPUs",
+      "timeline": "4-7 days with 8+ A100s",
+      "team": "0 (only ~2h initial setup)",
+      "claude_api_cost": "$300-450",
+      "estimated_gpu_cost": "~$1,000-1,400 (at ~$2/hr A100)",
+      "constraint_note": "Exceeds 200 H100-hours (≈310-430h H100); satisfies ≤16 days. Use HIL mode to satisfy both hard constraints simultaneously.",
+      "risk_note": "Without human oversight, auto mode may over-explore contamination-ratio space and under-explore cross-domain transfer conditions; LWSP sensitivity sweep may compute uninformative very-fine-grained block decompositions. Agent should be constrained to a fixed experiment plan approved during setup."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR May cycle, deadline May 25, 2026; conference Oct 24-29, Budapest): PRIMARY TARGET if a complete paper draft covering problem framing, related work, and method sections exists before experiments begin on May 9. With HIL experiments completing May 19-22, approximately 3-4 days remain before the May 25 deadline — sufficient for incorporating ablation results and polishing, but not for writing from scratch. Note: EMNLP 2026 and AACL share the ARR May cycle; authors must explicitly declare the target conference at submission time (binding choice). Authors should assess draft status immediately: if a substantial draft exists, EMNLP 2026 is achievable and should be treated as primary.",
+    "AAAI 2027 (deadline expected July-August 2026; conference Feb 2027, Montreal): PRIMARY TARGET if no pre-existing draft exists. With HIL experiments completing ~May 19-22, the July-August window provides 2-3 months for writing all sections from scratch, incorporating full ablation tables (including Appendix Table A1), and preparing the three-row cross-architecture Table 3. This is the safe primary venue for teams starting from a blank document."
+  ],
+  "level": "solid",
+  "key_references": [
+    "DICE: Detecting In-distribution Contamination in LLM's Fine-tuning Phase for Math Reasoning (arXiv:2406.04197, 2024)",
+    "Self-Critique: Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models (arXiv:2510.09259, ICLR 2026)",
+    "CoDeC: Detecting Data Contamination in LLMs via In-Context Learning (arXiv:2510.27055, ICLR 2026)",
+    "Probe-Based Data Attribution: Discovering and Mitigating Undesirable Behaviors in LLM Post-Training (arXiv:2602.11079, 2026)",
+    "No Memorization, No Detection: Output Distribution-Based Contamination Detection in Small Language Models (arXiv:2603.03203, 2026)",
+    "How Much Can We Forget about Data Contamination? (ICML 2025)",
+    "The Impact of Post-training on Data Contamination (Kocyigit et al., arXiv:2601.06103, 2026)",
+    "Detecting Data Contamination in Large Language Models (membership inference AUC ~0.5, arXiv:2604.19561, 2026)",
+    "Detecting Benchmark Contamination Through Watermarking (arXiv:2502.17259, ICLR 2025)",
+    "A Survey on Data Contamination for Large Language Models (arXiv:2502.14425, 2026)",
+    "Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling (arXiv:2304.01373, ICML 2023)",
+    "The Linear Representation Hypothesis and the Geometry of Large Language Models (Park, Choe & Veitch; arXiv:2311.03658, ICML 2024) — foundational formalization that high-level concepts are encoded as linear directions in transformer representation space; basis for SCAF's inter-stage discriminability heatmap",
+    "Overcoming Catastrophic Forgetting in Neural Networks (Kirkpatrick et al., PNAS 2017) — foundational reference for Fisher information matrix diagonal as a parameter importance estimator; basis for LWSP feature motivation",
+    "Activation Space Interventions Can Be Transferred Between Large Language Models (arXiv:2503.04429, 2025) — cross-architecture activation transfer via learned mappings across Llama/Qwen/Gemma; supports whitening-based LIA transfer design",
+    "Massive Supervised Fine-tuning Experiments Reveal How Data, Layer, and Training Factors Shape LLM Alignment Quality (arXiv:2506.14681, EMNLP 2025) — empirically shows mid-layer weight changes correlate most strongly with SFT performance gains; supports LWSP layer-distribution hypothesis for SFT stage",
+    "How Contaminated Is Your Benchmark? Quantifying Dataset Leakage with Kernel Divergence Score (arXiv:2502.00678, 2025) — KDS achieves near-perfect contamination correlation but is stage-agnostic; confirms the stage-attribution gap"
+  ],
+  "description": "Benchmark contamination detection methods remain stage-specific silos: DICE handles SFT, Self-Critique handles RL, and CoDeC is stage-agnostic — leaving practitioners unable to determine when contamination entered their pipeline, which is essential for targeted remediation. 'No Memorization, No Detection' (arXiv:2603.03203) further establishes that output-distribution methods fail at chance for sub-1B models, motivating activation- and weight-based approaches. We propose Stage-Contrastive Activation Fingerprinting (SCAF), which starts from the Pythia-1B pretrained checkpoint and applies controlled contamination at three stages (data-refresh continued pretraining, SFT instruction tuning, RL preference training) plus a clean baseline, across MATH and MMLU, yielding 20 labeled checkpoints for probe training and 20 OLMo-2-1B checkpoints for zero-shot cross-architecture transfer evaluation. Like DICE and KDS, SCAF requires white-box access to model activations and gradient norms; its scope is practitioners who control their own training pipelines. SCAF opens with an original empirical analysis ('Do Training Stages Leave Distinguishable Activation Signatures?'), computing a 4×4 per-stage mean-direction cosine-similarity heatmap as Figure 1 — a within-paper first result that demonstrates inter-stage discriminability without relying on any external unpublished claims. SCAF introduces two new components: Layer-Importance Attention (LIA), which learns a soft attention over all transformer layers' per-input activation-difference vectors (operating on each of the 300×20 = 6,000 training instances individually, with majority voting at test time) rather than DICE's hard single-layer selection; and the Layer-wise Weight Sensitivity Profile (LWSP), a new feature type — per-block squared gradient norms over a probe dataset — whose stage-specific layer-distribution pattern is tested as a secondary empirical claim, with a pre-registered fallback (Appendix Table A1: LIA + CoDeC ICL-delta features) specified before experiments begin. A joint training objective combines cross-entropy classification with a supervised contrastive loss. Cross-architecture Table 3 presents three rows — LWSP-only transfer, LIA-only+whitening, LIA+LWSP+whitening — isolating which component generalizes to OLMo-2-1B. Ablations against DICE, Self-Critique, CoDeC, and their naive concatenation isolate each contribution. The venue strategy is explicitly conditional: EMNLP 2026 (ARR deadline May 25, 2026) is the primary target if a complete paper draft exists before experiments begin; AAAI 2027 (deadline July-August 2026) is the primary target if writing from scratch. The design satisfies both hard constraints (≤200 H100-hours, ≤16 days) in human-in-loop mode (~95h H100, 7-10 days with 4 H100s).",
+  "project_name": "contam_stage_attribution",
+  "source": "web_research"
+}
+```
+
+---
+
+**Summary of changes (all minor):**
+
+| Issue | Fix applied |
+|---|---|
+| FILA citation (arXiv:2508.21300 critiques FILA, doesn't present it) | Removed FILA as a named technique everywhere; replaced with "Fisher information matrix diagonal — a standard parameter importance estimator (Kirkpatrick et al., PNAS 2017)" in landscape and key_references |
+| LRH citation (arXiv:2502.17601 is a survey, not the LRH paper) | Replaced with Park, Choe & Veitch (arXiv:2311.03658, ICML 2024) throughout opportunity, landscape, and key_references; corrected venue from ICLR to ICML (which the reviewer misstated) |
+| White-box access not acknowledged | Added explicit sentence at the top of `approach` and in `description`: SCAF requires white-box access to activations and gradient norms, shared constraint with DICE and KDS, scope is practitioners controlling their own training pipeline |
+| Venue strategy ambiguous | Rewrote `target_venues` to make the conditional explicit: EMNLP 2026 is primary **if a complete draft exists before May 9**; AAAI 2027 is primary if writing from scratch — with the May 25 deadline and ~3-day post-experiment window making clear why this distinction matters |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9220efea-6382-4ec7-b3db-f4c12dbfc200",
+  "isSidechain": false,
+  "requestId": "req_011Cashs8QFtETBUZTsF7B9u",
+  "type": "assistant",
+  "uuid": "17d4a545-baaf-4b99-a86f-3c86d0b3eb56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0119ZaKkByq3tZQXKc11ZdmZ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2197,
+      "cache_read_input_tokens": 29336,
+      "output_tokens": 10857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2197,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10857,
+          "cache_read_input_tokens": 29336,
+          "cache_creation_input_tokens": 2197,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2197
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Stage-Attributed Contamination Fingerprinting via Stage-Contrastive Ac…",
+  "leafUuid": "17d4a545-baaf-4b99-a86f-3c86d0b3eb56",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise contamination stage attribution with corrected citations",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Stage-Attributed Contamination Fingerprinting via Stage-Contrastive Ac…",
+  "leafUuid": "17d4a545-baaf-4b99-a86f-3c86d0b3eb56",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise contamination stage attribution with corrected citations",
+  "sessionId": "a2baa08c-16c9-408f-ab97-d654b8966e39"
+}
+```
+
+---
