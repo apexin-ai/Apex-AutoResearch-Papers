@@ -632,6 +632,10 @@
     "status": "Pending comparison against original archive member paths and byte sizes",
     "candidate_index": "release-source-mirrors.csv.gz",
     "method": "List object metadata without downloading mirrored file bodies. Environment, account, cache, and internal shared subtrees are excluded. Original per-project source and exclusion manifests will be used to check coverage.",
-    "not_a_content_checksum_comparison": true
+    "not_a_content_checksum_comparison": true,
+    "excluded_cache_candidate_objects": 3410,
+    "excluded_cache_candidate_bytes": 6016777325,
+    "cache_exclusion_rule": "Unpacked mirror paths containing .hf_cache are model and dataset cache copies, excluded from the research release; their individual object metadata remains in release-source-mirrors.csv.gz.",
+    "supplemental_source_index": "release-source-mirror-supplements.json"
   }
 }
